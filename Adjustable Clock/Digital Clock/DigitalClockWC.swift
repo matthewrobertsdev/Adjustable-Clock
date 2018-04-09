@@ -54,6 +54,8 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         
         enableClockMenu(enabled: true)
         updateClockMenuUI()
+        window?.isOpaque=false
+        //window?.alphaValue=0.5
     }
     
     func setTrackingArea(){
@@ -70,18 +72,7 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         let digitalClockVC=window?.contentViewController as! DigitalClockVC
         let oldWidth=window?.frame.width
         let finalHeight=digitalClockVC.clockStackView.fittingSize.height
-        /*
-        let screenWidth=window?.screen?.frame.size.width
-        let screenHeight=window?.screen?.frame.size.height
-        if !(screenWidth==nil) && !(screenHeight==nil){
-            while finalWidth>screenWidth!||finalHeight>screenHeight!
-            {
-                finalWidth*=0.9
-                digitalClockVC.resizeText(maxWidth: finalWidth)
-                finalHeight=digitalClockVC.clockStackView.fittingSize.height//+18
-            }
-        }
- */
+        
         let newSize=NSSize(width: newWidth, height: finalHeight)
         let oldHeight=window?.frame.height
         let changeInHeight=finalHeight-oldHeight!
@@ -120,7 +111,7 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         
         digitalClockVC.resizeText(maxWidth: (window?.frame.width)!)
         
-        if !(window?.isZoomed)!{
+        if !(window?.isZoomed)! && ClockPreferencesStorage.sharedInstance.fullscreen==false{
             let newWidth=(window?.frame.width)!
             let newHeight=digitalClockVC.clockStackView.fittingSize.height
             let newAspectRatio=NSSize(width: newWidth, height: newHeight)

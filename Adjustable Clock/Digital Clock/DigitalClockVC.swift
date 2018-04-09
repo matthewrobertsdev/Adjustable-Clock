@@ -30,7 +30,7 @@ class DigitalClockVC: NSViewController {
         
         print("Digital clock view did load")
         
-        tellingTime = ProcessInfo().beginActivity(options: [ProcessInfo.ActivityOptions.userInitiated,ProcessInfo.ActivityOptions.latencyCritical], reason: "Need accurate time all the time")
+        tellingTime = ProcessInfo().beginActivity(options: [ProcessInfo.ActivityOptions.userInitiated/*,ProcessInfo.ActivityOptions.latencyCritical*/], reason: "Need accurate time all the time")
         let nsColorLists=NSColorList.availableColorLists
         for colorList in nsColorLists{
             print("The color list is called"+colorList.name.debugDescription)
@@ -90,6 +90,7 @@ class DigitalClockVC: NSViewController {
     }
     
     func resizeText(maxWidth: CGFloat){
+        findingFontSemaphore.wait()
         if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek{
             
             let projectedTimeHeight=makeTimeMaxSize(maxWidth: maxWidth).height
@@ -131,6 +132,7 @@ class DigitalClockVC: NSViewController {
                 findFontThatFitsWithLinearSearchV2(label: animatedTime, size: makeTimeMaxSize(maxWidth: maxWidth))
             }
         }
+        findingFontSemaphore.signal()
     }
     
     func updateTime(){
@@ -203,14 +205,20 @@ class DigitalClockVC: NSViewController {
     }
     
     func clockLiveResize(maxWidth: CGFloat){
+        animatedDayInfo.sizeToFit()
         if (self.view.window?.inLiveResize)!{
             print("clock is in live resize so stop")
         }
-        if !(self.view.window?.inLiveResize)! &&  clockStackView.fittingSize.width>maxWidth||clockStackView.fittingSize.width<maxWidth*0.9{
+        print("height is "+animatedDayInfo.frame.height.description)
+        print("desired height is"+(maxWidth*digitalClockModel.dateSizeRatio*0.9).description)
+        if !(self.view.window?.inLiveResize)! &&  ((clockStackView.fittingSize.width>maxWidth)||((animatedDayInfo.frame.width<maxWidth*0.9)&&(animatedDayInfo.frame.height<maxWidth*digitalClockModel.dateSizeRatio*0.9))){
+            print("should live resize text")
             resizeText(maxWidth: (self.view.window?.frame.width)!)
             
+            if !(self.view.window?.isZoomed)! && ClockPreferencesStorage.sharedInstance.fullscreen==false{
             let digitalClockWC=view.window?.windowController as! DigitalClockWC
             digitalClockWC.sizeWindowToFitClock(newWidth: (self.view.window?.frame.width)!)
+            }
             /*
             if clockStackView.fittingSize.width>(self.view.window?.frame.width)!{
                 let newWidth=clockStackView.fittingSize.width/0.95
@@ -226,10 +234,10 @@ class DigitalClockVC: NSViewController {
     }
     
     func applyColorScheme(){
-
+        
         var contastingColor: NSColor
         let clockNSColors=ClockNSColors()
-        self.view.wantsLayer=true
+        //self.view.wantsLayer=true
         if !(ClockPreferencesStorage.sharedInstance.colorChoice==nil){
             print("contasting color is "+ClockPreferencesStorage.sharedInstance.colorChoice)
             if ClockPreferencesStorage.sharedInstance.colorChoice=="custom"{
@@ -245,15 +253,16 @@ class DigitalClockVC: NSViewController {
         }
         
         if !ClockPreferencesStorage.sharedInstance.lightOnDark{
-            animatedTime.textColor=NSColor.black
-            animatedDayInfo.textColor=NSColor.black
-            self.view.layer?.backgroundColor=contastingColor.cgColor
+            animatedTime.textColor=NSColor.black.withAlphaComponent(1)
+            animatedDayInfo.textColor=NSColor.black.withAlphaComponent(1)
+            self.view.window?.backgroundColor=contastingColor.withAlphaComponent(1)//.cgColor
         }
         else{
-            animatedTime.textColor=contastingColor
-            animatedDayInfo.textColor=contastingColor
-            self.view.layer?.backgroundColor=CGColor.black
+            animatedTime.textColor=contastingColor.withAlphaComponent(1)
+            animatedDayInfo.textColor=contastingColor.withAlphaComponent(1)
+            self.view.window?.backgroundColor=NSColor.black.withAlphaComponent(1)//.cgColor
         }
+ 
  
     }
  
@@ -270,7 +279,7 @@ class DigitalClockVC: NSViewController {
     
     func findFontThatFitsWithLinearSearchV2(label: NSTextField, size: NSSize){
         
-        findingFontSemaphore.wait()
+        //findingFontSemaphore.wait()
         
         label.sizeToFit()
         
@@ -291,14 +300,14 @@ class DigitalClockVC: NSViewController {
             label.sizeToFit()
             newWidth=label.frame.width
             newHeight=label.frame.height
-            Swift.print("textSize has grown to "+textSize.description)
-            Swift.print("label width has grown to "+(newWidth.description))
+            //Swift.print("textSize has grown to "+textSize.description)
+            //Swift.print("label width has grown to "+(newWidth.description))
             if(textSize>2000){
-                Swift.print("textSize became greater than 2000")
+                //Swift.print("textSize became greater than 2000")
                 textSize=2000;
                 label.font=NSFont.userFont(ofSize: textSize)
                 label.sizeToFit()
-                Swift.print("textSize set to 2000")
+                //Swift.print("textSize set to 2000")
                 break;
             }
         }
@@ -309,20 +318,20 @@ class DigitalClockVC: NSViewController {
             label.sizeToFit()
             newWidth=label.frame.width
             newHeight=label.frame.height
-            Swift.print("textSize has decreased to "+textSize.description)
-            Swift.print("label width has decreased to "+(newWidth.description))
+            //Swift.print("textSize has decreased to "+textSize.description)
+            //Swift.print("label width has decreased to "+(newWidth.description))
             if(textSize<2){
-                Swift.print("textSize became less than 2")
+                //Swift.print("textSize became less than 2")
                 textSize=1;
                 label.font=NSFont.userFont(ofSize: textSize)
                 label.sizeToFit()
-                Swift.print("textSize was set to 1")
+                //Swift.print("textSize was set to 1")
                 break;
             }
-            Swift.print("done finding correct size font")
+            //Swift.print("done finding correct size font")
         }
         
-        findingFontSemaphore.signal()
+        //findingFontSemaphore.signal()
         
     }
     
