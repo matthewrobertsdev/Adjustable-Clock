@@ -51,7 +51,7 @@ class PreferencesController{
     
     @objc func changeColorV2(sender: NSMenuItem){
         let newColorChoice=preferencesModel.standardColorOrderV2[sender.tag]
-        ClockPreferencesStorage.sharedInstance.changeAndSaveColorScemeV2(colorChoice: newColorChoice)
+        ClockPreferencesStorage.sharedInstance.changeAndSaveColorSceme(colorChoice: newColorChoice)
         updateClockToPreferencesChange()
         setColorMenuItemV2()
     }

@@ -3,8 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
@@ -457,116 +455,6 @@
             </objects>
             <point key="canvasLocation" x="-14" y="315"/>
         </scene>
-        <!--Window Controller-->
-        <scene sceneID="426-zw-0UZ">
-            <objects>
-                <windowController id="UGL-5g-dzv" customClass="WCforSVforClock" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="SjO-qF-rTX">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="111" y="133" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1024" height="617"/>
-                        <connections>
-                            <outlet property="delegate" destination="UGL-5g-dzv" id="kfo-bZ-WdD"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="2sP-aE-1uF" kind="relationship" relationship="window.shadowedContentViewController" id="gJ4-tn-sby"/>
-                    </connections>
-                </windowController>
-                <customObject id="D2Z-NF-4xX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-561" y="549"/>
-        </scene>
-        <!--Vfor Clock-->
-        <scene sceneID="IjU-B4-JOx">
-            <objects>
-                <viewController id="2sP-aE-1uF" customClass="SVforClock" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="Ziz-3Q-fAj">
-                        <rect key="frame" x="0.0" y="0.0" width="262" height="95"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHn-Lb-glt">
-                                <rect key="frame" x="0.0" y="0.0" width="262" height="95"/>
-                                <clipView key="contentView" id="vUw-1y-1hk" customClass="CenteringClipView" customModule="Adjustable_Clock" customModuleProvider="target">
-                                    <rect key="frame" x="1" y="1" width="260" height="93"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <view translatesAutoresizingMaskIntoConstraints="NO" id="GPc-nR-vuD">
-                                            <rect key="frame" x="7" y="-6" width="246" height="106"/>
-                                            <subviews>
-                                                <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YwK-4a-2li">
-                                                    <rect key="frame" x="0.0" y="0.0" width="246" height="106"/>
-                                                    <subviews>
-                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cHk-e7-pa8">
-                                                            <rect key="frame" x="-2" y="36" width="250" height="70"/>
-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="12:00 PM" id="kDh-SC-rfv">
-                                                                <font key="font" metaFont="system" size="59"/>
-                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                        </textField>
-                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tCZ-pD-brl">
-                                                            <rect key="frame" x="-1" y="0.0" width="249" height="36"/>
-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="December 31, 2017" id="EDm-H1-Kzl">
-                                                                <font key="font" metaFont="system" size="30"/>
-                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                        </textField>
-                                                    </subviews>
-                                                    <visibilityPriorities>
-                                                        <integer value="1000"/>
-                                                        <integer value="1000"/>
-                                                    </visibilityPriorities>
-                                                    <customSpacing>
-                                                        <real value="3.4028234663852886e+38"/>
-                                                        <real value="3.4028234663852886e+38"/>
-                                                    </customSpacing>
-                                                </stackView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="YwK-4a-2li" secondAttribute="width" id="T79-zY-fp1"/>
-                                                <constraint firstItem="YwK-4a-2li" firstAttribute="centerX" secondItem="GPc-nR-vuD" secondAttribute="centerX" id="TnH-0g-1Ge"/>
-                                                <constraint firstItem="YwK-4a-2li" firstAttribute="centerY" secondItem="GPc-nR-vuD" secondAttribute="centerY" id="qJS-IJ-Hu6"/>
-                                                <constraint firstAttribute="height" secondItem="YwK-4a-2li" secondAttribute="height" id="zhk-4p-X0R"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="GPc-nR-vuD" firstAttribute="centerY" secondItem="vUw-1y-1hk" secondAttribute="centerY" id="Ll3-lk-w1X"/>
-                                        <constraint firstItem="GPc-nR-vuD" firstAttribute="centerX" secondItem="vUw-1y-1hk" secondAttribute="centerX" id="ODo-do-Oba"/>
-                                    </constraints>
-                                    <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
-                                </clipView>
-                                <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="pe9-1P-JsF">
-                                    <rect key="frame" x="1" y="78" width="260" height="16"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="0.84615384615384615" horizontal="NO" id="TQf-Gx-TR3">
-                                    <rect key="frame" x="245" y="1" width="16" height="93"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                            </scrollView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="CHn-Lb-glt" secondAttribute="trailing" id="Axr-eJ-uwK"/>
-                            <constraint firstAttribute="bottom" secondItem="CHn-Lb-glt" secondAttribute="bottom" id="Rb2-dg-6Or"/>
-                            <constraint firstItem="CHn-Lb-glt" firstAttribute="top" secondItem="Ziz-3Q-fAj" secondAttribute="top" id="n55-S2-XxG"/>
-                            <constraint firstItem="CHn-Lb-glt" firstAttribute="leading" secondItem="Ziz-3Q-fAj" secondAttribute="leading" id="uEd-VR-7ow"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="clipView" destination="vUw-1y-1hk" id="s4G-2U-WHk"/>
-                        <outlet property="clockScrollView" destination="CHn-Lb-glt" id="9gK-aC-DRO"/>
-                        <outlet property="stackView" destination="YwK-4a-2li" id="TpB-t6-Ajb"/>
-                    </connections>
-                </viewController>
-                <customObject id="MAa-kV-wDo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="37" y="436.5"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="cUz-Id-f7s">
             <objects>
@@ -623,46 +511,13 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
-                            <box hidden="YES" boxType="custom" borderType="line" cornerRadius="8" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="v98-O8-d7y">
-                                <rect key="frame" x="258" y="102" width="17" height="17"/>
-                                <view key="contentView" id="elv-lM-QXZ">
-                                    <rect key="frame" x="1" y="1" width="15" height="15"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="FBB-Mp-rnF"/>
-                                    <constraint firstAttribute="width" constant="17" id="LD8-eJ-eYn"/>
-                                </constraints>
-                                <color key="borderColor" name="DarkGray"/>
-                                <color key="fillColor" name="Tangurine"/>
-                            </box>
-                            <button hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ANv-WI-9ae">
-                                <rect key="frame" x="261" y="105" width="11" height="11"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="11" id="rmV-3F-RH4"/>
-                                    <constraint firstAttribute="height" constant="11" id="w60-1d-dvf"/>
-                                </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSActionTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="aS8-fa-pQN">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="actionButtonClick:" target="ik9-Ty-6xp" id="Dbw-yy-aAG"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ANv-WI-9ae" secondAttribute="trailing" constant="11" id="Otd-9M-Ym0"/>
-                            <constraint firstItem="v98-O8-d7y" firstAttribute="top" secondItem="hTG-P0-Z21" secondAttribute="top" constant="3.5" id="cet-Xs-loB"/>
                             <constraint firstItem="OnO-xZ-G0J" firstAttribute="centerY" secondItem="hTG-P0-Z21" secondAttribute="centerY" id="pGh-UM-SdU"/>
                             <constraint firstItem="OnO-xZ-G0J" firstAttribute="centerX" secondItem="hTG-P0-Z21" secondAttribute="centerX" id="vLo-3k-W4Z"/>
-                            <constraint firstItem="ANv-WI-9ae" firstAttribute="top" secondItem="hTG-P0-Z21" secondAttribute="top" constant="6" id="x9r-Ar-Yt3"/>
-                            <constraint firstAttribute="trailing" secondItem="v98-O8-d7y" secondAttribute="trailing" constant="8" id="yor-le-kH2"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="actionBackgroundBox" destination="v98-O8-d7y" id="SOu-Ir-MR8"/>
-                        <outlet property="actionImageButton" destination="ANv-WI-9ae" id="f5b-Hq-dK3"/>
                         <outlet property="animatedDayInfo" destination="8Ma-9v-P9y" id="1bu-WI-1ba"/>
                         <outlet property="animatedTime" destination="ayc-mj-Qox" id="75v-8a-avj"/>
                         <outlet property="centerClockConstraint" destination="pGh-UM-SdU" id="FeY-jn-0gx"/>
@@ -674,13 +529,4 @@
             <point key="canvasLocation" x="386.5" y="423"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="NSActionTemplate" width="14" height="14"/>
-        <namedColor name="DarkGray">
-            <color red="0.43529411764705883" green="0.43529411764705883" blue="0.43529411764705883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Tangurine">
-            <color red="1" green="0.53333333333333333" blue="0.0078431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

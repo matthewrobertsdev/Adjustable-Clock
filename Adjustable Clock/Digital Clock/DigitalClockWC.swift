@@ -26,10 +26,6 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         //setMaxSize()
         setMinSize()
         
-        //let defaultUserDefaults=AppUserDefaults()
-        //set default defaults
-        //defaultUserDefaults.checkIfFirstLaunchSetDefaults()
-        
         let userDefaults=UserDefaults()
         
         let hasLaunchedBefore=userDefaults.bool(forKey: AppUserDefaults.applicationHasLaunched)
@@ -71,10 +67,10 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
     }
     
     func sizeWindowToFitClock(newWidth: CGFloat){
-        var finalWidth=newWidth
         let digitalClockVC=window?.contentViewController as! DigitalClockVC
         let oldWidth=window?.frame.width
-        var finalHeight=digitalClockVC.clockStackView.fittingSize.height///0.975 //+18
+        let finalHeight=digitalClockVC.clockStackView.fittingSize.height
+        /*
         let screenWidth=window?.screen?.frame.size.width
         let screenHeight=window?.screen?.frame.size.height
         if !(screenWidth==nil) && !(screenHeight==nil){
@@ -85,7 +81,8 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
                 finalHeight=digitalClockVC.clockStackView.fittingSize.height//+18
             }
         }
-        let newSize=NSSize(width: finalWidth, height: finalHeight)
+ */
+        let newSize=NSSize(width: newWidth, height: finalHeight)
         let oldHeight=window?.frame.height
         let changeInHeight=finalHeight-oldHeight!
         let changeInWidth=newWidth-oldWidth!
@@ -95,11 +92,7 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
     }
     
     func windowDidBecomeKey(_ notification: Notification) {
-        /*
-        if(!ClockPreferencesStorage.sharedInstance.fullscreen){
-            flashButtons()
-        }
-         */
+        
     }
     
     func windowDidResignKey(_ notification: Notification) {
@@ -107,19 +100,6 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
             showButtons(show: false)
         }
     }
-    
-    /*
-    override func mouseEntered(with event: NSEvent) {
-     showButtons(show: true)
-    }
- */
-    
-    /*
-    override func mouseExited(with event: NSEvent) {
-        hideButtonsTimer?.invalidate()
-        showButtons(show: false)
-    }
- */
     
     override func mouseMoved(with event: NSEvent) {
         flashButtons()
@@ -142,37 +122,15 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         
         if !(window?.isZoomed)!{
             let newWidth=(window?.frame.width)!
-            let newHeight=digitalClockVC.clockStackView.fittingSize.height///0.975//+18
+            let newHeight=digitalClockVC.clockStackView.fittingSize.height
             let newAspectRatio=NSSize(width: newWidth, height: newHeight)
             window?.aspectRatio=newAspectRatio
         }
         
     }
     
-    /*
-    //when window says it is being resized
-    func windowWillResize(_ sender: NSWindow,
-                          to frameSize: NSSize) -> NSSize{
-        
-        print("Digital clock window will resize")
-        
-        let digitalClockVC=window?.contentViewController as! DigitalClockVC
-
-        digitalClockVC.resizeText(maxWidth: frameSize.width)
-        
-        let newWidth=frameSize.width
-        let newHeight=digitalClockVC.clockStackView.fittingSize.height///0.975//+18
-        let newAspectRatio=NSSize(width: newWidth, height: newHeight)
-        window?.aspectRatio=newAspectRatio
- 
-        return frameSize
-    }
- */
-    
     //when closing, if appropraite save state
     func windowWillClose(_ notification: Notification) {
-        //flag-3
-        //ifAppropriateClockSaveState()
         enableClockMenu(enabled: false)
         let appObject = NSApp as NSApplication
         appObject.terminate(self)
@@ -182,22 +140,19 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
     //if entering fullscreen
     func windowWillEnterFullScreen(_ notification: Notification) {
 
-        //flag-3
         saveState()
         
         ClockPreferencesStorage.sharedInstance.fullscreen=true
         
         let digitalClockVC=window?.contentViewController as! DigitalClockVC
-        //digitalClockVC.resizeText(maxWidth: (window?.screen?.frame.size)!.width)
-        digitalClockVC.resizeTextForScreen(fullWidth: (window?.screen?.frame.size)!.width)
-        //digitalClockVC.centerClockVertically()
+        
+        digitalClockVC.resizeText(maxWidth: (window?.screen?.frame.size)!.width)
     }
     
-    //if enetered fullscreen
+    //if entered fullscreen
     func windowDidEnterFullScreen(_ notification: Notification) {
         
         removeTrackingArea()
-        
         hideButtonsTimer?.invalidate()
         showButtons(show: true)
         
@@ -212,25 +167,19 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         let userDefaults=UserDefaults()
         let maxWidth=CGFloat(userDefaults.integer(forKey: AppUserDefaults.clockWidthKey))
         let digitalClockVC=window?.contentViewController as! DigitalClockVC
-        //digitalClockVC.setClockAtTop()
-        //sizeWindowToFitClock(newWidth: (window?.frame.width)!)
         digitalClockVC.resizeText(maxWidth: maxWidth)
     }
     
     func windowDidExitFullScreen(_ notification: Notification) {
         
         setTrackingArea()
-        
         window?.makeKey()
-        
         flashButtons()
         
-        //flag-2
         updateClockMenuUI()
         reloadPreferencesWindowIfOpen()
         
         sizeWindowToFitClock(newWidth: (window?.frame.width)!)
-        
         window?.aspectRatio=(window?.frame.size)!
         
     }
@@ -257,7 +206,7 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
  */
     
     func setMinSize(){
-        window?.minSize=CGSize(width: 0, height: 0)
+        window?.minSize=CGSize(width: 100, height: 1)
     }
     
     func updatePreferencesUI(){
@@ -310,8 +259,7 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
     
     func saveState(){
         let userDefaults=UserDefaults()
-        //let timeTextSize=digitalClockVC.textClockModel.timeTextSize
-        //userDefaults.set(timeTextSize, forKey: "timeTextSize")
+        //save window
         let clockWindowStateOperator=ClockWindowStateOperator()
         clockWindowStateOperator.windowSaveCGRect(window: window)
         //mark application as has launched

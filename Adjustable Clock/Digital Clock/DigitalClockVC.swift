@@ -11,21 +11,13 @@ import Cocoa
 //the clock vc
 class DigitalClockVC: NSViewController {
     
-    @IBOutlet weak var actionImageButton: NSButton!
-    
-    @IBOutlet weak var actionBackgroundBox: NSBox!
-    
     @IBOutlet weak var animatedTime: NSTextField!
     
     @IBOutlet weak var animatedDayInfo: NSTextField!
     
-    @IBOutlet weak var centerClockConstraint: NSLayoutConstraint!
-    
-    var clockAtTopConstraint: NSLayoutConstraint!
-    
     var userDefaults=UserDefaults()
     
-    let textClockModel=DigitalClockModel()
+    let digitalClockModel=DigitalClockModel()
 
     @IBOutlet weak var clockStackView: NSStackView!
     
@@ -43,49 +35,13 @@ class DigitalClockVC: NSViewController {
         for colorList in nsColorLists{
             print("The color list is called"+colorList.name.debugDescription)
         }
-        //setClockAtTop()
-        /*
-        let actionImageTemplate=NSImage(named: NSImageNameActionTemplate)
-        
-        let actionImage: NSImage!
-        
-        if #available(OSX 10.13, *) {
-            actionImage=actionImageTemplate?.imageWithTintColor(tintColor: NSColor(named: "DarkGray")!)
-        } else {
-            // Fallback on earlier versions
-            actionImage=actionImageTemplate?.imageWithTintColor(tintColor: ClockNSColors.darkGrayNSColor)
-        }
-        
-        actionImageButton.image=actionImage
- */
-        
         
         // Do any additional setup after loading the view.
         
     }
     
-    
-    @IBAction func actionButtonClick(_ sender: Any) {
-        
-        print("Action button clicked")
-        
-    }
-    
-    
-    /*
-    func updatePreferencesInClockModel(){
-        textClockModel.showSeconds=ClockPreferencesStorage.sharedInstance.showSeconds
-        textClockModel.use24hourClock=ClockPreferencesStorage.sharedInstance.use24hourClock
-        textClockModel.showDate=ClockPreferencesStorage.sharedInstance.showDate
-        textClockModel.clockFloats=ClockPreferencesStorage.sharedInstance.clockFloats
-        textClockModel.fullscreen=ClockPreferencesStorage.sharedInstance.fullscreen
-        textClockModel.color=ClockPreferencesStorage.sharedInstance.colorScheme
-    }
- */
-    
     func updateClockModel(){
-        //updatePreferencesInClockModel()
-        textClockModel.updateClockModelForPreferences()
+        digitalClockModel.updateClockModelForPreferences()
     }
     
     override func viewWillAppear() {
@@ -103,7 +59,7 @@ class DigitalClockVC: NSViewController {
     
     func updateClock(){
         updateClockModel()
-        applyColorSchemeV2()
+        applyColorScheme()
         applyFloatState()
         animateClock()
         resizeClock()
@@ -175,26 +131,8 @@ class DigitalClockVC: NSViewController {
         }
     }
     
-    func resizeTextForScreen(fullWidth: CGFloat){
-        resizeText(maxWidth: fullWidth)
-        /*
-        var finalWidth=fullWidth
-        var finalHeight=clockStackView.fittingSize.height///0.975 //+18
-        let screenWidth=self.view.window?.screen?.frame.size.width
-        let screenHeight=self.view.window?.screen?.frame.size.height
-        if !(screenWidth==nil) && !(screenHeight==nil){
-            while finalWidth>screenWidth!||finalHeight>screenHeight!
-            {
-                finalWidth*=0.9
-                resizeText(maxWidth: finalWidth)
-                finalHeight=clockStackView.fittingSize.height//+18
-            }
-        }
- */
-    }
-    
     @objc func updateTime(timer: Timer){
-        let timeString=textClockModel.getTime()
+        let timeString=digitalClockModel.getTime()
         if animatedTime?.stringValue != timeString{
             animatedTime?.stringValue=timeString
             
@@ -206,10 +144,10 @@ class DigitalClockVC: NSViewController {
     }
     
     @objc func updateTimeAndDayInfo(timer: Timer){
-        let timeString=textClockModel.getTime()
+        let timeString=digitalClockModel.getTime()
         if animatedTime?.stringValue != timeString{
             animatedTime?.stringValue=timeString
-            animatedDayInfo?.stringValue=textClockModel.getDayInfo()
+            animatedDayInfo?.stringValue=digitalClockModel.getDayInfo()
             if !(self.view.window?.frame.width==nil){
                 clockLiveResize(maxWidth: (self.view.window?.frame.width)!)
             }
@@ -218,27 +156,20 @@ class DigitalClockVC: NSViewController {
     
     
     func animateTimeAndDayInfo(){
-        animatedTime?.stringValue=textClockModel.getTime()
-        animatedDayInfo?.stringValue=textClockModel.getDayInfo()
-        //get the initial time
-        //stop the old timer
+        animatedTime?.stringValue=digitalClockModel.getTime()
+        animatedDayInfo?.stringValue=digitalClockModel.getDayInfo()
         updateTimer.invalidate()
-        //get new time at given interval
-        updateTimer = Timer.scheduledTimer(timeInterval: textClockModel.updateTime,
+        updateTimer = Timer.scheduledTimer(timeInterval: digitalClockModel.updateTime,
                                            target: self,
                                            selector: #selector(updateTimeAndDayInfo(timer:)),
                                            userInfo: nil,
                                            repeats:true)
     }
     
-    //animate time to seconds
     func animateTime(){
-        animatedTime?.stringValue=textClockModel.getTime()
-        //get the initial time
-        //stop the old timer
+        animatedTime?.stringValue=digitalClockModel.getTime()
         updateTimer.invalidate()
-        //get new time at given interval
-        updateTimer = Timer.scheduledTimer(timeInterval: textClockModel.updateTime,
+        updateTimer = Timer.scheduledTimer(timeInterval: digitalClockModel.updateTime,
                                            target: self,
                                            selector: #selector(updateTime(timer:)),
                                            userInfo: nil,
@@ -246,9 +177,12 @@ class DigitalClockVC: NSViewController {
     }
     
     func clockLiveResize(maxWidth: CGFloat){
-        if clockStackView.fittingSize.width>maxWidth{
+        if clockStackView.fittingSize.width>maxWidth||clockStackView.fittingSize.width<maxWidth*0.9{
             resizeText(maxWidth: (self.view.window?.frame.width)!)
+            
             let digitalClockWC=view.window?.windowController as! DigitalClockWC
+            digitalClockWC.sizeWindowToFitClock(newWidth: (self.view.window?.frame.width)!)
+            /*
             if clockStackView.fittingSize.width>(self.view.window?.frame.width)!{
                 let newWidth=clockStackView.fittingSize.width/0.95
                 digitalClockWC.sizeWindowToFitClock(newWidth: newWidth)
@@ -258,28 +192,12 @@ class DigitalClockVC: NSViewController {
                 let newWidth=(self.view.window?.frame.width)!
                 digitalClockWC.sizeWindowToFitClock(newWidth: newWidth)
             }
+ */
         }
     }
     
     func applyColorScheme(){
-        var colorPair: (NSColor, NSColor)
-        if let savedColors=textClockModel.standardColors[textClockModel.color]{
-            colorPair=savedColors
-        }
-        else{
-            colorPair=textClockModel.standardColors[ClockNSColors.blackOnMercury]!
-        }
-        animatedTime.textColor=colorPair.0
-        animatedDayInfo.textColor=colorPair.0
-        self.view.wantsLayer=true
-        self.view.layer?.backgroundColor=colorPair.1.cgColor
-    }
-    
-    
-    func applyColorSchemeV2(){
-        //self.view.layer?.backgroundColor=CGColor.black
-        
-        
+
         var contastingColor: NSColor
         let clockNSColors=ClockNSColors()
         self.view.wantsLayer=true
@@ -381,34 +299,15 @@ class DigitalClockVC: NSViewController {
     
     
     func makeTimeMaxSize(maxWidth: CGFloat)->CGSize{
-        //let maxWidth=(view.window?.frame.size.width)!
-        let maxHeight=maxWidth*textClockModel.timeSizeRatio
+        let maxHeight=maxWidth*digitalClockModel.timeSizeRatio
         return CGSize(width: maxWidth, height: maxHeight)
     }
     
     func makeDateMaxSize(maxWidth: CGFloat)->CGSize{
-        //let maxWidth=(view.window?.frame.size.width)!
-        let maxHeight=maxWidth*textClockModel.dateSizeRatio
+        let maxHeight=maxWidth*digitalClockModel.dateSizeRatio
         return CGSize(width: maxWidth, height: maxHeight)
     }
     
-    /*
-    func centerClockVertically(){
-        if clockAtTopConstraint != nil{
-            clockAtTopConstraint.isActive=false
-        }
-        centerClockConstraint=NSLayoutConstraint(item: clockStackView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1.0, constant: 0.0)
-        centerClockConstraint.isActive=true
-    }
-    
-    func setClockAtTop(){
-        if centerClockConstraint != nil{
-            centerClockConstraint.isActive=false
-        }
-        clockAtTopConstraint=NSLayoutConstraint(item: clockStackView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1.0, constant: 0.0)
-        clockAtTopConstraint.isActive=true
-    }
- */
     deinit {
         if !(tellingTime==nil){
             ProcessInfo().endActivity(tellingTime!)

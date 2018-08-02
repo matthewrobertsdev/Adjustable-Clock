@@ -114,7 +114,7 @@ class AdjustableClockMenu: NSMenu{
         for window in appObject.windows{
             if window.identifier==UserInterfaceIdentifier.clockWindow{
                 let digitalClockVC=window.contentViewController as! DigitalClockVC
-                if digitalClockVC.textClockModel.fullscreen==true{
+                if digitalClockVC.digitalClockModel.fullscreen==true{
                     for window in appObject.windows{
                         if window.identifier==UserInterfaceIdentifier.prefrencesWindow{
                             let preferencesWC=window.windowController as! PreferencesWC

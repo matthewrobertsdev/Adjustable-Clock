@@ -26,7 +26,7 @@ func isThereADigitalClockWindow()->Bool{
                 return true
             }
             //if fullscreen
-            else if digitalClockVC.textClockModel.fullscreen==true{
+            else if digitalClockVC.digitalClockModel.fullscreen==true{
                 print("is fullscreeen")
                 window.makeKeyAndOrderFront(nil)
                 return  true
@@ -74,7 +74,7 @@ func ifAppropriateClockSaveState(){
     for window in appObject.windows{
         if window.identifier==UserInterfaceIdentifier.clockWindow{
             let digitalClockVC=window.contentViewController as! DigitalClockVC
-            if !(digitalClockVC.textClockModel.fullscreen==true){
+            if !(digitalClockVC.digitalClockModel.fullscreen==true){
                 let digitalClockWC=window.windowController as! DigitalClockWC
                 //save the window's state
                 digitalClockWC.saveState()

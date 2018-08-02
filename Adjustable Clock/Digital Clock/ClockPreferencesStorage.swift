@@ -8,6 +8,11 @@
 
 import Cocoa
 
+/*
+ In charge of retrieving from disk, storing in RAM, and saving to disk user preferences.
+ It is a singleton (Except for some string keys used for saving)
+ */
+
 class ClockPreferencesStorage{
     
     static let sharedInstance=ClockPreferencesStorage()
@@ -64,14 +69,6 @@ class ClockPreferencesStorage{
         
         ClockPreferencesStorage.sharedInstance.useNumericalDate=userDefaults.bool(forKey: ClockPreferencesStorage.useNumericalDateKey)
         
-        /*
-        if let colorScheme=userDefaults.string(forKey: ClockPreferencesStorage.colorSchemeKey){
-            ClockPreferencesStorage.sharedInstance.colorScheme=colorScheme
-        }
-        else{
-            ClockPreferencesStorage.sharedInstance.colorScheme=ClockNSColors.blackOnMercury
-        }
- */
         
         if let colorChoice=userDefaults.string(forKey: ClockPreferencesStorage.colorChoiceKey){
             ClockPreferencesStorage.sharedInstance.colorChoice=colorChoice
@@ -94,9 +91,6 @@ class ClockPreferencesStorage{
         
         ClockPreferencesStorage.sharedInstance.customColor=NSColor(deviceRed: redComponent!, green: greenComponent!, blue: blueComponent!, alpha: 1)
         
-        
-        //NSColor(calibratedRed: redComponent!, green: greenComponent!, blue: blueComponent!, alpha: 1)/*NSColor(displayP3Red: redComponent!, green: greenComponent!, blue: blueComponent!, alpha: 1)*/
-        
     }
     
     func changeAndSaveUseAmPM(){
@@ -105,42 +99,42 @@ class ClockPreferencesStorage{
         userDefaults.set(use24hourClock, forKey: ClockPreferencesStorage.use24hourClockKey)
     }
     func changeAndSaveUseSeconds(){
+        print("should change show seconds")
         showSeconds=(!showSeconds)
         userDefaults.set(showSeconds, forKey: ClockPreferencesStorage.showSeocndsKey)
     }
     
     func changeAndSaveShowDate(){
+        print("should change show date")
         showDate=(!showDate)
         userDefaults.set(showDate, forKey: ClockPreferencesStorage.showDateKey)
     }
     
     func changeAndSaveShowDofW(){
+        print("should change show day of week")
         showDayOfWeek=(!showDayOfWeek)
-        userDefaults.set(showDate, forKey: ClockPreferencesStorage.showDayOfWeekKey)
+        userDefaults.set(showDayOfWeek, forKey: ClockPreferencesStorage.showDayOfWeekKey)
     }
     
     func changeAndSaveUseNumericalDate(){
+        print("should change use numerical date")
         useNumericalDate=(!useNumericalDate)
-        userDefaults.set(showDate, forKey: ClockPreferencesStorage.useNumericalDateKey)
+        userDefaults.set(useNumericalDate, forKey: ClockPreferencesStorage.useNumericalDateKey)
     }
     
     func changeAndSaveLonD(){
+        print("should change light on dark")
         lightOnDark=(!lightOnDark)
         userDefaults.set(lightOnDark, forKey: ClockPreferencesStorage.lightOnDarkKey)
     }
-    /*
-    func changeAndSaveColorSceme(colorScheme: String){
-        self.colorScheme=colorScheme
-        userDefaults.set(self.colorScheme, forKey: ClockPreferencesStorage.colorSchemeKey)
-    }
- */
     
-    func changeAndSaveColorScemeV2(colorChoice: String){
+    func changeAndSaveColorSceme(colorChoice: String){
         print("saving color "+colorChoice)
         self.colorChoice=colorChoice
         userDefaults.set(self.colorChoice, forKey: ClockPreferencesStorage.colorChoiceKey)
     }
     func changeAndSaveClockFloats(){
+        print("should change clock floats")
         clockFloats=(!clockFloats)
         userDefaults.set(clockFloats, forKey: ClockPreferencesStorage.clockWindowFloatsKey)
     }
@@ -148,9 +142,9 @@ class ClockPreferencesStorage{
     func changeAndSaveCustomColor(customColor: NSColor){
         print("should change custom color "+customColor.description)
         
-        
         self.customColor=customColor.usingColorSpace(NSColorSpace.deviceRGB)
-        self.colorChoice="custom"
+        self.colorChoice=ColorChoice.custom
+        
         userDefaults.set("custom", forKey: ClockPreferencesStorage.colorChoiceKey)
         
         redComponent=self.customColor.redComponent
