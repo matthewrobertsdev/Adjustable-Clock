@@ -124,27 +124,60 @@ class DigitalClockVC: NSViewController {
         let windowWidth=view.window?.frame.size.width
         resizeText(maxWidth: windowWidth!)
         let digitalClockWC=view.window?.windowController as! DigitalClockWC
-        if ClockPreferencesStorage.sharedInstance.fullscreen==false{
+        if ClockPreferencesStorage.sharedInstance.fullscreen==false && self.view.window?.isZoomed==false{
             let newWidth=self.view.window?.frame.width
             digitalClockWC.sizeWindowToFitClock(newWidth: newWidth!)
             print("size window normally")
-        }
-        else{
-            let newFrame=CGRect(origin: NSZeroPoint, size: (self.view.window?.screen?.frame.size)!)
-            self.view.window?.setFrame(newFrame, display: true)
-            print("size window for full screen")
         }
     }
     
     func resizeText(maxWidth: CGFloat){
         if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek{
-            findFontThatFitsWithLinearSearchV2(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth))
+            
+            let projectedTimeHeight=makeTimeMaxSize(maxWidth: maxWidth).height
+            let projectedDateHeight=makeDateMaxSize(maxWidth: maxWidth).height
+            let projectedHeight=projectedTimeHeight+projectedDateHeight
+            
+            var newProportion: CGFloat=1
+            
+            if let maxHeight=self.view.window?.screen?.visibleFrame.height{
+                if projectedHeight>maxHeight{
+                    newProportion=0.9*(self.view.window?.screen?.visibleFrame.height)!/projectedHeight
+                    findFontThatFitsWithLinearSearchV2(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth*newProportion))
+                    findFontThatFitsWithLinearSearchV2(label: animatedTime, size: makeTimeMaxSize(maxWidth: maxWidth*newProportion))
+                }
+                else{
+                findFontThatFitsWithLinearSearchV2(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth))
+                findFontThatFitsWithLinearSearchV2(label: animatedTime, size: makeTimeMaxSize(maxWidth: maxWidth))
+                }
+            }
+            else{
+                
+                findFontThatFitsWithLinearSearchV2(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth))
+                findFontThatFitsWithLinearSearchV2(label: animatedTime, size: makeTimeMaxSize(maxWidth: maxWidth))
+            }
         }
-        findFontThatFitsWithLinearSearchV2(label: animatedTime, size: makeTimeMaxSize(maxWidth: maxWidth))
+        else{
+            let projectedHeight=makeDateMaxSize(maxWidth: (self.view.window?.frame.width)!).height
+            var newProportion: CGFloat=1
+            if let maxHeight=self.view.window?.screen?.visibleFrame.height{
+                if projectedHeight>maxHeight{
+                    newProportion=0.9*(self.view.window?.screen?.visibleFrame.height)!/projectedHeight
+                    findFontThatFitsWithLinearSearchV2(label: animatedTime, size: makeTimeMaxSize(maxWidth: maxWidth*newProportion))
+                }
+                else{
+                    findFontThatFitsWithLinearSearchV2(label: animatedTime, size: makeTimeMaxSize(maxWidth: maxWidth))
+                }
+            }
+            else{
+                findFontThatFitsWithLinearSearchV2(label: animatedTime, size: makeTimeMaxSize(maxWidth: maxWidth))
+            }
+        }
     }
     
     func resizeTextForScreen(fullWidth: CGFloat){
         resizeText(maxWidth: fullWidth)
+        /*
         var finalWidth=fullWidth
         var finalHeight=clockStackView.fittingSize.height///0.975 //+18
         let screenWidth=self.view.window?.screen?.frame.size.width
@@ -157,6 +190,7 @@ class DigitalClockVC: NSViewController {
                 finalHeight=clockStackView.fittingSize.height//+18
             }
         }
+ */
     }
     
     @objc func updateTime(timer: Timer){

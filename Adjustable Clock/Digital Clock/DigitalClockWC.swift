@@ -125,6 +125,31 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         flashButtons()
     }
     
+    func windowDidEndLiveResize(_ notification: Notification) {
+        print("window did end live resize")
+        
+        let digitalClockVC=window?.contentViewController as! DigitalClockVC
+        
+        digitalClockVC.resizeClock()
+    }
+    
+    func windowDidResize(_ notification: Notification) {
+        print("Digital clock window will resize")
+        
+        let digitalClockVC=window?.contentViewController as! DigitalClockVC
+        
+        digitalClockVC.resizeText(maxWidth: (window?.frame.width)!)
+        
+        if !(window?.isZoomed)!{
+            let newWidth=(window?.frame.width)!
+            let newHeight=digitalClockVC.clockStackView.fittingSize.height///0.975//+18
+            let newAspectRatio=NSSize(width: newWidth, height: newHeight)
+            window?.aspectRatio=newAspectRatio
+        }
+        
+    }
+    
+    /*
     //when window says it is being resized
     func windowWillResize(_ sender: NSWindow,
                           to frameSize: NSSize) -> NSSize{
@@ -142,6 +167,7 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
  
         return frameSize
     }
+ */
     
     //when closing, if appropraite save state
     func windowWillClose(_ notification: Notification) {
@@ -210,16 +236,10 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
     }
     
     func windowWillUseStandardFrame(_ window: NSWindow,
-                                             defaultFrame newFrame: NSRect) -> NSRect{
+                                    defaultFrame newFrame: NSRect) -> NSRect{
+        print("window will use standard frame")
         
-        //flag-1
-        let digitalClockVC=window.contentViewController as! DigitalClockVC
-        digitalClockVC.resizeTextForScreen(fullWidth: (window.screen?.frame.size)!.width)
-        //digitalClockVC.resizeText(maxWidth: (NSScreen.main()?.frame.size)!.width)
-        
-        let fullscreenFrame=NSRect(origin: CGPoint.zero, size: (NSScreen.main?.frame.size)!)
-        
-        return fullscreenFrame
+        return (window.screen?.visibleFrame)!
     }
     
     /*
