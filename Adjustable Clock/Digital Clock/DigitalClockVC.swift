@@ -55,7 +55,9 @@ class DigitalClockVC: NSViewController {
     }
     
     
-    var updateTimer=Timer()
+    //var updateTimer=Timer()
+    
+    var updateTimer : DispatchSourceTimer!
     
     func updateClock(){
         updateClockModel()
@@ -158,22 +160,42 @@ class DigitalClockVC: NSViewController {
     func animateTimeAndDayInfo(){
         animatedTime?.stringValue=digitalClockModel.getTime()
         animatedDayInfo?.stringValue=digitalClockModel.getDayInfo()
+        updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
+        updateTimer.schedule(deadline: .now(), repeating: .milliseconds(digitalClockModel.updateTime), leeway: .milliseconds(10))
+        
+        updateTimer.setEventHandler
+            {
+                self.animateTimeAndDayInfo()
+        }
+        updateTimer.resume()
+        /*
         updateTimer.invalidate()
         updateTimer = Timer.scheduledTimer(timeInterval: digitalClockModel.updateTime,
                                            target: self,
                                            selector: #selector(updateTimeAndDayInfo(timer:)),
                                            userInfo: nil,
                                            repeats:true)
+ */
     }
     
     func animateTime(){
         animatedTime?.stringValue=digitalClockModel.getTime()
+        updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
+        updateTimer.schedule(deadline: .now(), repeating: .milliseconds(digitalClockModel.updateTime), leeway: .milliseconds(10))
+        
+        updateTimer.setEventHandler
+            {
+                self.animateTime()
+        }
+        updateTimer.resume()
+        /*
         updateTimer.invalidate()
         updateTimer = Timer.scheduledTimer(timeInterval: digitalClockModel.updateTime,
                                            target: self,
                                            selector: #selector(updateTime(timer:)),
                                            userInfo: nil,
                                            repeats:true)
+ */
     }
     
     func clockLiveResize(maxWidth: CGFloat){
@@ -312,7 +334,7 @@ class DigitalClockVC: NSViewController {
         if !(tellingTime==nil){
             ProcessInfo().endActivity(tellingTime!)
         }
-        updateTimer.invalidate()
+        //updateTimer.invalidate()
     }
 }
 

@@ -44,6 +44,9 @@ class DigitalClockModel{
     let WEEKDAY_NUMERICAL_DATE=CGFloat(0.25)
     let NUMERICAL_DATE=CGFloat(0.20)
     
+    let seconds=1000
+    let deciseconds=100
+    
     init(){
         standardColors=clockNSColors.standardColors
     }
@@ -53,23 +56,23 @@ class DigitalClockModel{
     
     var showDayInfo=false
     
-    var updateTime: Double=1
+    var updateTime=1000
     
     func useShowMinutesAMPM(){
         timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
-        updateTime=1
+        updateTime=seconds
     }
     func useShowSecondsAMPM(){
         timeFormatter.setLocalizedDateFormatFromTemplate("hmmss")
-        updateTime=0.1
+        updateTime=deciseconds
     }
     func useShowMinutes24Hour(){
         timeFormatter.setLocalizedDateFormatFromTemplate("Hmm")
-        updateTime=1
+        updateTime=seconds
     }
     func useShowSeconds24Hour(){
         timeFormatter.setLocalizedDateFormatFromTemplate("Hmmss")
-        updateTime=0.1
+        updateTime=deciseconds
     }
     
     func useWeekdayDate(){
