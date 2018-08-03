@@ -133,7 +133,7 @@ class DigitalClockVC: NSViewController {
         }
     }
     
-    @objc func updateTime(timer: Timer){
+    @objc func updateTime(){
         let timeString=digitalClockModel.getTime()
         if animatedTime?.stringValue != timeString{
             animatedTime?.stringValue=timeString
@@ -145,7 +145,7 @@ class DigitalClockVC: NSViewController {
         }
     }
     
-    @objc func updateTimeAndDayInfo(timer: Timer){
+    @objc func updateTimeAndDayInfo(){
         let timeString=digitalClockModel.getTime()
         if animatedTime?.stringValue != timeString{
             animatedTime?.stringValue=timeString
@@ -165,7 +165,7 @@ class DigitalClockVC: NSViewController {
         
         updateTimer.setEventHandler
             {
-                self.animateTimeAndDayInfo()
+                self.updateTimeAndDayInfo()
         }
         updateTimer.resume()
         /*
@@ -185,7 +185,7 @@ class DigitalClockVC: NSViewController {
         
         updateTimer.setEventHandler
             {
-                self.animateTime()
+                self.updateTime()
         }
         updateTimer.resume()
         /*
