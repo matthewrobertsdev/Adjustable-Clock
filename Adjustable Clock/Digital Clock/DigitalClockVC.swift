@@ -188,6 +188,10 @@ class DigitalClockVC: NSViewController {
                 self.updateTime()
         }
         updateTimer.resume()
+        
+        
+        
+        
         /*
         updateTimer.invalidate()
         updateTimer = Timer.scheduledTimer(timeInterval: digitalClockModel.updateTime,
