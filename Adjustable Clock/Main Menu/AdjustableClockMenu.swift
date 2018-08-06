@@ -13,6 +13,7 @@ class AdjustableClockMenu: NSMenu{
     @IBOutlet weak var colorsMenu: ColorsMenu!
     
     var preferencesWC: PreferencesWC?
+    var simplePreferencesWC: SimplePreferencesWC?
     var digitalClockWC: DigitalClockWC?
     
     let prefrences=ClockPreferencesStorage.sharedInstance
@@ -139,6 +140,38 @@ class AdjustableClockMenu: NSMenu{
         
     }
     
+    @IBAction func pressSimplePreferencesMenuItem(preferenceMenuItem: NSMenuItem){
+        print("show preferences clicked")
+        let appObject = NSApp as NSApplication
+        
+        for window in appObject.windows{
+            if window.identifier==UserInterfaceIdentifier.clockWindow{
+                let digitalClockVC=window.contentViewController as! DigitalClockVC
+                if digitalClockVC.digitalClockModel.fullscreen==true{
+                    for window in appObject.windows{
+                        if window.identifier==UserInterfaceIdentifier.prefrencesWindow{
+                            let preferencesWC=window.windowController as! SimplePreferencesWC
+                            preferencesWC.close()
+                        }
+                    }
+                    
+                    showSimplePreferencesWindow()
+                }
+                else{
+                    if(isThereASimplePreferencesWindow()){
+                        simplePreferencesWC?.window?.makeKeyAndOrderFront(nil)
+                    }
+                    else
+                    {
+                        showSimplePreferencesWindow()
+                    }
+                    
+                }
+            }
+        }
+        
+    }
+    
     @IBAction func pressShowDigitalClockMenuItem(showClockMenuItem: NSMenuItem){
         if(!isThereADigitalClockWindow()){
             showDigitalClock()
@@ -157,6 +190,14 @@ class AdjustableClockMenu: NSMenu{
         preferencesWC = adjustableClockStoryboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "PreferencesWC")) as? PreferencesWC
         preferencesWC?.loadWindow()
         preferencesWC?.showWindow(nil)
+    }
+    
+    func showSimplePreferencesWindow(){
+        print("should show simple preferences window")
+        let adjustableClockStoryboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
+        simplePreferencesWC = adjustableClockStoryboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "SimplePreferencesWC")) as? SimplePreferencesWC
+        simplePreferencesWC?.loadWindow()
+        simplePreferencesWC?.showWindow(nil)
     }
     
     func reloadPreferencesWindowIfOpen(){

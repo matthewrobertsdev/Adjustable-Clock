@@ -13,4 +13,6 @@ struct UserInterfaceIdentifier{
     static let clockWindow=NSUserInterfaceItemIdentifier("DigitalClockWindow")
     
     static let prefrencesWindow=NSUserInterfaceItemIdentifier("PreferencesWindow")
+    
+    static let simplePrefrencesWindow=NSUserInterfaceItemIdentifier("SimplePreferencesWindow")
 }

@@ -51,6 +51,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
+        let fontManager=NSFontManager()
+        print("The available fonts are "+fontManager.availableFontFamilies.count.description)
+        
         ClockPreferencesStorage.sharedInstance.loadUserPreferences()
         let appObject = NSApp as NSApplication
         let mainMenu=appObject.mainMenu as! AdjustableClockMenu

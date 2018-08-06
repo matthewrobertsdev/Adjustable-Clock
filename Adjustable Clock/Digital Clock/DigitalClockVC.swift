@@ -133,7 +133,7 @@ class DigitalClockVC: NSViewController {
         }
     }
     
-    @objc func updateTime(){
+    func updateTime(){
         let timeString=digitalClockModel.getTime()
         if animatedTime?.stringValue != timeString{
             animatedTime?.stringValue=timeString
@@ -145,7 +145,7 @@ class DigitalClockVC: NSViewController {
         }
     }
     
-    @objc func updateTimeAndDayInfo(){
+    func updateTimeAndDayInfo(){
         let timeString=digitalClockModel.getTime()
         if animatedTime?.stringValue != timeString{
             animatedTime?.stringValue=timeString
@@ -203,7 +203,10 @@ class DigitalClockVC: NSViewController {
     }
     
     func clockLiveResize(maxWidth: CGFloat){
-        if clockStackView.fittingSize.width>maxWidth||clockStackView.fittingSize.width<maxWidth*0.9{
+        if (self.view.window?.inLiveResize)!{
+            print("clock is in live resize so stop")
+        }
+        if !(self.view.window?.inLiveResize)! &&  clockStackView.fittingSize.width>maxWidth||clockStackView.fittingSize.width<maxWidth*0.9{
             resizeText(maxWidth: (self.view.window?.frame.width)!)
             
             let digitalClockWC=view.window?.windowController as! DigitalClockWC
