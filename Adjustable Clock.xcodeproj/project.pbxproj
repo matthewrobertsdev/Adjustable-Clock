@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F004E94211835AB0046225C /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F004E93211835AB0046225C /* BlurView.swift */; };
 		9F04FDF120EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F04FDF020EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift */; };
 		9F06B3BF2102720300C93BC4 /* WCforSVforClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F06B3BE2102720300C93BC4 /* WCforSVforClock.swift */; };
 		9F3B245920BB4A3B00D3929D /* Analysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3B245820BB4A3B00D3929D /* Analysis.swift */; };
@@ -70,6 +71,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9F004E93211835AB0046225C /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		9F04FDF020EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInterfaceItemIdentifiers.swift; sourceTree = "<group>"; };
 		9F06B3BE2102720300C93BC4 /* WCforSVforClock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCforSVforClock.swift; sourceTree = "<group>"; };
 		9F3B245820BB4A3B00D3929D /* Analysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analysis.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				9F4D87442055E99400AF63D1 /* DigitalClockWC.swift */,
 				9F3C7D6920CCE40D00C91506 /* ClockPreferencesStorage.swift */,
 				9F8EBE472050C4C7005BA4F2 /* DigitalClockVC.swift */,
+				9F004E93211835AB0046225C /* BlurView.swift */,
 			);
 			path = "Digital Clock";
 			sourceTree = "<group>";
@@ -490,6 +493,7 @@
 				9FA5D1B020E9F05800B61EC5 /* Architecture and Pseudocode.swift in Sources */,
 				9F7174A11F5DADE800595C8D /* DigItalClockAppFunctions.swift in Sources */,
 				9F750CC02056073F007980F9 /* DefaultNSWindow.swift in Sources */,
+				9F004E94211835AB0046225C /* BlurView.swift in Sources */,
 				9F4EF1E320C273CB00E08C57 /* ClockNSColors.swift in Sources */,
 				9F8ED1711FEC73C100C0553C /* WindowStateOperator.swift in Sources */,
 			);

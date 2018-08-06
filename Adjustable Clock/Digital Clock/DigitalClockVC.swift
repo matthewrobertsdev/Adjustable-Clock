@@ -30,7 +30,7 @@ class DigitalClockVC: NSViewController {
         
         print("Digital clock view did load")
         
-        tellingTime = ProcessInfo().beginActivity(options: [ProcessInfo.ActivityOptions.userInitiated/*,ProcessInfo.ActivityOptions.latencyCritical*/], reason: "Need accurate time all the time")
+        tellingTime = ProcessInfo().beginActivity(options: [ProcessInfo.ActivityOptions.userInitiatedAllowingIdleSystemSleep/*,ProcessInfo.ActivityOptions.latencyCritical*/], reason: "Need accurate time all the time")
         let nsColorLists=NSColorList.availableColorLists
         for colorList in nsColorLists{
             print("The color list is called"+colorList.name.debugDescription)
@@ -104,6 +104,9 @@ class DigitalClockVC: NSViewController {
                     newProportion=0.9*(self.view.window?.screen?.visibleFrame.height)!/projectedHeight
                     findFontThatFitsWithLinearSearchV2(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth*newProportion))
                     findFontThatFitsWithLinearSearchV2(label: animatedTime, size: makeTimeMaxSize(maxWidth: maxWidth*newProportion))
+                    //print("projected height"+projectedHeight.description)
+                    //print("height proportion is "+newProportion.description)
+                    //print("corrected height"+(maxWidth*newProportion).description)
                 }
                 else{
                 findFontThatFitsWithLinearSearchV2(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth))
@@ -234,6 +237,7 @@ class DigitalClockVC: NSViewController {
     }
     
     func applyColorScheme(){
+        let alphaValue: CGFloat=1
         
         var contastingColor: NSColor
         let clockNSColors=ClockNSColors()
@@ -253,14 +257,14 @@ class DigitalClockVC: NSViewController {
         }
         
         if !ClockPreferencesStorage.sharedInstance.lightOnDark{
-            animatedTime.textColor=NSColor.black.withAlphaComponent(1)
-            animatedDayInfo.textColor=NSColor.black.withAlphaComponent(1)
-            self.view.window?.backgroundColor=contastingColor.withAlphaComponent(1)//.cgColor
+            animatedTime.textColor=NSColor.black.withAlphaComponent(alphaValue)
+            animatedDayInfo.textColor=NSColor.black.withAlphaComponent(alphaValue)
+            self.view.window?.backgroundColor=contastingColor.withAlphaComponent(alphaValue)//.cgColor
         }
         else{
-            animatedTime.textColor=contastingColor.withAlphaComponent(1)
-            animatedDayInfo.textColor=contastingColor.withAlphaComponent(1)
-            self.view.window?.backgroundColor=NSColor.black.withAlphaComponent(1)//.cgColor
+            animatedTime.textColor=contastingColor.withAlphaComponent(alphaValue)
+            animatedDayInfo.textColor=contastingColor.withAlphaComponent(alphaValue)
+            self.view.window?.backgroundColor=NSColor.black.withAlphaComponent(alphaValue)//.cgColor
         }
  
  
