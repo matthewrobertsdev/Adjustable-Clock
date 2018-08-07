@@ -25,10 +25,26 @@ class DigitalClockVC: NSViewController {
     
     var tellingTime: NSObjectProtocol?
     
+    let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("Digital clock view did load")
+        
+        workspaceNotifcationCenter.addObserver(forName: NSWorkspace.screensDidSleepNotification, object: nil, queue: nil){ (note) in
+            print("screen went to sleep")
+            self.updateTimer.cancel()
+            self.updateTimer=nil
+        }
+        
+        workspaceNotifcationCenter.addObserver(forName: NSWorkspace.screensDidWakeNotification, object: nil, queue: nil){ (note) in
+            print("screen woke up")
+            self.animateClock()
+        }
+ 
+ 
+ 
         
         tellingTime = ProcessInfo().beginActivity(options: [ProcessInfo.ActivityOptions.userInitiatedAllowingIdleSystemSleep/*,ProcessInfo.ActivityOptions.latencyCritical*/], reason: "Need accurate time all the time")
         let nsColorLists=NSColorList.availableColorLists
@@ -354,7 +370,7 @@ class DigitalClockVC: NSViewController {
         if !(tellingTime==nil){
             ProcessInfo().endActivity(tellingTime!)
         }
-        //updateTimer.invalidate()
+        updateTimer.cancel()
     }
 }
 
