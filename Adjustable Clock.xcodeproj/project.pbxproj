@@ -205,6 +205,16 @@
 			path = "Coded Assets";
 			sourceTree = "<group>";
 		};
+		9FABAA29216595BF00161D83 /* Code to Discard? */ = {
+			isa = PBXGroup;
+			children = (
+				9F93731621026D0F00A77652 /* SVforClock.swift */,
+				9F58BE8E21044FB800A82365 /* CenteredClipView.swift */,
+				9F06B3BE2102720300C93BC4 /* WCforSVforClock.swift */,
+			);
+			path = "Code to Discard?";
+			sourceTree = "<group>";
+		};
 		9FB47E511F480A43009D82FF = {
 			isa = PBXGroup;
 			children = (
@@ -242,9 +252,7 @@
 				9FBBCCA620DDE22900F44160 /* ClockColors.xcassets */,
 				9FB47E611F480A43009D82FF /* Assets.xcassets */,
 				9FB47E631F480A43009D82FF /* Main.storyboard */,
-				9F93731621026D0F00A77652 /* SVforClock.swift */,
-				9F58BE8E21044FB800A82365 /* CenteredClipView.swift */,
-				9F06B3BE2102720300C93BC4 /* WCforSVforClock.swift */,
+				9FABAA29216595BF00161D83 /* Code to Discard? */,
 				9FB47E661F480A43009D82FF /* Info.plist */,
 			);
 			path = "Adjustable Clock";

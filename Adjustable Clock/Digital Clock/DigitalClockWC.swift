@@ -20,6 +20,8 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         super.windowDidLoad()
         
         print("Digital clock window did load")
+        
+        //window?.styleMask=NSWindow.StyleMask.hudWindow
 
         let digitalClockVC=window?.contentViewController as! DigitalClockVC
         backgroundView=digitalClockVC.view
@@ -55,7 +57,7 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         enableClockMenu(enabled: true)
         updateClockMenuUI()
         window?.isOpaque=false
-        //window?.alphaValue=0.5
+        window?.alphaValue=1
     }
     
     func setTrackingArea(){
@@ -263,5 +265,5 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         let mainMenu=appObject.mainMenu as! AdjustableClockMenu
         mainMenu.reloadPreferencesWindowIfOpen()
     }
-
+    
 }

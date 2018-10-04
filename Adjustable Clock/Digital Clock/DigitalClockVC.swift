@@ -36,12 +36,17 @@ class DigitalClockVC: NSViewController {
             print("screen went to sleep")
             self.updateTimer.cancel()
             self.updateTimer=nil
+            self.animatedTime.stringValue="Relaunch To Resume"
+            self.animatedDayInfo.stringValue=""
+            self.resizeText(maxWidth: (self.view.window?.frame.width)!)
         }
         
         workspaceNotifcationCenter.addObserver(forName: NSWorkspace.screensDidWakeNotification, object: nil, queue: nil){ (note) in
             print("screen woke up")
             self.animateClock()
+            self.resizeText(maxWidth: (self.view.window?.frame.width)!)
         }
+ 
  
  
  
@@ -117,7 +122,7 @@ class DigitalClockVC: NSViewController {
             
             if let maxHeight=self.view.window?.screen?.visibleFrame.height{
                 if projectedHeight>maxHeight{
-                    newProportion=0.9*(self.view.window?.screen?.visibleFrame.height)!/projectedHeight
+                    newProportion=(self.view.window?.screen?.visibleFrame.height)!/projectedHeight
                     findFontThatFitsWithLinearSearchV2(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth*newProportion))
                     findFontThatFitsWithLinearSearchV2(label: animatedTime, size: makeTimeMaxSize(maxWidth: maxWidth*newProportion))
                     //print("projected height"+projectedHeight.description)
@@ -140,7 +145,7 @@ class DigitalClockVC: NSViewController {
             var newProportion: CGFloat=1
             if let maxHeight=self.view.window?.screen?.visibleFrame.height{
                 if projectedHeight>maxHeight{
-                    newProportion=0.9*(self.view.window?.screen?.visibleFrame.height)!/projectedHeight
+                    newProportion=(self.view.window?.screen?.visibleFrame.height)!/projectedHeight
                     findFontThatFitsWithLinearSearchV2(label: animatedTime, size: makeTimeMaxSize(maxWidth: maxWidth*newProportion))
                 }
                 else{
@@ -158,7 +163,7 @@ class DigitalClockVC: NSViewController {
         let timeString=digitalClockModel.getTime()
         if animatedTime?.stringValue != timeString{
             animatedTime?.stringValue=timeString
-            
+            animatedTime.backgroundColor=animatedTime.backgroundColor
             if !(self.view.window?.frame.width==nil){
                 clockLiveResize(maxWidth: (self.view.window?.frame.width)!)
             }
@@ -170,7 +175,9 @@ class DigitalClockVC: NSViewController {
         let timeString=digitalClockModel.getTime()
         if animatedTime?.stringValue != timeString{
             animatedTime?.stringValue=timeString
+            animatedTime.backgroundColor=animatedTime.backgroundColor
             animatedDayInfo?.stringValue=digitalClockModel.getDayInfo()
+            animatedDayInfo.backgroundColor=animatedDayInfo.backgroundColor
             if !(self.view.window?.frame.width==nil){
                 clockLiveResize(maxWidth: (self.view.window?.frame.width)!)
             }
@@ -252,12 +259,94 @@ class DigitalClockVC: NSViewController {
         }
     }
     
+    @IBOutlet weak var blurView: NSView!
+    @IBOutlet weak var visualEffectView: NSVisualEffectView!
     func applyColorScheme(){
         let alphaValue: CGFloat=1
+        let alphaValue2: CGFloat=1
+        
+        //visualEffectView.alphaValue=0
         
         var contastingColor: NSColor
         let clockNSColors=ClockNSColors()
-        //self.view.wantsLayer=true
+                self.view.window?.isOpaque=false
+        self.view.window?.backgroundColor=NSColor.clear
+        //self.view.window?.backgroundColor = NSColor.blue.withAlphaComponent(0.5)
+        self.view.wantsLayer=true
+        //self.view.layer?.backgroundColor=NSColor.clear.cgColor
+        
+        /*
+        
+        self.view.wantsLayer=true
+        self.view.layer?.isOpaque=false
+        self.view.layer?.backgroundColor = NSColor.blue.withAlphaComponent(0.5).cgColor
+        self.view.layer?.masksToBounds = false
+        self.view.layerUsesCoreImageFilters = true
+        self.view.layer?.needsDisplayOnBoundsChange = true
+        
+        let viewToCapture = animatedTime
+        let bitmapRep = viewToCapture?.bitmapImageRepForCachingDisplay(in: (viewToCapture?.bounds)!)!
+        //viewToCapture?.cacheDisplay(in: (viewToCapture?.bounds)!, to: rep!)
+        
+        let ciImage=CIImage(bitmapImageRep: bitmapRep!)
+        
+        print("words"+(ciImage?.description)!)
+        
+        //blurView.layer?.contents=ciImage
+        
+        //self.view.layer?.opacity=0.5
+ 
+        
+        
+        let satFilter = CIFilter(name: "CIColorControls")
+        satFilter?.setDefaults()
+        satFilter?.setValue(NSNumber(value: 2.0), forKey: "inputSaturation")
+        
+        
+        let blurFilter = CIFilter(name: "CIGaussianBlur")
+        blurFilter?.setDefaults()
+        blurFilter?.setValue(NSNumber(value: 2.0), forKey: "inputRadius")
+        
+        
+ 
+        // blurFilter=CIFilter(name: "GaussianBlur", withInputParameters: [kCIInputRadiusKey: 10])
+        
+        blurView.backgroundFilters = [blurFilter!]
+        
+        
+ */
+        
+        /*
+        if let blurFilter = CIFilter(name: "CIGaussianBlur",
+                                     withInputParameters: [kCIInputRadiusKey: 0.1]) {
+            //foreground.backgroundFilters = [blurFilter]
+            self.view.layer?.backgroundFilters = [blurFilter]
+            print("Background filter applied")
+        }
+ */
+ 
+        
+        //self.view.layer?.needsDisplay()
+        /*
+        self.view.wantsLayer = true
+        self.view.layer?.backgroundColor = NSColor.white.withAlphaComponent(0.5).cgColor
+        self.view.layer?.masksToBounds = true
+        self.view.layerUsesCoreImageFilters = true
+        self.view.layer?.needsDisplayOnBoundsChange = true
+        
+        var satFilter = CIFilter(name: "CIColorControls")
+        satFilter?.setDefaults()
+        satFilter?.setValue(NSNumber(value: 10.0), forKey: "inputSaturation")
+        
+        var blurFilter = CIFilter(name: "CIGaussianBlur")
+        blurFilter?.setDefaults()
+        blurFilter?.setValue(NSNumber(value: 2.0), forKey: "inputRadius")
+        
+        self.view.layer?.backgroundFilters = [satFilter, blurFilter]
+ */
+ 
+        //*
+        blurView.wantsLayer=true
         if !(ClockPreferencesStorage.sharedInstance.colorChoice==nil){
             print("contasting color is "+ClockPreferencesStorage.sharedInstance.colorChoice)
             if ClockPreferencesStorage.sharedInstance.colorChoice=="custom"{
@@ -273,15 +362,28 @@ class DigitalClockVC: NSViewController {
         }
         
         if !ClockPreferencesStorage.sharedInstance.lightOnDark{
-            animatedTime.textColor=NSColor.black.withAlphaComponent(alphaValue)
-            animatedDayInfo.textColor=NSColor.black.withAlphaComponent(alphaValue)
-            self.view.window?.backgroundColor=contastingColor.withAlphaComponent(alphaValue)//.cgColor
+            animatedTime.textColor=NSColor.black.withAlphaComponent(alphaValue2)
+            animatedDayInfo.textColor=NSColor.black.withAlphaComponent(alphaValue2)
+            blurView.layer?.backgroundColor=contastingColor.withAlphaComponent(alphaValue).cgColor
+            
+                animatedTime.drawsBackground=true
+                animatedTime.backgroundColor=NSColor.clear
+            animatedDayInfo.backgroundColor=contastingColor.withAlphaComponent(alphaValue)
         }
         else{
-            animatedTime.textColor=contastingColor.withAlphaComponent(alphaValue)
-            animatedDayInfo.textColor=contastingColor.withAlphaComponent(alphaValue)
-            self.view.window?.backgroundColor=NSColor.black.withAlphaComponent(alphaValue)//.cgColor
+            animatedTime.textColor=contastingColor.withAlphaComponent(alphaValue2)
+            animatedDayInfo.textColor=contastingColor.withAlphaComponent(alphaValue2)
+            blurView.layer?.backgroundColor=NSColor.black.withAlphaComponent(alphaValue).cgColor
+            
+           
+                animatedTime.drawsBackground=true
+            animatedTime.backgroundColor=NSColor.black.withAlphaComponent(alphaValue)
+            
+            animatedDayInfo.backgroundColor=NSColor.black.withAlphaComponent(alphaValue)
+            
         }
+ //*/
+ 
  
  
     }
@@ -372,5 +474,6 @@ class DigitalClockVC: NSViewController {
         }
         updateTimer.cancel()
     }
+
 }
 

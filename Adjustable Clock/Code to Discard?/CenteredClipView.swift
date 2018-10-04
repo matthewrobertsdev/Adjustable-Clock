@@ -1,10 +1,4 @@
-//
-//  CenteredClipView.swift
-//  Adjustable Clock
-//
-//  Created by Matt Roberts on 7/22/18.
-//  Copyright © 2018 Celeritas Apps. All rights reserved.
-//
+
 
 /*
  Copyright (C) 2016 Apple Inc. All Rights Reserved.
