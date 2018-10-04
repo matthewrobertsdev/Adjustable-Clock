@@ -6,6 +6,7 @@
 //  Copyright © 2018 Matt Roberts. All rights reserved.
 //
 
+/*
 import Cocoa
 
 class WCforSVforClock : NSWindowController, NSWindowDelegate{
@@ -42,3 +43,4 @@ class WCforSVforClock : NSWindowController, NSWindowDelegate{
     
     
 }
+ */

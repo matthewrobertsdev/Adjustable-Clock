@@ -10,7 +10,7 @@
  just make the preference window the right size
  could have used window restoration class
  */
-
+/*
 import Cocoa
 
 class PreferencesWC : NSWindowController,NSWindowDelegate {
@@ -41,3 +41,4 @@ class PreferencesWC : NSWindowController,NSWindowDelegate {
         
     }
 }
+ */

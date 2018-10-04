@@ -6,11 +6,12 @@
 //  Copyright © 2018 Matt Roberts. All rights reserved.
 //
 
-import AppKit
+//import AppKit
 
-class PreferenceModel{
+/*
+class ColorModel{
+    
     var standardColorOrder: [String]!
-    var standardColorOrderV2: [String]!
     var standardColors: [String:(NSColor,NSColor)]!
     
     init(){
@@ -18,6 +19,6 @@ class PreferenceModel{
         standardColorOrder=colorOrders.standardColorsOrder
         let clockNSColors=ClockNSColors()
         standardColors=clockNSColors.standardColors
-        standardColorOrderV2=colorOrders.standardColorsOrderV2
     }
 }
+ */

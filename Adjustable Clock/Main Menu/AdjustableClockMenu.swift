@@ -12,7 +12,7 @@ class AdjustableClockMenu: NSMenu{
     
     @IBOutlet weak var colorsMenu: ColorsMenu!
     
-    var preferencesWC: PreferencesWC?
+    //var preferencesWC: PreferencesWC?
     var simplePreferencesWC: SimplePreferencesWC?
     var digitalClockWC: DigitalClockWC?
     
@@ -106,7 +106,7 @@ class AdjustableClockMenu: NSMenu{
             useNumericalDateMenuItem.state=NSControl.StateValue(rawValue: 0)
         }
     }
-    
+    /*
     //handle show preferences, even if fullscreen
     @IBAction func pressPreferencesMenuItem(preferenceMenuItem: NSMenuItem){
         print("show preferences clicked")
@@ -139,6 +139,7 @@ class AdjustableClockMenu: NSMenu{
         }
         
     }
+ */
     
     @IBAction func pressSimplePreferencesMenuItem(preferenceMenuItem: NSMenuItem){
         print("show preferences clicked")
@@ -184,13 +185,14 @@ class AdjustableClockMenu: NSMenu{
         digitalClockWC?.loadWindow()
         digitalClockWC?.showWindow(nil)
     }
-    
+    /*
     func showPreferencesWindow(){
         let adjustableClockStoryboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
         preferencesWC = adjustableClockStoryboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "PreferencesWC")) as? PreferencesWC
         preferencesWC?.loadWindow()
         preferencesWC?.showWindow(nil)
     }
+ */
     
     func showSimplePreferencesWindow(){
         print("should show simple preferences window")
@@ -200,6 +202,7 @@ class AdjustableClockMenu: NSMenu{
         simplePreferencesWC?.showWindow(nil)
     }
     
+    /*
     func reloadPreferencesWindowIfOpen(){
         let appObject = NSApp as NSApplication
         for window in appObject.windows{
@@ -211,11 +214,12 @@ class AdjustableClockMenu: NSMenu{
             }
         }
     }
+ */
     
     func updateForPreferencesChange(){
         updateClockMenuUI()
         updateClockToPreferencesChange()
-        updatePreferencesUI()
+        //updatePreferencesUI()
     }
     
     func enableClockMenuPreferences(enabled: Bool){
@@ -236,7 +240,7 @@ class AdjustableClockMenu: NSMenu{
             }
         }
     }
-    
+    /*
     func updatePreferencesUI(){
         let appObject = NSApp as NSApplication
         for window in appObject.windows{
@@ -247,5 +251,6 @@ class AdjustableClockMenu: NSMenu{
             }
         }
     }
+ */
 
 }

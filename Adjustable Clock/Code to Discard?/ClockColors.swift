@@ -5,8 +5,9 @@
 //  Created by Matt Roberts on 8/31/17.
 //  Copyright © 2017 Matt Roberts. All rights reserved.
 //
-
+/*
 import Cocoa
+
 
 struct ClockColors{
     //colors for the clock
@@ -52,3 +53,4 @@ struct ClockColors{
     static let blackOnGrape="blackOnGrape"
     
 }
+ */

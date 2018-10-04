@@ -5,13 +5,12 @@
 //  Created by Matt Roberts on 6/12/18.
 //  Copyright © 2018 Matt Roberts. All rights reserved.
 //
-
+/*
 import AppKit
 
 class ColorModel{
-    
-    var standardColorOrder: [String]!
-    var standardColors: [String:(NSColor,NSColor)]!
+    var standardColors: [String:NSColor]
+    var standardColorOrder: [String]
     
     init(){
         let colorOrders=ColorOrders()
@@ -20,3 +19,5 @@ class ColorModel{
         standardColors=clockNSColors.standardColors
     }
 }
+ */
+

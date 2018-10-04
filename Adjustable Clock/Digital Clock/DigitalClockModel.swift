@@ -48,7 +48,7 @@ class DigitalClockModel{
     let deciseconds=100
     
     init(){
-        standardColors=clockNSColors.standardColors
+        //standardColors=clockNSColors.standardColors
     }
     
     var timeFormatter = DateFormatter()

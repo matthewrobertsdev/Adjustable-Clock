@@ -150,7 +150,7 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         showButtons(show: true)
         
         updateClockMenuUI()
-        reloadPreferencesWindowIfOpen()
+        //reloadPreferencesWindowIfOpen()
         
         window?.makeKey()
     }
@@ -170,7 +170,7 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         flashButtons()
         
         updateClockMenuUI()
-        reloadPreferencesWindowIfOpen()
+        //reloadPreferencesWindowIfOpen()
         
         sizeWindowToFitClock(newWidth: (window?.frame.width)!)
         window?.aspectRatio=(window?.frame.size)!
@@ -202,6 +202,7 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         window?.minSize=CGSize(width: 100, height: 1)
     }
     
+    /*
     func updatePreferencesUI(){
         let appObject = NSApp as NSApplication
         for window in appObject.windows{
@@ -212,6 +213,7 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
             }
         }
     }
+ */
     
     func updateClockMenuUI(){
         let appObject = NSApp as NSApplication
@@ -260,10 +262,12 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         
     }
     
+    /*
     func reloadPreferencesWindowIfOpen(){
         let appObject = NSApp as NSApplication
         let mainMenu=appObject.mainMenu as! AdjustableClockMenu
         mainMenu.reloadPreferencesWindowIfOpen()
     }
+ */
     
 }

@@ -353,7 +353,7 @@ class DigitalClockVC: NSViewController {
                 contastingColor=ClockPreferencesStorage.sharedInstance.customColor
             }
             else{
-                contastingColor=clockNSColors.standardColorsV2[ClockPreferencesStorage.sharedInstance.colorChoice]!
+                contastingColor=clockNSColors.standardColor[ClockPreferencesStorage.sharedInstance.colorChoice]!
             }
         }
             

@@ -6,14 +6,14 @@
 //  Copyright © 2018 Matt Roberts. All rights reserved.
 //
 
-import Cocoa
-
+//import Cocoa
+/*
 class PreferencesController{
     
     var preferencesVC: PreferencesVC!
     let userDefaults=UserDefaults()
     
-    let preferencesModel=PreferenceModel()
+    let preferencesModel=ColorModel()
     
     init(preferencesVC: PreferencesVC) {
         self.preferencesVC=preferencesVC
@@ -34,7 +34,7 @@ class PreferencesController{
             
             let templateImage=NSImage(named: NSImage.Name(rawValue: "black_rectangle"))
             templateImage?.isTemplate=true
-            let tintColor=clockNSColors.standardColorsV2[preferencesModel.standardColorOrderV2[menuItem.tag]]!
+            let tintColor=clockNSColors.standardColors[preferencesModel.standardColorOrder[menuItem.tag]]!
             
             let colorImage=templateImage?.tintExceptBorder(tintColor: tintColor)
             
@@ -50,7 +50,7 @@ class PreferencesController{
     }
     
     @objc func changeColorV2(sender: NSMenuItem){
-        let newColorChoice=preferencesModel.standardColorOrderV2[sender.tag]
+        let newColorChoice=preferencesModel.standardColorOrder[sender.tag]
         ClockPreferencesStorage.sharedInstance.changeAndSaveColorSceme(colorChoice: newColorChoice)
         updateClockToPreferencesChange()
         setColorMenuItemV2()
@@ -71,7 +71,7 @@ class PreferencesController{
         
         
         for index in 0...7{
-            if ClockPreferencesStorage.sharedInstance.colorChoice==preferencesModel.standardColorOrderV2[index]{
+            if ClockPreferencesStorage.sharedInstance.colorChoice==preferencesModel.standardColorOrder[index]{
                 preferencesVC.colorsMenu.items[index].state=NSControl.StateValue.on
                 
                 let itemToSelect=preferencesVC.colorsMenu.items[index]
@@ -183,3 +183,4 @@ class PreferencesController{
         updateForPreferencesChange()
     }
 }
+*/

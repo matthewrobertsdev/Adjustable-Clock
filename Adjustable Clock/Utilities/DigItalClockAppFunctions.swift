@@ -114,6 +114,7 @@ func ifAppropriatePreferencesSaveState(){
     //get app object
     let appObject = NSApp as NSApplication
     
+    /*
     //get clock window data if it's still open
     for window in appObject.windows{
         if window.identifier==UserInterfaceIdentifier.prefrencesWindow{
@@ -123,4 +124,5 @@ func ifAppropriatePreferencesSaveState(){
             
         }
     }
+ */
 }

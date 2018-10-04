@@ -14,7 +14,7 @@
  Choose color mode
  dark on light or light on dark
  */
-
+/*
 import Cocoa
 
 class PreferencesVC: NSViewController{
@@ -77,4 +77,5 @@ class PreferencesVC: NSViewController{
     }
 
 }
+ */
 

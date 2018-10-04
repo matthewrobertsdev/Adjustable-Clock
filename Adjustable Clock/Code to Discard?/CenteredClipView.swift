@@ -8,12 +8,13 @@
  Contains the definition for `CenteringClipView` which is a specialized clip view subclass to center its document.
  */
 
-import Cocoa
+//import Cocoa
 
 /**
  `CenteringClipView` is a clip view subclass that centers smaller documents views
  within its inset clip bounds (as described by the set `contentInsets`).
  */
+/*
 class CenteringClipView: NSClipView {
     override func constrainBoundsRect(_ proposedBounds: NSRect) -> NSRect {
         guard let documentView = documentView else { return super.constrainBoundsRect(proposedBounds) }
@@ -104,3 +105,4 @@ class CenteringClipView: NSClipView {
         return newContentInsets
     }
 }
+ */
