@@ -19,6 +19,30 @@ class SimplePreferencesVC: NSViewController {
         let appUserDefaults=AppUserDefaults()
         appUserDefaults.setDefaultUserDefaults()
         ClockPreferencesStorage.sharedInstance.loadUserPreferences()
+        updateForPreferencesChange()
+    }
+    
+    func updateForPreferencesChange(){
+        updateClockToPreferencesChange()
+        //updateForPreferencesChange
+        updateClockMenuUI()
+    }
+    
+    func updateClockToPreferencesChange(){
+        let appObject = NSApp as NSApplication
+        for window in appObject.windows{
+            //if window is found
+            if window.identifier==UserInterfaceIdentifier.clockWindow{
+                let digitalClockVC=window.contentViewController as! DigitalClockVC
+                digitalClockVC.updateClock()
+            }
+        }
+    }
+    
+    func updateClockMenuUI(){
+        let appObject = NSApp as NSApplication
+        let mainMenu=appObject.mainMenu as! AdjustableClockMenu
+        mainMenu.updateClockMenuUI()
     }
     
 }

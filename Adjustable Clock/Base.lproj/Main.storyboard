@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
-        <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
         <scene sceneID="qLc-eI-AOP">
             <objects>
                 <windowController storyboardIdentifier="PreferencesWC" id="UZL-fB-8bP" customClass="PreferencesWC" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="PreferencesWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="RUY-yz-txr">
+                    <window key="window" identifier="PreferencesWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="RUY-yz-txr">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -32,7 +31,7 @@
         <scene sceneID="CYt-gL-g6F">
             <objects>
                 <windowController storyboardIdentifier="SimplePreferencesWC" id="Vwz-lD-iVt" customClass="SimplePreferencesWC" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="SimplePreferencesWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="gvf-d8-yDj" userLabel="Preferences">
+                    <window key="window" identifier="SimplePreferencesWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="gvf-d8-yDj" userLabel="Preferences">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="111" y="133" width="480" height="270"/>
@@ -486,7 +485,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController storyboardIdentifier="DigitalClockWC" id="B8D-0N-5wS" customClass="DigitalClockWC" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="DigitalClockWindow" title="Digital Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA" customClass="DefaultNSWindow" customModule="Adjustable_Clock" customModuleProvider="target">
+                    <window key="window" identifier="DigitalClockWindow" title="Digital Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA" customClass="DefaultNSWindow" customModule="Adjustable_Clock" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <rect key="contentRect" x="709" y="402" width="300" height="175"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -532,17 +531,11 @@
                             <visualEffectView hidden="YES" appearanceType="vibrantDark" blendingMode="behindWindow" material="mediumLight" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="7lE-Vi-cYq">
                                 <rect key="frame" x="0.0" y="0.0" width="283" height="122"/>
                             </visualEffectView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="ozv-IN-5f4">
-                                <rect key="frame" x="0.0" y="0.0" width="283" height="122"/>
-                            </customView>
-                            <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TMj-Dw-QNY">
-                                <rect key="frame" x="0.0" y="0.0" width="283" height="122"/>
-                            </customView>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnO-xZ-G0J">
-                                <rect key="frame" x="14" y="14" width="255" height="94"/>
+                                <rect key="frame" x="11" y="14" width="261" height="94"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayc-mj-Qox">
-                                        <rect key="frame" x="44" y="47" width="168" height="47"/>
+                                        <rect key="frame" x="45" y="47" width="171" height="47"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="12:00 PM" id="93p-ZP-sNf">
                                             <font key="font" metaFont="system" size="39"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -550,7 +543,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ma-9v-P9y">
-                                        <rect key="frame" x="-2" y="0.0" width="259" height="47"/>
+                                        <rect key="frame" x="-2" y="0.0" width="265" height="47"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="January 1, 2017" id="Akk-XK-AD4">
                                             <font key="font" metaFont="system" size="39"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -569,26 +562,17 @@
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="ozv-IN-5f4" firstAttribute="top" secondItem="hTG-P0-Z21" secondAttribute="top" id="1pN-oD-O5E"/>
-                            <constraint firstAttribute="trailing" secondItem="ozv-IN-5f4" secondAttribute="trailing" id="70D-c9-r7K"/>
-                            <constraint firstAttribute="bottom" secondItem="ozv-IN-5f4" secondAttribute="bottom" id="9Tz-iV-GKD"/>
-                            <constraint firstItem="ozv-IN-5f4" firstAttribute="leading" secondItem="hTG-P0-Z21" secondAttribute="leading" id="MQJ-NA-vnR"/>
                             <constraint firstItem="7lE-Vi-cYq" firstAttribute="leading" secondItem="hTG-P0-Z21" secondAttribute="leading" id="P27-bA-wUZ"/>
-                            <constraint firstAttribute="trailing" secondItem="TMj-Dw-QNY" secondAttribute="trailing" id="SyX-sX-AhC"/>
-                            <constraint firstItem="TMj-Dw-QNY" firstAttribute="top" secondItem="hTG-P0-Z21" secondAttribute="top" id="YBD-m1-deU"/>
                             <constraint firstAttribute="trailing" secondItem="7lE-Vi-cYq" secondAttribute="trailing" id="gIG-21-pcb"/>
-                            <constraint firstItem="TMj-Dw-QNY" firstAttribute="leading" secondItem="hTG-P0-Z21" secondAttribute="leading" id="hfa-N9-LDw"/>
                             <constraint firstItem="OnO-xZ-G0J" firstAttribute="centerY" secondItem="hTG-P0-Z21" secondAttribute="centerY" id="pGh-UM-SdU"/>
                             <constraint firstItem="7lE-Vi-cYq" firstAttribute="top" secondItem="hTG-P0-Z21" secondAttribute="top" id="pdx-mX-asb"/>
                             <constraint firstAttribute="bottom" secondItem="7lE-Vi-cYq" secondAttribute="bottom" id="rf1-eg-nCD"/>
-                            <constraint firstAttribute="bottom" secondItem="TMj-Dw-QNY" secondAttribute="bottom" id="teG-Y4-jEe"/>
                             <constraint firstItem="OnO-xZ-G0J" firstAttribute="centerX" secondItem="hTG-P0-Z21" secondAttribute="centerX" id="vLo-3k-W4Z"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="animatedDayInfo" destination="8Ma-9v-P9y" id="1bu-WI-1ba"/>
                         <outlet property="animatedTime" destination="ayc-mj-Qox" id="75v-8a-avj"/>
-                        <outlet property="blurView" destination="ozv-IN-5f4" id="cOV-Yh-Mfn"/>
                         <outlet property="centerClockConstraint" destination="pGh-UM-SdU" id="FeY-jn-0gx"/>
                         <outlet property="clockStackView" destination="OnO-xZ-G0J" id="MUi-8W-Su8"/>
                     </connections>

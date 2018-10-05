@@ -346,7 +346,7 @@ class DigitalClockVC: NSViewController {
  */
  
         //*
-        blurView.wantsLayer=true
+        //blurView.wantsLayer=true
         if !(ClockPreferencesStorage.sharedInstance.colorChoice==nil){
             print("contasting color is "+ClockPreferencesStorage.sharedInstance.colorChoice)
             if ClockPreferencesStorage.sharedInstance.colorChoice=="custom"{
@@ -364,7 +364,7 @@ class DigitalClockVC: NSViewController {
         if !ClockPreferencesStorage.sharedInstance.lightOnDark{
             animatedTime.textColor=NSColor.black.withAlphaComponent(alphaValue2)
             animatedDayInfo.textColor=NSColor.black.withAlphaComponent(alphaValue2)
-            blurView.layer?.backgroundColor=contastingColor.withAlphaComponent(alphaValue).cgColor
+            self.view.layer?.backgroundColor=contastingColor.withAlphaComponent(alphaValue).cgColor
             
                 animatedTime.drawsBackground=true
                 animatedTime.backgroundColor=NSColor.clear
@@ -373,7 +373,7 @@ class DigitalClockVC: NSViewController {
         else{
             animatedTime.textColor=contastingColor.withAlphaComponent(alphaValue2)
             animatedDayInfo.textColor=contastingColor.withAlphaComponent(alphaValue2)
-            blurView.layer?.backgroundColor=NSColor.black.withAlphaComponent(alphaValue).cgColor
+            self.view.layer?.backgroundColor=NSColor.black.withAlphaComponent(alphaValue).cgColor
             
            
                 animatedTime.drawsBackground=true
