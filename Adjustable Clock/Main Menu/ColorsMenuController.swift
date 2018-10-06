@@ -10,14 +10,14 @@ import Cocoa
 
 class ColorsMenuController{
     
-    var colorsMenu: ColorsMenu!
+    var colorsMenu: NSMenu!
     
     var nsColorPanel: NSColorPanel!
     
     let clockNSColors=ClockNSColors()
     let colorOrder=ColorOrders()
     
-    init(colorsMenu: ColorsMenu) {
+    init(colorsMenu: NSMenu) {
         self.colorsMenu=colorsMenu
         
         //so program can conrol what user can select
@@ -128,6 +128,5 @@ class ColorsMenuController{
             }
         }
     }
-    
     
 }

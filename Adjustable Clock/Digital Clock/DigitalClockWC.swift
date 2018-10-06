@@ -217,13 +217,13 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
     
     func updateClockMenuUI(){
         let appObject = NSApp as NSApplication
-        let mainMenu=appObject.mainMenu as! AdjustableClockMenu
+        let mainMenu=appObject.mainMenu as! MainMenu
         mainMenu.updateClockMenuUI()
     }
     
     func enableClockMenu(enabled: Bool){
         let appObject = NSApp as NSApplication
-        let mainMenu=appObject.mainMenu as! AdjustableClockMenu
+        let mainMenu=appObject.mainMenu as! MainMenu
         mainMenu.enableClockMenuPreferences(enabled: enabled)
     }
     

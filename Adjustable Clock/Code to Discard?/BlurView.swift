@@ -6,6 +6,7 @@
 //  Copyright © 2018 Matt Roberts. All rights reserved.
 //
 
+/*
 import Cocoa
 
 class BlurView: NSView {
@@ -46,3 +47,4 @@ class BlurView: NSView {
     }
     
 }
+*/

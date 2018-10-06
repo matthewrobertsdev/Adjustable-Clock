@@ -155,3 +155,123 @@
  static let blue="blue"
  static let purple="purple"
  */
+
+
+/*
+ //handle show preferences, even if fullscreen
+ @IBAction func pressPreferencesMenuItem(preferenceMenuItem: NSMenuItem){
+ print("show preferences clicked")
+ let appObject = NSApp as NSApplication
+ 
+ for window in appObject.windows{
+ if window.identifier==UserInterfaceIdentifier.clockWindow{
+ let digitalClockVC=window.contentViewController as! DigitalClockVC
+ if digitalClockVC.digitalClockModel.fullscreen==true{
+ for window in appObject.windows{
+ if window.identifier==UserInterfaceIdentifier.prefrencesWindow{
+ let preferencesWC=window.windowController as! PreferencesWC
+ preferencesWC.close()
+ }
+ }
+ 
+ showPreferencesWindow()
+ }
+ else{
+ if(isThereAPreferencesWindow()){
+ preferencesWC?.window?.makeKeyAndOrderFront(nil)
+ }
+ else
+ {
+ showPreferencesWindow()
+ }
+ 
+ }
+ }
+ }
+ 
+ }
+ */
+
+
+/*
+ func showPreferencesWindow(){
+ let adjustableClockStoryboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
+ preferencesWC = adjustableClockStoryboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "PreferencesWC")) as? PreferencesWC
+ preferencesWC?.loadWindow()
+ preferencesWC?.showWindow(nil)
+ }
+ */
+
+/*
+ func reloadPreferencesWindowIfOpen(){
+ let appObject = NSApp as NSApplication
+ for window in appObject.windows{
+ if window.identifier==UserInterfaceIdentifier.prefrencesWindow{
+ if isThereAPreferencesWindow(){
+ preferencesWC?.close()
+ showPreferencesWindow()
+ }
+ }
+ }
+ }
+ */
+
+/*
+ func updatePreferencesUI(){
+ let appObject = NSApp as NSApplication
+ for window in appObject.windows{
+ //if window is found
+ if window.identifier==UserInterfaceIdentifier.prefrencesWindow{
+ let preferencesVC=window.contentViewController as! PreferencesVC
+ preferencesVC.preferencesController.updatePreferencesUI()
+ }
+ }
+ }
+ */
+
+//to see if the appliucation has launched and set these defaults if it hasn't
+/*
+ func checkIfFirstLaunchSetDefaults(){
+ //check if it has launched
+ let applicationHasLaunched=userDefaults.bool(forKey: "applicationHasLaunched")
+ //for debug
+ print("applicationHasLaunched is "+applicationHasLaunched.description+".")
+ //if it hasn't launched, set the defaults
+ if(!applicationHasLaunched){
+ setDefaultUserDefaults()
+ }
+ }
+ */
+
+//a function for simply checking if the application has launched before (does not set defaults even if it has not luanched)
+
+/*
+ func checkIfAppplicationHasLaunchedBefore()->Bool{
+ //check if it has launched
+ let applicationHasLaunched=userDefaults.bool(forKey: "applicationHasLaunched")
+ //for debug
+ print("applicationHasLaunched is "+applicationHasLaunched.description+".")
+ //return result
+ if(applicationHasLaunched){
+ return true
+ }
+ else{
+ return false
+ }
+ }
+ */
+
+/*
+ //default is always FALSE
+ //so we don't want it floating
+ let clockWindowFloatsBool=false
+ //and we don't want seconds
+ let showSecondsBool=false
+ //we don't want 24 hour mode
+ let use24hourClock=false
+ //we don't want the date
+ let showDate=false
+ //we don't want the day of the week
+ //let showDayOfWeek=false
+ let colorScheme=""
+ */

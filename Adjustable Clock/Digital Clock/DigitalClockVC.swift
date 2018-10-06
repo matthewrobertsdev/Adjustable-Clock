@@ -236,8 +236,8 @@ class DigitalClockVC: NSViewController {
             print("clock is in live resize so stop")
         }
         print("height is "+animatedDayInfo.frame.height.description)
-        print("desired height is"+(maxWidth*digitalClockModel.dateSizeRatio*0.9).description)
-        if !(self.view.window?.inLiveResize)! &&  ((clockStackView.fittingSize.width>maxWidth)||((animatedDayInfo.frame.width<maxWidth*0.9)&&(animatedDayInfo.frame.height<maxWidth*digitalClockModel.dateSizeRatio*0.9))){
+        print("desired height is"+(maxWidth*digitalClockModel.DATE_SIZE_RATIO*0.9).description)
+        if !(self.view.window?.inLiveResize)! &&  ((clockStackView.fittingSize.width>maxWidth)||((animatedDayInfo.frame.width<maxWidth*0.9)&&(animatedDayInfo.frame.height<maxWidth*digitalClockModel.DATE_SIZE_RATIO*0.9))){
             print("should live resize text")
             resizeText(maxWidth: (self.view.window?.frame.width)!)
             
@@ -459,12 +459,12 @@ class DigitalClockVC: NSViewController {
     
     
     func makeTimeMaxSize(maxWidth: CGFloat)->CGSize{
-        let maxHeight=maxWidth*digitalClockModel.timeSizeRatio
+        let maxHeight=maxWidth*digitalClockModel.TIME_SIZE_RATIO
         return CGSize(width: maxWidth, height: maxHeight)
     }
     
     func makeDateMaxSize(maxWidth: CGFloat)->CGSize{
-        let maxHeight=maxWidth*digitalClockModel.dateSizeRatio
+        let maxHeight=maxWidth*digitalClockModel.DATE_SIZE_RATIO
         return CGSize(width: maxWidth, height: maxHeight)
     }
     

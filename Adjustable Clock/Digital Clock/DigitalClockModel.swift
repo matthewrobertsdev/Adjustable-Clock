@@ -26,12 +26,14 @@ class DigitalClockModel{
     
     var color=""
     
-    var clockNSColors=ClockNSColors()
-    var standardColors: [String:(NSColor,NSColor)]!
-    var colorChoice: ColorChoice!
+    var showDayInfo=false
     
-    var timeSizeRatio=CGFloat(0.25)
-    var dateSizeRatio=CGFloat(0.25)
+    var updateTime=1000
+    
+    var clockNSColors=ClockNSColors()
+    
+    var TIME_SIZE_RATIO=CGFloat(0.25)
+    var DATE_SIZE_RATIO=CGFloat(0.25)
     
     let AM_PM_MINUTES=CGFloat(0.25)
     let AM_PM_SECONDS=CGFloat(0.25)
@@ -47,16 +49,8 @@ class DigitalClockModel{
     let seconds=1000
     let deciseconds=100
     
-    init(){
-        //standardColors=clockNSColors.standardColors
-    }
-    
     var timeFormatter = DateFormatter()
     var dateFormatter = DateFormatter()
-    
-    var showDayInfo=false
-    
-    var updateTime=1000
     
     func useShowMinutesAMPM(){
         timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
@@ -121,21 +115,21 @@ class DigitalClockModel{
         if !ClockPreferencesStorage.sharedInstance.use24hourClock{
             if !ClockPreferencesStorage.sharedInstance.showSeconds{
                 useShowMinutesAMPM()
-                timeSizeRatio=AM_PM_MINUTES
+                TIME_SIZE_RATIO=AM_PM_MINUTES
             }
             else{
                 useShowSecondsAMPM()
-                timeSizeRatio=AM_PM_SECONDS
+                TIME_SIZE_RATIO=AM_PM_SECONDS
             }
         }
         else{
             if !ClockPreferencesStorage.sharedInstance.showSeconds{
                 useShowMinutes24Hour()
-                timeSizeRatio=MILITARY_MINUTES
+                TIME_SIZE_RATIO=MILITARY_MINUTES
             }
             else{
                 useShowSeconds24Hour()
-                timeSizeRatio=MILITARY_SECONDS
+                TIME_SIZE_RATIO=MILITARY_SECONDS
             }
         }
         if showDayInfo==true{
@@ -143,11 +137,11 @@ class DigitalClockModel{
                 if !ClockPreferencesStorage.sharedInstance.showDayOfWeek{
                     //clock will not actually use this model
                     useWeekdayDate()
-                    dateSizeRatio=WEEKDAY_DATE
+                    DATE_SIZE_RATIO=WEEKDAY_DATE
                 }
                 else{
                     useWeekDay()
-                    dateSizeRatio=WEEKDAY
+                    DATE_SIZE_RATIO=WEEKDAY
                 }
                 
             }
@@ -156,21 +150,21 @@ class DigitalClockModel{
                     //clock will not actually use this model
                     if !ClockPreferencesStorage.sharedInstance.useNumericalDate{
                         useLongDate()
-                        dateSizeRatio=LONG_DATE
+                        DATE_SIZE_RATIO=LONG_DATE
                     }
                     else{
                         useNumericalDate()
-                        dateSizeRatio=NUMERICAL_DATE
+                        DATE_SIZE_RATIO=NUMERICAL_DATE
                     }
                 }
                 else{
                     if !ClockPreferencesStorage.sharedInstance.useNumericalDate{
                         useWeekdayDate()
-                        dateSizeRatio=WEEKDAY_DATE
+                        DATE_SIZE_RATIO=WEEKDAY_DATE
                     }
                     else{
                         useWeekdayNumericalDate()
-                        dateSizeRatio=WEEKDAY_NUMERICAL_DATE
+                        DATE_SIZE_RATIO=WEEKDAY_NUMERICAL_DATE
                     }
                 }
             }

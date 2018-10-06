@@ -8,11 +8,10 @@
 
 import  Cocoa
 
-class AdjustableClockMenu: NSMenu{
+class MainMenu: NSMenu{
     
-    @IBOutlet weak var colorsMenu: ColorsMenu!
+    @IBOutlet weak var colorsMenu: NSMenu!
     
-    //var preferencesWC: PreferencesWC?
     var simplePreferencesWC: SimplePreferencesWC?
     var digitalClockWC: DigitalClockWC?
     
@@ -67,79 +66,45 @@ class AdjustableClockMenu: NSMenu{
             clockFloatsMenuItem.isEnabled=true
         }
         if ClockPreferencesStorage.sharedInstance.clockFloats{
-            clockFloatsMenuItem.state=NSControl.StateValue(rawValue: 1)
+            clockFloatsMenuItem.state=NSControl.StateValue.on
         }
         else{
-            clockFloatsMenuItem.state=NSControl.StateValue(rawValue: 0)
+            clockFloatsMenuItem.state=NSControl.StateValue.off
         }
         if ClockPreferencesStorage.sharedInstance.showSeconds{
-            showSecondsMenuItem.state=NSControl.StateValue(rawValue: 1)
+            showSecondsMenuItem.state=NSControl.StateValue.on
         }
         else{
-            showSecondsMenuItem.state=NSControl.StateValue(rawValue: 0)
+            showSecondsMenuItem.state=NSControl.StateValue.off
         }
         if ClockPreferencesStorage.sharedInstance.use24hourClock{
-            use24HourClockMenuItem.state=NSControl.StateValue(rawValue: 1)
+            use24HourClockMenuItem.state=NSControl.StateValue.on
         }
         else{
-            use24HourClockMenuItem.state=NSControl.StateValue(rawValue: 0)
+            use24HourClockMenuItem.state=NSControl.StateValue.off
         }
         if ClockPreferencesStorage.sharedInstance.showDate{
-            showDateMenuItem.state=NSControl.StateValue(rawValue: 1)
+            showDateMenuItem.state=NSControl.StateValue.on
             useNumericalDateMenuItem.isEnabled=true
         }
         else{
-            showDateMenuItem.state=NSControl.StateValue(rawValue: 0)
+            showDateMenuItem.state=NSControl.StateValue.off
             useNumericalDateMenuItem.isEnabled=false
         }
         
         if ClockPreferencesStorage.sharedInstance.showDayOfWeek{
-            showDayOfWeekMenuItem.state=NSControl.StateValue(rawValue: 1)
+            showDayOfWeekMenuItem.state=NSControl.StateValue.on
         }
         else{
-            showDayOfWeekMenuItem.state=NSControl.StateValue(rawValue: 0)
+            showDayOfWeekMenuItem.state=NSControl.StateValue.off
         }
         if ClockPreferencesStorage.sharedInstance.useNumericalDate{
-            useNumericalDateMenuItem.state=NSControl.StateValue(rawValue: 1)
+            useNumericalDateMenuItem.state=NSControl.StateValue.on
         }
         else{
-            useNumericalDateMenuItem.state=NSControl.StateValue(rawValue: 0)
+            useNumericalDateMenuItem.state=NSControl.StateValue.off
         }
     }
-    /*
-    //handle show preferences, even if fullscreen
-    @IBAction func pressPreferencesMenuItem(preferenceMenuItem: NSMenuItem){
-        print("show preferences clicked")
-        let appObject = NSApp as NSApplication
-        
-        for window in appObject.windows{
-            if window.identifier==UserInterfaceIdentifier.clockWindow{
-                let digitalClockVC=window.contentViewController as! DigitalClockVC
-                if digitalClockVC.digitalClockModel.fullscreen==true{
-                    for window in appObject.windows{
-                        if window.identifier==UserInterfaceIdentifier.prefrencesWindow{
-                            let preferencesWC=window.windowController as! PreferencesWC
-                            preferencesWC.close()
-                        }
-                    }
-                    
-                    showPreferencesWindow()
-                }
-                else{
-                    if(isThereAPreferencesWindow()){
-                       preferencesWC?.window?.makeKeyAndOrderFront(nil)
-                    }
-                    else
-                    {
-                        showPreferencesWindow()
-                    }
-
-                }
-            }
-        }
-        
-    }
- */
     
     @IBAction func pressSimplePreferencesMenuItem(preferenceMenuItem: NSMenuItem){
         print("show preferences clicked")
@@ -185,14 +150,6 @@ class AdjustableClockMenu: NSMenu{
         digitalClockWC?.loadWindow()
         digitalClockWC?.showWindow(nil)
     }
-    /*
-    func showPreferencesWindow(){
-        let adjustableClockStoryboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
-        preferencesWC = adjustableClockStoryboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "PreferencesWC")) as? PreferencesWC
-        preferencesWC?.loadWindow()
-        preferencesWC?.showWindow(nil)
-    }
- */
     
     func showSimplePreferencesWindow(){
         print("should show simple preferences window")
@@ -202,24 +159,10 @@ class AdjustableClockMenu: NSMenu{
         simplePreferencesWC?.showWindow(nil)
     }
     
-    /*
-    func reloadPreferencesWindowIfOpen(){
-        let appObject = NSApp as NSApplication
-        for window in appObject.windows{
-            if window.identifier==UserInterfaceIdentifier.prefrencesWindow{
-                if isThereAPreferencesWindow(){
-                    preferencesWC?.close()
-                    showPreferencesWindow()
-                }
-            }
-        }
-    }
- */
     
     func updateForPreferencesChange(){
         updateClockMenuUI()
         updateClockToPreferencesChange()
-        //updatePreferencesUI()
     }
     
     func enableClockMenuPreferences(enabled: Bool){
@@ -240,17 +183,5 @@ class AdjustableClockMenu: NSMenu{
             }
         }
     }
-    /*
-    func updatePreferencesUI(){
-        let appObject = NSApp as NSApplication
-        for window in appObject.windows{
-            //if window is found
-            if window.identifier==UserInterfaceIdentifier.prefrencesWindow{
-                let preferencesVC=window.contentViewController as! PreferencesVC
-                preferencesVC.preferencesController.updatePreferencesUI()
-            }
-        }
-    }
- */
 
 }

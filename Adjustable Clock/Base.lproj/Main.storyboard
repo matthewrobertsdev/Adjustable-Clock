@@ -265,7 +265,7 @@
         <scene sceneID="JPo-4y-FX3">
             <objects>
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
-                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6" customClass="AdjustableClockMenu" customModule="Adjustable_Clock" customModuleProvider="target">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6" customClass="MainMenu" customModule="Adjustable_Clock" customModuleProvider="target">
                         <items>
                             <menuItem title="Adjustable Clock" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -377,7 +377,7 @@
                             </menuItem>
                             <menuItem title="Colors" id="vby-ae-u19">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Colors" id="65N-u4-pRd" customClass="ColorsMenu" customModule="Adjustable_Clock" customModuleProvider="target">
+                                <menu key="submenu" title="Colors" id="65N-u4-pRd">
                                     <items>
                                         <menuItem title="Gray" id="vNP-0q-WID">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -532,10 +532,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="283" height="122"/>
                             </visualEffectView>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnO-xZ-G0J">
-                                <rect key="frame" x="11" y="14" width="261" height="94"/>
+                                <rect key="frame" x="14" y="14" width="255" height="94"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayc-mj-Qox">
-                                        <rect key="frame" x="45" y="47" width="171" height="47"/>
+                                        <rect key="frame" x="44" y="47" width="168" height="47"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="12:00 PM" id="93p-ZP-sNf">
                                             <font key="font" metaFont="system" size="39"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -543,7 +543,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ma-9v-P9y">
-                                        <rect key="frame" x="-2" y="0.0" width="265" height="47"/>
+                                        <rect key="frame" x="-2" y="0.0" width="259" height="47"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="January 1, 2017" id="Akk-XK-AD4">
                                             <font key="font" metaFont="system" size="39"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

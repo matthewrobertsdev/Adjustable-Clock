@@ -56,7 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         ClockPreferencesStorage.sharedInstance.loadUserPreferences()
         let appObject = NSApp as NSApplication
-        let mainMenu=appObject.mainMenu as! AdjustableClockMenu
+        let mainMenu=appObject.mainMenu as! MainMenu
         colorsMenuController=ColorsMenuController(colorsMenu: mainMenu.colorsMenu)
         
         
@@ -67,7 +67,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                                                 hasVisibleWindows flag: Bool) -> Bool{
         if(!isThereADigitalClockWindow()){
             let appObject = NSApp as NSApplication
-            let mainMenu=appObject.mainMenu as! AdjustableClockMenu
+            let mainMenu=appObject.mainMenu as! MainMenu
             mainMenu.showDigitalClock()
         }
 
