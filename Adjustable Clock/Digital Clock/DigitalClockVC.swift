@@ -187,6 +187,7 @@ class DigitalClockVC: NSViewController {
         }
         
     }
+    
         
         
     func animateTimeAndDayInfo(){
