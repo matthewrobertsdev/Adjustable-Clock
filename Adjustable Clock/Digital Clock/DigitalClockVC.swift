@@ -163,7 +163,7 @@ class DigitalClockVC: NSViewController {
         let timeString=digitalClockModel.getTime()
         if animatedTime?.stringValue != timeString{
             animatedTime?.stringValue=timeString
-            animatedTime.backgroundColor=animatedTime.backgroundColor
+            //animatedTime.backgroundColor=animatedTime.backgroundColor
             if !(self.view.window?.frame.width==nil){
                 clockLiveResize(maxWidth: (self.view.window?.frame.width)!)
             }
@@ -175,16 +175,20 @@ class DigitalClockVC: NSViewController {
         let timeString=digitalClockModel.getTime()
         if animatedTime?.stringValue != timeString{
             animatedTime?.stringValue=timeString
-            animatedTime.backgroundColor=animatedTime.backgroundColor
-            animatedDayInfo?.stringValue=digitalClockModel.getDayInfo()
-            animatedDayInfo.backgroundColor=animatedDayInfo.backgroundColor
+            //animatedTime.backgroundColor=animatedTime.backgroundColor
+            
+            let dayInfo=digitalClockModel.getDayInfo()
+                animatedDayInfo?.stringValue=dayInfo
+            
             if !(self.view.window?.frame.width==nil){
                 clockLiveResize(maxWidth: (self.view.window?.frame.width)!)
             }
+            
         }
+        
     }
-    
-    
+        
+        
     func animateTimeAndDayInfo(){
         animatedTime?.stringValue=digitalClockModel.getTime()
         animatedDayInfo?.stringValue=digitalClockModel.getDayInfo()

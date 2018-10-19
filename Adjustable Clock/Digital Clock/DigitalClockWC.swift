@@ -45,13 +45,17 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         
         window?.aspectRatio=(window?.frame.size)!
         
-        setTrackingArea()
+        //setTrackingArea()
         
         window?.isMovableByWindowBackground=true
         window?.delegate=self
         
         if(!ClockPreferencesStorage.sharedInstance.fullscreen){
-            flashButtons()
+            showButtons(show: false)
+            //flashButtons()
+        }
+        else{
+            showButtons(show: true)
         }
         
         enableClockMenu(enabled: true)
@@ -66,9 +70,11 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         backgroundView.addTrackingArea(trackingArea)
     }
     
+    /*
     func removeTrackingArea(){
         backgroundView.removeTrackingArea(trackingArea)
     }
+ */
     
     func sizeWindowToFitClock(newWidth: CGFloat){
         let digitalClockVC=window?.contentViewController as! DigitalClockVC
@@ -89,13 +95,15 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
     }
     
     func windowDidResignKey(_ notification: Notification) {
+        /*
         if(!ClockPreferencesStorage.sharedInstance.fullscreen){
             showButtons(show: false)
         }
+ */
     }
     
     override func mouseMoved(with event: NSEvent) {
-        flashButtons()
+        //flashButtons()
     }
     
     func windowDidEndLiveResize(_ notification: Notification) {
@@ -118,6 +126,10 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
             let newHeight=digitalClockVC.clockStackView.fittingSize.height
             let newAspectRatio=NSSize(width: newWidth, height: newHeight)
             window?.aspectRatio=newAspectRatio
+            showButtons(show: false)
+        }
+        else{
+            showButtons(show: true)
         }
         
     }
@@ -145,14 +157,14 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
     //if entered fullscreen
     func windowDidEnterFullScreen(_ notification: Notification) {
         
-        removeTrackingArea()
-        hideButtonsTimer?.invalidate()
-        showButtons(show: true)
+        //removeTrackingArea()
+        //hideButtonsTimer?.invalidate()
         
         updateClockMenuUI()
         //reloadPreferencesWindowIfOpen()
         
         window?.makeKey()
+        showButtons(show: true)
     }
     
     func windowWillExitFullScreen(_ notification: Notification) {
@@ -165,15 +177,17 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
     
     func windowDidExitFullScreen(_ notification: Notification) {
         
-        setTrackingArea()
+        //setTrackingArea()
         window?.makeKey()
-        flashButtons()
+        //flashButtons()
         
         updateClockMenuUI()
         //reloadPreferencesWindowIfOpen()
         
         sizeWindowToFitClock(newWidth: (window?.frame.width)!)
         window?.aspectRatio=(window?.frame.size)!
+        
+        showButtons(show: false)
         
     }
     

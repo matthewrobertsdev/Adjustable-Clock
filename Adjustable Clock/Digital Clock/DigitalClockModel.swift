@@ -58,7 +58,7 @@ class DigitalClockModel{
     }
     func useShowSecondsAMPM(){
         timeFormatter.setLocalizedDateFormatFromTemplate("hmmss")
-        updateTime=deciseconds
+        updateTime=seconds
     }
     func useShowMinutes24Hour(){
         timeFormatter.setLocalizedDateFormatFromTemplate("Hmm")
@@ -66,7 +66,7 @@ class DigitalClockModel{
     }
     func useShowSeconds24Hour(){
         timeFormatter.setLocalizedDateFormatFromTemplate("Hmmss")
-        updateTime=deciseconds
+        updateTime=seconds
     }
     
     func useWeekdayDate(){
