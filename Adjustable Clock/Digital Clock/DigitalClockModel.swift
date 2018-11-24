@@ -30,7 +30,7 @@ class DigitalClockModel{
     
     var updateTime=1000
     
-    var clockNSColors=ClockNSColors()
+    var clockNSColors=ColorDictionary()
     
     var TIME_SIZE_RATIO=CGFloat(0.25)
     var DATE_SIZE_RATIO=CGFloat(0.25)

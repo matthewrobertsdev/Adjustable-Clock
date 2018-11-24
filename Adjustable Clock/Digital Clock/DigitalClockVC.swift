@@ -273,7 +273,7 @@ class DigitalClockVC: NSViewController {
         //visualEffectView.alphaValue=0
         
         var contastingColor: NSColor
-        let clockNSColors=ClockNSColors()
+        let clockNSColors=ColorDictionary()
                 self.view.window?.isOpaque=false
         self.view.window?.backgroundColor=NSColor.clear
         //self.view.window?.backgroundColor = NSColor.blue.withAlphaComponent(0.5)
@@ -358,12 +358,12 @@ class DigitalClockVC: NSViewController {
                 contastingColor=ClockPreferencesStorage.sharedInstance.customColor
             }
             else{
-                contastingColor=clockNSColors.standardColor[ClockPreferencesStorage.sharedInstance.colorChoice]!
+                contastingColor=clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]!
             }
         }
             
         else{
-            contastingColor=ClockNSColors.mercuryNSColor
+            contastingColor=ColorDictionary.mercuryNSColor
         }
         
         if !ClockPreferencesStorage.sharedInstance.lightOnDark{

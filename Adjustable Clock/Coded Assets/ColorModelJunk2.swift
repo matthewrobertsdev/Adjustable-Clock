@@ -7,6 +7,19 @@
 //
 /*
 import AppKit
+ 
+ //case gray, white, red, orange, yellow, green, blue, purple
+ /*
+ case black
+ case gray
+ case white
+ case red
+ case orange
+ case yellow
+ case green
+ case blue
+ case purple
+ */
 
 class ColorModel{
     var standardColors: [String:NSColor]

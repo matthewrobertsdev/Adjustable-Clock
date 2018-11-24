@@ -14,8 +14,8 @@ class ColorsMenuController{
     
     var nsColorPanel: NSColorPanel!
     
-    let clockNSColors=ClockNSColors()
-    let colorOrder=ColorOrders()
+    let clockNSColors=ColorDictionary()
+    let colorOrder=ColorArrays()
     
     init(colorsMenu: NSMenu) {
         self.colorsMenu=colorsMenu
@@ -26,20 +26,20 @@ class ColorsMenuController{
         //enable menu items
         //add change color selectors
         //add color images
-        for index in 0...colorOrder.standardColorsOrder.count-1 {
+        for index in 0...colorOrder.standardColorsArray.count-1 {
             
             colorsMenu.items[index].isEnabled=true
             
             colorsMenu.items[index].target=self
             colorsMenu.items[index].action=#selector(changeColor(sender:))
             
-            let clockNSColors=ClockNSColors()
+            let clockNSColors=ColorDictionary()
             
             let templateImage=NSImage(named: NSImage.Name(rawValue: "black_rectangle"))
             templateImage?.isTemplate=true
             var tintColor=ClockPreferencesStorage.sharedInstance.customColor!
-            if index<colorOrder.standardColorsOrder.count-1{
-                tintColor=clockNSColors.standardColor[colorOrder.standardColorsOrder[index]]!
+            if index<colorOrder.standardColorsArray.count-1{
+                tintColor=clockNSColors.colorsDictionary[colorOrder.standardColorsArray[index]]!
             }
             let colorImage=templateImage?.tintExceptBorder(tintColor: tintColor)
             colorsMenu.items[index].image=colorImage
@@ -49,14 +49,14 @@ class ColorsMenuController{
         //print("color menu count is "+colorsMenu.items.count.description)
         
         //set-up reverse color mode menuItem
-        colorsMenu.items[colorOrder.standardColorsOrder.count+1].isEnabled=true
-        colorsMenu.items[colorOrder.standardColorsOrder.count+1].target=self
-        colorsMenu.items[colorOrder.standardColorsOrder.count+1].action=#selector(reverseColorMode(sender:))
+        colorsMenu.items[colorOrder.standardColorsArray.count+1].isEnabled=true
+        colorsMenu.items[colorOrder.standardColorsArray.count+1].target=self
+        colorsMenu.items[colorOrder.standardColorsArray.count+1].action=#selector(reverseColorMode(sender:))
         
         //set-up show color panel menuItem
-        colorsMenu.items[colorOrder.standardColorsOrder.count+3].isEnabled=true
-        colorsMenu.items[colorOrder.standardColorsOrder.count+3].target=self
-        colorsMenu.items[colorOrder.standardColorsOrder.count+3].action=#selector(showColorPanel(sender:))
+        colorsMenu.items[colorOrder.standardColorsArray.count+3].isEnabled=true
+        colorsMenu.items[colorOrder.standardColorsArray.count+3].target=self
+        colorsMenu.items[colorOrder.standardColorsArray.count+3].action=#selector(showColorPanel(sender:))
         
         //reflect saved (or default) choice
         updateColorMenuUI()
@@ -64,7 +64,7 @@ class ColorsMenuController{
     
     @objc func changeColor(sender: NSMenuItem){
         print("color should change")
-        let newColorChoice=colorOrder.standardColorsOrder[sender.tag]
+        let newColorChoice=colorOrder.standardColorsArray[sender.tag]
         ClockPreferencesStorage.sharedInstance.changeAndSaveColorSceme(colorChoice: newColorChoice)
         updateColorMenuUI()
         updateClockToPreferencesChange()
@@ -96,9 +96,9 @@ class ColorsMenuController{
     }
     
     func updateColorMenuUI(){
-        for index in 0...colorOrder.standardColorsOrder.count-1{
+        for index in 0...colorOrder.standardColorsArray.count-1{
             //if saved color string matches the array at menuItem's index, select
-            if ClockPreferencesStorage.sharedInstance.colorChoice==colorOrder.standardColorsOrder[index]{
+            if ClockPreferencesStorage.sharedInstance.colorChoice==colorOrder.standardColorsArray[index]{
                 colorsMenu.items[index].state=NSControl.StateValue.on
             }
             //otherwise, deselect
@@ -112,7 +112,7 @@ class ColorsMenuController{
         templateImage?.isTemplate=true
         let tintColor=ClockPreferencesStorage.sharedInstance.customColor!
         let colorImage=templateImage?.tintExceptBorder(tintColor: tintColor)
-        colorsMenu.items[colorOrder.standardColorsOrder.count-1].image=colorImage
+        colorsMenu.items[colorOrder.standardColorsArray.count-1].image=colorImage
         
     }
     
