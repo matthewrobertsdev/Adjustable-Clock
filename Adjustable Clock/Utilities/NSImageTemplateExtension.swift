@@ -44,7 +44,7 @@ extension NSImage {
         return image
     }
     
-    func tintExceptBorder(tintColor: NSColor) -> NSImage{
+    func tintExceptBorder(tintColor: NSColor, borderPixels: CGFloat) -> NSImage{
         
         if self.isTemplate == false {
             return self
@@ -54,7 +54,7 @@ extension NSImage {
         image.lockFocus()
         
         tintColor.set()
-        NSMakeRect(1, 1, image.size.width-2, image.size.height-2).fill(using: NSCompositingOperation.sourceOver)
+        NSMakeRect(borderPixels, borderPixels, image.size.width-borderPixels*2, image.size.height-borderPixels*2).fill(using: NSCompositingOperation.sourceOver)
         
         image.unlockFocus()
         image.isTemplate = false

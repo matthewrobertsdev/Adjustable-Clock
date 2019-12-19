@@ -43,6 +43,7 @@
 		9FB5FA1C20C8F2A700EE8963 /* ColorOrders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5FA1B20C8F2A700EE8963 /* ColorOrders.swift */; };
 		9FB5FA1E20C8F58C00EE8963 /* ColorMenuGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB5FA1D20C8F58C00EE8963 /* ColorMenuGenerator.swift */; };
 		9FB5FA2D20C905A800EE8963 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9FB5FA2F20C905A800EE8963 /* Localizable.strings */; };
+		9FB925FC21B8DE52000EB9C5 /* TODOs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB925FB21B8DE52000EB9C5 /* TODOs.swift */; };
 		9FBBCCA520DDDD9F00F44160 /* NSImageTemplateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBCCA420DDDD9F00F44160 /* NSImageTemplateExtension.swift */; };
 		9FBBCCA720DDE22900F44160 /* ClockColors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FBBCCA620DDE22900F44160 /* ClockColors.xcassets */; };
 		9FC97F551F480BB500035D30 /* AppUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC97F501F480BB500035D30 /* AppUserDefaults.swift */; };
@@ -116,6 +117,7 @@
 		9FB5FA1D20C8F58C00EE8963 /* ColorMenuGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorMenuGenerator.swift; sourceTree = "<group>"; };
 		9FB5FA2E20C905A800EE8963 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9FB5FA3020C905C200EE8963 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9FB925FB21B8DE52000EB9C5 /* TODOs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TODOs.swift; sourceTree = "<group>"; };
 		9FBBCCA420DDDD9F00F44160 /* NSImageTemplateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSImageTemplateExtension.swift; sourceTree = "<group>"; };
 		9FBBCCA620DDE22900F44160 /* ClockColors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ClockColors.xcassets; sourceTree = "<group>"; };
 		9FC97F501F480BB500035D30 /* AppUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUserDefaults.swift; sourceTree = "<group>"; };
@@ -247,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				9FDF214220DB6ED7007EB634 /* Analysis and Design */,
+				9FB925FB21B8DE52000EB9C5 /* TODOs.swift */,
 				9FB47E5D1F480A43009D82FF /* AppDelegate.swift */,
 				9FEA8C8B1FECCF3A002D3960 /* LoadingAndSavingWindows */,
 				9F7DF9422066094400CC0DF6 /* Digital Clock */,
@@ -509,6 +512,7 @@
 				9F7174A11F5DADE800595C8D /* DigItalClockAppFunctions.swift in Sources */,
 				9F750CC02056073F007980F9 /* DefaultNSWindow.swift in Sources */,
 				9F004E94211835AB0046225C /* BlurView.swift in Sources */,
+				9FB925FC21B8DE52000EB9C5 /* TODOs.swift in Sources */,
 				9F4EF1E320C273CB00E08C57 /* ColorModel.swift in Sources */,
 				9FCF5D2421687703003BA1CC /* ClockPreferencesReflector.swift in Sources */,
 				9F8ED1711FEC73C100C0553C /* WindowStateOperator.swift in Sources */,

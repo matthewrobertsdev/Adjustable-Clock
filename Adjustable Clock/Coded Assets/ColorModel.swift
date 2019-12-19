@@ -47,9 +47,9 @@ struct ColorChoice{
 //NSColors with values for current standard colors
 class ClockColors{
     //mercury
-    static let mercuryNSColor=NSColor(calibratedRed: 232/255, green: 232/255, blue: 232/255, alpha: 1)
+	static let mercuryNSColor=NSColor.systemGray//NSColor(calibratedRed: 232/255, green: 232/255, blue: 232/255, alpha: 1)
     //red
-    static let salmonNSColor=NSColor(calibratedRed: 1, green: 114/255, blue: 110/255, alpha: 1)
+	static let salmonNSColor=NSColor.systemRed//NSColor(calibratedRed: 1, green: 114/255, blue: 110/255, alpha: 1)
     //orange
     static let tangurineNSColor=NSColor(calibratedRed: 255/255, green: 136/255, blue: 2/255, alpha: 1)
     //yellow

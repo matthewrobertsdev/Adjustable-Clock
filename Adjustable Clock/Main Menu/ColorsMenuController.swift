@@ -41,7 +41,7 @@ class ColorsMenuController{
             if index<colorOrder.standardColorsArray.count-1{
                 tintColor=clockNSColors.colorsDictionary[colorOrder.standardColorsArray[index]]!
             }
-            let colorImage=templateImage?.tintExceptBorder(tintColor: tintColor)
+			let colorImage=templateImage?.tintExceptBorder(tintColor: tintColor, borderPixels: CGFloat(0))
             colorsMenu.items[index].image=colorImage
             
             }
@@ -111,7 +111,7 @@ class ColorsMenuController{
         let templateImage=NSImage(named: NSImage.Name(rawValue: "black_rectangle"))
         templateImage?.isTemplate=true
         let tintColor=ClockPreferencesStorage.sharedInstance.customColor!
-        let colorImage=templateImage?.tintExceptBorder(tintColor: tintColor)
+		let colorImage=templateImage?.tintExceptBorder(tintColor: tintColor, borderPixels: CGFloat(0))
         colorsMenu.items[colorOrder.standardColorsArray.count-1].image=colorImage
         
     }

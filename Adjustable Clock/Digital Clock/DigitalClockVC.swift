@@ -363,17 +363,17 @@ class DigitalClockVC: NSViewController {
         }
             
         else{
-            contastingColor=ColorDictionary.mercuryNSColor
+			contastingColor=NSColor.gray
         }
         
         if !ClockPreferencesStorage.sharedInstance.lightOnDark{
-            animatedTime.textColor=NSColor.black.withAlphaComponent(alphaValue2)
-            animatedDayInfo.textColor=NSColor.black.withAlphaComponent(alphaValue2)
-            self.view.layer?.backgroundColor=contastingColor.withAlphaComponent(alphaValue).cgColor
+			animatedTime.textColor=NSColor.labelColor
+			animatedDayInfo.textColor=NSColor.labelColor
+			self.view.layer?.backgroundColor=contastingColor.cgColor
             
                 animatedTime.drawsBackground=true
                 animatedTime.backgroundColor=NSColor.clear
-            animatedDayInfo.backgroundColor=contastingColor.withAlphaComponent(alphaValue)
+			animatedDayInfo.backgroundColor=contastingColor
         }
         else{
             animatedTime.textColor=contastingColor.withAlphaComponent(alphaValue2)
@@ -382,7 +382,7 @@ class DigitalClockVC: NSViewController {
             
            
                 animatedTime.drawsBackground=true
-            animatedTime.backgroundColor=NSColor.black.withAlphaComponent(alphaValue)
+            animatedTime.backgroundColor=NSColor.black
             
             animatedDayInfo.backgroundColor=NSColor.black.withAlphaComponent(alphaValue)
             
