@@ -32,9 +32,8 @@ class DigitalClockModel{
     //for time intervals (miliseconds)
     let seconds=1000
     let deciseconds=100
-    
     func useShowMinutesAMPM(){
-        timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
+		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
         updateTime=seconds
     }
     func useShowSecondsAMPM(){
@@ -49,44 +48,33 @@ class DigitalClockModel{
         timeFormatter.setLocalizedDateFormatFromTemplate("Hmmss")
         updateTime=seconds
     }
-    
     func useWeekdayDate(){
         dateFormatter.setLocalizedDateFormatFromTemplate("EEEEMMMMd")
     }
-    
     func useWeekdayNumericalDate(){
         dateFormatter.setLocalizedDateFormatFromTemplate("EEEEMd")
     }
-    
     func useLongDate(){
         dateFormatter.setLocalizedDateFormatFromTemplate("MMMMdyyyy")
     }
-    
     func useNumericalDate(){
         dateFormatter.setLocalizedDateFormatFromTemplate("Mdyyyy")
     }
-    
     func useWeekDay(){
         dateFormatter.setLocalizedDateFormatFromTemplate("EEEE")
     }
-    
     func setLocaleToEnglishUS(){
         timeFormatter.locale = Locale(identifier: "en_US")
         dateFormatter.locale = Locale(identifier: "en_US")
     }
-    
     func getTime()->String{
         let nowDate=Date()
-        let time=timeFormatter.string(from: nowDate)
-        //print(time.description)
-        return time
+        return timeFormatter.string(from: nowDate)
     }
     
     func getDayInfo()->String{
         let nowDate=Date()
-        let date=dateFormatter.string(from: nowDate)
-        //print(date.description)
-        return date
+		return dateFormatter.string(from: nowDate)
     }
     
     func updateClockModelForPreferences(){
@@ -116,7 +104,6 @@ class DigitalClockModel{
         if showDayInfo==true{
             if !ClockPreferencesStorage.sharedInstance.showDate{
                 if !ClockPreferencesStorage.sharedInstance.showDayOfWeek{
-                    //clock will not actually use this model
                     useWeekdayDate()
                     dateSizeRatio=WEEKDAY_DATE
                 }
@@ -124,11 +111,9 @@ class DigitalClockModel{
                     useWeekDay()
                     dateSizeRatio=WEEKDAY
                 }
-                
             }
             else{
                 if !ClockPreferencesStorage.sharedInstance.showDayOfWeek{
-                    //clock will not actually use this model
                     if !ClockPreferencesStorage.sharedInstance.useNumericalDate{
                         useLongDate()
                         dateSizeRatio=LONG_DATE
@@ -145,7 +130,7 @@ class DigitalClockModel{
                     }
                     else{
                         useWeekdayNumericalDate()
-                        dateSizeRatio=WEEKDAY_NUMERICAL_DATE
+						dateSizeRatio=WEEKDAY_NUMERICAL_DATE
                     }
                 }
             }

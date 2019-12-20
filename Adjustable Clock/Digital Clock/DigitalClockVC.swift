@@ -377,7 +377,7 @@ class DigitalClockVC: NSViewController {
 			visualEffectView.isHidden=true
             animatedTime.textColor=contastingColor
             animatedDayInfo.textColor=contastingColor
-			self.view.layer?.backgroundColor=NSColor.labelColor.cgColor//NSColor.clear.cgColor//NSColor.labelColor.cgColor
+			self.view.layer?.backgroundColor = NSColor.labelColor.cgColor/*NSColor.clear.cgColor*/
         }
     }
  
