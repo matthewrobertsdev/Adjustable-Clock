@@ -10,7 +10,7 @@ import Cocoa
 
 
 //if there is any active digital clock window at all, return true
-func isThereADigitalClockWindow()->Bool{
+func digitalClockWindowPresent()->Bool{
     //get the app object
     let appObject = NSApp as NSApplication
     
@@ -90,7 +90,7 @@ func isThereASimplePreferencesWindow()->Bool{
 
 
 //save, but only if the app should
-func ifAppropriateClockSaveState(){
+func digitalClockSaveStateAsNeeded(){
     //get app object
     let appObject = NSApp as NSApplication
     
@@ -110,7 +110,7 @@ func ifAppropriateClockSaveState(){
 
 
 
-func ifAppropriatePreferencesSaveState(){
+func preferencesSaveAsNeeded(){
     //get app object
     let appObject = NSApp as NSApplication
     

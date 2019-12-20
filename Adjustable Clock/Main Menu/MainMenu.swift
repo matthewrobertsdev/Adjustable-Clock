@@ -139,7 +139,7 @@ class MainMenu: NSMenu{
     }
     
     @IBAction func pressShowDigitalClockMenuItem(showClockMenuItem: NSMenuItem){
-        if(!isThereADigitalClockWindow()){
+        if(!digitalClockWindowPresent()){
             showDigitalClock()
         }
     }

@@ -51,17 +51,17 @@ class ClockColors{
     //red
 	static let salmonNSColor=NSColor.systemRed//NSColor(calibratedRed: 1, green: 114/255, blue: 110/255, alpha: 1)
     //orange
-    static let tangurineNSColor=NSColor(calibratedRed: 255/255, green: 136/255, blue: 2/255, alpha: 1)
+	static let tangurineNSColor=NSColor.systemOrange//NSColor(calibratedRed: 255/255, green: 136/255, blue: 2/255, alpha: 1)
     //yellow
-    static let lemonNSColor=NSColor(calibratedRed: 255/255, green: 250/255, blue: 3/255, alpha: 1)
+	static let lemonNSColor=NSColor.systemYellow//NSColor(calibratedRed: 255/255, green: 250/255, blue: 3/255, alpha: 1)
     //green
-    static let springNSColor=NSColor(calibratedRed: 5/255, green: 248/255, blue: 2/255, alpha: 1)
+	static let springNSColor=NSColor.systemGreen//NSColor(calibratedRed: 5/255, green: 248/255, blue: 2/255, alpha: 1)
     //blue
-    static let aquaNSColor=NSColor(calibratedRed: 0, green: 144/255, blue: 1, alpha: 1)
+	static let aquaNSColor=NSColor.systemBlue//NSColor(calibratedRed: 0, green: 144/255, blue: 1, alpha: 1)
     //purple
-    static let grapeNSColor=NSColor(calibratedRed: 137/255, green: 49/255, blue: 255/255, alpha: 1)
+	static let grapeNSColor=NSColor.systemPurple//NSColor(calibratedRed: 137/255, green: 49/255, blue: 255/255, alpha: 1)
     //darkGray
-    static let darkGrayNSColor=NSColor(calibratedRed: 111/255, green: 111/255, blue: 111/255, alpha: 1)
+	static let darkGrayNSColor=NSColor.systemGray//NSColor(calibratedRed: 111/255, green: 111/255, blue: 111/255, alpha: 1)
 }
 
 

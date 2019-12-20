@@ -28,7 +28,7 @@
 		9F8BF21520EEBEED00ADF294 /* ColorsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BF21420EEBEED00ADF294 /* ColorsMenu.swift */; };
 		9F8BF21720EEBEFE00ADF294 /* ColorsMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BF21620EEBEFE00ADF294 /* ColorsMenuController.swift */; };
 		9F8EBE482050C4C7005BA4F2 /* DigitalClockVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8EBE472050C4C7005BA4F2 /* DigitalClockVC.swift */; };
-		9F8ED1711FEC73C100C0553C /* WindowStateOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8ED1701FEC73C100C0553C /* WindowStateOperator.swift */; };
+		9F8ED1711FEC73C100C0553C /* WindowFrameRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8ED1701FEC73C100C0553C /* WindowFrameRestorer.swift */; };
 		9F93731821026D0F00A77652 /* SVforClock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F93731621026D0F00A77652 /* SVforClock.swift */; };
 		9F9D8F6320D8781E000BC34E /* Analysis Master.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9D8F6220D8781E000BC34E /* Analysis Master.swift */; };
 		9FA0A1B720CFA7F0008175F7 /* ColorModelJunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA0A1B620CFA7EF008175F7 /* ColorModelJunk.swift */; };
@@ -95,7 +95,7 @@
 		9F8BF21420EEBEED00ADF294 /* ColorsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsMenu.swift; sourceTree = "<group>"; };
 		9F8BF21620EEBEFE00ADF294 /* ColorsMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsMenuController.swift; sourceTree = "<group>"; };
 		9F8EBE472050C4C7005BA4F2 /* DigitalClockVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalClockVC.swift; sourceTree = "<group>"; };
-		9F8ED1701FEC73C100C0553C /* WindowStateOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowStateOperator.swift; sourceTree = "<group>"; };
+		9F8ED1701FEC73C100C0553C /* WindowFrameRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowFrameRestorer.swift; sourceTree = "<group>"; };
 		9F93731621026D0F00A77652 /* SVforClock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVforClock.swift; sourceTree = "<group>"; };
 		9F9D8F6220D8781E000BC34E /* Analysis Master.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analysis Master.swift"; sourceTree = "<group>"; };
 		9FA0A1B620CFA7EF008175F7 /* ColorModelJunk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModelJunk.swift; sourceTree = "<group>"; };
@@ -327,7 +327,7 @@
 		9FEA8C8B1FECCF3A002D3960 /* LoadingAndSavingWindows */ = {
 			isa = PBXGroup;
 			children = (
-				9F8ED1701FEC73C100C0553C /* WindowStateOperator.swift */,
+				9F8ED1701FEC73C100C0553C /* WindowFrameRestorer.swift */,
 				9FE390841FECBCE300AF5442 /* ClockWindowStateOperatorr.swift */,
 				9FE390861FECBCF400AF5442 /* PreferencesWindowStateOperator.swift */,
 			);
@@ -427,6 +427,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -515,7 +516,7 @@
 				9FB925FC21B8DE52000EB9C5 /* TODOs.swift in Sources */,
 				9F4EF1E320C273CB00E08C57 /* ColorModel.swift in Sources */,
 				9FCF5D2421687703003BA1CC /* ClockPreferencesReflector.swift in Sources */,
-				9F8ED1711FEC73C100C0553C /* WindowStateOperator.swift in Sources */,
+				9F8ED1711FEC73C100C0553C /* WindowFrameRestorer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

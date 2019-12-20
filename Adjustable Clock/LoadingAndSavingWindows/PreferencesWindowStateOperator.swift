@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class PreferencesWindowStateOperator:WindowStateOperator{
+class PreferencesWindowStateOperator:WindowFrameRestorer{
     init() {
         super.init(xPositionKey: AppUserDefaults.preferencesXPositionKey, yPositionKey: AppUserDefaults.preferencesYPositionKey, widthKey: AppUserDefaults.preferencesWidthKey, heightKey: AppUserDefaults.preferencesHeightKey, minWidth: AppUserDefaults.clockMinWidth, minHeight: AppUserDefaults.referencesMinHeight)
     }

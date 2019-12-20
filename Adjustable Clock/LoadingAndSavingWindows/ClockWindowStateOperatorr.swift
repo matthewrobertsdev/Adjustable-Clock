@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ClockWindowStateOperator: WindowStateOperator{
+class ClockWindowStateOperator: WindowFrameRestorer{
     
     init() {
         super.init(xPositionKey: AppUserDefaults.clockXPositionKey, yPositionKey: AppUserDefaults.clockYPositionKey, widthKey: AppUserDefaults.clockWidthKey, heightKey: AppUserDefaults.clockHeightKey, minWidth: AppUserDefaults.clockMinWidth, minHeight: AppUserDefaults.clockMinHeight)
