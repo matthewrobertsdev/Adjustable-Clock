@@ -5,52 +5,33 @@
 //  Created by Matt Roberts on 3/22/18.
 //  Copyright © 2018 Matt Roberts. All rights reserved.
 //
-
 import Cocoa
-
-/*
- Time
- Time seconds or no seconds
- 24 hour or 12 hour
- Date
- Date or no date
- Day of week or no day of week
- If just date, show year
- Numerical or not numerical
- If numerical, always show year
- */
-
 class DigitalClockModel{
-    
-    var fullscreen = false
-    
-    var color=""
-    
-    var showDayInfo=false
-    
-    var updateTime=1000
-    
+	//properties
+	var fullscreen=false
+	var color=""
     var clockNSColors=ColorDictionary()
-    
-    var TIME_SIZE_RATIO=CGFloat(0.25)
-    var DATE_SIZE_RATIO=CGFloat(0.25)
-    
+	var showDayInfo=false
+	var updateTime=1000
+	var timeSizeRatio=CGFloat(0.25)
+	var dateSizeRatio=CGFloat(0.25)
+    let timeFormatter = DateFormatter()
+    let dateFormatter = DateFormatter()
+	//constant properties
+	//for time max sizes
     let AM_PM_MINUTES=CGFloat(0.25)
     let AM_PM_SECONDS=CGFloat(0.25)
     let MILITARY_MINUTES=CGFloat(0.36)
     let MILITARY_SECONDS=CGFloat(0.25)
-    
+    //for date max sizes
     let WEEKDAY_DATE=CGFloat(0.25)
     let WEEKDAY=CGFloat(0.20)
     let LONG_DATE=CGFloat(0.25)
     let WEEKDAY_NUMERICAL_DATE=CGFloat(0.25)
     let NUMERICAL_DATE=CGFloat(0.20)
-    
+    //for time intervals (miliseconds)
     let seconds=1000
     let deciseconds=100
-    
-    var timeFormatter = DateFormatter()
-    var dateFormatter = DateFormatter()
     
     func useShowMinutesAMPM(){
         timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
@@ -115,21 +96,21 @@ class DigitalClockModel{
         if !ClockPreferencesStorage.sharedInstance.use24hourClock{
             if !ClockPreferencesStorage.sharedInstance.showSeconds{
                 useShowMinutesAMPM()
-                TIME_SIZE_RATIO=AM_PM_MINUTES
+                timeSizeRatio=AM_PM_MINUTES
             }
             else{
                 useShowSecondsAMPM()
-                TIME_SIZE_RATIO=AM_PM_SECONDS
+                timeSizeRatio=AM_PM_SECONDS
             }
         }
         else{
             if !ClockPreferencesStorage.sharedInstance.showSeconds{
                 useShowMinutes24Hour()
-                TIME_SIZE_RATIO=MILITARY_MINUTES
+                timeSizeRatio=MILITARY_MINUTES
             }
             else{
                 useShowSeconds24Hour()
-                TIME_SIZE_RATIO=MILITARY_SECONDS
+                timeSizeRatio=MILITARY_SECONDS
             }
         }
         if showDayInfo==true{
@@ -137,11 +118,11 @@ class DigitalClockModel{
                 if !ClockPreferencesStorage.sharedInstance.showDayOfWeek{
                     //clock will not actually use this model
                     useWeekdayDate()
-                    DATE_SIZE_RATIO=WEEKDAY_DATE
+                    dateSizeRatio=WEEKDAY_DATE
                 }
                 else{
                     useWeekDay()
-                    DATE_SIZE_RATIO=WEEKDAY
+                    dateSizeRatio=WEEKDAY
                 }
                 
             }
@@ -150,21 +131,21 @@ class DigitalClockModel{
                     //clock will not actually use this model
                     if !ClockPreferencesStorage.sharedInstance.useNumericalDate{
                         useLongDate()
-                        DATE_SIZE_RATIO=LONG_DATE
+                        dateSizeRatio=LONG_DATE
                     }
                     else{
                         useNumericalDate()
-                        DATE_SIZE_RATIO=NUMERICAL_DATE
+                        dateSizeRatio=NUMERICAL_DATE
                     }
                 }
                 else{
                     if !ClockPreferencesStorage.sharedInstance.useNumericalDate{
                         useWeekdayDate()
-                        DATE_SIZE_RATIO=WEEKDAY_DATE
+                        dateSizeRatio=WEEKDAY_DATE
                     }
                     else{
                         useWeekdayNumericalDate()
-                        DATE_SIZE_RATIO=WEEKDAY_NUMERICAL_DATE
+                        dateSizeRatio=WEEKDAY_NUMERICAL_DATE
                     }
                 }
             }

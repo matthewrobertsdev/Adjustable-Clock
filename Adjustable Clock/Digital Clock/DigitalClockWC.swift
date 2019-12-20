@@ -35,7 +35,7 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         ClockPreferencesStorage.sharedInstance.loadUserPreferences()
         
         if hasLaunchedBefore{
-            let clockWindowStateOperator=ClockWindowStateOperator()
+            let clockWindowStateOperator=ClockWindowRestorer()
             clockWindowStateOperator.loadSavedWindowCGRect(window: window)
         }
         
@@ -269,7 +269,7 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
     func saveState(){
         let userDefaults=UserDefaults()
         //save window
-        let clockWindowStateOperator=ClockWindowStateOperator()
+        let clockWindowStateOperator=ClockWindowRestorer()
         clockWindowStateOperator.windowSaveCGRect(window: window)
         //mark application as has launched
         userDefaults.set(true, forKey: "applicationHasLaunched")
