@@ -161,8 +161,11 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
     }
     func windowWillUseStandardFrame(_ window: NSWindow,
                                     defaultFrame newFrame: NSRect) -> NSRect{
-		return newFrame
-        //return (window.screen?.visibleFrame)!
+		//return newFrame
+		guard let screenFrame=window.screen?.visibleFrame else {
+			return newFrame
+		}
+		return screenFrame
     }
     func setMaxSize(){
 		guard let screenSize=window?.screen else {
@@ -225,4 +228,13 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
 		}
     }
     
+	func windowWillMiniaturize(_ notification: Notification){
+		let digitalClockVC=window?.contentViewController as! DigitalClockVC
+		digitalClockVC.displayForDock()
+	}
+	
+	func windowDidDeminiaturize(_ notification: Notification) {
+		let digitalClockVC=window?.contentViewController as! DigitalClockVC
+		digitalClockVC.animateClock()
+	}
 }

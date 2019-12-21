@@ -26,6 +26,14 @@ class DigitalClockVC: NSViewController {
     var tellingTime: NSObjectProtocol?
     
     let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
+	
+	func displayForDock(){
+		print("abcd")
+		self.updateTimer.cancel()
+		self.updateTimer=nil
+		self.animatedTime.stringValue="--:--"
+				   self.animatedDayInfo.stringValue="--"
+	}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -374,7 +382,7 @@ class DigitalClockVC: NSViewController {
 			animatedDayInfo.backgroundColor=contastingColor
         }
         else{
-			visualEffectView.isHidden=true
+			visualEffectView.isHidden=false
             animatedTime.textColor=contastingColor
             animatedDayInfo.textColor=contastingColor
 			self.view.layer?.backgroundColor = NSColor.labelColor.cgColor/*NSColor.clear.cgColor*/
