@@ -39,7 +39,6 @@ class DigitalClockVC: NSViewController {
             self.resizeText(maxWidth: (self.view.window?.frame.width)!)
         }
         workspaceNotifcationCenter.addObserver(forName: NSWorkspace.screensDidWakeNotification, object: nil, queue: nil){ (note) in
-            print("screen woke up")
             self.animateClock()
 			guard let windowWidth=self.view.window?.frame.width else {
 				return
@@ -75,7 +74,6 @@ class DigitalClockVC: NSViewController {
         if ClockPreferencesStorage.sharedInstance.fullscreen==false && self.view.window?.isZoomed==false{
             let newWidth=self.view.window?.frame.width
             digitalClockWC.sizeWindowToFitClock(newWidth: newWidth!)
-            print("size window normally")
         }
     }
     func resizeText(maxWidth: CGFloat){
@@ -190,16 +188,11 @@ class DigitalClockVC: NSViewController {
         let clockNSColors=ColorDictionary()
                 self.view.window?.isOpaque=false
         self.view.wantsLayer=true
-        if !(ClockPreferencesStorage.sharedInstance.colorChoice==nil){
-            print("contasting color is "+ClockPreferencesStorage.sharedInstance.colorChoice)
             if ClockPreferencesStorage.sharedInstance.colorChoice=="custom"{
                 contastingColor=ClockPreferencesStorage.sharedInstance.customColor
             } else {
-                contastingColor=clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]!
+				contastingColor=clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
             }
-        } else {
-			contastingColor=NSColor.systemGray
-        }
         if !ClockPreferencesStorage.sharedInstance.lightOnDark{
 			visualEffectView.isHidden=true
 			animatedTime.textColor=NSColor.labelColor

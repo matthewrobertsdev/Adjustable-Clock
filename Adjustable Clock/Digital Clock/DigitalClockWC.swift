@@ -13,6 +13,7 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
     var hideButtonsTimer: Timer?
     var backgroundView: NSView?
     var trackingArea: NSTrackingArea?
+	let heightMultiplier=CGFloat(1.07)
     override func windowDidLoad() {
         super.windowDidLoad()
 		guard let digitalClockVC=window?.contentViewController as? DigitalClockVC else {
@@ -80,7 +81,7 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
 			return
 		}
         let oldWidth=window?.frame.width
-        let finalHeight=digitalClockVC.clockStackView.fittingSize.height
+		let finalHeight=digitalClockVC.clockStackView.fittingSize.height*heightMultiplier
         let newSize=NSSize(width: newWidth, height: finalHeight)
         let oldHeight=window?.frame.height
         let changeInHeight=finalHeight-oldHeight!
@@ -129,9 +130,8 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
 			return
 		}
         if !windowIsZoomed && ClockPreferencesStorage.sharedInstance.fullscreen==false{
-            let newWidth=(window?.frame.width)!
-            let newHeight=digitalClockVC.clockStackView.fittingSize.height
-            let newAspectRatio=NSSize(width: newWidth, height: newHeight)
+			let newHeight=digitalClockVC.clockStackView.fittingSize.height*heightMultiplier
+            let newAspectRatio=NSSize(width: windowWidth, height: newHeight)
             window?.aspectRatio=newAspectRatio
             showButtons(show: false)
         }

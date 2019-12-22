@@ -32,7 +32,10 @@ struct ColorChoice{
     static let yellow="yellow"
     static let green="green"
     static let blue="blue"
+	static let indigo="indigo"
     static let purple="purple"
+	static let pink="pink"
+	static let brown="brown"
     static let custom="custom"
     
 }
@@ -51,34 +54,37 @@ class ColorDictionary{
     
     //actually pair the keys with the colors
     func makeColorDictionary(){
-		colorsDictionary[ColorChoice.gray]=NSColor.systemGray
-		colorsDictionary[ColorChoice.labelColor]=NSColor.labelColor
-		colorsDictionary[ColorChoice.red]=NSColor.systemRed
-		colorsDictionary[ColorChoice.orange]=NSColor.systemOrange
-		colorsDictionary[ColorChoice.yellow]=NSColor.systemYellow
-		colorsDictionary[ColorChoice.green]=NSColor.systemGreen
-		colorsDictionary[ColorChoice.blue]=NSColor.systemBlue
-		colorsDictionary[ColorChoice.purple]=NSColor.systemPurple
+		colorsDictionary=[ColorChoice.gray:NSColor.systemGray, ColorChoice.labelColor:NSColor.labelColor,
+			ColorChoice.red:NSColor.systemRed,
+			ColorChoice.orange:NSColor.systemOrange,
+			ColorChoice.yellow:NSColor.systemYellow,
+			ColorChoice.green:NSColor.systemGreen,
+			ColorChoice.blue:NSColor.systemBlue,
+			ColorChoice.purple:NSColor.systemPurple,
+			ColorChoice.pink:NSColor.systemPink,
+			ColorChoice.brown:NSColor.systemBrown]
     }
 }
 //just an array of color choices so that the colors can be displayed in an order
 class ColorArrays{
     //an array of color choice strings
-    var standardColorsArray=[String]()
+    var colorArray=[String]()
     //init should make the array
     init(){
-        makeStandardColorArray()
+        makeColorArray()
     }
     //put color choice strings in the standard order
-    func makeStandardColorArray(){
-        standardColorsArray.append(ColorChoice.gray)
-        standardColorsArray.append(ColorChoice.labelColor)
-        standardColorsArray.append(ColorChoice.red)
-        standardColorsArray.append(ColorChoice.orange)
-        standardColorsArray.append(ColorChoice.yellow)
-        standardColorsArray.append(ColorChoice.green)
-        standardColorsArray.append(ColorChoice.blue)
-        standardColorsArray.append(ColorChoice.purple)
-        standardColorsArray.append(ColorChoice.custom)
+    func makeColorArray(){
+        colorArray.append(ColorChoice.gray)
+        colorArray.append(ColorChoice.labelColor)
+        colorArray.append(ColorChoice.red)
+        colorArray.append(ColorChoice.orange)
+        colorArray.append(ColorChoice.yellow)
+        colorArray.append(ColorChoice.green)
+        colorArray.append(ColorChoice.blue)
+        colorArray.append(ColorChoice.purple)
+		colorArray.append(ColorChoice.pink)
+		colorArray.append(ColorChoice.brown)
+        colorArray.append(ColorChoice.custom)
     }
 }

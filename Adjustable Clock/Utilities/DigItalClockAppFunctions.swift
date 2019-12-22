@@ -36,11 +36,9 @@ func isThereASimplePreferencesWindow()->Bool{
         if window.identifier==UserInterfaceIdentifier.simplePrefrencesWindow{
             //if it's in the dock
             if window.isMiniaturized{
-                print("preferences window is dock window")
                 return true
             }
             else if window.isVisible{
-                print("preferences window is visible")
                 return true
             }
         }

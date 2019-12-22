@@ -382,7 +382,7 @@
                                         <menuItem title="Gray" id="vNP-0q-WID">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="White" tag="1" id="KML-5u-Wit">
+                                        <menuItem title="Light Gray" tag="1" id="KML-5u-Wit">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem title="Red" tag="2" id="UQR-HH-VX8">
@@ -403,7 +403,13 @@
                                         <menuItem title="Purple" tag="7" id="NWc-oh-8Ui">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Custom Color" tag="8" id="SVH-i7-CgM">
+                                        <menuItem title="Pink" tag="8" id="lSa-4J-CEK">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Brown" tag="9" id="EzH-eA-SJg">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Custom Color" tag="10" id="SVH-i7-CgM">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="PpC-zj-EBg"/>
