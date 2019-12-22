@@ -49,7 +49,6 @@
 		9FC97F551F480BB500035D30 /* AppUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC97F501F480BB500035D30 /* AppUserDefaults.swift */; };
 		9FC97F581F480BB500035D30 /* PreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC97F531F480BB500035D30 /* PreferencesVC.swift */; };
 		9FC97F591F480BB500035D30 /* PreferencesWC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC97F541F480BB500035D30 /* PreferencesWC.swift */; };
-		9FCF5D2421687703003BA1CC /* ClockPreferencesReflector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCF5D2321687703003BA1CC /* ClockPreferencesReflector.swift */; };
 		9FD8369E20D0530100882581 /* ColorModelJunk2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD8369D20D0530100882581 /* ColorModelJunk2.swift */; };
 		9FE390851FECBCE300AF5442 /* ClockWindowRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE390841FECBCE300AF5442 /* ClockWindowRestorer.swift */; };
 		9FE390871FECBCF400AF5442 /* PreferencesWindowRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE390861FECBCF400AF5442 /* PreferencesWindowRestorer.swift */; };
@@ -123,7 +122,6 @@
 		9FC97F501F480BB500035D30 /* AppUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppUserDefaults.swift; sourceTree = "<group>"; };
 		9FC97F531F480BB500035D30 /* PreferencesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesVC.swift; sourceTree = "<group>"; };
 		9FC97F541F480BB500035D30 /* PreferencesWC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWC.swift; sourceTree = "<group>"; };
-		9FCF5D2321687703003BA1CC /* ClockPreferencesReflector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockPreferencesReflector.swift; sourceTree = "<group>"; };
 		9FD8369D20D0530100882581 /* ColorModelJunk2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorModelJunk2.swift; path = "../Coded Assets/ColorModelJunk2.swift"; sourceTree = "<group>"; };
 		9FE390841FECBCE300AF5442 /* ClockWindowRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockWindowRestorer.swift; sourceTree = "<group>"; };
 		9FE390861FECBCF400AF5442 /* PreferencesWindowRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowRestorer.swift; sourceTree = "<group>"; };
@@ -163,7 +161,6 @@
 				9F4D87442055E99400AF63D1 /* DigitalClockWC.swift */,
 				9F8EBE472050C4C7005BA4F2 /* DigitalClockVC.swift */,
 				9F3C7D6920CCE40D00C91506 /* ClockPreferencesStorage.swift */,
-				9FCF5D2321687703003BA1CC /* ClockPreferencesReflector.swift */,
 			);
 			path = "Digital Clock";
 			sourceTree = "<group>";
@@ -515,7 +512,6 @@
 				9F004E94211835AB0046225C /* BlurView.swift in Sources */,
 				9FB925FC21B8DE52000EB9C5 /* TODOs.swift in Sources */,
 				9F4EF1E320C273CB00E08C57 /* ColorModel.swift in Sources */,
-				9FCF5D2421687703003BA1CC /* ClockPreferencesReflector.swift in Sources */,
 				9F8ED1711FEC73C100C0553C /* WindowFrameRestorer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

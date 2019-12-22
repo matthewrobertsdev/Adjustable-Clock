@@ -9,16 +9,10 @@
 import Cocoa
 
 class SimplePreferencesWC: NSWindowController {
-
     override func windowDidLoad() {
         super.windowDidLoad()
     
         window?.maxSize=CGSize(width: (window?.frame.width)!, height: (window?.frame.height)!)
         window?.minSize=CGSize(width: (window?.frame.width)!, height: (window?.frame.height)!)
-        
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }
-    
-    
-
 }

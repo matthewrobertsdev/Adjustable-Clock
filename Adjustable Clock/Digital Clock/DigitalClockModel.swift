@@ -15,6 +15,8 @@ class DigitalClockModel{
 	var updateTime=1000
 	var timeSizeRatio=CGFloat(0.25)
 	var dateSizeRatio=CGFloat(0.25)
+	var dockTimeString=""
+	var dockDateString=""
     let timeFormatter = DateFormatter()
     let dateFormatter = DateFormatter()
 	//constant properties
@@ -35,33 +37,42 @@ class DigitalClockModel{
     func useShowMinutesAMPM(){
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
         updateTime=seconds
+		dockTimeString="--:--"
     }
     func useShowSecondsAMPM(){
         timeFormatter.setLocalizedDateFormatFromTemplate("hmmss")
         updateTime=seconds
+		dockTimeString="--:--:--"
     }
     func useShowMinutes24Hour(){
         timeFormatter.setLocalizedDateFormatFromTemplate("Hmm")
         updateTime=seconds
+		dockTimeString="--:--"
     }
     func useShowSeconds24Hour(){
-        timeFormatter.setLocalizedDateFormatFromTemplate("Hmmss")
+		timeFormatter.setLocalizedDateFormatFromTemplate("Hmmss")
         updateTime=seconds
+		dockTimeString="--:--:--"
     }
     func useWeekdayDate(){
         dateFormatter.setLocalizedDateFormatFromTemplate("EEEEMMMMd")
+		dockDateString="--------"
     }
     func useWeekdayNumericalDate(){
         dateFormatter.setLocalizedDateFormatFromTemplate("EEEEMd")
+		dockDateString="------"
     }
     func useLongDate(){
         dateFormatter.setLocalizedDateFormatFromTemplate("MMMMdyyyy")
+		dockDateString="----------"
     }
     func useNumericalDate(){
         dateFormatter.setLocalizedDateFormatFromTemplate("Mdyyyy")
+		dockDateString="----"
     }
     func useWeekDay(){
         dateFormatter.setLocalizedDateFormatFromTemplate("EEEE")
+		dockTimeString="----"
     }
     func setLocaleToEnglishUS(){
         timeFormatter.locale = Locale(identifier: "en_US")

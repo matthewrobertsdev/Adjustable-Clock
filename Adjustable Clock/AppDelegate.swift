@@ -26,17 +26,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     //if the dock icon is clicked
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool{
-        if(!digitalClockWindowPresent()){
-            let appObject = NSApp as NSApplication
-			if let mainMenu=appObject.mainMenu as? MainMenu {
-				mainMenu.showDigitalClock()
-			}
-        }
+		DigitalClockWC.clockObject.showDigitalClock()
         return false
     }
 	//before quiting
     func applicationWillTerminate(_ aNotification: Notification) {
         digitalClockSaveStateAsNeeded()
-        preferencesSaveAsNeeded()
 	}
 }
