@@ -125,6 +125,10 @@ class MainMenu: NSMenu{
         simplePreferencesWC?.loadWindow()
         simplePreferencesWC?.showWindow(nil)
     }
+	func reloadSimplePreferencesWindow(){
+		simplePreferencesWC?.loadWindow()
+        simplePreferencesWC?.showWindow(nil)
+	}
     func updateForPreferencesChange(){
         updateClockMenuUI()
 		DigitalClockWC.clockObject.updateClockToPreferencesChange()

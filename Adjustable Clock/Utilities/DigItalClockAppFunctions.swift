@@ -13,7 +13,7 @@ func isThereAPreferencesWindow()->Bool{
     //search for the "Preferences" window
     for window in appObject.windows{
         //if window is found
-        if window.identifier==UserInterfaceIdentifier.prefrencesWindow{
+		if window.identifier==UserInterfaceIdentifier.simplePrefrencesWindow{
             //if it's in the dock
             if window.isMiniaturized{
                 return true

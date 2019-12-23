@@ -216,6 +216,9 @@ class DigitalClockVC: NSViewController {
             self.view.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
         }
     }
+	func makeNormalWindowLevel(){
+		self.view.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
+	}
     func findFontThatFitsWithLinearSearch(label: NSTextField, size: NSSize){
         label.sizeToFit()
         var newWidth=label.frame.width
