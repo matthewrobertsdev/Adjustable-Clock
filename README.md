@@ -1,4 +1,4 @@
-# Adjustable-Clock
+# Adjustable Clock
 An adjustable clock for macOS
 
 In progress
