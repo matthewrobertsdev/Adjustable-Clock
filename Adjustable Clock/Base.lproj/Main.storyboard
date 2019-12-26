@@ -383,7 +383,7 @@
                                         <menuItem title="Gray" id="vNP-0q-WID">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Light Gray" tag="1" id="KML-5u-Wit">
+                                        <menuItem title="Light or Dark" tag="1" id="KML-5u-Wit">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem title="Red" tag="2" id="UQR-HH-VX8">
