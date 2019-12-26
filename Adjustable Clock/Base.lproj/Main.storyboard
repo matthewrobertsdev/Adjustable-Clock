@@ -497,7 +497,7 @@
                 <windowController storyboardIdentifier="DigitalClockWC" showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="DigitalClockWC" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="DigitalClockWindow" title="Digital Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" animationBehavior="utilityWindow" frameAutosaveName="" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA" customClass="DefaultNSWindow" customModule="Adjustable_Clock" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
-                        <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES" managed="YES" fullScreenPrimary="YES" fullScreenAllowsTiling="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" managed="YES" fullScreenPrimary="YES" fullScreenAllowsTiling="YES"/>
                         <rect key="contentRect" x="709" y="402" width="300" height="175"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
