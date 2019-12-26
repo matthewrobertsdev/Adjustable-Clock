@@ -46,13 +46,14 @@ class DigitalClockVC: NSViewController {
             self.resizeText(maxWidth: windowWidth)
         }
         tellingTime = ProcessInfo().beginActivity(options: [ProcessInfo.ActivityOptions.userInitiatedAllowingIdleSystemSleep/*,ProcessInfo.ActivityOptions.latencyCritical*/], reason: "Need accurate time all the time")
+		DistributedNotificationCenter.default.addObserver(self, selector: #selector(applyColorScheme(sender:)), name: NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification"), object: nil)
     }
     func updateClockModel(){
 		digitalClockModel.updateClockModelForPreferences()
     }
     func updateClock(){
         updateClockModel()
-        applyColorScheme()
+		applyColorScheme()
         applyFloatState()
         animateClock()
         resizeClock()
@@ -183,7 +184,10 @@ class DigitalClockVC: NSViewController {
             }
         }
     }
-    func applyColorScheme(){
+	@objc func applyColorScheme(sender: NSNotification){
+		applyColorScheme()
+	}
+	func applyColorScheme(){
         var contastingColor: NSColor
         let clockNSColors=ColorDictionary()
                 self.view.window?.isOpaque=false
@@ -193,19 +197,39 @@ class DigitalClockVC: NSViewController {
             } else {
 				contastingColor=clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
             }
-        if !ClockPreferencesStorage.sharedInstance.lightOnDark{
+        if !ClockPreferencesStorage.sharedInstance.colorForForeground {
 			visualEffectView.isHidden=true
 			animatedTime.textColor=NSColor.labelColor
 			animatedDayInfo.textColor=NSColor.labelColor
-			self.view.layer?.backgroundColor=contastingColor.cgColor
-			animatedDayInfo.backgroundColor=contastingColor
-        }
-        else{
+			if #available(OSX 10.14, *) {
+				if let effectiveAppearanceName=NSApp?.effectiveAppearance.name{
+					//dark mode
+					if effectiveAppearanceName==NSAppearance.Name.darkAqua||effectiveAppearanceName==NSAppearance.Name.accessibilityHighContrastDarkAqua||effectiveAppearanceName==NSAppearance.Name.accessibilityHighContrastVibrantDark{
+						if contastingColor==NSColor.white{
+							contastingColor=NSColor.systemGray
+						}
+						//light mode
+					} else {
+						if contastingColor==NSColor.black{
+							contastingColor=NSColor.systemGray
+						}
+					}
+					} else {
+						if contastingColor==NSColor.black{
+							contastingColor=NSColor.systemGray
+						}
+					}
+				} else {
+				// Fallback on earlier versions
+			}
+		self.view.layer?.backgroundColor=contastingColor.cgColor
+		animatedDayInfo.backgroundColor=contastingColor
+	} else {
 			visualEffectView.isHidden=false
-            animatedTime.textColor=contastingColor
-            animatedDayInfo.textColor=contastingColor
-			self.view.layer?.backgroundColor = NSColor.labelColor.cgColor/*NSColor.clear.cgColor*/
-        }
+			animatedTime.textColor=contastingColor
+			animatedDayInfo.textColor=contastingColor
+	self.view.layer?.backgroundColor = NSColor.labelColor.cgColor/*NSColor.clear.cgColor*/
+		}
     }
     func applyFloatState(){
         if ClockPreferencesStorage.sharedInstance.clockFloats{

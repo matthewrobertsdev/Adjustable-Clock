@@ -5,16 +5,11 @@
 //  Created by Matt Roberts on 6/2/18.
 //  Copyright © 2018 Matt Roberts. All rights reserved.
 //
-
 import Cocoa
-
 /*
 Color Choice
     for keys for easily referring to colors or saving a choice
     strings that act as keys for selecting colors
-Clock Colors
-    for use as colors for the app
-    NSColors that have values for currently used colors
 Clock Dictionary
     for accessing an NSColor by a color choice string
     color choices act as keys for NSColors
@@ -25,8 +20,9 @@ Color Arrays
 //standard colors and custom colors
 //string "keys" are convenient for UserDefaults
 struct ColorChoice{
+	static let black="black"
     static let gray="gray"
-    static let labelColor="labelColor"
+    static let white="white"
     static let red="red"
     static let orange="orange"
     static let yellow="yellow"
@@ -54,7 +50,9 @@ class ColorDictionary{
     
     //actually pair the keys with the colors
     func makeColorDictionary(){
-		colorsDictionary=[ColorChoice.gray:NSColor.systemGray, ColorChoice.labelColor:NSColor.labelColor,
+		colorsDictionary=[ColorChoice.black:NSColor.black,
+			ColorChoice.gray:NSColor.systemGray,
+			ColorChoice.white:NSColor.white,
 			ColorChoice.red:NSColor.systemRed,
 			ColorChoice.orange:NSColor.systemOrange,
 			ColorChoice.yellow:NSColor.systemYellow,
@@ -75,8 +73,9 @@ class ColorArrays{
     }
     //put color choice strings in the standard order
     func makeColorArray(){
+		colorArray.append(ColorChoice.black)
         colorArray.append(ColorChoice.gray)
-        colorArray.append(ColorChoice.labelColor)
+		colorArray.append(ColorChoice.white)
         colorArray.append(ColorChoice.red)
         colorArray.append(ColorChoice.orange)
         colorArray.append(ColorChoice.yellow)

@@ -27,7 +27,7 @@ class ClockPreferencesStorage{
     var showDayOfWeek = true
     var useNumericalDate = false
     //color
-    var lightOnDark = false
+    var colorForForeground = false
     var customColor: NSColor!
     var redComponent: CGFloat!
     var greenComponent: CGFloat!
@@ -57,7 +57,7 @@ class ClockPreferencesStorage{
         } else{
 			self.colorChoice=ColorChoice.gray
         }
-        lightOnDark=userDefaults.bool(forKey: lightOnDarkKey)
+        colorForForeground=userDefaults.bool(forKey: lightOnDarkKey)
         redComponent=CGFloat(userDefaults.float(forKey: customRedComponentKey))
         greenComponent=CGFloat(userDefaults.float(forKey: customGreenComponentKey))
         blueComponent=CGFloat(userDefaults.float(forKey: customBlueComponentKey))
@@ -84,8 +84,8 @@ class ClockPreferencesStorage{
         userDefaults.set(useNumericalDate, forKey: useNumericalDateKey)
     }
     func changeAndSaveLonD() {
-        lightOnDark=(!lightOnDark)
-        userDefaults.set(lightOnDark, forKey: lightOnDarkKey)
+        colorForForeground=(!colorForForeground)
+        userDefaults.set(colorForForeground, forKey: lightOnDarkKey)
     }
     func changeAndSaveColorSceme(colorChoice: String) {
         self.colorChoice=colorChoice

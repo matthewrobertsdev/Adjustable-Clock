@@ -380,37 +380,40 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Colors" id="65N-u4-pRd">
                                     <items>
-                                        <menuItem title="Gray" id="vNP-0q-WID">
+                                        <menuItem title="Black or Gray" id="LZV-KO-2AF">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Light or Dark" tag="1" id="KML-5u-Wit">
+                                        <menuItem title="Gray" tag="1" id="vNP-0q-WID">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Red" tag="2" id="UQR-HH-VX8">
+                                        <menuItem title="White or Gray" tag="2" id="KML-5u-Wit">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Orange" tag="3" id="96g-Up-Nqc">
+                                        <menuItem title="Red" tag="3" id="UQR-HH-VX8">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Yellow" tag="4" id="ZhT-iE-X78">
+                                        <menuItem title="Orange" tag="4" id="96g-Up-Nqc">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Green" tag="5" id="sos-1G-Fw1">
+                                        <menuItem title="Yellow" tag="5" id="ZhT-iE-X78">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Blue" tag="6" id="ype-oU-VhQ">
+                                        <menuItem title="Green" tag="6" id="sos-1G-Fw1">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Purple" tag="7" id="NWc-oh-8Ui">
+                                        <menuItem title="Blue" tag="7" id="ype-oU-VhQ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Pink" tag="8" id="lSa-4J-CEK">
+                                        <menuItem title="Purple" tag="8" id="NWc-oh-8Ui">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Brown" tag="9" id="EzH-eA-SJg">
+                                        <menuItem title="Pink" tag="9" id="lSa-4J-CEK">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Custom Color" tag="10" id="SVH-i7-CgM">
+                                        <menuItem title="Brown" tag="10" id="EzH-eA-SJg">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Custom Color" tag="11" id="SVH-i7-CgM">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="PpC-zj-EBg"/>
