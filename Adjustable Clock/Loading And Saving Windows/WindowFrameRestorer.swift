@@ -30,24 +30,23 @@ class WindowFrameRestorer {
         userDefaults.set(savedXPosition, forKey: xPositionKey)
         userDefaults.set(savedYPosition, forKey: yPositionKey)
     }
-    func windowLoadOrigin(window: NSWindow?){
+    func windowLoadOrigin(window: NSWindow?) {
         let userDefaults=UserDefaults()
         let savedWindowSize=CGSize(width: userDefaults.integer(forKey: widthKey), height: userDefaults.integer(forKey: heightKey))
         var savedClockOrigin=CGPoint(x: userDefaults.integer(forKey: xPositionKey), y: userDefaults.integer(forKey: yPositionKey))
-        if savedClockOrigin.x<0{
+        if savedClockOrigin.x<0 {
             savedClockOrigin.x=0
         }
-        if savedClockOrigin.y<0{
+        if savedClockOrigin.y<0 {
             savedClockOrigin.y=0
         }
-		if let screenWidth=window?.screen?.frame.size.width{
-			if savedClockOrigin.x>screenWidth{
+		if let screenWidth=window?.screen?.frame.size.width {
+			if savedClockOrigin.x>screenWidth {
 				savedClockOrigin.x=screenWidth-savedWindowSize.width
             }
 		}
-		if let screenHeight=window?.screen?.frame.size.height{
-            
-            if savedClockOrigin.y>screenHeight{
+		if let screenHeight=window?.screen?.frame.size.height {
+            if savedClockOrigin.y>screenHeight {
                 savedClockOrigin.y=screenHeight
             }
         }
@@ -69,33 +68,32 @@ class WindowFrameRestorer {
         userDefaults.set(savedXPosition, forKey: xPositionKey)
         userDefaults.set(savedYPosition, forKey: yPositionKey)
     }
-    func loadSavedWindowCGRect(window: NSWindow?){
+    func loadSavedWindowCGRect(window: NSWindow?) {
         let userDefaults=UserDefaults()
         //get the window size
         var savedWindowSize=CGSize(width: userDefaults.integer(forKey: widthKey), height: userDefaults.integer(forKey: heightKey))
         //and the window origin
         var savedClockOrigin=CGPoint(x: userDefaults.integer(forKey: xPositionKey), y: userDefaults.integer(forKey: yPositionKey))
         //if it's too small in any way, give it a minimum
-        if savedWindowSize.width<minWidth{
+        if savedWindowSize.width<minWidth {
             savedWindowSize.width=minWidth
             savedWindowSize.height=minHeight
         }
         //if it's off screen left, move to edge
-        if savedClockOrigin.x<0{
+        if savedClockOrigin.x<0 {
             savedClockOrigin.x=0
         }
         //if it's offscreen bottom, move to edge
-        if savedClockOrigin.y<0{
+        if savedClockOrigin.y<0 {
             savedClockOrigin.y=0
         }
-        if let screenWidth=window?.screen?.frame.size.width{
-			if savedClockOrigin.x>screenWidth{
+        if let screenWidth=window?.screen?.frame.size.width {
+			if savedClockOrigin.x>screenWidth {
 				savedClockOrigin.x=screenWidth-savedWindowSize.width
             }
 		}
-		if let screenHeight=window?.screen?.frame.size.height{
-            
-            if savedClockOrigin.y>screenHeight{
+		if let screenHeight=window?.screen?.frame.size.height {
+            if savedClockOrigin.y>screenHeight {
                 savedClockOrigin.y=screenHeight
             }
         }

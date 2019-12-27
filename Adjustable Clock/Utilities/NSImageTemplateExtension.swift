@@ -11,7 +11,9 @@ extension NSImage {
         if self.isTemplate == false {
             return self
         }
-        let image = self.copy() as! NSImage
+		guard let image = self.copy() as? NSImage else {
+			return NSImage()
+		}
         image.lockFocus()
         tintColor.set()
         NSMakeRect(0, 0, image.size.width, image.size.height).fill(using: NSCompositingOperation.sourceAtop)
@@ -23,7 +25,9 @@ extension NSImage {
         if self.isTemplate == false {
             return self
         }
-        let image = self.copy() as! NSImage
+		guard let image = self.copy() as? NSImage else {
+			return NSImage()
+		}
         image.lockFocus()
         tintColor.set()
         NSMakeRect(0, 0, image.size.width, image.size.height).fill(using: NSCompositingOperation.sourceOver)
@@ -31,11 +35,13 @@ extension NSImage {
         image.isTemplate = false
         return image
     }
-    func tintExceptBorder(tintColor: NSColor, borderPixels: CGFloat) -> NSImage{
+    func tintExceptBorder(tintColor: NSColor, borderPixels: CGFloat) -> NSImage {
         if self.isTemplate == false {
             return self
         }
-        let image = self.copy() as! NSImage
+		guard let image = self.copy() as? NSImage else {
+			return NSImage()
+		}
         image.lockFocus()
         tintColor.set()
         NSMakeRect(borderPixels, borderPixels, image.size.width-borderPixels*2, image.size.height-borderPixels*2).fill(using: NSCompositingOperation.sourceOver)

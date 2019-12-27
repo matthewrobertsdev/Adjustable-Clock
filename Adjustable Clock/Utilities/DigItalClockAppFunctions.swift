@@ -7,13 +7,13 @@
 //
 import Cocoa
 //if there is any active preferences window at all, return true
-func isThereAPreferencesWindow()->Bool{
+func isThereAPreferencesWindow() -> Bool {
     //get the app object
     let appObject = NSApp as NSApplication
     //search for the "Preferences" window
-    for window in appObject.windows{
+    for window in appObject.windows {
         //if window is found
-		if window.identifier==UserInterfaceIdentifier.simplePrefrencesWindow{
+		if window.identifier==UserInterfaceIdentifier.simplePrefrencesWindow {
             //if it's in the dock
             return true
         }
@@ -22,13 +22,13 @@ func isThereAPreferencesWindow()->Bool{
 }
 
 //if there is any active preferences window at all, return true
-func isThereASimplePreferencesWindow()->Bool{
+func isThereASimplePreferencesWindow() -> Bool {
     //get the app object
     let appObject = NSApp as NSApplication
     //search for the "Preferences" window
-    for window in appObject.windows{
+    for window in appObject.windows {
         //if window is found
-        if window.identifier==UserInterfaceIdentifier.simplePrefrencesWindow{
+        if window.identifier==UserInterfaceIdentifier.simplePrefrencesWindow {
             //if it's in the dock
             return true
         }

@@ -6,7 +6,7 @@
 //  Copyright © 2017 Matt Roberts. All rights reserved.
 //
 import Cocoa
-class ClockWindowRestorer: WindowFrameRestorer{
+class ClockWindowRestorer: WindowFrameRestorer {
     private let clockXPositionKey="clockXPosition"
     private let clockYPositionKey="clockYPosition"
     private let clockWidthKey="clockWidthKey"
@@ -16,7 +16,7 @@ class ClockWindowRestorer: WindowFrameRestorer{
     init() {
         super.init(xPositionKey: clockXPositionKey, yPositionKey: clockYPositionKey, widthKey: clockWidthKey, heightKey: clockHeightKey, minWidth: preferencesMinWidth, minHeight: preferencesMinHeight)
     }
-	func getClockWidth()->Int{
+	func getClockWidth() -> Int {
 		return UserDefaults().integer(forKey: clockWidthKey)
 	}
 }

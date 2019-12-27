@@ -16,9 +16,9 @@ class DigitalClockVC: NSViewController {
 	@IBOutlet weak var visualEffectView: NSVisualEffectView!
     var findingFontSemaphore=DispatchSemaphore(value: 1)
     var tellingTime: NSObjectProtocol?
-	var updateTimer : DispatchSourceTimer?
+	var updateTimer: DispatchSourceTimer?
     let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
-	func displayForDock(){
+	func displayForDock() {
 		guard let timer=updateTimer else {
 			return
 		}
@@ -28,7 +28,7 @@ class DigitalClockVC: NSViewController {
 	}
     override func viewDidLoad() {
         super.viewDidLoad()
-        workspaceNotifcationCenter.addObserver(forName: NSWorkspace.screensDidSleepNotification, object: nil, queue: nil){ (note) in
+        let screenSleepObserver=workspaceNotifcationCenter.addObserver(forName: NSWorkspace.screensDidSleepNotification, object: nil, queue: nil){ (note) in
 			guard let timer=self.updateTimer else {
 				return
 			}
@@ -38,102 +38,96 @@ class DigitalClockVC: NSViewController {
             self.animatedDayInfo.stringValue=""
             self.resizeText(maxWidth: (self.view.window?.frame.width)!)
         }
-        workspaceNotifcationCenter.addObserver(forName: NSWorkspace.screensDidWakeNotification, object: nil, queue: nil){ (note) in
+        let screenWakeObserver=workspaceNotifcationCenter.addObserver(forName: NSWorkspace.screensDidWakeNotification, object: nil, queue: nil) { (note) in
             self.animateClock()
 			guard let windowWidth=self.view.window?.frame.width else {
 				return
 			}
             self.resizeText(maxWidth: windowWidth)
         }
-        tellingTime = ProcessInfo().beginActivity(options: [ProcessInfo.ActivityOptions.userInitiatedAllowingIdleSystemSleep/*,ProcessInfo.ActivityOptions.latencyCritical*/], reason: "Need accurate time all the time")
-		DistributedNotificationCenter.default.addObserver(self, selector: #selector(applyColorScheme(sender:)), name: NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification"), object: nil)
+        tellingTime = ProcessInfo().beginActivity(options: [ProcessInfo.ActivityOptions.userInitiatedAllowingIdleSystemSleep], reason: "Need accurate time all the time")
+		let notifier=DistributedNotificationCenter.default
+		let uiColorObserver=notifier.addObserver(self, selector: #selector(applyColorScheme(sender:)), name: NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification"), object: nil)
     }
-    func updateClockModel(){
+    func updateClockModel() {
 		digitalClockModel.updateClockModelForPreferences()
     }
-    func updateClock(){
+    func updateClock() {
         updateClockModel()
 		applyColorScheme()
         applyFloatState()
         animateClock()
         resizeClock()
     }
-    func animateClock(){
-        if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek{
+    func animateClock() {
+        if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
 			clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: animatedDayInfo!)
             animateTimeAndDayInfo()
-        }
-        else{
+        } else {
             clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: animatedDayInfo!)
             animateTime()
         }
     }
-    func resizeClock(){
+    func resizeClock() {
         let windowWidth=view.window?.frame.size.width
         resizeText(maxWidth: windowWidth!)
-        let digitalClockWC=view.window?.windowController as! DigitalClockWC
-        if ClockPreferencesStorage.sharedInstance.fullscreen==false && self.view.window?.isZoomed==false{
-            let newWidth=self.view.window?.frame.width
-            digitalClockWC.sizeWindowToFitClock(newWidth: newWidth!)
+		guard let digitalClockWC=view.window?.windowController as? DigitalClockWC else {
+			return
+		}
+        if ClockPreferencesStorage.sharedInstance.fullscreen==false && self.view.window?.isZoomed==false {
+			if let newWidth=self.view.window?.frame.width {
+				digitalClockWC.sizeWindowToFitClock(newWidth: newWidth)
+			}
         }
     }
-    func resizeText(maxWidth: CGFloat){
+    func resizeText(maxWidth: CGFloat) {
         findingFontSemaphore.wait()
-        if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek{
-            
+        if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
             let projectedTimeHeight=makeTimeMaxSize(maxWidth: maxWidth).height
             let projectedDateHeight=makeDateMaxSize(maxWidth: maxWidth).height
             let projectedHeight=projectedTimeHeight+projectedDateHeight
-            
             var newProportion: CGFloat=1
-            
-            if let maxHeight=self.view.window?.screen?.visibleFrame.height{
-                if projectedHeight>maxHeight{
+            if let maxHeight=self.view.window?.screen?.visibleFrame.height {
+                if projectedHeight>maxHeight {
                     newProportion=(self.view.window?.screen?.visibleFrame.height)!/projectedHeight
                     findFontThatFitsWithLinearSearch(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth*newProportion))
                     findFontThatFitsWithLinearSearch(label: animatedTime, size: makeTimeMaxSize(maxWidth: maxWidth*newProportion))
-                }
-                else{
+                } else {
                 findFontThatFitsWithLinearSearch(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth))
                 findFontThatFitsWithLinearSearch(label: animatedTime, size: makeTimeMaxSize(maxWidth: maxWidth))
                 }
-            }
-            else{
+            } else {
 				findFontThatFitsWithLinearSearch(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth))
                 findFontThatFitsWithLinearSearch(label: animatedTime, size: makeTimeMaxSize(maxWidth: maxWidth))
             }
-        }
-        else{
+        } else {
             let projectedHeight=makeDateMaxSize(maxWidth: (self.view.window?.frame.width)!).height
             var newProportion: CGFloat=1
-            if let maxHeight=self.view.window?.screen?.visibleFrame.height{
-                if projectedHeight>maxHeight{
+            if let maxHeight=self.view.window?.screen?.visibleFrame.height {
+                if projectedHeight>maxHeight {
                     newProportion=(self.view.window?.screen?.visibleFrame.height)!/projectedHeight
                     findFontThatFitsWithLinearSearch(label: animatedTime, size: makeTimeMaxSize(maxWidth: maxWidth*newProportion))
-                }
-                else{
+                } else {
                     findFontThatFitsWithLinearSearch(label: animatedTime, size: makeTimeMaxSize(maxWidth: maxWidth))
                 }
-            }
-            else{
+            } else {
                 findFontThatFitsWithLinearSearch(label: animatedTime, size: makeTimeMaxSize(maxWidth: maxWidth))
             }
         }
         findingFontSemaphore.signal()
     }
-    func updateTime(){
+    func updateTime() {
         let timeString=digitalClockModel.getTime()
-        if animatedTime?.stringValue != timeString{
+        if animatedTime?.stringValue != timeString {
             animatedTime?.stringValue=timeString
-            if !(self.view.window?.frame.width==nil){
+            if !(self.view.window?.frame.width==nil) {
                 clockLiveResize(maxWidth: (self.view.window?.frame.width)!)
             }
-            
         }
     }
-    func updateTimeAndDayInfo(){
+    func updateTimeAndDayInfo() {
         let timeString=digitalClockModel.getTime()
-        if animatedTime?.stringValue != timeString{
+        if animatedTime?.stringValue != timeString {
             animatedTime?.stringValue=timeString
             let dayInfo=digitalClockModel.getDayInfo()
                 animatedDayInfo?.stringValue=dayInfo
@@ -143,7 +137,7 @@ class DigitalClockVC: NSViewController {
                 clockLiveResize(maxWidth: windowWidth)
         }
     }
-    func animateTimeAndDayInfo(){
+    func animateTimeAndDayInfo() {
         animatedTime?.stringValue=digitalClockModel.getTime()
         animatedDayInfo?.stringValue=digitalClockModel.getDayInfo()
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
@@ -156,25 +150,25 @@ class DigitalClockVC: NSViewController {
         }
         timer.resume()
     }
-    func animateTime(){
+    func animateTime() {
 		animatedTime?.stringValue=digitalClockModel.getTime()
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		guard let timer=updateTimer else {
 			return
 		}
 		timer.schedule(deadline: .now(), repeating: .milliseconds(digitalClockModel.updateTime), leeway: .milliseconds(10))
-        timer.setEventHandler
-            {
+        timer.setEventHandler {
                 self.updateTime()
         }
         timer.resume()
     }
-    func clockLiveResize(maxWidth: CGFloat){
+    func clockLiveResize(maxWidth: CGFloat) {
         animatedDayInfo.sizeToFit()
 		guard let window=self.view.window else {
 			return
 		}
-        if !window.inLiveResize &&  ((clockStackView.fittingSize.width>maxWidth)||((animatedDayInfo.frame.width<maxWidth*0.9)&&(animatedDayInfo.frame.height<maxWidth*digitalClockModel.dateSizeRatio*0.9))){
+		let maxHeight=maxWidth*digitalClockModel.dateSizeRatio*0.9
+        if !window.inLiveResize &&  ((clockStackView.fittingSize.width>maxWidth)||((animatedDayInfo.frame.width<maxWidth*0.9)&&(animatedDayInfo.frame.height<maxHeight))) {
 			resizeText(maxWidth: window.frame.size.width)
             if !window.isZoomed && ClockPreferencesStorage.sharedInstance.fullscreen==false {
 				guard let digitalClockWC=view.window?.windowController as? DigitalClockWC else {
@@ -184,10 +178,10 @@ class DigitalClockVC: NSViewController {
             }
         }
     }
-	@objc func applyColorScheme(sender: NSNotification){
+	@objc func applyColorScheme(sender: NSNotification) {
 		applyColorScheme()
 	}
-	func applyColorScheme(){
+	func applyColorScheme() {
         var contastingColor: NSColor
         let clockNSColors=ColorDictionary()
                 self.view.window?.isOpaque=false
@@ -202,20 +196,20 @@ class DigitalClockVC: NSViewController {
 			animatedTime.textColor=NSColor.labelColor
 			animatedDayInfo.textColor=NSColor.labelColor
 			if #available(OSX 10.14, *) {
-				if let effectiveAppearanceName=NSApp?.effectiveAppearance.name{
+				if let uiName=NSApp?.effectiveAppearance.name {
 					//dark mode
-					if effectiveAppearanceName==NSAppearance.Name.darkAqua||effectiveAppearanceName==NSAppearance.Name.accessibilityHighContrastDarkAqua||effectiveAppearanceName==NSAppearance.Name.accessibilityHighContrastVibrantDark{
-						if contastingColor==NSColor.white{
+					if uiName==NSAppearance.Name.darkAqua||uiName==NSAppearance.Name.accessibilityHighContrastDarkAqua||uiName==NSAppearance.Name.accessibilityHighContrastVibrantDark {
+						if contastingColor==NSColor.white {
 							contastingColor=NSColor.systemGray
 						}
 						//light mode
 					} else {
-						if contastingColor==NSColor.black{
+						if contastingColor==NSColor.black {
 							contastingColor=NSColor.systemGray
 						}
 					}
 					} else {
-						if contastingColor==NSColor.black{
+						if contastingColor==NSColor.black {
 							contastingColor=NSColor.systemGray
 						}
 					}
@@ -231,19 +225,18 @@ class DigitalClockVC: NSViewController {
 	self.view.layer?.backgroundColor = NSColor.labelColor.cgColor/*NSColor.clear.cgColor*/
 		}
     }
-    func applyFloatState(){
-        if ClockPreferencesStorage.sharedInstance.clockFloats{
+    func applyFloatState() {
+        if ClockPreferencesStorage.sharedInstance.clockFloats {
             self.view.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.floatingWindow)))
             self.view.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow))-1)
-        }
-        else{
+        } else {
             self.view.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
         }
     }
-	func makeNormalWindowLevel(){
+	func makeNormalWindowLevel() {
 		self.view.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
 	}
-    func findFontThatFitsWithLinearSearch(label: NSTextField, size: NSSize){
+    func findFontThatFitsWithLinearSearch(label: NSTextField, size: NSSize) {
         label.sizeToFit()
         var newWidth=label.frame.width
         let desiredWidth=0.95*Double(size.width)
@@ -251,39 +244,39 @@ class DigitalClockVC: NSViewController {
         let desiredHeight=Double(size.height)
         var textSize=CGFloat((label.font?.pointSize)!)
         //make it big enough
-        while((Double(newWidth)-desiredWidth < 2)&&(Double(newHeight)-desiredHeight<2)){
+        while (Double(newWidth)-desiredWidth < 2)&&(Double(newHeight)-desiredHeight<2) {
             textSize+=CGFloat(1)
             label.font=NSFont.userFont(ofSize: textSize)
             label.sizeToFit()
             newWidth=label.frame.width
             newHeight=label.frame.height
-            if(textSize>2000){
-                textSize=2000;
+            if textSize>2000 {
+                textSize=2000
                 label.font=NSFont.userFont(ofSize: textSize)
                 label.sizeToFit()
-                break;
+                break
             }
         }
         //make it small enough
-		while((Double(newWidth)-desiredWidth>2)||(Double(newHeight)-desiredHeight>2)){
+		while (Double(newWidth)-desiredWidth>2)||(Double(newHeight)-desiredHeight>2) {
             textSize-=CGFloat(1)
             label.font=NSFont.userFont(ofSize: textSize)
             label.sizeToFit()
             newWidth=label.frame.width
             newHeight=label.frame.height
-            if(textSize<2){
-                textSize=1;
+            if textSize<2 {
+                textSize=1
                 label.font=NSFont.userFont(ofSize: textSize)
                 label.sizeToFit()
-                break;
+                break
             }
         }
     }
-    func makeTimeMaxSize(maxWidth: CGFloat)->CGSize{
+    func makeTimeMaxSize(maxWidth: CGFloat) -> CGSize {
         let maxHeight=maxWidth*digitalClockModel.timeSizeRatio
         return CGSize(width: maxWidth, height: maxHeight)
     }
-    func makeDateMaxSize(maxWidth: CGFloat)->CGSize{
+    func makeDateMaxSize(maxWidth: CGFloat) -> CGSize {
         let maxHeight=maxWidth*digitalClockModel.dateSizeRatio
         return CGSize(width: maxWidth, height: maxHeight)
     }

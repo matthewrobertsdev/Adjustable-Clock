@@ -16,11 +16,11 @@ class SimplePreferencesVC: NSViewController {
         ClockPreferencesStorage.sharedInstance.loadUserPreferences()
         updateForPreferencesChange()
     }
-    func updateForPreferencesChange(){
+    func updateForPreferencesChange() {
         DigitalClockWC.clockObject.updateClockToPreferencesChange()
         updateClockMenuUI()
     }
-    func updateClockMenuUI(){
+    func updateClockMenuUI() {
         let appObject = NSApp as NSApplication
 		if let mainMenu=appObject.mainMenu as? MainMenu {
 			mainMenu.updateClockMenuUI()

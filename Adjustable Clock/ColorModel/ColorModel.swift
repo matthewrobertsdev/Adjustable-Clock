@@ -19,7 +19,7 @@ Color Arrays
  */
 //standard colors and custom colors
 //string "keys" are convenient for UserDefaults
-struct ColorChoice{
+struct ColorChoice {
 	static let black="black"
     static let gray="gray"
     static let white="white"
@@ -33,46 +33,42 @@ struct ColorChoice{
 	static let pink="pink"
 	static let brown="brown"
     static let custom="custom"
-    
 }
 //color choice strings act as keys for NSColors
-class ColorDictionary{
-    
+class ColorDictionary {
     //name-color dictionary
     //name for identification
     //color for actual color values
-    var colorsDictionary=[String:NSColor]()
-    
+    var colorsDictionary=[String: NSColor]()
     //init should make the dictionary
-    init(){
+    init() {
         makeColorDictionary()
     }
-    
     //actually pair the keys with the colors
-    func makeColorDictionary(){
-		colorsDictionary=[ColorChoice.black:NSColor.black,
-			ColorChoice.gray:NSColor.systemGray,
-			ColorChoice.white:NSColor.white,
-			ColorChoice.red:NSColor.systemRed,
-			ColorChoice.orange:NSColor.systemOrange,
-			ColorChoice.yellow:NSColor.systemYellow,
-			ColorChoice.green:NSColor.systemGreen,
-			ColorChoice.blue:NSColor.systemBlue,
-			ColorChoice.purple:NSColor.systemPurple,
-			ColorChoice.pink:NSColor.systemPink,
-			ColorChoice.brown:NSColor.systemBrown]
+    func makeColorDictionary() {
+		colorsDictionary=[ColorChoice.black: NSColor.black,
+			ColorChoice.gray: NSColor.systemGray,
+			ColorChoice.white: NSColor.white,
+			ColorChoice.red: NSColor.systemRed,
+			ColorChoice.orange: NSColor.systemOrange,
+			ColorChoice.yellow: NSColor.systemYellow,
+			ColorChoice.green: NSColor.systemGreen,
+			ColorChoice.blue: NSColor.systemBlue,
+			ColorChoice.purple: NSColor.systemPurple,
+			ColorChoice.pink: NSColor.systemPink,
+			ColorChoice.brown: NSColor.systemBrown]
     }
 }
 //just an array of color choices so that the colors can be displayed in an order
-class ColorArrays{
+class ColorArrays {
     //an array of color choice strings
     var colorArray=[String]()
     //init should make the array
-    init(){
+    init() {
         makeColorArray()
     }
     //put color choice strings in the standard order
-    func makeColorArray(){
+    func makeColorArray() {
 		colorArray.append(ColorChoice.black)
         colorArray.append(ColorChoice.gray)
 		colorArray.append(ColorChoice.white)

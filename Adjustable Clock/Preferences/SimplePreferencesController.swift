@@ -6,5 +6,5 @@
 //  Copyright © 2018 Matt Roberts. All rights reserved.
 //
 import Cocoa
-class SimplePreferencesController{
+class SimplePreferencesController {
 }

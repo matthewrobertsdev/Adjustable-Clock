@@ -10,7 +10,7 @@ import Cocoa
  In charge of retrieving from disk, storing in RAM, and saving to disk user preferences.
  It is a singleton (Except for some string keys used for saving)
  */
-class ClockPreferencesStorage{
+class ClockPreferencesStorage {
     static let sharedInstance=ClockPreferencesStorage()
     private init() {
     }
@@ -46,11 +46,10 @@ class ClockPreferencesStorage{
 	private let customGreenComponentKey="customGreenComponentKey"
 	private let customBlueComponentKey="customBlueComponentKey"
 	private let applicationHasLaunched="applicationHasLaunched"
-	func hasLaunchedBefore()->Bool {
+	func hasLaunchedBefore() -> Bool {
 		return userDefaults.bool(forKey: applicationHasLaunched)
 	}
-	func setApplicationAsHasLaunched(){
-		
+	func setApplicationAsHasLaunched() {
 	}
     func loadUserPreferences() {
         clockFloats=userDefaults.bool(forKey: clockWindowFloatsKey)
@@ -59,9 +58,9 @@ class ClockPreferencesStorage{
 		showDate=userDefaults.bool(forKey: showDateKey)
 		showDayOfWeek=userDefaults.bool(forKey: showDayOfWeekKey)
 		useNumericalDate=userDefaults.bool(forKey: useNumericalDateKey)
-        if let colorChoice=userDefaults.string(forKey: colorChoiceKey){
+        if let colorChoice=userDefaults.string(forKey: colorChoiceKey) {
 			self.colorChoice=colorChoice
-        } else{
+        } else {
 			self.colorChoice=ColorChoice.gray
         }
         colorForForeground=userDefaults.bool(forKey: lightOnDarkKey)
@@ -98,11 +97,11 @@ class ClockPreferencesStorage{
         self.colorChoice=colorChoice
         userDefaults.set(self.colorChoice, forKey: colorChoiceKey)
     }
-    func changeAndSaveClockFloats(){
+    func changeAndSaveClockFloats() {
         clockFloats=(!clockFloats)
         userDefaults.set(clockFloats, forKey: clockWindowFloatsKey)
     }
-    func changeAndSaveCustomColor(customColor: NSColor){
+    func changeAndSaveCustomColor(customColor: NSColor) {
 		self.customColor=customColor.usingColorSpace(NSColorSpace.deviceRGB) ?? NSColor.systemGray
         self.colorChoice=ColorChoice.custom
         userDefaults.set("custom", forKey: colorChoiceKey)
@@ -113,7 +112,7 @@ class ClockPreferencesStorage{
         blueComponent=self.customColor.blueComponent
         userDefaults.set(blueComponent, forKey: customBlueComponentKey)
     }
-	func setDefaultUserDefaults(){
+	func setDefaultUserDefaults() {
         userDefaults.set(false, forKey: clockWindowFloatsKey)
         userDefaults.set(false, forKey: showSeocndsKey)
         userDefaults.set(false, forKey: use24hourClockKey)

@@ -24,7 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
     }
     //if the dock icon is clicked
-    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool{
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
 		DigitalClockWC.clockObject.showDigitalClock()
         return false
     }
