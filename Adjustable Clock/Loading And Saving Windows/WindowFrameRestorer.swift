@@ -21,38 +21,6 @@ class WindowFrameRestorer {
         self.minWidth=minWidth
         self.minHeight=minHeight
     }
-    func windowSaveOrigin(window: NSWindow?) {
-        let userDefaults=UserDefaults()
-        let savedWindowPosition=window?.frame.origin
-        let savedXPosition=savedWindowPosition?.x
-        let savedYPosition=savedWindowPosition?.y
-        //save the values
-        userDefaults.set(savedXPosition, forKey: xPositionKey)
-        userDefaults.set(savedYPosition, forKey: yPositionKey)
-    }
-    func windowLoadOrigin(window: NSWindow?) {
-        let userDefaults=UserDefaults()
-        let savedWindowSize=CGSize(width: userDefaults.integer(forKey: widthKey), height: userDefaults.integer(forKey: heightKey))
-        var savedClockOrigin=CGPoint(x: userDefaults.integer(forKey: xPositionKey), y: userDefaults.integer(forKey: yPositionKey))
-        if savedClockOrigin.x<0 {
-            savedClockOrigin.x=0
-        }
-        if savedClockOrigin.y<0 {
-            savedClockOrigin.y=0
-        }
-		if let screenWidth=window?.screen?.frame.size.width {
-			if savedClockOrigin.x>screenWidth {
-				savedClockOrigin.x=screenWidth-savedWindowSize.width
-            }
-		}
-		if let screenHeight=window?.screen?.frame.size.height {
-            if savedClockOrigin.y>screenHeight {
-                savedClockOrigin.y=screenHeight
-            }
-        }
-        //set the origin
-        window?.setFrameOrigin(savedClockOrigin)
-    }
     func windowSaveCGRect(window: NSWindow?) {
         let userDefaults=UserDefaults()
         let savedWindowSize=window?.frame.size
@@ -94,7 +62,7 @@ class WindowFrameRestorer {
 		}
 		if let screenHeight=window?.screen?.frame.size.height {
             if savedClockOrigin.y>screenHeight {
-                savedClockOrigin.y=screenHeight
+				savedClockOrigin.y=screenHeight-savedWindowSize.height
             }
         }
         //make the rect

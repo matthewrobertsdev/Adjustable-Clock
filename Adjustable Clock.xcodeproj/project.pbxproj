@@ -148,12 +148,12 @@
 			path = "Main Menu";
 			sourceTree = "<group>";
 		};
-		9F9DC04F2068A095000BD988 /* ColorModel */ = {
+		9F9DC04F2068A095000BD988 /* Color Model */ = {
 			isa = PBXGroup;
 			children = (
 				9F4EF1E220C273CB00E08C57 /* ColorModel.swift */,
 			);
-			path = ColorModel;
+			path = "Color Model";
 			sourceTree = "<group>";
 		};
 		9FABAA29216595BF00161D83 /* Code to Discard? */ = {
@@ -194,7 +194,7 @@
 				9F7DF9422066094400CC0DF6 /* Digital Clock */,
 				9F9DC04E20689F43000BD988 /* Main Menu */,
 				9F7DF9432066097C00CC0DF6 /* Preferences */,
-				9F9DC04F2068A095000BD988 /* ColorModel */,
+				9F9DC04F2068A095000BD988 /* Color Model */,
 				9FBBCCA320DDDD5900F44160 /* UI Identifiers */,
 				9F86695B203BBAD30074C1BA /* Filler UI Classes */,
 				9FB5FA1F20C8F5B200EE8963 /* Utilities */,
