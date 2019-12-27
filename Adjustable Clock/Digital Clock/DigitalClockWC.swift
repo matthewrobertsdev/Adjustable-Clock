@@ -22,13 +22,11 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
         backgroundView=digitalClockVC.view
         //setMaxSize()
         setMinSize()
-        let userDefaults=UserDefaults()
-        let hasLaunchedBefore=userDefaults.bool(forKey: AppUserDefaults.applicationHasLaunched)
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
-        if hasLaunchedBefore{
+		if ClockPreferencesStorage.sharedInstance.hasLaunchedBefore(){
 			ClockWindowRestorer().loadSavedWindowCGRect(window: window)
         }
-        userDefaults.set(true, forKey: AppUserDefaults.applicationHasLaunched)
+		ClockPreferencesStorage.sharedInstance.setApplicationAsHasLaunched()
         digitalClockVC.updateClock()
 		if let windowSize=window?.frame.size{
 			window?.aspectRatio=windowSize
@@ -162,12 +160,11 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
     }
     func windowWillExitFullScreen(_ notification: Notification) {
 		ClockPreferencesStorage.sharedInstance.fullscreen=false
-        let userDefaults=UserDefaults()
-        let maxWidth=CGFloat(userDefaults.integer(forKey: AppUserDefaults.clockWidthKey))
+		let maxWidth=CGFloat(ClockWindowRestorer().getClockWidth())
 		guard let digitalClockVC=window?.contentViewController as? DigitalClockVC else {
 			return
 		}
-        digitalClockVC.resizeText(maxWidth: maxWidth)
+		digitalClockVC.resizeText(maxWidth: maxWidth)
 		digitalClockVC.applyFloatState()
     }
     func windowDidExitFullScreen(_ notification: Notification) {

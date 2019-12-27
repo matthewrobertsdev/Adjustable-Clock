@@ -46,7 +46,7 @@ class MainMenu: NSMenu{
 		clockPreferences.changeAndSaveUseNumericalDate()
         updateForPreferencesChange()
     }
-    func updateClockMenuUI(){
+	func updateClockMenuUI(){
         datePreferencesMenu.autoenablesItems=false
         if(clockPreferences.fullscreen){
             clockFloatsMenuItem.isEnabled=false

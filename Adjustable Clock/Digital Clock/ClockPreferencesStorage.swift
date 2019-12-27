@@ -28,24 +28,31 @@ class ClockPreferencesStorage{
     var useNumericalDate = false
     //color
     var colorForForeground = false
-    var customColor: NSColor!
-    var redComponent: CGFloat!
-    var greenComponent: CGFloat!
-    var blueComponent: CGFloat!
+	var customColor=NSColor.systemGray
+    var redComponent: CGFloat?
+    var greenComponent: CGFloat?
+    var blueComponent: CGFloat?
     //keys
-    let clockWindowFloatsKey="clockWindowFloats"
-    let showSeocndsKey="showSeconds"
-    let use24hourClockKey="use24hourClock"
-    let showDateKey="showDate"
-    let showDayOfWeekKey="showDayOfWeek"
-    let useNumericalDateKey="useNumericalDateKey"
-    let colorSchemeKey="colorScheme"
-    let colorChoiceKey="colorChoice"
-    let lightOnDarkKey="lightOnDark"
-	let customRedComponentKey="customRedComponentKey"
-	let customGreenComponentKey="customGreenComponentKey"
-	let customBlueComponentKey="customBlueComponentKey"
-    func loadUserPreferences(){
+    private let clockWindowFloatsKey="clockWindowFloats"
+    private let showSeocndsKey="showSeconds"
+    private let use24hourClockKey="use24hourClock"
+    private let showDateKey="showDate"
+    private let showDayOfWeekKey="showDayOfWeek"
+    private let useNumericalDateKey="useNumericalDateKey"
+    private let colorSchemeKey="colorScheme"
+    private let colorChoiceKey="colorChoice"
+    private let lightOnDarkKey="lightOnDark"
+	private let customRedComponentKey="customRedComponentKey"
+	private let customGreenComponentKey="customGreenComponentKey"
+	private let customBlueComponentKey="customBlueComponentKey"
+	private let applicationHasLaunched="applicationHasLaunched"
+	func hasLaunchedBefore()->Bool {
+		return userDefaults.bool(forKey: applicationHasLaunched)
+	}
+	func setApplicationAsHasLaunched(){
+		
+	}
+    func loadUserPreferences() {
         clockFloats=userDefaults.bool(forKey: clockWindowFloatsKey)
 		showSeconds=userDefaults.bool(forKey: showSeocndsKey)
 		use24hourClock=userDefaults.bool(forKey: use24hourClockKey)
@@ -96,7 +103,7 @@ class ClockPreferencesStorage{
         userDefaults.set(clockFloats, forKey: clockWindowFloatsKey)
     }
     func changeAndSaveCustomColor(customColor: NSColor){
-	self.customColor=customColor.usingColorSpace(NSColorSpace.deviceRGB)
+		self.customColor=customColor.usingColorSpace(NSColorSpace.deviceRGB) ?? NSColor.systemGray
         self.colorChoice=ColorChoice.custom
         userDefaults.set("custom", forKey: colorChoiceKey)
         redComponent=self.customColor.redComponent
@@ -105,5 +112,12 @@ class ClockPreferencesStorage{
         userDefaults.set(greenComponent, forKey: customGreenComponentKey)
         blueComponent=self.customColor.blueComponent
         userDefaults.set(blueComponent, forKey: customBlueComponentKey)
+    }
+	func setDefaultUserDefaults(){
+        userDefaults.set(false, forKey: clockWindowFloatsKey)
+        userDefaults.set(false, forKey: showSeocndsKey)
+        userDefaults.set(false, forKey: use24hourClockKey)
+        userDefaults.set(false, forKey: showDateKey)
+        userDefaults.set("", forKey: colorSchemeKey)
     }
 }

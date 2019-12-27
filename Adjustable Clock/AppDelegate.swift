@@ -11,7 +11,6 @@ other possibilities that could be done possibly from the same app:
 --a stopwatch
 --a timer
 */
-
 import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -31,6 +30,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 	//before quiting
     func applicationWillTerminate(_ aNotification: Notification) {
-        digitalClockSaveStateAsNeeded()
 	}
 }

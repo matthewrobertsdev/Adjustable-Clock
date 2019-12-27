@@ -15,12 +15,7 @@ func isThereAPreferencesWindow()->Bool{
         //if window is found
 		if window.identifier==UserInterfaceIdentifier.simplePrefrencesWindow{
             //if it's in the dock
-            if window.isMiniaturized{
-                return true
-            }
-            else if window.isVisible{
-                return true
-            }
+            return true
         }
     }
     return false
@@ -35,29 +30,8 @@ func isThereASimplePreferencesWindow()->Bool{
         //if window is found
         if window.identifier==UserInterfaceIdentifier.simplePrefrencesWindow{
             //if it's in the dock
-            if window.isMiniaturized{
-                return true
-            }
-            else if window.isVisible{
-                return true
-            }
+            return true
         }
     }
     return false
-}
-//save, but only if the app should
-func digitalClockSaveStateAsNeeded(){
-    //get app object
-    let appObject = NSApp as NSApplication
-    //get clock window data if it's still open
-    for window in appObject.windows{
-        if window.identifier==UserInterfaceIdentifier.clockWindow{
-            let digitalClockVC=window.contentViewController as! DigitalClockVC
-            if !(digitalClockVC.digitalClockModel.fullscreen==true){
-                let digitalClockWC=window.windowController as! DigitalClockWC
-                //save the window's state
-                digitalClockWC.saveState()
-            }
-        }
-    }
 }
