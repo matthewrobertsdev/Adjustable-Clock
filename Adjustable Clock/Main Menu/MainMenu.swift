@@ -120,8 +120,8 @@ class MainMenu: NSMenu{
 		DigitalClockWC.clockObject.showDigitalClock()
     }
     func showSimplePreferencesWindow(){
-        let adjustableClockStoryboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
-        simplePreferencesWC = adjustableClockStoryboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "SimplePreferencesWC")) as? SimplePreferencesWC
+        let adjustableClockStoryboard = NSStoryboard(name: "Main", bundle: nil)
+        simplePreferencesWC = adjustableClockStoryboard.instantiateController(withIdentifier: "SimplePreferencesWC") as? SimplePreferencesWC
         simplePreferencesWC?.loadWindow()
         simplePreferencesWC?.showWindow(nil)
     }

@@ -47,8 +47,8 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate{
     }
 	func showDigitalClock() {
 		if !digitalClockWindowPresent() {
-		let adjustableClockStoryboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
-		guard let digitalClockWC = adjustableClockStoryboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier(rawValue: "DigitalClockWC")) as? DigitalClockWC else {
+		let adjustableClockStoryboard = NSStoryboard(name: "Main", bundle: nil)
+		guard let digitalClockWC = adjustableClockStoryboard.instantiateController(withIdentifier: "DigitalClockWC") as? DigitalClockWC else {
 			return
 			}
 		DigitalClockWC.clockObject=digitalClockWC

@@ -400,20 +400,20 @@
 					9FB47E591F480A43009D82FF = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 8ZAMGA7E3H;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 					};
 					9FB47E6A1F480A43009D82FF = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 8ZAMGA7E3H;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 9FB47E591F480A43009D82FF;
 					};
 					9FB47E751F480A43009D82FF = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 8ZAMGA7E3H;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 9FB47E591F480A43009D82FF;
 					};
@@ -687,7 +687,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Mac-App.Adjustable-Clock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -702,7 +702,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Mac-App.Adjustable-Clock";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -718,7 +718,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Mac-App.Adjustable-ClockTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Adjustable Clock.app/Contents/MacOS/Adjustable Clock";
 			};
 			name = Debug;
@@ -735,7 +735,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Mac-App.Adjustable-ClockTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Adjustable Clock.app/Contents/MacOS/Adjustable Clock";
 			};
 			name = Release;
@@ -751,7 +751,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Mac-App.Adjustable-ClockUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = "Adjustable Clock";
 			};
 			name = Debug;
@@ -767,7 +767,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Mac-App.Adjustable-ClockUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TEST_TARGET_NAME = "Adjustable Clock";
 			};
 			name = Release;

@@ -53,7 +53,7 @@ class ColorsMenuController{
             colorsMenu.items[index].isEnabled=true
             colorsMenu.items[index].target=self
 			colorsMenu.items[index].action=#selector(changeColor(sender:))
-            let templateImage=NSImage(named: NSImage.Name(rawValue: "black_rectangle"))
+            let templateImage=NSImage(named: "black_rectangle")
             templateImage?.isTemplate=true
 			var tintColor=NSColor.clear
             if index<colorArray.colorArray.count-1{
@@ -85,7 +85,7 @@ class ColorsMenuController{
             }
         }
         //update color image for custom color based on current custum color
-        let templateImage=NSImage(named: NSImage.Name(rawValue: "black_rectangle"))
+        let templateImage=NSImage(named: "black_rectangle")
         templateImage?.isTemplate=true
         let tintColor=ClockPreferencesStorage.sharedInstance.customColor!
 		let colorImage=templateImage?.tintExceptBorder(tintColor: tintColor, borderPixels: CGFloat(0))
