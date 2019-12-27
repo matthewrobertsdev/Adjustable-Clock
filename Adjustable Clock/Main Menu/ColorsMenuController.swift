@@ -87,7 +87,7 @@ class ColorsMenuController{
         //update color image for custom color based on current custum color
         let templateImage=NSImage(named: "black_rectangle")
         templateImage?.isTemplate=true
-        let tintColor=ClockPreferencesStorage.sharedInstance.customColor!
+        let tintColor=ClockPreferencesStorage.sharedInstance.customColor
 		let colorImage=templateImage?.tintExceptBorder(tintColor: tintColor, borderPixels: CGFloat(0))
 		colorsMenu?.items[colorArray.colorArray.count-1].image=colorImage
     }
