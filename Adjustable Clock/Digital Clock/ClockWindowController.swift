@@ -88,7 +88,8 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
 			return
 		}
-        let oldWidth=window?.frame.width
+		let finalHeight: CGFloat
+		if !ClockPreferencesStorage.sharedInstance.useAnalog {
 		var multiplier: CGFloat=1
 		var constant: CGFloat=0
 		if ClockPreferencesStorage.sharedInstance.useAnalog {
@@ -97,7 +98,11 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		} else {
 			multiplier=digitalHeightMultiplier
 		}
-		let finalHeight=digitalClockVC.clockStackView.fittingSize.height*multiplier+constant
+		 finalHeight=digitalClockVC.clockStackView.fittingSize.height*multiplier+constant
+		} else {
+			finalHeight=digitalClockVC.analogClock.frame.height
+		}
+		let oldWidth=window?.frame.width
         let newSize=NSSize(width: newWidth, height: finalHeight)
         let oldHeight=window?.frame.height
         let changeInHeight=finalHeight-oldHeight!
@@ -131,6 +136,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
 			return
 		}
+		if !ClockPreferencesStorage.sharedInstance.useAnalog {
 		guard let windowWidth=window?.frame.width else {
 			return
 		}
@@ -155,6 +161,9 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
         } else {
             showButtons(show: true)
         }
+		} else {
+			window?.aspectRatio=digitalClockVC.analogClock.frame.size
+		}
 		print("window resize"+(window?.frame.size.height.description)!)
     }
     func windowWillClose(_ notification: Notification) {
@@ -175,7 +184,6 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			return
 		}
         digitalClockVC.resizeText(maxWidth: windowSize.width)
-		}
     }
     func windowDidEnterFullScreen(_ notification: Notification) {
         removeTrackingArea()
