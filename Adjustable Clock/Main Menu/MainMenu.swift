@@ -11,7 +11,7 @@ import  Cocoa
 class MainMenu: NSMenu {
     @IBOutlet weak var colorsMenu: NSMenu!
     var simplePreferencesWindowController: SimplePreferenceWindowController?
-    var digitalClockWC: DigitalClockWindowController?
+    var clockWindowController: ClockWindowController?
     let clockPreferences=ClockPreferencesStorage.sharedInstance
     @IBOutlet weak var clockMenu: NSMenu!
 	//clock menu items
@@ -26,14 +26,27 @@ class MainMenu: NSMenu {
 	@IBOutlet weak var analogMenuItem: NSMenuItem!
 	@IBAction func clickDigital(nsMenuItem: NSMenuItem) {
 		clockPreferences.changeAndSaveUseDigital()
-		AnalogClockWindowController.clockObject.closeAnalogClock()
-		DigitalClockWindowController.clockObject.showDigitalClock()
+		//AnalogClockWindowController.clockObject.closeAnalogClock()
+		let appObject = NSApp as NSApplication
+		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
+				guard let clockViewController=window.contentViewController as? ClockViewController else {
+				return
+			}
+			clockViewController.showDigitalClock()
+		}
 		updateClockMenuUI()
     }
 	@IBAction func clickAnalog(nsMenuItem: NSMenuItem) {
 		clockPreferences.changeAndSaveUseAnalog()
-		DigitalClockWindowController.clockObject.closeDigitalClock()
-		AnalogClockWindowController.clockObject.showAnalogClock()
+		let appObject = NSApp as NSApplication
+		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
+			guard let clockViewController=window.contentViewController as? ClockViewController else {
+			return
+			}
+			clockViewController.showAnalogClock()
+		}
+		//DigitalClockWindowController.clockObject.closeDigitalClock()
+		//AnalogClockWindowController.clockObject.showAnalogClock()
 		updateClockMenuUI()
     }
     @IBAction func clickClockFloats(nsMenuItem: NSMenuItem) {
@@ -110,7 +123,7 @@ class MainMenu: NSMenu {
     @IBAction func pressSimplePreferencesMenuItem(preferenceMenuItem: NSMenuItem) {
         let appObject = NSApp as NSApplication
 		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
-				guard let digitalClockVC=window.contentViewController as? DigitalClockViewController else {
+				guard let digitalClockVC=window.contentViewController as? ClockViewController else {
 					return
 				}
                 if digitalClockVC.digitalClockModel.fullscreen==true {
@@ -130,7 +143,7 @@ class MainMenu: NSMenu {
             }
     }
     @IBAction func pressShowDigitalClockMenuItem(showClockMenuItem: NSMenuItem) {
-		DigitalClockWindowController.clockObject.showDigitalClock()
+		ClockWindowController.clockObject.showDigitalClock()
     }
     func showSimplePreferencesWindow() {
         let adjustableClockStoryboard = NSStoryboard(name: "Main", bundle: nil)
@@ -145,7 +158,7 @@ class MainMenu: NSMenu {
 	}
     func updateForPreferencesChange() {
         updateClockMenuUI()
-		DigitalClockWindowController.clockObject.updateClockToPreferencesChange()
+		ClockWindowController.clockObject.updateClockToPreferencesChange()
     }
     func enableClockMenuPreferences(enabled: Bool) {
         clockMenu.autoenablesItems=false

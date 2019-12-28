@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
@@ -545,7 +545,7 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController storyboardIdentifier="DigitalClockWindowController" showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="DigitalClockWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="DigitalClockWindowController" showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="ClockWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="DigitalClockWindow" title="Digital Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" animationBehavior="utilityWindow" frameAutosaveName="" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA" customClass="DefaultNSWindow" customModule="Adjustable_Clock" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" managed="YES" fullScreenPrimary="YES" fullScreenAllowsTiling="YES"/>
@@ -613,22 +613,28 @@
                 </viewController>
                 <customObject id="Rsy-pr-IHt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="372" y="632"/>
+            <point key="canvasLocation" x="371" y="754"/>
         </scene>
-        <!--Digital Clock View Controller-->
+        <!--Clock View Controller-->
         <scene sceneID="YXm-rq-ncp">
             <objects>
-                <viewController id="ik9-Ty-6xp" customClass="DigitalClockViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ik9-Ty-6xp" customClass="ClockViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hTG-P0-Z21">
-                        <rect key="frame" x="0.0" y="0.0" width="283" height="122"/>
+                        <rect key="frame" x="0.0" y="0.0" width="283" height="284"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="7lE-Vi-cYq">
-                                <rect key="frame" x="0.0" y="0.0" width="283" height="122"/>
+                                <rect key="frame" x="0.0" y="0.0" width="283" height="284"/>
                             </visualEffectView>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnO-xZ-G0J">
-                                <rect key="frame" x="11" y="15" width="261" height="92"/>
+                                <rect key="frame" x="11" y="96" width="261" height="92"/>
                                 <subviews>
+                                    <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AyC-ZK-hRt">
+                                        <rect key="frame" x="0.0" y="-202" width="294" height="294"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="AyC-ZK-hRt" secondAttribute="height" multiplier="1:1" id="ExY-6Q-V6v"/>
+                                        </constraints>
+                                    </customView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayc-mj-Qox">
                                         <rect key="frame" x="45" y="46" width="171" height="46"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="12:00 PM" id="93p-ZP-sNf">
@@ -649,14 +655,17 @@
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="AyC-ZK-hRt" firstAttribute="width" secondItem="hTG-P0-Z21" secondAttribute="width" multiplier="1.03887" id="Hvq-mx-cLg"/>
                             <constraint firstItem="7lE-Vi-cYq" firstAttribute="leading" secondItem="hTG-P0-Z21" secondAttribute="leading" id="P27-bA-wUZ"/>
                             <constraint firstAttribute="trailing" secondItem="7lE-Vi-cYq" secondAttribute="trailing" id="gIG-21-pcb"/>
                             <constraint firstItem="OnO-xZ-G0J" firstAttribute="centerY" secondItem="hTG-P0-Z21" secondAttribute="centerY" id="pGh-UM-SdU"/>
@@ -666,16 +675,17 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="analogClock" destination="AyC-ZK-hRt" id="gD3-tG-s89"/>
                         <outlet property="animatedDayInfo" destination="8Ma-9v-P9y" id="1bu-WI-1ba"/>
-                        <outlet property="animatedTime" destination="ayc-mj-Qox" id="75v-8a-avj"/>
                         <outlet property="centerClockConstraint" destination="pGh-UM-SdU" id="FeY-jn-0gx"/>
                         <outlet property="clockStackView" destination="OnO-xZ-G0J" id="MUi-8W-Su8"/>
+                        <outlet property="digitalClock" destination="ayc-mj-Qox" id="dRP-X6-QuT"/>
                         <outlet property="visualEffectView" destination="7lE-Vi-cYq" id="bqY-T7-Ac7"/>
                     </connections>
                 </viewController>
                 <customObject id="HOX-re-87A" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="386.5" y="423"/>
+            <point key="canvasLocation" x="386.5" y="504"/>
         </scene>
     </scenes>
 </document>

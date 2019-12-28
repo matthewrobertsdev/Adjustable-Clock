@@ -17,7 +17,7 @@ class SimplePreferencesVC: NSViewController {
         updateForPreferencesChange()
     }
     func updateForPreferencesChange() {
-        DigitalClockWindowController.clockObject.updateClockToPreferencesChange()
+        ClockWindowController.clockObject.updateClockToPreferencesChange()
         updateClockMenuUI()
     }
     func updateClockMenuUI() {

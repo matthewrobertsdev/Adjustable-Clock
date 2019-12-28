@@ -21,11 +21,11 @@ class ColorsMenuController {
         let newColorChoice=colorArray.colorArray[sender.tag]
         ClockPreferencesStorage.sharedInstance.changeAndSaveColorSceme(colorChoice: newColorChoice)
         updateColorMenuUI()
-        DigitalClockWindowController.clockObject.updateClockToPreferencesChange()
+        ClockWindowController.clockObject.updateClockToPreferencesChange()
     }
     @objc func reverseColorMode(sender: NSMenuItem) {
 		ClockPreferencesStorage.sharedInstance.changeAndSaveLonD()
-        DigitalClockWindowController.clockObject.updateClockToPreferencesChange()
+        ClockWindowController.clockObject.updateClockToPreferencesChange()
     }
     @objc func showColorPanel(sender: NSMenuItem) {
 		let colorMasks: NSColorPanel.Options =
@@ -40,7 +40,7 @@ class ColorsMenuController {
     @objc func useCustomColor() {
 		ClockPreferencesStorage.sharedInstance.changeAndSaveCustomColor(customColor: nsColorPanel.color)
         updateColorMenuUI()
-		DigitalClockWindowController.clockObject.updateClockToPreferencesChange()
+		ClockWindowController.clockObject.updateClockToPreferencesChange()
     }
 	func makeColorMenuUI() {
 		//add change color selectors
