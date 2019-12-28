@@ -6,14 +6,12 @@
 //  Copyright © 2017 Matt Roberts. All rights reserved.
 //
 import Cocoa
-//the clock vc
-class DigitalClockVC: NSViewController {
+class DigitalClockViewController: NSViewController {
     @IBOutlet weak var animatedTime: NSTextField!
     @IBOutlet weak var animatedDayInfo: NSTextField!
-    let userDefaults=UserDefaults()
-    let digitalClockModel=DigitalClockModel()
     @IBOutlet weak var clockStackView: NSStackView!
 	@IBOutlet weak var visualEffectView: NSVisualEffectView!
+    let digitalClockModel=DigitalClockModel()
     var findingFontSemaphore=DispatchSemaphore(value: 1)
     var tellingTime: NSObjectProtocol?
 	var updateTimer: DispatchSourceTimer?

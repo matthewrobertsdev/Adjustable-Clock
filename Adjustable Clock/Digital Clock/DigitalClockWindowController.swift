@@ -16,7 +16,7 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
 	let heightMultiplier=CGFloat(1.07)
     override func windowDidLoad() {
         super.windowDidLoad()
-		guard let digitalClockVC=window?.contentViewController as? DigitalClockVC else {
+		guard let digitalClockVC=window?.contentViewController as? DigitalClockViewController else {
 			return
 		}
         backgroundView=digitalClockVC.view
@@ -73,7 +73,7 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
         view.addTrackingArea(area)
     }
     func sizeWindowToFitClock(newWidth: CGFloat) {
-		guard let digitalClockVC=window?.contentViewController as? DigitalClockVC else {
+		guard let digitalClockVC=window?.contentViewController as? DigitalClockViewController else {
 			return
 		}
         let oldWidth=window?.frame.width
@@ -101,13 +101,13 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
         flashButtons()
     }
     func windowDidEndLiveResize(_ notification: Notification) {
-		guard let digitalClockVC=window?.contentViewController as? DigitalClockVC else {
+		guard let digitalClockVC=window?.contentViewController as? DigitalClockViewController else {
 			return
 		}
         digitalClockVC.resizeClock()
     }
     func windowDidResize(_ notification: Notification) {
-		guard let digitalClockVC=window?.contentViewController as? DigitalClockVC else {
+		guard let digitalClockVC=window?.contentViewController as? DigitalClockViewController else {
 			return
 		}
 		guard let windowWidth=window?.frame.width else {
@@ -135,7 +135,7 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
 		//save for exit fullscreen
         saveState()
         ClockPreferencesStorage.sharedInstance.fullscreen=true
-		guard let digitalClockVC=window?.contentViewController as? DigitalClockVC else {
+		guard let digitalClockVC=window?.contentViewController as? DigitalClockViewController else {
 			return
 		}
 		guard let windowSize=window?.screen?.frame.size else {
@@ -151,7 +151,7 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
         reloadPreferencesWindowIfOpen()
         window?.makeKey()
         showButtons(show: true)
-		guard let digitalClockVC=window?.contentViewController as? DigitalClockVC else {
+		guard let digitalClockVC=window?.contentViewController as? DigitalClockViewController else {
 			return
 		}
 		digitalClockVC.makeNormalWindowLevel()
@@ -159,7 +159,7 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
     func windowWillExitFullScreen(_ notification: Notification) {
 		ClockPreferencesStorage.sharedInstance.fullscreen=false
 		let maxWidth=CGFloat(ClockWindowRestorer().getClockWidth())
-		guard let digitalClockVC=window?.contentViewController as? DigitalClockVC else {
+		guard let digitalClockVC=window?.contentViewController as? DigitalClockViewController else {
 			return
 		}
 		digitalClockVC.resizeText(maxWidth: maxWidth)
@@ -246,12 +246,12 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
 		}
     }
 	func windowWillMiniaturize(_ notification: Notification) {
-		if let digitalClockVC=window?.contentViewController as? DigitalClockVC {
+		if let digitalClockVC=window?.contentViewController as? DigitalClockViewController {
 			digitalClockVC.displayForDock()
 		}
 	}
 	func windowDidDeminiaturize(_ notification: Notification) {
-		if let digitalClockVC=window?.contentViewController as? DigitalClockVC {
+		if let digitalClockVC=window?.contentViewController as? DigitalClockViewController {
 			digitalClockVC.animateClock()
 		}
 	}
@@ -272,7 +272,7 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
 	func updateClockToPreferencesChange() {
         let appObject = NSApp as NSApplication
         for window in appObject.windows where window.identifier==UserInterfaceIdentifier.clockWindow {
-			if let digitalClockViewController=window.contentViewController as? DigitalClockVC {
+			if let digitalClockViewController=window.contentViewController as? DigitalClockViewController {
 					digitalClockViewController.updateClock()
             }
         }

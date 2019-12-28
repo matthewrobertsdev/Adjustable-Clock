@@ -89,7 +89,7 @@ class MainMenu: NSMenu {
     @IBAction func pressSimplePreferencesMenuItem(preferenceMenuItem: NSMenuItem) {
         let appObject = NSApp as NSApplication
         for window in appObject.windows where window.identifier==UserInterfaceIdentifier.clockWindow {
-				guard let digitalClockVC=window.contentViewController as? DigitalClockVC else {
+				guard let digitalClockVC=window.contentViewController as? DigitalClockViewController else {
 					return
 				}
                 if digitalClockVC.digitalClockModel.fullscreen==true {

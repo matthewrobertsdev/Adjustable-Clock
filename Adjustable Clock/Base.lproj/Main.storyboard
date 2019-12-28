@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -548,10 +547,10 @@
             </objects>
             <point key="canvasLocation" x="-14" y="315"/>
         </scene>
-        <!--Digital ClockVC-->
+        <!--Digital Clock View Controller-->
         <scene sceneID="YXm-rq-ncp">
             <objects>
-                <viewController id="ik9-Ty-6xp" customClass="DigitalClockVC" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ik9-Ty-6xp" customClass="DigitalClockViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hTG-P0-Z21">
                         <rect key="frame" x="0.0" y="0.0" width="283" height="122"/>
                         <autoresizingMask key="autoresizingMask"/>
