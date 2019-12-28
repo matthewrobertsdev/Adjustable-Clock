@@ -35,7 +35,7 @@ class ClockPreferencesStorage {
     var blueComponent: CGFloat?
     //keys
     private let clockWindowFloatsKey="clockWindowFloats"
-	private let useAnalogKey="analog"
+	private let useAnalogKey="useAnalog"
     private let showSeocndsKey="showSeconds"
     private let use24hourClockKey="use24hourClock"
     private let showDateKey="showDate"
@@ -55,6 +55,7 @@ class ClockPreferencesStorage {
 	}
     func loadUserPreferences() {
         clockFloats=userDefaults.bool(forKey: clockWindowFloatsKey)
+		useAnalog=userDefaults.bool(forKey: useAnalogKey)
 		showSeconds=userDefaults.bool(forKey: showSeocndsKey)
 		use24hourClock=userDefaults.bool(forKey: use24hourClockKey)
 		showDate=userDefaults.bool(forKey: showDateKey)

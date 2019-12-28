@@ -27,3 +27,25 @@ func isThereASimplePreferencesWindow() -> Bool {
     }
     return false
 }
+
+func windowPresent(identifier: NSUserInterfaceItemIdentifier) -> Bool {
+	//get the app object
+	let appObject = NSApp as NSApplication
+	//search for the Digital Clock window
+	for window in appObject.windows where window.identifier==identifier{
+			return true
+		}
+	return false
+}
+func updateClockMenuUI() {
+	let appObject = NSApp as NSApplication
+	if let mainMenu=appObject.mainMenu as? MainMenu {
+		mainMenu.updateClockMenuUI()
+	}
+}
+func enableClockMenu(enabled: Bool) {
+	let appObject = NSApp as NSApplication
+	if let mainMenu=appObject.mainMenu as? MainMenu {
+		mainMenu.enableClockMenuPreferences(enabled: enabled)
+	}
+}

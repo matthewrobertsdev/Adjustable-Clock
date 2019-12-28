@@ -42,11 +42,15 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
         updateClockMenuUI()
         window?.isOpaque=false
     }
+	func digitalClockWindowPresent() -> Bool {
+		return windowPresent(identifier: UserInterfaceIdentifier.digitalClockWindow)
+	}
 	func showDigitalClock() {
 		if !digitalClockWindowPresent() {
 		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 		guard let digitalClockWindowController =
-			mainStoryBoard.instantiateController(withIdentifier: "DigitalClockWC") as? DigitalClockWindowController else {
+			mainStoryBoard.instantiateController(withIdentifier:
+				"DigitalClockWindowController") as? DigitalClockWindowController else {
 				return
 			}
 		DigitalClockWindowController.clockObject=digitalClockWindowController
@@ -54,14 +58,14 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
 		DigitalClockWindowController.clockObject.showWindow(nil)
 		} else {
 			let appObject = NSApp as NSApplication
-			for window in appObject.windows where window.identifier==UserInterfaceIdentifier.clockWindow {
+			for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
 				window.makeKeyAndOrderFront(nil)
 			}
 		}
 	}
 	func closeDigitalClock() {
 		let appObject = NSApp as NSApplication
-		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.clockWindow {
+		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
 			window.close()
 		}
 	}
@@ -133,6 +137,7 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
         }
     }
     func windowWillClose(_ notification: Notification) {
+		saveState()
 		if !ClockPreferencesStorage.sharedInstance.useAnalog {
 			enableClockMenu(enabled: false)
 			let appObject = NSApp as NSApplication
@@ -140,7 +145,6 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
 		}
     }
     func windowWillEnterFullScreen(_ notification: Notification) {
-		//save for exit fullscreen
         saveState()
         ClockPreferencesStorage.sharedInstance.fullscreen=true
 		guard let digitalClockVC=window?.contentViewController as? DigitalClockViewController else {
@@ -151,7 +155,6 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
 		}
         digitalClockVC.resizeText(maxWidth: windowSize.width)
     }
-    //if entered fullscreen
     func windowDidEnterFullScreen(_ notification: Notification) {
         removeTrackingArea()
         hideButtonsTimer?.invalidate()
@@ -198,18 +201,6 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
     func setMinSize() {
         window?.minSize=CGSize(width: 100, height: 1)
     }
-    func updateClockMenuUI() {
-        let appObject = NSApp as NSApplication
-		if let mainMenu=appObject.mainMenu as? MainMenu {
-			mainMenu.updateClockMenuUI()
-		}
-    }
-    func enableClockMenu(enabled: Bool) {
-        let appObject = NSApp as NSApplication
-		if let mainMenu=appObject.mainMenu as? MainMenu {
-			mainMenu.enableClockMenuPreferences(enabled: enabled)
-		}
-	}
     func flashButtons() {
         showButtons(show: true)
         hideButtonsTimer?.invalidate()
@@ -230,10 +221,7 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
 	self.window?.standardWindowButton(.miniaturizeButton)?.isHidden=(!show)
     }
     func saveState() {
-        let userDefaults=UserDefaults()
         ClockWindowRestorer().windowSaveCGRect(window: window)
-        //mark application as has launched
-        userDefaults.set(true, forKey: "applicationHasLaunched")
     }
     func removeTrackingArea() {
 		guard let view=backgroundView else {
@@ -268,18 +256,9 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
         flashButtons()
         setTrackingArea()
 	}
-	func digitalClockWindowPresent() -> Bool {
-		//get the app object
-		let appObject = NSApp as NSApplication
-		//search for the Digital Clock window
-		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.clockWindow {
-				return true
-			}
-		return false
-	}
 	func updateClockToPreferencesChange() {
         let appObject = NSApp as NSApplication
-        for window in appObject.windows where window.identifier==UserInterfaceIdentifier.clockWindow {
+		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
 			if let digitalClockViewController=window.contentViewController as? DigitalClockViewController {
 					digitalClockViewController.updateClock()
             }

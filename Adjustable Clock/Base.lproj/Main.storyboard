@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
@@ -545,7 +545,7 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController storyboardIdentifier="DigitalClockWC" showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="DigitalClockWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="DigitalClockWindowController" showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="DigitalClockWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="DigitalClockWindow" title="Digital Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" animationBehavior="utilityWindow" frameAutosaveName="" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA" customClass="DefaultNSWindow" customModule="Adjustable_Clock" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" managed="YES" fullScreenPrimary="YES" fullScreenAllowsTiling="YES"/>
@@ -566,11 +566,11 @@
         <!--Window Controller-->
         <scene sceneID="PO4-M7-mve">
             <objects>
-                <windowController id="NKz-mV-AMd" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="8Bw-un-OMt">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                <windowController storyboardIdentifier="AnalogClockWindowController" id="NKz-mV-AMd" customClass="AnalogClockWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" identifier="AnalogClockWindow" title="Analog Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="8Bw-un-OMt" customClass="DefaultNSWindow" customModule="Adjustable_Clock" customModuleProvider="target">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
+                        <rect key="contentRect" x="163" y="199" width="347" height="153"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
                         <connections>
                             <outlet property="delegate" destination="NKz-mV-AMd" id="vmn-it-HDh"/>
@@ -582,21 +582,21 @@
                 </windowController>
                 <customObject id="mvt-eP-zKt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="26" y="604"/>
+            <point key="canvasLocation" x="-40.5" y="545.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Ls8-sc-ySM">
             <objects>
                 <viewController id="v8h-w2-eb5" sceneMemberID="viewController">
                     <view key="view" id="cNJ-Rr-Ni1">
-                        <rect key="frame" x="0.0" y="0.0" width="348" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="289" height="189"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <visualEffectView blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="eDV-qL-N18">
-                                <rect key="frame" x="0.0" y="0.0" width="348" height="270"/>
+                                <rect key="frame" x="0.0" y="0.0" width="289" height="189"/>
                             </visualEffectView>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z2A-5e-SG9">
-                                <rect key="frame" x="0.0" y="0.0" width="348" height="270"/>
+                                <rect key="frame" x="0.0" y="0.0" width="289" height="189"/>
                             </stackView>
                         </subviews>
                         <constraints>
@@ -613,7 +613,7 @@
                 </viewController>
                 <customObject id="Rsy-pr-IHt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="667" y="579"/>
+            <point key="canvasLocation" x="372" y="632"/>
         </scene>
         <!--Digital Clock View Controller-->
         <scene sceneID="YXm-rq-ncp">

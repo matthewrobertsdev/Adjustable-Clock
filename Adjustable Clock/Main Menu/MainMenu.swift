@@ -26,11 +26,14 @@ class MainMenu: NSMenu {
 	@IBOutlet weak var analogMenuItem: NSMenuItem!
 	@IBAction func clickDigital(nsMenuItem: NSMenuItem) {
 		clockPreferences.changeAndSaveUseDigital()
+		AnalogClockWindowController.clockObject.closeAnalogClock()
+		DigitalClockWindowController.clockObject.showDigitalClock()
 		updateClockMenuUI()
     }
 	@IBAction func clickAnalog(nsMenuItem: NSMenuItem) {
 		clockPreferences.changeAndSaveUseAnalog()
 		DigitalClockWindowController.clockObject.closeDigitalClock()
+		AnalogClockWindowController.clockObject.showAnalogClock()
 		updateClockMenuUI()
     }
     @IBAction func clickClockFloats(nsMenuItem: NSMenuItem) {
@@ -69,6 +72,13 @@ class MainMenu: NSMenu {
         } else {
 			clockFloatsMenuItem.state=NSControl.StateValue.off
         }
+		if ClockPreferencesStorage.sharedInstance.useAnalog {
+            analogMenuItem.state=NSControl.StateValue.on
+			digitalMenuItem.state=NSControl.StateValue.off
+        } else {
+			analogMenuItem.state=NSControl.StateValue.off
+            digitalMenuItem.state=NSControl.StateValue.on
+        }
         if ClockPreferencesStorage.sharedInstance.showSeconds {
             showSecondsMenuItem.state=NSControl.StateValue.on
         } else {
@@ -99,7 +109,7 @@ class MainMenu: NSMenu {
     }
     @IBAction func pressSimplePreferencesMenuItem(preferenceMenuItem: NSMenuItem) {
         let appObject = NSApp as NSApplication
-        for window in appObject.windows where window.identifier==UserInterfaceIdentifier.clockWindow {
+		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
 				guard let digitalClockVC=window.contentViewController as? DigitalClockViewController else {
 					return
 				}
