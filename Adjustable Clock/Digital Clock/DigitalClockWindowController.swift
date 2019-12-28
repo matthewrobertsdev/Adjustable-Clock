@@ -59,6 +59,12 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
 			}
 		}
 	}
+	func closeDigitalClock() {
+		let appObject = NSApp as NSApplication
+		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.clockWindow {
+			window.close()
+		}
+	}
     func setTrackingArea() {
 		guard let view=backgroundView else {
 			return
@@ -127,9 +133,11 @@ class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
         }
     }
     func windowWillClose(_ notification: Notification) {
-        enableClockMenu(enabled: false)
-        let appObject = NSApp as NSApplication
-        appObject.terminate(self)
+		if !ClockPreferencesStorage.sharedInstance.useAnalog {
+			enableClockMenu(enabled: false)
+			let appObject = NSApp as NSApplication
+			appObject.terminate(self)
+		}
     }
     func windowWillEnterFullScreen(_ notification: Notification) {
 		//save for exit fullscreen

@@ -19,6 +19,7 @@ class ClockPreferencesStorage {
     var clockFloats = false
     var fullscreen = false
     var colorChoice = ""
+	var useAnalog = false
     //time
     var showSeconds = false
     var use24hourClock = false
@@ -34,6 +35,7 @@ class ClockPreferencesStorage {
     var blueComponent: CGFloat?
     //keys
     private let clockWindowFloatsKey="clockWindowFloats"
+	private let useAnalogKey="analog"
     private let showSeocndsKey="showSeconds"
     private let use24hourClockKey="use24hourClock"
     private let showDateKey="showDate"
@@ -68,6 +70,14 @@ class ClockPreferencesStorage {
         greenComponent=CGFloat(userDefaults.float(forKey: customGreenComponentKey))
         blueComponent=CGFloat(userDefaults.float(forKey: customBlueComponentKey))
 		customColor=NSColor(deviceRed: redComponent!, green: greenComponent!, blue: blueComponent!, alpha: 1)
+    }
+	func changeAndSaveUseAnalog() {
+        useAnalog=true
+        userDefaults.set(useAnalog, forKey: useAnalogKey)
+    }
+	func changeAndSaveUseDigital() {
+        useAnalog=false
+        userDefaults.set(useAnalog, forKey: useAnalogKey)
     }
     func changeAndSaveUseAmPM() {
         use24hourClock=(!use24hourClock)

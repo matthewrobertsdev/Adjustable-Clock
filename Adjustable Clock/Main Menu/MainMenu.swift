@@ -22,6 +22,17 @@ class MainMenu: NSMenu {
     @IBOutlet weak var showDayOfWeekMenuItem: NSMenuItem!
     @IBOutlet weak var datePreferencesMenu: NSMenu!
     @IBOutlet weak var useNumericalDateMenuItem: NSMenuItem!
+	@IBOutlet weak var digitalMenuItem: NSMenuItem!
+	@IBOutlet weak var analogMenuItem: NSMenuItem!
+	@IBAction func clickDigital(nsMenuItem: NSMenuItem) {
+		clockPreferences.changeAndSaveUseDigital()
+		updateClockMenuUI()
+    }
+	@IBAction func clickAnalog(nsMenuItem: NSMenuItem) {
+		clockPreferences.changeAndSaveUseAnalog()
+		DigitalClockWindowController.clockObject.closeDigitalClock()
+		updateClockMenuUI()
+    }
     @IBAction func clickClockFloats(nsMenuItem: NSMenuItem) {
 		clockPreferences.changeAndSaveClockFloats()
         updateForPreferencesChange()

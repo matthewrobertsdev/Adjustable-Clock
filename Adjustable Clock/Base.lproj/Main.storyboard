@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -60,7 +61,7 @@
                                 <rect key="frame" x="14" y="13" width="141" height="32"/>
                                 <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zBP-kz-bxM">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="restoreDefaults:" target="xaW-Ua-yCx" id="PnB-xA-QwH"/>
@@ -89,7 +90,7 @@
                                 <rect key="frame" x="18" y="294" width="243" height="18"/>
                                 <buttonCell key="cell" type="check" title="Clock floats above all other windows" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="78y-uK-fo7">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="pressWindowFloatsOnTopCheckBoxWithButton:" target="2LC-Yg-FMM" id="VPt-1M-dib"/>
@@ -99,7 +100,7 @@
                                 <rect key="frame" x="18" y="248" width="121" height="18"/>
                                 <buttonCell key="cell" type="check" title="Include seconds" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="wgM-lZ-OwU">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="pressShowSecondsCheckBoxWithButton:" target="2LC-Yg-FMM" id="A9r-jv-h3b"/>
@@ -109,7 +110,7 @@
                                 <rect key="frame" x="19" y="225" width="130" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Use 12 hour clock" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="BFb-w7-dc0">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="pressHourModeRBWithButton:" target="2LC-Yg-FMM" id="OCs-e3-73U"/>
@@ -119,7 +120,7 @@
                                 <rect key="frame" x="18" y="178" width="86" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show date" bezelStyle="regularSquare" imagePosition="left" inset="2" id="otz-wg-4p2">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="pressShowDateCheckBoxWithButton:" target="2LC-Yg-FMM" id="AhB-Yk-de5"/>
@@ -129,13 +130,13 @@
                                 <rect key="frame" x="18" y="155" width="155" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show day of the week" bezelStyle="regularSquare" imagePosition="left" inset="2" id="el0-1g-flK">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AwL-tN-NeV">
                                 <rect key="frame" x="20" y="320" width="53" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Window" id="jQh-fC-gwk">
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -143,7 +144,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AkR-0H-ZCI">
                                 <rect key="frame" x="20" y="272" width="34" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Time" id="5op-ab-IKd">
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -151,7 +152,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w1U-cn-BBc">
                                 <rect key="frame" x="18" y="202" width="33" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Date" id="aQs-Ed-ozl">
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -159,7 +160,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zGn-wJ-pe4">
                                 <rect key="frame" x="18" y="134" width="44" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Colors" id="Hfi-jY-Jc8">
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -171,7 +172,7 @@
                                 </constraints>
                                 <popUpButtonCell key="cell" type="push" title="Gray" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" selectedItem="4yj-nB-yM4" id="rOh-Ax-AtD">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" id="NiJ-3e-Wg9">
                                         <items>
                                             <menuItem title="Gray" state="on" id="4yj-nB-yM4">
@@ -206,7 +207,7 @@
                                 <rect key="frame" x="14" y="13" width="141" height="32"/>
                                 <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EU5-VD-Ab0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="restoreDefaults:" target="2LC-Yg-FMM" id="JBR-hp-8e0"/>
@@ -216,7 +217,7 @@
                                 <rect key="frame" x="154" y="225" width="133" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Use 24 hour clock" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Qqo-wl-dId">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="pressHourModeRBWithButton:" target="2LC-Yg-FMM" id="rnl-fJ-PjV"/>
@@ -226,14 +227,14 @@
                                 <rect key="frame" x="21" y="80" width="156" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Black on Accent Color" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="3Gh-XN-gDU">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QrO-hg-btK">
                                 <rect key="frame" x="21" y="58" width="156" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Accent Color on Black" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="uMO-z9-Hcj">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                         </subviews>
@@ -363,10 +364,23 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Clock" id="esu-23-zsK">
                                     <items>
-                                        <menuItem title="Floats on Top" id="tkC-A4-hZG">
+                                        <menuItem title="Floats on Top" id="uEN-Ne-S2x">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="clickClockFloatsWithNsMenuItem:" target="AYu-sK-qS6" id="u4l-n7-AyZ"/>
+                                                <action selector="clickClockFloatsWithNsMenuItem:" target="AYu-sK-qS6" id="cRv-3P-kbN"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="9Gh-GB-j4b"/>
+                                        <menuItem title="Digital" id="XzE-6n-W23">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="clickDigitalWithNsMenuItem:" target="AYu-sK-qS6" id="R6J-l6-SIh"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Analog" id="ZDp-k8-QHp">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="clickAnalogWithNsMenuItem:" target="AYu-sK-qS6" id="UEC-vU-ih6"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="zej-sS-UJY"/>
@@ -504,10 +518,12 @@
                             </menuItem>
                         </items>
                         <connections>
-                            <outlet property="clockFloatsMenuItem" destination="tkC-A4-hZG" id="mt9-EN-FY5"/>
+                            <outlet property="analogMenuItem" destination="ZDp-k8-QHp" id="dW1-rC-sx4"/>
+                            <outlet property="clockFloatsMenuItem" destination="uEN-Ne-S2x" id="WuH-Qe-nyV"/>
                             <outlet property="clockMenu" destination="esu-23-zsK" id="iJ2-F8-5Vg"/>
                             <outlet property="colorsMenu" destination="65N-u4-pRd" id="QxW-PF-dZo"/>
                             <outlet property="datePreferencesMenu" destination="irh-WD-Jdm" id="29f-ig-oxy"/>
+                            <outlet property="digitalMenuItem" destination="XzE-6n-W23" id="X4q-dd-edu"/>
                             <outlet property="preferenceMenuItem" destination="1Xt-HY-uBw" id="SPi-0S-rRf"/>
                             <outlet property="showDateMenuItem" destination="hPB-2N-q4c" id="p1O-gI-29X"/>
                             <outlet property="showDayOfWeekMenuItem" destination="phz-ro-t2T" id="vXz-ij-TfT"/>
@@ -546,6 +562,58 @@
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-14" y="315"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="PO4-M7-mve">
+            <objects>
+                <windowController id="NKz-mV-AMd" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="8Bw-un-OMt">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <connections>
+                            <outlet property="delegate" destination="NKz-mV-AMd" id="vmn-it-HDh"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="v8h-w2-eb5" kind="relationship" relationship="window.shadowedContentViewController" id="zev-bX-G5b"/>
+                    </connections>
+                </windowController>
+                <customObject id="mvt-eP-zKt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="26" y="604"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Ls8-sc-ySM">
+            <objects>
+                <viewController id="v8h-w2-eb5" sceneMemberID="viewController">
+                    <view key="view" id="cNJ-Rr-Ni1">
+                        <rect key="frame" x="0.0" y="0.0" width="348" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <visualEffectView blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="eDV-qL-N18">
+                                <rect key="frame" x="0.0" y="0.0" width="348" height="270"/>
+                            </visualEffectView>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z2A-5e-SG9">
+                                <rect key="frame" x="0.0" y="0.0" width="348" height="270"/>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Z2A-5e-SG9" firstAttribute="top" secondItem="cNJ-Rr-Ni1" secondAttribute="top" id="2BP-yx-le6"/>
+                            <constraint firstAttribute="bottom" secondItem="eDV-qL-N18" secondAttribute="bottom" id="7um-eY-95h"/>
+                            <constraint firstItem="Z2A-5e-SG9" firstAttribute="leading" secondItem="cNJ-Rr-Ni1" secondAttribute="leading" id="DZ3-eG-fEY"/>
+                            <constraint firstAttribute="bottom" secondItem="Z2A-5e-SG9" secondAttribute="bottom" id="FA7-Hm-H5b"/>
+                            <constraint firstItem="eDV-qL-N18" firstAttribute="leading" secondItem="cNJ-Rr-Ni1" secondAttribute="leading" id="Jgd-vl-b1l"/>
+                            <constraint firstAttribute="trailing" secondItem="Z2A-5e-SG9" secondAttribute="trailing" id="Yz7-YY-OMs"/>
+                            <constraint firstAttribute="trailing" secondItem="eDV-qL-N18" secondAttribute="trailing" id="iTP-eD-Bj2"/>
+                            <constraint firstItem="eDV-qL-N18" firstAttribute="top" secondItem="cNJ-Rr-Ni1" secondAttribute="top" id="vsa-M6-wuj"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="Rsy-pr-IHt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="667" y="579"/>
         </scene>
         <!--Digital Clock View Controller-->
         <scene sceneID="YXm-rq-ncp">
