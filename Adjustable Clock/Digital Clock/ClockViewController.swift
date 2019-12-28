@@ -110,16 +110,20 @@ class ClockViewController: NSViewController {
 		}
     }
     func resizeClock() {
-        let windowWidth=view.window?.frame.size.width
-        resizeText(maxWidth: windowWidth!)
-		guard let digitalClockWC=view.window?.windowController as? ClockWindowController else {
+		if !ClockPreferencesStorage.sharedInstance.useAnalog{
+			let windowWidth=view.window?.frame.size.width
+			resizeText(maxWidth: windowWidth!)
+			guard let digitalClockWC=view.window?.windowController as? ClockWindowController else {
 			return
-		}
-        if ClockPreferencesStorage.sharedInstance.fullscreen==false && self.view.window?.isZoomed==false {
+			}
+			if ClockPreferencesStorage.sharedInstance.fullscreen==false && self.view.window?.isZoomed==false {
 			if let newWidth=self.view.window?.frame.width {
 				digitalClockWC.sizeWindowToFitClock(newWidth: newWidth)
 			}
-        }
+			} else {
+				digitalClockWC.sizeWindowToFitClock(newWidth: analogClock.frame.width)
+			}
+		}
     }
     func resizeText(maxWidth: CGFloat) {
         findingFontSemaphore.wait()

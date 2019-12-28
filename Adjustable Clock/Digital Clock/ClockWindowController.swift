@@ -90,11 +90,11 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		}
 		let finalHeight: CGFloat
 		if !ClockPreferencesStorage.sharedInstance.useAnalog {
-		var multiplier: CGFloat=1
-		var constant: CGFloat=0
-		if ClockPreferencesStorage.sharedInstance.useAnalog {
-			multiplier=analogHeightMultiplier
-			constant=analogConstant
+			var multiplier: CGFloat=1
+			var constant: CGFloat=0
+			if ClockPreferencesStorage.sharedInstance.useAnalog {
+				multiplier=analogHeightMultiplier
+				constant=analogConstant
 		} else {
 			multiplier=digitalHeightMultiplier
 		}
