@@ -563,80 +563,28 @@
             </objects>
             <point key="canvasLocation" x="-14" y="315"/>
         </scene>
-        <!--Window Controller-->
-        <scene sceneID="PO4-M7-mve">
-            <objects>
-                <windowController storyboardIdentifier="AnalogClockWindowController" id="NKz-mV-AMd" customClass="AnalogClockWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="AnalogClockWindow" title="Analog Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="8Bw-un-OMt" customClass="DefaultNSWindow" customModule="Adjustable_Clock" customModuleProvider="target">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="163" y="199" width="347" height="153"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
-                        <connections>
-                            <outlet property="delegate" destination="NKz-mV-AMd" id="vmn-it-HDh"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="v8h-w2-eb5" kind="relationship" relationship="window.shadowedContentViewController" id="zev-bX-G5b"/>
-                    </connections>
-                </windowController>
-                <customObject id="mvt-eP-zKt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-40.5" y="545.5"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Ls8-sc-ySM">
-            <objects>
-                <viewController id="v8h-w2-eb5" sceneMemberID="viewController">
-                    <view key="view" id="cNJ-Rr-Ni1">
-                        <rect key="frame" x="0.0" y="0.0" width="289" height="189"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <visualEffectView blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="eDV-qL-N18">
-                                <rect key="frame" x="0.0" y="0.0" width="289" height="189"/>
-                            </visualEffectView>
-                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z2A-5e-SG9">
-                                <rect key="frame" x="0.0" y="0.0" width="289" height="189"/>
-                            </stackView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="Z2A-5e-SG9" firstAttribute="top" secondItem="cNJ-Rr-Ni1" secondAttribute="top" id="2BP-yx-le6"/>
-                            <constraint firstAttribute="bottom" secondItem="eDV-qL-N18" secondAttribute="bottom" id="7um-eY-95h"/>
-                            <constraint firstItem="Z2A-5e-SG9" firstAttribute="leading" secondItem="cNJ-Rr-Ni1" secondAttribute="leading" id="DZ3-eG-fEY"/>
-                            <constraint firstAttribute="bottom" secondItem="Z2A-5e-SG9" secondAttribute="bottom" id="FA7-Hm-H5b"/>
-                            <constraint firstItem="eDV-qL-N18" firstAttribute="leading" secondItem="cNJ-Rr-Ni1" secondAttribute="leading" id="Jgd-vl-b1l"/>
-                            <constraint firstAttribute="trailing" secondItem="Z2A-5e-SG9" secondAttribute="trailing" id="Yz7-YY-OMs"/>
-                            <constraint firstAttribute="trailing" secondItem="eDV-qL-N18" secondAttribute="trailing" id="iTP-eD-Bj2"/>
-                            <constraint firstItem="eDV-qL-N18" firstAttribute="top" secondItem="cNJ-Rr-Ni1" secondAttribute="top" id="vsa-M6-wuj"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <customObject id="Rsy-pr-IHt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="371" y="754"/>
-        </scene>
         <!--Clock View Controller-->
         <scene sceneID="YXm-rq-ncp">
             <objects>
                 <viewController id="ik9-Ty-6xp" customClass="ClockViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hTG-P0-Z21">
-                        <rect key="frame" x="0.0" y="0.0" width="283" height="284"/>
+                        <rect key="frame" x="0.0" y="0.0" width="285" height="284"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="7lE-Vi-cYq">
-                                <rect key="frame" x="0.0" y="0.0" width="283" height="284"/>
+                                <rect key="frame" x="0.0" y="0.0" width="285" height="284"/>
                             </visualEffectView>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnO-xZ-G0J">
-                                <rect key="frame" x="11" y="96" width="261" height="92"/>
+                                <rect key="frame" x="-6" y="-52" width="297" height="388"/>
                                 <subviews>
-                                    <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AyC-ZK-hRt">
-                                        <rect key="frame" x="0.0" y="-202" width="294" height="294"/>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="AyC-ZK-hRt">
+                                        <rect key="frame" x="0.0" y="92" width="297" height="296"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="AyC-ZK-hRt" secondAttribute="height" multiplier="1:1" id="ExY-6Q-V6v"/>
                                         </constraints>
                                     </customView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayc-mj-Qox">
-                                        <rect key="frame" x="45" y="46" width="171" height="46"/>
+                                        <rect key="frame" x="63" y="46" width="171" height="46"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="12:00 PM" id="93p-ZP-sNf">
                                             <font key="font" metaFont="system" size="39"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -644,7 +592,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ma-9v-P9y">
-                                        <rect key="frame" x="-2" y="0.0" width="265" height="46"/>
+                                        <rect key="frame" x="16" y="0.0" width="265" height="46"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="January 1, 2017" id="Akk-XK-AD4">
                                             <font key="font" metaFont="system" size="39"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -652,6 +600,10 @@
                                         </textFieldCell>
                                     </textField>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="AyC-ZK-hRt" firstAttribute="centerX" secondItem="OnO-xZ-G0J" secondAttribute="centerX" id="QVv-3s-ecF"/>
+                                    <constraint firstItem="AyC-ZK-hRt" firstAttribute="top" secondItem="OnO-xZ-G0J" secondAttribute="top" id="tIm-br-ZSw"/>
+                                </constraints>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>

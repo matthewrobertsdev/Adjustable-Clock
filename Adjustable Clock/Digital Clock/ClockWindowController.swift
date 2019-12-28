@@ -108,6 +108,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
         let newOrigin=CGPoint(x: windowOrigin.x-changeInWidth, y: windowOrigin.y-changeInHeight)
         let newRect=NSRect(origin: newOrigin, size: newSize)
         window?.setFrame(newRect, display: true)
+		print("window"+window!.frame.size.height.description)
     }
     func windowDidBecomeKey(_ notification: Notification) {
 		flashButtons()
@@ -154,6 +155,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
         } else {
             showButtons(show: true)
         }
+		print("window resize"+(window?.frame.size.height.description)!)
     }
     func windowWillClose(_ notification: Notification) {
 		saveState()
@@ -173,6 +175,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			return
 		}
         digitalClockVC.resizeText(maxWidth: windowSize.width)
+		}
     }
     func windowDidEnterFullScreen(_ notification: Notification) {
         removeTrackingArea()
@@ -184,7 +187,6 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
 			return
 		}
-		digitalClockVC.makeNormalWindowLevel()
     }
     func windowWillExitFullScreen(_ notification: Notification) {
 		ClockPreferencesStorage.sharedInstance.fullscreen=false

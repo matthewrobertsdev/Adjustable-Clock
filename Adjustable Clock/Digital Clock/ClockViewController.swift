@@ -18,23 +18,26 @@ class ClockViewController: NSViewController {
 	var updateTimer: DispatchSourceTimer?
     let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
 	func showAnalogClock() {
-		digitalClock.isHidden=true
-		analogClock.isHidden=false
+		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: digitalClock)
+		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: animatedDayInfo)
+		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: analogClock)
 		guard let clockWindowController=view.window?.windowController as? ClockWindowController else {
 			return
 		}
-		if let width=self.view.window?.frame.size.width{
-		clockWindowController.sizeWindowToFitClock(newWidth: width)
+		if let width=self.view.window?.frame.size.width {
+			print(clockStackView.frame.height.description)
+			clockWindowController.sizeWindowToFitClock(newWidth: width)
 		}
 	}
 	func showDigitalClock() {
-		analogClock.isHidden=true
-		digitalClock.isHidden=false
+		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: analogClock)
+		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: digitalClock)
+		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: animatedDayInfo)
 		guard let clockWindowController=view.window?.windowController as? ClockWindowController else {
 			return
 		}
-		if let width=self.view.window?.frame.size.width{
-		clockWindowController.sizeWindowToFitClock(newWidth: width)
+		if let width=self.view.window?.frame.size.width {
+			clockWindowController.sizeWindowToFitClock(newWidth: width)
 		}
 	}
 	func displayForDock() {
@@ -93,6 +96,8 @@ class ClockViewController: NSViewController {
         resizeClock()
     }
     func animateClock() {
+		if !ClockPreferencesStorage.sharedInstance.useAnalog {
+			showDigitalClock()
         if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
 			clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: animatedDayInfo!)
             animateTimeAndDayInfo()
@@ -100,6 +105,9 @@ class ClockViewController: NSViewController {
             clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: animatedDayInfo!)
             animateTime()
         }
+		} else {
+			showAnalogClock()
+		}
     }
     func resizeClock() {
         let windowWidth=view.window?.frame.size.width
@@ -217,7 +225,6 @@ class ClockViewController: NSViewController {
 	func applyColorScheme() {
         var contrastColor: NSColor
         let clockNSColors=ColorDictionary()
-                self.view.window?.isOpaque=false
         self.view.wantsLayer=true
             if ClockPreferencesStorage.sharedInstance.colorChoice=="custom"{
                 contrastColor=ClockPreferencesStorage.sharedInstance.customColor
@@ -248,7 +255,9 @@ class ClockViewController: NSViewController {
 						}
 					}
 				} else {
-				// Fallback on earlier versions
+				if contrastColor==NSColor.black {
+					contrastColor=NSColor.systemGray
+				}
 			}
 		self.view.layer?.backgroundColor=contrastColor.cgColor
 		animatedDayInfo.backgroundColor=contrastColor
@@ -261,65 +270,26 @@ class ClockViewController: NSViewController {
     }
     func applyFloatState() {
         if ClockPreferencesStorage.sharedInstance.clockFloats {
-            self.view.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.floatingWindow)))
             self.view.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow))-1)
         } else {
             self.view.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
         }
     }
-	func makeNormalWindowLevel() {
-		self.view.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
-	}
-    func findFittingFont(label: NSTextField, size: NSSize) {
-        label.sizeToFit()
-        var newWidth=label.frame.width
-        let desiredWidth=0.95*Double(size.width)
-        var newHeight=label.frame.height
-        let desiredHeight=Double(size.height)
-        var textSize=CGFloat((label.font?.pointSize)!)
-        //make it big enough
-        while (Double(newWidth)-desiredWidth < 2)&&(Double(newHeight)-desiredHeight<2) {
-            textSize+=CGFloat(1)
-            label.font=NSFont.userFont(ofSize: textSize)
-            label.sizeToFit()
-            newWidth=label.frame.width
-            newHeight=label.frame.height
-            if textSize>2000 {
-                textSize=2000
-                label.font=NSFont.userFont(ofSize: textSize)
-                label.sizeToFit()
-                break
-            }
-        }
-        //make it small enough
-		while (Double(newWidth)-desiredWidth>2)||(Double(newHeight)-desiredHeight>2) {
-            textSize-=CGFloat(1)
-            label.font=NSFont.userFont(ofSize: textSize)
-            label.sizeToFit()
-            newWidth=label.frame.width
-            newHeight=label.frame.height
-            if textSize<2 {
-                textSize=1
-                label.font=NSFont.userFont(ofSize: textSize)
-                label.sizeToFit()
-                break
-            }
-        }
-    }
     func makeTimeMaxSize(maxWidth: CGFloat) -> CGSize {
-        let maxHeight=maxWidth*digitalClockModel.timeSizeRatio
-        return CGSize(width: maxWidth, height: maxHeight)
+        return CGSize(width: maxWidth, height: maxWidth*digitalClockModel.timeSizeRatio)
     }
     func makeDateMaxSize(maxWidth: CGFloat) -> CGSize {
-        let maxHeight=maxWidth*digitalClockModel.dateSizeRatio
-        return CGSize(width: maxWidth, height: maxHeight)
+        return CGSize(width: maxWidth, height: maxWidth*digitalClockModel.dateSizeRatio)
     }
-    deinit {
+	func stopAnimatingDigital() {
 		if let timeActivity=tellingTime {
 			ProcessInfo().endActivity(timeActivity)
 		}
 		if let timer=updateTimer {
 			timer.cancel()
 		}
+	}
+    deinit {
+		stopAnimatingDigital()
     }
 }
