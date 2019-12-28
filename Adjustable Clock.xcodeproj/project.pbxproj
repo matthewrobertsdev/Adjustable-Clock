@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		9F04FDF120EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F04FDF020EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift */; };
 		9F3C7D6A20CCE40D00C91506 /* ClockPreferencesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C7D6920CCE40D00C91506 /* ClockPreferencesStorage.swift */; };
-		9F4D87452055E99400AF63D1 /* DigitalClockWC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D87442055E99400AF63D1 /* DigitalClockWC.swift */; };
+		9F4D87452055E99400AF63D1 /* DigitalClockWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D87442055E99400AF63D1 /* DigitalClockWindowController.swift */; };
 		9F4EF1E320C273CB00E08C57 /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4EF1E220C273CB00E08C57 /* ColorModel.swift */; };
-		9F538C4D2116AC1500A72242 /* SimplePreferencesWC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C4C2116AC1500A72242 /* SimplePreferencesWC.swift */; };
+		9F538C4D2116AC1500A72242 /* SimplePreferenceWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C4C2116AC1500A72242 /* SimplePreferenceWindowController.swift */; };
 		9F538C4F2116B06300A72242 /* SimplePreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C4E2116B06300A72242 /* SimplePreferencesVC.swift */; };
 		9F538C512116B0AF00A72242 /* SimplePreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C502116B0AF00A72242 /* SimplePreferencesController.swift */; };
 		9F6974772065BA19007886DE /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6974762065BA19007886DE /* PreferencesController.swift */; };
@@ -54,9 +54,9 @@
 /* Begin PBXFileReference section */
 		9F04FDF020EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInterfaceItemIdentifiers.swift; sourceTree = "<group>"; };
 		9F3C7D6920CCE40D00C91506 /* ClockPreferencesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockPreferencesStorage.swift; sourceTree = "<group>"; };
-		9F4D87442055E99400AF63D1 /* DigitalClockWC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalClockWC.swift; sourceTree = "<group>"; };
+		9F4D87442055E99400AF63D1 /* DigitalClockWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigitalClockWindowController.swift; sourceTree = "<group>"; };
 		9F4EF1E220C273CB00E08C57 /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
-		9F538C4C2116AC1500A72242 /* SimplePreferencesWC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferencesWC.swift; sourceTree = "<group>"; };
+		9F538C4C2116AC1500A72242 /* SimplePreferenceWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferenceWindowController.swift; sourceTree = "<group>"; };
 		9F538C4E2116B06300A72242 /* SimplePreferencesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferencesVC.swift; sourceTree = "<group>"; };
 		9F538C502116B0AF00A72242 /* SimplePreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferencesController.swift; sourceTree = "<group>"; };
 		9F6974762065BA19007886DE /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				9F793AAC2063849C00AF703E /* DigitalClockModel.swift */,
-				9F4D87442055E99400AF63D1 /* DigitalClockWC.swift */,
+				9F4D87442055E99400AF63D1 /* DigitalClockWindowController.swift */,
 				9F8EBE472050C4C7005BA4F2 /* DigitalClockVC.swift */,
 				9F3C7D6920CCE40D00C91506 /* ClockPreferencesStorage.swift */,
 			);
@@ -124,7 +124,7 @@
 		9F7DF9432066097C00CC0DF6 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				9F538C4C2116AC1500A72242 /* SimplePreferencesWC.swift */,
+				9F538C4C2116AC1500A72242 /* SimplePreferenceWindowController.swift */,
 				9F538C4E2116B06300A72242 /* SimplePreferencesVC.swift */,
 				9F538C502116B0AF00A72242 /* SimplePreferencesController.swift */,
 			);
@@ -420,14 +420,14 @@
 				9F04FDF120EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift in Sources */,
 				9F793AAD2063849C00AF703E /* DigitalClockModel.swift in Sources */,
 				9FE390851FECBCE300AF5442 /* ClockWindowRestorer.swift in Sources */,
-				9F4D87452055E99400AF63D1 /* DigitalClockWC.swift in Sources */,
+				9F4D87452055E99400AF63D1 /* DigitalClockWindowController.swift in Sources */,
 				9F8EBE482050C4C7005BA4F2 /* DigitalClockVC.swift in Sources */,
 				9FEAE9DD1F4F7249004EB641 /* MainMenu.swift in Sources */,
 				9FE390871FECBCF400AF5442 /* PreferencesWindowRestorer.swift in Sources */,
 				9FC97F581F480BB500035D30 /* PreferencesVC.swift in Sources */,
 				9F3C7D6A20CCE40D00C91506 /* ClockPreferencesStorage.swift in Sources */,
 				9FB47E5E1F480A43009D82FF /* AppDelegate.swift in Sources */,
-				9F538C4D2116AC1500A72242 /* SimplePreferencesWC.swift in Sources */,
+				9F538C4D2116AC1500A72242 /* SimplePreferenceWindowController.swift in Sources */,
 				9F7174A11F5DADE800595C8D /* DigItalClockAppFunctions.swift in Sources */,
 				9F750CC02056073F007980F9 /* DefaultNSWindow.swift in Sources */,
 				9F4EF1E320C273CB00E08C57 /* ColorModel.swift in Sources */,

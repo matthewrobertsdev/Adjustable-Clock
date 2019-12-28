@@ -11,12 +11,8 @@ func isThereAPreferencesWindow() -> Bool {
     //get the app object
     let appObject = NSApp as NSApplication
     //search for the "Preferences" window
-    for window in appObject.windows {
-        //if window is found
-		if window.identifier==UserInterfaceIdentifier.simplePrefrencesWindow {
-            //if it's in the dock
-            return true
-        }
+    for window in appObject.windows where  window.identifier==UserInterfaceIdentifier.simplePrefrencesWindow {
+		return true
     }
     return false
 }
@@ -26,12 +22,8 @@ func isThereASimplePreferencesWindow() -> Bool {
     //get the app object
     let appObject = NSApp as NSApplication
     //search for the "Preferences" window
-    for window in appObject.windows {
-        //if window is found
-        if window.identifier==UserInterfaceIdentifier.simplePrefrencesWindow {
-            //if it's in the dock
+    for window in appObject.windows where window.identifier==UserInterfaceIdentifier.simplePrefrencesWindow {
             return true
-        }
     }
     return false
 }

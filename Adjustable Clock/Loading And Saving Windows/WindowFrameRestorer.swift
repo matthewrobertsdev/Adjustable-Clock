@@ -7,15 +7,15 @@
 //
 import Cocoa
 class WindowFrameRestorer {
-    private var xPositionKey: String
-    private var yPositionKey: String
+    private var xKey: String
+    private var yKey: String
     private var widthKey: String
     private var heightKey: String
     private var minWidth: CGFloat
     private var minHeight: CGFloat
-    init(xPositionKey: String, yPositionKey: String, widthKey: String, heightKey: String, minWidth: CGFloat, minHeight: CGFloat) {
-        self.xPositionKey=xPositionKey
-        self.yPositionKey=yPositionKey
+    init(xKey: String, yKey: String, widthKey: String, heightKey: String, minWidth: CGFloat, minHeight: CGFloat) {
+        self.xKey=xKey
+        self.yKey=yKey
         self.widthKey=widthKey
         self.heightKey=heightKey
         self.minWidth=minWidth
@@ -33,15 +33,19 @@ class WindowFrameRestorer {
         //save the values
         userDefaults.set(savedWidth, forKey: widthKey)
         userDefaults.set(savedHeight, forKey: heightKey)
-        userDefaults.set(savedXPosition, forKey: xPositionKey)
-        userDefaults.set(savedYPosition, forKey: yPositionKey)
+        userDefaults.set(savedXPosition, forKey: xKey)
+        userDefaults.set(savedYPosition, forKey: yKey)
     }
     func loadSavedWindowCGRect(window: NSWindow?) {
         let userDefaults=UserDefaults()
         //get the window size
-        var savedWindowSize=CGSize(width: userDefaults.integer(forKey: widthKey), height: userDefaults.integer(forKey: heightKey))
+		let width=userDefaults.integer(forKey: widthKey)
+		let height=userDefaults.integer(forKey: heightKey)
+        var savedWindowSize=CGSize(width: width, height: height)
         //and the window origin
-        var savedClockOrigin=CGPoint(x: userDefaults.integer(forKey: xPositionKey), y: userDefaults.integer(forKey: yPositionKey))
+		let originX=userDefaults.integer(forKey: xKey)
+		let originY=userDefaults.integer(forKey: yKey)
+        var savedClockOrigin=CGPoint(x: originX, y: originY)
         //if it's too small in any way, give it a minimum
         if savedWindowSize.width<minWidth {
             savedWindowSize.width=minWidth

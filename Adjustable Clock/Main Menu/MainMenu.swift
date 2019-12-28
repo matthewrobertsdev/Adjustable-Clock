@@ -10,8 +10,8 @@ import  Cocoa
 
 class MainMenu: NSMenu {
     @IBOutlet weak var colorsMenu: NSMenu!
-    var simplePreferencesWC: SimplePreferencesWC?
-    var digitalClockWC: DigitalClockWC?
+    var simplePreferencesWindowController: SimplePreferenceWindowController?
+    var digitalClockWC: DigitalClockWindowController?
     let clockPreferences=ClockPreferencesStorage.sharedInstance
     @IBOutlet weak var clockMenu: NSMenu!
 	//clock menu items
@@ -48,7 +48,7 @@ class MainMenu: NSMenu {
     }
 	func updateClockMenuUI() {
         datePreferencesMenu.autoenablesItems=false
-        if(clockPreferences.fullscreen) {
+        if clockPreferences.fullscreen {
             clockFloatsMenuItem.isEnabled=false
         } else {
             clockFloatsMenuItem.isEnabled=true
@@ -58,7 +58,7 @@ class MainMenu: NSMenu {
         } else {
 			clockFloatsMenuItem.state=NSControl.StateValue.off
         }
-        if ClockPreferencesStorage.sharedInstance.showSeconds{
+        if ClockPreferencesStorage.sharedInstance.showSeconds {
             showSecondsMenuItem.state=NSControl.StateValue.on
         } else {
             showSecondsMenuItem.state=NSControl.StateValue.off
@@ -88,46 +88,43 @@ class MainMenu: NSMenu {
     }
     @IBAction func pressSimplePreferencesMenuItem(preferenceMenuItem: NSMenuItem) {
         let appObject = NSApp as NSApplication
-        for window in appObject.windows {
-            if window.identifier==UserInterfaceIdentifier.clockWindow {
+        for window in appObject.windows where window.identifier==UserInterfaceIdentifier.clockWindow {
 				guard let digitalClockVC=window.contentViewController as? DigitalClockVC else {
 					return
 				}
                 if digitalClockVC.digitalClockModel.fullscreen==true {
-                    for window in appObject.windows {
-                        if window.identifier==UserInterfaceIdentifier.prefrencesWindow {
-							if let preferencesWC=window.windowController as? SimplePreferencesWC {
-								preferencesWC.close()
-							}
-                        }
+                    for window in appObject.windows where window.identifier==UserInterfaceIdentifier.prefrencesWindow {
+						if let preferencesWC=window.windowController as? SimplePreferenceWindowController {
+							preferencesWC.close()
+						}
                     }
                     showSimplePreferencesWindow()
-                } else {
+				} else {
                     if isThereASimplePreferencesWindow() {
-                        simplePreferencesWC?.window?.makeKeyAndOrderFront(nil)
+                        simplePreferencesWindowController?.window?.makeKeyAndOrderFront(nil)
                     } else {
                         showSimplePreferencesWindow()
                     }
                 }
             }
-        }
     }
     @IBAction func pressShowDigitalClockMenuItem(showClockMenuItem: NSMenuItem) {
-		DigitalClockWC.clockObject.showDigitalClock()
+		DigitalClockWindowController.clockObject.showDigitalClock()
     }
     func showSimplePreferencesWindow() {
         let adjustableClockStoryboard = NSStoryboard(name: "Main", bundle: nil)
-        simplePreferencesWC = adjustableClockStoryboard.instantiateController(withIdentifier: "SimplePreferencesWC") as? SimplePreferencesWC
-        simplePreferencesWC?.loadWindow()
-        simplePreferencesWC?.showWindow(nil)
+        simplePreferencesWindowController = adjustableClockStoryboard.instantiateController(withIdentifier:
+			"SimplePreferencesWC") as? SimplePreferenceWindowController
+        simplePreferencesWindowController?.loadWindow()
+        simplePreferencesWindowController?.showWindow(nil)
     }
 	func reloadSimplePreferencesWindow() {
-		simplePreferencesWC?.loadWindow()
-        simplePreferencesWC?.showWindow(nil)
+		simplePreferencesWindowController?.loadWindow()
+        simplePreferencesWindowController?.showWindow(nil)
 	}
     func updateForPreferencesChange() {
         updateClockMenuUI()
-		DigitalClockWC.clockObject.updateClockToPreferencesChange()
+		DigitalClockWindowController.clockObject.updateClockToPreferencesChange()
     }
     func enableClockMenuPreferences(enabled: Bool) {
         clockMenu.autoenablesItems=false

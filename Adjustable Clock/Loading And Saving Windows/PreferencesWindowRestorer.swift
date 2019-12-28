@@ -7,13 +7,13 @@
 //
 import Cocoa
 class PreferencesWindowRestorer: WindowFrameRestorer {
-	private let xPositionKey="preferencesXPositionKey"
-    private let yPositionKey="preferencesYPositionKey"
+	private let xKey="preferencesXPositionKey"
+    private let yKey="preferencesYPositionKey"
     private let widthKey="preferencesWidthKey"
 	private let heightKey="preferencesHeightKey"
     private let minWidth: CGFloat=10
     private let minHeight: CGFloat=10
     init() {
-        super.init(xPositionKey: xPositionKey, yPositionKey: yPositionKey, widthKey: widthKey, heightKey: heightKey, minWidth: minWidth, minHeight: minHeight)
+		super.init(xKey: xKey, yKey: yKey, widthKey: widthKey, heightKey: heightKey, minWidth: minWidth, minHeight: minHeight)
     }
 }

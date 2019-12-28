@@ -44,7 +44,9 @@ extension NSImage {
 		}
         image.lockFocus()
         tintColor.set()
-        NSMakeRect(borderPixels, borderPixels, image.size.width-borderPixels*2, image.size.height-borderPixels*2).fill(using: NSCompositingOperation.sourceOver)
+		let sourceOver=NSCompositingOperation.sourceOver
+        NSMakeRect(borderPixels, borderPixels, image.size.width-borderPixels*2,
+				   image.size.height-borderPixels*2).fill(using: sourceOver)
         image.unlockFocus()
         image.isTemplate = false
         return image

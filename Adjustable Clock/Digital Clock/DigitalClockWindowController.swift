@@ -8,8 +8,8 @@
 
 import Cocoa
 
-class DigitalClockWC : NSWindowController, NSWindowDelegate {
-	static var clockObject=DigitalClockWC()
+class DigitalClockWindowController: NSWindowController, NSWindowDelegate {
+	static var clockObject=DigitalClockWindowController()
     var hideButtonsTimer: Timer?
     var backgroundView: NSView?
     var trackingArea: NSTrackingArea?
@@ -44,29 +44,29 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate {
     }
 	func showDigitalClock() {
 		if !digitalClockWindowPresent() {
-		let adjustableClockStoryboard = NSStoryboard(name: "Main", bundle: nil)
-		guard let digitalClockWC = adjustableClockStoryboard.instantiateController(withIdentifier: "DigitalClockWC") as? DigitalClockWC else {
-			return
+		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
+		guard let digitalClockWindowController =
+			mainStoryBoard.instantiateController(withIdentifier: "DigitalClockWC") as? DigitalClockWindowController else {
+				return
 			}
-		DigitalClockWC.clockObject=digitalClockWC
-		DigitalClockWC.clockObject.loadWindow()
-		DigitalClockWC.clockObject.showWindow(nil)
+		DigitalClockWindowController.clockObject=digitalClockWindowController
+		DigitalClockWindowController.clockObject.loadWindow()
+		DigitalClockWindowController.clockObject.showWindow(nil)
 		} else {
 			let appObject = NSApp as NSApplication
-			for window in appObject.windows {
-				if window.identifier==UserInterfaceIdentifier.clockWindow {
-					window.makeKeyAndOrderFront(nil)
-				}
+			for window in appObject.windows where window.identifier==UserInterfaceIdentifier.clockWindow {
+				window.makeKeyAndOrderFront(nil)
 			}
 		}
 	}
-    func setTrackingArea(){
+    func setTrackingArea() {
 		guard let view=backgroundView else {
 			return
 		}
 		let rect=view.frame
-		let trackingOptions: NSTrackingArea.Options=[NSTrackingArea.Options.activeInKeyWindow, NSTrackingArea.Options.inVisibleRect, NSTrackingArea.Options.mouseMoved]
-        trackingArea=NSTrackingArea(rect: rect, options: trackingOptions,owner: view.window, userInfo: nil)
+		let trackingOptions: NSTrackingArea.Options =
+			[NSTrackingArea.Options.activeInKeyWindow, NSTrackingArea.Options.inVisibleRect, NSTrackingArea.Options.mouseMoved]
+        trackingArea=NSTrackingArea(rect: rect, options: trackingOptions, owner: view.window, userInfo: nil)
 		guard let area=trackingArea else {
 			return
 		}
@@ -209,7 +209,7 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate {
                                                 target: self,
                                                 selector: #selector(hideButtons(timer:)),
                                                 userInfo: nil,
-                                                repeats:false)
+                                                repeats: false)
     }
     @objc func hideButtons(timer: Timer) {
 		if !ClockPreferencesStorage.sharedInstance.fullscreen {
@@ -264,21 +264,16 @@ class DigitalClockWC : NSWindowController, NSWindowDelegate {
 		//get the app object
 		let appObject = NSApp as NSApplication
 		//search for the Digital Clock window
-		for window in appObject.windows {
-			if window.identifier==UserInterfaceIdentifier.clockWindow{
+		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.clockWindow {
 				return true
 			}
-		}
 		return false
 	}
 	func updateClockToPreferencesChange() {
         let appObject = NSApp as NSApplication
-        for window in appObject.windows {
-            //if window is found
-            if window.identifier==UserInterfaceIdentifier.clockWindow{
-				if let digitalClockVC=window.contentViewController as? DigitalClockVC {
-					digitalClockVC.updateClock()
-				}
+        for window in appObject.windows where window.identifier==UserInterfaceIdentifier.clockWindow {
+			if let digitalClockViewController=window.contentViewController as? DigitalClockVC {
+					digitalClockViewController.updateClock()
             }
         }
     }
