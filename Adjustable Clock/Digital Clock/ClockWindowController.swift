@@ -213,7 +213,6 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		prepareWindowButtons()
         updateClockMenuUI()
         reloadPreferencesWindowIfOpen()
-		let maxWidth=CGFloat(ClockWindowRestorer().getClockWidth())
         window?.aspectRatio=(window?.frame.size)!
     }
     func windowWillUseStandardFrame(_ window: NSWindow,

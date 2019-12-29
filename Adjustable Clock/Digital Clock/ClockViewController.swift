@@ -12,9 +12,7 @@ class ClockViewController: NSViewController {
     @IBOutlet weak var animatedDayInfo: NSTextField!
     @IBOutlet weak var clockStackView: NSStackView!
 	@IBOutlet weak var visualEffectView: NSVisualEffectView!
-	
 	@IBOutlet weak var analogClockHeightConstraint: NSLayoutConstraint!
-	
 	@IBOutlet weak var analogClockWidthConstraint: NSLayoutConstraint!
 	let digitalClockModel=DigitalClockModel()
     var findingFontSemaphore=DispatchSemaphore(value: 1)
@@ -42,6 +40,7 @@ class ClockViewController: NSViewController {
 		}
 		if let width=self.view.window?.frame.size.width{
 			if  !self.view.isInFullScreenMode {
+				resizeText(maxWidth: width)
 				clockWindowController.sizeWindowToFitClock(newWidth: width)
 			}
 		}
