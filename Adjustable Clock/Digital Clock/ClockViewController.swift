@@ -7,7 +7,7 @@
 //
 import Cocoa
 class ClockViewController: NSViewController {
-	@IBOutlet weak var analogClock: NSView!
+	@IBOutlet weak var analogClock: AnalogClockView!
     @IBOutlet weak var digitalClock: NSTextField!
     @IBOutlet weak var animatedDayInfo: NSTextField!
     @IBOutlet weak var clockStackView: NSStackView!
@@ -23,12 +23,10 @@ class ClockViewController: NSViewController {
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: digitalClock)
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: animatedDayInfo)
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: analogClock)
-		guard let clockWindowController=view.window?.windowController as? ClockWindowController else {
-			return
-		}
-		if let width=self.view.window?.frame.size.width {
-			print(clockStackView.frame.height.description)
-			clockWindowController.sizeWindowToFitClock(newWidth: width)
+		if let clockWindowController=view.window?.windowController as? ClockWindowController  {
+			if let width=self.view.window?.frame.size.width {
+				clockWindowController.sizeWindowToFitClock(newWidth: width)
+			}
 		}
 	}
 	func showDigitalClock() {
@@ -38,12 +36,13 @@ class ClockViewController: NSViewController {
 		guard let clockWindowController=view.window?.windowController as? ClockWindowController else {
 			return
 		}
-		if let width=self.view.window?.frame.size.width{
+		if let width=self.view.window?.frame.size.width {
 			if  !self.view.isInFullScreenMode {
 				resizeText(maxWidth: width)
 				clockWindowController.sizeWindowToFitClock(newWidth: width)
 			}
 		}
+		animateTime()
 	}
 	func displayForDock() {
 		guard let timer=updateTimer else {
@@ -115,9 +114,10 @@ class ClockViewController: NSViewController {
 		}
     }
     func resizeClock() {
-		if !ClockPreferencesStorage.sharedInstance.useAnalog{
-			let windowWidth=view.window?.frame.size.width
-			resizeText(maxWidth: windowWidth!)
+		if !ClockPreferencesStorage.sharedInstance.useAnalog {
+			if let windowWidth=view.window?.frame.size.width {
+				resizeText(maxWidth: windowWidth)
+			}
 			guard let digitalClockWC=view.window?.windowController as? ClockWindowController else {
 			return
 			}
@@ -270,10 +270,14 @@ class ClockViewController: NSViewController {
 			}
 		self.view.layer?.backgroundColor=contrastColor.cgColor
 		animatedDayInfo.backgroundColor=contrastColor
+			analogClock.color=NSColor.labelColor
+			analogClock.setNeedsDisplay(analogClock.frame)
 	} else {
 			visualEffectView.isHidden=false
 			digitalClock.textColor=contrastColor
 			animatedDayInfo.textColor=contrastColor
+			analogClock.color=contrastColor
+			analogClock.setNeedsDisplay(analogClock.frame)
 	self.view.layer?.backgroundColor = NSColor.labelColor.cgColor/*NSColor.clear.cgColor*/
 		}
     }

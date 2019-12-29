@@ -13,6 +13,7 @@ class AnalogClockView: NSView {
 		let origin=CGPoint(x: frame.width*0.05, y: frame.height*0.05)
 		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.width*0.9, height: frame.height*0.9)))
 		color.setStroke()
+		path.lineWidth=CGFloat(2.5)
 		path.stroke()
     }
 }
