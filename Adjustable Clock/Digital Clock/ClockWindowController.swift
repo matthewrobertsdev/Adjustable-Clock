@@ -90,9 +90,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		}
 		var finalHeight: CGFloat=100
 		if !ClockPreferencesStorage.sharedInstance.useAnalog {
-			let multiplier: CGFloat=1
-			let constant: CGFloat=0
-			finalHeight=digitalClockVC.clockStackView.fittingSize.height*multiplier+constant
+			finalHeight=digitalClockVC.clockStackView.fittingSize.height*digitalHeightMultiplier
 		} else {
 			if let height=window?.frame.width {
 				finalHeight=height
@@ -157,7 +155,6 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			} else {
 				multiplier=digitalHeightMultiplier
 			}
-			let finalHeight=digitalClockVC.clockStackView.fittingSize.height*multiplier+constant
 			let newHeight=digitalClockVC.clockStackView.fittingSize.height*multiplier+constant
             let newAspectRatio=NSSize(width: windowWidth, height: newHeight)
             window?.aspectRatio=newAspectRatio
@@ -189,7 +186,6 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		}
         digitalClockVC.resizeText(maxWidth: windowSize.width)
 		window?.aspectRatio=windowSize
-		
     }
     func windowDidEnterFullScreen(_ notification: Notification) {
         removeTrackingArea()
@@ -209,6 +205,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			return
 		}
 		digitalClockVC.resizeText(maxWidth: maxWidth)
+		sizeWindowToFitClock(newWidth: maxWidth)
 		digitalClockVC.applyFloatState()
     }
     func windowDidExitFullScreen(_ notification: Notification) {
@@ -216,7 +213,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		prepareWindowButtons()
         updateClockMenuUI()
         reloadPreferencesWindowIfOpen()
-        sizeWindowToFitClock(newWidth: (window?.frame.width)!)
+		let maxWidth=CGFloat(ClockWindowRestorer().getClockWidth())
         window?.aspectRatio=(window?.frame.size)!
     }
     func windowWillUseStandardFrame(_ window: NSWindow,
