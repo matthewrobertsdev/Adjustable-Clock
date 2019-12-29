@@ -88,19 +88,15 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
 			return
 		}
-		let finalHeight: CGFloat
+		var finalHeight: CGFloat=100
 		if !ClockPreferencesStorage.sharedInstance.useAnalog {
-			var multiplier: CGFloat=1
-			var constant: CGFloat=0
-			if ClockPreferencesStorage.sharedInstance.useAnalog {
-				multiplier=analogHeightMultiplier
-				constant=analogConstant
+			let multiplier: CGFloat=1
+			let constant: CGFloat=0
+			finalHeight=digitalClockVC.clockStackView.fittingSize.height*multiplier+constant
 		} else {
-			multiplier=digitalHeightMultiplier
-		}
-		 finalHeight=digitalClockVC.clockStackView.fittingSize.height*multiplier+constant
-		} else {
-			finalHeight=digitalClockVC.analogClock.frame.height
+			if let height=window?.frame.width {
+				finalHeight=height
+			}
 		}
 		let oldWidth=window?.frame.width
         let newSize=NSSize(width: newWidth, height: finalHeight)
@@ -140,7 +136,9 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		guard let windowWidth=window?.frame.width else {
 			return
 		}
+			if !ClockPreferencesStorage.sharedInstance.useAnalog {
         digitalClockVC.resizeText(maxWidth: windowWidth)
+			}
 		guard let windowIsZoomed=window?.isZoomed else {
 			return
 		}
