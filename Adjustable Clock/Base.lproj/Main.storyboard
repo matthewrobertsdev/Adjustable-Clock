@@ -550,7 +550,7 @@
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" managed="YES" fullScreenPrimary="YES" fullScreenAllowsTiling="YES"/>
                         <rect key="contentRect" x="709" y="402" width="300" height="175"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="g3J-L8-4cM"/>
                         </connections>
@@ -568,23 +568,23 @@
             <objects>
                 <viewController id="ik9-Ty-6xp" customClass="ClockViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hTG-P0-Z21">
-                        <rect key="frame" x="0.0" y="0.0" width="285" height="284"/>
+                        <rect key="frame" x="0.0" y="0.0" width="301" height="284"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="7lE-Vi-cYq">
-                                <rect key="frame" x="0.0" y="0.0" width="285" height="284"/>
+                                <rect key="frame" x="0.0" y="0.0" width="301" height="284"/>
                             </visualEffectView>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnO-xZ-G0J">
-                                <rect key="frame" x="-6" y="-52" width="297" height="388"/>
+                                <rect key="frame" x="0.0" y="-55" width="301" height="393"/>
                                 <subviews>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="AyC-ZK-hRt">
-                                        <rect key="frame" x="0.0" y="92" width="297" height="296"/>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="AyC-ZK-hRt" customClass="AnalogClockView" customModule="Adjustable_Clock" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="92" width="301" height="301"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="AyC-ZK-hRt" secondAttribute="height" multiplier="1:1" id="ExY-6Q-V6v"/>
                                         </constraints>
                                     </customView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayc-mj-Qox">
-                                        <rect key="frame" x="63" y="46" width="171" height="46"/>
+                                        <rect key="frame" x="65" y="46" width="171" height="46"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="12:00 PM" id="93p-ZP-sNf">
                                             <font key="font" metaFont="system" size="39"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -592,7 +592,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ma-9v-P9y">
-                                        <rect key="frame" x="16" y="0.0" width="265" height="46"/>
+                                        <rect key="frame" x="18" y="0.0" width="265" height="46"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="January 1, 2017" id="Akk-XK-AD4">
                                             <font key="font" metaFont="system" size="39"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -617,7 +617,8 @@
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="AyC-ZK-hRt" firstAttribute="width" secondItem="hTG-P0-Z21" secondAttribute="width" multiplier="1.03887" id="Hvq-mx-cLg"/>
+                            <constraint firstItem="AyC-ZK-hRt" firstAttribute="height" secondItem="hTG-P0-Z21" secondAttribute="height" multiplier="1.05986" id="4zT-Dk-kER"/>
+                            <constraint firstItem="AyC-ZK-hRt" firstAttribute="width" secondItem="hTG-P0-Z21" secondAttribute="width" priority="999" id="Hvq-mx-cLg"/>
                             <constraint firstItem="7lE-Vi-cYq" firstAttribute="leading" secondItem="hTG-P0-Z21" secondAttribute="leading" id="P27-bA-wUZ"/>
                             <constraint firstAttribute="trailing" secondItem="7lE-Vi-cYq" secondAttribute="trailing" id="gIG-21-pcb"/>
                             <constraint firstItem="OnO-xZ-G0J" firstAttribute="centerY" secondItem="hTG-P0-Z21" secondAttribute="centerY" id="pGh-UM-SdU"/>
