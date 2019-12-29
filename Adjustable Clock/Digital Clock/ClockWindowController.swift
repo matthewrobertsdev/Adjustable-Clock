@@ -99,14 +99,20 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			}
 		}
 		let oldWidth=window?.frame.width
-        let newSize=NSSize(width: newWidth, height: finalHeight)
+		var newSize=NSSize(width: newWidth, height: finalHeight)
         let oldHeight=window?.frame.height
         let changeInHeight=finalHeight-oldHeight!
         let changeInWidth=newWidth-oldWidth!
 		guard let windowOrigin=window?.frame.origin else {
 			return
 		}
-        let newOrigin=CGPoint(x: windowOrigin.x-changeInWidth, y: windowOrigin.y-changeInHeight)
+		var newOrigin=CGPoint(x: windowOrigin.x-changeInWidth, y: windowOrigin.y-changeInHeight)
+		if ClockPreferencesStorage.sharedInstance.fullscreen {
+			if let size=window?.frame.size {
+				newSize=size
+				newOrigin=CGPoint(x: 0, y: 0)
+			}
+		}
         let newRect=NSRect(origin: newOrigin, size: newSize)
         window?.setFrame(newRect, display: true)
 		print("window"+window!.frame.size.height.description)
@@ -182,6 +188,8 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			return
 		}
         digitalClockVC.resizeText(maxWidth: windowSize.width)
+		window?.aspectRatio=windowSize
+		
     }
     func windowDidEnterFullScreen(_ notification: Notification) {
         removeTrackingArea()
@@ -190,8 +198,8 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
         reloadPreferencesWindowIfOpen()
         window?.makeKey()
         showButtons(show: true)
-		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
-			return
+		if let size=window?.screen?.frame.size {
+		window?.setFrame(NSRect(origin: CGPoint(x: 0, y: 0), size: size), display: true)
 		}
     }
     func windowWillExitFullScreen(_ notification: Notification) {

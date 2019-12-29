@@ -12,7 +12,11 @@ class ClockViewController: NSViewController {
     @IBOutlet weak var animatedDayInfo: NSTextField!
     @IBOutlet weak var clockStackView: NSStackView!
 	@IBOutlet weak var visualEffectView: NSVisualEffectView!
-    let digitalClockModel=DigitalClockModel()
+	
+	@IBOutlet weak var analogClockHeightConstraint: NSLayoutConstraint!
+	
+	@IBOutlet weak var analogClockWidthConstraint: NSLayoutConstraint!
+	let digitalClockModel=DigitalClockModel()
     var findingFontSemaphore=DispatchSemaphore(value: 1)
     var tellingTime: NSObjectProtocol?
 	var updateTimer: DispatchSourceTimer?
@@ -36,8 +40,10 @@ class ClockViewController: NSViewController {
 		guard let clockWindowController=view.window?.windowController as? ClockWindowController else {
 			return
 		}
-		if let width=self.view.window?.frame.size.width {
-			clockWindowController.sizeWindowToFitClock(newWidth: width)
+		if let width=self.view.window?.frame.size.width{
+			if  !self.view.isInFullScreenMode {
+				clockWindowController.sizeWindowToFitClock(newWidth: width)
+			}
 		}
 	}
 	func displayForDock() {
