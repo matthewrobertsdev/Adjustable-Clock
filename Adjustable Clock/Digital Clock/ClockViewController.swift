@@ -42,7 +42,11 @@ class ClockViewController: NSViewController {
 				clockWindowController.sizeWindowToFitClock(newWidth: width)
 			}
 		}
-		animateTime()
+		if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
+			animateTimeAndDayInfo()
+		} else {
+			animateTime()
+		}
 	}
 	func displayForDock() {
 		guard let timer=updateTimer else {
