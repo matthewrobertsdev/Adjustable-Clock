@@ -569,7 +569,7 @@
                 <viewController id="ik9-Ty-6xp" customClass="ClockViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hTG-P0-Z21">
                         <rect key="frame" x="0.0" y="0.0" width="301" height="301"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="7lE-Vi-cYq">
                                 <rect key="frame" x="0.0" y="0.0" width="301" height="301"/>
@@ -617,9 +617,10 @@
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="AyC-ZK-hRt" firstAttribute="height" secondItem="hTG-P0-Z21" secondAttribute="height" id="4zT-Dk-kER"/>
+                            <constraint firstItem="AyC-ZK-hRt" firstAttribute="height" relation="lessThanOrEqual" secondItem="hTG-P0-Z21" secondAttribute="height" id="4zT-Dk-kER"/>
                             <constraint firstItem="AyC-ZK-hRt" firstAttribute="width" secondItem="hTG-P0-Z21" secondAttribute="width" priority="200" id="Hvq-mx-cLg"/>
                             <constraint firstItem="7lE-Vi-cYq" firstAttribute="leading" secondItem="hTG-P0-Z21" secondAttribute="leading" id="P27-bA-wUZ"/>
+                            <constraint firstItem="AyC-ZK-hRt" firstAttribute="width" relation="lessThanOrEqual" secondItem="hTG-P0-Z21" secondAttribute="width" id="RAm-gm-nt0"/>
                             <constraint firstAttribute="trailing" secondItem="7lE-Vi-cYq" secondAttribute="trailing" id="gIG-21-pcb"/>
                             <constraint firstItem="OnO-xZ-G0J" firstAttribute="centerY" secondItem="hTG-P0-Z21" secondAttribute="centerY" id="pGh-UM-SdU"/>
                             <constraint firstItem="7lE-Vi-cYq" firstAttribute="top" secondItem="hTG-P0-Z21" secondAttribute="top" id="pdx-mX-asb"/>

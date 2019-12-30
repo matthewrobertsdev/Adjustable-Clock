@@ -141,7 +141,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			return
 		}
 			if !ClockPreferencesStorage.sharedInstance.useAnalog {
-        digitalClockVC.resizeText(maxWidth: windowWidth)
+        digitalClockVC.resizeContents(maxWidth: windowWidth)
 			}
 		guard let windowIsZoomed=window?.isZoomed else {
 			return
@@ -184,7 +184,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		guard let windowSize=window?.screen?.frame.size else {
 			return
 		}
-        digitalClockVC.resizeText(maxWidth: windowSize.width)
+        digitalClockVC.resizeContents(maxWidth: windowSize.width)
 		window?.aspectRatio=windowSize
     }
     func windowDidEnterFullScreen(_ notification: Notification) {
@@ -204,7 +204,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
 			return
 		}
-		digitalClockVC.resizeText(maxWidth: maxWidth)
+		digitalClockVC.resizeContents(maxWidth: maxWidth)
 		sizeWindowToFitClock(newWidth: maxWidth)
 		digitalClockVC.applyFloatState()
     }

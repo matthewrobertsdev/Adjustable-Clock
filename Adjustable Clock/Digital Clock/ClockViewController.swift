@@ -38,7 +38,7 @@ class ClockViewController: NSViewController {
 		}
 		if let width=self.view.window?.frame.size.width {
 			if  !self.view.isInFullScreenMode {
-				resizeText(maxWidth: width)
+				resizeContents(maxWidth: width)
 				clockWindowController.sizeWindowToFitClock(newWidth: width)
 			}
 		}
@@ -74,7 +74,7 @@ class ClockViewController: NSViewController {
             self.updateTimer=nil
             self.digitalClock.stringValue="Relaunch To Resume"
             self.animatedDayInfo.stringValue=""
-            self.resizeText(maxWidth: (self.view.window?.frame.width)!)
+            self.resizeContents(maxWidth: (self.view.window?.frame.width)!)
         }
         let screenWakeObserver =
 			workspaceNotifcationCenter.addObserver(forName:
@@ -83,7 +83,7 @@ class ClockViewController: NSViewController {
 			guard let windowWidth=self.view.window?.frame.width else {
 				return
 			}
-            self.resizeText(maxWidth: windowWidth)
+            self.resizeContents(maxWidth: windowWidth)
         }
 		let processOptions: ProcessInfo.ActivityOptions=[ProcessInfo.ActivityOptions.userInitiatedAllowingIdleSystemSleep]
         tellingTime = ProcessInfo().beginActivity(options: processOptions, reason: "Need accurate time all the time")
@@ -120,7 +120,7 @@ class ClockViewController: NSViewController {
     func resizeClock() {
 		if !ClockPreferencesStorage.sharedInstance.useAnalog {
 			if let windowWidth=view.window?.frame.size.width {
-				resizeText(maxWidth: windowWidth)
+				resizeContents(maxWidth: windowWidth)
 			}
 			guard let digitalClockWC=view.window?.windowController as? ClockWindowController else {
 			return
@@ -134,8 +134,9 @@ class ClockViewController: NSViewController {
 			}
 		}
     }
-    func resizeText(maxWidth: CGFloat) {
-        findingFontSemaphore.wait()
+    func resizeContents(maxWidth: CGFloat) {
+		findingFontSemaphore.wait()
+		if !ClockPreferencesStorage.sharedInstance.useAnalog {
         if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
             let projectedTimeHeight=makeTimeMaxSize(maxWidth: maxWidth).height
             let projectedDateHeight=makeDateMaxSize(maxWidth: maxWidth).height
@@ -168,6 +169,9 @@ class ClockViewController: NSViewController {
                 findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth))
             }
         }
+		} else {
+			analogClock.setNeedsDisplay(analogClock.frame)
+		}
         findingFontSemaphore.signal()
     }
     func updateTime() {
@@ -223,7 +227,7 @@ class ClockViewController: NSViewController {
 		}
 		let maxHeight=maxWidth*digitalClockModel.dateSizeRatio*0.9
         if !window.inLiveResize &&  ((clockStackView.fittingSize.width>maxWidth)||((animatedDayInfo.frame.width<maxWidth*0.9)&&(animatedDayInfo.frame.height<maxHeight))) {
-			resizeText(maxWidth: window.frame.size.width)
+			resizeContents(maxWidth: window.frame.size.width)
             if !window.isZoomed && ClockPreferencesStorage.sharedInstance.fullscreen==false {
 				guard let digitalClockWC=view.window?.windowController as? ClockWindowController else {
 					return
