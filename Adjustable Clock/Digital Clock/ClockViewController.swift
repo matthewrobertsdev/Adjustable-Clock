@@ -95,6 +95,8 @@ class ClockViewController: NSViewController {
     }
     func updateClockModel() {
 		digitalClockModel.updateClockModelForPreferences()
+		analogClock.setNeedsDisplay(analogClock.frame)
+
     }
     func updateClock() {
         updateClockModel()
