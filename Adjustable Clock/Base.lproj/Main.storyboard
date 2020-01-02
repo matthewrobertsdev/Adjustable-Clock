@@ -579,9 +579,41 @@
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="AyC-ZK-hRt" customClass="AnalogClockView" customModule="Adjustable_Clock" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="301" height="301"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v5W-Oy-D3I">
+                                                <rect key="frame" x="137" y="137" width="26" height="27"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="22" id="f3c-Yz-Rlz"/>
+                                                    <constraint firstAttribute="height" constant="27" id="lST-UI-PBY"/>
+                                                </constraints>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="12" id="BNM-PZ-4Yp">
+                                                    <font key="font" usesAppearanceFont="YES"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="sKl-M9-dUi">
+                                                <rect key="frame" x="100" y="87" width="48" height="48"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="GLj-Xk-LEG"/>
+                                                    <constraint firstAttribute="width" constant="48" id="f8v-uF-k5d"/>
+                                                </constraints>
+                                            </customView>
+                                        </subviews>
                                         <constraints>
+                                            <constraint firstItem="sKl-M9-dUi" firstAttribute="top" secondItem="AyC-ZK-hRt" secondAttribute="top" constant="166" id="5qd-MJ-mb6"/>
+                                            <constraint firstItem="sKl-M9-dUi" firstAttribute="leading" secondItem="AyC-ZK-hRt" secondAttribute="leading" constant="100" id="A6l-fY-GAJ"/>
                                             <constraint firstAttribute="width" secondItem="AyC-ZK-hRt" secondAttribute="height" multiplier="1:1" id="ExY-6Q-V6v"/>
+                                            <constraint firstItem="v5W-Oy-D3I" firstAttribute="centerY" secondItem="AyC-ZK-hRt" secondAttribute="centerY" id="a9R-Cp-Vst"/>
+                                            <constraint firstItem="v5W-Oy-D3I" firstAttribute="centerX" secondItem="AyC-ZK-hRt" secondAttribute="centerX" id="dbT-nB-DrB"/>
                                         </constraints>
+                                        <connections>
+                                            <outlet property="funView" destination="sKl-M9-dUi" id="RCL-oQ-uec"/>
+                                            <outlet property="myConstraint" destination="GLj-Xk-LEG" id="co6-xN-VbQ"/>
+                                            <outlet property="myConstraint1" destination="f3c-Yz-Rlz" id="ViL-Of-AeL"/>
+                                            <outlet property="myConstraint2" destination="lST-UI-PBY" id="QO5-lp-hR7"/>
+                                            <outlet property="twelfthLabel" destination="v5W-Oy-D3I" id="1wQ-25-olU"/>
+                                        </connections>
                                     </customView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayc-mj-Qox">
                                         <rect key="frame" x="65" y="46" width="171" height="46"/>
@@ -641,7 +673,7 @@
                 </viewController>
                 <customObject id="HOX-re-87A" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="386.5" y="504"/>
+            <point key="canvasLocation" x="386.5" y="503.5"/>
         </scene>
     </scenes>
 </document>
