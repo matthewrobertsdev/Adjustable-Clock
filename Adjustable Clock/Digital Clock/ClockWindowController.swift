@@ -130,7 +130,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
 			return
 		}
-        digitalClockVC.resizeClock()
+        //digitalClockVC.resizeClock()
     }
     func windowDidResize(_ notification: Notification) {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
@@ -155,8 +155,9 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			} else {
 				multiplier=digitalHeightMultiplier
 			}
+			let newWidth=digitalClockVC.clockStackView.fittingSize.width*multiplier+constant
 			let newHeight=digitalClockVC.clockStackView.fittingSize.height*multiplier+constant
-            let newAspectRatio=NSSize(width: windowWidth, height: newHeight)
+            let newAspectRatio=NSSize(width: newWidth, height: newHeight)
             window?.aspectRatio=newAspectRatio
             showButtons(show: false)
         } else {

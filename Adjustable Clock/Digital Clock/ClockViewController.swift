@@ -12,6 +12,7 @@ class ClockViewController: NSViewController {
     @IBOutlet weak var animatedDayInfo: NSTextField!
     @IBOutlet weak var clockStackView: NSStackView!
 	@IBOutlet weak var visualEffectView: NSVisualEffectView!
+	@IBOutlet weak var maginiferScrollView: NSScrollView!
 	@IBOutlet weak var analogClockHeightConstraint: NSLayoutConstraint!
 	@IBOutlet weak var analogClockWidthConstraint: NSLayoutConstraint!
 	let digitalClockModel=DigitalClockModel()
@@ -139,6 +140,10 @@ class ClockViewController: NSViewController {
     func resizeContents(maxWidth: CGFloat) {
 		findingFontSemaphore.wait()
 		if !ClockPreferencesStorage.sharedInstance.useAnalog {
+			digitalClock.sizeToFit()
+			animatedDayInfo.sizeToFit()
+			let desiredMaginifcation=maxWidth/clockStackView.frame.width
+			maginiferScrollView.magnification=desiredMaginifcation
         if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
             let projectedTimeHeight=makeTimeMaxSize(maxWidth: maxWidth).height
             let projectedDateHeight=makeDateMaxSize(maxWidth: maxWidth).height
@@ -147,15 +152,16 @@ class ClockViewController: NSViewController {
             if let maxHeight=self.view.window?.screen?.visibleFrame.height {
                 if projectedHeight>maxHeight {
                     newProportion=(self.view.window?.screen?.visibleFrame.height)!/projectedHeight
-                    findFittingFont(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth*newProportion))
-                    findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth*newProportion))
+					
+                    //findFittingFont(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth*newProportion))
+                    //findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth*newProportion))
                 } else {
-                findFittingFont(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth))
-                findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth))
+                //findFittingFont(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth))
+                //findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth))
                 }
             } else {
-				findFittingFont(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth))
-                findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth))
+				//findFittingFont(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth))
+                //findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth))
             }
         } else {
             let projectedHeight=makeDateMaxSize(maxWidth: (self.view.window?.frame.width)!).height
@@ -163,12 +169,12 @@ class ClockViewController: NSViewController {
             if let maxHeight=self.view.window?.screen?.visibleFrame.height {
                 if projectedHeight>maxHeight {
                     newProportion=(self.view.window?.screen?.visibleFrame.height)!/projectedHeight
-                    findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth*newProportion))
+                    //findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth*newProportion))
                 } else {
-                    findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth))
+                    //findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth))
                 }
             } else {
-                findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth))
+                //findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth))
             }
         }
 		} else {

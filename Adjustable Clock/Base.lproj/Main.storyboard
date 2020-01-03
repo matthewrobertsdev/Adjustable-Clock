@@ -574,100 +574,92 @@
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="7lE-Vi-cYq">
                                 <rect key="frame" x="0.0" y="0.0" width="301" height="301"/>
                             </visualEffectView>
-                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnO-xZ-G0J">
-                                <rect key="frame" x="0.0" y="-46" width="301" height="393"/>
-                                <subviews>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="AyC-ZK-hRt" customClass="AnalogClockView" customModule="Adjustable_Clock" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="301" height="301"/>
-                                        <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v5W-Oy-D3I">
-                                                <rect key="frame" x="137" y="137" width="26" height="27"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="22" id="f3c-Yz-Rlz"/>
-                                                    <constraint firstAttribute="height" constant="27" id="lST-UI-PBY"/>
-                                                </constraints>
-                                                <textFieldCell key="cell" lineBreakMode="clipping" title="12" id="BNM-PZ-4Yp">
-                                                    <font key="font" usesAppearanceFont="YES"/>
-                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                </textFieldCell>
-                                            </textField>
-                                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="sKl-M9-dUi">
-                                                <rect key="frame" x="100" y="87" width="48" height="48"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="GLj-Xk-LEG"/>
-                                                    <constraint firstAttribute="width" constant="48" id="f8v-uF-k5d"/>
-                                                </constraints>
-                                            </customView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="sKl-M9-dUi" firstAttribute="top" secondItem="AyC-ZK-hRt" secondAttribute="top" constant="166" id="5qd-MJ-mb6"/>
-                                            <constraint firstItem="sKl-M9-dUi" firstAttribute="leading" secondItem="AyC-ZK-hRt" secondAttribute="leading" constant="100" id="A6l-fY-GAJ"/>
-                                            <constraint firstAttribute="width" secondItem="AyC-ZK-hRt" secondAttribute="height" multiplier="1:1" id="ExY-6Q-V6v"/>
-                                            <constraint firstItem="v5W-Oy-D3I" firstAttribute="centerY" secondItem="AyC-ZK-hRt" secondAttribute="centerY" id="a9R-Cp-Vst"/>
-                                            <constraint firstItem="v5W-Oy-D3I" firstAttribute="centerX" secondItem="AyC-ZK-hRt" secondAttribute="centerX" id="dbT-nB-DrB"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="funView" destination="sKl-M9-dUi" id="RCL-oQ-uec"/>
-                                            <outlet property="myConstraint" destination="GLj-Xk-LEG" id="co6-xN-VbQ"/>
-                                            <outlet property="myConstraint1" destination="f3c-Yz-Rlz" id="ViL-Of-AeL"/>
-                                            <outlet property="myConstraint2" destination="lST-UI-PBY" id="QO5-lp-hR7"/>
-                                            <outlet property="twelfthLabel" destination="v5W-Oy-D3I" id="1wQ-25-olU"/>
-                                        </connections>
-                                    </customView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayc-mj-Qox">
-                                        <rect key="frame" x="65" y="46" width="171" height="46"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="12:00 PM" id="93p-ZP-sNf">
-                                            <font key="font" metaFont="system" size="39"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ma-9v-P9y">
-                                        <rect key="frame" x="18" y="0.0" width="265" height="46"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="January 1, 2017" id="Akk-XK-AD4">
-                                            <font key="font" metaFont="system" size="39"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="AyC-ZK-hRt" firstAttribute="top" secondItem="OnO-xZ-G0J" secondAttribute="top" id="11S-Dd-VUZ"/>
-                                    <constraint firstItem="AyC-ZK-hRt" firstAttribute="centerX" secondItem="OnO-xZ-G0J" secondAttribute="centerX" id="QVv-3s-ecF"/>
-                                </constraints>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go5-1Y-2aB">
+                                <rect key="frame" x="0.0" y="0.0" width="301" height="301"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="V38-FW-xgq">
+                                    <rect key="frame" x="1" y="1" width="299" height="299"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <view id="1rG-JS-1O3">
+                                            <rect key="frame" x="0.0" y="0.0" width="284" height="284"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnO-xZ-G0J">
+                                                    <rect key="frame" x="0.0" y="-1" width="261" height="285"/>
+                                                    <subviews>
+                                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="AyC-ZK-hRt" customClass="AnalogClockView" customModule="Adjustable_Clock" customModuleProvider="target">
+                                                            <rect key="frame" x="34" y="92" width="193" height="193"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="AyC-ZK-hRt" secondAttribute="height" multiplier="1:1" id="ExY-6Q-V6v"/>
+                                                            </constraints>
+                                                        </customView>
+                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayc-mj-Qox">
+                                                            <rect key="frame" x="45" y="46" width="171" height="46"/>
+                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="12:00 PM" id="93p-ZP-sNf">
+                                                                <font key="font" metaFont="system" size="39"/>
+                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ma-9v-P9y">
+                                                            <rect key="frame" x="-2" y="0.0" width="265" height="46"/>
+                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="January 1, 2017" id="Akk-XK-AD4">
+                                                                <font key="font" metaFont="system" size="39"/>
+                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="AyC-ZK-hRt" firstAttribute="top" secondItem="OnO-xZ-G0J" secondAttribute="top" id="11S-Dd-VUZ"/>
+                                                        <constraint firstItem="AyC-ZK-hRt" firstAttribute="centerX" secondItem="OnO-xZ-G0J" secondAttribute="centerX" id="QVv-3s-ecF"/>
+                                                    </constraints>
+                                                    <visibilityPriorities>
+                                                        <integer value="1000"/>
+                                                        <integer value="1000"/>
+                                                        <integer value="1000"/>
+                                                    </visibilityPriorities>
+                                                    <customSpacing>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                        <real value="3.4028234663852886e+38"/>
+                                                    </customSpacing>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="OnO-xZ-G0J" firstAttribute="top" secondItem="1rG-JS-1O3" secondAttribute="top" id="Cfc-DF-jAV"/>
+                                                <constraint firstItem="OnO-xZ-G0J" firstAttribute="leading" secondItem="1rG-JS-1O3" secondAttribute="leading" id="Zq4-Hp-WjD"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="rdI-Fu-hTE">
+                                    <rect key="frame" x="-100" y="-100" width="166" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Rfk-k5-w3s">
+                                    <rect key="frame" x="-100" y="-100" width="15" height="94"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="AyC-ZK-hRt" firstAttribute="height" relation="lessThanOrEqual" secondItem="hTG-P0-Z21" secondAttribute="height" id="4zT-Dk-kER"/>
-                            <constraint firstItem="AyC-ZK-hRt" firstAttribute="width" secondItem="hTG-P0-Z21" secondAttribute="width" priority="200" id="Hvq-mx-cLg"/>
+                            <constraint firstItem="go5-1Y-2aB" firstAttribute="top" secondItem="hTG-P0-Z21" secondAttribute="top" id="63F-Eu-8Za"/>
                             <constraint firstItem="7lE-Vi-cYq" firstAttribute="leading" secondItem="hTG-P0-Z21" secondAttribute="leading" id="P27-bA-wUZ"/>
-                            <constraint firstItem="AyC-ZK-hRt" firstAttribute="width" relation="lessThanOrEqual" secondItem="hTG-P0-Z21" secondAttribute="width" id="RAm-gm-nt0"/>
+                            <constraint firstItem="go5-1Y-2aB" firstAttribute="leading" secondItem="hTG-P0-Z21" secondAttribute="leading" id="Z6e-fM-Z4b"/>
                             <constraint firstAttribute="trailing" secondItem="7lE-Vi-cYq" secondAttribute="trailing" id="gIG-21-pcb"/>
-                            <constraint firstItem="OnO-xZ-G0J" firstAttribute="centerY" secondItem="hTG-P0-Z21" secondAttribute="centerY" id="pGh-UM-SdU"/>
+                            <constraint firstAttribute="trailing" secondItem="go5-1Y-2aB" secondAttribute="trailing" id="iHF-Bg-srv"/>
+                            <constraint firstAttribute="bottom" secondItem="go5-1Y-2aB" secondAttribute="bottom" id="m7U-N4-fnt"/>
                             <constraint firstItem="7lE-Vi-cYq" firstAttribute="top" secondItem="hTG-P0-Z21" secondAttribute="top" id="pdx-mX-asb"/>
                             <constraint firstAttribute="bottom" secondItem="7lE-Vi-cYq" secondAttribute="bottom" id="rf1-eg-nCD"/>
-                            <constraint firstItem="OnO-xZ-G0J" firstAttribute="centerX" secondItem="hTG-P0-Z21" secondAttribute="centerX" id="vLo-3k-W4Z"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="analogClock" destination="AyC-ZK-hRt" id="gD3-tG-s89"/>
-                        <outlet property="analogClockHeightConstraint" destination="4zT-Dk-kER" id="urV-2w-YL7"/>
-                        <outlet property="analogClockWidthConstraint" destination="Hvq-mx-cLg" id="hro-sn-1iP"/>
                         <outlet property="animatedDayInfo" destination="8Ma-9v-P9y" id="1bu-WI-1ba"/>
-                        <outlet property="centerClockConstraint" destination="pGh-UM-SdU" id="FeY-jn-0gx"/>
                         <outlet property="clockStackView" destination="OnO-xZ-G0J" id="MUi-8W-Su8"/>
                         <outlet property="digitalClock" destination="ayc-mj-Qox" id="dRP-X6-QuT"/>
+                        <outlet property="maginiferScrollView" destination="go5-1Y-2aB" id="AlA-w5-G98"/>
                         <outlet property="visualEffectView" destination="7lE-Vi-cYq" id="bqY-T7-Ac7"/>
                     </connections>
                 </viewController>

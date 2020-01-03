@@ -49,6 +49,7 @@ func enableClockMenu(enabled: Bool) {
 		mainMenu.enableClockMenuPreferences(enabled: enabled)
 	}
 }
+/*
 func findFittingFont(label: NSTextField, size: NSSize) {
 	label.sizeToFit()
 	var newWidth=label.frame.width
@@ -85,3 +86,4 @@ func findFittingFont(label: NSTextField, size: NSSize) {
 		}
 	}
 }
+*/
