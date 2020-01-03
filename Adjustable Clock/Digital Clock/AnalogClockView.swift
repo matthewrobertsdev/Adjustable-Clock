@@ -8,11 +8,10 @@
 import Cocoa
 class AnalogClockView: NSView {
 	@IBOutlet weak var twelfthLabel: NSTextField!
-	@IBOutlet weak var myConstraint : NSLayoutConstraint!
+	@IBOutlet weak var myConstraint: NSLayoutConstraint!
 	@IBOutlet weak var funView: NSView!
-	@IBOutlet weak var myConstraint1 : NSLayoutConstraint!
-	@IBOutlet weak var myConstraint2 : NSLayoutConstraint!
-	
+	@IBOutlet weak var myConstraint1: NSLayoutConstraint!
+	@IBOutlet weak var myConstraint2: NSLayoutConstraint!
 	var color=NSColor.labelColor
 	var done=false
     override func draw(_ dirtyRect: NSRect) {
@@ -22,17 +21,13 @@ class AnalogClockView: NSView {
 		let origin=CGPoint(x: frame.width*0.05, y: frame.height*0.05)
 		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.width*0.9, height: frame.height*0.9)))
 		color.setStroke()
-		path.lineWidth=CGFloat(frame.width/150+1)
+		path.lineWidth=CGFloat(frame.width/150)
 		path.stroke()
 		guard let cgContext=NSGraphicsContext.current?.cgContext else {
 				return
 		}
-		var numHours=12
-		if ClockPreferencesStorage.sharedInstance.use24hourClock {
-			numHours=24
-		}
-		for hour in 0...numHours {
-			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(hour)/Double(numHours)), startProportion: 0)
+		for hour in 0...12 {
+			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(hour)/Double(12)), startProportion: 0)
 		}
 		for minute in 0...60 {
 			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(minute)/60), startProportion: 0.6)
@@ -45,7 +40,9 @@ class AnalogClockView: NSView {
 		//}
 		let rect=NSRect(origin: CGPoint(x: frame.width/2, y:self.twelfthLabel.bounds.width/2), size: CGSize(width: frame.width/2, height: frame.height/2))
 		self.twelfthLabel.bounds=rect
-		twelfthLabel.scaleUnitSquare(to: NSSize(width: frame.width/100, height: frame.width/100))
+		twelfthLabel.scaleUnitSquare(to: NSSize(width: frame.width/400, height: frame.width/400))
+		print(twelfthLabel.frame.size.width)
+		twelfthLabel.textColor=color
 		twelfthLabel.setNeedsDisplay(rect)
 		self.myConstraint1.constant = frame.width
 		self.myConstraint2.constant = frame.height
