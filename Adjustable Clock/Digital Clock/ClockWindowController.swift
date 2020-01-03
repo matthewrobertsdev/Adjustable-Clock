@@ -112,7 +112,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			}
 		}
         let newRect=NSRect(origin: newOrigin, size: newSize)
-        window?.setFrame(newRect, display: true)
+        //window?.setFrame(newRect, display: true)
 		print("window"+window!.frame.size.height.description)
     }
     func windowDidBecomeKey(_ notification: Notification) {
@@ -155,7 +155,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			} else {
 				multiplier=digitalHeightMultiplier
 			}
-			let newWidth=digitalClockVC.clockStackView.fittingSize.width*multiplier+constant
+			let newWidth=digitalClockVC.clockStackView.fittingSize.width/0.9
 			let newHeight=digitalClockVC.clockStackView.fittingSize.height*multiplier+constant
             let newAspectRatio=NSSize(width: newWidth, height: newHeight)
             window?.aspectRatio=newAspectRatio
