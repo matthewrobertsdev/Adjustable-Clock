@@ -568,67 +568,74 @@
             <objects>
                 <viewController id="ik9-Ty-6xp" customClass="ClockViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hTG-P0-Z21">
-                        <rect key="frame" x="0.0" y="0.0" width="301" height="106"/>
+                        <rect key="frame" x="0.0" y="0.0" width="288" height="131"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="7lE-Vi-cYq">
-                                <rect key="frame" x="0.0" y="0.0" width="301" height="106"/>
+                                <rect key="frame" x="0.0" y="0.0" width="288" height="131"/>
                             </visualEffectView>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go5-1Y-2aB">
-                                <rect key="frame" x="0.0" y="0.0" width="301" height="106"/>
+                                <rect key="frame" x="0.0" y="0.0" width="288" height="131"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="V38-FW-xgq">
-                                    <rect key="frame" x="1" y="1" width="299" height="104"/>
+                                    <rect key="frame" x="1" y="1" width="286" height="129"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view id="1rG-JS-1O3">
-                                            <rect key="frame" x="0.0" y="-195" width="284" height="100"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <rect key="frame" x="0.0" y="-195" width="284" height="137"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnO-xZ-G0J">
-                                                    <rect key="frame" x="12" y="-7" width="261" height="115"/>
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="IPD-h2-pag">
+                                                    <rect key="frame" x="-58" y="-31" width="400" height="200"/>
                                                     <subviews>
-                                                        <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AyC-ZK-hRt" customClass="AnalogClockView" customModule="Adjustable_Clock" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="-78" width="193" height="193"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="AyC-ZK-hRt" secondAttribute="height" multiplier="1:1" id="ExY-6Q-V6v"/>
-                                                            </constraints>
-                                                        </customView>
-                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayc-mj-Qox">
-                                                            <rect key="frame" x="4" y="46" width="252" height="69"/>
-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="12:00 PM" id="93p-ZP-sNf">
-                                                                <font key="font" metaFont="system" size="59"/>
-                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                        </textField>
-                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ma-9v-P9y">
-                                                            <rect key="frame" x="-2" y="0.0" width="265" height="46"/>
-                                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="January 1, 2017" id="Akk-XK-AD4">
-                                                                <font key="font" metaFont="system" size="39"/>
-                                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                        </textField>
+                                                        <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnO-xZ-G0J">
+                                                            <rect key="frame" x="70" y="42" width="261" height="115"/>
+                                                            <subviews>
+                                                                <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AyC-ZK-hRt" customClass="AnalogClockView" customModule="Adjustable_Clock" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="-78" width="193" height="193"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="AyC-ZK-hRt" secondAttribute="height" multiplier="1:1" id="ExY-6Q-V6v"/>
+                                                                    </constraints>
+                                                                </customView>
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayc-mj-Qox">
+                                                                    <rect key="frame" x="4" y="46" width="252" height="69"/>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="12:00 PM" id="93p-ZP-sNf">
+                                                                        <font key="font" metaFont="system" size="59"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Ma-9v-P9y">
+                                                                    <rect key="frame" x="-2" y="0.0" width="265" height="46"/>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="January 1, 2017" id="Akk-XK-AD4">
+                                                                        <font key="font" metaFont="system" size="39"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                            </subviews>
+                                                            <visibilityPriorities>
+                                                                <integer value="1000"/>
+                                                                <integer value="1000"/>
+                                                                <integer value="1000"/>
+                                                            </visibilityPriorities>
+                                                            <customSpacing>
+                                                                <real value="3.4028234663852886e+38"/>
+                                                                <real value="3.4028234663852886e+38"/>
+                                                                <real value="3.4028234663852886e+38"/>
+                                                            </customSpacing>
+                                                        </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="261" id="ki1-zP-I4h"/>
-                                                        <constraint firstAttribute="height" constant="115" id="meq-sH-cHe"/>
+                                                        <constraint firstAttribute="width" constant="400" id="9Eg-4v-co0"/>
+                                                        <constraint firstItem="OnO-xZ-G0J" firstAttribute="centerY" secondItem="IPD-h2-pag" secondAttribute="centerY" id="VMo-6I-kAu"/>
+                                                        <constraint firstItem="OnO-xZ-G0J" firstAttribute="centerX" secondItem="IPD-h2-pag" secondAttribute="centerX" id="cgW-4g-jMX"/>
+                                                        <constraint firstAttribute="height" constant="200" id="uun-z7-GBQ"/>
                                                     </constraints>
-                                                    <visibilityPriorities>
-                                                        <integer value="1000"/>
-                                                        <integer value="1000"/>
-                                                        <integer value="1000"/>
-                                                    </visibilityPriorities>
-                                                    <customSpacing>
-                                                        <real value="3.4028234663852886e+38"/>
-                                                        <real value="3.4028234663852886e+38"/>
-                                                        <real value="3.4028234663852886e+38"/>
-                                                    </customSpacing>
-                                                </stackView>
+                                                </customView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="OnO-xZ-G0J" firstAttribute="centerX" secondItem="1rG-JS-1O3" secondAttribute="centerX" id="SfB-yZ-ozX"/>
-                                                <constraint firstItem="OnO-xZ-G0J" firstAttribute="centerY" secondItem="1rG-JS-1O3" secondAttribute="centerY" id="e3D-xU-Yhl"/>
+                                                <constraint firstItem="IPD-h2-pag" firstAttribute="centerY" secondItem="1rG-JS-1O3" secondAttribute="centerY" id="dxz-kz-NT2"/>
+                                                <constraint firstItem="IPD-h2-pag" firstAttribute="centerX" secondItem="1rG-JS-1O3" secondAttribute="centerX" id="gFW-Uj-Egl"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -665,7 +672,7 @@
                 </viewController>
                 <customObject id="HOX-re-87A" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="386.5" y="406"/>
+            <point key="canvasLocation" x="380" y="418.5"/>
         </scene>
     </scenes>
 </document>
