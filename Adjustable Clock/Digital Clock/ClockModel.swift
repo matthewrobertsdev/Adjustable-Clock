@@ -90,8 +90,8 @@ class ClockModel {
         if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
             showDayInfo=true
         }
-        if !ClockPreferencesStorage.sharedInstance.use24hourClock {
-            if !ClockPreferencesStorage.sharedInstance.showSeconds {
+        if ClockPreferencesStorage.sharedInstance.use24hourClock==false {
+            if ClockPreferencesStorage.sharedInstance.showSeconds==false {
                 useShowMinutesAMPM()
                 timeSizeRatio=amPmMinutes
             } else {
@@ -99,7 +99,7 @@ class ClockModel {
                 timeSizeRatio=amPmSeconds
             }
         } else {
-            if !ClockPreferencesStorage.sharedInstance.showSeconds {
+            if ClockPreferencesStorage.sharedInstance.showSeconds==false {
                 useShowMinutes24Hour()
                 timeSizeRatio=miltrayMinutes
             } else {
@@ -108,8 +108,8 @@ class ClockModel {
             }
         }
         if showDayInfo==true {
-            if !ClockPreferencesStorage.sharedInstance.showDate {
-                if !ClockPreferencesStorage.sharedInstance.showDayOfWeek {
+            if ClockPreferencesStorage.sharedInstance.showDate==false {
+                if ClockPreferencesStorage.sharedInstance.showDayOfWeek==false {
                     useWeekdayDate()
                     dateSizeRatio=weekdayDate
                 } else {
@@ -117,8 +117,8 @@ class ClockModel {
                     dateSizeRatio=weekday
                 }
             } else {
-                if !ClockPreferencesStorage.sharedInstance.showDayOfWeek {
-                    if !ClockPreferencesStorage.sharedInstance.useNumericalDate {
+                if ClockPreferencesStorage.sharedInstance.showDayOfWeek==false {
+                    if ClockPreferencesStorage.sharedInstance.useNumericalDate==false {
                         useLongDate()
                         dateSizeRatio=longDate
                     } else {
@@ -126,7 +126,7 @@ class ClockModel {
                         dateSizeRatio=numericalDate
                     }
                 } else {
-                    if !ClockPreferencesStorage.sharedInstance.useNumericalDate {
+                    if ClockPreferencesStorage.sharedInstance.useNumericalDate==false {
                         useWeekdayDate()
                         dateSizeRatio=weekdayDate
                     } else {

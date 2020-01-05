@@ -33,7 +33,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		}
         window?.isMovableByWindowBackground=true
         window?.delegate=self
-		if !ClockPreferencesStorage.sharedInstance.fullscreen {
+		if ClockPreferencesStorage.sharedInstance.fullscreen==false {
             prepareWindowButtons()
         } else {
             showButtons(show: true)
@@ -46,7 +46,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		return windowPresent(identifier: UserInterfaceIdentifier.digitalClockWindow)
 	}
 	func showDigitalClock() {
-		if !digitalClockWindowPresent() {
+		if digitalClockWindowPresent()==false {
 		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 		guard let digitalClockWindowController =
 			mainStoryBoard.instantiateController(withIdentifier:
@@ -87,7 +87,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			return
 		}
 		var finalHeight: CGFloat=100
-		if !ClockPreferencesStorage.sharedInstance.useAnalog {
+		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
 			
 		} else {
 			if let height=window?.frame.width {
@@ -116,7 +116,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		flashButtons()
     }
     func windowDidResignKey(_ notification: Notification) {
-        if !ClockPreferencesStorage.sharedInstance.fullscreen {
+        if ClockPreferencesStorage.sharedInstance.fullscreen==false {
             showButtons(show: false)
         }
     }
@@ -129,17 +129,17 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
 			return
 		}
-		if !ClockPreferencesStorage.sharedInstance.useAnalog {
+		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
 		guard let windowWidth=window?.frame.width else {
 			return
 		}
-			if !ClockPreferencesStorage.sharedInstance.useAnalog {
+			if ClockPreferencesStorage.sharedInstance.useAnalog==false {
         digitalClockVC.resizeContents(maxWidth: windowWidth)
 			}
 		guard let windowIsZoomed=window?.isZoomed else {
 			return
 		}
-        if !windowIsZoomed && ClockPreferencesStorage.sharedInstance.fullscreen==false {
+        if windowIsZoomed==false && ClockPreferencesStorage.sharedInstance.fullscreen==false {
             let newAspectRatio=NSSize(width: 332, height: 151)
             window?.aspectRatio=newAspectRatio
             showButtons(show: false)
@@ -214,14 +214,20 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
                                                 repeats: false)
     }
     @objc func hideButtons(timer: Timer) {
-		if !ClockPreferencesStorage.sharedInstance.fullscreen {
+		if ClockPreferencesStorage.sharedInstance.fullscreen==false {
             showButtons(show: false)
         }
     }
     func showButtons(show: Bool) {
-	self.window?.standardWindowButton(.closeButton)?.isHidden=(!show)
-	self.window?.standardWindowButton(.zoomButton)?.isHidden=(!show)
-	self.window?.standardWindowButton(.miniaturizeButton)?.isHidden=(!show)
+		if(show==true){
+	self.window?.standardWindowButton(.closeButton)?.isHidden=(false)
+	self.window?.standardWindowButton(.zoomButton)?.isHidden=(false)
+	self.window?.standardWindowButton(.miniaturizeButton)?.isHidden=(false)
+		} else {
+		self.window?.standardWindowButton(.closeButton)?.isHidden=(true)
+		self.window?.standardWindowButton(.zoomButton)?.isHidden=(true)
+		self.window?.standardWindowButton(.miniaturizeButton)?.isHidden=(true)
+			}
     }
     func saveState() {
         ClockWindowRestorer().windowSaveCGRect(window: window)

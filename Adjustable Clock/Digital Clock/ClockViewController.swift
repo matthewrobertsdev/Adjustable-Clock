@@ -38,7 +38,7 @@ class ClockViewController: NSViewController {
 			return
 		}
 		if let width=self.view.window?.frame.size.width {
-			if  !self.view.isInFullScreenMode {
+			if  self.view.isInFullScreenMode==false {
 				resizeContents(maxWidth: width)
 				clockWindowController.sizeWindowToFitClock(newWidth: width)
 			}
@@ -109,7 +109,7 @@ class ClockViewController: NSViewController {
 		resizeClock()
 	}
 	func animateClock() {
-		if !ClockPreferencesStorage.sharedInstance.useAnalog {
+		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
 			showDigitalClock()
 			if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
 				clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: animatedDayInfo!)
@@ -123,7 +123,7 @@ class ClockViewController: NSViewController {
 		}
 	}
 	func resizeClock() {
-		if !ClockPreferencesStorage.sharedInstance.useAnalog {
+		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
 			if let windowWidth=view.window?.frame.size.width {
 				resizeContents(maxWidth: windowWidth)
 			}
@@ -141,7 +141,7 @@ class ClockViewController: NSViewController {
 	}
 	func resizeContents(maxWidth: CGFloat) {
 		magnifierSemaphore.wait()
-		if !ClockPreferencesStorage.sharedInstance.useAnalog {
+		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
 			digitalClock.sizeToFit()
 			animatedDayInfo.sizeToFit()
 			let desiredMaginifcation=(maxWidth/332)//clockStackView.frame.width)*0.98
@@ -222,7 +222,7 @@ class ClockViewController: NSViewController {
 			contrastColor =
 				clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
 		}
-		if !ClockPreferencesStorage.sharedInstance.colorForForeground {
+		if ClockPreferencesStorage.sharedInstance.colorForForeground==false {
 			visualEffectView.isHidden=true
 			digitalClock.textColor=NSColor.labelColor
 			animatedDayInfo.textColor=NSColor.labelColor
