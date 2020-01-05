@@ -7,6 +7,7 @@
 //
 import Cocoa
 class SimplePreferenceWindowController: NSWindowController {
+	static var prefrencesObject=SimplePreferenceWindowController()
     override func windowDidLoad() {
         super.windowDidLoad()
         window?.maxSize=CGSize(width: window?.frame.width ?? CGFloat(100), height: window?.frame.height ?? CGFloat(100))

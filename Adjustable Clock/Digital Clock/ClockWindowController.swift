@@ -10,12 +10,13 @@ import Cocoa
 
 class ClockWindowController: NSWindowController, NSWindowDelegate {
 	static var clockObject=ClockWindowController()
-    var hideButtonsTimer: Timer?
+	var hideButtonsTimer: Timer?
     var backgroundView: NSView?
     var trackingArea: NSTrackingArea?
 	let analogConstant=CGFloat(10)
     override func windowDidLoad() {
         super.windowDidLoad()
+		ClockWindowController.clockObject=ClockWindowController()
 		guard let clockViewController=window?.contentViewController as? ClockViewController else {
 			return
 		}
@@ -93,11 +94,11 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 				finalHeight=height
 			}
 		}
-		let oldWidth=window?.frame.width
+		let oldWidth=window?.frame.width ?? 0
 		var newSize=NSSize(width: newWidth, height: finalHeight)
-        let oldHeight=window?.frame.height
-        let changeInHeight=finalHeight-oldHeight!
-        let changeInWidth=newWidth-oldWidth!
+		let oldHeight=window?.frame.height ?? 0
+        let changeInHeight=finalHeight-oldHeight
+        let changeInWidth=newWidth-oldWidth
 		guard let windowOrigin=window?.frame.origin else {
 			return
 		}
@@ -110,7 +111,6 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		}
         let newRect=NSRect(origin: newOrigin, size: newSize)
         //window?.setFrame(newRect, display: true)
-		print("window"+window!.frame.size.height.description)
     }
     func windowDidBecomeKey(_ notification: Notification) {
 		flashButtons()
@@ -149,7 +149,6 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		} else {
 			window?.aspectRatio=digitalClockVC.analogClock.frame.size
 		}
-		print("window resize"+(window?.frame.size.height.description)!)
     }
     func windowWillClose(_ notification: Notification) {
 		saveState()
@@ -195,7 +194,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		prepareWindowButtons()
         updateClockMenuUI()
         reloadPreferencesWindowIfOpen()
-        window?.aspectRatio=(window?.frame.size)!
+		window?.aspectRatio==NSSize(width: 332, height: 151)
     }
     func windowWillUseStandardFrame(_ window: NSWindow,
                                     defaultFrame newFrame: NSRect) -> NSRect {

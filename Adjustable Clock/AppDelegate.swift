@@ -14,7 +14,7 @@ other possibilities that could be done possibly from the same app:
 import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    var colorsMenuController: ColorsMenuController!
+    var colorsMenuController: ColorsMenuController?
 	//on launch
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()

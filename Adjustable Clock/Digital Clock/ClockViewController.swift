@@ -77,7 +77,7 @@ class ClockViewController: NSViewController {
 				self.updateTimer=nil
 				self.digitalClock.stringValue="Relaunch To Resume"
 				self.animatedDayInfo.stringValue=""
-				self.resizeContents(maxWidth: (self.view.window?.frame.width)!)
+				self.resizeContents(maxWidth: self.view.window?.frame.width ?? CGFloat(200))
 		}
 		let screenWakeObserver =
 			workspaceNotifcationCenter.addObserver(forName:
@@ -157,7 +157,7 @@ class ClockViewController: NSViewController {
 				} else {
 				}
 			} else {
-				let projectedHeight=makeDateMaxSize(maxWidth: (self.view.window?.frame.width)!).height
+				let projectedHeight=makeDateMaxSize(maxWidth: (self.view.window?.frame.width) ?? CGFloat(200)).height
 				if let maxHeight=self.view.window?.screen?.visibleFrame.height {
 					if projectedHeight>maxHeight {
 					} else {

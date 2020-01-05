@@ -10,8 +10,6 @@ import  Cocoa
 
 class MainMenu: NSMenu {
     @IBOutlet weak var colorsMenu: NSMenu!
-    var simplePreferencesWindowController: SimplePreferenceWindowController?
-    var clockWindowController: ClockWindowController?
     let clockPreferences=ClockPreferencesStorage.sharedInstance
     @IBOutlet weak var clockMenu: NSMenu!
 	//clock menu items
@@ -135,7 +133,7 @@ class MainMenu: NSMenu {
                     showSimplePreferencesWindow()
 				} else {
                     if isThereASimplePreferencesWindow() {
-                        simplePreferencesWindowController?.window?.makeKeyAndOrderFront(nil)
+						SimplePreferenceWindowController.prefrencesObject.window?.makeKeyAndOrderFront(nil)
                     } else {
                         showSimplePreferencesWindow()
                     }
@@ -147,14 +145,17 @@ class MainMenu: NSMenu {
     }
     func showSimplePreferencesWindow() {
         let adjustableClockStoryboard = NSStoryboard(name: "Main", bundle: nil)
-        simplePreferencesWindowController = adjustableClockStoryboard.instantiateController(withIdentifier:
-			"SimplePreferencesWC") as? SimplePreferenceWindowController
-        simplePreferencesWindowController?.loadWindow()
-        simplePreferencesWindowController?.showWindow(nil)
+		guard let preferencesObject = adjustableClockStoryboard.instantiateController(withIdentifier:
+			"SimplePreferencesWC") as? SimplePreferenceWindowController else {
+				return
+		}
+		SimplePreferenceWindowController.prefrencesObject=preferencesObject
+		SimplePreferenceWindowController.prefrencesObject.loadWindow()
+		SimplePreferenceWindowController.prefrencesObject.showWindow(nil)
     }
 	func reloadSimplePreferencesWindow() {
-		simplePreferencesWindowController?.loadWindow()
-        simplePreferencesWindowController?.showWindow(nil)
+		SimplePreferenceWindowController.prefrencesObject.loadWindow()
+		SimplePreferenceWindowController.prefrencesObject.showWindow(nil)
 	}
     func updateForPreferencesChange() {
         updateClockMenuUI()
