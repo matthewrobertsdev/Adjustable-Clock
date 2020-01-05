@@ -143,7 +143,7 @@ class ClockViewController: NSViewController {
 		if !ClockPreferencesStorage.sharedInstance.useAnalog {
 			digitalClock.sizeToFit()
 			animatedDayInfo.sizeToFit()
-			let desiredMaginifcation=(maxWidth/287)//clockStackView.frame.width)*0.98
+			let desiredMaginifcation=(maxWidth/332)//clockStackView.frame.width)*0.98
 			maginiferScrollView.magnification=desiredMaginifcation
         if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
             let projectedTimeHeight=makeTimeMaxSize(maxWidth: maxWidth).height
