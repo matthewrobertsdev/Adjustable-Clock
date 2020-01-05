@@ -16,7 +16,7 @@ class ClockViewController: NSViewController {
 	@IBOutlet weak var analogClockHeightConstraint: NSLayoutConstraint!
 	@IBOutlet weak var analogClockWidthConstraint: NSLayoutConstraint!
 	let digitalClockModel=DigitalClockModel()
-    var findingFontSemaphore=DispatchSemaphore(value: 1)
+    var magnifierSemaphore=DispatchSemaphore(value: 1)
     var tellingTime: NSObjectProtocol?
 	var updateTimer: DispatchSourceTimer?
     let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
@@ -139,7 +139,7 @@ class ClockViewController: NSViewController {
 		}
     }
     func resizeContents(maxWidth: CGFloat) {
-		findingFontSemaphore.wait()
+		magnifierSemaphore.wait()
 		if !ClockPreferencesStorage.sharedInstance.useAnalog {
 			digitalClock.sizeToFit()
 			animatedDayInfo.sizeToFit()
@@ -153,42 +153,28 @@ class ClockViewController: NSViewController {
             if let maxHeight=self.view.window?.screen?.visibleFrame.height {
                 if projectedHeight>maxHeight {
                     newProportion=(self.view.window?.screen?.visibleFrame.height)!/projectedHeight
-                    //findFittingFont(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth*newProportion))
-                    //findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth*newProportion))
                 } else {
-                //findFittingFont(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth))
-                //findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth))
                 }
             } else {
-				//findFittingFont(label: animatedDayInfo, size: makeDateMaxSize(maxWidth: maxWidth))
-                //findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth))
             }
         } else {
             let projectedHeight=makeDateMaxSize(maxWidth: (self.view.window?.frame.width)!).height
-            var newProportion: CGFloat=1
             if let maxHeight=self.view.window?.screen?.visibleFrame.height {
                 if projectedHeight>maxHeight {
-                    newProportion=(self.view.window?.screen?.visibleFrame.height)!/projectedHeight
-                    //findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth*newProportion))
                 } else {
-                    //findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth))
                 }
             } else {
-                //findFittingFont(label: digitalClock, size: makeTimeMaxSize(maxWidth: maxWidth))
             }
         }
 		} else {
 			analogClock.setNeedsDisplay(analogClock.frame)
 		}
-        findingFontSemaphore.signal()
+        magnifierSemaphore.signal()
     }
     func updateTime() {
         let timeString=digitalClockModel.getTime()
         if digitalClock?.stringValue != timeString {
             digitalClock?.stringValue=timeString
-            if !(self.view.window?.frame.width==nil) {
-                clockLiveResize(maxWidth: (self.view.window?.frame.width)!)
-            }
         }
     }
     func updateTimeAndDayInfo() {
@@ -197,10 +183,6 @@ class ClockViewController: NSViewController {
             digitalClock?.stringValue=timeString
             let dayInfo=digitalClockModel.getDayInfo()
                 animatedDayInfo?.stringValue=dayInfo
-			guard let windowWidth=self.view.window?.frame.width else {
-				return
-			}
-                clockLiveResize(maxWidth: windowWidth)
         }
     }
     func animateTimeAndDayInfo() {
@@ -227,22 +209,6 @@ class ClockViewController: NSViewController {
                 self.updateTime()
         }
         timer.resume()
-    }
-    func clockLiveResize(maxWidth: CGFloat) {
-        animatedDayInfo.sizeToFit()
-		guard let window=self.view.window else {
-			return
-		}
-		let maxHeight=maxWidth*digitalClockModel.dateSizeRatio*0.9
-        if !window.inLiveResize &&  ((clockStackView.fittingSize.width>maxWidth)||((animatedDayInfo.frame.width<maxWidth*0.9)&&(animatedDayInfo.frame.height<maxHeight))) {
-			resizeContents(maxWidth: window.frame.size.width)
-            if !window.isZoomed && ClockPreferencesStorage.sharedInstance.fullscreen==false {
-				guard let digitalClockWC=view.window?.windowController as? ClockWindowController else {
-					return
-				}
-				digitalClockWC.sizeWindowToFitClock(newWidth: (self.view.window?.frame.width)!)
-            }
-        }
     }
 	@objc func applyColors(sender: NSNotification) {
 		applyColorScheme()
