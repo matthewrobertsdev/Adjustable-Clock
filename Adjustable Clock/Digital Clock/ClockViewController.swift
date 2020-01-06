@@ -15,6 +15,8 @@ class ClockViewController: NSViewController {
 	@IBOutlet weak var maginiferScrollView: NSScrollView!
 	@IBOutlet weak var analogClockHeightConstraint: NSLayoutConstraint!
 	@IBOutlet weak var analogClockWidthConstraint: NSLayoutConstraint!
+	@IBOutlet weak var clockHeightConstraint: NSLayoutConstraint!
+	
 	let clockModel=ClockModel()
 	var magnifierSemaphore=DispatchSemaphore(value: 1)
 	var tellingTime: NSObjectProtocol?
@@ -146,25 +148,6 @@ class ClockViewController: NSViewController {
 			animatedDayInfo.sizeToFit()
 			let desiredMaginifcation=(maxWidth/332)//clockStackView.frame.width)*0.98
 			maginiferScrollView.magnification=desiredMaginifcation
-			if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
-				let projectedTimeHeight=makeTimeMaxSize(maxWidth: maxWidth).height
-				let projectedDateHeight=makeDateMaxSize(maxWidth: maxWidth).height
-				let projectedHeight=projectedTimeHeight+projectedDateHeight
-				if let maxHeight=self.view.window?.screen?.visibleFrame.height {
-					if projectedHeight>maxHeight {
-					} else {
-					}
-				} else {
-				}
-			} else {
-				let projectedHeight=makeDateMaxSize(maxWidth: (self.view.window?.frame.width) ?? CGFloat(200)).height
-				if let maxHeight=self.view.window?.screen?.visibleFrame.height {
-					if projectedHeight>maxHeight {
-					} else {
-					}
-				} else {
-				}
-			}
 		} else {
 			analogClock.setNeedsDisplay(analogClock.frame)
 		}

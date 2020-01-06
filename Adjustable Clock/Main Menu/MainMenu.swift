@@ -141,7 +141,7 @@ class MainMenu: NSMenu {
             }
     }
     @IBAction func pressShowDigitalClockMenuItem(showClockMenuItem: NSMenuItem) {
-		ClockWindowController.clockObject.showDigitalClock()
+		ClockWindowController.clockObject.showClock()
     }
     func showSimplePreferencesWindow() {
         let adjustableClockStoryboard = NSStoryboard(name: "Main", bundle: nil)

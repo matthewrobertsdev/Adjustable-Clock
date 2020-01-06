@@ -5,9 +5,7 @@
 //  Created by Matt Roberts on 7/14/17.
 //  Copyright © 2017 Matt Roberts. All rights reserved.
 //
-
 import Cocoa
-
 class ClockWindowController: NSWindowController, NSWindowDelegate {
 	static var clockObject=ClockWindowController()
 	var hideButtonsTimer: Timer?
@@ -42,18 +40,18 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
         updateClockMenuUI()
         window?.isOpaque=false
     }
-	func digitalClockWindowPresent() -> Bool {
+	func clockWindowPresent() -> Bool {
 		return windowPresent(identifier: UserInterfaceIdentifier.digitalClockWindow)
 	}
-	func showDigitalClock() {
-		if digitalClockWindowPresent()==false {
+	func showClock() {
+		if clockWindowPresent()==false {
 		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
-		guard let digitalClockWindowController =
+		guard let clockWindowController =
 			mainStoryBoard.instantiateController(withIdentifier:
-				"DigitalClockWindowController") as? ClockWindowController else {
+				"ClockWindowController") as? ClockWindowController else {
 				return
 			}
-		ClockWindowController.clockObject=digitalClockWindowController
+		ClockWindowController.clockObject=clockWindowController
 		ClockWindowController.clockObject.loadWindow()
 		ClockWindowController.clockObject.showWindow(nil)
 		} else {
@@ -83,22 +81,20 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
         view.addTrackingArea(area)
     }
     func sizeWindowToFitClock(newWidth: CGFloat) {
-		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
+		/*guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
 			return
-		}
-		var finalHeight: CGFloat=100
+		}*/
+		var newHeight: CGFloat=100
 		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
-			
+			newHeight=newWidth/332*151
 		} else {
 			if let height=window?.frame.width {
-				finalHeight=height
+				newHeight=height
 			}
 		}
-		let oldWidth=window?.frame.width ?? 0
-		var newSize=NSSize(width: newWidth, height: finalHeight)
-		let oldHeight=window?.frame.height ?? 0
-        let changeInHeight=finalHeight-oldHeight
-        let changeInWidth=newWidth-oldWidth
+		var newSize=NSSize(width: newWidth, height: newHeight)
+        let changeInHeight=newHeight-(window?.frame.height ?? 0)
+        let changeInWidth=newWidth-(window?.frame.width ?? 0)
 		guard let windowOrigin=window?.frame.origin else {
 			return
 		}
@@ -110,7 +106,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			}
 		}
         let newRect=NSRect(origin: newOrigin, size: newSize)
-        //window?.setFrame(newRect, display: true)
+        window?.setFrame(newRect, display: true)
     }
     func windowDidBecomeKey(_ notification: Notification) {
 		flashButtons()
@@ -122,8 +118,6 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
     }
     override func mouseMoved(with event: NSEvent) {
         flashButtons()
-    }
-    func windowDidEndLiveResize(_ notification: Notification) {
     }
     func windowDidResize(_ notification: Notification) {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
@@ -186,6 +180,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			return
 		}
 		digitalClockVC.resizeContents(maxWidth: maxWidth)
+		digitalClockVC.clockHeightConstraint.constant=151
 		sizeWindowToFitClock(newWidth: maxWidth)
 		digitalClockVC.applyFloatState()
     }
@@ -194,7 +189,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		prepareWindowButtons()
         updateClockMenuUI()
         reloadPreferencesWindowIfOpen()
-		window?.aspectRatio==NSSize(width: 332, height: 151)
+		window?.aspectRatio=NSSize(width: 332, height: 151)
     }
     func windowWillUseStandardFrame(_ window: NSWindow,
                                     defaultFrame newFrame: NSRect) -> NSRect {

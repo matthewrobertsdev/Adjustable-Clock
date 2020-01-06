@@ -545,7 +545,7 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController storyboardIdentifier="DigitalClockWindowController" showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="ClockWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="ClockWindowController" showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="ClockWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="DigitalClockWindow" title="Digital Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" animationBehavior="utilityWindow" frameAutosaveName="" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA" customClass="DefaultNSWindow" customModule="Adjustable_Clock" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" managed="YES" fullScreenPrimary="YES" fullScreenAllowsTiling="YES"/>
@@ -640,6 +640,9 @@
                                         </view>
                                     </subviews>
                                 </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="go5-1Y-2aB" secondAttribute="height" multiplier="332:151" id="mJL-b7-Z5k"/>
+                                </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="rdI-Fu-hTE">
                                     <rect key="frame" x="-100" y="-100" width="166" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
@@ -651,12 +654,12 @@
                             </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="go5-1Y-2aB" firstAttribute="top" secondItem="hTG-P0-Z21" secondAttribute="top" id="63F-Eu-8Za"/>
                             <constraint firstItem="7lE-Vi-cYq" firstAttribute="leading" secondItem="hTG-P0-Z21" secondAttribute="leading" id="P27-bA-wUZ"/>
+                            <constraint firstItem="go5-1Y-2aB" firstAttribute="centerY" secondItem="hTG-P0-Z21" secondAttribute="centerY" id="PXq-cX-iNV"/>
                             <constraint firstItem="go5-1Y-2aB" firstAttribute="leading" secondItem="hTG-P0-Z21" secondAttribute="leading" id="Z6e-fM-Z4b"/>
+                            <constraint firstItem="go5-1Y-2aB" firstAttribute="centerX" secondItem="hTG-P0-Z21" secondAttribute="centerX" id="eJX-9p-ZqZ"/>
                             <constraint firstAttribute="trailing" secondItem="7lE-Vi-cYq" secondAttribute="trailing" id="gIG-21-pcb"/>
                             <constraint firstAttribute="trailing" secondItem="go5-1Y-2aB" secondAttribute="trailing" id="iHF-Bg-srv"/>
-                            <constraint firstAttribute="bottom" secondItem="go5-1Y-2aB" secondAttribute="bottom" id="m7U-N4-fnt"/>
                             <constraint firstItem="7lE-Vi-cYq" firstAttribute="top" secondItem="hTG-P0-Z21" secondAttribute="top" id="pdx-mX-asb"/>
                             <constraint firstAttribute="bottom" secondItem="7lE-Vi-cYq" secondAttribute="bottom" id="rf1-eg-nCD"/>
                         </constraints>
@@ -664,6 +667,7 @@
                     <connections>
                         <outlet property="analogClock" destination="AyC-ZK-hRt" id="gD3-tG-s89"/>
                         <outlet property="animatedDayInfo" destination="8Ma-9v-P9y" id="1bu-WI-1ba"/>
+                        <outlet property="clockHeightConstraint" destination="RQ3-Mt-Yrr" id="GqP-Mh-2eI"/>
                         <outlet property="clockStackView" destination="OnO-xZ-G0J" id="MUi-8W-Su8"/>
                         <outlet property="digitalClock" destination="ayc-mj-Qox" id="dRP-X6-QuT"/>
                         <outlet property="maginiferScrollView" destination="go5-1Y-2aB" id="AlA-w5-G98"/>
