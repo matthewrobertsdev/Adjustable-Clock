@@ -124,12 +124,10 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			return
 		}
 		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
-		guard let windowWidth=window?.frame.width else {
+			guard let windowWidth=window?.frame.size.width else {
 			return
 		}
-			if ClockPreferencesStorage.sharedInstance.useAnalog==false {
         digitalClockVC.resizeContents(maxWidth: windowWidth)
-			}
 		guard let windowIsZoomed=window?.isZoomed else {
 			return
 		}
@@ -161,6 +159,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		}
         digitalClockVC.resizeContents(maxWidth: windowSize.width)
 		window?.aspectRatio=windowSize
+		print("will enter full screen")
     }
     func windowDidEnterFullScreen(_ notification: Notification) {
         removeTrackingArea()
@@ -169,9 +168,6 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
         reloadPreferencesWindowIfOpen()
         window?.makeKey()
         showButtons(show: true)
-		if let size=window?.screen?.frame.size {
-		window?.setFrame(NSRect(origin: CGPoint(x: 0, y: 0), size: size), display: true)
-		}
     }
     func windowWillExitFullScreen(_ notification: Notification) {
 		ClockPreferencesStorage.sharedInstance.fullscreen=false

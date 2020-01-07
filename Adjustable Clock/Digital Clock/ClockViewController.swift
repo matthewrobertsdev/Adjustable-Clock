@@ -16,7 +16,6 @@ class ClockViewController: NSViewController {
 	@IBOutlet weak var analogClockHeightConstraint: NSLayoutConstraint!
 	@IBOutlet weak var analogClockWidthConstraint: NSLayoutConstraint!
 	@IBOutlet weak var clockHeightConstraint: NSLayoutConstraint!
-	
 	let clockModel=ClockModel()
 	var magnifierSemaphore=DispatchSemaphore(value: 1)
 	var tellingTime: NSObjectProtocol?
