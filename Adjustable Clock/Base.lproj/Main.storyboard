@@ -588,13 +588,17 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="332" height="150"/>
                                                     <subviews>
                                                         <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnO-xZ-G0J">
-                                                            <rect key="frame" x="3" y="8" width="327" height="134"/>
+                                                            <rect key="frame" x="3" y="-155" width="327" height="461"/>
                                                             <subviews>
-                                                                <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AyC-ZK-hRt" customClass="AnalogClockView" customModule="Adjustable_Clock" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="-59" width="193" height="193"/>
+                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="AyC-ZK-hRt" customClass="AnalogClockView" customModule="Adjustable_Clock" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="134" width="327" height="327"/>
                                                                     <constraints>
+                                                                        <constraint firstAttribute="width" constant="327" id="6s1-dN-FXD"/>
                                                                         <constraint firstAttribute="width" secondItem="AyC-ZK-hRt" secondAttribute="height" multiplier="1:1" id="ExY-6Q-V6v"/>
                                                                     </constraints>
+                                                                    <connections>
+                                                                        <outlet property="widthConstraint" destination="6s1-dN-FXD" id="zm1-6Y-Uf3"/>
+                                                                    </connections>
                                                                 </customView>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayc-mj-Qox">
                                                                     <rect key="frame" x="7" y="46" width="312" height="88"/>
@@ -641,7 +645,7 @@
                                     </subviews>
                                 </clipView>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="go5-1Y-2aB" secondAttribute="height" multiplier="332:151" id="mJL-b7-Z5k"/>
+                                    <constraint firstAttribute="width" secondItem="go5-1Y-2aB" secondAttribute="height" multiplier="332:151" id="B3q-Yf-6Fi"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="rdI-Fu-hTE">
                                     <rect key="frame" x="-100" y="-100" width="166" height="15"/>
@@ -671,6 +675,7 @@
                         <outlet property="clockStackView" destination="OnO-xZ-G0J" id="MUi-8W-Su8"/>
                         <outlet property="clockWidthConstraint" destination="0Dj-tZ-ymH" id="eIn-2y-4Hw"/>
                         <outlet property="digitalClock" destination="ayc-mj-Qox" id="dRP-X6-QuT"/>
+                        <outlet property="maginfierAspectRatioConstraint" destination="B3q-Yf-6Fi" id="5Um-aT-O0c"/>
                         <outlet property="maginiferScrollView" destination="go5-1Y-2aB" id="AlA-w5-G98"/>
                         <outlet property="visibleView" destination="1rG-JS-1O3" id="txd-dt-1ZX"/>
                         <outlet property="visualEffectView" destination="7lE-Vi-cYq" id="bqY-T7-Ac7"/>

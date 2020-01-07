@@ -17,7 +17,6 @@
 		9F538C512116B0AF00A72242 /* SimplePreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C502116B0AF00A72242 /* SimplePreferencesController.swift */; };
 		9F5440AD23C1710F00258209 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5440AC23C1710F00258209 /* TestViewController.swift */; };
 		9F5440B023C1715B00258209 /* TestSubclassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5440AE23C1715B00258209 /* TestSubclassViewController.swift */; };
-		9F5E3F3B23B710CC00DC3389 /* AnalogClockWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5E3F3A23B710CC00DC3389 /* AnalogClockWindowController.swift */; };
 		9F6974772065BA19007886DE /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6974762065BA19007886DE /* PreferencesController.swift */; };
 		9F7174A11F5DADE800595C8D /* DigItalClockAppFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7174A01F5DADE800595C8D /* DigItalClockAppFunctions.swift */; };
 		9F750CC02056073F007980F9 /* DefaultNSWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F750CBF2056073F007980F9 /* DefaultNSWindow.swift */; };
@@ -25,6 +24,7 @@
 		9F8BF21720EEBEFE00ADF294 /* ColorsMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BF21620EEBEFE00ADF294 /* ColorsMenuController.swift */; };
 		9F8EBE482050C4C7005BA4F2 /* ClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8EBE472050C4C7005BA4F2 /* ClockViewController.swift */; };
 		9F8ED1711FEC73C100C0553C /* WindowFrameRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8ED1701FEC73C100C0553C /* WindowFrameRestorer.swift */; };
+		9FA8A51023C54A19005F0579 /* NSLayoutConstraintExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA8A50F23C54A19005F0579 /* NSLayoutConstraintExtension.swift */; };
 		9FB47E5E1F480A43009D82FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB47E5D1F480A43009D82FF /* AppDelegate.swift */; };
 		9FB47E621F480A43009D82FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FB47E611F480A43009D82FF /* Assets.xcassets */; };
 		9FB47E651F480A43009D82FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FB47E631F480A43009D82FF /* Main.storyboard */; };
@@ -66,7 +66,6 @@
 		9F538C502116B0AF00A72242 /* SimplePreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferencesController.swift; sourceTree = "<group>"; };
 		9F5440AC23C1710F00258209 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		9F5440AE23C1715B00258209 /* TestSubclassViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSubclassViewController.swift; sourceTree = "<group>"; };
-		9F5E3F3A23B710CC00DC3389 /* AnalogClockWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogClockWindowController.swift; sourceTree = "<group>"; };
 		9F6974762065BA19007886DE /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
 		9F7174A01F5DADE800595C8D /* DigItalClockAppFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigItalClockAppFunctions.swift; sourceTree = "<group>"; };
 		9F750CBF2056073F007980F9 /* DefaultNSWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultNSWindow.swift; sourceTree = "<group>"; };
@@ -74,6 +73,7 @@
 		9F8BF21620EEBEFE00ADF294 /* ColorsMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsMenuController.swift; sourceTree = "<group>"; };
 		9F8EBE472050C4C7005BA4F2 /* ClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockViewController.swift; sourceTree = "<group>"; };
 		9F8ED1701FEC73C100C0553C /* WindowFrameRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowFrameRestorer.swift; sourceTree = "<group>"; };
+		9FA8A50F23C54A19005F0579 /* NSLayoutConstraintExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintExtension.swift; sourceTree = "<group>"; };
 		9FB47E5A1F480A43009D82FF /* Adjustable Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adjustable Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FB47E5D1F480A43009D82FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FB47E611F480A43009D82FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -118,14 +118,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9F5E3F3923B7102B00DC3389 /* AnalogClock */ = {
-			isa = PBXGroup;
-			children = (
-				9F5E3F3A23B710CC00DC3389 /* AnalogClockWindowController.swift */,
-			);
-			path = AnalogClock;
-			sourceTree = "<group>";
-		};
 		9F7DF9422066094400CC0DF6 /* Digital Clock */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,7 +200,6 @@
 		9FB47E5C1F480A43009D82FF /* Adjustable Clock */ = {
 			isa = PBXGroup;
 			children = (
-				9F5E3F3923B7102B00DC3389 /* AnalogClock */,
 				9FB47E5D1F480A43009D82FF /* AppDelegate.swift */,
 				9FEA8C8B1FECCF3A002D3960 /* Loading And Saving Windows */,
 				9F7DF9422066094400CC0DF6 /* Digital Clock */,
@@ -249,6 +240,7 @@
 			children = (
 				9FBBCCA420DDDD9F00F44160 /* NSImageTemplateExtension.swift */,
 				9F7174A01F5DADE800595C8D /* DigItalClockAppFunctions.swift */,
+				9FA8A50F23C54A19005F0579 /* NSLayoutConstraintExtension.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -435,9 +427,9 @@
 				9F6974772065BA19007886DE /* PreferencesController.swift in Sources */,
 				9FBBCCA520DDDD9F00F44160 /* NSImageTemplateExtension.swift in Sources */,
 				9FC97F591F480BB500035D30 /* PreferencesWC.swift in Sources */,
+				9FA8A51023C54A19005F0579 /* NSLayoutConstraintExtension.swift in Sources */,
 				9F8BF21720EEBEFE00ADF294 /* ColorsMenuController.swift in Sources */,
 				9F538C4F2116B06300A72242 /* SimplePreferencesVC.swift in Sources */,
-				9F5E3F3B23B710CC00DC3389 /* AnalogClockWindowController.swift in Sources */,
 				9F04FDF120EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift in Sources */,
 				9F2245D523B84FED000413F0 /* AnalogClockView.swift in Sources */,
 				9F793AAD2063849C00AF703E /* ClockModel.swift in Sources */,

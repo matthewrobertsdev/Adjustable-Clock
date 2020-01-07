@@ -14,8 +14,7 @@ class ClockViewController: NSViewController {
 	@IBOutlet weak var visualEffectView: NSVisualEffectView!
 	@IBOutlet weak var maginiferScrollView: NSScrollView!
 	@IBOutlet weak var visibleView: NSView!
-	@IBOutlet weak var analogClockHeightConstraint: NSLayoutConstraint!
-	@IBOutlet weak var analogClockWidthConstraint: NSLayoutConstraint!
+	@IBOutlet weak var maginfierAspectRatioConstraint: NSLayoutConstraint!
 	@IBOutlet weak var clockWidthConstraint: NSLayoutConstraint!
 	@IBOutlet weak var clockHeightConstraint: NSLayoutConstraint!
 	let clockModel=ClockModel()
@@ -25,8 +24,10 @@ class ClockViewController: NSViewController {
 	let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
 	func showAnalogClock() {
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: digitalClock)
-		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: animatedDayInfo)
+		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: animatedDayInfo)
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: analogClock)
+		updateClockModel()
+		updateSizeConstraints()
 		if let clockWindowController=view.window?.windowController as? ClockWindowController  {
 			if let width=self.view.window?.frame.size.width {
 				clockWindowController.sizeWindowToFitClock(newWidth: width)
@@ -40,8 +41,10 @@ class ClockViewController: NSViewController {
 		guard let clockWindowController=view.window?.windowController as? ClockWindowController else {
 			return
 		}
+		updateClockModel()
+		updateSizeConstraints()
 		if let width=self.view.window?.frame.size.width {
-			if  self.view.isInFullScreenMode==false {
+			if self.view.isInFullScreenMode==false {
 				resizeContents(maxWidth: width)
 				clockWindowController.sizeWindowToFitClock(newWidth: width)
 			}
@@ -104,8 +107,10 @@ class ClockViewController: NSViewController {
 		analogClock.setNeedsDisplay(analogClock.frame)
 	}
 	func updateSizeConstraints(){
+		maginfierAspectRatioConstraint=maginfierAspectRatioConstraint.setMultiplier(clockModel.width/clockModel.height)
 		clockWidthConstraint.constant=clockModel.width
 		clockHeightConstraint.constant=clockModel.height
+		analogClock.widthConstraint.constant=clockModel.width
 		visibleView.setFrameSize(NSSize(width: clockModel.width, height: clockModel.height))
 	}
 	func updateClock() {
@@ -149,14 +154,12 @@ class ClockViewController: NSViewController {
 	}
 	func resizeContents(maxWidth: CGFloat) {
 		magnifierSemaphore.wait()
-		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
+		//if ClockPreferencesStorage.sharedInstance.useAnalog==false {
 			digitalClock.sizeToFit()
 			animatedDayInfo.sizeToFit()
 			let desiredMaginifcation=maxWidth/clockModel.width
 			maginiferScrollView.magnification=desiredMaginifcation
-		} else {
-			analogClock.setNeedsDisplay(analogClock.frame)
-		}
+		//} else {
 		magnifierSemaphore.signal()
 	}
 	func updateTime() {
@@ -228,16 +231,15 @@ class ClockViewController: NSViewController {
 				}
 			}
 			self.view.layer?.backgroundColor=contrastColor.cgColor
-			animatedDayInfo.backgroundColor=contrastColor
 			analogClock.color=NSColor.labelColor
-			analogClock.setNeedsDisplay(analogClock.frame)
+			analogClock.setNeedsDisplay(analogClock.bounds)
 		} else {
 			visualEffectView.isHidden=false
 			digitalClock.textColor=contrastColor
 			animatedDayInfo.textColor=contrastColor
 			analogClock.color=contrastColor
-			analogClock.setNeedsDisplay(analogClock.frame)
-			self.view.layer?.backgroundColor = NSColor.labelColor.cgColor/*NSColor.clear.cgColor*/
+			analogClock.setNeedsDisplay(analogClock.bounds)
+			self.view.layer?.backgroundColor = NSColor.labelColor.cgColor
 		}
 	}
 	func applyFloatState() {

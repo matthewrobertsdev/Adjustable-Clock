@@ -7,6 +7,7 @@
 //
 import Cocoa
 class AnalogClockView: NSView {
+	@IBOutlet weak var widthConstraint: NSLayoutConstraint!
 	var color=NSColor.labelColor
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)

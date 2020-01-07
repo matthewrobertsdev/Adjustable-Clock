@@ -85,13 +85,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			return
 		}
 		var newHeight: CGFloat=100
-		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
-			newHeight=newWidth/digitalClockVC.clockModel.width*digitalClockVC.clockModel.height
-		} else {
-			if let height=window?.frame.width {
-				newHeight=height
-			}
-		}
+		newHeight=newWidth/digitalClockVC.clockModel.width*digitalClockVC.clockModel.height
 		var newSize=NSSize(width: newWidth, height: newHeight)
         let changeInHeight=newHeight-(window?.frame.height ?? 0)
         let changeInWidth=newWidth-(window?.frame.width ?? 0)
@@ -123,7 +117,6 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
 			return
 		}
-		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
 			guard let windowWidth=window?.frame.size.width else {
 			return
 		}
@@ -138,9 +131,6 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
         } else {
             showButtons(show: true)
         }
-		} else {
-			window?.aspectRatio=digitalClockVC.analogClock.frame.size
-		}
     }
     func windowWillClose(_ notification: Notification) {
 		saveState()
@@ -159,7 +149,6 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		}
         digitalClockVC.resizeContents(maxWidth: windowSize.width)
 		window?.aspectRatio=windowSize
-		print("will enter full screen")
     }
     func windowDidEnterFullScreen(_ notification: Notification) {
         removeTrackingArea()
