@@ -19,21 +19,12 @@ class ClockModel {
 	var dockDateString=""
     let timeFormatter = DateFormatter()
     let dateFormatter = DateFormatter()
-	//constant properties
-	//for time max sizes
-    let amPmMinutes=CGFloat(0.25)
-    let amPmSeconds=CGFloat(0.25)
-    let miltrayMinutes=CGFloat(0.36)
-    let militarySaeconds=CGFloat(0.25)
-    //for date max sizes
-    let weekdayDate=CGFloat(0.25)
-    let weekday=CGFloat(0.20)
-    let longDate=CGFloat(0.25)
-    let weekdayNumericalDate=CGFloat(0.25)
-    let numericalDate=CGFloat(0.20)
     //for time intervals (miliseconds)
     let seconds=1000
     let deciseconds=100
+	//current height and width
+	var width=CGFloat(332)
+	var height=CGFloat(151)
     func useShowMinutesAMPM() {
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
         updateTime=seconds
@@ -93,48 +84,51 @@ class ClockModel {
         if ClockPreferencesStorage.sharedInstance.use24hourClock==false {
             if ClockPreferencesStorage.sharedInstance.showSeconds==false {
                 useShowMinutesAMPM()
-                timeSizeRatio=amPmMinutes
+				width=CGFloat(332)
+				height=CGFloat(151)
             } else {
                 useShowSecondsAMPM()
-                timeSizeRatio=amPmSeconds
+				width=CGFloat(460)
+				height=CGFloat(180)
             }
         } else {
             if ClockPreferencesStorage.sharedInstance.showSeconds==false {
                 useShowMinutes24Hour()
-                timeSizeRatio=miltrayMinutes
+				width=CGFloat(332)
+				height=CGFloat(151)
             } else {
                 useShowSeconds24Hour()
-                timeSizeRatio=militarySaeconds
+				width=CGFloat(332)
+				height=CGFloat(151)
             }
-        }
+		}
         if showDayInfo==true {
             if ClockPreferencesStorage.sharedInstance.showDate==false {
                 if ClockPreferencesStorage.sharedInstance.showDayOfWeek==false {
                     useWeekdayDate()
-                    dateSizeRatio=weekdayDate
+					height=140
                 } else {
                     useWeekDay()
-                    dateSizeRatio=weekday
                 }
             } else {
                 if ClockPreferencesStorage.sharedInstance.showDayOfWeek==false {
                     if ClockPreferencesStorage.sharedInstance.useNumericalDate==false {
                         useLongDate()
-                        dateSizeRatio=longDate
                     } else {
                         useNumericalDate()
-                        dateSizeRatio=numericalDate
                     }
                 } else {
                     if ClockPreferencesStorage.sharedInstance.useNumericalDate==false {
                         useWeekdayDate()
-                        dateSizeRatio=weekdayDate
+						width=CGFloat(460)
+						height=CGFloat(180)
                     } else {
                         useWeekdayNumericalDate()
-						dateSizeRatio=weekdayNumericalDate
                     }
                 }
             }
-        }
+		} else {
+			height=140
+		}
     }
 }

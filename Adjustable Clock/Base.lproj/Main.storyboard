@@ -669,8 +669,10 @@
                         <outlet property="animatedDayInfo" destination="8Ma-9v-P9y" id="1bu-WI-1ba"/>
                         <outlet property="clockHeightConstraint" destination="RQ3-Mt-Yrr" id="GqP-Mh-2eI"/>
                         <outlet property="clockStackView" destination="OnO-xZ-G0J" id="MUi-8W-Su8"/>
+                        <outlet property="clockWidthConstraint" destination="0Dj-tZ-ymH" id="eIn-2y-4Hw"/>
                         <outlet property="digitalClock" destination="ayc-mj-Qox" id="dRP-X6-QuT"/>
                         <outlet property="maginiferScrollView" destination="go5-1Y-2aB" id="AlA-w5-G98"/>
+                        <outlet property="visibleView" destination="1rG-JS-1O3" id="txd-dt-1ZX"/>
                         <outlet property="visualEffectView" destination="7lE-Vi-cYq" id="bqY-T7-Ac7"/>
                     </connections>
                 </viewController>

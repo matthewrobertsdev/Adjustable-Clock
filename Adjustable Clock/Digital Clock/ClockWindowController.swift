@@ -19,7 +19,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			return
 		}
         backgroundView=clockViewController.view
-		window?.minSize=CGSize(width: 100, height: 100)
+		window?.minSize=CGSize(width: 150, height: 150)
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
 		if ClockPreferencesStorage.sharedInstance.hasLaunchedBefore() {
 			ClockWindowRestorer().loadSavedWindowCGRect(window: window)
@@ -81,12 +81,12 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
         view.addTrackingArea(area)
     }
     func sizeWindowToFitClock(newWidth: CGFloat) {
-		/*guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
+		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
 			return
-		}*/
+		}
 		var newHeight: CGFloat=100
 		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
-			newHeight=newWidth/332*151
+			newHeight=newWidth/digitalClockVC.clockModel.width*digitalClockVC.clockModel.height
 		} else {
 			if let height=window?.frame.width {
 				newHeight=height
@@ -132,7 +132,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			return
 		}
         if windowIsZoomed==false && ClockPreferencesStorage.sharedInstance.fullscreen==false {
-            let newAspectRatio=NSSize(width: 332, height: 151)
+			let newAspectRatio=NSSize(width: digitalClockVC.clockModel.width, height: digitalClockVC.clockModel.height)
             window?.aspectRatio=newAspectRatio
             showButtons(show: false)
         } else {
@@ -176,7 +176,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			return
 		}
 		digitalClockVC.resizeContents(maxWidth: maxWidth)
-		digitalClockVC.clockHeightConstraint.constant=151
+		digitalClockVC.clockHeightConstraint.constant=digitalClockVC.clockModel.height
 		sizeWindowToFitClock(newWidth: maxWidth)
 		digitalClockVC.applyFloatState()
     }
@@ -185,7 +185,10 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		prepareWindowButtons()
         updateClockMenuUI()
         reloadPreferencesWindowIfOpen()
-		window?.aspectRatio=NSSize(width: 332, height: 151)
+		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
+			return
+		}
+		window?.aspectRatio=NSSize(width: digitalClockVC.clockModel.width, height: digitalClockVC.clockModel.height)
     }
     func windowWillUseStandardFrame(_ window: NSWindow,
                                     defaultFrame newFrame: NSRect) -> NSRect {
