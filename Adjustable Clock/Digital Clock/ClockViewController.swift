@@ -112,6 +112,20 @@ class ClockViewController: NSViewController {
 		clockHeightConstraint.constant=clockModel.height
 		analogClock.widthConstraint.constant=clockModel.width
 		visibleView.setFrameSize(NSSize(width: clockModel.width, height: clockModel.height))
+		self.view.window?.minSize=NSSize(width: clockModel.width/3, height: clockModel.height/3)
+		guard let windowWidth=self.view.window?.frame.width else {
+			return
+		}
+		guard let windowHeight=self.view.window?.frame.width else {
+			return
+		}
+		if windowWidth<clockModel.width/3 || windowHeight<clockModel.height/3 {
+			resizeContents(maxWidth: clockModel.width/3)
+			guard let digitalClockWC=view.window?.windowController as? ClockWindowController else {
+				return
+			}
+			digitalClockWC.sizeWindowToFitClock(newWidth: clockModel.width/3)
+		}
 	}
 	func updateClock() {
 		updateClockModel()

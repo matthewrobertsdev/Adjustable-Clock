@@ -27,7 +27,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		ClockPreferencesStorage.sharedInstance.setApplicationAsHasLaunched()
         clockViewController.updateClock()
 		if let windowSize=window?.frame.size {
-			window?.aspectRatio=windowSize
+			//window?.aspectRatio=windowSize
 		}
         window?.isMovableByWindowBackground=true
         window?.delegate=self
@@ -126,7 +126,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		}
         if windowIsZoomed==false && ClockPreferencesStorage.sharedInstance.fullscreen==false {
 			let newAspectRatio=NSSize(width: digitalClockVC.clockModel.width, height: digitalClockVC.clockModel.height)
-            window?.aspectRatio=newAspectRatio
+            //window?.aspectRatio=newAspectRatio
             showButtons(show: false)
         } else {
             showButtons(show: true)
@@ -148,7 +148,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			return
 		}
         digitalClockVC.resizeContents(maxWidth: windowSize.width)
-		window?.aspectRatio=windowSize
+		//window?.aspectRatio=windowSize
     }
     func windowDidEnterFullScreen(_ notification: Notification) {
         removeTrackingArea()
@@ -177,7 +177,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
 			return
 		}
-		window?.aspectRatio=NSSize(width: digitalClockVC.clockModel.width, height: digitalClockVC.clockModel.height)
+		//window?.aspectRatio=NSSize(width: digitalClockVC.clockModel.width, height: digitalClockVC.clockModel.height)
     }
     func windowWillUseStandardFrame(_ window: NSWindow,
                                     defaultFrame newFrame: NSRect) -> NSRect {
