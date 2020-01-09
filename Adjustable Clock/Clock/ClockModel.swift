@@ -13,8 +13,6 @@ class ClockModel {
     var clockNSColors=ColorDictionary()
 	var showDayInfo=false
 	var updateTime=1000
-	var timeSizeRatio=CGFloat(0.25)
-	var dateSizeRatio=CGFloat(0.25)
 	var dockTimeString=""
 	var dockDateString=""
     let timeFormatter = DateFormatter()

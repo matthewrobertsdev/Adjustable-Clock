@@ -656,7 +656,9 @@
                         <constraints>
                             <constraint firstItem="7lE-Vi-cYq" firstAttribute="leading" secondItem="hTG-P0-Z21" secondAttribute="leading" id="P27-bA-wUZ"/>
                             <constraint firstItem="go5-1Y-2aB" firstAttribute="centerY" secondItem="hTG-P0-Z21" secondAttribute="centerY" id="PXq-cX-iNV"/>
+                            <constraint firstItem="go5-1Y-2aB" firstAttribute="top" secondItem="hTG-P0-Z21" secondAttribute="top" id="VzX-8k-t4Y"/>
                             <constraint firstItem="go5-1Y-2aB" firstAttribute="leading" secondItem="hTG-P0-Z21" secondAttribute="leading" id="Z6e-fM-Z4b"/>
+                            <constraint firstAttribute="bottom" secondItem="go5-1Y-2aB" secondAttribute="bottom" id="ckZ-OG-QRQ"/>
                             <constraint firstItem="go5-1Y-2aB" firstAttribute="centerX" secondItem="hTG-P0-Z21" secondAttribute="centerX" id="eJX-9p-ZqZ"/>
                             <constraint firstAttribute="trailing" secondItem="7lE-Vi-cYq" secondAttribute="trailing" id="gIG-21-pcb"/>
                             <constraint firstAttribute="trailing" secondItem="go5-1Y-2aB" secondAttribute="trailing" id="iHF-Bg-srv"/>
@@ -673,6 +675,10 @@
                         <outlet property="digitalClock" destination="ayc-mj-Qox" id="dRP-X6-QuT"/>
                         <outlet property="maginfierAspectRatioConstraint" destination="B3q-Yf-6Fi" id="5Um-aT-O0c"/>
                         <outlet property="maginiferScrollView" destination="go5-1Y-2aB" id="AlA-w5-G98"/>
+                        <outlet property="magnifierBottomConstaint" destination="ckZ-OG-QRQ" id="1w9-gy-Xqi"/>
+                        <outlet property="magnifierLeadingConstraint" destination="Z6e-fM-Z4b" id="fKn-4D-WYy"/>
+                        <outlet property="magnifierTopConstraint" destination="VzX-8k-t4Y" id="U1g-sD-uWN"/>
+                        <outlet property="magnifierTrailingConstraint" destination="iHF-Bg-srv" id="WEG-YL-inK"/>
                         <outlet property="visibleView" destination="1rG-JS-1O3" id="txd-dt-1ZX"/>
                         <outlet property="visualEffectView" destination="7lE-Vi-cYq" id="bqY-T7-Ac7"/>
                     </connections>

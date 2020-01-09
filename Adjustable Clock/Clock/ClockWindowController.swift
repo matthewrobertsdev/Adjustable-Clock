@@ -15,9 +15,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
     override func windowDidLoad() {
         super.windowDidLoad()
 		ClockWindowController.clockObject=ClockWindowController()
-		guard let clockViewController=window?.contentViewController as? ClockViewController else {
-			return
-		}
+		guard let clockViewController=window?.contentViewController as? ClockViewController else { return }
         backgroundView=clockViewController.view
 		window?.minSize=CGSize(width: 150, height: 150)
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
@@ -32,8 +30,8 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
         window?.isMovableByWindowBackground=true
         window?.delegate=self
 		if ClockPreferencesStorage.sharedInstance.fullscreen==false {
-            prepareWindowButtons()
-        } else {
+			prepareWindowButtons()
+		} else {
             showButtons(show: true)
         }
         enableClockMenu(enabled: true)
@@ -48,9 +46,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 		guard let clockWindowController =
 			mainStoryBoard.instantiateController(withIdentifier:
-				"ClockWindowController") as? ClockWindowController else {
-				return
-			}
+				"ClockWindowController") as? ClockWindowController else { return }
 		ClockWindowController.clockObject=clockWindowController
 		ClockWindowController.clockObject.loadWindow()
 		ClockWindowController.clockObject.showWindow(nil)
@@ -63,35 +59,25 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 	}
 	func closeDigitalClock() {
 		let appObject = NSApp as NSApplication
-		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
-			window.close()
-		}
+		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow { window.close() }
 	}
     func setTrackingArea() {
-		guard let view=backgroundView else {
-			return
-		}
+		guard let view=backgroundView else { return }
 		let rect=view.frame
 		let trackingOptions: NSTrackingArea.Options =
 			[NSTrackingArea.Options.activeInKeyWindow, NSTrackingArea.Options.inVisibleRect, NSTrackingArea.Options.mouseMoved]
         trackingArea=NSTrackingArea(rect: rect, options: trackingOptions, owner: view.window, userInfo: nil)
-		guard let area=trackingArea else {
-			return
-		}
+		guard let area=trackingArea else { return }
         view.addTrackingArea(area)
     }
     func sizeWindowToFitClock(newWidth: CGFloat) {
-		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
-			return
-		}
+		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
 		var newHeight: CGFloat=100
 		newHeight=newWidth/digitalClockVC.clockModel.width*digitalClockVC.clockModel.height
 		var newSize=NSSize(width: newWidth, height: newHeight)
         let changeInHeight=newHeight-(window?.frame.height ?? 0)
         let changeInWidth=newWidth-(window?.frame.width ?? 0)
-		guard let windowOrigin=window?.frame.origin else {
-			return
-		}
+		guard let windowOrigin=window?.frame.origin else { return }
 		var newOrigin=CGPoint(x: windowOrigin.x-changeInWidth, y: windowOrigin.y-changeInHeight)
 		if ClockPreferencesStorage.sharedInstance.fullscreen {
 			if let size=window?.frame.size {
@@ -114,16 +100,9 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
         flashButtons()
     }
     func windowDidResize(_ notification: Notification) {
-		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
-			return
-		}
-			guard let windowWidth=window?.frame.size.width else {
-			return
-		}
-        digitalClockVC.resizeContents(maxWidth: windowWidth)
-		guard let windowIsZoomed=window?.isZoomed else {
-			return
-		}
+		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
+        resizeContents()
+		guard let windowIsZoomed=window?.isZoomed else { return }
         if windowIsZoomed==false && ClockPreferencesStorage.sharedInstance.fullscreen==false {
 			let newAspectRatio=NSSize(width: digitalClockVC.clockModel.width, height: digitalClockVC.clockModel.height)
             window?.aspectRatio=newAspectRatio
@@ -132,6 +111,16 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
             showButtons(show: true)
         }
     }
+	func resizeContents() {
+		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
+		guard let windowSize=window?.screen?.frame.size else { return }
+		if ClockPreferencesStorage.sharedInstance.useAnalog && ClockPreferencesStorage.sharedInstance.fullscreen {
+			digitalClockVC.resizeContents(maxHeight: windowSize.height)
+		} else {
+			guard let windowWidth=window?.frame.size.width else { return }
+			digitalClockVC.resizeContents(maxWidth: windowWidth)
+		}
+	}
     func windowWillClose(_ notification: Notification) {
 		saveState()
 		enableClockMenu(enabled: false)
@@ -141,14 +130,12 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
     func windowWillEnterFullScreen(_ notification: Notification) {
         saveState()
         ClockPreferencesStorage.sharedInstance.fullscreen=true
-		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
-			return
+		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
+		digitalClockVC.disableUnwantedConstraints()
+		resizeContents()
+		if let windowSize=window?.frame.size {
+			window?.aspectRatio=windowSize
 		}
-		guard let windowSize=window?.screen?.frame.size else {
-			return
-		}
-        digitalClockVC.resizeContents(maxWidth: windowSize.width)
-		window?.aspectRatio=windowSize
     }
     func windowDidEnterFullScreen(_ notification: Notification) {
         removeTrackingArea()
@@ -161,9 +148,9 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
     func windowWillExitFullScreen(_ notification: Notification) {
 		ClockPreferencesStorage.sharedInstance.fullscreen=false
 		let maxWidth=CGFloat(ClockWindowRestorer().getClockWidth())
-		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
-			return
-		}
+		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
+		digitalClockVC.setDigitalMaginiferConstraints()
+		digitalClockVC.setAnalogMaginiferConstraints()
 		digitalClockVC.resizeContents(maxWidth: maxWidth)
 		digitalClockVC.clockHeightConstraint.constant=digitalClockVC.clockModel.height
 		sizeWindowToFitClock(newWidth: maxWidth)
@@ -174,17 +161,12 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		prepareWindowButtons()
         updateClockMenuUI()
         reloadPreferencesWindowIfOpen()
-		guard let digitalClockVC=window?.contentViewController as? ClockViewController else {
-			return
-		}
+		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
 		window?.aspectRatio=NSSize(width: digitalClockVC.clockModel.width, height: digitalClockVC.clockModel.height)
     }
     func windowWillUseStandardFrame(_ window: NSWindow,
                                     defaultFrame newFrame: NSRect) -> NSRect {
-		//return newFrame
-		guard let screenFrame=window.screen?.visibleFrame else {
-			return newFrame
-		}
+		guard let screenFrame=window.screen?.visibleFrame else { return newFrame }
 		return screenFrame
     }
     func flashButtons() {
@@ -216,19 +198,13 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
         ClockWindowRestorer().windowSaveCGRect(window: window)
     }
     func removeTrackingArea() {
-		guard let view=backgroundView else {
-			return
-		}
-		guard let area=trackingArea else {
-			return
-		}
+		guard let view=backgroundView else { return }
+		guard let area=trackingArea else { return }
 		view.removeTrackingArea(area)
     }
     func reloadPreferencesWindowIfOpen() {
         let appObject = NSApp as NSApplication
-		guard let mainMenu=appObject.mainMenu as? MainMenu else {
-			return
-		}
+		guard let mainMenu=appObject.mainMenu as? MainMenu else { return }
 		if isThereAPreferencesWindow() {
 			mainMenu.reloadSimplePreferencesWindow()
 		}
