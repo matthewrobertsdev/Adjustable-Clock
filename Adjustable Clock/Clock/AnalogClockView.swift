@@ -20,36 +20,23 @@ class AnalogClockView: NSView {
     }
 
     private func setUpLabels() {
-		let twelfthTextField=NSTextField(labelWithString: "12")
-		let firstTextField=NSTextField(labelWithString: "1")
-		let secondTextField=NSTextField(labelWithString: "2")
-		setUpLabel(label: twelfthTextField)
-		let top12=frame.size.height*(0.5-(0.35*CGFloat(sin(Double.pi/2))))
-		NSLayoutConstraint.activate([
-			twelfthTextField.centerXAnchor.constraint(equalTo: centerXAnchor),
-			NSLayoutConstraint(item: twelfthTextField, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: top12)
-		])
-		setUpLabel(label: firstTextField)
-		let top1=frame.size.height*(0.5-(0.35*CGFloat(sin(Double.pi/3))))
-		let trailing1 = -frame.size.height*(0.5-(0.35*CGFloat(cos(Double.pi/3))))
-		NSLayoutConstraint.activate([
-			NSLayoutConstraint(item: firstTextField, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: top1),
-			NSLayoutConstraint(item: firstTextField, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: trailing1)
-		])
-		setUpLabel(label: secondTextField)
-		let top2=frame.size.height*(0.5-(0.35*CGFloat(sin(Double.pi/6))))
-		let trailing2 = -frame.size.height*(0.5-(0.35*CGFloat(cos(Double.pi/6))))
-		NSLayoutConstraint.activate([
-			NSLayoutConstraint(item: secondTextField, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: top2),
-			NSLayoutConstraint(item: secondTextField, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: trailing2)
-		])
+		for index in 0...11 {
+			let textField=NSTextField(labelWithString: String(12-index))
+			setUpLabel(label: textField, twelfth: Double(index))
+		}
     }
-	private func setUpLabel(label: NSTextField){
+	private func setUpLabel(label: NSTextField, twelfth: Double){
 		label.font=NSFont.systemFont(ofSize: 20)
 		label.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(label)
 		label.sizeToFit()
 		labels.append(label)
+		let firstConstant=frame.size.height*(0.5-(0.35*CGFloat(sin(Double.pi/6*twelfth+Double.pi/2))))
+		let secondConstant = -frame.size.height*(0.5-(0.35*CGFloat(cos(Double.pi/6*twelfth+Double.pi/2))))
+		NSLayoutConstraint.activate([
+			NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: firstConstant),
+			NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: secondConstant)
+		])
 	}
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
