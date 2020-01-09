@@ -19,7 +19,6 @@ class ClockModel {
     let dateFormatter = DateFormatter()
     //for time intervals (miliseconds)
     let seconds=1000
-    let deciseconds=100
 	//current height and width
 	var width=CGFloat(332)
 	var height=CGFloat(151)

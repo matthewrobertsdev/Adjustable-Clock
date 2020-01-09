@@ -15,10 +15,10 @@ class ClockViewController: NSViewController {
 	@IBOutlet weak var maginiferScrollView: NSScrollView!
 	@IBOutlet weak var visibleView: NSView!
 	@IBOutlet weak var maginfierAspectRatioConstraint: NSLayoutConstraint!
-	@IBOutlet  var magnifierTopConstraint: NSLayoutConstraint!
-	@IBOutlet  var magnifierLeadingConstraint: NSLayoutConstraint!
-	@IBOutlet  var magnifierBottomConstaint: NSLayoutConstraint!
-	@IBOutlet  var magnifierTrailingConstraint: NSLayoutConstraint!
+	@IBOutlet var magnifierTopConstraint: NSLayoutConstraint!
+	@IBOutlet var magnifierLeadingConstraint: NSLayoutConstraint!
+	@IBOutlet var magnifierBottomConstaint: NSLayoutConstraint!
+	@IBOutlet var magnifierTrailingConstraint: NSLayoutConstraint!
 	@IBOutlet weak var clockWidthConstraint: NSLayoutConstraint!
 	@IBOutlet weak var clockHeightConstraint: NSLayoutConstraint!
 	let clockModel=ClockModel()
@@ -45,7 +45,7 @@ class ClockViewController: NSViewController {
 		}
 	}
 	func showDigitalClock() {
-	setConstraints()
+		setConstraints()
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: analogClock)
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: digitalClock)
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: animatedDayInfo)
@@ -228,22 +228,24 @@ class ClockViewController: NSViewController {
 		digitalClock?.stringValue=clockModel.getTime()
 		animatedDayInfo?.stringValue=clockModel.getDayInfo()
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
-		guard let timer=updateTimer else {
-			return
-		}
-		timer.schedule(deadline: .now(), repeating: .milliseconds(clockModel.updateTime), leeway: .milliseconds(10))
+		guard let timer=updateTimer else { return }
+		timer.schedule(deadline: .now()+getSecondAdjustment(), repeating: .milliseconds(clockModel.updateTime), leeway: .milliseconds(0))
 		timer.setEventHandler {
 			self.updateTimeAndDayInfo()
 		}
 		timer.resume()
 	}
+	func getSecondAdjustment()->Double{
+		let start=Date()
+		let nanoseconds=Calendar.current.dateComponents([.nanosecond], from: start)
+		let missingNanoceconds=1_000_000_000-(nanoseconds.nanosecond ?? 0)
+		return Double(missingNanoceconds)/1_000_000_000.0
+	}
 	func animateTime() {
 		digitalClock?.stringValue=clockModel.getTime()
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
-		guard let timer=updateTimer else {
-			return
-		}
-		timer.schedule(deadline: .now(), repeating: .milliseconds(clockModel.updateTime), leeway: .milliseconds(10))
+		guard let timer=updateTimer else { return }
+		timer.schedule(deadline: .now()+getSecondAdjustment(), repeating: .milliseconds(clockModel.updateTime), leeway: .milliseconds(0))
 		timer.setEventHandler {
 			self.updateTime()
 		}
