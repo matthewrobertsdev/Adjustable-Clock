@@ -9,11 +9,9 @@
 import Cocoa
 
 class TestSubclassViewController: TestViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.view.wantsLayer=true
 		self.view.layer?.backgroundColor=NSColor.systemYellow.cgColor
     }
-    
 }

@@ -33,7 +33,7 @@ class ClockViewController: NSViewController {
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: analogClock)
 		updateClockModel()
 		updateSizeConstraints()
-		if let clockWindowController=view.window?.windowController as? ClockWindowController  {
+		if let clockWindowController=view.window?.windowController as? ClockWindowController {
 			if let width=self.view.window?.frame.size.width {
 				clockWindowController.sizeWindowToFitClock(newWidth: width)
 			}
@@ -71,7 +71,7 @@ class ClockViewController: NSViewController {
 			animateTime()
 		}
 	}
-	func setConstraints(){
+	func setConstraints() {
 		if ClockPreferencesStorage.sharedInstance.useAnalog {
 			if let leadingConstraint=magnifierLeadingConstraint {
 				leadingConstraint.isActive=false
@@ -109,7 +109,6 @@ class ClockViewController: NSViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		maginiferScrollView.maxMagnification=200
-		
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
 		if ClockPreferencesStorage.sharedInstance.useAnalog {
 			showAnalogClock()
@@ -235,7 +234,7 @@ class ClockViewController: NSViewController {
 		}
 		timer.resume()
 	}
-	func getSecondAdjustment()->Double{
+	func getSecondAdjustment() -> Double {
 		let start=Date()
 		let nanoseconds=Calendar.current.dateComponents([.nanosecond], from: start)
 		let missingNanoceconds=1_000_000_000-(nanoseconds.nanosecond ?? 0)

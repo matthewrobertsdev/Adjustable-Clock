@@ -135,7 +135,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		resizeContents()
 		setFullScreenFrame()
     }
-	func setFullScreenFrame(){
+	func setFullScreenFrame() {
 		if let windowSize=window?.frame.size {
 			window?.aspectRatio=windowSize
 		}
@@ -190,7 +190,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
         }
     }
     func showButtons(show: Bool) {
-		if(show==true){
+		if show==true {
 	self.window?.standardWindowButton(.closeButton)?.isHidden=(false)
 	self.window?.standardWindowButton(.zoomButton)?.isHidden=(false)
 	self.window?.standardWindowButton(.miniaturizeButton)?.isHidden=(false)

@@ -7,8 +7,8 @@
 //
 
 import AppKit
-extension NSLayoutConstraint{
-func setMultiplier(_ multiplier:CGFloat) -> NSLayoutConstraint {
+extension NSLayoutConstraint {
+func setMultiplier(_ multiplier: CGFloat) -> NSLayoutConstraint {
 
 	NSLayoutConstraint.deactivate([self])
 

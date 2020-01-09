@@ -25,7 +25,7 @@ class AnalogClockView: NSView {
 			setUpLabel(label: textField, twelfth: Double(index))
 		}
     }
-	private func setUpLabel(label: NSTextField, twelfth: Double){
+	private func setUpLabel(label: NSTextField, twelfth: Double) {
 		label.font=NSFont.systemFont(ofSize: 20)
 		label.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(label)
@@ -40,9 +40,7 @@ class AnalogClockView: NSView {
 	}
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-		for label in labels{
-			label.textColor=color
-		}
+		for label in labels { label.textColor=color }
 		let origin=CGPoint(x: frame.width*0.05, y: frame.height*0.05)
 		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.width*0.9, height: frame.height*0.9)))
 		color.setStroke()

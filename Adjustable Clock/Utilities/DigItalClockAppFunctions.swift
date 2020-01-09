@@ -32,7 +32,7 @@ func windowPresent(identifier: NSUserInterfaceItemIdentifier) -> Bool {
 	//get the app object
 	let appObject = NSApp as NSApplication
 	//search for the Digital Clock window
-	for window in appObject.windows where window.identifier==identifier{
+	for window in appObject.windows where window.identifier==identifier {
 			return true
 		}
 	return false
