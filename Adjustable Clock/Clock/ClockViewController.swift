@@ -152,6 +152,7 @@ class ClockViewController: NSViewController {
 		maginfierAspectRatioConstraint=maginfierAspectRatioConstraint.setMultiplier(clockModel.width/clockModel.height)
 		clockWidthConstraint.constant=clockModel.width
 		clockHeightConstraint.constant=clockModel.height
+		analogClock.widthConstraint.constant=clockModel.width
 		visibleView.setFrameSize(NSSize(width: clockModel.width, height: clockModel.height))
 	}
 	func updateClock() {

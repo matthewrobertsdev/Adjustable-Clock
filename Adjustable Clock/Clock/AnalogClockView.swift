@@ -9,21 +9,26 @@ import Cocoa
 class AnalogClockView: NSView {
 	var labels=[NSTextField]()
 	var color=NSColor.labelColor
+	var widthConstraint: NSLayoutConstraint!
 	override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        setUpLabels()
+        setUp()
     }
 
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
-        setUpLabels()
+        setUp()
     }
 
-    private func setUpLabels() {
+    private func setUp() {
 		for index in 0...11 {
 			let textField=NSTextField(labelWithString: String(12-index))
 			setUpLabel(label: textField, twelfth: Double(index))
 		}
+		widthConstraint=NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 237)
+		NSLayoutConstraint.activate([
+		widthConstraint
+		])
     }
 	private func setUpLabel(label: NSTextField, twelfth: Double) {
 		label.font=NSFont.systemFont(ofSize: 20)
