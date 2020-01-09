@@ -12,7 +12,7 @@ class ClockViewController: NSViewController {
 	@IBOutlet weak var animatedDayInfo: NSTextField!
 	@IBOutlet weak var clockStackView: NSStackView!
 	@IBOutlet weak var visualEffectView: NSVisualEffectView!
-	@IBOutlet weak var maginiferScrollView: NSScrollView!
+	@IBOutlet weak var maginiferScrollView: MagnifierScrollView!
 	@IBOutlet weak var visibleView: NSView!
 	@IBOutlet weak var maginfierAspectRatioConstraint: NSLayoutConstraint!
 	@IBOutlet var magnifierTopConstraint: NSLayoutConstraint!

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9F04FDF120EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F04FDF020EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift */; };
 		9F2245D523B84FED000413F0 /* AnalogClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2245D423B84FED000413F0 /* AnalogClockView.swift */; };
+		9F3AD84823C7D22C005FCC0A /* MagnifierScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AD84723C7D22C005FCC0A /* MagnifierScrollView.swift */; };
 		9F3C7D6A20CCE40D00C91506 /* ClockPreferencesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C7D6920CCE40D00C91506 /* ClockPreferencesStorage.swift */; };
 		9F4D87452055E99400AF63D1 /* ClockWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D87442055E99400AF63D1 /* ClockWindowController.swift */; };
 		9F4EF1E320C273CB00E08C57 /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4EF1E220C273CB00E08C57 /* ColorModel.swift */; };
@@ -58,6 +59,7 @@
 /* Begin PBXFileReference section */
 		9F04FDF020EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInterfaceItemIdentifiers.swift; sourceTree = "<group>"; };
 		9F2245D423B84FED000413F0 /* AnalogClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogClockView.swift; sourceTree = "<group>"; };
+		9F3AD84723C7D22C005FCC0A /* MagnifierScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnifierScrollView.swift; sourceTree = "<group>"; };
 		9F3C7D6920CCE40D00C91506 /* ClockPreferencesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockPreferencesStorage.swift; sourceTree = "<group>"; };
 		9F4D87442055E99400AF63D1 /* ClockWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockWindowController.swift; sourceTree = "<group>"; };
 		9F4EF1E220C273CB00E08C57 /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				9F5440AE23C1715B00258209 /* TestSubclassViewController.swift */,
 				9F3C7D6920CCE40D00C91506 /* ClockPreferencesStorage.swift */,
 				9F2245D423B84FED000413F0 /* AnalogClockView.swift */,
+				9F3AD84723C7D22C005FCC0A /* MagnifierScrollView.swift */,
 			);
 			path = Clock;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				9FE390851FECBCE300AF5442 /* ClockWindowRestorer.swift in Sources */,
 				9F5440B023C1715B00258209 /* TestSubclassViewController.swift in Sources */,
 				9F4D87452055E99400AF63D1 /* ClockWindowController.swift in Sources */,
+				9F3AD84823C7D22C005FCC0A /* MagnifierScrollView.swift in Sources */,
 				9F8EBE482050C4C7005BA4F2 /* ClockViewController.swift in Sources */,
 				9FEAE9DD1F4F7249004EB641 /* MainMenu.swift in Sources */,
 				9FE390871FECBCF400AF5442 /* PreferencesWindowRestorer.swift in Sources */,

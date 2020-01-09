@@ -574,7 +574,7 @@
                             <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="7lE-Vi-cYq">
                                 <rect key="frame" x="0.0" y="0.0" width="332" height="151"/>
                             </visualEffectView>
-                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="go5-1Y-2aB">
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="go5-1Y-2aB" customClass="MagnifierScrollView" customModule="Adjustable_Clock" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="332" height="151"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="V38-FW-xgq">
                                     <rect key="frame" x="0.0" y="0.0" width="332" height="151"/>
@@ -674,7 +674,7 @@
                         <outlet property="clockWidthConstraint" destination="0Dj-tZ-ymH" id="eIn-2y-4Hw"/>
                         <outlet property="digitalClock" destination="ayc-mj-Qox" id="dRP-X6-QuT"/>
                         <outlet property="maginfierAspectRatioConstraint" destination="B3q-Yf-6Fi" id="5Um-aT-O0c"/>
-                        <outlet property="maginiferScrollView" destination="go5-1Y-2aB" id="AlA-w5-G98"/>
+                        <outlet property="maginiferScrollView" destination="go5-1Y-2aB" id="LfD-r3-k2T"/>
                         <outlet property="magnifierBottomConstaint" destination="ckZ-OG-QRQ" id="1w9-gy-Xqi"/>
                         <outlet property="magnifierLeadingConstraint" destination="Z6e-fM-Z4b" id="fKn-4D-WYy"/>
                         <outlet property="magnifierTopConstraint" destination="VzX-8k-t4Y" id="U1g-sD-uWN"/>
