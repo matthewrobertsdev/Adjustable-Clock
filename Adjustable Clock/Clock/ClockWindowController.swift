@@ -131,13 +131,19 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
         saveState()
         ClockPreferencesStorage.sharedInstance.fullscreen=true
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
-		digitalClockVC.disableUnwantedConstraints()
+		digitalClockVC.setConstraints()
 		resizeContents()
+		setFullScreenFrame()
+    }
+	func setFullScreenFrame(){
 		if let windowSize=window?.frame.size {
 			window?.aspectRatio=windowSize
 		}
-    }
+		window?.setFrame((window?.screen!.frame)!, display: true)
+	}
     func windowDidEnterFullScreen(_ notification: Notification) {
+		print("window: "+window!.frame.size.debugDescription)
+		print("view: "+window!.contentViewController!.view.frame.size.debugDescription)
         removeTrackingArea()
         hideButtonsTimer?.invalidate()
         updateClockMenuUI()
@@ -149,8 +155,8 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		ClockPreferencesStorage.sharedInstance.fullscreen=false
 		let maxWidth=CGFloat(ClockWindowRestorer().getClockWidth())
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
-		digitalClockVC.setDigitalMaginiferConstraints()
-		digitalClockVC.setAnalogMaginiferConstraints()
+		//digitalClockVC.setDigitalMaginiferConstraints()
+		//digitalClockVC.setAnalogMaginiferConstraints()
 		digitalClockVC.resizeContents(maxWidth: maxWidth)
 		digitalClockVC.clockHeightConstraint.constant=digitalClockVC.clockModel.height
 		sizeWindowToFitClock(newWidth: maxWidth)

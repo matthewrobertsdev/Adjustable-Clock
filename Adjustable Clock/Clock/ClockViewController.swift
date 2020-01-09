@@ -15,10 +15,10 @@ class ClockViewController: NSViewController {
 	@IBOutlet weak var maginiferScrollView: NSScrollView!
 	@IBOutlet weak var visibleView: NSView!
 	@IBOutlet weak var maginfierAspectRatioConstraint: NSLayoutConstraint!
-	@IBOutlet weak var magnifierTopConstraint: NSLayoutConstraint!
-	@IBOutlet weak var magnifierLeadingConstraint: NSLayoutConstraint!
-	@IBOutlet weak var magnifierBottomConstaint: NSLayoutConstraint!
-	@IBOutlet weak var magnifierTrailingConstraint: NSLayoutConstraint!
+	@IBOutlet  var magnifierTopConstraint: NSLayoutConstraint!
+	@IBOutlet  var magnifierLeadingConstraint: NSLayoutConstraint!
+	@IBOutlet  var magnifierBottomConstaint: NSLayoutConstraint!
+	@IBOutlet  var magnifierTrailingConstraint: NSLayoutConstraint!
 	@IBOutlet weak var clockWidthConstraint: NSLayoutConstraint!
 	@IBOutlet weak var clockHeightConstraint: NSLayoutConstraint!
 	let clockModel=ClockModel()
@@ -27,8 +27,7 @@ class ClockViewController: NSViewController {
 	var updateTimer: DispatchSourceTimer?
 	let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
 	func showAnalogClock() {
-		disableUnwantedConstraints()
-		setAnalogMaginiferConstraints()
+		setConstraints()
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: digitalClock)
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: animatedDayInfo)
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: analogClock)
@@ -39,10 +38,14 @@ class ClockViewController: NSViewController {
 				clockWindowController.sizeWindowToFitClock(newWidth: width)
 			}
 		}
+		if ClockPreferencesStorage.sharedInstance.fullscreen {
+			if let windowHeight=view.window?.screen?.frame.height {
+				resizeContents(maxHeight: windowHeight)
+			}
+		}
 	}
 	func showDigitalClock() {
-		disableUnwantedConstraints()
-		setDigitalMaginiferConstraints()
+	setConstraints()
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: analogClock)
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: digitalClock)
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: animatedDayInfo)
@@ -51,6 +54,11 @@ class ClockViewController: NSViewController {
 		}
 		updateClockModel()
 		updateSizeConstraints()
+		if ClockPreferencesStorage.sharedInstance.fullscreen {
+			if let windowWidth=view.window?.screen?.frame.width {
+				resizeContents(maxWidth: windowWidth)
+			}
+		}
 		if let width=self.view.window?.frame.size.width {
 			if self.view.isInFullScreenMode==false {
 				resizeContents(maxWidth: width)
@@ -63,28 +71,19 @@ class ClockViewController: NSViewController {
 			animateTime()
 		}
 	}
-	func setDigitalMaginiferConstraints(){
-		let magnifierLeadingConstraint=NSLayoutConstraint(item: maginiferScrollView!, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
-		let magnifierTrailingConstraint=NSLayoutConstraint(item: maginiferScrollView!, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-		self.magnifierLeadingConstraint=magnifierLeadingConstraint
-		self.magnifierTrailingConstraint=magnifierTrailingConstraint
-		NSLayoutConstraint.activate([self.magnifierLeadingConstraint, self.magnifierTrailingConstraint])
-	}
-	func setAnalogMaginiferConstraints(){
-		let magnifierTopConstraint=NSLayoutConstraint(item: maginiferScrollView!, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
-		let magnifierBottomConstraint=NSLayoutConstraint(item: maginiferScrollView!, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
-		self.magnifierTopConstraint=magnifierTopConstraint
-		self.magnifierBottomConstaint=magnifierBottomConstraint
-		NSLayoutConstraint.activate([self.magnifierTopConstraint, self.magnifierBottomConstaint])
-	}
-	func disableUnwantedConstraints(){
+	func setConstraints(){
 		if ClockPreferencesStorage.sharedInstance.useAnalog {
-			//digitalClockVC.setAnalogMaginiferConstraints()
-			if let leadingConstraint=magnifierBottomConstaint {
+			if let leadingConstraint=magnifierLeadingConstraint {
 				leadingConstraint.isActive=false
 			}
-			if let trailingConstraint=magnifierTopConstraint {
+			if let trailingConstraint=magnifierTrailingConstraint {
 				trailingConstraint.isActive=false
+			}
+			if let bottomConstraint=magnifierBottomConstaint {
+				bottomConstraint.isActive=true
+			}
+			if let topConstraint=magnifierTopConstraint {
+				topConstraint.isActive=true
 			}
 		} else {
 			if let bottomConstraint=magnifierBottomConstaint {
@@ -93,7 +92,12 @@ class ClockViewController: NSViewController {
 			if let topConstraint=magnifierTopConstraint {
 				topConstraint.isActive=false
 			}
-			//digitalClockVC.setDigitalMaginiferConstraints()
+			if let leadingConstraint=magnifierLeadingConstraint {
+				leadingConstraint.isActive=true
+			}
+			if let trailingConstraint=magnifierTrailingConstraint {
+				trailingConstraint.isActive=true
+			}
 		}
 	}
 	func displayForDock() {
