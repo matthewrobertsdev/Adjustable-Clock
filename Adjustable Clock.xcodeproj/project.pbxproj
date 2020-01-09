@@ -118,7 +118,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9F7DF9422066094400CC0DF6 /* Digital Clock */ = {
+		9F7DF9422066094400CC0DF6 /* Clock */ = {
 			isa = PBXGroup;
 			children = (
 				9F793AAC2063849C00AF703E /* ClockModel.swift */,
@@ -129,7 +129,7 @@
 				9F3C7D6920CCE40D00C91506 /* ClockPreferencesStorage.swift */,
 				9F2245D423B84FED000413F0 /* AnalogClockView.swift */,
 			);
-			path = "Digital Clock";
+			path = Clock;
 			sourceTree = "<group>";
 		};
 		9F7DF9432066097C00CC0DF6 /* Preferences */ = {
@@ -202,7 +202,7 @@
 			children = (
 				9FB47E5D1F480A43009D82FF /* AppDelegate.swift */,
 				9FEA8C8B1FECCF3A002D3960 /* Loading And Saving Windows */,
-				9F7DF9422066094400CC0DF6 /* Digital Clock */,
+				9F7DF9422066094400CC0DF6 /* Clock */,
 				9F9DC04E20689F43000BD988 /* Main Menu */,
 				9F7DF9432066097C00CC0DF6 /* Preferences */,
 				9F9DC04F2068A095000BD988 /* Color Model */,
