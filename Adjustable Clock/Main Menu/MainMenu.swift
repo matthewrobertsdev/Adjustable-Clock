@@ -5,9 +5,7 @@
 //  Created by Matt Roberts on 8/24/17.
 //  Copyright © 2017 Matt Roberts. All rights reserved.
 //
-
 import  Cocoa
-
 class MainMenu: NSMenu {
     @IBOutlet weak var colorsMenu: NSMenu!
     let clockPreferences=ClockPreferencesStorage.sharedInstance

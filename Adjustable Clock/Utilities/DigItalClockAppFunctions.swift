@@ -16,7 +16,6 @@ func isThereAPreferencesWindow() -> Bool {
     }
     return false
 }
-
 //if there is any active preferences window at all, return true
 func isThereASimplePreferencesWindow() -> Bool {
     //get the app object
@@ -27,7 +26,6 @@ func isThereASimplePreferencesWindow() -> Bool {
     }
     return false
 }
-
 func windowPresent(identifier: NSUserInterfaceItemIdentifier) -> Bool {
 	//get the app object
 	let appObject = NSApp as NSApplication

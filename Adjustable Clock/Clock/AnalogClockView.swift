@@ -3,7 +3,7 @@
 //  Adjustable Clock
 //
 //  Created by Matt Roberts on 12/28/19.
-//  Copyright © 2019 Celeritas Apps. All rights reserved.
+//  Copyright © 2019 Matt Roberts. All rights reserved.
 //
 import Cocoa
 class AnalogClockView: NSView {

@@ -26,6 +26,7 @@ class ClockViewController: NSViewController {
 	var tellingTime: NSObjectProtocol?
 	var updateTimer: DispatchSourceTimer?
 	let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
+	var colorController: ClockColorController?
 	func showAnalogClock() {
 		setConstraints()
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: digitalClock)
@@ -115,6 +116,7 @@ class ClockViewController: NSViewController {
 		} else {
 			showDigitalClock()
 		}
+		colorController=ClockColorController(visualEffectView: visualEffectView, view: view, digitalClock: digitalClock, animatedDay: animatedDayInfo, analogClock: analogClock)
 		let screenSleepObserver =
 			workspaceNotifcationCenter.addObserver(forName:
 			NSWorkspace.screensDidSleepNotification, object: nil, queue: nil) { (_) in
@@ -148,7 +150,7 @@ class ClockViewController: NSViewController {
 		clockModel.updateClockModelForPreferences()
 		analogClock.setNeedsDisplay(analogClock.frame)
 	}
-	func updateSizeConstraints(){
+	func updateSizeConstraints() {
 		maginfierAspectRatioConstraint=maginfierAspectRatioConstraint.setMultiplier(clockModel.width/clockModel.height)
 		clockWidthConstraint.constant=clockModel.width
 		clockHeightConstraint.constant=clockModel.height
@@ -158,7 +160,7 @@ class ClockViewController: NSViewController {
 	func updateClock() {
 		updateClockModel()
 		updateSizeConstraints()
-		applyColorScheme()
+		colorController?.applyColorScheme()
 		applyFloatState()
 		animateClock()
 		resizeClock()
@@ -239,7 +241,7 @@ class ClockViewController: NSViewController {
 		let start=Date()
 		let nanoseconds=Calendar.current.dateComponents([.nanosecond], from: start)
 		let missingNanoceconds=1_000_000_000-(nanoseconds.nanosecond ?? 0)
-		return Double(missingNanoceconds)/1_000_000_000.0
+		return Double(missingNanoceconds)/1_000_000_000
 	}
 	func animateTime() {
 		digitalClock?.stringValue=clockModel.getTime()
@@ -251,45 +253,7 @@ class ClockViewController: NSViewController {
 		}
 		timer.resume()
 	}
-	@objc func applyColors(sender: NSNotification) { applyColorScheme() }
-	func applyColorScheme() {
-		var contrastColor: NSColor
-		let clockNSColors=ColorDictionary()
-		self.view.wantsLayer=true
-		if ClockPreferencesStorage.sharedInstance.colorChoice=="custom"{
-			contrastColor=ClockPreferencesStorage.sharedInstance.customColor
-		} else {
-			contrastColor =
-				clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
-		}
-		if ClockPreferencesStorage.sharedInstance.colorForForeground==false {
-			visualEffectView.isHidden=true
-			digitalClock.textColor=NSColor.labelColor
-			animatedDayInfo.textColor=NSColor.labelColor
-			if contrastColor==NSColor.black {
-				contrastColor=NSColor.systemGray
-			}
-			if #available(OSX 10.14, *) {
-				if let uiName=NSApp?.effectiveAppearance.name {
-					if uiName==NSAppearance.Name.darkAqua||uiName==NSAppearance.Name.accessibilityHighContrastDarkAqua||uiName==NSAppearance.Name.accessibilityHighContrastVibrantDark {
-						if contrastColor==NSColor.white {
-							contrastColor=NSColor.systemGray
-						}
-					}
-				}
-			}
-			self.view.layer?.backgroundColor=contrastColor.cgColor
-			analogClock.color=NSColor.labelColor
-			analogClock.setNeedsDisplay(analogClock.bounds)
-		} else {
-			visualEffectView.isHidden=false
-			digitalClock.textColor=contrastColor
-			animatedDayInfo.textColor=contrastColor
-			analogClock.color=contrastColor
-			analogClock.setNeedsDisplay(analogClock.bounds)
-			self.view.layer?.backgroundColor = NSColor.labelColor.cgColor
-		}
-	}
+	@objc func applyColors(sender: NSNotification) { colorController?.applyColorScheme() }
 	func applyFloatState() {
 		if ClockPreferencesStorage.sharedInstance.clockFloats {
 			self.view.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow))-1)
