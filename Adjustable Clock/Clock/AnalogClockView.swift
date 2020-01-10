@@ -14,12 +14,10 @@ class AnalogClockView: NSView {
         super.init(frame: frameRect)
         setUp()
     }
-
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
         setUp()
     }
-
     private func setUp() {
 		for index in 0...11 {
 			let textField=NSTextField(labelWithString: String(12-index))
@@ -60,15 +58,6 @@ class AnalogClockView: NSView {
 		for minute in 0...60 {
 			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(minute)/60), startProportion: 0.6)
 		}
-		/*
-		twelfthLabel.stringValue="12"
-		twelfthLabel.sizeToFit()
-		twelfthLabel.backgroundColor=NSColor.clear
-		self.addSubview(twelfthLabel)
-		
-		NSLayoutConstraint.activate([twelfthLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-			twelfthLabel.centerXAnchor.constraint(equalTo: centerXAnchor)])
-*/
     }
 	func drawDash(cgContext: CGContext, angle: CGFloat, startProportion: CGFloat) {
 		let line = CGMutablePath()

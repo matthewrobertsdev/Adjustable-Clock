@@ -668,6 +668,7 @@
                     </view>
                     <connections>
                         <outlet property="analogClock" destination="AyC-ZK-hRt" id="gD3-tG-s89"/>
+                        <outlet property="animatedDay" destination="8Ma-9v-P9y" id="cEV-Cw-oAt"/>
                         <outlet property="animatedDayInfo" destination="8Ma-9v-P9y" id="1bu-WI-1ba"/>
                         <outlet property="clockHeightConstraint" destination="RQ3-Mt-Yrr" id="GqP-Mh-2eI"/>
                         <outlet property="clockStackView" destination="OnO-xZ-G0J" id="MUi-8W-Su8"/>

@@ -73,7 +73,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
     func sizeWindowToFitClock(newWidth: CGFloat) {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
 		var newHeight: CGFloat=100
-		newHeight=newWidth/digitalClockVC.clockModel.width*digitalClockVC.clockModel.height
+		newHeight=newWidth/digitalClockVC.model.width*digitalClockVC.model.height
 		var newSize=NSSize(width: newWidth, height: newHeight)
         let changeInHeight=newHeight-(window?.frame.height ?? 0)
         let changeInWidth=newWidth-(window?.frame.width ?? 0)
@@ -104,7 +104,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
         resizeContents()
 		guard let windowIsZoomed=window?.isZoomed else { return }
         if windowIsZoomed==false && ClockPreferencesStorage.sharedInstance.fullscreen==false {
-			let newAspectRatio=NSSize(width: digitalClockVC.clockModel.width, height: digitalClockVC.clockModel.height)
+			let newAspectRatio=NSSize(width: digitalClockVC.model.width, height: digitalClockVC.model.height)
             window?.aspectRatio=newAspectRatio
             showButtons(show: false)
         } else {
@@ -139,11 +139,11 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		if let windowSize=window?.frame.size {
 			window?.aspectRatio=windowSize
 		}
-		window?.setFrame((window?.screen!.frame)!, display: true)
+		if let screen=window?.screen?.frame {
+			window?.setFrame(screen, display: true)
+		}
 	}
     func windowDidEnterFullScreen(_ notification: Notification) {
-		print("window: "+window!.frame.size.debugDescription)
-		print("view: "+window!.contentViewController!.view.frame.size.debugDescription)
         removeTrackingArea()
         hideButtonsTimer?.invalidate()
         updateClockMenuUI()
@@ -155,12 +155,9 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 		ClockPreferencesStorage.sharedInstance.fullscreen=false
 		let maxWidth=CGFloat(ClockWindowRestorer().getClockWidth())
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
-		//digitalClockVC.setDigitalMaginiferConstraints()
-		//digitalClockVC.setAnalogMaginiferConstraints()
 		digitalClockVC.resizeContents(maxWidth: maxWidth)
-		digitalClockVC.clockHeightConstraint.constant=digitalClockVC.clockModel.height
+		digitalClockVC.clockHeightConstraint.constant=digitalClockVC.model.height
 		sizeWindowToFitClock(newWidth: maxWidth)
-		digitalClockVC.applyFloatState()
     }
     func windowDidExitFullScreen(_ notification: Notification) {
         window?.makeKey()
@@ -168,7 +165,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
         updateClockMenuUI()
         reloadPreferencesWindowIfOpen()
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
-		window?.aspectRatio=NSSize(width: digitalClockVC.clockModel.width, height: digitalClockVC.clockModel.height)
+		window?.aspectRatio=NSSize(width: digitalClockVC.model.width, height: digitalClockVC.model.height)
     }
     func windowWillUseStandardFrame(_ window: NSWindow,
                                     defaultFrame newFrame: NSRect) -> NSRect {
@@ -191,13 +188,13 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
     }
     func showButtons(show: Bool) {
 		if show==true {
-	self.window?.standardWindowButton(.closeButton)?.isHidden=(false)
-	self.window?.standardWindowButton(.zoomButton)?.isHidden=(false)
-	self.window?.standardWindowButton(.miniaturizeButton)?.isHidden=(false)
+			self.window?.standardWindowButton(.closeButton)?.isHidden=(false)
+			self.window?.standardWindowButton(.zoomButton)?.isHidden=(false)
+			self.window?.standardWindowButton(.miniaturizeButton)?.isHidden=(false)
 		} else {
-		self.window?.standardWindowButton(.closeButton)?.isHidden=(true)
-		self.window?.standardWindowButton(.zoomButton)?.isHidden=(true)
-		self.window?.standardWindowButton(.miniaturizeButton)?.isHidden=(true)
+			self.window?.standardWindowButton(.closeButton)?.isHidden=(true)
+			self.window?.standardWindowButton(.zoomButton)?.isHidden=(true)
+			self.window?.standardWindowButton(.miniaturizeButton)?.isHidden=(true)
 			}
     }
     func saveState() {
@@ -217,7 +214,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
     }
 	func windowWillMiniaturize(_ notification: Notification) {
 		if let digitalClockVC=window?.contentViewController as? ClockViewController {
-			digitalClockVC.displayForDock()
+			digitalClockVC.digitalClockAnimator?.displayForDock()
 		}
 	}
 	func windowDidDeminiaturize(_ notification: Notification) {
@@ -238,4 +235,11 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
             }
         }
     }
+	func applyFloatState() {
+		if ClockPreferencesStorage.sharedInstance.clockFloats {
+			self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow))-1)
+		} else {
+			self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
+		}
+	}
 }

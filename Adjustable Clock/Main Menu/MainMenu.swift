@@ -122,7 +122,7 @@ class MainMenu: NSMenu {
 				guard let digitalClockVC=window.contentViewController as? ClockViewController else {
 					return
 				}
-                if digitalClockVC.clockModel.fullscreen==true {
+                if digitalClockVC.model.fullscreen==true {
                     for window in appObject.windows where window.identifier==UserInterfaceIdentifier.prefrencesWindow {
 						if let preferencesWC=window.windowController as? SimplePreferenceWindowController {
 							preferencesWC.close()
