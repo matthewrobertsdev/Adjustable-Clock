@@ -10,6 +10,7 @@ class AnalogClockView: NSView {
 	var labels=[NSTextField]()
 	var color=NSColor.labelColor
 	var widthConstraint: NSLayoutConstraint!
+	let minuteLayer = CAShapeLayer()
 	override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         setUp()
@@ -19,6 +20,7 @@ class AnalogClockView: NSView {
         setUp()
     }
     private func setUp() {
+		wantsLayer=true
 		for index in 0...11 {
 			let textField=NSTextField(labelWithString: String(12-index))
 			setUpLabel(label: textField)
@@ -28,6 +30,9 @@ class AnalogClockView: NSView {
 		widthConstraint
 		])
 		positionbLabels()
+		addMinuteHand()
+		let lineWidth=frame.width/100
+		minuteLayer.transform=CATransform3DMakeRotation(CGFloat(Double.pi), bounds.midX, bounds.midY, 1)
     }
 	private func positionbLabels() {
 		for index in 0...11 {
@@ -49,9 +54,21 @@ class AnalogClockView: NSView {
 		label.sizeToFit()
 		labels.append(label)
 	}
+	private func addMinuteHand() {
+		minuteLayer.frame = bounds
+		let minuteHand = CGMutablePath()
+		let lineWidth=frame.width/100
+		minuteHand.move(to: CGPoint(x: bounds.midX+lineWidth/2, y: bounds.midY+lineWidth/2))
+		minuteHand.addLine(to: CGPoint(x: bounds.midX+lineWidth/2, y: bounds.height*0.9+lineWidth/2))
+		minuteLayer.path = minuteHand
+		minuteLayer.lineWidth = lineWidth
+		minuteLayer.lineCap = CAShapeLayerLineCap.round
+		layer?.addSublayer(minuteLayer)
+	}
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 		for label in labels { label.textColor=color }
+		minuteLayer.strokeColor=color.cgColor
 		let origin=CGPoint(x: bounds.width*0.05, y: bounds.height*0.05)
 		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.width*0.9, height: frame.height*0.9)))
 		color.setStroke()
