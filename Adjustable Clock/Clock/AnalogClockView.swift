@@ -21,30 +21,38 @@ class AnalogClockView: NSView {
     private func setUp() {
 		for index in 0...11 {
 			let textField=NSTextField(labelWithString: String(12-index))
-			setUpLabel(label: textField, twelfth: Double(index))
+			setUpLabel(label: textField)
 		}
 		widthConstraint=NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 237)
 		NSLayoutConstraint.activate([
 		widthConstraint
 		])
+		positionbLabels()
     }
-	private func setUpLabel(label: NSTextField, twelfth: Double) {
-		label.font=NSFont.systemFont(ofSize: 20)
-		label.translatesAutoresizingMaskIntoConstraints = false
-		addSubview(label)
-		label.sizeToFit()
-		labels.append(label)
-		let firstConstant=frame.size.height*(0.5-(0.35*CGFloat(sin(Double.pi/6*twelfth+Double.pi/2))))
-		let secondConstant = -frame.size.height*(0.5-(0.35*CGFloat(cos(Double.pi/6*twelfth+Double.pi/2))))
+	private func positionbLabels() {
+		for index in 0...11 {
+			positionbLabel(label: labels[index], twelfth: Double(index))
+		}
+	}
+	private func positionbLabel(label: NSTextField, twelfth: Double) {
+		let firstConstant=bounds.size.height*(0.5-(0.35*CGFloat(sin(Double.pi/6*twelfth+Double.pi/2))))
+		let secondConstant = -bounds.size.height*(0.5-(0.35*CGFloat(cos(Double.pi/6*twelfth+Double.pi/2))))
 		NSLayoutConstraint.activate([
 			NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: firstConstant),
 			NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: secondConstant)
 		])
 	}
+	private func setUpLabel(label: NSTextField) {
+		label.font=NSFont.systemFont(ofSize: 20)
+		label.translatesAutoresizingMaskIntoConstraints = false
+		addSubview(label)
+		label.sizeToFit()
+		labels.append(label)
+	}
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 		for label in labels { label.textColor=color }
-		let origin=CGPoint(x: frame.width*0.05, y: frame.height*0.05)
+		let origin=CGPoint(x: bounds.width*0.05, y: bounds.height*0.05)
 		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.width*0.9, height: frame.height*0.9)))
 		color.setStroke()
 		path.lineWidth=CGFloat(frame.width/150)
