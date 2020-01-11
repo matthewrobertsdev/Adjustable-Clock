@@ -102,7 +102,7 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
     func windowDidResize(_ notification: Notification) {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
 		digitalClockVC.updateSizeConstraints()
-		digitalClockVC.setConstraints()
+		//digitalClockVC.setConstraints()
         resizeContents()
 		guard let windowIsZoomed=window?.isZoomed else { return }
         if windowIsZoomed==false && ClockPreferencesStorage.sharedInstance.fullscreen==false {
