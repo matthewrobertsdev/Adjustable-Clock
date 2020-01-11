@@ -36,7 +36,9 @@ class AnalogClockAnimator: ClockAnimator {
 	}
 	private func animateTimeAndDayInfo() {
 		analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
-		animatedDay.stringValue=model.getDayInfo()
+		if animatedDay.stringValue != model.getDayInfo() {
+			animatedDay.stringValue=model.getDayInfo()
+		}
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		CALayer.performWithoutAnimation {
 			runAnimation()
