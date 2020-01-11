@@ -19,7 +19,29 @@ class AnalogClockAnimator: ClockAnimator {
 		let now=Date()
 		let hour=calendar.dateComponents([.hour], from: now).hour ?? 0
 		let minute=calendar.dateComponents([.minute], from: now).minute ?? 0
-		analogClock.setMinuteHand(radians: -CGFloat.pi*CGFloat(minute)/30)
 		let second=calendar.dateComponents([.second], from: now).second ?? 0
+		let totalSeconds=(Double(hour)*3600.0+Double(minute)*60.0+Double(second))
+		analogClock.setHourHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0))
+		analogClock.setMinuteHand(radians: -CGFloat.pi*CGFloat(minute)/30)
+		analogClock.setSecondHand(radians: -CGFloat.pi*CGFloat(second)/30)
+	}
+	func animateTimeAndDayInfo() {
+		analogClock.startHands()
+		animatedDay.stringValue=model.getDayInfo()
+		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
+		updateTimer.schedule(deadline: .now()+getSecondAdjustment(), repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
+		updateTimer.setEventHandler {
+			self.animateHands()
+		}
+		updateTimer.resume()
+	}
+	func animateTime() {
+		analogClock.startHands()
+		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
+		updateTimer.schedule(deadline: .now()+getSecondAdjustment(), repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
+		updateTimer.setEventHandler {
+			self.animateHands()
+		}
+		updateTimer.resume()
 	}
 }
