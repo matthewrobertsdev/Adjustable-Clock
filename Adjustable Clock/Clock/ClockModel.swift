@@ -93,6 +93,25 @@ class ClockModel {
         if showDayInfo {
 			if ClockPreferencesStorage.sharedInstance.useAnalog {
 				height+=70
+				if ClockPreferencesStorage.sharedInstance.showDate==false {
+					if ClockPreferencesStorage.sharedInstance.showDayOfWeek==false {
+						useWeekdayDate()
+					} else { useWeekDay() }
+				} else {
+					if ClockPreferencesStorage.sharedInstance.showDayOfWeek==false {
+						if ClockPreferencesStorage.sharedInstance.useNumericalDate==false {
+							useLongDate()
+						} else {
+							useNumericalDate()
+						}
+					} else {
+						if ClockPreferencesStorage.sharedInstance.useNumericalDate==false {
+							useWeekdayDate()
+						} else {
+							useWeekdayNumericalDate()
+						}
+					}
+			}
 			} else {
             if ClockPreferencesStorage.sharedInstance.showDate==false {
                 if ClockPreferencesStorage.sharedInstance.showDayOfWeek==false {
@@ -117,6 +136,8 @@ class ClockModel {
 		} else {
 			if ClockPreferencesStorage.sharedInstance.useAnalog==false {
 				height=140
+			} else {
+				height=CGFloat(332)
 			}
 		}
     }

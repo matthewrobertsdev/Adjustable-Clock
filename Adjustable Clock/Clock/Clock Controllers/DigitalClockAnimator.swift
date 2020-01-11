@@ -7,8 +7,8 @@
 //
 import AppKit
 class DigitalClockAnimator: ClockAnimator {
-	var digitalClock: NSTextField
-	var animatedDay: NSTextField
+	private var digitalClock: NSTextField
+	private var animatedDay: NSTextField
 	init(model: ClockModel, tellingTime: NSObjectProtocol, updateTimer: DispatchSourceTimer, digitalClock: NSTextField, animatedDay: NSTextField) {
 		self.digitalClock=digitalClock
 		self.animatedDay=animatedDay
@@ -19,13 +19,13 @@ class DigitalClockAnimator: ClockAnimator {
 		self.digitalClock.stringValue=model.dockTimeString
 		self.animatedDay.stringValue=model.dockDateString
 	}
-	func updateTime() {
+	private func updateTime() {
 		let timeString=model.getTime()
 		if digitalClock.stringValue != timeString {
 			digitalClock.stringValue=timeString
 		}
 	}
-	func updateTimeAndDayInfo() {
+	private func updateTimeAndDayInfo() {
 		let timeString=model.getTime()
 		if digitalClock.stringValue != timeString {
 			digitalClock.stringValue=timeString
@@ -33,7 +33,7 @@ class DigitalClockAnimator: ClockAnimator {
 			animatedDay.stringValue=dayInfo
 		}
 	}
-	func animateTimeAndDayInfo() {
+	private func animateTimeAndDayInfo() {
 		digitalClock.stringValue=model.getTime()
 		animatedDay.stringValue=model.getDayInfo()
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
@@ -43,7 +43,7 @@ class DigitalClockAnimator: ClockAnimator {
 		}
 		updateTimer.resume()
 	}
-	func animateTime() {
+	private func animateTime() {
 		digitalClock.stringValue=model.getTime()
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		updateTimer.schedule(deadline: .now()+getSecondAdjustment(), repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
@@ -51,5 +51,12 @@ class DigitalClockAnimator: ClockAnimator {
 			self.updateTime()
 		}
 		updateTimer.resume()
+	}
+	func animate(){
+		if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
+			animateTimeAndDayInfo()
+		} else {
+			animateTime()
+		}
 	}
 }

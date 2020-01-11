@@ -71,7 +71,6 @@ class ClockViewController: NSViewController {
 	func showAnalogClock() {
 		setConstraints()
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: digitalClock)
-		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: animatedDay)
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: analogClock)
 		model.updateClockModelForPreferences()
 		updateSizeConstraints()
@@ -85,13 +84,13 @@ class ClockViewController: NSViewController {
 				resizeContents(maxHeight: windowHeight)
 			}
 		}
-		analogClockAnimator?.animateTimeAndDayInfo()
+		analogClock.setNeedsDisplay(analogClock.bounds)
+		analogClockAnimator?.animate()
 	}
 	func showDigitalClock() {
 		setConstraints()
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: analogClock)
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: digitalClock)
-		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: animatedDay)
 		guard let clockWindowController=view.window?.windowController as? ClockWindowController else {
 			return
 		}
@@ -108,11 +107,7 @@ class ClockViewController: NSViewController {
 				clockWindowController.sizeWindowToFitClock(newWidth: width)
 			}
 		}
-		if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
-			digitalClockAnimator?.animateTimeAndDayInfo()
-		} else {
-			digitalClockAnimator?.animateTime()
-		}
+		digitalClockAnimator?.animate()
 	}
 	func setConstraints() {
 		if ClockPreferencesStorage.sharedInstance.useAnalog {
@@ -162,18 +157,18 @@ class ClockViewController: NSViewController {
 		analogClock.setNeedsDisplay(analogClock.frame)
 	}
 	func animateClock() {
-		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
-			showDigitalClock()
 			if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
 				clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: animatedDay!)
-				digitalClockAnimator?.animateTimeAndDayInfo()
+				animatedDay.isHidden=false
 			} else {
 				clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: animatedDay!)
-				digitalClockAnimator?.animateTime()
+				animatedDay.isHidden=true
 			}
-		} else {
-			showAnalogClock()
-		}
+	if ClockPreferencesStorage.sharedInstance.useAnalog==false {
+		showDigitalClock()
+	} else {
+		showAnalogClock()
+	}
 	}
 	func resizeClock() {
 		if ClockPreferencesStorage.sharedInstance.useAnalog==false {

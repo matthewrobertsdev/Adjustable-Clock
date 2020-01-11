@@ -30,9 +30,8 @@ class AnalogClockView: NSView {
 		widthConstraint=NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 237)
 		NSLayoutConstraint.activate([widthConstraint])
 		positionLabels()
-		startHands()
     }
-	func startHands() {
+	func startHands(withSeconds: Bool) {
 		hourLayer.removeFromSuperlayer()
 		hourLayer=CAShapeLayer()
 		minuteLayer.removeFromSuperlayer()
@@ -41,7 +40,9 @@ class AnalogClockView: NSView {
 		secondLayer=CAShapeLayer()
 		addHand(handLayer: hourLayer, lengthProportion: 0.75)
 		addHand(handLayer: minuteLayer, lengthProportion: 0.8)
-		addHand(handLayer: secondLayer, lengthProportion: 0.7)
+		if withSeconds {
+			addHand(handLayer: secondLayer, lengthProportion: 0.7)
+		}
 	}
 	func setHourHand(radians: CGFloat) {
 		hourLayer.transform=CATransform3DMakeRotation(CGFloat(radians), 0, 0, 1)
