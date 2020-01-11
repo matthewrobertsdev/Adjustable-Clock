@@ -28,6 +28,7 @@ class ClockViewController: NSViewController {
 	let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
 	var colorController: ClockColorController?
 	var digitalClockAnimator: DigitalClockAnimator?
+	var analogClockAnimator: AnalogClockAnimator?
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
@@ -60,6 +61,7 @@ class ClockViewController: NSViewController {
 		guard let timeProtocol=tellingTime else { return }
 		guard let timer=updateTimer else { return }
 		digitalClockAnimator=DigitalClockAnimator(model: model, tellingTime: timeProtocol, updateTimer: timer, digitalClock: digitalClock, animatedDay: animatedDay)
+		analogClockAnimator=AnalogClockAnimator(model: model, tellingTime: timeProtocol, updateTimer: timer, analogClock: analogClock, animatedDay: animatedDay)
 		colorController=ClockColorController(visualEffectView: visualEffectView, view: view, digitalClock: digitalClock, animatedDay: animatedDay, analogClock: analogClock)
 		if ClockPreferencesStorage.sharedInstance.useAnalog {
 			showAnalogClock()
@@ -83,6 +85,7 @@ class ClockViewController: NSViewController {
 				resizeContents(maxHeight: windowHeight)
 			}
 		}
+		analogClockAnimator?.animateHands()
 	}
 	func showDigitalClock() {
 		setConstraints()

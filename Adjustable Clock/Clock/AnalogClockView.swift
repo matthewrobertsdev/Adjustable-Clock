@@ -29,17 +29,20 @@ class AnalogClockView: NSView {
 		NSLayoutConstraint.activate([
 		widthConstraint
 		])
-		positionbLabels()
+		positionLabels()
 		addMinuteHand()
 		let lineWidth=frame.width/100
-		minuteLayer.transform=CATransform3DMakeRotation(CGFloat(Double.pi), bounds.midX, bounds.midY, 1)
+		//minuteLayer.transform=CATransform3DMakeRotation(CGFloat(Double.pi), bounds.midX, bounds.midY, 1)
     }
-	private func positionbLabels() {
+	func setMinuteHand(radians: CGFloat) {
+		minuteLayer.transform=CATransform3DMakeRotation(CGFloat(radians), 0, 0, 1)
+	}
+	private func positionLabels() {
 		for index in 0...11 {
-			positionbLabel(label: labels[index], twelfth: Double(index))
+			positionLabel(label: labels[index], twelfth: Double(index))
 		}
 	}
-	private func positionbLabel(label: NSTextField, twelfth: Double) {
+	private func positionLabel(label: NSTextField, twelfth: Double) {
 		let firstConstant=bounds.size.height*(0.5-(0.35*CGFloat(sin(Double.pi/6*twelfth+Double.pi/2))))
 		let secondConstant = -bounds.size.height*(0.5-(0.35*CGFloat(cos(Double.pi/6*twelfth+Double.pi/2))))
 		NSLayoutConstraint.activate([
@@ -58,8 +61,8 @@ class AnalogClockView: NSView {
 		minuteLayer.frame = bounds
 		let minuteHand = CGMutablePath()
 		let lineWidth=frame.width/100
-		minuteHand.move(to: CGPoint(x: bounds.midX+lineWidth/2, y: bounds.midY+lineWidth/2))
-		minuteHand.addLine(to: CGPoint(x: bounds.midX+lineWidth/2, y: bounds.height*0.9+lineWidth/2))
+		minuteHand.move(to: CGPoint(x: bounds.midX-lineWidth/2, y: bounds.midY-lineWidth/2))
+		minuteHand.addLine(to: CGPoint(x: bounds.midX-lineWidth/2, y: bounds.height*0.9-lineWidth/2))
 		minuteLayer.path = minuteHand
 		minuteLayer.lineWidth = lineWidth
 		minuteLayer.lineCap = CAShapeLayerLineCap.round

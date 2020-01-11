@@ -6,19 +6,13 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import AppKit
-class DigitalClockAnimator {
-	var model: ClockModel
-	var tellingTime: NSObjectProtocol
-	var updateTimer: DispatchSourceTimer
+class DigitalClockAnimator: ClockAnimator {
 	var digitalClock: NSTextField
 	var animatedDay: NSTextField
 	init(model: ClockModel, tellingTime: NSObjectProtocol, updateTimer: DispatchSourceTimer, digitalClock: NSTextField, animatedDay: NSTextField) {
-		self.model=model
-		self.tellingTime=tellingTime
-		self.updateTimer=updateTimer
 		self.digitalClock=digitalClock
 		self.animatedDay=animatedDay
-		print("inited DigitalClockAnimator")
+		super.init(model: model, tellingTime: tellingTime, updateTimer: updateTimer)
 	}
 	func displayForDock() {
 		updateTimer.cancel()
@@ -49,12 +43,6 @@ class DigitalClockAnimator {
 		}
 		updateTimer.resume()
 	}
-	func getSecondAdjustment() -> Double {
-		let start=Date()
-		let nanoseconds=Calendar.current.dateComponents([.nanosecond], from: start)
-		let missingNanoceconds=1_000_000_000-(nanoseconds.nanosecond ?? 0)
-		return Double(missingNanoceconds)/1_000_000_000
-	}
 	func animateTime() {
 		digitalClock.stringValue=model.getTime()
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
@@ -63,9 +51,5 @@ class DigitalClockAnimator {
 			self.updateTime()
 		}
 		updateTimer.resume()
-	}
-	func stopAnimating() {
-		ProcessInfo().endActivity(tellingTime)
-		updateTimer.cancel()
 	}
 }
