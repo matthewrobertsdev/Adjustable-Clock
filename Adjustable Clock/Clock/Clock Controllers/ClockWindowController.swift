@@ -101,6 +101,8 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
     }
     func windowDidResize(_ notification: Notification) {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
+		digitalClockVC.updateSizeConstraints()
+		digitalClockVC.setConstraints()
         resizeContents()
 		guard let windowIsZoomed=window?.isZoomed else { return }
         if windowIsZoomed==false && ClockPreferencesStorage.sharedInstance.fullscreen==false {
@@ -113,13 +115,18 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
     }
 	func resizeContents() {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
-		guard let windowSize=window?.screen?.frame.size else { return }
-		if ClockPreferencesStorage.sharedInstance.useAnalog && ClockPreferencesStorage.sharedInstance.fullscreen {
+		guard let windowSize=window?.frame.size else { return }/*if ClockPreferencesStorage.sharedInstance.useAnalog && ClockPreferencesStorage.sharedInstance.fullscreen {
 			digitalClockVC.resizeContents(maxHeight: windowSize.height)
+		} else {*/
+		guard let windowWidth=window?.frame.size.width else { return }
+		if digitalClockVC.view.frame.size.width/digitalClockVC.view.frame.size.height<digitalClockVC.model.width/digitalClockVC.model.height {
+			digitalClockVC.resizeContents(maxWidth: windowSize.width)
 		} else {
-			guard let windowWidth=window?.frame.size.width else { return }
-			digitalClockVC.resizeContents(maxWidth: windowWidth)
+			digitalClockVC.resizeContents(maxHeight: windowSize.height)
 		}
+			
+			
+		//}
 	}
     func windowWillClose(_ notification: Notification) {
 		saveState()

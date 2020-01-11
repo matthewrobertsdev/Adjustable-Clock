@@ -75,15 +75,15 @@ class ClockViewController: NSViewController {
 		model.updateClockModelForPreferences()
 		updateSizeConstraints()
 		if let clockWindowController=view.window?.windowController as? ClockWindowController {
-			if let width=self.view.window?.frame.size.width {
-				clockWindowController.sizeWindowToFitClock(newWidth: width)
-			}
+			clockWindowController.resizeContents()
 		}
+		/*
 		if ClockPreferencesStorage.sharedInstance.fullscreen {
 			if let windowHeight=view.window?.screen?.frame.height {
 				resizeContents(maxHeight: windowHeight)
 			}
 		}
+*/
 		analogClock.setNeedsDisplay(analogClock.bounds)
 		analogClockAnimator?.animate()
 	}
@@ -96,6 +96,8 @@ class ClockViewController: NSViewController {
 		}
 		model.updateClockModelForPreferences()
 		updateSizeConstraints()
+		clockWindowController.resizeContents()
+		/*
 		if ClockPreferencesStorage.sharedInstance.fullscreen {
 			if let windowWidth=view.window?.screen?.frame.width {
 				resizeContents(maxWidth: windowWidth)
@@ -106,36 +108,42 @@ class ClockViewController: NSViewController {
 				resizeContents(maxWidth: width)
 				clockWindowController.sizeWindowToFitClock(newWidth: width)
 			}
-		}
+		}*/
 		digitalClockAnimator?.animate()
 	}
 	func setConstraints() {
-		if ClockPreferencesStorage.sharedInstance.useAnalog {
-			if let leadingConstraint=magnifierLeadingConstraint {
-				leadingConstraint.isActive=false
+			if self.view.frame.size.width/self.view.frame.size.height<model.width/model.height {
+				activateWidthConstraints()
+			} else {
+				activateHeightConstraints()
 			}
-			if let trailingConstraint=magnifierTrailingConstraint {
-				trailingConstraint.isActive=false
-			}
-			if let bottomConstraint=magnifierBottomConstaint {
-				bottomConstraint.isActive=true
-			}
-			if let topConstraint=magnifierTopConstraint {
-				topConstraint.isActive=true
-			}
-		} else {
-			if let bottomConstraint=magnifierBottomConstaint {
-				bottomConstraint.isActive=false
-			}
-			if let topConstraint=magnifierTopConstraint {
-				topConstraint.isActive=false
-			}
-			if let leadingConstraint=magnifierLeadingConstraint {
-				leadingConstraint.isActive=true
-			}
-			if let trailingConstraint=magnifierTrailingConstraint {
-				trailingConstraint.isActive=true
-			}
+	}
+	func activateHeightConstraints() {
+		if let leadingConstraint=magnifierLeadingConstraint {
+			leadingConstraint.isActive=false
+		}
+		if let trailingConstraint=magnifierTrailingConstraint {
+			trailingConstraint.isActive=false
+		}
+		if let bottomConstraint=magnifierBottomConstaint {
+			bottomConstraint.isActive=true
+		}
+		if let topConstraint=magnifierTopConstraint {
+			topConstraint.isActive=true
+		}
+	}
+	func activateWidthConstraints() {
+		if let bottomConstraint=magnifierBottomConstaint {
+			bottomConstraint.isActive=false
+		}
+		if let topConstraint=magnifierTopConstraint {
+			topConstraint.isActive=false
+		}
+		if let leadingConstraint=magnifierLeadingConstraint {
+			leadingConstraint.isActive=true
+		}
+		if let trailingConstraint=magnifierTrailingConstraint {
+			trailingConstraint.isActive=true
 		}
 	}
 	func updateSizeConstraints() {
