@@ -84,7 +84,7 @@ class ClockViewController: NSViewController {
 				resizeContents(maxHeight: windowHeight)
 			}
 		}
-		analogClock.setNeedsDisplay(analogClock.bounds)
+		//analogClock.setNeedsDisplay(analogClock.bounds)
 		analogClockAnimator?.animate()
 	}
 	func showDigitalClock() {

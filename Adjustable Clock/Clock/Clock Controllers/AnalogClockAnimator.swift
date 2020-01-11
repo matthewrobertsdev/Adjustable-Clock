@@ -38,7 +38,7 @@ class AnalogClockAnimator: ClockAnimator {
 		analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
 		animatedDay.stringValue=model.getDayInfo()
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
-		CALayer.performWithoutAnimation(){
+		CALayer.performWithoutAnimation {
 			runAnimation()
 		}
 		updateTimer.schedule(deadline: .now()+getSecondAdjustment(), repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
@@ -50,7 +50,7 @@ class AnalogClockAnimator: ClockAnimator {
 	private func animateTime() {
 		analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
-		CALayer.performWithoutAnimation(){
+		CALayer.performWithoutAnimation {
 			runAnimation()
 		}
 		updateTimer.schedule(deadline: .now()+getSecondAdjustment(), repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))

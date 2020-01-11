@@ -52,7 +52,7 @@ class DigitalClockAnimator: ClockAnimator {
 		}
 		updateTimer.resume()
 	}
-	func animate(){
+	func animate() {
 		if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
 			animateTimeAndDayInfo()
 		} else {

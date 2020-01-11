@@ -13,6 +13,7 @@ class AnalogClockView: NSView {
 	var hourLayer=CAShapeLayer()
 	var minuteLayer=CAShapeLayer()
 	var secondLayer=CAShapeLayer()
+	var immutableBounds: NSRect!
 	override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         setUp()
@@ -22,6 +23,7 @@ class AnalogClockView: NSView {
         setUp()
     }
     private func setUp() {
+		immutableBounds=bounds
 		wantsLayer=true
 		for index in 0...11 {
 			let textField=NSTextField(labelWithString: String(12-index))
@@ -74,11 +76,11 @@ class AnalogClockView: NSView {
 		labels.append(label)
 	}
 	private func addHand(handLayer: CAShapeLayer, lengthProportion: CGFloat) {
-		handLayer.frame = bounds
+		handLayer.frame = immutableBounds
 		let hand = CGMutablePath()
 		let lineWidth=frame.width/100
-		hand.move(to: CGPoint(x: bounds.midX, y: bounds.midY))
-		hand.addLine(to: CGPoint(x: bounds.midX, y: bounds.height*lengthProportion))
+		hand.move(to: CGPoint(x: immutableBounds.midX, y: immutableBounds.midY))
+		hand.addLine(to: CGPoint(x: immutableBounds.midX, y: immutableBounds.height*lengthProportion))
 		handLayer.path = hand
 		handLayer.lineWidth = lineWidth
 		handLayer.lineCap = CAShapeLayerLineCap.round
