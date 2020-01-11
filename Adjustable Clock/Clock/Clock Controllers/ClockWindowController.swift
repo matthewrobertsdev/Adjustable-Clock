@@ -115,18 +115,17 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
     }
 	func resizeContents() {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
-		guard let windowSize=window?.frame.size else { return }/*if ClockPreferencesStorage.sharedInstance.useAnalog && ClockPreferencesStorage.sharedInstance.fullscreen {
-			digitalClockVC.resizeContents(maxHeight: windowSize.height)
-		} else {*/
-		guard let windowWidth=window?.frame.size.width else { return }
+		guard let windowSize=window?.frame.size else { return }
 		if digitalClockVC.view.frame.size.width/digitalClockVC.view.frame.size.height<digitalClockVC.model.width/digitalClockVC.model.height {
+			digitalClockVC.activateWidthConstraints()
 			digitalClockVC.resizeContents(maxWidth: windowSize.width)
 		} else {
+			digitalClockVC.activateHeightConstraints()
 			digitalClockVC.resizeContents(maxHeight: windowSize.height)
 		}
-			
-			
-		//}
+		if ClockPreferencesStorage.sharedInstance.useAnalog&&ClockPreferencesStorage.sharedInstance.fullscreen{
+			digitalClockVC.analogClockAnimator?.animate()
+		}
 	}
     func windowWillClose(_ notification: Notification) {
 		saveState()

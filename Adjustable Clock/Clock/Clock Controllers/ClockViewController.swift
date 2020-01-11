@@ -74,16 +74,12 @@ class ClockViewController: NSViewController {
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: analogClock)
 		model.updateClockModelForPreferences()
 		updateSizeConstraints()
-		if let clockWindowController=view.window?.windowController as? ClockWindowController {
+		guard let clockWindowController=view.window?.windowController as? ClockWindowController else { return }
 			clockWindowController.resizeContents()
-		}
-		/*
-		if ClockPreferencesStorage.sharedInstance.fullscreen {
-			if let windowHeight=view.window?.screen?.frame.height {
-				resizeContents(maxHeight: windowHeight)
+		guard let width=self.view.window?.frame.width else { return }
+			if ClockPreferencesStorage.sharedInstance.fullscreen==false {
+				clockWindowController.sizeWindowToFitClock(newWidth: width)
 			}
-		}
-*/
 		analogClock.setNeedsDisplay(analogClock.bounds)
 		analogClockAnimator?.animate()
 	}
@@ -97,18 +93,10 @@ class ClockViewController: NSViewController {
 		model.updateClockModelForPreferences()
 		updateSizeConstraints()
 		clockWindowController.resizeContents()
-		/*
-		if ClockPreferencesStorage.sharedInstance.fullscreen {
-			if let windowWidth=view.window?.screen?.frame.width {
-				resizeContents(maxWidth: windowWidth)
-			}
+		guard let width=self.view.window?.frame.width else { return }
+		if ClockPreferencesStorage.sharedInstance.fullscreen==false {
+			clockWindowController.sizeWindowToFitClock(newWidth: width)
 		}
-		if let width=self.view.window?.frame.size.width {
-			if self.view.isInFullScreenMode==false {
-				resizeContents(maxWidth: width)
-				clockWindowController.sizeWindowToFitClock(newWidth: width)
-			}
-		}*/
 		digitalClockAnimator?.animate()
 	}
 	func setConstraints() {
@@ -157,7 +145,6 @@ class ClockViewController: NSViewController {
 	func updateClock() {
 		model.updateClockModelForPreferences()
 		updateSizeConstraints()
-		//analogClock.minuteLayer.bounds=NSRect(origin: NSZeroPoint, size: NSSize(width: model.width, height: model.width))
 		colorController?.applyColorScheme()
 		if let windowController=self.view.window?.windowController as? ClockWindowController {
 			windowController.applyFloatState()
