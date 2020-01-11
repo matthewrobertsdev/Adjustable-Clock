@@ -55,14 +55,14 @@ class AnalogClockView: NSView {
 	func setSecondHand(radians: CGFloat) {
 		secondLayer.transform=CATransform3DMakeRotation(CGFloat(radians), 0, 0, 1)
 	}
-	private func positionLabels() {
+	func positionLabels() {
 		for index in 0...11 {
 			positionLabel(label: labels[index], twelfth: Double(index))
 		}
 	}
 	private func positionLabel(label: NSTextField, twelfth: Double) {
-		let firstConstant=bounds.size.height*(0.5-(0.35*CGFloat(sin(Double.pi/6*twelfth+Double.pi/2))))
-		let secondConstant = -bounds.size.height*(0.5-(0.35*CGFloat(cos(Double.pi/6*twelfth+Double.pi/2))))
+		let firstConstant=widthConstraint.constant*2*(0.5-(0.35*CGFloat(sin(Double.pi/6*twelfth+Double.pi/2)))-0.01)
+		let secondConstant = -widthConstraint.constant*(0.5-(0.35*CGFloat(cos(Double.pi/6*twelfth+Double.pi/2))))
 		NSLayoutConstraint.activate([
 			NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: firstConstant),
 			NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: secondConstant)
@@ -76,11 +76,11 @@ class AnalogClockView: NSView {
 		labels.append(label)
 	}
 	private func addHand(handLayer: CAShapeLayer, lengthProportion: CGFloat) {
-		handLayer.frame = immutableBounds
+		handLayer.frame = bounds
 		let hand = CGMutablePath()
 		let lineWidth=frame.width/100
-		hand.move(to: CGPoint(x: immutableBounds.midX, y: immutableBounds.midY))
-		hand.addLine(to: CGPoint(x: immutableBounds.midX, y: immutableBounds.height*lengthProportion))
+		hand.move(to: CGPoint(x: bounds.midX, y: bounds.midY))
+		hand.addLine(to: CGPoint(x: bounds.midX, y: bounds.height*lengthProportion))
 		handLayer.path = hand
 		handLayer.lineWidth = lineWidth
 		handLayer.lineCap = CAShapeLayerLineCap.round

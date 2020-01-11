@@ -84,7 +84,7 @@ class ClockViewController: NSViewController {
 				resizeContents(maxHeight: windowHeight)
 			}
 		}
-		//analogClock.setNeedsDisplay(analogClock.bounds)
+		analogClock.setNeedsDisplay(analogClock.bounds)
 		analogClockAnimator?.animate()
 	}
 	func showDigitalClock() {
@@ -143,11 +143,13 @@ class ClockViewController: NSViewController {
 		clockWidthConstraint.constant=model.width
 		clockHeightConstraint.constant=model.height
 		analogClock.widthConstraint.constant=model.width
+		analogClock.positionLabels()
 		visibleView.setFrameSize(NSSize(width: model.width, height: model.height))
 	}
 	func updateClock() {
 		model.updateClockModelForPreferences()
 		updateSizeConstraints()
+		//analogClock.minuteLayer.bounds=NSRect(origin: NSZeroPoint, size: NSSize(width: model.width, height: model.width))
 		colorController?.applyColorScheme()
 		if let windowController=self.view.window?.windowController as? ClockWindowController {
 			windowController.applyFloatState()

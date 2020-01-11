@@ -88,7 +88,7 @@ class ClockModel {
             }
 		}
 		} else {
-			width=CGFloat(332); height=CGFloat(332)
+			width=CGFloat(460); height=CGFloat(460)
 		}
         if showDayInfo {
 			if ClockPreferencesStorage.sharedInstance.useAnalog {
