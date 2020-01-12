@@ -68,15 +68,15 @@ class AnalogClockView: NSView {
 		}
 	}
 	private func positionLabel(label: NSTextField, twelfth: Double) {
-		let firstConstant=widthConstraint.constant*2*(0.5-(0.35*CGFloat(sin(Double.pi/6*twelfth+Double.pi/2)))-0.01)
-		let secondConstant = -widthConstraint.constant*(0.5-(0.35*CGFloat(cos(Double.pi/6*twelfth+Double.pi/2))))
+		let firstConstant=widthConstraint.constant*2*(0.5-(0.33*CGFloat(sin(Double.pi/6*twelfth+Double.pi/2)))-0.01)
+		let secondConstant = -widthConstraint.constant*(0.5-(0.33*CGFloat(cos(Double.pi/6*twelfth+Double.pi/2))))
 		NSLayoutConstraint.activate([
 			NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: firstConstant),
 			NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: secondConstant)
 		])
 	}
 	private func setUpLabel(label: NSTextField) {
-		label.font=NSFont.systemFont(ofSize: 20)
+		label.font=NSFont.systemFont(ofSize: 30)
 		label.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(label)
 		label.sizeToFit()
