@@ -15,12 +15,12 @@ class AnalogClockAnimator: ClockAnimator {
 		self.animatedDay=animatedDay
 		super.init(model: model, tellingTime: tellingTime, updateTimer: updateTimer)
 	}
-	private func animateHandsWithSeconds(late: Bool) {
+	private func animateHandsWithSeconds(early: Bool) {
 		let now=Date()
 		let hour=calendar.dateComponents([.hour], from: now).hour ?? 0
 		var minute=calendar.dateComponents([.minute], from: now).minute ?? 0
 		var second=calendar.dateComponents([.second], from: now).second ?? 0
-		if late {
+		if early {
 			second+=1
 			if second==60 {
 				minute+=1
@@ -31,14 +31,13 @@ class AnalogClockAnimator: ClockAnimator {
 		analogClock.setMinuteHand(radians: -CGFloat.pi*CGFloat(minute)/30)
 		analogClock.setSecondHand(radians: -CGFloat.pi*CGFloat(second)/30)
 		updateHours(hour: hour)
-		print(second)
 	}
-	private func animateHandsNoSeconds(late: Bool) {
+	private func animateHandsNoSeconds(early: Bool) {
 		let now=Date()
 		let hour=calendar.dateComponents([.hour], from: now).hour ?? 0
 		var minute=calendar.dateComponents([.minute], from: now).minute ?? 0
 		var second=calendar.dateComponents([.second], from: now).second ?? 0
-		if late {
+		if early {
 			second+=1
 			if second==60 {
 				minute+=1
@@ -56,15 +55,15 @@ class AnalogClockAnimator: ClockAnimator {
 		}
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		CALayer.performWithoutAnimation {
-			runAnimation(late: false)
+			runAnimation(early: false)
 		}
 		CALayer.performAnimationWithDuration(seconds: getSecondAdjustment()) {
-			runAnimation(late: true)
+			runAnimation(early: true)
 		}
-		updateTimer.schedule(deadline: .now(), repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
+		updateTimer.schedule(deadline: .now()+0.8, repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
 		updateTimer.setEventHandler {
-			CALayer.performAnimationWithDuration(seconds: 1) {
-				self.runAnimation(late: true)
+			CALayer.performAnimationWithDuration(seconds: 0.2) {
+				self.runAnimation(early: true)
 			}
 		}
 		updateTimer.resume()
@@ -73,24 +72,24 @@ class AnalogClockAnimator: ClockAnimator {
 		analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		CALayer.performWithoutAnimation {
-			runAnimation(late: false)
+			runAnimation(early: false)
 		}
 		CALayer.performAnimationWithDuration(seconds: getSecondAdjustment()) {
-			runAnimation(late: true)
+			runAnimation(early: true)
 		}
-		updateTimer.schedule(deadline: .now(), repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
+		updateTimer.schedule(deadline: .now()+0.8, repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
 		updateTimer.setEventHandler {
-			CALayer.performAnimationWithDuration(seconds: 1) {
-				self.runAnimation(late: true)
+			CALayer.performAnimationWithDuration(seconds: 0.2) {
+				self.runAnimation(early: true)
 			}
 		}
 		updateTimer.resume()
 	}
-	private func runAnimation(late: Bool) {
+	private func runAnimation(early: Bool) {
 		if ClockPreferencesStorage.sharedInstance.showSeconds {
-			self.animateHandsWithSeconds(late: late)
+			self.animateHandsWithSeconds(early: early)
 		} else {
-			self.animateHandsNoSeconds(late: late)
+			self.animateHandsNoSeconds(early: early)
 		}
 	}
 	func animate() {
