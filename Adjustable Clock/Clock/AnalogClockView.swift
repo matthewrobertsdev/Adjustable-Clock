@@ -7,13 +7,14 @@
 //
 import Cocoa
 class AnalogClockView: NSView {
-	var labels=[NSTextField]()
+	var hourLabels=[NSTextField]()
 	var color=NSColor.labelColor
 	var widthConstraint: NSLayoutConstraint!
 	var hourLayer=CAShapeLayer()
 	var minuteLayer=CAShapeLayer()
 	var secondLayer=CAShapeLayer()
 	var immutableBounds: NSRect!
+	let amPmLabel=NSTextField(labelWithString: "")
 	override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         setUp()
@@ -32,6 +33,12 @@ class AnalogClockView: NSView {
 		widthConstraint=NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 237)
 		NSLayoutConstraint.activate([widthConstraint])
 		positionLabels()
+		amPmLabel.font=NSFont.systemFont(ofSize: 30)
+		amPmLabel.translatesAutoresizingMaskIntoConstraints = false
+		addSubview(amPmLabel)
+		let amPmXConstraint=NSLayoutConstraint(item: amPmLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
+		let amPmYConstraint=NSLayoutConstraint(item: amPmLabel, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: widthConstraint.constant*1.33)
+		NSLayoutConstraint.activate([amPmXConstraint, amPmYConstraint])
     }
 	func startHands(withSeconds: Bool) {
 		hourLayer.removeFromSuperlayer()
@@ -57,7 +64,7 @@ class AnalogClockView: NSView {
 	}
 	func positionLabels() {
 		for index in 0...11 {
-			positionLabel(label: labels[index], twelfth: Double(index))
+			positionLabel(label: hourLabels[index], twelfth: Double(index))
 		}
 	}
 	private func positionLabel(label: NSTextField, twelfth: Double) {
@@ -73,7 +80,7 @@ class AnalogClockView: NSView {
 		label.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(label)
 		label.sizeToFit()
-		labels.append(label)
+		hourLabels.append(label)
 	}
 	private func addHand(handLayer: CAShapeLayer, lengthProportion: CGFloat) {
 		handLayer.frame = bounds
@@ -88,7 +95,8 @@ class AnalogClockView: NSView {
 	}
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-		for label in labels { label.textColor=color }
+		for label in hourLabels { label.textColor=color }
+		amPmLabel.textColor=color
 		minuteLayer.strokeColor=color.cgColor
 		hourLayer.strokeColor=color.cgColor
 		secondLayer.strokeColor=color.cgColor

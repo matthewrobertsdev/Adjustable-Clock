@@ -24,6 +24,7 @@ class AnalogClockAnimator: ClockAnimator {
 		analogClock.setHourHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0))
 		analogClock.setMinuteHand(radians: -CGFloat.pi*CGFloat(minute)/30)
 		analogClock.setSecondHand(radians: -CGFloat.pi*CGFloat(second)/30)
+		updateHour(hour: hour)
 	}
 	private func animateHandsNoSeconds() {
 		let now=Date()
@@ -33,6 +34,7 @@ class AnalogClockAnimator: ClockAnimator {
 		let totalSeconds=(Double(hour)*3600.0+Double(minute)*60.0+Double(second))
 		analogClock.setHourHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0))
 		analogClock.setMinuteHand(radians: -CGFloat.pi*CGFloat(minute)/30)
+		updateHour(hour: hour)
 	}
 	private func animateTimeAndDayInfo() {
 		analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
@@ -73,6 +75,13 @@ class AnalogClockAnimator: ClockAnimator {
 			animateTimeAndDayInfo()
 		} else {
 			animateTime()
+		}
+	}
+	func updateHour(hour: Int){
+		if (hour>11 && analogClock.amPmLabel.stringValue != "PM"){
+			analogClock.amPmLabel.stringValue = "PM"
+		} else if (hour<12 && analogClock.amPmLabel.stringValue != "AM"){
+			analogClock.amPmLabel.stringValue = "AM"
 		}
 	}
 }
