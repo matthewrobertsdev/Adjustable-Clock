@@ -129,4 +129,24 @@ class AnalogClockView: NSView {
 		cgContext.setLineWidth(frame.width/150+1)
 		cgContext.strokePath()
 	}
+	func use1to12Hours() {
+		for index in 0...11 {
+			hourLabels[index].stringValue=String(12-index)
+			hourLabels[index].sizeToFit()
+		}
+	}
+	func use0to11Hours() {
+		hourLabels[0].stringValue=String(0)
+		for index in 1...11 {
+			hourLabels[index].stringValue=String(12-index)
+			hourLabels[index].sizeToFit()
+		}
+	}
+	func use12to23Hours() {
+		hourLabels[0].stringValue=String(12)
+		for index in 1...11 {
+			hourLabels[index].stringValue=String(24-index)
+			hourLabels[index].sizeToFit()
+		}
+	}
 }
