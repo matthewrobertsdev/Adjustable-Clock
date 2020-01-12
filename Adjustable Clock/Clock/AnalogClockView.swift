@@ -48,7 +48,7 @@ class AnalogClockView: NSView {
 			addHand(handLayer: secondLayer, lengthProportion: 0.7)
 		}
 	}
-	func clearHands(){
+	func clearHands() {
 		hourLayer.removeFromSuperlayer()
 		hourLayer=CAShapeLayer()
 		minuteLayer.removeFromSuperlayer()
