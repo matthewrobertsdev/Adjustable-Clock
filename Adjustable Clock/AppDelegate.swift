@@ -24,6 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		if let mainMenu=appObject.mainMenu as? MainMenu {
 			colorsMenuController=ColorsMenuController(colorsMenu: mainMenu.colorsMenu)
 		}
+		DockClockController.dockClockObject.updateDockTile()
 		/*let dockClockView=DockClockView()
 		dockClockView.setFrameSize(appObject.dockTile.size)
 		appObject.dockTile.contentView=dockClockView

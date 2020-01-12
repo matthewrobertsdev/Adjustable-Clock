@@ -42,6 +42,7 @@
 		9FE390871FECBCF400AF5442 /* PreferencesWindowRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE390861FECBCF400AF5442 /* PreferencesWindowRestorer.swift */; };
 		9FEAE9DD1F4F7249004EB641 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEAE9DC1F4F7249004EB641 /* MainMenu.swift */; };
 		9FFEB30723CBD28600C1A6D3 /* DockClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFEB30623CBD28600C1A6D3 /* DockClockView.swift */; };
+		9FFEB30923CBD7DD00C1A6D3 /* DockClockController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFEB30823CBD7DD00C1A6D3 /* DockClockController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		9FE390861FECBCF400AF5442 /* PreferencesWindowRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowRestorer.swift; sourceTree = "<group>"; };
 		9FEAE9DC1F4F7249004EB641 /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		9FFEB30623CBD28600C1A6D3 /* DockClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockClockView.swift; sourceTree = "<group>"; };
+		9FFEB30823CBD7DD00C1A6D3 /* DockClockController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockClockController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				9F93B36D23C81E620086B3CC /* DigitalClockAnimator.swift */,
 				9F71B69823C93A0C0079A79A /* ClockAnimator.swift */,
 				9F71B69623C939140079A79A /* AnalogClockAnimator.swift */,
+				9FFEB30823CBD7DD00C1A6D3 /* DockClockController.swift */,
 			);
 			path = "Clock Controllers";
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				9FBBCCA520DDDD9F00F44160 /* NSImageTemplateExtension.swift in Sources */,
 				9FC97F591F480BB500035D30 /* PreferencesWC.swift in Sources */,
 				9F14F37723C9828F009BF6CA /* CALayerExtension.swift in Sources */,
+				9FFEB30923CBD7DD00C1A6D3 /* DockClockController.swift in Sources */,
 				9FA8A51023C54A19005F0579 /* NSLayoutConstraintExtension.swift in Sources */,
 				9F8BF21720EEBEFE00ADF294 /* ColorsMenuController.swift in Sources */,
 				9F078A9D23CA7A79007072BB /* FullViewWindowController.swift in Sources */,
