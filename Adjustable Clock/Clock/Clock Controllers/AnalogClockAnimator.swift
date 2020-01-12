@@ -126,4 +126,8 @@ class AnalogClockAnimator: ClockAnimator {
 			analogClock.use12to23Hours()
 		}
 	}
+	func displayForDock(){
+		analogClock.clearHands()
+		animatedDay.stringValue=model.dockDateString
+	}
 }

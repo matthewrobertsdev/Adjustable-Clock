@@ -41,17 +41,20 @@ class AnalogClockView: NSView {
 		NSLayoutConstraint.activate([amPmXConstraint, amPmYConstraint])
     }
 	func startHands(withSeconds: Bool) {
+		clearHands()
+		addHand(handLayer: hourLayer, lengthProportion: 0.75)
+		addHand(handLayer: minuteLayer, lengthProportion: 0.8)
+		if withSeconds {
+			addHand(handLayer: secondLayer, lengthProportion: 0.7)
+		}
+	}
+	func clearHands(){
 		hourLayer.removeFromSuperlayer()
 		hourLayer=CAShapeLayer()
 		minuteLayer.removeFromSuperlayer()
 		minuteLayer=CAShapeLayer()
 		secondLayer.removeFromSuperlayer()
 		secondLayer=CAShapeLayer()
-		addHand(handLayer: hourLayer, lengthProportion: 0.75)
-		addHand(handLayer: minuteLayer, lengthProportion: 0.8)
-		if withSeconds {
-			addHand(handLayer: secondLayer, lengthProportion: 0.7)
-		}
 	}
 	func setHourHand(radians: CGFloat) {
 		hourLayer.transform=CATransform3DMakeRotation(CGFloat(radians), 0, 0, 1)

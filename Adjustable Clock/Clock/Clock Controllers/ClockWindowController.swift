@@ -174,7 +174,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
     }
 	func windowWillMiniaturize(_ notification: Notification) {
 		if let digitalClockVC=window?.contentViewController as? ClockViewController {
-			digitalClockVC.digitalClockAnimator?.displayForDock()
+			digitalClockVC.displayForDock()
 		}
 	}
 	func windowDidDeminiaturize(_ notification: Notification) {
