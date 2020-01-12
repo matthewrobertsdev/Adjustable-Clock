@@ -14,4 +14,10 @@ extension CALayer {
         actionsWithoutAnimation()
         CATransaction.commit()
     }
+	class func performAnimationWithDuration(seconds: Double, _ actionsWithoutAnimation: () -> Void){
+        CATransaction.begin()
+		CATransaction.setValue(NSNumber(value: seconds), forKey: kCATransactionAnimationDuration)
+        actionsWithoutAnimation()
+        CATransaction.commit()
+    }
 }
