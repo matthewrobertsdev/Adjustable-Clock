@@ -6,9 +6,8 @@
 //  Copyright © 2019 Matt Roberts. All rights reserved.
 //
 import Cocoa
-class AnalogClockView: NSView {
+class AnalogClockView: BaseAnalogClockView {
 	var hourLabels=[NSTextField]()
-	var color=NSColor.labelColor
 	var widthConstraint: NSLayoutConstraint!
 	var hourLayer=CAShapeLayer()
 	var minuteLayer=CAShapeLayer()
@@ -24,6 +23,7 @@ class AnalogClockView: NSView {
         setUp()
     }
     private func setUp() {
+		lineWidth=CGFloat(frame.size.width/150+1)
 		immutableBounds=bounds
 		wantsLayer=true
 		for index in 0...11 {
@@ -111,27 +111,13 @@ class AnalogClockView: NSView {
 		guard let cgContext=NSGraphicsContext.current?.cgContext else {
 				return
 		}
-		for hour in 0...12 {
-			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(hour)/Double(12)), startProportion: 0)
+		for hour in 1...12 {
+			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(hour)/Double(12)), start: 0.4, startProportion: 0, end: 0.45)
 		}
-		for minute in 0...60 {
-			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(minute)/60), startProportion: 0.6)
+		for minute in 1...60 {
+			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(minute)/60), start: 0.4, startProportion: 0.6, end: 0.45)
 		}
     }
-	func drawDash(cgContext: CGContext, angle: CGFloat, startProportion: CGFloat) {
-		let line = CGMutablePath()
-		let xStart=cos(angle)*frame.width*(0.4+(startProportion*0.05))+frame.width/2
-		let yStart=sin(angle)*frame.height*(0.4+(startProportion*0.05))+frame.height/2
-		line.move(to: CGPoint(x: xStart, y: yStart))
-		let xEnd=cos(angle)*frame.width*0.45+frame.width/2
-		let yEnd=sin(angle)*frame.height*0.45+frame.height/2
-		line.addLine(to: CGPoint(x: xEnd, y: yEnd))
-		line.closeSubpath()
-		cgContext.addPath(line)
-		cgContext.setStrokeColor(color.cgColor)
-		cgContext.setLineWidth(frame.width/150+1)
-		cgContext.strokePath()
-	}
 	func use1to12Hours() {
 		for index in 0...11 {
 			hourLabels[index].stringValue=String(12-index)

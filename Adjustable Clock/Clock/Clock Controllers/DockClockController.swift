@@ -10,7 +10,10 @@ class DockClockController {
 	static let dockClockObject=DockClockController()
 	let dockClockView=DockClockView()
 	let appObject = NSApp as NSApplication
+	var tellingTime: NSObjectProtocol?
+	var updateTimer: DispatchSourceTimer?
 	private init() {
+		animateTime()
 	}
 	func updateDockTile() {
 		dockClockView.setFrameSize(appObject.dockTile.size)
@@ -21,6 +24,22 @@ class DockClockController {
 	func updateClockForPreferencesChange() {
 		applyColorScheme()
 		appObject.dockTile.display()
+	}
+	private func animateTime() {
+		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
+		guard let timer=updateTimer else { return }
+		timer.schedule(deadline: .now()+getSecondAdjustment(), repeating: .milliseconds(1000), leeway: .milliseconds(0))
+		timer.setEventHandler {
+			self.dockClockView.draw(self.dockClockView.frame)
+			self.appObject.dockTile.display()
+		}
+		timer.resume()
+	}
+	func getSecondAdjustment() -> Double {
+		let start=Date()
+		let nanoseconds=Calendar.current.dateComponents([.nanosecond], from: start)
+		let missingNanoceconds=1_000_000_000-(nanoseconds.nanosecond ?? 0)
+		return Double(missingNanoceconds)/1_000_000_000
 	}
 	func applyColorScheme() {
 			var contrastColor: NSColor
@@ -45,11 +64,13 @@ class DockClockController {
 						}
 					}
 				}
-				dockClockView.foregorundColor=NSColor.labelColor
+				dockClockView.foregorundColor=NSColor.white
 				dockClockView.backgroundColor=contrastColor
+				dockClockView.color=NSColor.white
 			} else {
 				dockClockView.foregorundColor=contrastColor
 				dockClockView.backgroundColor=NSColor.labelColor
+				dockClockView.color=contrastColor
 			}
 		}
 }
