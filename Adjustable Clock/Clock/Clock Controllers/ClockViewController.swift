@@ -202,7 +202,7 @@ class ClockViewController: NSViewController {
 	}
 	@objc func applyColors(sender: NSNotification) { colorController?.applyColorScheme() }
 	deinit { digitalClockAnimator?.stopAnimating() }
-	func displayForDock(){
+	func displayForDock() {
 		if ClockPreferencesStorage.sharedInstance.useAnalog {
 			analogClockAnimator?.displayForDock()
 		} else {

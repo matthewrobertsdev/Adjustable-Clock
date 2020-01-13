@@ -107,7 +107,7 @@ class AnalogClockAnimator: ClockAnimator {
 		}
 	}
 	func updateAmPm(hour: Int) {
-		if analogClock.hourLabels[0].stringValue != String(12) || analogClock.hourLabels[6].stringValue != String(6){
+		if analogClock.hourLabels[0].stringValue != String(12) || analogClock.hourLabels[6].stringValue != String(6) {
 			analogClock.use1to12Hours()
 		}
 		if hour>11 && analogClock.amPmLabel.stringValue != "PM" {
@@ -126,7 +126,7 @@ class AnalogClockAnimator: ClockAnimator {
 			analogClock.use12to23Hours()
 		}
 	}
-	func displayForDock(){
+	func displayForDock() {
 		analogClock.clearHands()
 		animatedDay.stringValue=model.dockDateString
 	}

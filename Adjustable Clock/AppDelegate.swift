@@ -25,10 +25,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			colorsMenuController=ColorsMenuController(colorsMenu: mainMenu.colorsMenu)
 		}
 		DockClockController.dockClockObject.updateDockTile()
-		/*let dockClockView=DockClockView()
-		dockClockView.setFrameSize(appObject.dockTile.size)
-		appObject.dockTile.contentView=dockClockView
-		appObject.dockTile.display()*/
     }
     //if the dock icon is clicked
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
