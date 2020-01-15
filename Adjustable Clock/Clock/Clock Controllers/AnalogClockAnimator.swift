@@ -49,10 +49,10 @@ class AnalogClockAnimator: ClockAnimator {
 		updateHours(hour: hour)
 	}
 	private func animateTimeAndDayInfo() {
-		analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
-		if animatedDay.stringValue != model.getDayInfo() {
-			animatedDay.stringValue=model.getDayInfo()
+		if self.animatedDay.stringValue != self.model.getDayInfo() {
+			self.animatedDay.stringValue=self.model.getDayInfo()
 		}
+		analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		CALayer.performWithoutAnimation {
 			runAnimation(early: false)
@@ -64,6 +64,9 @@ class AnalogClockAnimator: ClockAnimator {
 		updateTimer.setEventHandler {
 			CALayer.performAnimationWithDuration(seconds: 0.2) {
 				self.runAnimation(early: true)
+			}
+			if self.animatedDay.stringValue != self.model.getDayInfo() {
+				self.animatedDay.stringValue=self.model.getDayInfo()
 			}
 		}
 		updateTimer.resume()

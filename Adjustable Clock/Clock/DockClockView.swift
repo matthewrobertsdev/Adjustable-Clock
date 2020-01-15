@@ -7,9 +7,9 @@
 //
 import Cocoa
 class DockClockView: BaseAnalogClockView {
-	var foregorundColor=NSColor.labelColor
 	var backgroundColor=NSColor.labelColor
-	var displaySeconds=true
+	var handsColor=NSColor.labelColor
+	var displaySeconds=false
 	var calendar=Calendar.current
 	override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -72,7 +72,7 @@ class DockClockView: BaseAnalogClockView {
 		line.addLine(to: CGPoint(x: xEnd, y: yEnd))
 		line.closeSubpath()
 		cgContext.addPath(line)
-		cgContext.setStrokeColor(color.cgColor)
+		cgContext.setStrokeColor(handsColor.cgColor)
 		cgContext.setLineWidth(lineWidth)
 		cgContext.strokePath()
 	}
