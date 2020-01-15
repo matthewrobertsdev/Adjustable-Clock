@@ -5,9 +5,7 @@
 //  Created by Matt Roberts on 8/24/17.
 //  Copyright © 2017 Matt Roberts. All rights reserved.
 //
-
 import  Cocoa
-
 class MainMenu: NSMenu {
     @IBOutlet weak var colorsMenu: NSMenu!
     let clockPreferences=ClockPreferencesStorage.sharedInstance
@@ -124,7 +122,7 @@ class MainMenu: NSMenu {
 				guard let digitalClockVC=window.contentViewController as? ClockViewController else {
 					return
 				}
-                if digitalClockVC.clockModel.fullscreen==true {
+                if digitalClockVC.model.fullscreen==true {
                     for window in appObject.windows where window.identifier==UserInterfaceIdentifier.prefrencesWindow {
 						if let preferencesWC=window.windowController as? SimplePreferenceWindowController {
 							preferencesWC.close()

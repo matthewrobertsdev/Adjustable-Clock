@@ -13,15 +13,12 @@ class ClockModel {
     var clockNSColors=ColorDictionary()
 	var showDayInfo=false
 	var updateTime=1000
-	var dockTimeString=""
-	var dockDateString=""
-    let timeFormatter = DateFormatter()
-    let dateFormatter = DateFormatter()
+	var dockTimeString="", dockDateString=""
+    let timeFormatter = DateFormatter(), dateFormatter = DateFormatter()
     //for time intervals (miliseconds)
     let seconds=1000
 	//current height and width
-	var width=CGFloat(332)
-	var height=CGFloat(151)
+	var width=CGFloat(332), height=CGFloat(151)
     func useShowMinutesAMPM() {
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
         updateTime=seconds
@@ -75,46 +72,51 @@ class ClockModel {
 		return dateFormatter.string(from: nowDate)
     }
     func updateClockModelForPreferences() {
-        if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
-            showDayInfo=true
-        }
+        if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek { showDayInfo=true }
 		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
         if ClockPreferencesStorage.sharedInstance.use24hourClock==false {
             if ClockPreferencesStorage.sharedInstance.showSeconds==false {
-                useShowMinutesAMPM()
-				width=CGFloat(332)
-				height=CGFloat(151)
+				useShowMinutesAMPM(); width=CGFloat(332); height=CGFloat(151)
             } else {
-                useShowSecondsAMPM()
-				width=CGFloat(460)
-				height=CGFloat(180)
+				useShowSecondsAMPM(); width=CGFloat(460); height=CGFloat(180)
             }
         } else {
             if ClockPreferencesStorage.sharedInstance.showSeconds==false {
-                useShowMinutes24Hour()
-				width=CGFloat(332)
-				height=CGFloat(151)
+				useShowMinutes24Hour(); width=CGFloat(332); height=CGFloat(151)
             } else {
-                useShowSeconds24Hour()
-				width=CGFloat(332)
-				height=CGFloat(151)
+				useShowSeconds24Hour(); width=CGFloat(332); height=CGFloat(151)
             }
 		}
 		} else {
-			width=CGFloat(332)
-			height=CGFloat(332)
+			width=CGFloat(460); height=CGFloat(460)
 		}
         if showDayInfo {
 			if ClockPreferencesStorage.sharedInstance.useAnalog {
 				height+=70
+				if ClockPreferencesStorage.sharedInstance.showDate==false {
+					if ClockPreferencesStorage.sharedInstance.showDayOfWeek==false {
+						useWeekdayDate()
+					} else { useWeekDay() }
+				} else {
+					if ClockPreferencesStorage.sharedInstance.showDayOfWeek==false {
+						if ClockPreferencesStorage.sharedInstance.useNumericalDate==false {
+							useLongDate()
+						} else {
+							useNumericalDate()
+						}
+					} else {
+						if ClockPreferencesStorage.sharedInstance.useNumericalDate==false {
+							useWeekdayDate()
+						} else {
+							useWeekdayNumericalDate()
+						}
+					}
+			}
 			} else {
             if ClockPreferencesStorage.sharedInstance.showDate==false {
                 if ClockPreferencesStorage.sharedInstance.showDayOfWeek==false {
-                    useWeekdayDate()
-					height=140
-                } else {
-                    useWeekDay()
-                }
+					useWeekdayDate(); height=140
+                } else { useWeekDay() }
             } else {
                 if ClockPreferencesStorage.sharedInstance.showDayOfWeek==false {
                     if ClockPreferencesStorage.sharedInstance.useNumericalDate==false {
@@ -124,9 +126,7 @@ class ClockModel {
                     }
                 } else {
                     if ClockPreferencesStorage.sharedInstance.useNumericalDate==false {
-                        useWeekdayDate()
-						width=CGFloat(460)
-						height=CGFloat(180)
+						useWeekdayDate(); width=CGFloat(460); height=CGFloat(180)
                     } else {
                         useWeekdayNumericalDate()
                     }
@@ -136,6 +136,8 @@ class ClockModel {
 		} else {
 			if ClockPreferencesStorage.sharedInstance.useAnalog==false {
 				height=140
+			} else {
+				height=CGFloat(332)
 			}
 		}
     }

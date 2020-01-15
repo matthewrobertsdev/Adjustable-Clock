@@ -3,12 +3,11 @@
 //  Adjustable Clock
 //
 //  Created by Matt Roberts on 1/7/20.
-//  Copyright © 2020 Celeritas Apps. All rights reserved.
+//  Copyright © 2020 Matt Roberts. All rights reserved.
 //
-
 import AppKit
-extension NSLayoutConstraint{
-func setMultiplier(_ multiplier:CGFloat) -> NSLayoutConstraint {
+extension NSLayoutConstraint {
+func setMultiplier(_ multiplier: CGFloat) -> NSLayoutConstraint {
 
 	NSLayoutConstraint.deactivate([self])
 
