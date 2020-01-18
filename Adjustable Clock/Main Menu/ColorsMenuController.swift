@@ -15,33 +15,33 @@ class ColorsMenuController {
     init(colorsMenu: NSMenu) {
         self.colorsMenu=colorsMenu
 		colorsMenu.items[0].view=testView
-        makeColorMenuUI()
+        makeColorMenuUI(opposite: false)
         //reflect saved (or default) choice
-        updateColorMenuUI()
+        updateColorMenuUI(opposite: false)
 		let distribitedNotificationCenter=DistributedNotificationCenter.default
 		let interfaceNotification=NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification")
 		distribitedNotificationCenter.addObserver(self, selector: #selector(interfaceModeChanged(sender:)), name: interfaceNotification, object: nil)
     }
 	@objc func interfaceModeChanged(sender: NSNotification) {
-		makeColorMenuUI()
-		updateColorMenuUI()
+		makeColorMenuUI(opposite: true)
+		updateColorMenuUI(opposite: true)
 	}
     @objc func changeColor(sender: NSMenuItem) {
         let newColorChoice=colorArray.colorArray[sender.tag]
         ClockPreferencesStorage.sharedInstance.changeAndSaveColorSceme(colorChoice: newColorChoice)
-        updateColorMenuUI()
+        updateColorMenuUI(opposite: false)
         updateClocksForPreferenceChanges()
     }
     @objc func colorOnForeground(sender: NSMenuItem) {
 		ClockPreferencesStorage.sharedInstance.colorOnForeground()
-		makeColorMenuUI()
-		updateColorMenuUI()
+		makeColorMenuUI(opposite: false)
+		updateColorMenuUI(opposite: false)
         updateClocksForPreferenceChanges()
     }
 	@objc func colorOnBackground(sender: NSMenuItem) {
 		ClockPreferencesStorage.sharedInstance.colorOnBackground()
-		makeColorMenuUI()
-		updateColorMenuUI()
+		makeColorMenuUI(opposite: false)
+		updateColorMenuUI(opposite: false)
         updateClocksForPreferenceChanges()
     }
     @objc func showColorPanel(sender: NSMenuItem) {
@@ -56,10 +56,10 @@ class ColorsMenuController {
     }
     @objc func useCustomColor() {
 		ClockPreferencesStorage.sharedInstance.changeAndSaveCustomColor(customColor: nsColorPanel.color)
-        updateColorMenuUI()
+		updateColorMenuUI(opposite: false)
 		updateClocksForPreferenceChanges()
     }
-	func makeColorMenuUI() {
+	func makeColorMenuUI(opposite: Bool) {
 		//add change color selectors
         //add color images
 		guard let colorsMenu=self.colorsMenu else {
@@ -74,7 +74,7 @@ class ColorsMenuController {
 			colorsMenu.items[index].action=#selector(changeColor(sender:))
 			var templateImage=NSImage()
 			var tintColor=NSColor.clear
-			if DockClockController.dockClockObject.dockClockView.hasDarkAppearance && !ClockPreferencesStorage.sharedInstance.colorForForeground{
+			if DockClockController.dockClockObject.dockClockView.hasDarkAppearance != opposite && !ClockPreferencesStorage.sharedInstance.colorForForeground{
 				templateImage=NSImage(named: "white_rectangle") ?? NSImage()
 			
 				tintColor=clockNSColors.colorsDictionary[colorArray.colorArray[index]]?.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
@@ -98,7 +98,7 @@ class ColorsMenuController {
         colorsMenu.items[colorArray.colorArray.count+4].target=self
         colorsMenu.items[colorArray.colorArray.count+4].action=#selector(showColorPanel(sender:))
 	}
-    func updateColorMenuUI() {
+	func updateColorMenuUI(opposite: Bool) {
         for index in 0...colorArray.colorArray.count-1 {
             //if saved color string matches the array at menuItem's index, select
             if ClockPreferencesStorage.sharedInstance.colorChoice==colorArray.colorArray[index] {
@@ -112,7 +112,7 @@ class ColorsMenuController {
         //update color image for custom color based on current custum color
         var templateImage=NSImage()
         var tintColor=ClockPreferencesStorage.sharedInstance.customColor
-		if DockClockController.dockClockObject.dockClockView.hasDarkAppearance && !ClockPreferencesStorage.sharedInstance.colorForForeground{
+		if DockClockController.dockClockObject.dockClockView.hasDarkAppearance != opposite && !ClockPreferencesStorage.sharedInstance.colorForForeground{
 			templateImage=NSImage(named: "white_rectangle") ?? NSImage()
 			tintColor=tintColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
 		} else {
