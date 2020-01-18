@@ -100,9 +100,13 @@ class ClockPreferencesStorage {
         useNumericalDate=(!useNumericalDate)
         userDefaults.set(useNumericalDate, forKey: useNumericalDateKey)
     }
-    func changeAndSaveLonD() {
-        colorForForeground=(!colorForForeground)
-        userDefaults.set(colorForForeground, forKey: lightOnDarkKey)
+    func colorOnForeground() {
+		colorForForeground=true
+        userDefaults.set(true, forKey: lightOnDarkKey)
+    }
+	func colorOnBackground() {
+		colorForForeground=false
+		userDefaults.set(false, forKey: lightOnDarkKey)
     }
     func changeAndSaveColorSceme(colorChoice: String) {
         self.colorChoice=colorChoice

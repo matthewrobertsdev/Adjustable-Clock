@@ -30,8 +30,14 @@ class ColorsMenuController {
         updateColorMenuUI()
         updateClocksForPreferenceChanges()
     }
-    @objc func reverseColorMode(sender: NSMenuItem) {
-		ClockPreferencesStorage.sharedInstance.changeAndSaveLonD()
+    @objc func colorOnForeground(sender: NSMenuItem) {
+		ClockPreferencesStorage.sharedInstance.colorOnForeground()
+		updateColorMenuUI()
+        updateClocksForPreferenceChanges()
+    }
+	@objc func colorOnBackground(sender: NSMenuItem) {
+		ClockPreferencesStorage.sharedInstance.colorOnBackground()
+		updateColorMenuUI()
         updateClocksForPreferenceChanges()
     }
     @objc func showColorPanel(sender: NSMenuItem) {
@@ -78,10 +84,13 @@ class ColorsMenuController {
         //set-up reverse color mode menuItem
 		colorsMenu.items[colorArray.colorArray.count+1].isEnabled=true
 		colorsMenu.items[colorArray.colorArray.count+1].target=self
-		colorsMenu.items[colorArray.colorArray.count+1].action=#selector(reverseColorMode(sender:))
+		colorsMenu.items[colorArray.colorArray.count+1].action=#selector(colorOnForeground(sender:))
+		colorsMenu.items[colorArray.colorArray.count+2].isEnabled=true
+		colorsMenu.items[colorArray.colorArray.count+2].target=self
+		colorsMenu.items[colorArray.colorArray.count+2].action=#selector(colorOnBackground(sender:))
 		//set-up show color panel menuItem
-		colorsMenu.items[colorArray.colorArray.count+3].isEnabled=true
-        colorsMenu.items[colorArray.colorArray.count+3].target=self
+		colorsMenu.items[colorArray.colorArray.count+4].isEnabled=true
+        colorsMenu.items[colorArray.colorArray.count+4].target=self
         colorsMenu.items[colorArray.colorArray.count+3].action=#selector(showColorPanel(sender:))
 	}
     func updateColorMenuUI() {
@@ -105,6 +114,13 @@ class ColorsMenuController {
 		}
 		let colorImage=templateImage?.tintExceptBorder(tintColor: tintColor, borderPixels: CGFloat(0))
 		colorsMenu?.items[colorArray.colorArray.count-1].image=colorImage
+		if ClockPreferencesStorage.sharedInstance.colorForForeground {
+			colorsMenu?.items[colorArray.colorArray.count+1].state=NSControl.StateValue.on
+			colorsMenu?.items[colorArray.colorArray.count+2].state=NSControl.StateValue.off
+		} else {
+			colorsMenu?.items[colorArray.colorArray.count+1].state=NSControl.StateValue.off
+			colorsMenu?.items[colorArray.colorArray.count+2].state=NSControl.StateValue.on
+		}
     }
 	func updateClocksForPreferenceChanges() {
 		ClockWindowController.clockObject.updateClockToPreferencesChange()
