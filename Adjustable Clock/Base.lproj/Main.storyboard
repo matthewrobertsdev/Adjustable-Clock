@@ -466,7 +466,10 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="PpC-zj-EBg"/>
-                                        <menuItem title="Reverse Background" tag="8" id="x6R-qH-Eos">
+                                        <menuItem title="Choice as Foreground" tag="8" id="x6R-qH-Eos">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Choice as Background" id="5BG-bt-wNy">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="hb7-11-9Kz"/>

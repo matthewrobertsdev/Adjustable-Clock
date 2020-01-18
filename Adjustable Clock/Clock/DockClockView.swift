@@ -7,9 +7,9 @@
 //
 import Cocoa
 class DockClockView: BaseAnalogClockView {
-	var foregorundColor=NSColor.labelColor
 	var backgroundColor=NSColor.labelColor
-	var displaySeconds=true
+	var handsColor=NSColor.labelColor
+	var displaySeconds=false
 	var calendar=Calendar.current
 	override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -26,7 +26,21 @@ class DockClockView: BaseAnalogClockView {
 		lineWidth=CGFloat(frame.size.width/25)
         let origin=CGPoint(x: bounds.width*0.05, y: bounds.height*0.05)
 		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.size.width*0.9, height: frame.size.height*0.9)))
-		backgroundColor.setFill()
+		var backgroundColorCopy=NSColor.labelColor
+		if hasDarkAppearance && backgroundColor != NSColor.labelColor {
+			backgroundColorCopy=backgroundColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.white
+			backgroundColorCopy.setFill()
+			handsColor=NSColor.white
+			color=NSColor.black
+		} else if !hasDarkAppearance && backgroundColor != NSColor.labelColor {
+			handsColor=NSColor.black
+			color=NSColor.white
+			backgroundColor.setFill()
+		} else {
+			handsColor=NSColor.white
+			backgroundColorCopy=NSColor.black
+			backgroundColorCopy.setFill()
+		}
 		path.fill()
 		guard let cgContext=NSGraphicsContext.current?.cgContext else {
 				return
@@ -72,7 +86,7 @@ class DockClockView: BaseAnalogClockView {
 		line.addLine(to: CGPoint(x: xEnd, y: yEnd))
 		line.closeSubpath()
 		cgContext.addPath(line)
-		cgContext.setStrokeColor(color.cgColor)
+		cgContext.setStrokeColor(handsColor.cgColor)
 		cgContext.setLineWidth(lineWidth)
 		cgContext.strokePath()
 	}

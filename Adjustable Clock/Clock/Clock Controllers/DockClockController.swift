@@ -51,26 +51,25 @@ class DockClockController {
 					clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
 			}
 			if ClockPreferencesStorage.sharedInstance.colorForForeground==false {
-				dockClockView.foregorundColor=NSColor.labelColor
+				dockClockView.color=NSColor.labelColor
 				if contrastColor==NSColor.black {
 					contrastColor=NSColor.systemGray
 				}
-				if #available(OSX 10.14, *) {
-					if let uiName=NSApp?.effectiveAppearance.name {
-						if uiName==NSAppearance.Name.darkAqua||uiName==NSAppearance.Name.accessibilityHighContrastDarkAqua||uiName==NSAppearance.Name.accessibilityHighContrastVibrantDark {
-							if contrastColor==NSColor.white {
-								contrastColor=NSColor.systemGray
-							}
-						}
-					}
-				}
-				dockClockView.foregorundColor=NSColor.white
 				dockClockView.backgroundColor=contrastColor
 				dockClockView.color=NSColor.white
+				if contrastColor != NSColor.black {
+					dockClockView.handsColor=NSColor.black
+				} else {
+					dockClockView.handsColor=NSColor.systemGray
+				}
 			} else {
-				dockClockView.foregorundColor=contrastColor
 				dockClockView.backgroundColor=NSColor.labelColor
-				dockClockView.color=contrastColor
+				if contrastColor != NSColor.black {
+					dockClockView.color=contrastColor
+				} else {
+					dockClockView.color=NSColor.systemGray
+				}
+				dockClockView.handsColor=NSColor.white
 			}
 		}
 }
