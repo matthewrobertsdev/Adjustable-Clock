@@ -30,7 +30,13 @@ class DockClockView: BaseAnalogClockView {
 		if hasDarkAppearance && backgroundColor != NSColor.labelColor {
 			backgroundColorCopy=backgroundColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.white
 			backgroundColorCopy.setFill()
+			handsColor=NSColor.white
+			color=NSColor.black
 		} else {
+			if !hasDarkAppearance {
+				handsColor=NSColor.black
+				color=NSColor.white
+			}
 			backgroundColor.setFill()
 		}
 		path.fill()
