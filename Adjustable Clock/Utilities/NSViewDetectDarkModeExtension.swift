@@ -8,9 +8,11 @@
 import AppKit
 extension NSView {
     var hasDarkAppearance: Bool {
+		print(effectiveAppearance.name)
         if #available(OSX 10.14, *) {
 			switch NSApp.effectiveAppearance.name {
-            case .darkAqua, .vibrantDark, .accessibilityHighContrastDarkAqua, .accessibilityHighContrastVibrantDark:
+			case .darkAqua, .vibrantDark, .accessibilityHighContrastDarkAqua, .accessibilityHighContrastVibrantDark:
+				print(NSApp.effectiveAppearance.name)
                 return true
             default:
                 return false

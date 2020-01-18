@@ -11,14 +11,16 @@ class ColorsMenuController {
     let clockNSColors=ColorDictionary()
     let colorArray=ColorArrays()
 	let nsColorPanel=NSColorPanel.shared
+	let testView=NSView()
     init(colorsMenu: NSMenu) {
         self.colorsMenu=colorsMenu
-		let distribitedNotificationCenter=DistributedNotificationCenter.default
-		let interfaceNotification=NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification")
-		distribitedNotificationCenter.addObserver(self, selector: #selector(interfaceModeChanged(sender:)), name: interfaceNotification, object: nil)
+		colorsMenu.items[0].view=testView
         makeColorMenuUI()
         //reflect saved (or default) choice
         updateColorMenuUI()
+		let distribitedNotificationCenter=DistributedNotificationCenter.default
+		let interfaceNotification=NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification")
+		distribitedNotificationCenter.addObserver(self, selector: #selector(interfaceModeChanged(sender:)), name: interfaceNotification, object: nil)
     }
 	@objc func interfaceModeChanged(sender: NSNotification) {
 		makeColorMenuUI()
@@ -32,11 +34,13 @@ class ColorsMenuController {
     }
     @objc func colorOnForeground(sender: NSMenuItem) {
 		ClockPreferencesStorage.sharedInstance.colorOnForeground()
+		makeColorMenuUI()
 		updateColorMenuUI()
         updateClocksForPreferenceChanges()
     }
 	@objc func colorOnBackground(sender: NSMenuItem) {
 		ClockPreferencesStorage.sharedInstance.colorOnBackground()
+		makeColorMenuUI()
 		updateColorMenuUI()
         updateClocksForPreferenceChanges()
     }
@@ -68,18 +72,19 @@ class ColorsMenuController {
             colorsMenu.items[index].isEnabled=true
             colorsMenu.items[index].target=self
 			colorsMenu.items[index].action=#selector(changeColor(sender:))
-            let templateImage=NSImage(named: "black_rectangle")
-            templateImage?.isTemplate=true
+			var templateImage=NSImage()
 			var tintColor=NSColor.clear
-			/*let testView=NSView()
-			if testView.hasDarkAppearance {
+			if DockClockController.dockClockObject.dockClockView.hasDarkAppearance && !ClockPreferencesStorage.sharedInstance.colorForForeground{
+				templateImage=NSImage(named: "white_rectangle") ?? NSImage()
+			
 				tintColor=clockNSColors.colorsDictionary[colorArray.colorArray[index]]?.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
-			} else {*/
+			} else {
+			templateImage=NSImage(named: "black_rectangle") ?? NSImage()
 				tintColor=clockNSColors.colorsDictionary[colorArray.colorArray[index]] ?? NSColor.clear
-			//}
-			if let colorImage=templateImage?.tintExceptBorder(tintColor: tintColor, borderPixels: CGFloat(0)) {
+			}
+			templateImage.isTemplate=true
+			let colorImage=templateImage.tintExceptBorder(tintColor: tintColor, borderPixels: CGFloat(0.25))
 					colorsMenu.items[index].image=colorImage
-				}
 		}
         //set-up reverse color mode menuItem
 		colorsMenu.items[colorArray.colorArray.count+1].isEnabled=true
@@ -105,14 +110,16 @@ class ColorsMenuController {
             }
         }
         //update color image for custom color based on current custum color
-        let templateImage=NSImage(named: "black_rectangle")
-        templateImage?.isTemplate=true
+        var templateImage=NSImage()
         var tintColor=ClockPreferencesStorage.sharedInstance.customColor
-		//let testView=NSView()
-		/*if testView.hasDarkAppearance {
+		if DockClockController.dockClockObject.dockClockView.hasDarkAppearance && !ClockPreferencesStorage.sharedInstance.colorForForeground{
+			templateImage=NSImage(named: "white_rectangle") ?? NSImage()
 			tintColor=tintColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
-		}*/
-		let colorImage=templateImage?.tintExceptBorder(tintColor: tintColor, borderPixels: CGFloat(0))
+		} else {
+			templateImage=NSImage(named: "black_rectangle") ?? NSImage()
+		}
+        templateImage.isTemplate=true
+		let colorImage=templateImage.tintExceptBorder(tintColor: tintColor, borderPixels: CGFloat(0.25))
 		colorsMenu?.items[colorArray.colorArray.count-1].image=colorImage
 		if ClockPreferencesStorage.sharedInstance.colorForForeground {
 			colorsMenu?.items[colorArray.colorArray.count+1].state=NSControl.StateValue.on

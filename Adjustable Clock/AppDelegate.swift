@@ -23,8 +23,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let appObject = NSApp as NSApplication
 		if let mainMenu=appObject.mainMenu as? MainMenu {
 			colorsMenuController=ColorsMenuController(colorsMenu: mainMenu.colorsMenu)
+			/*
+			let distribitedNotificationCenter=DistributedNotificationCenter.default
+			let interfaceNotification=NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification")
+			distribitedNotificationCenter.addObserver(colorsMenuController, selector: #selector(colorsMenuController?.interfaceModeChanged(sender:)), name: interfaceNotification, object: nil)
+*/
 		}
 		DockClockController.dockClockObject.updateDockTile()
+		
     }
     //if the dock icon is clicked
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
