@@ -8,11 +8,11 @@
 import AppKit
 class ClockColorController {
 	private var visualEffectView: NSVisualEffectView
-	private var view: NSView
+	private var view: DarkAndLightBackgroundView
 	private var digitalClock: NSTextField
 	private var animatedDay: NSTextField
 	private var analogClock: AnalogClockView
-	init(visualEffectView: NSVisualEffectView, view: NSView, digitalClock: NSTextField, animatedDay: NSTextField, analogClock: AnalogClockView) {
+	init(visualEffectView: NSVisualEffectView, view: DarkAndLightBackgroundView, digitalClock: NSTextField, animatedDay: NSTextField, analogClock: AnalogClockView) {
 		self.visualEffectView=visualEffectView
 		self.view=view
 		self.digitalClock=digitalClock
@@ -20,6 +20,7 @@ class ClockColorController {
 		self.analogClock=analogClock
 	}
 	func applyColorScheme() {
+		print("trying to apply")
 		var contrastColor: NSColor
 		let clockNSColors=ColorDictionary()
 		self.view.wantsLayer=true
@@ -36,15 +37,15 @@ class ClockColorController {
 			if contrastColor==NSColor.black {
 				contrastColor=NSColor.systemGray
 			}
-			if view.hasDarkAppearance {
+			if DockClockController.dockClockObject.dockClockView.hasDarkAppearance {
 				if contrastColor==NSColor.white {
 					contrastColor=NSColor.systemGray
 				}
-					self.view.layer?.backgroundColor=contrastColor.blended(withFraction: 0.5, of: NSColor.black)?.cgColor
+				self.view.contrastColor=contrastColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
 					analogClock.color=NSColor.labelColor
 					analogClock.setNeedsDisplay(analogClock.bounds)
 			} else {
-				self.view.layer?.backgroundColor=contrastColor.cgColor
+				self.view.contrastColor=contrastColor ?? NSColor.clear
 				analogClock.color=NSColor.labelColor
 				analogClock.setNeedsDisplay(analogClock.bounds)
 			}
@@ -54,7 +55,9 @@ class ClockColorController {
 			animatedDay.textColor=contrastColor
 			analogClock.color=contrastColor
 			analogClock.setNeedsDisplay(analogClock.bounds)
-			self.view.layer?.backgroundColor = NSColor.labelColor.cgColor
+			self.view.contrastColor = NSColor.labelColor
 		}
+		self.view.draw(view.bounds)
+		print("Changed color")
 	}
 }

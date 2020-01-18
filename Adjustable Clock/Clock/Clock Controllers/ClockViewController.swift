@@ -28,15 +28,28 @@ class ClockViewController: NSViewController {
 	let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
 	var colorController: ClockColorController?
 	var digitalClockAnimator: DigitalClockAnimator?
+	let backgroundView=DarkAndLightBackgroundView()
 	var analogClockAnimator: AnalogClockAnimator?
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		//view=backgroundView
+		//view.wantsLayer=true
+		view.addSubview(backgroundView, positioned: .below, relativeTo: view)
+		backgroundView.translatesAutoresizingMaskIntoConstraints=false
+		//*
+		let leadingConstraint=NSLayoutConstraint(item: backgroundView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
+		let trailingConstraint=NSLayoutConstraint(item: backgroundView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
+		let topConstraint=NSLayoutConstraint(item: backgroundView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
+		let bottomConstraint=NSLayoutConstraint(item: backgroundView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
+		NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
 		updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		maginiferScrollView.maxMagnification=200
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
+		/*
 		let distribitedNotificationCenter=DistributedNotificationCenter.default
 		let interfaceNotification=NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification")
 		distribitedNotificationCenter.addObserver(self, selector: #selector(interfaceModeChanged(sender:)), name: interfaceNotification, object: nil)
+*/
 		let screenSleepObserver =
 			workspaceNotifcationCenter.addObserver(forName:
 			NSWorkspace.screensDidSleepNotification, object: nil, queue: nil) { (_) in
@@ -65,11 +78,12 @@ class ClockViewController: NSViewController {
 		guard let timer=updateTimer else { return }
 		digitalClockAnimator=DigitalClockAnimator(model: model, tellingTime: timeProtocol, updateTimer: timer, digitalClock: digitalClock, animatedDay: animatedDay)
 		analogClockAnimator=AnalogClockAnimator(model: model, tellingTime: timeProtocol, updateTimer: timer, analogClock: analogClock, animatedDay: animatedDay)
-		colorController=ClockColorController(visualEffectView: visualEffectView, view: view, digitalClock: digitalClock, animatedDay: animatedDay, analogClock: analogClock)
+		colorController=ClockColorController(visualEffectView: visualEffectView, view: backgroundView, digitalClock: digitalClock, animatedDay: animatedDay, analogClock: analogClock)
 		if ClockPreferencesStorage.sharedInstance.useAnalog {
 			showAnalogClock()
 		} else {
 			showDigitalClock() }
+		print("abcd")
 	}
 	@objc func interfaceModeChanged(sender: NSNotification) {
 		colorController?.applyColorScheme()
