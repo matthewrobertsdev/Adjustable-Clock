@@ -36,18 +36,18 @@ class ClockColorController {
 			if contrastColor==NSColor.black {
 				contrastColor=NSColor.systemGray
 			}
-			if #available(OSX 10.14, *) {
-				if let uiName=NSApp?.effectiveAppearance.name {
-					if uiName==NSAppearance.Name.darkAqua||uiName==NSAppearance.Name.accessibilityHighContrastDarkAqua||uiName==NSAppearance.Name.accessibilityHighContrastVibrantDark {
-						if contrastColor==NSColor.white {
-							contrastColor=NSColor.systemGray
-						}
-					}
+			if view.hasDarkAppearance {
+				if contrastColor==NSColor.white {
+					contrastColor=NSColor.systemGray
 				}
+					self.view.layer?.backgroundColor=contrastColor.blended(withFraction: 0.5, of: NSColor.black)?.cgColor
+					analogClock.color=NSColor.labelColor
+					analogClock.setNeedsDisplay(analogClock.bounds)
+			} else {
+				self.view.layer?.backgroundColor=contrastColor.cgColor
+				analogClock.color=NSColor.labelColor
+				analogClock.setNeedsDisplay(analogClock.bounds)
 			}
-			self.view.layer?.backgroundColor=contrastColor.cgColor
-			analogClock.color=NSColor.labelColor
-			analogClock.setNeedsDisplay(analogClock.bounds)
 		} else {
 			visualEffectView.isHidden=false
 			digitalClock.textColor=contrastColor
