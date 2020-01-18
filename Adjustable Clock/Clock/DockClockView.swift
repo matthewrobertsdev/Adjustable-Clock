@@ -32,12 +32,14 @@ class DockClockView: BaseAnalogClockView {
 			backgroundColorCopy.setFill()
 			handsColor=NSColor.white
 			color=NSColor.black
-		} else {
-			if !hasDarkAppearance {
-				handsColor=NSColor.black
-				color=NSColor.white
-			}
+		} else if !hasDarkAppearance && backgroundColor != NSColor.labelColor {
+			handsColor=NSColor.black
+			color=NSColor.white
 			backgroundColor.setFill()
+		} else {
+			handsColor=NSColor.white
+			backgroundColorCopy=NSColor.black
+			backgroundColorCopy.setFill()
 		}
 		path.fill()
 		guard let cgContext=NSGraphicsContext.current?.cgContext else {
