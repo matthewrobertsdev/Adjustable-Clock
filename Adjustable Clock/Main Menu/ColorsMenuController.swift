@@ -71,12 +71,12 @@ class ColorsMenuController {
             let templateImage=NSImage(named: "black_rectangle")
             templateImage?.isTemplate=true
 			var tintColor=NSColor.clear
-			let testView=NSView()
+			/*let testView=NSView()
 			if testView.hasDarkAppearance {
 				tintColor=clockNSColors.colorsDictionary[colorArray.colorArray[index]]?.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
-			} else {
+			} else {*/
 				tintColor=clockNSColors.colorsDictionary[colorArray.colorArray[index]] ?? NSColor.clear
-			}
+			//}
 			if let colorImage=templateImage?.tintExceptBorder(tintColor: tintColor, borderPixels: CGFloat(0)) {
 					colorsMenu.items[index].image=colorImage
 				}
@@ -91,7 +91,7 @@ class ColorsMenuController {
 		//set-up show color panel menuItem
 		colorsMenu.items[colorArray.colorArray.count+4].isEnabled=true
         colorsMenu.items[colorArray.colorArray.count+4].target=self
-        colorsMenu.items[colorArray.colorArray.count+3].action=#selector(showColorPanel(sender:))
+        colorsMenu.items[colorArray.colorArray.count+4].action=#selector(showColorPanel(sender:))
 	}
     func updateColorMenuUI() {
         for index in 0...colorArray.colorArray.count-1 {
@@ -108,10 +108,10 @@ class ColorsMenuController {
         let templateImage=NSImage(named: "black_rectangle")
         templateImage?.isTemplate=true
         var tintColor=ClockPreferencesStorage.sharedInstance.customColor
-		let testView=NSView()
-		if testView.hasDarkAppearance {
+		//let testView=NSView()
+		/*if testView.hasDarkAppearance {
 			tintColor=tintColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
-		}
+		}*/
 		let colorImage=templateImage?.tintExceptBorder(tintColor: tintColor, borderPixels: CGFloat(0))
 		colorsMenu?.items[colorArray.colorArray.count-1].image=colorImage
 		if ClockPreferencesStorage.sharedInstance.colorForForeground {
