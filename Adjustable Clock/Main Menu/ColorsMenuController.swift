@@ -23,8 +23,8 @@ class ColorsMenuController {
 		distribitedNotificationCenter.addObserver(self, selector: #selector(interfaceModeChanged(sender:)), name: interfaceNotification, object: nil)
     }
 	@objc func interfaceModeChanged(sender: NSNotification) {
-		makeColorMenuUI(opposite: false)
-		updateColorMenuUI(opposite: false)
+		makeColorMenuUI(opposite: true)
+		updateColorMenuUI(opposite: true)
 	}
     @objc func changeColor(sender: NSMenuItem) {
         let newColorChoice=colorArray.colorArray[sender.tag]
@@ -74,7 +74,7 @@ class ColorsMenuController {
 			colorsMenu.items[index].action=#selector(changeColor(sender:))
 			var templateImage=NSImage()
 			var tintColor=NSColor.clear
-			if DockClockController.dockClockObject.dockClockView.hasDarkAppearance && !ClockPreferencesStorage.sharedInstance.colorForForeground{
+			if DockClockController.dockClockObject.dockClockView.hasDarkAppearance != opposite && !ClockPreferencesStorage.sharedInstance.colorForForeground{
 				templateImage=NSImage(named: "white_rectangle") ?? NSImage()
 			
 				tintColor=clockNSColors.colorsDictionary[colorArray.colorArray[index]]?.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
