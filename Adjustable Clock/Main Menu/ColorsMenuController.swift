@@ -23,8 +23,8 @@ class ColorsMenuController {
 		distribitedNotificationCenter.addObserver(self, selector: #selector(interfaceModeChanged(sender:)), name: interfaceNotification, object: nil)
     }
 	@objc func interfaceModeChanged(sender: NSNotification) {
-		makeColorMenuUI(opposite: true)
-		updateColorMenuUI(opposite: true)
+		makeColorMenuUI(opposite: false)
+		updateColorMenuUI(opposite: false)
 	}
     @objc func changeColor(sender: NSMenuItem) {
         let newColorChoice=colorArray.colorArray[sender.tag]
@@ -74,7 +74,7 @@ class ColorsMenuController {
 			colorsMenu.items[index].action=#selector(changeColor(sender:))
 			var templateImage=NSImage()
 			var tintColor=NSColor.clear
-			if DockClockController.dockClockObject.dockClockView.hasDarkAppearance != opposite && !ClockPreferencesStorage.sharedInstance.colorForForeground{
+			if isDarkMode() && !ClockPreferencesStorage.sharedInstance.colorForForeground{
 				templateImage=NSImage(named: "white_rectangle") ?? NSImage()
 			
 				tintColor=clockNSColors.colorsDictionary[colorArray.colorArray[index]]?.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
@@ -112,7 +112,7 @@ class ColorsMenuController {
         //update color image for custom color based on current custum color
         var templateImage=NSImage()
         var tintColor=ClockPreferencesStorage.sharedInstance.customColor
-		if DockClockController.dockClockObject.dockClockView.hasDarkAppearance != opposite && !ClockPreferencesStorage.sharedInstance.colorForForeground{
+		if isDarkMode() != opposite && !ClockPreferencesStorage.sharedInstance.colorForForeground{
 			templateImage=NSImage(named: "white_rectangle") ?? NSImage()
 			tintColor=tintColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
 		} else {

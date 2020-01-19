@@ -45,11 +45,10 @@ class ClockViewController: NSViewController {
 		updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		maginiferScrollView.maxMagnification=200
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
-		/*
+		
 		let distribitedNotificationCenter=DistributedNotificationCenter.default
 		let interfaceNotification=NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification")
 		distribitedNotificationCenter.addObserver(self, selector: #selector(interfaceModeChanged(sender:)), name: interfaceNotification, object: nil)
-*/
 		let screenSleepObserver =
 			workspaceNotifcationCenter.addObserver(forName:
 			NSWorkspace.screensDidSleepNotification, object: nil, queue: nil) { (_) in

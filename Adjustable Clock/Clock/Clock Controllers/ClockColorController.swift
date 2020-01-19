@@ -37,7 +37,7 @@ class ClockColorController {
 			if contrastColor==NSColor.black {
 				contrastColor=NSColor.systemGray
 			}
-			if DockClockController.dockClockObject.dockClockView.hasDarkAppearance {
+			if isDarkMode() {
 				if contrastColor==NSColor.white {
 					contrastColor=NSColor.systemGray
 				}

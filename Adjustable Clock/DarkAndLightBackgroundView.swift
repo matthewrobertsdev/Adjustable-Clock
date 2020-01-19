@@ -9,9 +9,7 @@
 import Cocoa
 
 class DarkAndLightBackgroundView: NSView {
-
 	var contrastColor=NSColor.clear
-	
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 		self.wantsLayer=true
@@ -19,6 +17,7 @@ class DarkAndLightBackgroundView: NSView {
 					if contrastColor==NSColor.white {
 						contrastColor=NSColor.systemGray
 					}
+					print("dark mode")
 						self.layer?.backgroundColor=contrastColor.blended(withFraction: 0.5, of: NSColor.black)?.cgColor
 				} else {
 					self.layer?.backgroundColor=contrastColor.cgColor
