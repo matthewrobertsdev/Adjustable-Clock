@@ -45,7 +45,6 @@ class ClockViewController: NSViewController {
 		updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		maginiferScrollView.maxMagnification=200
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
-		
 		let distribitedNotificationCenter=DistributedNotificationCenter.default
 		let interfaceNotification=NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification")
 		distribitedNotificationCenter.addObserver(self, selector: #selector(interfaceModeChanged(sender:)), name: interfaceNotification, object: nil)
@@ -85,7 +84,7 @@ class ClockViewController: NSViewController {
 		print("abcd")
 	}
 	@objc func interfaceModeChanged(sender: NSNotification) {
-		//colorController?.applyColorScheme()
+		colorController?.applyColorScheme()
 		backgroundView.draw(backgroundView.bounds)
 	}
 	func showAnalogClock() {

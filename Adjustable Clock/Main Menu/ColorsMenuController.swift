@@ -74,7 +74,7 @@ class ColorsMenuController {
 			colorsMenu.items[index].action=#selector(changeColor(sender:))
 			var templateImage=NSImage()
 			var tintColor=NSColor.clear
-			if isDarkMode() && !ClockPreferencesStorage.sharedInstance.colorForForeground{
+			if DockClockController.dockClockObject.dockClockView.hasDarkAppearance && !ClockPreferencesStorage.sharedInstance.colorForForeground{
 				templateImage=NSImage(named: "white_rectangle") ?? NSImage()
 			
 				tintColor=clockNSColors.colorsDictionary[colorArray.colorArray[index]]?.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
@@ -112,7 +112,7 @@ class ColorsMenuController {
         //update color image for custom color based on current custum color
         var templateImage=NSImage()
         var tintColor=ClockPreferencesStorage.sharedInstance.customColor
-		if isDarkMode() != opposite && !ClockPreferencesStorage.sharedInstance.colorForForeground{
+		if DockClockController.dockClockObject.dockClockView.hasDarkAppearance != opposite && !ClockPreferencesStorage.sharedInstance.colorForForeground {
 			templateImage=NSImage(named: "white_rectangle") ?? NSImage()
 			tintColor=tintColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
 		} else {
