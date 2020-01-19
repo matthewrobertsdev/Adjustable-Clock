@@ -70,10 +70,10 @@ class ClockViewController: NSViewController {
 		let processOptions: ProcessInfo.ActivityOptions=[ProcessInfo.ActivityOptions.userInitiatedAllowingIdleSystemSleep]
 		tellingTime = ProcessInfo().beginActivity(options: processOptions, reason: "Need accurate time all the time")
 		let notifier=DistributedNotificationCenter.default
-		/*let colorChangeNotification=NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification")
+		let colorChangeNotification=NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification")
 		let colorChangeObserver =
 			notifier.addObserver(self, selector:
-				#selector(applyColors(sender:)), name: colorChangeNotification, object: nil)*/
+				#selector(interfaceModeChanged(sender:)), name: colorChangeNotification, object: nil)
 		guard let timeProtocol=tellingTime else { return }
 		guard let timer=updateTimer else { return }
 		digitalClockAnimator=DigitalClockAnimator(model: model, tellingTime: timeProtocol, updateTimer: timer, digitalClock: digitalClock, animatedDay: animatedDay)
@@ -86,7 +86,8 @@ class ClockViewController: NSViewController {
 		print("abcd")
 	}
 	@objc func interfaceModeChanged(sender: NSNotification) {
-		colorController?.applyColorScheme()
+		//colorController?.applyColorScheme()
+		backgroundView.draw(backgroundView.bounds)
 	}
 	func showAnalogClock() {
 		setConstraints()
