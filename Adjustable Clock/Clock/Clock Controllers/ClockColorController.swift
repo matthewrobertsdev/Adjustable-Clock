@@ -20,7 +20,6 @@ class ClockColorController {
 		self.analogClock=analogClock
 	}
 	func applyColorScheme() {
-		print("trying to apply")
 		var contrastColor: NSColor
 		let clockNSColors=ColorDictionary()
 		self.view.wantsLayer=true
@@ -59,6 +58,5 @@ class ClockColorController {
 			self.view.contrastColor = NSColor.labelColor
 		}
 		self.view.setNeedsDisplay(view.bounds)
-		print("Changed color")
 	}
 }

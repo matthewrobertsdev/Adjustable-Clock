@@ -81,7 +81,6 @@ class ClockViewController: NSViewController {
 			showAnalogClock()
 		} else {
 			showDigitalClock() }
-		print("abcd")
 	}
 	@objc func interfaceModeChanged(sender: NSNotification) {
 		colorController?.applyColorScheme()

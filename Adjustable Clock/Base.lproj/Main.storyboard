@@ -422,8 +422,15 @@
                                                 <action selector="showDayOfWeekWithNsMenuItem:" target="AYu-sK-qS6" id="cbe-kt-rWc"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="bUe-XQ-4Ad"/>
+                                        <menuItem title="Show Clock" id="Vhi-ah-dEJ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
                                     </items>
                                 </menu>
+                            </menuItem>
+                            <menuItem title="Item" id="0EF-6t-VOR">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
                             <menuItem title="Colors" id="vby-ae-u19">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -480,6 +487,22 @@
                                     <connections>
                                         <outlet property="reveseColorsMenuItem" destination="x6R-qH-Eos" id="syE-Df-CkG"/>
                                     </connections>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Alarm" id="G6m-ZG-7cp">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Alarm" id="Dah-wr-0hi">
+                                    <items>
+                                        <menuItem title="Add Alarm" id="gqt-pv-27g">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Prevent Sleep" id="RwY-Tw-NeK">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Show Alarms" id="oB7-Ye-eci">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                    </items>
                                 </menu>
                             </menuItem>
                             <menuItem title="Window" id="aUF-d1-5bR">
@@ -690,6 +713,40 @@
                 <customObject id="HOX-re-87A" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="402" y="428.5"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="TeY-CA-Flb">
+            <objects>
+                <windowController id="Ymg-Mv-RWx" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="SKW-hm-43b">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="279" height="163"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="Ymg-Mv-RWx" id="fqX-vh-Wvl"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="jsi-dr-Kid" kind="relationship" relationship="window.shadowedContentViewController" id="qxi-ND-qyQ"/>
+                    </connections>
+                </windowController>
+                <customObject id="atp-xX-vnK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="778" y="423"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="wPV-y4-U0G">
+            <objects>
+                <viewController id="jsi-dr-Kid" sceneMemberID="viewController">
+                    <view key="view" id="P05-f5-a90">
+                        <rect key="frame" x="0.0" y="0.0" width="251" height="200"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="ldb-hh-cAO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="888.5" y="418"/>
         </scene>
     </scenes>
 </document>

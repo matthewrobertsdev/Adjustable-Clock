@@ -30,7 +30,7 @@ class DockClockView: BaseAnalogClockView {
 		var backgroundColorCopy=NSColor.labelColor
 		if hasDarkAppearance && dark==false{
 			dark=true
-		} else if !hasDarkAppearance && dark==false{
+		} else if !hasDarkAppearance && dark==true {
 			dark=false
 		}
 		if hasDarkAppearance && backgroundColor != NSColor.labelColor {
