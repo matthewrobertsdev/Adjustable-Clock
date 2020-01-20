@@ -13,7 +13,20 @@ class DarkAndLightBackgroundView: NSView {
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 		self.wantsLayer=true
-				if hasDarkAppearance {
+		let origin=CGPoint(x: 0, y: 0)
+		let path=NSBezierPath(roundedRect: NSRect(origin: origin, size: CGSize(width: frame.size.width, height: frame.size.height)), xRadius: 0, yRadius: 0)
+					var backgroundColorCopy=NSColor.labelColor
+					if hasDarkAppearance && contrastColor != NSColor.labelColor {
+						backgroundColorCopy=contrastColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.white
+						backgroundColorCopy.setFill()
+					} else if !hasDarkAppearance && contrastColor != NSColor.labelColor {
+						contrastColor.setFill()
+					} else {
+						backgroundColorCopy=NSColor.black
+						backgroundColorCopy.setFill()
+					}
+					path.fill()
+					/*
 					if contrastColor==NSColor.white {
 						contrastColor=NSColor.systemGray
 					}
@@ -22,5 +35,6 @@ class DarkAndLightBackgroundView: NSView {
 				} else {
 					self.layer?.backgroundColor=contrastColor.cgColor
 				}
+*/
 		}
 }

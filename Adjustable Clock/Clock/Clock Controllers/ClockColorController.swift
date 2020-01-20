@@ -41,7 +41,7 @@ class ClockColorController {
 				if contrastColor==NSColor.white {
 					contrastColor=NSColor.systemGray
 				}
-				self.view.contrastColor=contrastColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
+				self.view.contrastColor=contrastColor
 					analogClock.color=NSColor.labelColor
 					analogClock.setNeedsDisplay(analogClock.bounds)
 			} else {
@@ -54,10 +54,11 @@ class ClockColorController {
 			digitalClock.textColor=contrastColor
 			animatedDay.textColor=contrastColor
 			analogClock.color=contrastColor
-			analogClock.setNeedsDisplay(analogClock.bounds)
+			if ClockPreferencesStorage.sharedInstance.colorForForeground { analogClock.setNeedsDisplay(analogClock.bounds)
+			}
 			self.view.contrastColor = NSColor.labelColor
 		}
-		self.view.draw(view.bounds)
+		self.view.setNeedsDisplay(view.bounds)
 		print("Changed color")
 	}
 }
