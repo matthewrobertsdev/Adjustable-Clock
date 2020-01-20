@@ -28,9 +28,9 @@ class DockClockView: BaseAnalogClockView {
         let origin=CGPoint(x: bounds.width*0.05, y: bounds.height*0.05)
 		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.size.width*0.9, height: frame.size.height*0.9)))
 		var backgroundColorCopy=NSColor.labelColor
-		if hasDarkAppearance {
+		if hasDarkAppearance && dark==false{
 			dark=true
-		} else {
+		} else if !hasDarkAppearance && dark==false{
 			dark=false
 		}
 		if hasDarkAppearance && backgroundColor != NSColor.labelColor {
