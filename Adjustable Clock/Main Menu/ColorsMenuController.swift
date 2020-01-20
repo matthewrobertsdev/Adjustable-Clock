@@ -6,42 +6,45 @@
 //  Copyright © 2018 Matt Roberts. All rights reserved.
 //
 import Cocoa
-class ColorsMenuController {
+class ColorsMenuController: NSObject {
     var colorsMenu: NSMenu?
     let clockNSColors=ColorDictionary()
     let colorArray=ColorArrays()
 	let nsColorPanel=NSColorPanel.shared
-	let testView=NSView()
+	@objc var objectToObserve=DockClockController.dockClockObject.dockClockView
+	var observation: NSKeyValueObservation?
+	var dark=false
     init(colorsMenu: NSMenu) {
+		super.init()
         self.colorsMenu=colorsMenu
-		colorsMenu.items[0].view=testView
-        makeColorMenuUI(opposite: false)
+        makeColorMenuUI()
         //reflect saved (or default) choice
-        updateColorMenuUI(opposite: false)
-		let distribitedNotificationCenter=DistributedNotificationCenter.default
-		let interfaceNotification=NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification")
-		distribitedNotificationCenter.addObserver(self, selector: #selector(interfaceModeChanged(sender:)), name: interfaceNotification, object: nil)
+        updateColorMenuUI()
+		observation = observe(
+			\.objectToObserve.dark,
+            options: [.old, .new]
+        ) { _, change in
+			self.dark=change.newValue ?? false
+			self.makeColorMenuUI()
+			self.updateColorMenuUI()
+        }
     }
-	@objc func interfaceModeChanged(sender: NSNotification) {
-		makeColorMenuUI(opposite: true)
-		updateColorMenuUI(opposite: true)
-	}
     @objc func changeColor(sender: NSMenuItem) {
         let newColorChoice=colorArray.colorArray[sender.tag]
         ClockPreferencesStorage.sharedInstance.changeAndSaveColorSceme(colorChoice: newColorChoice)
-        updateColorMenuUI(opposite: false)
+        updateColorMenuUI()
         updateClocksForPreferenceChanges()
     }
     @objc func colorOnForeground(sender: NSMenuItem) {
 		ClockPreferencesStorage.sharedInstance.colorOnForeground()
-		makeColorMenuUI(opposite: false)
-		updateColorMenuUI(opposite: false)
+		makeColorMenuUI()
+		updateColorMenuUI()
         updateClocksForPreferenceChanges()
     }
 	@objc func colorOnBackground(sender: NSMenuItem) {
 		ClockPreferencesStorage.sharedInstance.colorOnBackground()
-		makeColorMenuUI(opposite: false)
-		updateColorMenuUI(opposite: false)
+		makeColorMenuUI()
+		updateColorMenuUI()
         updateClocksForPreferenceChanges()
     }
     @objc func showColorPanel(sender: NSMenuItem) {
@@ -56,10 +59,10 @@ class ColorsMenuController {
     }
     @objc func useCustomColor() {
 		ClockPreferencesStorage.sharedInstance.changeAndSaveCustomColor(customColor: nsColorPanel.color)
-		updateColorMenuUI(opposite: false)
+		updateColorMenuUI()
 		updateClocksForPreferenceChanges()
     }
-	func makeColorMenuUI(opposite: Bool) {
+	func makeColorMenuUI() {
 		//add change color selectors
         //add color images
 		guard let colorsMenu=self.colorsMenu else {
@@ -74,9 +77,8 @@ class ColorsMenuController {
 			colorsMenu.items[index].action=#selector(changeColor(sender:))
 			var templateImage=NSImage()
 			var tintColor=NSColor.clear
-			if DockClockController.dockClockObject.dockClockView.hasDarkAppearance != opposite && !ClockPreferencesStorage.sharedInstance.colorForForeground{
+			if dark && !ClockPreferencesStorage.sharedInstance.colorForForeground{
 				templateImage=NSImage(named: "white_rectangle") ?? NSImage()
-			
 				tintColor=clockNSColors.colorsDictionary[colorArray.colorArray[index]]?.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
 			} else {
 			templateImage=NSImage(named: "black_rectangle") ?? NSImage()
@@ -98,7 +100,7 @@ class ColorsMenuController {
         colorsMenu.items[colorArray.colorArray.count+4].target=self
         colorsMenu.items[colorArray.colorArray.count+4].action=#selector(showColorPanel(sender:))
 	}
-	func updateColorMenuUI(opposite: Bool) {
+	func updateColorMenuUI() {
         for index in 0...colorArray.colorArray.count-1 {
             //if saved color string matches the array at menuItem's index, select
             if ClockPreferencesStorage.sharedInstance.colorChoice==colorArray.colorArray[index] {
@@ -112,7 +114,7 @@ class ColorsMenuController {
         //update color image for custom color based on current custum color
         var templateImage=NSImage()
         var tintColor=ClockPreferencesStorage.sharedInstance.customColor
-		if DockClockController.dockClockObject.dockClockView.hasDarkAppearance != opposite && !ClockPreferencesStorage.sharedInstance.colorForForeground {
+		if dark && !ClockPreferencesStorage.sharedInstance.colorForForeground {
 			templateImage=NSImage(named: "white_rectangle") ?? NSImage()
 			tintColor=tintColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
 		} else {

@@ -8,13 +8,13 @@
 
 import AppKit
 extension CALayer {
-    class func performWithoutAnimation(_ actionsWithoutAnimation: () -> Void){
+    class func performWithoutAnimation(_ actionsWithoutAnimation: () -> Void) {
         CATransaction.begin()
         CATransaction.setValue(true, forKey: kCATransactionDisableActions)
         actionsWithoutAnimation()
         CATransaction.commit()
     }
-	class func performAnimationWithDuration(seconds: Double, _ actionsWithoutAnimation: () -> Void){
+	class func performAnimationWithDuration(seconds: Double, _ actionsWithoutAnimation: () -> Void) {
         CATransaction.begin()
 		CATransaction.setValue(NSNumber(value: seconds), forKey: kCATransactionAnimationDuration)
         actionsWithoutAnimation()

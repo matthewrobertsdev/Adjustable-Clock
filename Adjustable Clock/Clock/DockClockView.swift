@@ -11,6 +11,7 @@ class DockClockView: BaseAnalogClockView {
 	var handsColor=NSColor.labelColor
 	var displaySeconds=false
 	var calendar=Calendar.current
+	@objc dynamic var dark=false
 	override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         setUp()
@@ -27,6 +28,11 @@ class DockClockView: BaseAnalogClockView {
         let origin=CGPoint(x: bounds.width*0.05, y: bounds.height*0.05)
 		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.size.width*0.9, height: frame.size.height*0.9)))
 		var backgroundColorCopy=NSColor.labelColor
+		if hasDarkAppearance {
+			dark=true
+		} else {
+			dark=false
+		}
 		if hasDarkAppearance && backgroundColor != NSColor.labelColor {
 			backgroundColorCopy=backgroundColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.white
 			backgroundColorCopy.setFill()
