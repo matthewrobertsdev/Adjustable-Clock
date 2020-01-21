@@ -36,15 +36,19 @@ func windowPresent(identifier: NSUserInterfaceItemIdentifier) -> Bool {
 	return false
 }
 func updateClockMenuUI() {
-	let appObject = NSApp as NSApplication
-	if let mainMenu=appObject.mainMenu as? MainMenu {
-		mainMenu.updateClockMenuUI()
+	guard let appDelagte = NSApplication.shared.delegate as? AppDelegate else {
+		return
+	}
+	if let clockMenuController=appDelagte.clockMenuController as? ClockMenuController {
+		clockMenuController.updateClockMenuUI()
 	}
 }
 func enableClockMenu(enabled: Bool) {
-	let appObject = NSApp as NSApplication
-	if let mainMenu=appObject.mainMenu as? MainMenu {
-		mainMenu.enableClockMenuPreferences(enabled: enabled)
+	guard let appDelagte = NSApplication.shared.delegate as? AppDelegate else {
+		return
+	}
+	if let clockMenuController=appDelagte.clockMenuController as? ClockMenuController {
+		clockMenuController.enableClockMenuPreferences(enabled: enabled)
 	}
 }
 /*

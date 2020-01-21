@@ -15,6 +15,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     var colorsMenuController: ColorsMenuController?
+	var clockMenuController: ClockMenuController?
 	var player: AVAudioPlayer?
 	//on launch
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -26,6 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let appObject = NSApp as NSApplication
 		if let mainMenu=appObject.mainMenu as? MainMenu {
 			colorsMenuController=ColorsMenuController(colorsMenu: mainMenu.colorsMenu)
+			clockMenuController=ClockMenuController(menu: mainMenu.clockMenu)
 		}
 		DockClockController.dockClockObject.updateDockTile()
 	}
@@ -38,9 +40,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	func playSong() {
 		let url = Bundle.main.url(forResource: "01_Hooked_On_A_Feeling", withExtension: "m4a")
-		
-		print(url)
-
 		do {
 			player = try AVAudioPlayer(contentsOf: url!)
 			guard let player = player else { return }

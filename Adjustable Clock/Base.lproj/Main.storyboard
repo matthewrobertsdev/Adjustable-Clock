@@ -362,45 +362,45 @@
                             </menuItem>
                             <menuItem title="Clock" id="3p9-he-isl">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Clock" id="esu-23-zsK">
+                                <menu key="submenu" title="Clock" id="esu-23-zsK" customClass="ClockMenu" customModule="Adjustable_Clock" customModuleProvider="target">
                                     <items>
                                         <menuItem title="Floats on Top" id="uEN-Ne-S2x">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="clickClockFloatsWithNsMenuItem:" target="AYu-sK-qS6" id="cRv-3P-kbN"/>
+                                                <action selector="clickClockFloatsWithNsMenuItem:" target="esu-23-zsK" id="eCq-aj-MTC"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="9Gh-GB-j4b"/>
                                         <menuItem title="Digital" id="XzE-6n-W23">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="clickDigitalWithNsMenuItem:" target="AYu-sK-qS6" id="R6J-l6-SIh"/>
+                                                <action selector="clickDigitalWithNsMenuItem:" target="esu-23-zsK" id="Fcx-P3-Bdr"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Analog" id="ZDp-k8-QHp">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="clickAnalogWithNsMenuItem:" target="AYu-sK-qS6" id="UEC-vU-ih6"/>
+                                                <action selector="clickAnalogWithNsMenuItem:" target="esu-23-zsK" id="7Bh-Kd-DZZ"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="zej-sS-UJY"/>
                                         <menuItem title="Shows Seconds" id="pAg-6i-qXY">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="clickShowSecondsWithNsMenuItem:" target="AYu-sK-qS6" id="36g-7H-iV9"/>
+                                                <action selector="clickShowSecondsWithNsMenuItem:" target="esu-23-zsK" id="ibW-fe-Fx8"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Uses 24 Hours" id="oPR-ZM-2fq">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="clickUse24HoursWithNsMenuItem:" target="AYu-sK-qS6" id="6dm-z9-0nA"/>
+                                                <action selector="clickUse24HoursWithNsMenuItem:" target="esu-23-zsK" id="ih2-hz-lIm"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="X8E-FV-F2l"/>
                                         <menuItem title="Shows Date" id="hPB-2N-q4c">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="clickShowDateWithNsMenuItem:" target="AYu-sK-qS6" id="XDl-c2-2Pl"/>
+                                                <action selector="clickShowDateWithNsMenuItem:" target="esu-23-zsK" id="YvB-dG-BCV"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Date Preferences" id="qte-mU-oqZ">
@@ -410,7 +410,7 @@
                                                     <menuItem title="Uses Numerical Date" id="WbK-Tg-DFs">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
-                                                            <action selector="useNumericalDateWithNsMenuItem:" target="AYu-sK-qS6" id="7hc-tm-hd7"/>
+                                                            <action selector="useNumericalDateWithNsMenuItem:" target="esu-23-zsK" id="RLY-GP-06p"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
@@ -419,21 +419,48 @@
                                         <menuItem title="Shows Day of Week" id="phz-ro-t2T">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="showDayOfWeekWithNsMenuItem:" target="AYu-sK-qS6" id="cbe-kt-rWc"/>
+                                                <action selector="showDayOfWeekWithNsMenuItem:" target="esu-23-zsK" id="xjB-WM-uTr"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="bUe-XQ-4Ad"/>
                                         <menuItem title="Show Clock" id="Vhi-ah-dEJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="showClockWithNsMenuItem:" target="AYu-sK-qS6" id="XDI-La-E78"/>
+                                                <action selector="showClockWithNsMenuItem:" target="esu-23-zsK" id="ISN-rA-kwO"/>
                                             </connections>
                                         </menuItem>
                                     </items>
+                                    <connections>
+                                        <outlet property="analogMenuItem" destination="ZDp-k8-QHp" id="JaE-mN-I74"/>
+                                        <outlet property="clockFloatsMenuItem" destination="uEN-Ne-S2x" id="tu5-aW-4us"/>
+                                        <outlet property="datePreferencesMenu" destination="irh-WD-Jdm" id="9CX-4O-Tow"/>
+                                        <outlet property="digitalMenuItem" destination="XzE-6n-W23" id="HVi-75-hS7"/>
+                                        <outlet property="showDateMenuItem" destination="hPB-2N-q4c" id="L7M-El-dLB"/>
+                                        <outlet property="showDayOfWeekMenuItem" destination="phz-ro-t2T" id="tCd-tB-tDe"/>
+                                        <outlet property="showSecondsMenuItem" destination="pAg-6i-qXY" id="BmV-Xd-Jgj"/>
+                                        <outlet property="use24HourClockMenuItem" destination="oPR-ZM-2fq" id="gHr-qM-wcy"/>
+                                        <outlet property="useNumericalDateMenuItem" destination="WbK-Tg-DFs" id="QZ6-oM-1FV"/>
+                                    </connections>
                                 </menu>
                             </menuItem>
                             <menuItem title="Item" id="0EF-6t-VOR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Alarm" id="G6m-ZG-7cp">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Alarm" id="Dah-wr-0hi">
+                                    <items>
+                                        <menuItem title="Add Alarm" id="gqt-pv-27g">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Prevent Sleep" id="RwY-Tw-NeK">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Show Alarms" id="oB7-Ye-eci">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                    </items>
+                                </menu>
                             </menuItem>
                             <menuItem title="Colors" id="vby-ae-u19">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -492,22 +519,6 @@
                                     </connections>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Alarm" id="G6m-ZG-7cp">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Alarm" id="Dah-wr-0hi">
-                                    <items>
-                                        <menuItem title="Add Alarm" id="gqt-pv-27g">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="Prevent Sleep" id="RwY-Tw-NeK">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="Show Alarms" id="oB7-Ye-eci">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
                             <menuItem title="Window" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
@@ -547,18 +558,10 @@
                             </menuItem>
                         </items>
                         <connections>
-                            <outlet property="analogMenuItem" destination="ZDp-k8-QHp" id="dW1-rC-sx4"/>
-                            <outlet property="clockFloatsMenuItem" destination="uEN-Ne-S2x" id="WuH-Qe-nyV"/>
-                            <outlet property="clockMenu" destination="esu-23-zsK" id="iJ2-F8-5Vg"/>
+                            <outlet property="clockMenu" destination="esu-23-zsK" id="wtB-Fu-hY0"/>
                             <outlet property="colorsMenu" destination="65N-u4-pRd" id="QxW-PF-dZo"/>
                             <outlet property="datePreferencesMenu" destination="irh-WD-Jdm" id="29f-ig-oxy"/>
-                            <outlet property="digitalMenuItem" destination="XzE-6n-W23" id="X4q-dd-edu"/>
                             <outlet property="preferenceMenuItem" destination="1Xt-HY-uBw" id="SPi-0S-rRf"/>
-                            <outlet property="showDateMenuItem" destination="hPB-2N-q4c" id="p1O-gI-29X"/>
-                            <outlet property="showDayOfWeekMenuItem" destination="phz-ro-t2T" id="vXz-ij-TfT"/>
-                            <outlet property="showSecondsMenuItem" destination="pAg-6i-qXY" id="pjd-My-P7y"/>
-                            <outlet property="use24HourClockMenuItem" destination="oPR-ZM-2fq" id="BHt-Ck-ARE"/>
-                            <outlet property="useNumericalDateMenuItem" destination="WbK-Tg-DFs" id="xT6-kN-bxc"/>
                         </connections>
                     </menu>
                     <connections>

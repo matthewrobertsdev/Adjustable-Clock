@@ -21,9 +21,11 @@ class SimplePreferencesVC: NSViewController {
         updateClockMenuUI()
     }
     func updateClockMenuUI() {
-        let appObject = NSApp as NSApplication
-		if let mainMenu=appObject.mainMenu as? MainMenu {
-			mainMenu.updateClockMenuUI()
+		guard let appDelegate = NSApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		if let clockMenuController=appDelegate.clockMenuController as? ClockMenuController {
+			clockMenuController.updateClockMenuUI()
 		}
     }
 }

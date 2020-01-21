@@ -8,7 +8,7 @@
 
 import AppKit
 
-func isDarkMode() -> Bool{
+func isDarkMode() -> Bool {
 	if #available(OSX 10.14, *) {
 			switch NSAppearance.current.name {
 			case .darkAqua, .vibrantDark, .accessibilityHighContrastDarkAqua, .accessibilityHighContrastVibrantDark:
@@ -18,10 +18,10 @@ func isDarkMode() -> Bool{
             }
         } else {
 		switch NSAppearance.current.name {
-            case .vibrantDark:
-                return true
-            default:
-                return false
-            }
+			case .vibrantDark:
+				return true
+			default:
+				return false
+			}
         }
 }
