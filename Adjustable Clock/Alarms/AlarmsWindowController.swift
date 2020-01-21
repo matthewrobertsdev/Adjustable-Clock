@@ -11,7 +11,7 @@ class AlarmsWindowController: NSWindowController {
 	static var alarmsObject=AlarmsWindowController()
     override func windowDidLoad() {
         super.windowDidLoad()
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+		self.window?.standardWindowButton(.zoomButton)?.isEnabled=false
     }
 	func showAlarms() {
 		print("inside show alarms")
@@ -20,7 +20,6 @@ class AlarmsWindowController: NSWindowController {
 		guard let alarmsWindowController =
 			mainStoryBoard.instantiateController(withIdentifier:
 				"AlarmsWindowController") as? AlarmsWindowController else { return }
-			print("should instantiate alarms")
 			AlarmsWindowController.alarmsObject=alarmsWindowController
 		AlarmsWindowController.alarmsObject.loadWindow()
 			AlarmsWindowController.alarmsObject.showWindow(nil)
@@ -37,4 +36,12 @@ class AlarmsWindowController: NSWindowController {
 	func alarmsWindowPresent() -> Bool {
 		return windowPresent(identifier: UserInterfaceIdentifier.alarmsWindow)
 	}
+	func updateForPreferencesChange() {
+        let appObject = NSApp as NSApplication
+		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.alarmsWindow {
+			if let alarmsViewController=window.contentViewController as? AlarmsViewController {
+					alarmsViewController.update()
+            }
+        }
+    }
 }
