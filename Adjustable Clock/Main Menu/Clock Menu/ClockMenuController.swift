@@ -6,7 +6,7 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import AppKit
-class ClockMenuController: ClockMenuProtocol {
+class ClockMenuController: ClockMenuDelegate {
     let clockPreferences=ClockPreferencesStorage.sharedInstance
 	var menu: ClockMenu
 	init(menu: ClockMenu) {

@@ -7,5 +7,8 @@
 //
 import Cocoa
 class AlarmsMenu: NSMenu {
-
+	var alarmMenuDelegate: AlarmMenuDelegate!
+	@IBAction func showAlarms(nsMenuItem: NSMenuItem){
+		alarmMenuDelegate.showAlarmsClicked()
+	}
 }

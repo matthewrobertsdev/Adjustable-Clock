@@ -16,6 +16,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     var colorsMenuController: ColorsMenuController?
 	var clockMenuController: ClockMenuController?
+	var alarmsMenuController: AlarmsMenuController?
 	var player: AVAudioPlayer?
 	//on launch
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -28,6 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		if let mainMenu=appObject.mainMenu as? MainMenu {
 			colorsMenuController=ColorsMenuController(colorsMenu: mainMenu.colorsMenu)
 			clockMenuController=ClockMenuController(menu: mainMenu.clockMenu)
+			alarmsMenuController=AlarmsMenuController(menu: mainMenu.alarmsMenu)
 		}
 		DockClockController.dockClockObject.updateDockTile()
 	}

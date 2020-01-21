@@ -7,7 +7,7 @@
 //
 import Cocoa
 class ClockMenu: NSMenu {
-	var clockMenuDelegate: ClockMenuProtocol!
+	var clockMenuDelegate: ClockMenuDelegate!
 	@IBOutlet weak var clockFloatsMenuItem: NSMenuItem!
     @IBOutlet weak var showSecondsMenuItem: NSMenuItem!
     @IBOutlet weak var use24HourClockMenuItem: NSMenuItem!
