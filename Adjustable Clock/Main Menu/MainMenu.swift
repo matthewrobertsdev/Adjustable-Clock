@@ -22,27 +22,12 @@ class MainMenu: NSMenu {
 	@IBOutlet weak var analogMenuItem: NSMenuItem!
 	@IBAction func clickDigital(nsMenuItem: NSMenuItem) {
 		clockPreferences.changeAndSaveUseDigital()
-		//AnalogClockWindowController.clockObject.closeAnalogClock()
-		let appObject = NSApp as NSApplication
-		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
-				guard let clockViewController=window.contentViewController as? ClockViewController else {
-				return
-			}
-			clockViewController.showDigitalClock()
-		}
+		ClockWindowController.clockObject.showClock()
 		updateClockMenuUI()
     }
 	@IBAction func clickAnalog(nsMenuItem: NSMenuItem) {
 		clockPreferences.changeAndSaveUseAnalog()
-		let appObject = NSApp as NSApplication
-		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
-			guard let clockViewController=window.contentViewController as? ClockViewController else {
-			return
-			}
-			clockViewController.showAnalogClock()
-		}
-		//DigitalClockWindowController.clockObject.closeDigitalClock()
-		//AnalogClockWindowController.clockObject.showAnalogClock()
+		ClockWindowController.clockObject.showClock()
 		updateClockMenuUI()
     }
     @IBAction func clickClockFloats(nsMenuItem: NSMenuItem) {
@@ -69,6 +54,9 @@ class MainMenu: NSMenu {
 		clockPreferences.changeAndSaveUseNumericalDate()
         updateForPreferencesChange()
     }
+	@IBAction func showClock(nsMenuItem: NSMenuItem) {
+		ClockWindowController.clockObject.showClock()
+	}
 	func updateClockMenuUI() {
         datePreferencesMenu.autoenablesItems=false
         if clockPreferences.fullscreen {

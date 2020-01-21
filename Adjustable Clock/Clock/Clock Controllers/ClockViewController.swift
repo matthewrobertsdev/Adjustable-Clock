@@ -77,14 +77,17 @@ class ClockViewController: NSViewController {
 		digitalClockAnimator=DigitalClockAnimator(model: model, tellingTime: timeProtocol, updateTimer: timer, digitalClock: digitalClock, animatedDay: animatedDay)
 		analogClockAnimator=AnalogClockAnimator(model: model, tellingTime: timeProtocol, updateTimer: timer, analogClock: analogClock, animatedDay: animatedDay)
 		colorController=ClockColorController(visualEffectView: visualEffectView, view: backgroundView, digitalClock: digitalClock, animatedDay: animatedDay, analogClock: analogClock)
-		if ClockPreferencesStorage.sharedInstance.useAnalog {
-			showAnalogClock()
-		} else {
-			showDigitalClock() }
+		showClock()
 	}
 	@objc func interfaceModeChanged(sender: NSNotification) {
 		colorController?.applyColorScheme()
 		backgroundView.draw(backgroundView.bounds)
+	}
+	func showClock() {
+		if ClockPreferencesStorage.sharedInstance.useAnalog {
+			showAnalogClock()
+		} else {
+			showDigitalClock() }
 	}
 	func showAnalogClock() {
 		setConstraints()

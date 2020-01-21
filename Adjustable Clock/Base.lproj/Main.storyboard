@@ -425,6 +425,9 @@
                                         <menuItem isSeparatorItem="YES" id="bUe-XQ-4Ad"/>
                                         <menuItem title="Show Clock" id="Vhi-ah-dEJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showClockWithNsMenuItem:" target="AYu-sK-qS6" id="XDI-La-E78"/>
+                                            </connections>
                                         </menuItem>
                                     </items>
                                 </menu>
@@ -572,9 +575,9 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController storyboardIdentifier="ClockWindowController" showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="ClockWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="ClockWindow" title="Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA" customClass="DefaultNSWindow" customModule="Adjustable_Clock" customModuleProvider="target">
+                    <window key="window" identifier="ClockWindow" title="Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA" customClass="DefaultNSWindow" customModule="Adjustable_Clock" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
-                        <windowCollectionBehavior key="collectionBehavior" managed="YES" fullScreenPrimary="YES" fullScreenAllowsTiling="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" managed="YES" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="709" y="402" width="300" height="175"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
                         <connections>
@@ -684,10 +687,8 @@
                             <constraint firstItem="go5-1Y-2aB" firstAttribute="centerY" secondItem="hTG-P0-Z21" secondAttribute="centerY" id="PXq-cX-iNV"/>
                             <constraint firstItem="go5-1Y-2aB" firstAttribute="top" secondItem="hTG-P0-Z21" secondAttribute="top" id="VzX-8k-t4Y"/>
                             <constraint firstItem="go5-1Y-2aB" firstAttribute="leading" secondItem="hTG-P0-Z21" secondAttribute="leading" id="Z6e-fM-Z4b"/>
-                            <constraint firstAttribute="bottom" secondItem="go5-1Y-2aB" secondAttribute="bottom" id="ckZ-OG-QRQ"/>
                             <constraint firstItem="go5-1Y-2aB" firstAttribute="centerX" secondItem="hTG-P0-Z21" secondAttribute="centerX" id="eJX-9p-ZqZ"/>
                             <constraint firstAttribute="trailing" secondItem="7lE-Vi-cYq" secondAttribute="trailing" id="gIG-21-pcb"/>
-                            <constraint firstAttribute="trailing" secondItem="go5-1Y-2aB" secondAttribute="trailing" id="iHF-Bg-srv"/>
                             <constraint firstItem="7lE-Vi-cYq" firstAttribute="top" secondItem="hTG-P0-Z21" secondAttribute="top" id="pdx-mX-asb"/>
                             <constraint firstAttribute="bottom" secondItem="7lE-Vi-cYq" secondAttribute="bottom" id="rf1-eg-nCD"/>
                         </constraints>
@@ -702,10 +703,8 @@
                         <outlet property="digitalClock" destination="ayc-mj-Qox" id="dRP-X6-QuT"/>
                         <outlet property="maginfierAspectRatioConstraint" destination="B3q-Yf-6Fi" id="5Um-aT-O0c"/>
                         <outlet property="maginiferScrollView" destination="go5-1Y-2aB" id="LfD-r3-k2T"/>
-                        <outlet property="magnifierBottomConstaint" destination="ckZ-OG-QRQ" id="1w9-gy-Xqi"/>
                         <outlet property="magnifierLeadingConstraint" destination="Z6e-fM-Z4b" id="fKn-4D-WYy"/>
                         <outlet property="magnifierTopConstraint" destination="VzX-8k-t4Y" id="U1g-sD-uWN"/>
-                        <outlet property="magnifierTrailingConstraint" destination="iHF-Bg-srv" id="WEG-YL-inK"/>
                         <outlet property="visibleView" destination="1rG-JS-1O3" id="txd-dt-1ZX"/>
                         <outlet property="visualEffectView" destination="7lE-Vi-cYq" id="bqY-T7-Ac7"/>
                     </connections>
@@ -746,7 +745,7 @@
                 </viewController>
                 <customObject id="ldb-hh-cAO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="888.5" y="418"/>
+            <point key="canvasLocation" x="1039" y="523"/>
         </scene>
     </scenes>
 </document>
