@@ -17,8 +17,6 @@ class ClockViewController: NSViewController {
 	@IBOutlet weak var maginfierAspectRatioConstraint: NSLayoutConstraint!
 	@IBOutlet var magnifierTopConstraint: NSLayoutConstraint!
 	@IBOutlet var magnifierLeadingConstraint: NSLayoutConstraint!
-	@IBOutlet var magnifierBottomConstaint: NSLayoutConstraint!
-	@IBOutlet var magnifierTrailingConstraint: NSLayoutConstraint!
 	@IBOutlet weak var clockWidthConstraint: NSLayoutConstraint!
 	@IBOutlet weak var clockHeightConstraint: NSLayoutConstraint!
 	let model=ClockModel()
@@ -32,8 +30,6 @@ class ClockViewController: NSViewController {
 	var analogClockAnimator: AnalogClockAnimator?
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		//view=backgroundView
-		//view.wantsLayer=true
 		view.addSubview(backgroundView, positioned: .below, relativeTo: view)
 		backgroundView.translatesAutoresizingMaskIntoConstraints=false
 		//*
@@ -131,28 +127,16 @@ class ClockViewController: NSViewController {
 		if let leadingConstraint=magnifierLeadingConstraint {
 			leadingConstraint.isActive=false
 		}
-		if let trailingConstraint=magnifierTrailingConstraint {
-			trailingConstraint.isActive=false
-		}
-		if let bottomConstraint=magnifierBottomConstaint {
-			bottomConstraint.isActive=true
-		}
 		if let topConstraint=magnifierTopConstraint {
 			topConstraint.isActive=true
 		}
 	}
 	func activateWidthConstraints() {
-		if let bottomConstraint=magnifierBottomConstaint {
-			bottomConstraint.isActive=false
-		}
 		if let topConstraint=magnifierTopConstraint {
 			topConstraint.isActive=false
 		}
 		if let leadingConstraint=magnifierLeadingConstraint {
 			leadingConstraint.isActive=true
-		}
-		if let trailingConstraint=magnifierTrailingConstraint {
-			trailingConstraint.isActive=true
 		}
 	}
 	func updateSizeConstraints() {

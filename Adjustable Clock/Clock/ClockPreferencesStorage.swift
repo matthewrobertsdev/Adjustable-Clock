@@ -52,6 +52,7 @@ class ClockPreferencesStorage {
 		return userDefaults.bool(forKey: applicationHasLaunched)
 	}
 	func setApplicationAsHasLaunched() {
+		userDefaults.set(true, forKey: applicationHasLaunched)
 	}
     func loadUserPreferences() {
         clockFloats=userDefaults.bool(forKey: clockWindowFloatsKey)

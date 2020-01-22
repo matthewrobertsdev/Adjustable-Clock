@@ -3,15 +3,17 @@
 //  Adjustable Clock
 //
 //  Created by Matt Roberts on 1/21/20.
-//  Copyright © 2020 Celeritas Apps. All rights reserved.
+//  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 import AppKit
 class AlarmsColorController {
 	private var visualEffectView: NSVisualEffectView
 	private var view: DarkAndLightBackgroundView
-	init(visualEffectView: NSVisualEffectView, view: DarkAndLightBackgroundView) {
+	private var titleTextField: NSTextField
+	init(visualEffectView: NSVisualEffectView, view: DarkAndLightBackgroundView, titleTextField: NSTextField) {
 		self.visualEffectView=visualEffectView
 		self.view=view
+		self.titleTextField=titleTextField
 	}
 	func applyColorScheme() {
 		var contrastColor: NSColor
@@ -25,26 +27,23 @@ class AlarmsColorController {
 		}
 		if ClockPreferencesStorage.sharedInstance.colorForForeground==false {
 			visualEffectView.isHidden=true
+			titleTextField.textColor=NSColor.labelColor
 			if !isDarkMode() && contrastColor==NSColor.black {
 				if #available(OSX 10.13, *) {
 					contrastColor=NSColor(named: "BlackBackground") ?? NSColor.systemGray
 				}
-				self.view.contrastColor=contrastColor
 			} else if isDarkMode() {
 				if contrastColor==NSColor.white {
 					if #available(OSX 10.13, *) {
 						contrastColor=NSColor(named: "WhiteBackground") ?? NSColor.systemGray
 					}
 				}
-				self.view.contrastColor=contrastColor
-			} else {
-				self.view.contrastColor=contrastColor ?? NSColor.clear
 			}
+			self.view.contrastColor=contrastColor
 		} else {
 			visualEffectView.isHidden=false
-			self.view.contrastColor = NSColor.labelColor
+			titleTextField.textColor=contrastColor
 		}
 		self.view.setNeedsDisplay(view.bounds)
 	}
 }
-

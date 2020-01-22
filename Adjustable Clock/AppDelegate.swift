@@ -14,6 +14,8 @@ import AVFoundation
 import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+	var clock=ClockWindowController.clockObject.window
+
     var colorsMenuController: ColorsMenuController?
 	var clockMenuController: ClockMenuController?
 	var alarmsMenuController: AlarmsMenuController?
@@ -23,6 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	//let activity = ProcessInfo().beginActivity(options: .userInitiatedAllowingIdleSystemSleep, reason: "Good Reason")
 	//playSong()
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
+		AlarmsPreferencesStorage.sharedInstance.loadPreferences()
 		updateClockMenuUI()
 		enableClockMenu(enabled: true)
         let appObject = NSApp as NSApplication
@@ -32,6 +35,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			alarmsMenuController=AlarmsMenuController(menu: mainMenu.alarmsMenu)
 		}
 		DockClockController.dockClockObject.updateDockTile()
+		if AlarmsPreferencesStorage.sharedInstance.windowIsOpen {
+			AlarmsWindowController.alarmsObject.showAlarms()
+		}
 	}
     //if the dock icon is clicked
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
@@ -39,6 +45,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return false
     }
     func applicationWillTerminate(_ aNotification: Notification) {
+		let appObject = NSApp as NSApplication
+		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.alarmsWindow {
+			AlarmsPreferencesStorage.sharedInstance.setWindowIsOpen()
+		}
 	}
 	func playSong() {
 		let url = Bundle.main.url(forResource: "01_Hooked_On_A_Feeling", withExtension: "m4a")

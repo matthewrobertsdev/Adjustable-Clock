@@ -50,7 +50,7 @@ class ClockColorController {
 					analogClock.color=NSColor.labelColor
 					analogClock.setNeedsDisplay(analogClock.bounds)
 			} else {
-				self.view.contrastColor=contrastColor ?? NSColor.clear
+				self.view.contrastColor=contrastColor
 				analogClock.color=NSColor.labelColor
 				analogClock.setNeedsDisplay(analogClock.bounds)
 			}

@@ -14,7 +14,7 @@ class ClockWindowRestorer: WindowFrameRestorer {
 	private let minWidth: CGFloat=10
     private let minHeight: CGFloat=10
     init() {
-		super.init(xKey: xKey, yKey: yKey, widthKey: widthKey, heightKey: heightKey, minWidth: minWidth, minHeight: minHeight)
+		super.init(xKey: xKey, yKey: yKey, widthKey: widthKey, heightKey: heightKey, minWidth: minWidth, minHeight: minHeight, maxWidth: nil, maxHeight: nil)
     }
 	func getClockWidth() -> Int {
 		return UserDefaults().integer(forKey: widthKey)

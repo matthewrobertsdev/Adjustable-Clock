@@ -721,8 +721,8 @@
         <scene sceneID="TeY-CA-Flb">
             <objects>
                 <windowController storyboardIdentifier="AlarmsWindowController" id="Ymg-Mv-RWx" customClass="AlarmsWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="AlarmsWindow" title="Alarms" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" id="SKW-hm-43b">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                    <window key="window" identifier="AlarmsWindow" title="Alarms" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="SKW-hm-43b">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="921" y="551" width="279" height="163"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
@@ -746,18 +746,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="251" height="200"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="P1B-8G-caW">
+                            <visualEffectView hidden="YES" appearanceType="vibrantDark" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="P1B-8G-caW">
                                 <rect key="frame" x="0.0" y="0.0" width="251" height="200"/>
                             </visualEffectView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CoE-q1-tay">
+                                <rect key="frame" x="66" y="134" width="120" height="46"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Alarms" id="zrM-Kp-7vW">
+                                    <font key="font" metaFont="system" size="39"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="CoE-q1-tay" firstAttribute="top" secondItem="P05-f5-a90" secondAttribute="top" constant="20" id="1BH-84-Hje"/>
                             <constraint firstAttribute="trailing" secondItem="P1B-8G-caW" secondAttribute="trailing" id="Ora-EX-b1M"/>
                             <constraint firstItem="P1B-8G-caW" firstAttribute="leading" secondItem="P05-f5-a90" secondAttribute="leading" id="ZCw-w8-pRv"/>
                             <constraint firstItem="P1B-8G-caW" firstAttribute="top" secondItem="P05-f5-a90" secondAttribute="top" id="bsW-IV-7WB"/>
                             <constraint firstAttribute="bottom" secondItem="P1B-8G-caW" secondAttribute="bottom" id="wDg-PX-YEv"/>
+                            <constraint firstItem="CoE-q1-tay" firstAttribute="centerX" secondItem="P05-f5-a90" secondAttribute="centerX" id="x8A-nb-Rcm"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="titleTextField" destination="CoE-q1-tay" id="o3X-bw-EdL"/>
                         <outlet property="visualEffectView" destination="P1B-8G-caW" id="ZZA-12-Uax"/>
                     </connections>
                 </viewController>

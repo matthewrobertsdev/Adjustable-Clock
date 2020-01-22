@@ -30,7 +30,6 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
         }
         enableClockMenu(enabled: true)
         updateClockMenuUI()
-        window?.isOpaque=false
     }
 	func clockWindowPresent() -> Bool {
 		return windowPresent(identifier: UserInterfaceIdentifier.digitalClockWindow)
@@ -123,8 +122,6 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
 		saveState()
 		enableClockMenu(enabled: false)
-		/*let appObject = NSApp as NSApplication
-		appObject.terminate(self)*/
     }
     func windowWillEnterFullScreen(_ notification: Notification) {
         saveState()
