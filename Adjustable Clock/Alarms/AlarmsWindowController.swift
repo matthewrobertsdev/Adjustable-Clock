@@ -22,6 +22,11 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
     }
 	func windowWillClose(_ notification: Notification) {
 		saveState()
+		if GeneralPreferencesStorage.sharedInstance.closing {
+			AlarmsPreferencesStorage.sharedInstance.setWindowIsOpen()
+		} else {
+			AlarmsPreferencesStorage.sharedInstance.setWindowIsClosed()
+		}
     }
 	func saveState() {
 		AlarmsWindowRestorer().windowSaveCGRect(window: window)
@@ -56,4 +61,6 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
             }
         }
     }
+	deinit {
+	}
 }

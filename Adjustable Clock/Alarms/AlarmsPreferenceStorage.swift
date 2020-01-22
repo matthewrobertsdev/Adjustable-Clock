@@ -21,5 +21,6 @@ class AlarmsPreferencesStorage {
 	}
 	func loadPreferences() {
 		windowIsOpen=userDefaults.bool(forKey: windowIsOpenKey)
+		print("window is open: "+windowIsOpen.description)
 	}
 }

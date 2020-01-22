@@ -45,10 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return false
     }
     func applicationWillTerminate(_ aNotification: Notification) {
-		let appObject = NSApp as NSApplication
-		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.alarmsWindow {
-			AlarmsPreferencesStorage.sharedInstance.setWindowIsOpen()
-		}
+		GeneralPreferencesStorage.sharedInstance.closing=true
 	}
 	func playSong() {
 		let url = Bundle.main.url(forResource: "01_Hooked_On_A_Feeling", withExtension: "m4a")
