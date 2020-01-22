@@ -449,6 +449,9 @@
                                     <items>
                                         <menuItem title="Add Alarm" id="gqt-pv-27g">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="addAlarmWithNsMenuItem:" target="Dah-wr-0hi" id="Wrb-KW-SKy"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem title="Preventing Sleep" id="RwY-Tw-NeK">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -775,6 +778,124 @@
                 <customObject id="ldb-hh-cAO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1138.5" y="523"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="rEh-6m-9kw">
+            <objects>
+                <windowController storyboardIdentifier="NewAlarmWindowController" id="ZgF-XD-PaL" customClass="NewAlarmWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" identifier="NewAlarmWindow" title="Create Alarm" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="PbG-Vp-cuU">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="ZgF-XD-PaL" id="Bgp-JJ-xt4"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="9uc-jD-1ug" kind="relationship" relationship="window.shadowedContentViewController" id="FBo-Mh-eTI"/>
+                    </connections>
+                </windowController>
+                <customObject id="19x-Vg-sH6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1433" y="527"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="BRn-vx-vUe">
+            <objects>
+                <viewController id="9uc-jD-1ug" sceneMemberID="viewController">
+                    <view key="view" id="hmW-cO-luP">
+                        <rect key="frame" x="0.0" y="0.0" width="243" height="204"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8aq-7r-1ob">
+                                <rect key="frame" x="60" y="160" width="124" height="24"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7Lf-a3-wQo">
+                                        <rect key="frame" x="-2" y="4" width="38" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Time:" id="r3v-5s-2vZ">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fId-H7-Vhr">
+                                        <rect key="frame" x="42" y="0.0" width="85" height="28"/>
+                                        <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="mjY-bc-eEV">
+                                            <font key="font" metaFont="system"/>
+                                            <date key="date" timeIntervalSinceReferenceDate="-595929600">
+                                                <!--1982-02-12 16:00:00 +0000-->
+                                            </date>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <datePickerElements key="datePickerElements" hour="YES" minute="YES"/>
+                                        </datePickerCell>
+                                    </datePicker>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="fId-H7-Vhr" firstAttribute="centerY" secondItem="8aq-7r-1ob" secondAttribute="centerY" id="BHP-th-gnF"/>
+                                    <constraint firstItem="7Lf-a3-wQo" firstAttribute="centerY" secondItem="8aq-7r-1ob" secondAttribute="centerY" id="lAf-jP-31A"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Pd-K7-1xp">
+                                <rect key="frame" x="63" y="127" width="102" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="System Beep" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="hyr-eO-u4C">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2wM-kb-fM2">
+                                <rect key="frame" x="63" y="105" width="54" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Song" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="8A0-aY-plZ">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cyJ-t4-giu">
+                                <rect key="frame" x="72" y="13" width="100" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Set Alarm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fcC-xF-rmW">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bvu-xi-gW8">
+                                <rect key="frame" x="71" y="82" width="103" height="16"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="No song chosen" id="zKT-5G-8cb">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rSu-94-0yx">
+                                <rect key="frame" x="61" y="46" width="121" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Choose Song" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vkx-n3-RrX">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="8aq-7r-1ob" firstAttribute="centerX" secondItem="hmW-cO-luP" secondAttribute="centerX" id="BzP-Ox-Dhf"/>
+                            <constraint firstItem="8aq-7r-1ob" firstAttribute="top" secondItem="hmW-cO-luP" secondAttribute="top" constant="20" id="E3b-xc-H9y"/>
+                            <constraint firstItem="7Lf-a3-wQo" firstAttribute="top" secondItem="hmW-cO-luP" secondAttribute="top" constant="24" id="F5l-kH-dVb"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="f34-sV-Jsk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2021.5" y="469"/>
         </scene>
     </scenes>
 </document>
