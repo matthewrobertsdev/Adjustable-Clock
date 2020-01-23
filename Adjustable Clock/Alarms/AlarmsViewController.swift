@@ -6,12 +6,15 @@
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 import Cocoa
-class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate{
+class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+	@objc var objectToObserve=AlarmStorage.storageObject
+	var observation: NSKeyValueObservation?
 	var colorController: AlarmsColorController?
 	@IBOutlet weak var visualEffectView: NSVisualEffectView!
 	var backgroundView=DarkAndLightBackgroundView()
 	@IBOutlet weak var tableView: NSTableView!
 	@IBOutlet weak var titleTextField: NSTextField!
+	@IBOutlet weak var alarmNotifierTextField: NSTextField!
 	override func viewDidLoad() {
         super.viewDidLoad()
        view.addSubview(backgroundView, positioned: .below, relativeTo: view)
@@ -25,28 +28,39 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 		let topConstraint=NSLayoutConstraint(item: backgroundView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
 		let bottomConstraint=NSLayoutConstraint(item: backgroundView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
 		NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
-		colorController=AlarmsColorController(visualEffectView: visualEffectView, view: backgroundView, titleTextField: titleTextField)
+		colorController=AlarmsColorController(visualEffectView: visualEffectView, view: backgroundView, titleTextField: titleTextField, notifierTextField: alarmNotifierTextField, tableView: tableView)
 		colorController?.applyColorScheme()
+		observation = observe(
+			\.objectToObserve.count,
+            options: [.old, .new]
+        ) { _, _ in
+			print("abcd")
+			self.tableView.reloadData()
+        }
     }
 	func update() {
 		colorController?.applyColorScheme()
 	}
 	func numberOfRows(in tableView: NSTableView) -> Int {
-		print("Num rows")
-		return AlarmStorage.storageObject.alarms.count
+		return AlarmStorage.storageObject.count
 	 }
 	  func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-		 let alarm = AlarmStorage.storageObject.alarms[row]
-		var cell=NSTableCellView()
+		let alarm = AlarmStorage.storageObject.getAlarm(index: row)
 		if tableColumn == tableView.tableColumns[0] {
-			cell = (tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmTimeTableCellView"), owner: nil) as? AlarmTimeTableCellView) ?? NSTableCellView()
+			guard let cell0 = (tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmTimeTableCellView"), owner: nil) as? AlarmTimeTableCellView) else { return NSTableCellView() }
+		cell0.alarmTimeTextField.textColor=colorController?.textColor
+			cell0.alarmRepeatTextField.textColor=colorController?.textColor
+			return cell0
 		} else if tableColumn == tableView.tableColumns[1] {
-			cell = (tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmStatusTableCellView"), owner: nil) as? AlarmStatusTableCellView) ?? NSTableCellView()
+			guard let cell1 = (tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmStatusTableCellView"), owner: nil) as? AlarmStatusTableCellView) else {
+				return NSTableCellView() }
+			return cell1
 		} else if tableColumn == tableView.tableColumns[2] {
-			cell = (tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmSettingsTableCellView"), owner: nil) as? AlarmSettingsTableCellView) ?? NSTableCellView()
+			guard let cell2 = (tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmSettingsTableCellView"), owner: nil) as? AlarmSettingsTableCellView) else {
+				return NSTableCellView() }
+			return cell2
 		}
-		print("hello"+cell.description)
-		return cell
+		return NSTableCellView()
 	  }
 
 }

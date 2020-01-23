@@ -10,10 +10,9 @@ import Cocoa
 
 class AlarmTimeTableCellView: NSTableCellView {
 	@IBOutlet weak var alarmTimeTextField: NSTextField!
+	@IBOutlet weak var alarmRepeatTextField: NSTextField!
 	override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-
         // Drawing code here.
     }
-    
 }
