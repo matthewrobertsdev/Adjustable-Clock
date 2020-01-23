@@ -9,10 +9,9 @@
 import Cocoa
 
 class AlarmStatusTableCellView: NSTableCellView {
-	@IBOutlet weak var alarmStatusTextField: NSTextField!
+	@IBOutlet weak var alarmStatusSegmentedControl: NSSegmentedControl!
 	override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-
         // Drawing code here.
     }
     
