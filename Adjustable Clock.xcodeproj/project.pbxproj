@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		9F04FDF120EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F04FDF020EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift */; };
 		9F078A9D23CA7A79007072BB /* FullViewWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F078A9C23CA7A79007072BB /* FullViewWindowController.swift */; };
+		9F1375D623D937FA003B2B15 /* AlarmsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1375D523D937FA003B2B15 /* AlarmsStorage.swift */; };
+		9F1375DA23D94F70003B2B15 /* AlarmTimeTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1375D923D94F70003B2B15 /* AlarmTimeTableCellView.swift */; };
+		9F1375DC23D94FE5003B2B15 /* AlarmStatusTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1375DB23D94FE5003B2B15 /* AlarmStatusTableCellView.swift */; };
+		9F1375DE23D95055003B2B15 /* AlarmSettingsTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1375DD23D95055003B2B15 /* AlarmSettingsTableCellView.swift */; };
 		9F14F37723C9828F009BF6CA /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F14F37623C9828F009BF6CA /* CALayerExtension.swift */; };
 		9F2245D523B84FED000413F0 /* AnalogClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2245D423B84FED000413F0 /* AnalogClockView.swift */; };
 		9F2E8AFD23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E8AFC23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift */; };
@@ -84,6 +88,10 @@
 /* Begin PBXFileReference section */
 		9F04FDF020EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInterfaceItemIdentifiers.swift; sourceTree = "<group>"; };
 		9F078A9C23CA7A79007072BB /* FullViewWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullViewWindowController.swift; sourceTree = "<group>"; };
+		9F1375D523D937FA003B2B15 /* AlarmsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsStorage.swift; sourceTree = "<group>"; };
+		9F1375D923D94F70003B2B15 /* AlarmTimeTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTimeTableCellView.swift; sourceTree = "<group>"; };
+		9F1375DB23D94FE5003B2B15 /* AlarmStatusTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmStatusTableCellView.swift; sourceTree = "<group>"; };
+		9F1375DD23D95055003B2B15 /* AlarmSettingsTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingsTableCellView.swift; sourceTree = "<group>"; };
 		9F14F37623C9828F009BF6CA /* CALayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
 		9F2245D423B84FED000413F0 /* AnalogClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogClockView.swift; sourceTree = "<group>"; };
 		9F2E8AFC23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkAndLightBackgroundView.swift; sourceTree = "<group>"; };
@@ -180,6 +188,10 @@
 				9FF6912E23D775D50057C4F6 /* AlarmsColorController.swift */,
 				9F84B5B623D8BD0500221BF4 /* AlarmsPreferenceStorage.swift */,
 				9F53421323D90A1100FDD0F3 /* Alarm.swift */,
+				9F1375D523D937FA003B2B15 /* AlarmsStorage.swift */,
+				9F1375D923D94F70003B2B15 /* AlarmTimeTableCellView.swift */,
+				9F1375DB23D94FE5003B2B15 /* AlarmStatusTableCellView.swift */,
+				9F1375DD23D95055003B2B15 /* AlarmSettingsTableCellView.swift */,
 			);
 			path = Alarms;
 			sourceTree = "<group>";
@@ -554,6 +566,7 @@
 				9F71B69923C93A0C0079A79A /* ClockAnimator.swift in Sources */,
 				9F793AAD2063849C00AF703E /* ClockModel.swift in Sources */,
 				9FE390851FECBCE300AF5442 /* ClockWindowRestorer.swift in Sources */,
+				9F1375DE23D95055003B2B15 /* AlarmSettingsTableCellView.swift in Sources */,
 				9F2E8AFD23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift in Sources */,
 				9F4D87452055E99400AF63D1 /* ClockWindowController.swift in Sources */,
 				9F7D055F23D6716600E6CBA2 /* ClockMenu.swift in Sources */,
@@ -561,9 +574,11 @@
 				9FA6A7A323D8E2BC005564E7 /* GeneralPreferencesStorage.swift in Sources */,
 				9F8EBE482050C4C7005BA4F2 /* ClockViewController.swift in Sources */,
 				9FEAE9DD1F4F7249004EB641 /* MainMenu.swift in Sources */,
+				9F1375DA23D94F70003B2B15 /* AlarmTimeTableCellView.swift in Sources */,
 				9FE390871FECBCF400AF5442 /* PreferencesWindowRestorer.swift in Sources */,
 				9FC97F581F480BB500035D30 /* PreferencesVC.swift in Sources */,
 				9F3C7D6A20CCE40D00C91506 /* ClockPreferencesStorage.swift in Sources */,
+				9F1375D623D937FA003B2B15 /* AlarmsStorage.swift in Sources */,
 				9F93B36E23C81E620086B3CC /* DigitalClockAnimator.swift in Sources */,
 				9FB47E5E1F480A43009D82FF /* AppDelegate.swift in Sources */,
 				9F7D055B23D6700900E6CBA2 /* AlarmsMenu.swift in Sources */,
@@ -580,6 +595,7 @@
 				9FF6912823D76C810057C4F6 /* AlarmsWindowController.swift in Sources */,
 				9F84B5B723D8BD0500221BF4 /* AlarmsPreferenceStorage.swift in Sources */,
 				9F750CC02056073F007980F9 /* DefaultNSWindow.swift in Sources */,
+				9F1375DC23D94FE5003B2B15 /* AlarmStatusTableCellView.swift in Sources */,
 				9F4EF1E320C273CB00E08C57 /* ColorModel.swift in Sources */,
 				9FFD327323D6805500A678BE /* ClockMenuProtocol.swift in Sources */,
 				9FF6912B23D76CD60057C4F6 /* AlarmMenuController.swift in Sources */,
