@@ -15,6 +15,7 @@ class AlarmsMenuController: AlarmMenuDelegate {
 		updateClockMenuUI()
 	}
 	func addAlarmClicked() {
+		AlarmsWindowController.alarmsObject.showAlarms()
 		NewAlarmWindowController.newAlarmConfigurer.showNewAlarmConfigurer()
 	}
 	func showAlarmsClicked() {
