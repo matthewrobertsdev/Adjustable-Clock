@@ -3,7 +3,7 @@
 //  Adjustable Clock
 //
 //  Created by Matt Roberts on 1/22/20.
-//  Copyright © 2020 Celeritas Apps. All rights reserved.
+//  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 import AppKit
 class AlarmCenter: NSObject {
@@ -27,13 +27,13 @@ class AlarmCenter: NSObject {
 	}
 	func getActiveAlarms() -> Int {
 		var activeCount=0
-		for alarm in alarms where alarm.active{
+		for alarm in alarms where alarm.active {
 			activeCount+=1
 		}
 		return activeCount
 	}
 	private func scheduleAlarms() {
-		for alarm in alarms where alarm.active{
+		for alarm in alarms where alarm.active {
 			scheduleAlarm(alarm: alarm)
 		}
 	}

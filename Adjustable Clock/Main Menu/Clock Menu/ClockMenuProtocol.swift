@@ -6,7 +6,7 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import Foundation
-protocol ClockMenuDelegate {
+protocol ClockMenuDelegate: AnyObject {
 	func useDigitalClicked()
 	func useAnalogClicked()
 	func floatClicked()

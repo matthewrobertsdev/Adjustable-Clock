@@ -3,7 +3,7 @@
 //  Adjustable Clock
 //
 //  Created by Matt Roberts on 1/22/20.
-//  Copyright © 2020 Celeritas Apps. All rights reserved.
+//  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 
 import Cocoa
