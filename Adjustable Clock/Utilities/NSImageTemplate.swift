@@ -7,6 +7,8 @@
 //
 import Cocoa
 extension NSImage {
+	//credit to Satori Maru for this code snippet
+	// https://gist.github.com/usagimaru/c0a03ef86b5829fb9976b650ec2f1bf4
     func imageWithTintColor(tintColor: NSColor) -> NSImage {
         if self.isTemplate == false {
             return self

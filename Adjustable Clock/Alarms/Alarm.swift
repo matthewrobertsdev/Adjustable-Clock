@@ -12,7 +12,7 @@ class Alarm {
 	var repeats: Bool
 	var song: String?
 	var active=false
-	init(date: Date, usesSong: Bool, repeats: Bool, song: String?, active: Bool){
+	init(date: Date, usesSong: Bool, repeats: Bool, song: String?, active: Bool) {
 		self.date=date
 		self.usesSong=usesSong
 		self.repeats=repeats
