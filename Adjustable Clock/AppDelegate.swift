@@ -22,7 +22,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	var player: AVAudioPlayer?
 	//on launch
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-	//let activity = ProcessInfo().beginActivity(options: .userInitiatedAllowingIdleSystemSleep, reason: "Good Reason")
 	//playSong()
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
 		AlarmsPreferencesStorage.sharedInstance.loadPreferences()
@@ -60,5 +59,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			print(error.description)
 		}
 	}
-
 }

@@ -7,9 +7,10 @@
 //
 import Cocoa
 class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
-	@objc var objectToObserve=AlarmStorage.storageObject
+	@objc var objectToObserve=AlarmCenter.sharedInstance
 	var observation: NSKeyValueObservation?
 	var colorController: AlarmsColorController?
+	let timeFormatter=DateFormatter()
 	@IBOutlet weak var visualEffectView: NSVisualEffectView!
 	var backgroundView=DarkAndLightBackgroundView()
 	@IBOutlet weak var tableView: NSTableView!
@@ -19,6 +20,8 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
         super.viewDidLoad()
        view.addSubview(backgroundView, positioned: .below, relativeTo: view)
 		tableView.selectionHighlightStyle=NSTableView.SelectionHighlightStyle.none
+		timeFormatter.locale=Locale(identifier: "en_US")
+		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
 		tableView.delegate=self
 		tableView.dataSource=self
 		backgroundView.translatesAutoresizingMaskIntoConstraints=false
@@ -34,7 +37,6 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 			\.objectToObserve.count,
             options: [.old, .new]
         ) { _, _ in
-			print("abcd")
 			self.tableView.reloadData()
         }
     }
@@ -42,14 +44,16 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 		colorController?.applyColorScheme()
 	}
 	func numberOfRows(in tableView: NSTableView) -> Int {
-		return AlarmStorage.storageObject.count
+		return AlarmCenter.sharedInstance.count
 	 }
 	  func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-		let alarm = AlarmStorage.storageObject.getAlarm(index: row)
+		let alarm = AlarmCenter.sharedInstance.getAlarm(index: row)
 		if tableColumn == tableView.tableColumns[0] {
 			guard let cell0 = (tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmTimeTableCellView"), owner: nil) as? AlarmTimeTableCellView) else { return NSTableCellView() }
 		cell0.alarmTimeTextField.textColor=colorController?.textColor
 			cell0.alarmRepeatTextField.textColor=colorController?.textColor
+			cell0.alarmTimeTextField.stringValue=timeFormatter.string(from: alarm.date)
+			cell0.alarmRepeatTextField.stringValue=alarm.repeats ? "Everyday" : "Just once"
 			return cell0
 		} else if tableColumn == tableView.tableColumns[1] {
 			guard let cell1 = (tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmStatusTableCellView"), owner: nil) as? AlarmStatusTableCellView) else {

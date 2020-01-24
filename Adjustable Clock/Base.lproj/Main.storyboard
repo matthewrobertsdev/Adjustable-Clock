@@ -887,7 +887,7 @@
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView identifier="AlarmSettingsTableCellView" id="jOG-lX-jL3" customClass="AlarmSettingsTableCellView" customModule="Adjustable_Clock" customModuleProvider="target">
-                                                                    <rect key="frame" x="218" y="1" width="38" height="50"/>
+                                                                    <rect key="frame" x="218" y="1" width="66" height="50"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="Xdf-Uu-7Ft">
