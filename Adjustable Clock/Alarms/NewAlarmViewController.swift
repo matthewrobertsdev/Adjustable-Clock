@@ -31,6 +31,7 @@ class NewAlarmViewController: NSViewController {
 			}
 		}
 		AlarmCenter.sharedInstance.addAlarm(alarm: Alarm(date: datePicker.dateValue, usesSong: false, repeats: repeating, song: song, active: true))
+		AlarmCenter.sharedInstance.scheduleAlarms()
 		AlarmsWindowController.alarmsObject.showAlarms()
 	}
 	@IBAction func useBeepChosen(_ sender: Any) {
