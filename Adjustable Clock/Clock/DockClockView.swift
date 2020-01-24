@@ -11,6 +11,8 @@ class DockClockView: BaseAnalogClockView {
 	var handsColor=NSColor.labelColor
 	var displaySeconds=false
 	var calendar=Calendar.current
+	var current=true
+	var freezeDate=Date()
 	@objc dynamic var dark=false
 	override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -61,20 +63,20 @@ class DockClockView: BaseAnalogClockView {
 		}
     }
 	private func displayHandsWithSeconds() {
-		let now=Date()
-		let hour=calendar.dateComponents([.hour], from: now).hour ?? 0
-		let minute=calendar.dateComponents([.minute], from: now).minute ?? 0
-		let second=calendar.dateComponents([.second], from: now).second ?? 0
+		let time=current ? Date() : freezeDate
+		let hour=calendar.dateComponents([.hour], from: time).hour ?? 0
+		let minute=calendar.dateComponents([.minute], from: time).minute ?? 0
+		let second=calendar.dateComponents([.second], from: time).second ?? 0
 		let totalSeconds=(Double(hour)*3600.0+Double(minute)*60.0+Double(second))
 		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2, endProportion: 0.35)
 		displayHand(radians: -CGFloat.pi*CGFloat(minute)/30+CGFloat.pi/2, endProportion: 0.4)
 		displayHand(radians: -CGFloat.pi*CGFloat(second)/30+CGFloat.pi/2, endProportion: 0.3)
 	}
 	private func displayeHandsNoSeconds() {
-		let now=Date()
-		let hour=calendar.dateComponents([.hour], from: now).hour ?? 0
-		let minute=calendar.dateComponents([.minute], from: now).minute ?? 0
-		let second=calendar.dateComponents([.second], from: now).second ?? 0
+		let time=current ? Date() : freezeDate
+		let hour=calendar.dateComponents([.hour], from: time).hour ?? 0
+		let minute=calendar.dateComponents([.minute], from: time).minute ?? 0
+		let second=calendar.dateComponents([.second], from: time).second ?? 0
 		let totalSeconds=(Double(hour)*3600.0+Double(minute)*60.0+Double(second))
 		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2, endProportion: 0.35)
 		displayHand(radians: -CGFloat.pi*CGFloat(minute)/30+CGFloat.pi/2, endProportion: 0.4)

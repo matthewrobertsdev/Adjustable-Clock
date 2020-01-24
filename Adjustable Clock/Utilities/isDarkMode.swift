@@ -20,10 +20,10 @@ func isDarkMode() -> Bool {
             }
         } else {
 		switch NSAppearance.current.name {
-			case .vibrantDark:
-				return true
-			default:
-				return false
-			}
-        }
+		case .vibrantDark:
+			return true
+		default:
+			return false
+		}
+	}
 }

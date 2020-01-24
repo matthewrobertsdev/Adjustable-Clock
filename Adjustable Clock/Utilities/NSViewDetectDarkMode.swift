@@ -15,14 +15,14 @@ extension NSView {
 			switch NSApp.effectiveAppearance.name {
 			case .darkAqua, .vibrantDark, .accessibilityHighContrastDarkAqua, .accessibilityHighContrastVibrantDark:
                 return true
-            default:
+			default:
                 return false
             }
         } else {
-            switch effectiveAppearance.name {
-            case .vibrantDark:
+			switch effectiveAppearance.name {
+			case .vibrantDark:
                 return true
-            default:
+			default:
                 return false
             }
         }

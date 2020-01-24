@@ -15,6 +15,13 @@ class NewAlarmViewController: NSViewController {
 	@IBOutlet weak var repeatsButton: NSButton!
 	@IBOutlet weak var beepButton: NSButton!
 	@IBOutlet weak var songButton: NSButton!
+	@IBAction func chooseAlert(_ sender: Any) {
+	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
+		guard let chooseAlertViewController =
+ mainStoryBoard.instantiateController(withIdentifier:
+			"ChooseAlertViewController") as? ChooseAlertViewController else { return }
+		self.presentAsSheet(chooseAlertViewController)
+	}
 	@IBAction func chooseSong(_ sender: Any) {
 	}
 	@IBAction func setAlarm(_ sender: Any) {

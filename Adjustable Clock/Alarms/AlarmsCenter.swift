@@ -27,18 +27,14 @@ class AlarmCenter: NSObject {
 	}
 	func getActiveAlarms() -> Int {
 		var activeCount=0
-		for alarm in alarms {
-			if alarm.active {
-				activeCount+=1
-			}
+		for alarm in alarms where alarm.active{
+			activeCount+=1
 		}
 		return activeCount
 	}
 	private func scheduleAlarms() {
-		for alarm in alarms {
-			if alarm.active {
-				scheduleAlarm(alarm: alarm)
-			}
+		for alarm in alarms where alarm.active{
+			scheduleAlarm(alarm: alarm)
 		}
 	}
 	private func scheduleAlarm(alarm: Alarm) {
@@ -53,9 +49,7 @@ class AlarmCenter: NSObject {
 				let alarmAlert=NSAlert()
 				alarmAlert.messageText="Alarm for \(self.timeFormatter.string(from: alarm.date))  has gone off."
 				alarmAlert.addButton(withTitle: "Dismiss")
-				DockClockController.dockClockObject.dockClockView.setFrameSize(self.appObject.dockTile.size)
-				DockClockController.dockClockObject.applyColorScheme()
-				alarmAlert.icon=DockClockController.dockClockObject.dockClockView.image()
+				alarmAlert.icon=DockClockController.dockClockObject.getFreezeView(time: alarm.date).image()
 				AlarmsWindowController.alarmsObject.showAlarms()
 				alarmAlert.beginSheetModal(for: AlarmsWindowController.alarmsObject.window ?? NSWindow()) { (_) in
 					alarmSound?.stop()

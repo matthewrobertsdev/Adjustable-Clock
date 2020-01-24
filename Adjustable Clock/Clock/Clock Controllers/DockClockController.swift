@@ -17,12 +17,12 @@ class DockClockController {
 	}
 	func updateDockTile() {
 		dockClockView.setFrameSize(appObject.dockTile.size)
-		applyColorScheme()
+		applyColorScheme(dockClockView: dockClockView)
 		appObject.dockTile.contentView=dockClockView
 		appObject.dockTile.display()
 	}
 	func updateClockForPreferencesChange() {
-		applyColorScheme()
+		applyColorScheme(dockClockView: dockClockView)
 		appObject.dockTile.display()
 	}
 	private func animateTime() {
@@ -41,7 +41,16 @@ class DockClockController {
 		let missingNanoceconds=1_000_000_000-(nanoseconds.nanosecond ?? 0)
 		return Double(missingNanoceconds)/1_000_000_000
 	}
-	func applyColorScheme() {
+	func getFreezeView(time: Date)->DockClockView{
+		let clockView=DockClockView()
+		clockView.setFrameSize(self.appObject.dockTile.size)
+		applyColorScheme(dockClockView: clockView)
+		clockView.current=false
+		clockView.freezeDate=time
+		clockView.draw(clockView.bounds)
+		return clockView
+	}
+	func applyColorScheme(dockClockView: DockClockView) {
 			var contrastColor: NSColor
 			let clockNSColors=ColorDictionary()
 			if ClockPreferencesStorage.sharedInstance.colorChoice=="custom"{

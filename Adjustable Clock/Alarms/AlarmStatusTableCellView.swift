@@ -14,5 +14,4 @@ class AlarmStatusTableCellView: NSTableCellView {
         super.draw(dirtyRect)
         // Drawing code here.
     }
-    
 }
