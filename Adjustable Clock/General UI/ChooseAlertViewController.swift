@@ -7,11 +7,12 @@
 //
 import Cocoa
 class ChooseAlertViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
-	var chooseAlertAction: (()->Void)?
+	var chooseAlertAction={( _ : String) -> Void in }
 	let soundNames=AlertSoundModel().soundsNames
 	var loaded=false
 	@IBOutlet weak var tableView: NSTableView!
 	@IBAction func chooseAlertButton(_ sender: Any) {
+		chooseAlertAction(soundNames[tableView.selectedRow])
 		self.dismiss(self)
 	}
 	override func viewDidLoad() {

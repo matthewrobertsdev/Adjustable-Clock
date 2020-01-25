@@ -10,16 +10,22 @@ import Cocoa
 
 class NewAlarmViewController: NSViewController {
 	var song: String?
+	@IBOutlet weak var alertTextField: NSTextField!
 	@IBOutlet weak var datePicker: NSDatePicker!
 	@IBOutlet weak var songTextField: NSTextField!
 	@IBOutlet weak var repeatsButton: NSButton!
 	@IBOutlet weak var beepButton: NSButton!
 	@IBOutlet weak var songButton: NSButton!
+	var alertString="Ping"
 	@IBAction func chooseAlert(_ sender: Any) {
 	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 		guard let chooseAlertViewController =
  mainStoryBoard.instantiateController(withIdentifier:
 			"ChooseAlertViewController") as? ChooseAlertViewController else { return }
+		chooseAlertViewController.chooseAlertAction={ (alert: String) -> Void in
+			self.alertString=alert
+			self.alertTextField.stringValue="Alert: "+alert
+		}
 		self.presentAsSheet(chooseAlertViewController)
 	}
 	@IBAction func chooseSong(_ sender: Any) {
@@ -37,7 +43,7 @@ class NewAlarmViewController: NSViewController {
 				return
 			}
 		}
-		AlarmCenter.sharedInstance.addAlarm(alarm: Alarm(date: datePicker.dateValue, usesSong: false, repeats: repeating, song: song, active: true))
+		AlarmCenter.sharedInstance.addAlarm(alarm: Alarm(date: datePicker.dateValue, usesSong: false, repeats: repeating, alert: alertString, song: song, active: true))
 		AlarmCenter.sharedInstance.startAlarms()
 		AlarmsWindowController.alarmsObject.showAlarms()
 	}

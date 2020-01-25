@@ -43,7 +43,7 @@ class AlarmCenter: NSObject {
 			print("abcd"+String(getTimeInterval(alarm: alarm)))
 			alarmTimer.schedule(deadline: .now()+getTimeInterval(alarm: alarm), repeating: .never, leeway: .milliseconds(0))
 			alarmTimer.setEventHandler {
-				let alarmSound=NSSound(named: NSSound.Name("Ping"))
+				let alarmSound=NSSound(named: NSSound.Name(alarm.alertString))
 				alarmSound?.loops=true
 				alarmSound?.play()
 				let alarmAlert=NSAlert()
