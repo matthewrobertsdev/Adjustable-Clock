@@ -11,6 +11,7 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 	var observation: NSKeyValueObservation?
 	var colorController: AlarmsColorController?
 	let timeFormatter=DateFormatter()
+	let popover = NSPopover()
 	@IBOutlet weak var visualEffectView: NSVisualEffectView!
 	var backgroundView=DarkAndLightBackgroundView()
 	@IBOutlet weak var tableView: NSTableView!
@@ -62,9 +63,24 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 		} else if tableColumn == tableView.tableColumns[2] {
 			guard let cell2 = (tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmSettingsTableCellView"), owner: nil) as? AlarmSettingsTableCellView) else {
 				return NSTableCellView() }
+			cell2.alarmSettingsButton.action=#selector(showPopover(sender:))
 			return cell2
 		}
 		return NSTableCellView()
 	  }
-
+	@objc func showPopover(sender: Any?) {
+		guard let settingsButton=sender as? NSButton else {
+			return
+		}
+		if  popover.isShown {
+			popover.close()
+		} else {
+			let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
+			   guard let alarmPopOverViewController =
+				mainStoryBoard.instantiateController(withIdentifier:
+				   "AlarmPopOverViewController") as? AlarmPopOverViewController else { return }
+			popover.contentViewController = alarmPopOverViewController
+			popover.show(relativeTo: settingsButton.bounds, of: settingsButton, preferredEdge: NSRectEdge.minY)
+		}
+	}
 }
