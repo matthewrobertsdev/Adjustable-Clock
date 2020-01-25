@@ -746,17 +746,17 @@
             <objects>
                 <viewController id="jsi-dr-Kid" customClass="AlarmsViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="P05-f5-a90">
-                        <rect key="frame" x="0.0" y="0.0" width="270" height="382"/>
+                        <rect key="frame" x="0.0" y="0.0" width="270" height="420"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <visualEffectView hidden="YES" appearanceType="vibrantDark" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="P1B-8G-caW">
-                                <rect key="frame" x="0.0" y="0.0" width="270" height="419"/>
+                                <rect key="frame" x="0.0" y="0.0" width="270" height="442"/>
                             </visualEffectView>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xt3-TQ-yqa">
-                                <rect key="frame" x="0.0" y="20" width="270" height="379"/>
+                                <rect key="frame" x="0.0" y="20" width="270" height="402"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CoE-q1-tay">
-                                        <rect key="frame" x="75" y="333" width="120" height="46"/>
+                                        <rect key="frame" x="75" y="356" width="120" height="46"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Alarms" id="zrM-Kp-7vW">
                                             <font key="font" metaFont="system" size="39"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -764,7 +764,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="203" translatesAutoresizingMaskIntoConstraints="NO" id="zQZ-To-CvJ">
-                                        <rect key="frame" x="32" y="267" width="207" height="46"/>
+                                        <rect key="frame" x="32" y="290" width="207" height="46"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="46" id="EmH-hn-f4e"/>
                                             <constraint firstAttribute="width" constant="203" id="uLX-A7-Gis"/>
@@ -775,14 +775,24 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wmo-KR-zVe">
+                                        <rect key="frame" x="84" y="242" width="103" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Add Alarm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yDO-fw-oRb">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="addAlarm:" target="jsi-dr-Kid" id="0kt-j4-UYS"/>
+                                        </connections>
+                                    </button>
                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="72" horizontalPageScroll="10" verticalLineScroll="72" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeL-au-qBm">
-                                        <rect key="frame" x="14" y="0.0" width="242" height="247"/>
+                                        <rect key="frame" x="25" y="0.0" width="221" height="229"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="1wB-iL-xvO">
-                                            <rect key="frame" x="0.0" y="0.0" width="242" height="247"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="221" height="214"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" viewBased="YES" id="Vdc-vV-Lyv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="242" height="247"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="230" height="214"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -790,7 +800,7 @@
                                                     <tableColumns>
                                                         <tableColumn width="125" minWidth="40" maxWidth="1000" id="LqQ-mW-bZZ">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                                <font key="font" metaFont="menu" size="11"/>
+                                                                <font key="font" metaFont="message" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                             </tableHeaderCell>
@@ -837,7 +847,7 @@
                                                         </tableColumn>
                                                         <tableColumn width="86" minWidth="10" maxWidth="3.4028234663852886e+38" id="H9s-Xz-RAN">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                                <font key="font" metaFont="menu" size="11"/>
+                                                                <font key="font" metaFont="message" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </tableHeaderCell>
@@ -853,7 +863,7 @@
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gzk-Uy-1Gt">
-                                                                            <rect key="frame" x="8" y="23" width="71" height="23"/>
+                                                                            <rect key="frame" x="7.5" y="23" width="71" height="23"/>
                                                                             <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillProportionally" style="capsule" trackingMode="selectOne" id="dZp-sL-Q5i">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <segments>
@@ -873,9 +883,9 @@
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
-                                                        <tableColumn width="22" minWidth="10" maxWidth="3.4028234663852886e+38" id="OTB-nB-oHv">
+                                                        <tableColumn width="10" minWidth="10" maxWidth="3.4028234663852886e+38" id="OTB-nB-oHv">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                                <font key="font" metaFont="menu" size="11"/>
+                                                                <font key="font" metaFont="message" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </tableHeaderCell>
@@ -887,11 +897,11 @@
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             <prototypeCellViews>
                                                                 <tableCellView identifier="AlarmSettingsTableCellView" id="jOG-lX-jL3" customClass="AlarmSettingsTableCellView" customModule="Adjustable_Clock" customModuleProvider="target">
-                                                                    <rect key="frame" x="218" y="1" width="22" height="50"/>
+                                                                    <rect key="frame" x="218" y="1" width="10" height="50"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="Xdf-Uu-7Ft">
-                                                                            <rect key="frame" x="-3" y="10" width="28" height="28"/>
+                                                                            <rect key="frame" x="-9" y="10" width="28" height="28"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="28" id="S5b-Ik-2OM"/>
                                                                                 <constraint firstAttribute="width" constant="28" id="Uk8-Jx-kAQ"/>
@@ -917,8 +927,8 @@
                                             </subviews>
                                             <nil key="backgroundColor"/>
                                         </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="r4j-UB-Phi">
-                                            <rect key="frame" x="0.0" y="237" width="198" height="15"/>
+                                        <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="r4j-UB-Phi">
+                                            <rect key="frame" x="0.0" y="214" width="221" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="eZy-yX-3TV">
@@ -931,8 +941,10 @@
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
@@ -940,14 +952,15 @@
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Xt3-TQ-yqa" firstAttribute="leading" secondItem="P05-f5-a90" secondAttribute="leading" id="4t0-uD-I2m"/>
-                            <constraint firstItem="Xt3-TQ-yqa" firstAttribute="top" secondItem="P05-f5-a90" secondAttribute="top" constant="20" id="MOL-Qq-udW"/>
+                            <constraint firstAttribute="trailing" secondItem="Xt3-TQ-yqa" secondAttribute="trailing" id="9bh-3C-cMe"/>
+                            <constraint firstAttribute="bottom" secondItem="P1B-8G-caW" secondAttribute="bottom" id="ClJ-IK-VfU"/>
                             <constraint firstAttribute="trailing" secondItem="P1B-8G-caW" secondAttribute="trailing" id="Ora-EX-b1M"/>
+                            <constraint firstAttribute="bottom" secondItem="Xt3-TQ-yqa" secondAttribute="bottom" constant="20" id="YqA-ld-pMA"/>
                             <constraint firstItem="P1B-8G-caW" firstAttribute="leading" secondItem="P05-f5-a90" secondAttribute="leading" id="ZCw-w8-pRv"/>
                             <constraint firstItem="P1B-8G-caW" firstAttribute="top" secondItem="P05-f5-a90" secondAttribute="top" id="bsW-IV-7WB"/>
-                            <constraint firstAttribute="trailing" secondItem="Xt3-TQ-yqa" secondAttribute="trailing" id="uTd-6p-mAF"/>
+                            <constraint firstItem="Xt3-TQ-yqa" firstAttribute="leading" secondItem="P05-f5-a90" secondAttribute="leading" id="uKL-zx-o8J"/>
+                            <constraint firstItem="Xt3-TQ-yqa" firstAttribute="top" secondItem="P05-f5-a90" secondAttribute="top" constant="20" id="uWs-DH-v4T"/>
                             <constraint firstAttribute="bottom" secondItem="P1B-8G-caW" secondAttribute="bottom" id="wDg-PX-YEv"/>
-                            <constraint firstAttribute="bottom" secondItem="Xt3-TQ-yqa" secondAttribute="bottom" constant="20" id="wTe-m2-yr8"/>
                         </constraints>
                     </view>
                     <connections>
@@ -959,13 +972,13 @@
                 </viewController>
                 <customObject id="ldb-hh-cAO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1138" y="620"/>
+            <point key="canvasLocation" x="1138" y="639"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="rEh-6m-9kw">
             <objects>
                 <windowController storyboardIdentifier="NewAlarmWindowController" id="ZgF-XD-PaL" customClass="NewAlarmWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="NewAlarmWindow" title="Create Alarm" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="PbG-Vp-cuU">
+                    <window key="window" identifier="NewAlarmWindow" title="Create Alarm" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" frameAutosaveName="" animationBehavior="default" id="PbG-Vp-cuU">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <rect key="contentRect" x="196" y="240" width="313" height="155"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
@@ -985,25 +998,25 @@
         <scene sceneID="BRn-vx-vUe">
             <objects>
                 <viewController storyboardIdentifier="NewAlarmViewController" id="9uc-jD-1ug" customClass="NewAlarmViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="hmW-cO-luP">
+                    <view key="view" appearanceType="darkAqua" id="hmW-cO-luP">
                         <rect key="frame" x="0.0" y="0.0" width="243" height="343"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView blendingMode="behindWindow" material="dark" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="nkM-RZ-mMN">
-                                <rect key="frame" x="0.0" y="6" width="243" height="337"/>
+                            <visualEffectView hidden="YES" appearanceType="vibrantDark" blendingMode="behindWindow" material="dark" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="nkM-RZ-mMN">
+                                <rect key="frame" x="0.0" y="0.0" width="243" height="343"/>
                             </visualEffectView>
-                            <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="flv-ip-qrW">
-                                <rect key="frame" x="53" y="21" width="137" height="302"/>
+                            <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="flv-ip-qrW">
+                                <rect key="frame" x="39" y="21" width="166" height="302"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nQf-7w-BpU">
-                                        <rect key="frame" x="10" y="274" width="118" height="32"/>
+                                        <rect key="frame" x="24" y="274" width="118" height="32"/>
                                         <buttonCell key="cell" type="push" title="Delete Alarm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tcq-pT-hWA">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                     </button>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8aq-7r-1ob">
-                                        <rect key="frame" x="7" y="247" width="124" height="24"/>
+                                        <rect key="frame" x="21" y="247" width="124" height="24"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7Lf-a3-wQo">
                                                 <rect key="frame" x="-2" y="4" width="38" height="16"/>
@@ -1040,7 +1053,7 @@
                                         </customSpacing>
                                     </stackView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CAo-ws-YFD">
-                                        <rect key="frame" x="45" y="221" width="47" height="16"/>
+                                        <rect key="frame" x="59" y="221" width="47" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Sound:" id="mDJ-hu-g4n">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1048,7 +1061,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Pd-K7-1xp">
-                                        <rect key="frame" x="43" y="194" width="52" height="18"/>
+                                        <rect key="frame" x="57" y="194" width="52" height="18"/>
                                         <buttonCell key="cell" type="radio" title="Alert" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="hyr-eO-u4C">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1058,7 +1071,7 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2wM-kb-fM2">
-                                        <rect key="frame" x="42" y="168" width="54" height="18"/>
+                                        <rect key="frame" x="56" y="168" width="54" height="18"/>
                                         <buttonCell key="cell" type="radio" title="Song" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="8A0-aY-plZ">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1068,7 +1081,7 @@
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XnX-lk-Kwl">
-                                        <rect key="frame" x="35" y="143" width="68" height="16"/>
+                                        <rect key="frame" x="49" y="143" width="68" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Alert: Ping" id="bls-7Q-dTY">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1076,7 +1089,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UVM-Rd-4Nu">
-                                        <rect key="frame" x="9" y="105" width="119" height="32"/>
+                                        <rect key="frame" x="23" y="105" width="119" height="32"/>
                                         <buttonCell key="cell" type="push" title="Choose Alert" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ow5-Es-BIm">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1086,7 +1099,7 @@
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bvu-xi-gW8">
-                                        <rect key="frame" x="-2" y="86" width="141" height="16"/>
+                                        <rect key="frame" x="12" y="86" width="141" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Song: No song chosen" id="zKT-5G-8cb">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1094,7 +1107,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rSu-94-0yx">
-                                        <rect key="frame" x="8" y="48" width="121" height="32"/>
+                                        <rect key="frame" x="22" y="48" width="121" height="32"/>
                                         <buttonCell key="cell" type="push" title="Choose Song" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vkx-n3-RrX">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1104,22 +1117,51 @@
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GOp-An-FYm">
-                                        <rect key="frame" x="30" y="29" width="78" height="18"/>
+                                        <rect key="frame" x="44" y="29" width="78" height="18"/>
                                         <buttonCell key="cell" type="check" title="Everyday" bezelStyle="regularSquare" imagePosition="left" inset="2" id="XDr-6M-bfO">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                     </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cyJ-t4-giu">
-                                        <rect key="frame" x="19" y="-7" width="100" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Set Alarm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fcC-xF-rmW">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="setAlarm:" target="9uc-jD-1ug" id="mFB-em-LBQ"/>
-                                        </connections>
-                                    </button>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WLu-rB-an7">
+                                        <rect key="frame" x="0.0" y="0.0" width="166" height="21"/>
+                                        <subviews>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ULf-Hj-4eM">
+                                                <rect key="frame" x="-6" y="-7" width="82" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XeG-Ad-Mac">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="cancel:" target="9uc-jD-1ug" id="1Fy-l5-qvU"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cyJ-t4-giu">
+                                                <rect key="frame" x="72" y="-7" width="100" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Set Alarm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fcC-xF-rmW">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="setAlarm:" target="9uc-jD-1ug" id="mFB-em-LBQ"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
                                 </subviews>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
@@ -1150,8 +1192,10 @@
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="nkM-RZ-mMN" secondAttribute="bottom" constant="6" id="2Mc-P5-w9B"/>
+                            <constraint firstAttribute="bottom" secondItem="nkM-RZ-mMN" secondAttribute="bottom" id="2Mc-P5-w9B"/>
+                            <constraint firstItem="flv-ip-qrW" firstAttribute="centerX" secondItem="hmW-cO-luP" secondAttribute="centerX" id="2Ya-RK-wqu"/>
                             <constraint firstItem="nkM-RZ-mMN" firstAttribute="top" secondItem="hmW-cO-luP" secondAttribute="top" id="6AJ-gP-dfd"/>
+                            <constraint firstItem="flv-ip-qrW" firstAttribute="centerY" secondItem="hmW-cO-luP" secondAttribute="centerY" id="Z6n-1R-oOn"/>
                             <constraint firstAttribute="trailing" secondItem="nkM-RZ-mMN" secondAttribute="trailing" id="gfE-Cd-Rtm"/>
                             <constraint firstItem="nkM-RZ-mMN" firstAttribute="leading" secondItem="hmW-cO-luP" secondAttribute="leading" id="zkl-SP-kWF"/>
                         </constraints>
@@ -1160,9 +1204,11 @@
                         <outlet property="alertTextField" destination="XnX-lk-Kwl" id="enu-zs-Vpo"/>
                         <outlet property="beepButton" destination="5Pd-K7-1xp" id="vK7-JO-ipS"/>
                         <outlet property="datePicker" destination="fId-H7-Vhr" id="1Z1-1D-Gxp"/>
+                        <outlet property="deleteButton" destination="nQf-7w-BpU" id="4rB-3q-YnY"/>
                         <outlet property="repeatsButton" destination="GOp-An-FYm" id="f7t-Sc-Bgw"/>
                         <outlet property="songButton" destination="2wM-kb-fM2" id="Ymc-bi-qxe"/>
                         <outlet property="songTextField" destination="bvu-xi-gW8" id="uhz-UX-6AJ"/>
+                        <outlet property="verticalStackView" destination="flv-ip-qrW" id="hb0-6h-tQ3"/>
                     </connections>
                 </viewController>
                 <customObject id="f34-sV-Jsk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1214,7 +1260,7 @@
                                             <tableColumns>
                                                 <tableColumn width="236" minWidth="40" maxWidth="1000" id="7af-du-yPg">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>

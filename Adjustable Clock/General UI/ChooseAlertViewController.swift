@@ -7,7 +7,7 @@
 //
 import Cocoa
 class ChooseAlertViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
-	var chooseAlertAction={( _ : String) -> Void in }
+	var chooseAlertAction = {( _ : String) -> Void in }
 	let soundNames=AlertSoundModel().soundsNames
 	var loaded=false
 	@IBOutlet weak var tableView: NSTableView!

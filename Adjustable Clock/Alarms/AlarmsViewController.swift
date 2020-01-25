@@ -17,9 +17,24 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 	@IBOutlet weak var tableView: NSTableView!
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var alarmNotifierTextField: NSTextField!
+	@IBAction func addAlarm(_ sender: Any) {
+		NewAlarmWindowController.newAlarmConfigurer.showNewAlarmConfigurer()
+		//showAddAlarmViewController()
+	}
+	/*
+	func showAddAlarmViewController() {
+		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
+
+		guard let newAlarmViewController =
+		mainStoryBoard.instantiateController(withIdentifier:
+				   "NewAlarmViewController") as? NewAlarmViewController else { return }
+			   self.presentAsSheet(newAlarmViewController)
+	}
+*/
 	override func viewDidLoad() {
         super.viewDidLoad()
        view.addSubview(backgroundView, positioned: .below, relativeTo: view)
+		popover.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)
 		tableView.selectionHighlightStyle=NSTableView.SelectionHighlightStyle.none
 		timeFormatter.locale=Locale(identifier: "en_US")
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
@@ -79,6 +94,8 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 			   guard let newAlarmViewController =
 				mainStoryBoard.instantiateController(withIdentifier:
 				   "NewAlarmViewController") as? NewAlarmViewController else { return }
+			newAlarmViewController.new=false
+			newAlarmViewController.cancel = { () -> Void in self.popover.close() }
 			popover.contentViewController = newAlarmViewController
 			popover.show(relativeTo: settingsButton.bounds, of: settingsButton, preferredEdge: NSRectEdge.minY)
 		}

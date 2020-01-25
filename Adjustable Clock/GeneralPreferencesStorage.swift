@@ -7,9 +7,9 @@
 //
 import Foundation
 class GeneralPreferencesStorage {
-static let sharedInstance=GeneralPreferencesStorage()
-var closing=false
-let userDefaults=UserDefaults()
-private init() {
-}
+	static let sharedInstance=GeneralPreferencesStorage()
+	var closing=false
+	let userDefaults=UserDefaults()
+	private init() {
+	}
 }
