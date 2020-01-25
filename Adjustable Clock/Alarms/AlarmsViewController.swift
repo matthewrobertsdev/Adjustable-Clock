@@ -76,10 +76,10 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 			popover.close()
 		} else {
 			let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
-			   guard let alarmPopOverViewController =
+			   guard let newAlarmViewController =
 				mainStoryBoard.instantiateController(withIdentifier:
-				   "AlarmPopOverViewController") as? AlarmPopOverViewController else { return }
-			popover.contentViewController = alarmPopOverViewController
+				   "NewAlarmViewController") as? NewAlarmViewController else { return }
+			popover.contentViewController = newAlarmViewController
 			popover.show(relativeTo: settingsButton.bounds, of: settingsButton, preferredEdge: NSRectEdge.minY)
 		}
 	}

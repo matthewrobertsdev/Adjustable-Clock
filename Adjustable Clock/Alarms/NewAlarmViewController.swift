@@ -5,9 +5,7 @@
 //  Created by Matt Roberts on 1/22/20.
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
-
 import Cocoa
-
 class NewAlarmViewController: NSViewController {
 	var song: String?
 	@IBOutlet weak var alertTextField: NSTextField!

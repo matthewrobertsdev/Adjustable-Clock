@@ -12,7 +12,6 @@ class NewAlarmWindowController: NSWindowController {
 	static var newAlarmConfigurer=NewAlarmWindowController()
     override func windowDidLoad() {
         super.windowDidLoad()
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }
 	func showNewAlarmConfigurer() {
 		if newAlarmWindowPresent()==false {
