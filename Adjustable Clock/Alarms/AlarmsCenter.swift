@@ -19,8 +19,12 @@ class AlarmCenter: NSObject {
 	}
 	private var alarms=[Alarm]()
 	func addAlarm(alarm: Alarm) {
-		alarms.append(alarm)
+		alarms.insert(alarm, at: 0)
 		count+=1
+	}
+	func removeAlarm(index: Int) {
+		alarms.remove(at: index)
+		count-=1
 	}
 	func getAlarm(index: Int) -> Alarm {
 		return alarms[index]
@@ -44,16 +48,61 @@ class AlarmCenter: NSObject {
 			alarmTimer.schedule(deadline: .now()+getTimeInterval(alarm: alarm), repeating: .never, leeway: .milliseconds(0))
 			alarmTimer.setEventHandler {
 				let alarmSound=NSSound(named: NSSound.Name(alarm.alertString))
-				alarmSound?.loops=true
-				alarmSound?.play()
+				if !alarm.usesSong {
+					alarmSound?.loops=true
+					alarmSound?.play()
+				} else {
+					print("should play music")
+					let playlistName=alarm.song
+					let appleScript =
+					"""
+					tell application "Music"
+						play playlist "\(playlistName ?? "")"
+					end tell
+					"""
+					var error: NSDictionary?
+					if let scriptObject = NSAppleScript(source: appleScript) {
+						if let outputString = scriptObject.executeAndReturnError(&error).stringValue {
+							print(outputString)
+						} else if error != nil {
+							print("Error: ", error ?? "")
+							let alarmSound=NSSound(named: "Ping")
+							alarmSound?.loops=true
+							alarmSound?.play()
+						}
+					}
+				}
 				let alarmAlert=NSAlert()
 				alarmAlert.messageText="Alarm for \(self.timeFormatter.string(from: alarm.date))  has gone off."
 				alarmAlert.addButton(withTitle: "Dismiss")
 				alarmAlert.icon=DockClockController.dockClockObject.getFreezeView(time: alarm.date).image()
 				AlarmsWindowController.alarmsObject.showAlarms()
-				alarmAlert.beginSheetModal(for: AlarmsWindowController.alarmsObject.window ?? NSWindow()) { (_) in
-					alarmSound?.stop()
-					alarmTimer.cancel()
+				if alarm.usesSong {
+					alarmAlert.addButton(withTitle: "Stop Music")
+				}
+				alarmAlert.beginSheetModal(for: AlarmsWindowController.alarmsObject.window ?? NSWindow()) { (modalResponse) in
+					if !alarm.usesSong {
+						alarmSound?.stop()
+						alarmTimer.cancel()
+					} else {
+						if modalResponse==NSApplication.ModalResponse.alertSecondButtonReturn {
+						let appleScript =
+						"""
+						tell application "Music"
+							stop
+						end tell
+						"""
+						var error: NSDictionary?
+						if let scriptObject = NSAppleScript(source: appleScript) {
+							if let outputString = scriptObject.executeAndReturnError(&error).stringValue {
+								print(outputString)
+							} else if error != nil {
+								print("Error: ", error ?? "")
+							}
+						}
+						}
+						alarmSound?.stop()
+					}
 				}
 			}
 			alarmTimer.resume()

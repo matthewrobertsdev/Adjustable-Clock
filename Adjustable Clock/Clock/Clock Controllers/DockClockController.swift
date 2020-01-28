@@ -30,7 +30,8 @@ class DockClockController {
 		guard let timer=updateTimer else { return }
 		timer.schedule(deadline: .now()+getSecondAdjustment(), repeating: .milliseconds(1000), leeway: .milliseconds(0))
 		timer.setEventHandler {
-			self.dockClockView.draw(self.dockClockView.frame)
+			//self.dockClockView.draw(self.dockClockView.frame)
+			self.dockClockView.setNeedsDisplay(self.dockClockView.bounds)
 			self.appObject.dockTile.display()
 		}
 		timer.resume()

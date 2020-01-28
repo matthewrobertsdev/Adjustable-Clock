@@ -12,11 +12,16 @@ class NewAlarmViewController: NSViewController {
 	@IBOutlet weak var deleteButton: NSButton!
 	@IBOutlet weak var alertTextField: NSTextField!
 	@IBOutlet weak var datePicker: NSDatePicker!
-	@IBOutlet weak var songTextField: NSTextField!
+	@IBOutlet weak var playlistTextField: NSTextField!
 	@IBOutlet weak var repeatsButton: NSButton!
 	@IBOutlet weak var beepButton: NSButton!
 	@IBOutlet weak var songButton: NSButton!
-	var alertString="Ping"
+	var delete = { () -> Void in }
+	@IBAction func delete(_ sender: Any) {
+		delete()
+	}
+	var alertName="Ping"
+	var playlistName="None chosen"
 	var new=true
 	var cancel = { () -> Void in }
 	@IBAction func chooseAlert(_ sender: Any) {
@@ -25,12 +30,24 @@ class NewAlarmViewController: NSViewController {
  mainStoryBoard.instantiateController(withIdentifier:
 			"ChooseAlertViewController") as? ChooseAlertViewController else { return }
 		chooseAlertViewController.chooseAlertAction={ (alert: String) -> Void in
-			self.alertString=alert
+			self.alertName=alert
 			self.alertTextField.stringValue="Alert: "+alert
 		}
 		self.presentAsSheet(chooseAlertViewController)
 	}
-	@IBAction func chooseSong(_ sender: Any) {
+	@IBAction func choosePlaylist(_ sender: Any) {
+	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
+				guard let chooseSongViewController = mainStoryBoard.instantiateController(withIdentifier:
+				   "ChooseSongViewController") as? ChoosePlaylistViewController else { return }
+		chooseSongViewController.choosePlaylistAction={ (playlist: String) -> Void in
+			self.playlistName=playlist
+			if playlist=="" {
+				self.playlistTextField.stringValue="Playlist: None chosen"
+			} else {
+				self.playlistTextField.stringValue="Playlist: "+playlist
+			}
+		}
+		self.presentAsSheet(chooseSongViewController)
 	}
 	@IBAction func cancel(_ sender: Any) {
 		self.view.window?.close()
@@ -53,7 +70,7 @@ class NewAlarmViewController: NSViewController {
 			}
 		}
 		if new {
-			AlarmCenter.sharedInstance.addAlarm(alarm: Alarm(date: datePicker.dateValue, usesSong: false, repeats: repeating, alert: alertString, song: song, active: true))
+			AlarmCenter.sharedInstance.addAlarm(alarm: Alarm(date: datePicker.dateValue, usesSong: true, repeats: repeating, alert: alertName, song: playlistName, active: true))
 			AlarmCenter.sharedInstance.startAlarms()
 			self.view.window?.close()
 		} else {

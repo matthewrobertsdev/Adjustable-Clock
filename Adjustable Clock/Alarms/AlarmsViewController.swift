@@ -52,8 +52,11 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 		observation = observe(
 			\.objectToObserve.count,
             options: [.old, .new]
-        ) { _, _ in
-			self.tableView.reloadData()
+        ) { _, change in
+			if change.newValue ?? 0>change.oldValue ?? 0 {
+				self.tableView.insertRows(at: [0], withAnimation: NSTableView.AnimationOptions.slideDown)
+				//self.tableView.reloadData()
+			}
         }
     }
 	func update() {
@@ -96,6 +99,12 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 				   "NewAlarmViewController") as? NewAlarmViewController else { return }
 			newAlarmViewController.new=false
 			newAlarmViewController.cancel = { () -> Void in self.popover.close() }
+			newAlarmViewController.delete = { () -> Void in
+				guard let tableViewCell=settingsButton.superview as? NSTableCellView else { return }
+			let index=self.tableView.row(for: tableViewCell)
+				AlarmCenter.sharedInstance.removeAlarm(index: index)
+				self.tableView.removeRows(at: [index], withAnimation: NSTableView.AnimationOptions.slideUp)
+			}
 			popover.contentViewController = newAlarmViewController
 			popover.show(relativeTo: settingsButton.bounds, of: settingsButton, preferredEdge: NSRectEdge.minY)
 		}
