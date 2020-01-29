@@ -39,20 +39,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		if AlarmsPreferencesStorage.sharedInstance.windowIsOpen {
 			AlarmsWindowController.alarmsObject.showAlarms()
 		}
-		let appleScript =
-		"""
-		tell application "Music"
-			stop
-		end tell
-		"""
-		var error: NSDictionary?
-		if let scriptObject = NSAppleScript(source: appleScript) {
-			if let outputString = scriptObject.executeAndReturnError(&error).stringValue {
-				print(outputString)
-			} else if error != nil {
-				print("Error: ", error ?? "")
-			}
-		}
 	}
     //if the dock icon is clicked
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {

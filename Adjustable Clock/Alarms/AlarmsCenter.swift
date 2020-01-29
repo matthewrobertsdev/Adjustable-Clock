@@ -124,6 +124,11 @@ class AlarmCenter: NSObject {
 				AlarmsWindowController.alarmsObject.showAlarms()
 				if alarm.usesSong && !hasError {
 					alarmAlert.addButton(withTitle: "Stop Music")
+				} else if (alarm.usesSong) {
+					alarmAlert.messageText+="""
+					  A playlist was supposed to play.  Please check your internet connection and that automation \
+					of Music is allowed in Settings->Security and Privacy->Automation->Clock Suite.
+					"""
 				}
 				alarmAlert.beginSheetModal(for: AlarmsWindowController.alarmsObject.window ?? NSWindow()) { (modalResponse) in
 					if !alarm.usesSong {
