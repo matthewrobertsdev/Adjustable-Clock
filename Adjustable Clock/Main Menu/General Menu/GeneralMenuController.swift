@@ -15,7 +15,7 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 		super.init()
 		menu.generalMenuDelegate=self
 		observation = observe(
-			\.objectToObserve.count,
+			\.objectToObserve.activeAlarms,
             options: []
         ) { _, change in
 			self.showPreventsSleep()
@@ -36,8 +36,8 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 		menu.preventingSleepMenuItem.isEnabled=false
 		showPreventsSleep()
 	}
-	func showPreventsSleep(){
-		if AlarmCenter.sharedInstance.count>0 {
+	func showPreventsSleep() {
+		if AlarmCenter.sharedInstance.activeAlarms>0 {
 			menu.preventingSleepMenuItem.title="Preventing Sleep"
 		} else {
 			menu.preventingSleepMenuItem.title="Can Sleep"

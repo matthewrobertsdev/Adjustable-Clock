@@ -10,6 +10,7 @@ import Cocoa
 class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 	@objc var objectToObserve=AlarmCenter.sharedInstance
 	var observation: NSKeyValueObservation?
+	var observation2: NSKeyValueObservation?
 	var colorController: AlarmsColorController?
 	let timeFormatter=DateFormatter()
 	let popover = NSPopover()
@@ -47,6 +48,12 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 			if change.newValue ?? 0>change.oldValue ?? 0 {
 				self.tableView.insertRows(at: [0], withAnimation: NSTableView.AnimationOptions.slideDown)
 			}
+        }
+		observation2 = observe(
+			\.objectToObserve.activeAlarms,
+            options: [.old, .new]
+        ) { _, change in
+			
 			self.shorOrHideNotifier(numberOfAlarms: change.newValue ?? 0)
         }
     }

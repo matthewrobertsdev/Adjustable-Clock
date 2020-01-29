@@ -49,21 +49,25 @@ class AlarmCenter: NSObject {
 		alarms.insert(alarm, at: 0)
 		count+=1
 		saveAlarms()
+		getActiveAlarms()
 	}
 	func removeAlarm(index: Int) {
 		alarms.remove(at: index)
-		alarmTimers.remove(at: index)
 		count-=1
 		saveAlarms()
+		getActiveAlarms()
 	}
 	func getAlarm(index: Int) -> Alarm {
+		getActiveAlarms()
 		return alarms[index]
 	}
+	@objc dynamic var activeAlarms=0
 	func getActiveAlarms() -> Int {
 		var activeCount=0
 		for alarm in alarms where alarm.active {
 			activeCount+=1
 		}
+		activeAlarms=activeCount
 		return activeCount
 	}
 	private func scheduleAlarms() {
@@ -73,18 +77,19 @@ class AlarmCenter: NSObject {
 	}
 	private func scheduleAlarm(alarm: Alarm) {
 		if alarm.active {
+			var hasError=false
 			let alarmTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 			print("abcd"+String(getTimeInterval(alarm: alarm)))
 			alarmTimer.schedule(deadline: .now()+getTimeInterval(alarm: alarm), repeating: .never, leeway: .milliseconds(0))
 			alarmTimer.setEventHandler {
 				if alarm.repeats != true {
 					alarm.active=false
+				}
 					if let alarmViewController: AlarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController {
 						let row = self.alarms.firstIndex(where: { (alarmInstance) -> Bool in
 							return alarmInstance.date==alarm.date })					
 						let tableView=alarmViewController.tableView
 						tableView?.reloadData(forRowIndexes: [(row ?? 0)], columnIndexes: [0, 1])
-						}
 					}
 				let alarmSound=NSSound(named: NSSound.Name(alarm.alertString))
 				if !alarm.usesSong {
@@ -105,6 +110,7 @@ class AlarmCenter: NSObject {
 							print(outputString)
 						} else if error != nil {
 							print("Error: ", error ?? "")
+							hasError=true
 							let alarmSound=NSSound(named: "Ping")
 							alarmSound?.loops=true
 							alarmSound?.play()
@@ -116,7 +122,7 @@ class AlarmCenter: NSObject {
 				alarmAlert.addButton(withTitle: "Dismiss")
 				alarmAlert.icon=DockClockController.dockClockObject.getFreezeView(time: alarm.date).image()
 				AlarmsWindowController.alarmsObject.showAlarms()
-				if alarm.usesSong {
+				if alarm.usesSong && !hasError {
 					alarmAlert.addButton(withTitle: "Stop Music")
 				}
 				alarmAlert.beginSheetModal(for: AlarmsWindowController.alarmsObject.window ?? NSWindow()) { (modalResponse) in
@@ -125,20 +131,20 @@ class AlarmCenter: NSObject {
 						alarmTimer.cancel()
 					} else {
 						if modalResponse==NSApplication.ModalResponse.alertSecondButtonReturn {
-						let appleScript =
-						"""
-						tell application "Music"
-							stop
-						end tell
-						"""
-						var error: NSDictionary?
-						if let scriptObject = NSAppleScript(source: appleScript) {
-							if let outputString = scriptObject.executeAndReturnError(&error).stringValue {
-								print(outputString)
-							} else if error != nil {
-								print("Error: ", error ?? "")
+							let appleScript =
+							"""
+							tell application "Music"
+								stop
+							end tell
+							"""
+							var error: NSDictionary?
+							if let scriptObject = NSAppleScript(source: appleScript) {
+								if let outputString = scriptObject.executeAndReturnError(&error).stringValue {
+									print(outputString)
+								} else if error != nil {
+									print("Error: ", error ?? "")
+								}
 							}
-						}
 						}
 						alarmSound?.stop()
 					}
@@ -154,6 +160,7 @@ class AlarmCenter: NSObject {
 			alarms[index]=alarm
 		}
 		saveAlarms()
+		getActiveAlarms()
 	}
 	private func getTimeInterval(alarm: Alarm) -> TimeInterval {
 		var tomorrow=false

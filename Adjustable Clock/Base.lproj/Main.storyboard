@@ -762,13 +762,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <visualEffectView hidden="YES" appearanceType="vibrantDark" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="P1B-8G-caW">
-                                <rect key="frame" x="0.0" y="0.0" width="270" height="442"/>
+                                <rect key="frame" x="0.0" y="0.0" width="270" height="446"/>
                             </visualEffectView>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xt3-TQ-yqa">
-                                <rect key="frame" x="0.0" y="20" width="270" height="402"/>
+                                <rect key="frame" x="0.0" y="20" width="270" height="406"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CoE-q1-tay">
-                                        <rect key="frame" x="75" y="356" width="120" height="46"/>
+                                        <rect key="frame" x="75" y="360" width="120" height="46"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Alarms" id="zrM-Kp-7vW">
                                             <font key="font" metaFont="system" size="39"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -776,12 +776,12 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="203" translatesAutoresizingMaskIntoConstraints="NO" id="zQZ-To-CvJ">
-                                        <rect key="frame" x="32" y="290" width="207" height="46"/>
+                                        <rect key="frame" x="32" y="290" width="207" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="46" id="EmH-hn-f4e"/>
+                                            <constraint firstAttribute="height" constant="50" id="EmH-hn-f4e"/>
                                             <constraint firstAttribute="width" constant="203" id="uLX-A7-Gis"/>
                                         </constraints>
-                                        <textFieldCell key="cell" title="Alarm Active: Please do not shut computer or logout." id="4z5-XM-3fW">
+                                        <textFieldCell key="cell" title="Alarm Active: Please do not shut computer, logout, or quit the program." id="4z5-XM-3fW">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -798,9 +798,9 @@
                                         </connections>
                                     </button>
                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="72" horizontalPageScroll="10" verticalLineScroll="72" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeL-au-qBm">
-                                        <rect key="frame" x="35" y="0.0" width="200" height="229"/>
+                                        <rect key="frame" x="37" y="0.0" width="196" height="229"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="1wB-iL-xvO">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="214"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="196" height="214"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" viewBased="YES" id="Vdc-vV-Lyv">
@@ -940,7 +940,7 @@
                                             <nil key="backgroundColor"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="r4j-UB-Phi">
-                                            <rect key="frame" x="0.0" y="214" width="200" height="15"/>
+                                            <rect key="frame" x="0.0" y="214" width="196" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="eZy-yX-3TV">
