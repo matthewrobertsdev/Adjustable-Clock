@@ -122,5 +122,10 @@ class EditableAlarmViewController: NSViewController {
 		playlistName=alarm.song=="" ? "none chosen": alarm.song
 		playlistTextField.stringValue="Playlist: "+(alarm.song=="" ? "none chosen": alarm.song)
 		alarm.usesSong ? useSong() : useBeep()
+		if alarm.repeats {
+			repeatsButton.state=NSControl.StateValue.on
+		} else {
+			repeatsButton.state=NSControl.StateValue.off
+		}
 	}
 }
