@@ -32,10 +32,6 @@ class ClockMenuController: ClockMenuDelegate {
 		clockPreferences.changeAndSaveUseSeconds()
         updateForPreferencesChange()
 	}
-	func useTwentyFourHourClicked() {
-		clockPreferences.changeAndSaveUseAmPM()
-        updateForPreferencesChange()
-	}
 	func showDateClicked() {
 		clockPreferences.changeAndSaveShowDate()
         updateForPreferencesChange()
@@ -79,11 +75,6 @@ class ClockMenuController: ClockMenuDelegate {
         } else {
             menu.showSecondsMenuItem.state=NSControl.StateValue.off
         }
-        if clockPreferences.use24hourClock {
-            menu.use24HourClockMenuItem.state=NSControl.StateValue.on
-        } else {
-            menu.use24HourClockMenuItem.state=NSControl.StateValue.off
-        }
         if clockPreferences.showDate {
             menu.showDateMenuItem.state=NSControl.StateValue.on
             menu.useNumericalDateMenuItem.isEnabled=true
@@ -106,7 +97,6 @@ class ClockMenuController: ClockMenuDelegate {
         menu.autoenablesItems=false
         menu.clockFloatsMenuItem.isEnabled=enabled
         menu.showSecondsMenuItem.isEnabled=enabled
-        menu.use24HourClockMenuItem.isEnabled=enabled
         menu.showDateMenuItem.isEnabled=enabled
     }
 }

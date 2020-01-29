@@ -5,6 +5,7 @@
 //  Created by Matt Roberts on 1/20/20.
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
+import Foundation
 import Cocoa
 class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 	@objc var objectToObserve=AlarmCenter.sharedInstance
@@ -93,8 +94,11 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 	  }
 	@objc func onOffSelected(sender: Any){
 		if let segmentedControl=sender as? NSSegmentedControl {
-			guard let tableViewCell=segmentedControl.superview as? NSTableCellView else { return }
-			let index=self.tableView.row(for: tableViewCell)
+			guard let tableViewCell=segmentedControl.superview as? AlarmStatusTableCellView else { return }
+			guard let alarmTableView=tableView else {
+				return
+			}
+			let index: Int=alarmTableView.row(for: tableViewCell)
 				let alarm=AlarmCenter.sharedInstance.getAlarm(index: index)
 			switch segmentedControl.selectedTag() {
 			case 0: alarm.active=false
@@ -102,10 +106,7 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 			default:
 				alarm.active=true
 			}
-		}
-		let row=index as? Int ?? 0
-		if let alarmTableView=tableView as? NSTableView {
-			alarmTableView.reloadData(forRowIndexes: [row], columnIndexes: [0])
+			alarmTableView.reloadData(forRowIndexes:[index], columnIndexes: [0])
 		}
 		AlarmCenter.sharedInstance.setAlarms()
 	}

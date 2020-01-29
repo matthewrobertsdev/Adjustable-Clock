@@ -15,7 +15,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 	var clock=ClockWindowController.clockObject.window
-
+	var generalMenuController: GeneralMenuController?
     var colorsMenuController: ColorsMenuController?
 	var clockMenuController: ClockMenuController?
 	var alarmsMenuController: AlarmsMenuController?
@@ -32,11 +32,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			colorsMenuController=ColorsMenuController(colorsMenu: mainMenu.colorsMenu)
 			clockMenuController=ClockMenuController(menu: mainMenu.clockMenu)
 			alarmsMenuController=AlarmsMenuController(menu: mainMenu.alarmsMenu)
+			generalMenuController=GeneralMenuController(menu: mainMenu.generalMenu)
 		}
 		DockClockController.dockClockObject.updateDockTile()
 		AlarmCenter.sharedInstance
 		if AlarmsPreferencesStorage.sharedInstance.windowIsOpen {
 			AlarmsWindowController.alarmsObject.showAlarms()
+		}
+		let appleScript =
+		"""
+		tell application "Music"
+			stop
+		end tell
+		"""
+		var error: NSDictionary?
+		if let scriptObject = NSAppleScript(source: appleScript) {
+			if let outputString = scriptObject.executeAndReturnError(&error).stringValue {
+				print(outputString)
+			} else if error != nil {
+				print("Error: ", error ?? "")
+			}
 		}
 	}
     //if the dock icon is clicked

@@ -10,7 +10,6 @@ class ClockMenu: NSMenu {
 	weak var clockMenuDelegate: ClockMenuDelegate!
 	@IBOutlet weak var clockFloatsMenuItem: NSMenuItem!
     @IBOutlet weak var showSecondsMenuItem: NSMenuItem!
-    @IBOutlet weak var use24HourClockMenuItem: NSMenuItem!
     @IBOutlet weak var showDateMenuItem: NSMenuItem!
     @IBOutlet weak var showDayOfWeekMenuItem: NSMenuItem!
     @IBOutlet weak var datePreferencesMenu: NSMenu!
@@ -28,9 +27,6 @@ class ClockMenu: NSMenu {
     }
     @IBAction func clickShowSeconds(nsMenuItem: NSMenuItem) {
 		clockMenuDelegate.showSecondsClicked()
-    }
-    @IBAction func clickUse24Hours(nsMenuItem: NSMenuItem) {
-		clockMenuDelegate.useTwentyFourHourClicked()
     }
     @IBAction func clickShowDate(nsMenuItem: NSMenuItem) {
 		clockMenuDelegate.showDateClicked()

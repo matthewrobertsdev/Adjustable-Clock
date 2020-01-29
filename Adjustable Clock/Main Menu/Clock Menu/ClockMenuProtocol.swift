@@ -11,7 +11,6 @@ protocol ClockMenuDelegate: AnyObject {
 	func useAnalogClicked()
 	func floatClicked()
 	func showSecondsClicked()
-	func useTwentyFourHourClicked()
 	func showDateClicked()
 	func showDayOfWeekClicked()
 	func useNumericalClicked()
