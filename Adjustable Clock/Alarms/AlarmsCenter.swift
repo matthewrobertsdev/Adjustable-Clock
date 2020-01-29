@@ -8,24 +8,53 @@
 import AppKit
 class AlarmCenter: NSObject {
 	static let sharedInstance=AlarmCenter()
+	let userDefaults=UserDefaults()
+	let alarmsKey="savedAlarms"
+	let jsonEncoder=JSONEncoder()
+	let jsonDecoder=JSONDecoder()
 	private var alarmProtocol: NSObjectProtocol?
 	private let calendar=Calendar.current
 	private var alarmTimers=[DispatchSourceTimer]()
 	private let timeFormatter=DateFormatter()
 	private let appObject = NSApp as NSApplication
 	override private init() {
+		super.init()
 		timeFormatter.locale=Locale(identifier: "en_US")
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
+		jsonEncoder.outputFormatting = .prettyPrinted
+		loadAlarms()
+		setAlarms()
+	}
+	func saveAlarms() {
+		do {
+			let alarmData=try jsonEncoder.encode(alarms)
+			userDefaults.setValue(alarmData, forKeyPath: alarmsKey)
+		} catch {
+			print("Error encoding data")
+		}
+	}
+	func loadAlarms() {
+		do {
+			if let alarmsData=userDefaults.data(forKey: alarmsKey) {
+				let savedAlarms=try jsonDecoder.decode([Alarm].self, from: alarmsData)
+				alarms=savedAlarms
+				count+=alarms.count
+			}
+		} catch {
+			print("Error encoding data")
+		}
 	}
 	private var alarms=[Alarm]()
 	func addAlarm(alarm: Alarm) {
 		alarms.insert(alarm, at: 0)
 		count+=1
+		saveAlarms()
 	}
 	func removeAlarm(index: Int) {
 		alarms.remove(at: index)
 		alarmTimers.remove(at: index)
 		count-=1
+		saveAlarms()
 	}
 	func getAlarm(index: Int) -> Alarm {
 		return alarms[index]
@@ -124,9 +153,7 @@ class AlarmCenter: NSObject {
 			return alarmInstance.date==date }) {
 			alarms[index]=alarm
 		}
-	}
-	func replaceAlarm(alarm: Alarm, index: Int) {
-		alarms[index]=alarm
+		saveAlarms()
 	}
 	private func getTimeInterval(alarm: Alarm) -> TimeInterval {
 		var tomorrow=false
@@ -156,9 +183,15 @@ class AlarmCenter: NSObject {
 		return TimeInterval(exactly: totalSeconds) ?? 0
 	}
 	@objc dynamic var count=0
-	func startAlarms() {
+	func setAlarms() {
+		for timer in alarmTimers {
+			timer.cancel()
+		}
+		alarmTimers=[DispatchSourceTimer]()
 		if getActiveAlarms() > 0 {
-			alarmProtocol = ProcessInfo().beginActivity(options: .userInitiatedAllowingIdleSystemSleep, reason: "So alarms can go off")
+			alarmProtocol = ProcessInfo().beginActivity(options: .idleSystemSleepDisabled, reason: "So alarms can go off")
+		} else {
+			alarmProtocol=nil
 		}
 		scheduleAlarms()
 	}

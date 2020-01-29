@@ -72,6 +72,7 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 			} else {
 				cell1.alarmStatusSegmentedControl.selectSegment(withTag: 0)
 			}
+			cell1.alarmStatusSegmentedControl.action=#selector(onOffSelected(sender:))
 			return cell1
 		} else if tableColumn == tableView.tableColumns[2] {
 			guard let cell2 = (tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmSettingsTableCellView"), owner: nil) as? AlarmSettingsTableCellView) else {
@@ -81,6 +82,24 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 		}
 		return NSTableCellView()
 	  }
+	@objc func onOffSelected(sender: Any){
+		if let segmentedControl=sender as? NSSegmentedControl {
+			guard let tableViewCell=segmentedControl.superview as? NSTableCellView else { return }
+			let index=self.tableView.row(for: tableViewCell)
+				let alarm=AlarmCenter.sharedInstance.getAlarm(index: index)
+			switch segmentedControl.selectedTag() {
+			case 0: alarm.active=false
+			case 1: alarm.active=true
+			default:
+				alarm.active=true
+			}
+		}
+		let row=index as? Int ?? 0
+		if let alarmTableView=tableView as? NSTableView {
+			alarmTableView.reloadData(forRowIndexes: [row], columnIndexes: [0])
+		}
+		AlarmCenter.sharedInstance.setAlarms()
+	}
 	@objc func showPopover(sender: Any?) {
 		guard let settingsButton=sender as? NSButton else {
 			return

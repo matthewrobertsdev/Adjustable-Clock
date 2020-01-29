@@ -34,6 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			alarmsMenuController=AlarmsMenuController(menu: mainMenu.alarmsMenu)
 		}
 		DockClockController.dockClockObject.updateDockTile()
+		AlarmCenter.sharedInstance
 		if AlarmsPreferencesStorage.sharedInstance.windowIsOpen {
 			AlarmsWindowController.alarmsObject.showAlarms()
 		}
@@ -45,18 +46,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     func applicationWillTerminate(_ aNotification: Notification) {
 		GeneralPreferencesStorage.sharedInstance.closing=true
-	}
-	func playSong() {
-		let url = Bundle.main.url(forResource: "01_Hooked_On_A_Feeling", withExtension: "m4a")
-		do {
-			player = try AVAudioPlayer(contentsOf: url!)
-			guard let player = player else { return }
-
-			player.prepareToPlay()
-			player.play()
-
-		} catch let error as NSError {
-			print(error.description)
-		}
 	}
 }

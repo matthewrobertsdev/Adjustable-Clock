@@ -6,14 +6,14 @@
 //  Copyright © 2020 Matt Robertss. All rights reserved.
 //
 import Foundation
-class Alarm {
+class Alarm: Codable {
 	var date: Date
 	var usesSong: Bool
 	var repeats: Bool
 	var alertString="Ping"
-	var song: String?
+	var song=""
 	var active=false
-	init(date: Date, usesSong: Bool, repeats: Bool, alert: String, song: String?, active: Bool) {
+	init(date: Date, usesSong: Bool, repeats: Bool, alert: String, song: String, active: Bool) {
 		self.date=date
 		self.usesSong=usesSong
 		self.repeats=repeats

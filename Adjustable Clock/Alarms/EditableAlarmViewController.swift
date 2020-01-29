@@ -89,7 +89,7 @@ class EditableAlarmViewController: NSViewController {
 			}
 			cancel()
 		}
-		AlarmCenter.sharedInstance.startAlarms()
+		AlarmCenter.sharedInstance.setAlarms()
 		AlarmsWindowController.alarmsObject.showAlarms()
 	}
 	@IBAction func useBeepChosen(_ sender: Any) {
@@ -114,13 +114,13 @@ class EditableAlarmViewController: NSViewController {
 			verticalStackView.removeView(deleteButton)
 		}
     }
-	func assignAlarm(alarm: Alarm){
+	func assignAlarm(alarm: Alarm) {
 		oldDate=alarm.date
 		datePicker.dateValue=alarm.date
 		alertName=alarm.alertString
 		alertTextField.stringValue="Alert: "+alarm.alertString
-		playlistName=alarm.song ?? "none chosen"
-		playlistTextField.stringValue="Playlist: "+(alarm.song ?? "none chosen")
+		playlistName=alarm.song=="" ? "none chosen": alarm.song
+		playlistTextField.stringValue="Playlist: "+(alarm.song=="" ? "none chosen": alarm.song)
 		alarm.usesSong ? useSong() : useBeep()
 	}
 }
