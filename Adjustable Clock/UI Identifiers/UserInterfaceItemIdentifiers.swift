@@ -8,7 +8,8 @@
 import Cocoa
 struct UserInterfaceIdentifier {
     static let digitalClockWindow=NSUserInterfaceItemIdentifier("ClockWindow")
-	 static let analogClockWindow=NSUserInterfaceItemIdentifier("AnalogClockWindow")
+	 static let alarmsWindow=NSUserInterfaceItemIdentifier("AlarmsWindow")
+	static let newAlarmWindow=NSUserInterfaceItemIdentifier("NewAlarmWindow")
     static let prefrencesWindow=NSUserInterfaceItemIdentifier("PreferencesWindow")
     static let simplePrefrencesWindow=NSUserInterfaceItemIdentifier("SimplePreferencesWindow")
 }

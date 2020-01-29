@@ -8,11 +8,11 @@
 import AppKit
 class ClockColorController {
 	private var visualEffectView: NSVisualEffectView
-	private var view: NSView
+	private var view: DarkAndLightBackgroundView
 	private var digitalClock: NSTextField
 	private var animatedDay: NSTextField
 	private var analogClock: AnalogClockView
-	init(visualEffectView: NSVisualEffectView, view: NSView, digitalClock: NSTextField, animatedDay: NSTextField, analogClock: AnalogClockView) {
+	init(visualEffectView: NSVisualEffectView, view: DarkAndLightBackgroundView, digitalClock: NSTextField, animatedDay: NSTextField, analogClock: AnalogClockView) {
 		self.visualEffectView=visualEffectView
 		self.view=view
 		self.digitalClock=digitalClock
@@ -33,28 +33,36 @@ class ClockColorController {
 			visualEffectView.isHidden=true
 			digitalClock.textColor=NSColor.labelColor
 			animatedDay.textColor=NSColor.labelColor
-			if contrastColor==NSColor.black {
-				contrastColor=NSColor.systemGray
-			}
-			if #available(OSX 10.14, *) {
-				if let uiName=NSApp?.effectiveAppearance.name {
-					if uiName==NSAppearance.Name.darkAqua||uiName==NSAppearance.Name.accessibilityHighContrastDarkAqua||uiName==NSAppearance.Name.accessibilityHighContrastVibrantDark {
-						if contrastColor==NSColor.white {
-							contrastColor=NSColor.systemGray
-						}
+			if !isDarkMode() && contrastColor==NSColor.black {
+				if #available(OSX 10.13, *) {
+					contrastColor=NSColor(named: "BlackBackground") ?? NSColor.systemGray
+				}
+				self.view.contrastColor=contrastColor
+				analogClock.color=NSColor.labelColor
+				analogClock.setNeedsDisplay(analogClock.bounds)
+			} else if isDarkMode() {
+				if contrastColor==NSColor.white {
+					if #available(OSX 10.13, *) {
+						contrastColor=NSColor(named: "WhiteBackground") ?? NSColor.systemGray
 					}
 				}
+				self.view.contrastColor=contrastColor
+					analogClock.color=NSColor.labelColor
+					analogClock.setNeedsDisplay(analogClock.bounds)
+			} else {
+				self.view.contrastColor=contrastColor
+				analogClock.color=NSColor.labelColor
+				analogClock.setNeedsDisplay(analogClock.bounds)
 			}
-			self.view.layer?.backgroundColor=contrastColor.cgColor
-			analogClock.color=NSColor.labelColor
-			analogClock.setNeedsDisplay(analogClock.bounds)
 		} else {
 			visualEffectView.isHidden=false
 			digitalClock.textColor=contrastColor
 			animatedDay.textColor=contrastColor
 			analogClock.color=contrastColor
-			analogClock.setNeedsDisplay(analogClock.bounds)
-			self.view.layer?.backgroundColor = NSColor.labelColor.cgColor
+			if ClockPreferencesStorage.sharedInstance.colorForForeground { analogClock.setNeedsDisplay(analogClock.bounds)
+			}
+			self.view.contrastColor = NSColor.labelColor
 		}
+		self.view.setNeedsDisplay(view.bounds)
 	}
 }

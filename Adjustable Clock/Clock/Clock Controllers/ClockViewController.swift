@@ -17,8 +17,6 @@ class ClockViewController: NSViewController {
 	@IBOutlet weak var maginfierAspectRatioConstraint: NSLayoutConstraint!
 	@IBOutlet var magnifierTopConstraint: NSLayoutConstraint!
 	@IBOutlet var magnifierLeadingConstraint: NSLayoutConstraint!
-	@IBOutlet var magnifierBottomConstaint: NSLayoutConstraint!
-	@IBOutlet var magnifierTrailingConstraint: NSLayoutConstraint!
 	@IBOutlet weak var clockWidthConstraint: NSLayoutConstraint!
 	@IBOutlet weak var clockHeightConstraint: NSLayoutConstraint!
 	let model=ClockModel()
@@ -28,12 +26,24 @@ class ClockViewController: NSViewController {
 	let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
 	var colorController: ClockColorController?
 	var digitalClockAnimator: DigitalClockAnimator?
+	let backgroundView=DarkAndLightBackgroundView()
 	var analogClockAnimator: AnalogClockAnimator?
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		view.addSubview(backgroundView, positioned: .below, relativeTo: view)
+		backgroundView.translatesAutoresizingMaskIntoConstraints=false
+		//*
+		let leadingConstraint=NSLayoutConstraint(item: backgroundView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
+		let trailingConstraint=NSLayoutConstraint(item: backgroundView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
+		let topConstraint=NSLayoutConstraint(item: backgroundView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
+		let bottomConstraint=NSLayoutConstraint(item: backgroundView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
+		NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
 		updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		maginiferScrollView.maxMagnification=200
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
+		let distribitedNotificationCenter=DistributedNotificationCenter.default
+		let interfaceNotification=NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification")
+		distribitedNotificationCenter.addObserver(self, selector: #selector(interfaceModeChanged(sender:)), name: interfaceNotification, object: nil)
 		let screenSleepObserver =
 			workspaceNotifcationCenter.addObserver(forName:
 			NSWorkspace.screensDidSleepNotification, object: nil, queue: nil) { (_) in
@@ -57,12 +67,19 @@ class ClockViewController: NSViewController {
 		let colorChangeNotification=NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification")
 		let colorChangeObserver =
 			notifier.addObserver(self, selector:
-				#selector(applyColors(sender:)), name: colorChangeNotification, object: nil)
+				#selector(interfaceModeChanged(sender:)), name: colorChangeNotification, object: nil)
 		guard let timeProtocol=tellingTime else { return }
 		guard let timer=updateTimer else { return }
 		digitalClockAnimator=DigitalClockAnimator(model: model, tellingTime: timeProtocol, updateTimer: timer, digitalClock: digitalClock, animatedDay: animatedDay)
 		analogClockAnimator=AnalogClockAnimator(model: model, tellingTime: timeProtocol, updateTimer: timer, analogClock: analogClock, animatedDay: animatedDay)
-		colorController=ClockColorController(visualEffectView: visualEffectView, view: view, digitalClock: digitalClock, animatedDay: animatedDay, analogClock: analogClock)
+		colorController=ClockColorController(visualEffectView: visualEffectView, view: backgroundView, digitalClock: digitalClock, animatedDay: animatedDay, analogClock: analogClock)
+		showClock()
+	}
+	@objc func interfaceModeChanged(sender: NSNotification) {
+		colorController?.applyColorScheme()
+		backgroundView.draw(backgroundView.bounds)
+	}
+	func showClock() {
 		if ClockPreferencesStorage.sharedInstance.useAnalog {
 			showAnalogClock()
 		} else {
@@ -110,28 +127,16 @@ class ClockViewController: NSViewController {
 		if let leadingConstraint=magnifierLeadingConstraint {
 			leadingConstraint.isActive=false
 		}
-		if let trailingConstraint=magnifierTrailingConstraint {
-			trailingConstraint.isActive=false
-		}
-		if let bottomConstraint=magnifierBottomConstaint {
-			bottomConstraint.isActive=true
-		}
 		if let topConstraint=magnifierTopConstraint {
 			topConstraint.isActive=true
 		}
 	}
 	func activateWidthConstraints() {
-		if let bottomConstraint=magnifierBottomConstaint {
-			bottomConstraint.isActive=false
-		}
 		if let topConstraint=magnifierTopConstraint {
 			topConstraint.isActive=false
 		}
 		if let leadingConstraint=magnifierLeadingConstraint {
 			leadingConstraint.isActive=true
-		}
-		if let trailingConstraint=magnifierTrailingConstraint {
-			trailingConstraint.isActive=true
 		}
 	}
 	func updateSizeConstraints() {
@@ -201,7 +206,8 @@ class ClockViewController: NSViewController {
 		magnifierSemaphore.signal()
 	}
 	@objc func applyColors(sender: NSNotification) { colorController?.applyColorScheme() }
-	deinit { digitalClockAnimator?.stopAnimating() }
+	deinit { digitalClockAnimator?.stopAnimating()
+	}
 	func displayForDock() {
 		if ClockPreferencesStorage.sharedInstance.useAnalog {
 			analogClockAnimator?.displayForDock()

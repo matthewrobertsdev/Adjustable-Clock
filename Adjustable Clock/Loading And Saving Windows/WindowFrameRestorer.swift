@@ -13,13 +13,17 @@ class WindowFrameRestorer {
     private var heightKey: String
     private var minWidth: CGFloat
     private var minHeight: CGFloat
-    init(xKey: String, yKey: String, widthKey: String, heightKey: String, minWidth: CGFloat, minHeight: CGFloat) {
+	private var maxWidth: CGFloat?
+    private var maxHeight: CGFloat?
+    init(xKey: String, yKey: String, widthKey: String, heightKey: String, minWidth: CGFloat, minHeight: CGFloat, maxWidth: CGFloat?, maxHeight: CGFloat?) {
         self.xKey=xKey
         self.yKey=yKey
         self.widthKey=widthKey
         self.heightKey=heightKey
         self.minWidth=minWidth
         self.minHeight=minHeight
+		self.maxWidth=maxWidth
+		self.maxHeight=maxHeight
     }
     func windowSaveCGRect(window: NSWindow?) {
         let userDefaults=UserDefaults()
@@ -45,12 +49,26 @@ class WindowFrameRestorer {
         //and the window origin
 		let originX=userDefaults.integer(forKey: xKey)
 		let originY=userDefaults.integer(forKey: yKey)
+		print("window x "+originX.description)
+		print("window y "+originY.description)
         var savedClockOrigin=CGPoint(x: originX, y: originY)
         //if it's too small in any way, give it a minimum
         if savedWindowSize.width<minWidth {
             savedWindowSize.width=minWidth
-            savedWindowSize.height=minHeight
         }
+		if savedWindowSize.height<minHeight {
+			savedWindowSize.height=minHeight
+		}
+		if let width=maxWidth {
+			if savedWindowSize.width>width {
+				savedWindowSize.width=width
+			}
+		}
+		if let height=maxHeight {
+			if savedWindowSize.height>height {
+				savedWindowSize.height=height
+			}
+		}
         //if it's off screen left, move to edge
         if savedClockOrigin.x<0 {
             savedClockOrigin.x=0

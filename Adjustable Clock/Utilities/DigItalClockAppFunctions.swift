@@ -36,52 +36,18 @@ func windowPresent(identifier: NSUserInterfaceItemIdentifier) -> Bool {
 	return false
 }
 func updateClockMenuUI() {
-	let appObject = NSApp as NSApplication
-	if let mainMenu=appObject.mainMenu as? MainMenu {
-		mainMenu.updateClockMenuUI()
+	guard let appDelagte = NSApplication.shared.delegate as? AppDelegate else {
+		return
+	}
+	if let clockMenuController=appDelagte.clockMenuController as? ClockMenuController {
+		clockMenuController.updateClockMenuUI()
 	}
 }
 func enableClockMenu(enabled: Bool) {
-	let appObject = NSApp as NSApplication
-	if let mainMenu=appObject.mainMenu as? MainMenu {
-		mainMenu.enableClockMenuPreferences(enabled: enabled)
+	guard let appDelagte = NSApplication.shared.delegate as? AppDelegate else {
+		return
+	}
+	if let clockMenuController=appDelagte.clockMenuController as? ClockMenuController {
+		clockMenuController.enableClockMenuPreferences(enabled: enabled)
 	}
 }
-/*
-func findFittingFont(label: NSTextField, size: NSSize) {
-	label.sizeToFit()
-	var newWidth=label.frame.width
-	let desiredWidth=0.95*Double(size.width)
-	var newHeight=label.frame.height
-	let desiredHeight=Double(size.height)
-	var textSize=CGFloat((label.font?.pointSize)!)
-	//make it big enough
-	while (Double(newWidth)-desiredWidth < 2)&&(Double(newHeight)-desiredHeight<2) {
-		textSize+=CGFloat(1)
-		label.font=NSFont.userFont(ofSize: textSize)
-		label.sizeToFit()
-		newWidth=label.frame.width
-		newHeight=label.frame.height
-		if textSize>2000 {
-			textSize=2000
-			label.font=NSFont.userFont(ofSize: textSize)
-			label.sizeToFit()
-			break
-		}
-	}
-	//make it small enough
-	while (Double(newWidth)-desiredWidth>2)||(Double(newHeight)-desiredHeight>2) {
-		textSize-=CGFloat(1)
-		label.font=NSFont.userFont(ofSize: textSize)
-		label.sizeToFit()
-		newWidth=label.frame.width
-		newHeight=label.frame.height
-		if textSize<2 {
-			textSize=1
-			label.font=NSFont.userFont(ofSize: textSize)
-			label.sizeToFit()
-			break
-		}
-	}
-}
-*/
