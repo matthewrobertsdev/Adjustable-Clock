@@ -23,6 +23,7 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 	override func viewDidLoad() {
         super.viewDidLoad()
        view.addSubview(backgroundView, positioned: .below, relativeTo: view)
+		self.shorOrHideNotifier(numberOfAlarms: AlarmCenter.sharedInstance.count)
 		popover.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)
 		tableView.selectionHighlightStyle=NSTableView.SelectionHighlightStyle.none
 		timeFormatter.locale=Locale(identifier: "en_US")
@@ -45,8 +46,16 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 			if change.newValue ?? 0>change.oldValue ?? 0 {
 				self.tableView.insertRows(at: [0], withAnimation: NSTableView.AnimationOptions.slideDown)
 			}
+			self.shorOrHideNotifier(numberOfAlarms: change.newValue ?? 0)
         }
     }
+	func shorOrHideNotifier(numberOfAlarms: Int) {
+		if (numberOfAlarms)>0 {
+			self.alarmNotifierTextField.isHidden=false
+		} else {
+			self.alarmNotifierTextField.isHidden=true
+		}
+	}
 	func update() {
 		colorController?.applyColorScheme()
 	}
