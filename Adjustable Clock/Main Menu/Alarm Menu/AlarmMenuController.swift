@@ -20,7 +20,7 @@ class AlarmsMenuController: AlarmMenuDelegate {
 			return
 		}
 		alarmsViewController.showAddAlarmViewController()*/
-		NewAlarmWindowController.newAlarmConfigurer.showNewAlarmConfigurer()
+		EditableAlarmWindowController.newAlarmConfigurer.showNewAlarmConfigurer()
 	}
 	func showAlarmsClicked() {
 		AlarmsWindowController.alarmsObject.showAlarms()

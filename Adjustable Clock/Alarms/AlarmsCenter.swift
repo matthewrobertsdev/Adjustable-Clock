@@ -24,6 +24,7 @@ class AlarmCenter: NSObject {
 	}
 	func removeAlarm(index: Int) {
 		alarms.remove(at: index)
+		alarmTimers.remove(at: index)
 		count-=1
 	}
 	func getAlarm(index: Int) -> Alarm {
@@ -47,6 +48,15 @@ class AlarmCenter: NSObject {
 			print("abcd"+String(getTimeInterval(alarm: alarm)))
 			alarmTimer.schedule(deadline: .now()+getTimeInterval(alarm: alarm), repeating: .never, leeway: .milliseconds(0))
 			alarmTimer.setEventHandler {
+				if alarm.repeats != true {
+					alarm.active=false
+					if let alarmViewController: AlarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController {
+						let row = self.alarms.firstIndex(where: { (alarmInstance) -> Bool in
+							return alarmInstance.date==alarm.date })					
+						let tableView=alarmViewController.tableView
+						tableView?.reloadData(forRowIndexes: [(row ?? 0)], columnIndexes: [0, 1])
+						}
+					}
 				let alarmSound=NSSound(named: NSSound.Name(alarm.alertString))
 				if !alarm.usesSong {
 					alarmSound?.loops=true
@@ -108,6 +118,15 @@ class AlarmCenter: NSObject {
 			alarmTimer.resume()
 			alarmTimers.append(alarmTimer)
 		}
+	}
+	func replaceAlarm(date: Date, alarm: Alarm) {
+		if let index=self.alarms.firstIndex(where: { (alarmInstance) -> Bool in
+			return alarmInstance.date==date }) {
+			alarms[index]=alarm
+		}
+	}
+	func replaceAlarm(alarm: Alarm, index: Int) {
+		alarms[index]=alarm
 	}
 	private func getTimeInterval(alarm: Alarm) -> TimeInterval {
 		var tomorrow=false

@@ -8,8 +8,8 @@
 
 import Cocoa
 
-class NewAlarmWindowController: NSWindowController {
-	static var newAlarmConfigurer=NewAlarmWindowController()
+class EditableAlarmWindowController: NSWindowController {
+	static var newAlarmConfigurer=EditableAlarmWindowController()
     override func windowDidLoad() {
         super.windowDidLoad()
     }
@@ -18,15 +18,15 @@ class NewAlarmWindowController: NSWindowController {
 		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 		guard let newAlarmWindowController =
 			mainStoryBoard.instantiateController(withIdentifier:
-				"NewAlarmWindowController") as? NewAlarmWindowController else { return }
-			NewAlarmWindowController.newAlarmConfigurer=newAlarmWindowController
-		NewAlarmWindowController.newAlarmConfigurer.loadWindow()
-			NewAlarmWindowController.newAlarmConfigurer.showWindow(nil)
+				"NewAlarmWindowController") as? EditableAlarmWindowController else { return }
+			EditableAlarmWindowController.newAlarmConfigurer=newAlarmWindowController
+		EditableAlarmWindowController.newAlarmConfigurer.loadWindow()
+			EditableAlarmWindowController.newAlarmConfigurer.showWindow(nil)
 		} else {
 			let appObject = NSApp as NSApplication
 	for window in appObject.windows where window.identifier==UserInterfaceIdentifier.newAlarmWindow {
-				if let alarmsWindowController=window.windowController as? NewAlarmWindowController {
-					NewAlarmWindowController.newAlarmConfigurer=alarmsWindowController
+				if let alarmsWindowController=window.windowController as? EditableAlarmWindowController {
+					EditableAlarmWindowController.newAlarmConfigurer=alarmsWindowController
 						window.makeKeyAndOrderFront(nil)
 					}
 				}

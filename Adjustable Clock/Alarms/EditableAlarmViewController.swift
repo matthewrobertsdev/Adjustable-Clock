@@ -6,7 +6,7 @@
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 import Cocoa
-class NewAlarmViewController: NSViewController {
+class EditableAlarmViewController: NSViewController {
 	var song: String?
 	@IBOutlet weak var verticalStackView: NSStackView!
 	@IBOutlet weak var deleteButton: NSButton!
@@ -16,12 +16,16 @@ class NewAlarmViewController: NSViewController {
 	@IBOutlet weak var repeatsButton: NSButton!
 	@IBOutlet weak var beepButton: NSButton!
 	@IBOutlet weak var songButton: NSButton!
+	var settingsButton: NSButton?
+	var tableView: NSTableView?
+	var usesSong=false
+	var oldDate: Date?
 	var delete = { () -> Void in }
 	@IBAction func delete(_ sender: Any) {
 		delete()
 	}
 	var alertName="Ping"
-	var playlistName="None chosen"
+	var playlistName=""
 	var new=true
 	var cancel = { () -> Void in }
 	@IBAction func chooseAlert(_ sender: Any) {
@@ -62,39 +66,61 @@ class NewAlarmViewController: NSViewController {
 			repeating=true
 		}
 		if songButton.state==NSControl.StateValue.on {
-			if song==nil {
+			if playlistName=="" {
 				let songAlert=NSAlert()
-				songAlert.messageText="Please select a song before setting an alarm with a song for the alarm."
+				songAlert.messageText="Please select a playlist before setting an alarm with a song for the alarm."
 				songAlert.runModal()
 				return
 			}
 		}
+		let alarm=Alarm(date: datePicker.dateValue, usesSong: usesSong, repeats: repeating, alert: alertName, song: playlistName, active: true)
 		if new {
-			AlarmCenter.sharedInstance.addAlarm(alarm: Alarm(date: datePicker.dateValue, usesSong: true, repeats: repeating, alert: alertName, song: playlistName, active: true))
-			AlarmCenter.sharedInstance.startAlarms()
+			AlarmCenter.sharedInstance.addAlarm(alarm: alarm)
 			self.view.window?.close()
 		} else {
+			AlarmCenter.sharedInstance.replaceAlarm(date: oldDate ?? Date(), alarm: alarm)
+			if let button=settingsButton {
+				if let alarmTableView=tableView {
+					guard let tableViewCell=button.superview as? NSTableCellView else { return }
+					let index=alarmTableView.row(for: tableViewCell)
+					alarmTableView.reloadData(forRowIndexes: [index],
+					columnIndexes: [0, 1, 2])
+				}
+			}
 			cancel()
 		}
+		AlarmCenter.sharedInstance.startAlarms()
 		AlarmsWindowController.alarmsObject.showAlarms()
 	}
 	@IBAction func useBeepChosen(_ sender: Any) {
+		useBeep()
+	}
+	func useBeep() {
 		beepButton.state=NSControl.StateValue.on
 		songButton.state=NSControl.StateValue.off
+		usesSong=false
 	}
 	@IBAction func useSongChosen(_ sender: Any) {
+		useSong()
+	}
+	func useSong() {
 		beepButton.state=NSControl.StateValue.off
 		songButton.state=NSControl.StateValue.on
+		usesSong=true
 	}
 	override func viewDidLoad() {
         super.viewDidLoad()
 		if new {
 			verticalStackView.removeView(deleteButton)
-			/*let oldFrame=self.view.window?.frame
-			let newSize=NSSize(width: oldFrame?.size.width ?? 100, height: (oldFrame?.size.height ?? 142)-CGFloat(42))
-			let newOrigin=CGPoint(x: oldFrame?.origin.x ?? 0, y: (oldFrame?.origin.y ?? 0)+CGFloat(42))
-			let newFrame=CGRect(origin: newOrigin, size: newSize)
-			view.window?.setFrame(newFrame, display: true)*/
 		}
     }
+	func assignAlarm(alarm: Alarm){
+		oldDate=alarm.date
+		datePicker.dateValue=alarm.date
+		alertName=alarm.alertString
+		alertTextField.stringValue="Alert: "+alarm.alertString
+		playlistName=alarm.song ?? "none chosen"
+		playlistTextField.stringValue="Playlist: "+(alarm.song ?? "none chosen")
+		alarm.usesSong ? useSong() : useBeep()
+	}
 }

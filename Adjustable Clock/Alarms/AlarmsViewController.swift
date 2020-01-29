@@ -18,19 +18,8 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var alarmNotifierTextField: NSTextField!
 	@IBAction func addAlarm(_ sender: Any) {
-		NewAlarmWindowController.newAlarmConfigurer.showNewAlarmConfigurer()
-		//showAddAlarmViewController()
+		EditableAlarmWindowController.newAlarmConfigurer.showNewAlarmConfigurer()
 	}
-	/*
-	func showAddAlarmViewController() {
-		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
-
-		guard let newAlarmViewController =
-		mainStoryBoard.instantiateController(withIdentifier:
-				   "NewAlarmViewController") as? NewAlarmViewController else { return }
-			   self.presentAsSheet(newAlarmViewController)
-	}
-*/
 	override func viewDidLoad() {
         super.viewDidLoad()
        view.addSubview(backgroundView, positioned: .below, relativeTo: view)
@@ -55,7 +44,6 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
         ) { _, change in
 			if change.newValue ?? 0>change.oldValue ?? 0 {
 				self.tableView.insertRows(at: [0], withAnimation: NSTableView.AnimationOptions.slideDown)
-				//self.tableView.reloadData()
 			}
         }
     }
@@ -72,11 +60,18 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 		cell0.alarmTimeTextField.textColor=colorController?.textColor
 			cell0.alarmRepeatTextField.textColor=colorController?.textColor
 			cell0.alarmTimeTextField.stringValue=timeFormatter.string(from: alarm.date)
-			cell0.alarmRepeatTextField.stringValue=alarm.repeats ? "Everyday" : "Just once"
+			cell0.alarmRepeatTextField.stringValue = !alarm.active ? "Off" : (alarm.repeats ? "Everyday" : "Just once")
 			return cell0
 		} else if tableColumn == tableView.tableColumns[1] {
 			guard let cell1 = (tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmStatusTableCellView"), owner: nil) as? AlarmStatusTableCellView) else {
 				return NSTableCellView() }
+			cell1.alarmStatusSegmentedControl.setTag(0, forSegment: 0)
+			cell1.alarmStatusSegmentedControl.setTag(1, forSegment: 1)
+			if alarm.active {
+			cell1.alarmStatusSegmentedControl.selectSegment(withTag: 1)
+			} else {
+				cell1.alarmStatusSegmentedControl.selectSegment(withTag: 0)
+			}
 			return cell1
 		} else if tableColumn == tableView.tableColumns[2] {
 			guard let cell2 = (tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmSettingsTableCellView"), owner: nil) as? AlarmSettingsTableCellView) else {
@@ -94,19 +89,23 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 			popover.close()
 		} else {
 			let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
-			   guard let newAlarmViewController =
+			   guard let editableAlarmViewController =
 				mainStoryBoard.instantiateController(withIdentifier:
-				   "NewAlarmViewController") as? NewAlarmViewController else { return }
-			newAlarmViewController.new=false
-			newAlarmViewController.cancel = { () -> Void in self.popover.close() }
-			newAlarmViewController.delete = { () -> Void in
-				guard let tableViewCell=settingsButton.superview as? NSTableCellView else { return }
-			let index=self.tableView.row(for: tableViewCell)
+				   "NewAlarmViewController") as? EditableAlarmViewController else { return }
+			editableAlarmViewController.new=false
+			guard let tableViewCell=settingsButton.superview as? NSTableCellView else { return }
+		let index=self.tableView.row(for: tableViewCell)
+			let alarm=AlarmCenter.sharedInstance.getAlarm(index: index)
+			editableAlarmViewController.cancel = { () -> Void in self.popover.close() }
+			editableAlarmViewController.delete = { () -> Void in
 				AlarmCenter.sharedInstance.removeAlarm(index: index)
 				self.tableView.removeRows(at: [index], withAnimation: NSTableView.AnimationOptions.slideUp)
 			}
-			popover.contentViewController = newAlarmViewController
+			popover.contentViewController = editableAlarmViewController
 			popover.show(relativeTo: settingsButton.bounds, of: settingsButton, preferredEdge: NSRectEdge.minY)
+			editableAlarmViewController.settingsButton=settingsButton
+			editableAlarmViewController.tableView=tableView
+			editableAlarmViewController.assignAlarm(alarm: alarm)
 		}
 	}
 }
