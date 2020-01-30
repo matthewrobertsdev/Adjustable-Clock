@@ -39,6 +39,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		if AlarmsPreferencesStorage.sharedInstance.windowIsOpen {
 			AlarmsWindowController.alarmsObject.showAlarms()
 		}
+		if(!ClockPreferencesStorage.sharedInstance.hasLaunchedBefore()) {
+			let alert=NSAlert()
+			alert.messageText = "Welcome to Clock Suit!  Click OK to begin the process of allowing Clock Suite to control your music.  It will send a one-time command to the Music app to stop your music so you can give it permission to play it from then on."
+			alert.addButton(withTitle: "OK")
+			alert.addButton(withTitle: "Cancel")
+			alert.beginSheetModal(for: ClockWindowController.clockObject.window ?? NSWindow()) { (modalResponse) in
+				if modalResponse==NSApplication.ModalResponse.alertFirstButtonReturn {
+					let appleScript =
+					"""
+					tell application "Music"
+						stop
+					end tell
+					"""
+					var error: NSDictionary?
+					if let scriptObject = NSAppleScript(source: appleScript) {
+						if let outputString = scriptObject.executeAndReturnError(&error).stringValue {
+						print(outputString)
+						} else if error != nil {
+						print("Error: ", error ?? "")
+						}
+					}
+				}
+			}
+		}
 	}
     //if the dock icon is clicked
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {

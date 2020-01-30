@@ -157,6 +157,7 @@ class AlarmCenter: NSObject {
 			}
 			alarmTimer.resume()
 			alarmTimers.append(alarmTimer)
+			scheduleAlarms()
 		}
 	}
 	func replaceAlarm(date: Date, alarm: Alarm) {
