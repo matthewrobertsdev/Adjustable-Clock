@@ -153,11 +153,11 @@ class AlarmCenter: NSObject {
 						}
 						alarmSound?.stop()
 					}
+					self.scheduleAlarms()
 				}
 			}
 			alarmTimer.resume()
 			alarmTimers.append(alarmTimer)
-			scheduleAlarms()
 		}
 	}
 	func replaceAlarm(date: Date, alarm: Alarm) {
