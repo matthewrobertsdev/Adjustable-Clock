@@ -7,8 +7,8 @@
 //
 import AppKit
 class DigitalDockClockView: NSView {
-	let contentView=NSView()
-	let digitalClock=NSTextField(labelWithString: "12:00")
+	let contentStackView=NSStackView()
+	let digitalClock=NSTextField(labelWithString: "--:--")
 	override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         setUp()
@@ -18,16 +18,17 @@ class DigitalDockClockView: NSView {
         setUp()
     }
 	private func setUp() {
-		addSubview(contentView)
-		contentView.wantsLayer=true
-		contentView.translatesAutoresizingMaskIntoConstraints = false
-		contentView.layer?.backgroundColor=NSColor.white.cgColor
-		let contentLeading=NSLayoutConstraint(item: contentView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
-		let contentTrailing=NSLayoutConstraint(item: contentView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
-		let contentCenterY=NSLayoutConstraint(item: contentView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
-		let contentHeight=NSLayoutConstraint(item: contentView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.5, constant: 0)
+		addSubview(contentStackView)
+		contentStackView.wantsLayer=true
+		contentStackView.translatesAutoresizingMaskIntoConstraints = false
+		contentStackView.layer?.backgroundColor=NSColor.white.cgColor
+		let contentLeading=NSLayoutConstraint(item: contentStackView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+		let contentTrailing=NSLayoutConstraint(item: contentStackView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
+		let contentCenterY=NSLayoutConstraint(item: contentStackView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
+		let contentHeight=NSLayoutConstraint(item: contentStackView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.5, constant: 0)
 		NSLayoutConstraint.activate([contentLeading, contentTrailing, contentCenterY, contentHeight])
-		contentView.addSubview(digitalClock)
+		contentStackView.alignment = .centerX
+		contentStackView.addArrangedSubview(digitalClock)
 		digitalClock.translatesAutoresizingMaskIntoConstraints=false
 		digitalClock.font=NSFont.userFont(ofSize: 50)
 		let digitalClockX=NSLayoutConstraint(item: digitalClock, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)

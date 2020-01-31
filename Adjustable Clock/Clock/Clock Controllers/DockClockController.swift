@@ -13,27 +13,24 @@ class DockClockController {
 	let appObject = NSApp as NSApplication
 	var tellingTime: NSObjectProtocol?
 	var updateTimer: DispatchSourceTimer?
-	var digital = false
+	var model=DockClockModel()
+	var digital = !false
 	private init() {
 		animateTime()
 	}
 	func updateDockTile() {
 		if (digital) {
 			digitalClockView.setFrameSize(appObject.dockTile.size)
-				appObject.dockTile.contentView=digitalClockView
+			appObject.dockTile.contentView=digitalClockView
 		} else {
 			analogClockView.setFrameSize(appObject.dockTile.size)
-			applyColorScheme(clockView: analogClockView)
 			appObject.dockTile.contentView=analogClockView
 		}
+		applyColorScheme(digitalClockView: digitalClockView, analogClockView: analogClockView)
 		appObject.dockTile.display()
 	}
 	func updateClockForPreferencesChange() {
-		if (digital) {
-			
-		} else {
-			applyColorScheme(clockView: analogClockView)
-		}
+			applyColorScheme(digitalClockView: digitalClockView, analogClockView: analogClockView)
 		appObject.dockTile.display()
 	}
 	private func animateTime() {
@@ -43,11 +40,12 @@ class DockClockController {
 		timer.setEventHandler {
 			//self.dockClockView.draw(self.dockClockView.frame)
 			if self.digital {
-				
+				self.digitalClockView.digitalClock.stringValue=self.model.getTimeString(date: Date())
+				self.digitalClockView.digitalClock.sizeToFit()
 			} else {
 				self.analogClockView.setNeedsDisplay(self.analogClockView.bounds)
-				self.appObject.dockTile.display()
 			}
+			self.appObject.dockTile.display()
 		}
 		timer.resume()
 	}
@@ -58,15 +56,15 @@ class DockClockController {
 		return Double(missingNanoceconds)/1_000_000_000
 	}
 	func getFreezeView(time: Date) -> AnalogDockClockView {
-		let clockView=AnalogDockClockView()
-		clockView.setFrameSize(self.appObject.dockTile.size)
-		applyColorScheme(clockView: clockView)
-		clockView.current=false
-		clockView.freezeDate=time
-		clockView.draw(clockView.bounds)
-		return clockView
+		let analogClockView=AnalogDockClockView()
+		analogClockView.setFrameSize(self.appObject.dockTile.size)
+		applyColorScheme(digitalClockView: digitalClockView, analogClockView: analogClockView)
+		analogClockView.current=false
+		analogClockView.freezeDate=time
+		analogClockView.draw(analogClockView.bounds)
+		return analogClockView
 	}
-	func applyColorScheme(clockView: AnalogDockClockView) {
+	func applyColorScheme(digitalClockView: DigitalDockClockView, analogClockView: AnalogDockClockView) {
 			var contrastColor: NSColor
 			let clockNSColors=ColorDictionary()
 			if ClockPreferencesStorage.sharedInstance.colorChoice=="custom"{
@@ -76,25 +74,36 @@ class DockClockController {
 					clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
 			}
 			if ClockPreferencesStorage.sharedInstance.colorForForeground==false {
-				clockView.color=NSColor.labelColor
+				analogClockView.color=NSColor.labelColor
+				digitalClockView.digitalClock.textColor=NSColor.labelColor
 				if contrastColor==NSColor.black {
 					contrastColor=NSColor.systemGray
 				}
-				clockView.backgroundColor=contrastColor
-				clockView.color=NSColor.white
+				analogClockView.backgroundColor=contrastColor
+				digitalClockView.contentStackView.layer?.backgroundColor=contrastColor.cgColor
+				analogClockView.color=NSColor.white
 				if contrastColor != NSColor.black {
-					clockView.handsColor=NSColor.black
+					analogClockView.handsColor=NSColor.black
+					digitalClockView.digitalClock.textColor=NSColor.black
 				} else {
-					clockView.handsColor=NSColor.systemGray
+					analogClockView.handsColor=NSColor.systemGray
+					digitalClockView.digitalClock.textColor=NSColor.systemGray
 				}
 			} else {
-				clockView.backgroundColor=NSColor.labelColor
+				analogClockView.backgroundColor=NSColor.labelColor
+				digitalClockView.contentStackView.layer?.backgroundColor=NSColor.labelColor.cgColor
 				if contrastColor != NSColor.black {
-					clockView.color=contrastColor
+					analogClockView.color=contrastColor
+					digitalClockView.digitalClock.textColor=contrastColor
 				} else {
-					clockView.color=NSColor.systemGray
+					analogClockView.color=NSColor.systemGray
+					digitalClockView.digitalClock.textColor=NSColor.systemGray
 				}
-				clockView.handsColor=NSColor.white
+				analogClockView.handsColor=NSColor.white
+				digitalClockView.digitalClock.textColor=contrastColor
 			}
 		}
+	func updateModelToPreferencesChange(){
+		model.setTimeFormatter()
+	}
 }

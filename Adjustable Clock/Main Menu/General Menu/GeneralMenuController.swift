@@ -23,12 +23,13 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 		updateUI()
 	}
 	func use24HoursClicked() {
-		ClockPreferencesStorage.sharedInstance.changeAndSaveUseAmPM()
+		GeneralPreferencesStorage.sharedInstance.changeAndSaveUseAmPM()
 		ClockWindowController.clockObject.updateClockToPreferencesChange()
+		DockClockController.dockClockObject.updateModelToPreferencesChange()
 		updateUI()
 	}
 	func updateUI() {
-		if ClockPreferencesStorage.sharedInstance.use24hourClock {
+		if GeneralPreferencesStorage.sharedInstance.use24Hours {
 			menu.use24HoursMenuItem.state=NSControl.StateValue.on
 		} else {
 			menu.use24HoursMenuItem.state=NSControl.StateValue.off
