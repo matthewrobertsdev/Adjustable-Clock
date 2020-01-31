@@ -6,7 +6,7 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import Cocoa
-class DockClockView: BaseAnalogClockView {
+class AnalogDockClockView: BaseAnalogClockView {
 	var backgroundColor=NSColor.labelColor
 	var handsColor=NSColor.labelColor
 	var displaySeconds=false

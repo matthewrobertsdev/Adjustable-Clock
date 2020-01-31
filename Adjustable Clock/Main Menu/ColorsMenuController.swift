@@ -11,7 +11,7 @@ class ColorsMenuController: NSObject {
     let clockNSColors=ColorDictionary()
     let colorArray=ColorArrays()
 	let nsColorPanel=NSColorPanel.shared
-	@objc var objectToObserve=DockClockController.dockClockObject.dockClockView
+	@objc var objectToObserve=DockClockController.dockClockObject.analogClockView
 	var observation: NSKeyValueObservation?
 	var dark=false
     init(colorsMenu: NSMenu) {
