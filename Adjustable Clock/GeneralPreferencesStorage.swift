@@ -11,9 +11,15 @@ class GeneralPreferencesStorage {
 	var closing=false
 	var use24Hours=false
 	var dockClock="useAnalogNoSeconds"
+	var digital=false
+	var seconds=false
 	let userDefaults=UserDefaults()
 	private let use24HoursKey="use24Hours"
 	private let dockClockKey="dockClock"
+	let useAnalogNoSeconds="useAnalogNoSeconds"
+	let useAnalogWithSeconds="useAnalogWithSeconds"
+	let useDigitalNoSeconds="useDigitalNoSeconds"
+	let useDigitalWithSeconds="useDigitalWithSeconds"
 	private init() {
 	}
 	func loadUserPreferences() {
@@ -24,4 +30,25 @@ class GeneralPreferencesStorage {
         use24Hours=(!use24Hours)
         userDefaults.set(use24Hours, forKey: use24HoursKey)
     }
+	func updateDockClockPreferences(mode: String){
+		userDefaults.set(mode, forKey: dockClockKey)
+		dockClock=mode
+		switch dockClock {
+		case "useAnalogNoSeconds":
+			digital=false
+			seconds=false
+		case "useDigitalNoSeconds":
+			digital=true
+			seconds=false
+		case "useAnalogWithSeconds":
+			digital=false
+			seconds=true
+		case "useDigitalWithSeconds":
+			digital=true
+			seconds=true
+		default:
+			digital=false
+			seconds=false
+		}
+	}
 }

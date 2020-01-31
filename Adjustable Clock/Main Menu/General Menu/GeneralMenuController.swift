@@ -8,6 +8,7 @@
 import AppKit
 class GeneralMenuController: NSObject, GeneralMenuDelegate {
 	var menu: GeneralMenu
+	let preferences=GeneralPreferencesStorage.sharedInstance
 	@objc var objectToObserve=AlarmCenter.sharedInstance
 	var observation: NSKeyValueObservation?
 	init(menu: GeneralMenu) {
@@ -43,5 +44,32 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 		} else {
 			menu.preventingSleepMenuItem.title="Can Sleep"
 		}
+	}
+	func analogClockNoSecondsClicked() {
+		preferences.updateDockClockPreferences(mode: preferences.useAnalogNoSeconds)
+		updateDockClock()
+		
+	}
+	func analogClockWithSecondsClicked() {
+		preferences.updateDockClockPreferences(mode: preferences.useAnalogWithSeconds)
+		updateDockClock()
+	}
+	func digitalClockNoSecondsClicked() {
+		preferences.updateDockClockPreferences(mode: preferences.useDigitalNoSeconds)
+		updateDockClock()
+	}
+	func digitalClockWithSecondsClicked() {
+		preferences.updateDockClockPreferences(mode: preferences.useDigitalWithSeconds)
+		updateDockClock()
+	}
+	func justColorsClicked() {
+		
+	}
+	func justAppIconClicked() {
+		
+	}
+	func updateDockClock(){
+		DockClockController.dockClockObject.updateModelToPreferencesChange()
+		DockClockController.dockClockObject.updateClockForPreferencesChange()
 	}
 }

@@ -14,24 +14,30 @@ class DockClockController {
 	var tellingTime: NSObjectProtocol?
 	var updateTimer: DispatchSourceTimer?
 	var model=DockClockModel()
-	var digital = !false
+	var preferences=GeneralPreferencesStorage.sharedInstance
 	private init() {
 		animateTime()
 	}
 	func updateDockTile() {
-		if (digital) {
+		if preferences.digital {
 			digitalClockView.setFrameSize(appObject.dockTile.size)
 			appObject.dockTile.contentView=digitalClockView
-		} else {
+			if !preferences.seconds {
+				digitalClockView.removeSeconds()
+			} else {
+				digitalClockView.addSeconds()
+			}
+		} else if !preferences.digital {
 			analogClockView.setFrameSize(appObject.dockTile.size)
 			appObject.dockTile.contentView=analogClockView
+				analogClockView.displaySeconds=preferences.seconds
 		}
 		applyColorScheme(digitalClockView: digitalClockView, analogClockView: analogClockView)
 		appObject.dockTile.display()
 	}
 	func updateClockForPreferencesChange() {
-			applyColorScheme(digitalClockView: digitalClockView, analogClockView: analogClockView)
-		appObject.dockTile.display()
+		updateDockTile()
+		animateTime()
 	}
 	private func animateTime() {
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
@@ -39,9 +45,11 @@ class DockClockController {
 		timer.schedule(deadline: .now()+getSecondAdjustment(), repeating: .milliseconds(1000), leeway: .milliseconds(0))
 		timer.setEventHandler {
 			//self.dockClockView.draw(self.dockClockView.frame)
-			if self.digital {
+			if self.preferences.digital {
 				self.digitalClockView.digitalClock.stringValue=self.model.getTimeString(date: Date())
 				self.digitalClockView.digitalClock.sizeToFit()
+				self.digitalClockView.digitalSeconds.stringValue=self.model.getSecondsString(date: Date())
+				self.digitalClockView.digitalSeconds.sizeToFit()
 			} else {
 				self.analogClockView.setNeedsDisplay(self.analogClockView.bounds)
 			}
@@ -76,6 +84,7 @@ class DockClockController {
 			if ClockPreferencesStorage.sharedInstance.colorForForeground==false {
 				analogClockView.color=NSColor.labelColor
 				digitalClockView.digitalClock.textColor=NSColor.labelColor
+				digitalClockView.digitalSeconds.textColor=NSColor.labelColor
 				if contrastColor==NSColor.black {
 					contrastColor=NSColor.systemGray
 				}
@@ -85,9 +94,11 @@ class DockClockController {
 				if contrastColor != NSColor.black {
 					analogClockView.handsColor=NSColor.black
 					digitalClockView.digitalClock.textColor=NSColor.black
+					digitalClockView.digitalSeconds.textColor=NSColor.black
 				} else {
 					analogClockView.handsColor=NSColor.systemGray
 					digitalClockView.digitalClock.textColor=NSColor.systemGray
+					digitalClockView.digitalSeconds.textColor=NSColor.systemGray
 				}
 			} else {
 				analogClockView.backgroundColor=NSColor.labelColor
@@ -95,15 +106,18 @@ class DockClockController {
 				if contrastColor != NSColor.black {
 					analogClockView.color=contrastColor
 					digitalClockView.digitalClock.textColor=contrastColor
+					digitalClockView.digitalSeconds.textColor=contrastColor
 				} else {
 					analogClockView.color=NSColor.systemGray
 					digitalClockView.digitalClock.textColor=NSColor.systemGray
+					digitalClockView.digitalSeconds.textColor=NSColor.systemGray
 				}
 				analogClockView.handsColor=NSColor.white
 				digitalClockView.digitalClock.textColor=contrastColor
+				digitalClockView.digitalSeconds.textColor=contrastColor
 			}
 		}
-	func updateModelToPreferencesChange(){
+	func updateModelToPreferencesChange() {
 		model.setTimeFormatter()
 	}
 }

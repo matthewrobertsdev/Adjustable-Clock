@@ -15,4 +15,16 @@ class GeneralMenu: NSMenu {
 	@IBAction func use24Hour(nsMenuItem: NSMenuItem) {
 		generalMenuDelegate.use24HoursClicked()
 	}
+	@IBAction func useAnalogNoSeconds(nsMenuItem: NSMenuItem) {
+		generalMenuDelegate.analogClockNoSecondsClicked()
+	}
+	@IBAction func useAnalogWithSeconds(nsMenuItem: NSMenuItem) {
+		generalMenuDelegate.analogClockWithSecondsClicked()
+	}
+	@IBAction func useDigitalNoSeconds(nsMenuItem: NSMenuItem) {
+		generalMenuDelegate.digitalClockNoSecondsClicked()
+	}
+	@IBAction func useDigitalWithSeconds(nsMenuItem: NSMenuItem) {
+		generalMenuDelegate.digitalClockWithSecondsClicked()
+	}
 }

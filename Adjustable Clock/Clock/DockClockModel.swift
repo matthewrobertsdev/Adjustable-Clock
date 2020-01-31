@@ -8,9 +8,12 @@
 import Foundation
 class DockClockModel {
 	private let timeFormatter=DateFormatter()
+	private let secondsFormatter=DateComponentsFormatter()
+	private let calendar=Calendar.current
 	init() {
 		timeFormatter.locale=Locale(identifier: "en_US")
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
+		secondsFormatter.zeroFormattingBehavior = .pad
 	}
 	func setTimeFormatter() {
 		if GeneralPreferencesStorage.sharedInstance.use24Hours {
@@ -28,5 +31,9 @@ class DockClockModel {
 			 amPmString.removeSubrange(rangeToRemove)
 			return amPmString
 		}
+	}
+	func getSecondsString(date: Date) -> String {
+		return ":"+(secondsFormatter.string(from: calendar.dateComponents([.second], from: date)) ?? "--")
+		
 	}
 }
