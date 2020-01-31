@@ -12,7 +12,9 @@ class ColorsMenuController: NSObject {
     let colorArray=ColorArrays()
 	let nsColorPanel=NSColorPanel.shared
 	@objc var objectToObserve=DockClockController.dockClockObject.analogClockView
+	@objc var objectToObserve2=DockClockController.dockClockObject.digitalClockView.backgroundView
 	var observation: NSKeyValueObservation?
+	var observation2: NSKeyValueObservation?
 	var dark=false
     init(colorsMenu: NSMenu) {
 		super.init()
@@ -22,6 +24,14 @@ class ColorsMenuController: NSObject {
         updateColorMenuUI()
 		observation = observe(
 			\.objectToObserve.dark,
+            options: [.old, .new]
+        ) { _, change in
+			self.dark=change.newValue ?? false
+			self.makeColorMenuUI()
+			self.updateColorMenuUI()
+        }
+		observation2 = observe(
+			\.objectToObserve2.dark,
             options: [.old, .new]
         ) { _, change in
 			self.dark=change.newValue ?? false

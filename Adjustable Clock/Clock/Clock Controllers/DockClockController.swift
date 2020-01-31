@@ -6,7 +6,7 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import AppKit
-class DockClockController {
+class DockClockController: NSObject {
 	static let dockClockObject=DockClockController()
 	let analogClockView=AnalogDockClockView()
 	let digitalClockView=DigitalDockClockView()
@@ -15,7 +15,18 @@ class DockClockController {
 	var updateTimer: DispatchSourceTimer?
 	var model=DockClockModel()
 	var preferences=GeneralPreferencesStorage.sharedInstance
-	private init() {
+	@objc var objectToObserve: DarkAndLightBackgroundView!
+	var observation: NSKeyValueObservation?
+	private override init() {
+		super.init()
+		objectToObserve=digitalClockView.backgroundView
+		observation = observe(
+			\.objectToObserve.dark,
+            options: [.old, .new]
+        ) { _, change in
+			self.applyColorScheme(digitalClockView: self.digitalClockView, analogClockView: self.analogClockView)
+			self.digitalClockView.setNeedsDisplay(self.digitalClockView.bounds)
+        }
 		animateTime()
 	}
 	func updateDockTile() {
@@ -27,13 +38,13 @@ class DockClockController {
 			} else {
 				digitalClockView.addSeconds()
 			}
-			digitalClockView.setNeedsDisplay(digitalClockView.bounds)
 		} else if !preferences.digital {
 			analogClockView.setFrameSize(appObject.dockTile.size)
 			appObject.dockTile.contentView=analogClockView
 				analogClockView.displaySeconds=preferences.seconds
 		}
 		applyColorScheme(digitalClockView: digitalClockView, analogClockView: analogClockView)
+		digitalClockView.setNeedsDisplay(digitalClockView.bounds)
 		appObject.dockTile.display()
 	}
 	func updateClockForPreferencesChange() {
