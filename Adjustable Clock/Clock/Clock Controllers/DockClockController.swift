@@ -27,6 +27,7 @@ class DockClockController {
 			} else {
 				digitalClockView.addSeconds()
 			}
+			digitalClockView.setNeedsDisplay(digitalClockView.bounds)
 		} else if !preferences.digital {
 			analogClockView.setFrameSize(appObject.dockTile.size)
 			appObject.dockTile.contentView=analogClockView
@@ -83,18 +84,23 @@ class DockClockController {
 			}
 			if ClockPreferencesStorage.sharedInstance.colorForForeground==false {
 				analogClockView.color=NSColor.labelColor
-				digitalClockView.digitalClock.textColor=NSColor.labelColor
-				digitalClockView.digitalSeconds.textColor=NSColor.labelColor
+				digitalClockView.backgroundView.contrastColor=NSColor.labelColor
 				if contrastColor==NSColor.black {
 					contrastColor=NSColor.systemGray
 				}
 				analogClockView.backgroundColor=contrastColor
-				digitalClockView.contentStackView.layer?.backgroundColor=contrastColor.cgColor
+				digitalClockView.backgroundView.contrastColor=contrastColor
 				analogClockView.color=NSColor.white
+				digitalClockView.digitalClock.textColor=NSColor.white
+				digitalClockView.digitalSeconds.textColor=NSColor.white
 				if contrastColor != NSColor.black {
 					analogClockView.handsColor=NSColor.black
-					digitalClockView.digitalClock.textColor=NSColor.black
-					digitalClockView.digitalSeconds.textColor=NSColor.black
+					if digitalClockView.hasDarkAppearance { digitalClockView.digitalClock.textColor=NSColor.white
+					digitalClockView.digitalSeconds.textColor=NSColor.white
+					} else {
+						digitalClockView.digitalClock.textColor=NSColor.black
+						digitalClockView.digitalSeconds.textColor=NSColor.black
+					}
 				} else {
 					analogClockView.handsColor=NSColor.systemGray
 					digitalClockView.digitalClock.textColor=NSColor.systemGray
@@ -102,19 +108,18 @@ class DockClockController {
 				}
 			} else {
 				analogClockView.backgroundColor=NSColor.labelColor
-				digitalClockView.contentStackView.layer?.backgroundColor=NSColor.labelColor.cgColor
+				digitalClockView.backgroundView.contrastColor=NSColor.black
+				print("should be black")
 				if contrastColor != NSColor.black {
 					analogClockView.color=contrastColor
 					digitalClockView.digitalClock.textColor=contrastColor
 					digitalClockView.digitalSeconds.textColor=contrastColor
 				} else {
 					analogClockView.color=NSColor.systemGray
-					digitalClockView.digitalClock.textColor=NSColor.systemGray
-					digitalClockView.digitalSeconds.textColor=NSColor.systemGray
+					digitalClockView.digitalClock.textColor=contrastColor
+					digitalClockView.digitalSeconds.textColor=contrastColor
 				}
 				analogClockView.handsColor=NSColor.white
-				digitalClockView.digitalClock.textColor=contrastColor
-				digitalClockView.digitalSeconds.textColor=contrastColor
 			}
 		}
 	func updateModelToPreferencesChange() {

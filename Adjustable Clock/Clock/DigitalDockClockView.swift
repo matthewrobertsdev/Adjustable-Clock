@@ -11,6 +11,8 @@ class DigitalDockClockView: NSView {
 	let digitalClock=NSTextField(labelWithString: "--:--")
 	let digitalSeconds=NSTextField(labelWithString: "--")
 	var contentHeight: NSLayoutConstraint!
+	var backgroundHeight: NSLayoutConstraint!
+	let backgroundView=DarkAndLightBackgroundView()
 	override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         setUp()
@@ -20,6 +22,13 @@ class DigitalDockClockView: NSView {
         setUp()
     }
 	private func setUp() {
+		addSubview(backgroundView)
+		backgroundView.translatesAutoresizingMaskIntoConstraints=false
+		let backgroundLeading=NSLayoutConstraint(item: backgroundView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
+		let backgroundTrailing=NSLayoutConstraint(item: backgroundView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
+		let backgroundCenterY=NSLayoutConstraint(item: backgroundView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
+		backgroundHeight=NSLayoutConstraint(item: backgroundView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.5, constant: 0)
+		NSLayoutConstraint.activate([backgroundLeading, backgroundTrailing, backgroundCenterY, backgroundHeight])
 		addSubview(contentStackView)
 		contentStackView.wantsLayer=true
 		contentStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -44,12 +53,16 @@ class DigitalDockClockView: NSView {
 		digitalSeconds.isHidden=false
 		contentHeight.isActive=false
 		contentHeight=NSLayoutConstraint(item: contentStackView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.93, constant: 0)
-		NSLayoutConstraint.activate([contentHeight, digitalSecondsX])
+		backgroundHeight.isActive=false
+		backgroundHeight=NSLayoutConstraint(item: backgroundView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.93, constant: 0)
+		NSLayoutConstraint.activate([contentHeight, digitalSecondsX, backgroundHeight])
 	}
 	func removeSeconds() {
 		digitalSeconds.isHidden=true
 		contentHeight.isActive=false
 		contentHeight=NSLayoutConstraint(item: contentStackView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.5, constant: 0)
-		NSLayoutConstraint.activate([contentHeight])
+		backgroundHeight.isActive=false
+		backgroundHeight=NSLayoutConstraint(item: backgroundView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.5, constant: 0)
+		NSLayoutConstraint.activate([contentHeight, backgroundHeight])
 	}
 }
