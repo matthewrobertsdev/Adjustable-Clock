@@ -11,8 +11,9 @@ class DigitalDockClockView: NSView {
 	let digitalClock=NSTextField(labelWithString: "--:--")
 	let digitalSeconds=NSTextField(labelWithString: "--")
 	var contentHeight: NSLayoutConstraint!
-	var backgroundHeight: NSLayoutConstraint!
-	let backgroundView=DarkAndLightBackgroundView()
+	var displaySeconds=false
+	var backgroundColor=NSColor.systemGray
+	@objc dynamic var dark=false
 	override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         setUp()
@@ -22,13 +23,6 @@ class DigitalDockClockView: NSView {
         setUp()
     }
 	private func setUp() {
-		addSubview(backgroundView)
-		backgroundView.translatesAutoresizingMaskIntoConstraints=false
-		let backgroundLeading=NSLayoutConstraint(item: backgroundView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0)
-		let backgroundTrailing=NSLayoutConstraint(item: backgroundView, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)
-		let backgroundCenterY=NSLayoutConstraint(item: backgroundView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0)
-		backgroundHeight=NSLayoutConstraint(item: backgroundView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.5, constant: 0)
-		NSLayoutConstraint.activate([backgroundLeading, backgroundTrailing, backgroundCenterY, backgroundHeight])
 		addSubview(contentStackView)
 		contentStackView.wantsLayer=true
 		contentStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,16 +47,38 @@ class DigitalDockClockView: NSView {
 		digitalSeconds.isHidden=false
 		contentHeight.isActive=false
 		contentHeight=NSLayoutConstraint(item: contentStackView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.93, constant: 0)
-		backgroundHeight.isActive=false
-		backgroundHeight=NSLayoutConstraint(item: backgroundView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.93, constant: 0)
-		NSLayoutConstraint.activate([contentHeight, digitalSecondsX, backgroundHeight])
+		NSLayoutConstraint.activate([contentHeight, digitalSecondsX])
 	}
 	func removeSeconds() {
 		digitalSeconds.isHidden=true
 		contentHeight.isActive=false
 		contentHeight=NSLayoutConstraint(item: contentStackView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.5, constant: 0)
-		backgroundHeight.isActive=false
-		backgroundHeight=NSLayoutConstraint(item: backgroundView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0.5, constant: 0)
-		NSLayoutConstraint.activate([contentHeight, backgroundHeight])
+		NSLayoutConstraint.activate([contentHeight])
+	}
+	override func draw(_ dirtyRect: NSRect) {
+		super.draw(dirtyRect)
+		var path: NSBezierPath
+		let radius: CGFloat=15.0
+		if displaySeconds {
+			path=NSBezierPath(roundedRect: NSRect(x: 0, y: 0.035*frame.height, width: frame.size.width, height: 0.93*frame.height), xRadius: radius, yRadius: radius)
+		} else {
+			path=NSBezierPath(roundedRect: NSRect(x: 0, y: 0.25*frame.height, width: frame.size.width, height: 0.5*frame.height), xRadius: radius, yRadius: radius)
+		}
+		var backgroundColorCopy=NSColor.labelColor
+		if hasDarkAppearance && dark==false {
+			dark=true
+		} else if !hasDarkAppearance && dark==true {
+			dark=false
+		}
+		if hasDarkAppearance && backgroundColor != NSColor.labelColor {
+			backgroundColorCopy=backgroundColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.white
+			backgroundColorCopy.setFill()
+		} else if !hasDarkAppearance && backgroundColor != NSColor.labelColor {
+			backgroundColor.setFill()
+		} else {
+			backgroundColorCopy=NSColor.black
+			backgroundColorCopy.setFill()
+		}
+		path.fill()
 	}
 }

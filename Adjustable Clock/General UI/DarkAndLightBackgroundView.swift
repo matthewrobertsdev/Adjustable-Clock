@@ -10,14 +10,8 @@ import Cocoa
 
 class DarkAndLightBackgroundView: NSView {
 	var contrastColor=NSColor.systemGray
-	@objc dynamic var dark=false
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-		if hasDarkAppearance && dark==false {
-			dark=true
-		} else if !hasDarkAppearance && dark==true {
-			dark=false
-		}
 		self.wantsLayer=true
 					var backgroundColorCopy=NSColor.labelColor
 					if hasDarkAppearance && contrastColor != NSColor.labelColor {

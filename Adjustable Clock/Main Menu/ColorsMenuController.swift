@@ -12,7 +12,7 @@ class ColorsMenuController: NSObject {
     let colorArray=ColorArrays()
 	let nsColorPanel=NSColorPanel.shared
 	@objc var objectToObserve=DockClockController.dockClockObject.analogClockView
-	@objc var objectToObserve2=DockClockController.dockClockObject.digitalClockView.backgroundView
+	@objc var objectToObserve2=DockClockController.dockClockObject.digitalClockView
 	var observation: NSKeyValueObservation?
 	var observation2: NSKeyValueObservation?
 	var dark=false

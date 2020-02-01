@@ -33,7 +33,8 @@ class ClockColorController {
 			visualEffectView.isHidden=true
 			digitalClock.textColor=NSColor.labelColor
 			animatedDay.textColor=NSColor.labelColor
-			if !isDarkMode() && contrastColor==NSColor.black {
+			if !isDarkMode() &&
+				contrastColor==NSColor.black {
 				if #available(OSX 10.13, *) {
 					contrastColor=NSColor(named: "BlackBackground") ?? NSColor.systemGray
 				}
