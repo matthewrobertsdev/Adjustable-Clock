@@ -30,6 +30,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
         }
         enableClockMenu(enabled: true)
         updateClockMenuUI()
+		/*
 		if ClockPreferencesStorage.sharedInstance.hasLaunchedBefore() {
 		print("Should begin alert")
 		let alert=NSAlert()
@@ -59,6 +60,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 			}
 		}
 		}
+*/
     }
 	func clockWindowPresent() -> Bool {
 		return windowPresent(identifier: UserInterfaceIdentifier.digitalClockWindow)

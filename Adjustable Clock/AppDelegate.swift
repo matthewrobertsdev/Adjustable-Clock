@@ -39,7 +39,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		if AlarmsPreferencesStorage.sharedInstance.windowIsOpen {
 			AlarmsWindowController.alarmsObject.showAlarms()
 		}
-		ClockWindowController.clockObject.showClock()
+		if ClockPreferencesStorage.sharedInstance.hasLaunchedBefore() {
+		print("Onboarding")
+			OnboardingWindowController.onboardingObject.showOnboarding()
+			//OnboardingAlertController.onboardingObject.showOnboarding()
+		} else {
+			ClockWindowController.clockObject.showClock()
+		}
 	}
     //if the dock icon is clicked
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {

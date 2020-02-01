@@ -61,7 +61,7 @@
                                 <rect key="frame" x="14" y="13" width="141" height="32"/>
                                 <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zBP-kz-bxM">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="restoreDefaults:" target="xaW-Ua-yCx" id="PnB-xA-QwH"/>
@@ -90,7 +90,7 @@
                                 <rect key="frame" x="18" y="294" width="243" height="18"/>
                                 <buttonCell key="cell" type="check" title="Clock floats above all other windows" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="78y-uK-fo7">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="pressWindowFloatsOnTopCheckBoxWithButton:" target="2LC-Yg-FMM" id="VPt-1M-dib"/>
@@ -100,7 +100,7 @@
                                 <rect key="frame" x="18" y="248" width="121" height="18"/>
                                 <buttonCell key="cell" type="check" title="Include seconds" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="wgM-lZ-OwU">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="pressShowSecondsCheckBoxWithButton:" target="2LC-Yg-FMM" id="A9r-jv-h3b"/>
@@ -110,7 +110,7 @@
                                 <rect key="frame" x="19" y="225" width="130" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Use 12 hour clock" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="BFb-w7-dc0">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="pressHourModeRBWithButton:" target="2LC-Yg-FMM" id="OCs-e3-73U"/>
@@ -120,7 +120,7 @@
                                 <rect key="frame" x="18" y="178" width="86" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show date" bezelStyle="regularSquare" imagePosition="left" inset="2" id="otz-wg-4p2">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="pressShowDateCheckBoxWithButton:" target="2LC-Yg-FMM" id="AhB-Yk-de5"/>
@@ -130,13 +130,13 @@
                                 <rect key="frame" x="18" y="155" width="155" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show day of the week" bezelStyle="regularSquare" imagePosition="left" inset="2" id="el0-1g-flK">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AwL-tN-NeV">
                                 <rect key="frame" x="20" y="320" width="53" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Window" id="jQh-fC-gwk">
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -144,7 +144,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AkR-0H-ZCI">
                                 <rect key="frame" x="20" y="272" width="34" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Time" id="5op-ab-IKd">
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -152,7 +152,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w1U-cn-BBc">
                                 <rect key="frame" x="18" y="202" width="33" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Date" id="aQs-Ed-ozl">
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -160,7 +160,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zGn-wJ-pe4">
                                 <rect key="frame" x="18" y="134" width="44" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Colors" id="Hfi-jY-Jc8">
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -172,7 +172,7 @@
                                 </constraints>
                                 <popUpButtonCell key="cell" type="push" title="Gray" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" selectedItem="4yj-nB-yM4" id="rOh-Ax-AtD">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" id="NiJ-3e-Wg9">
                                         <items>
                                             <menuItem title="Gray" state="on" id="4yj-nB-yM4">
@@ -207,7 +207,7 @@
                                 <rect key="frame" x="14" y="13" width="141" height="32"/>
                                 <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="EU5-VD-Ab0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="restoreDefaults:" target="2LC-Yg-FMM" id="JBR-hp-8e0"/>
@@ -217,7 +217,7 @@
                                 <rect key="frame" x="154" y="225" width="133" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Use 24 hour clock" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Qqo-wl-dId">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="pressHourModeRBWithButton:" target="2LC-Yg-FMM" id="rnl-fJ-PjV"/>
@@ -227,14 +227,14 @@
                                 <rect key="frame" x="21" y="80" width="156" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Black on Accent Color" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="3Gh-XN-gDU">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QrO-hg-btK">
                                 <rect key="frame" x="21" y="58" width="156" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Accent Color on Black" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="uMO-z9-Hcj">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                         </subviews>
@@ -647,6 +647,106 @@
             </objects>
             <point key="canvasLocation" x="-20" y="275"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="OCN-R1-2ij">
+            <objects>
+                <windowController storyboardIdentifier="OnboardingWindowController" id="wLp-s1-mSY" customClass="OnboardingWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="84X-62-Hul">
+                        <windowStyleMask key="styleMask" titled="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES" fullScreenDisallowsTiling="YES"/>
+                        <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="522" width="283" height="180"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="wLp-s1-mSY" id="dfM-FG-EbL"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="qQs-hZ-6sh" kind="relationship" relationship="window.shadowedContentViewController" id="GdE-gK-dAa"/>
+                    </connections>
+                </windowController>
+                <customObject id="9Q1-2u-awZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="338.5" y="58"/>
+        </scene>
+        <!--Onboarding View Controller-->
+        <scene sceneID="5mM-aU-iuC">
+            <objects>
+                <viewController id="qQs-hZ-6sh" customClass="OnboardingViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="ELv-2Z-OJg">
+                        <rect key="frame" x="0.0" y="0.0" width="230" height="303"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="acT-yy-F1i">
+                                <rect key="frame" x="18" y="49" width="194" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="kdU-NG-nQx"/>
+                                </constraints>
+                                <textFieldCell key="cell" selectable="YES" alignment="center" id="KRU-y6-F1x">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <string key="title">Welcome to Clock Suite!  Click OK to begin the process of allowing Clock Suite to control your music.  It will get macOS to ask you for permission to play and stop Music from then on, and send a one-time command to stop Music as part of this process.</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NiE-ff-bCO">
+                                <rect key="frame" x="59" y="20" width="130" height="21"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PXM-hj-wxd">
+                                        <rect key="frame" x="-6" y="-7" width="87" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Dismiss" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HFK-80-8Xu">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="dismiss:" target="qQs-hZ-6sh" id="ZxZ-e7-poU"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xbP-nr-9cz">
+                                        <rect key="frame" x="77" y="-7" width="59" height="32"/>
+                                        <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ahz-T0-Tws">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="okAction:" target="qQs-hZ-6sh" id="eJJ-dK-JeQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AUS-Iw-TEi">
+                                <rect key="frame" x="82" y="217" width="67" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="EvC-8p-2aP"/>
+                                    <constraint firstAttribute="width" constant="67" id="SvJ-Fe-0k1"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Clock" id="EPo-Bn-gTF"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="acT-yy-F1i" firstAttribute="top" secondItem="ELv-2Z-OJg" secondAttribute="top" constant="94" id="8tT-a7-vSk"/>
+                            <constraint firstAttribute="trailing" secondItem="acT-yy-F1i" secondAttribute="trailing" constant="20" id="9DU-at-yWk"/>
+                            <constraint firstItem="AUS-Iw-TEi" firstAttribute="top" secondItem="ELv-2Z-OJg" secondAttribute="top" constant="20" id="E3g-jc-7by"/>
+                            <constraint firstItem="acT-yy-F1i" firstAttribute="leading" secondItem="ELv-2Z-OJg" secondAttribute="leading" constant="20" id="H8r-Mi-gBp"/>
+                            <constraint firstItem="AUS-Iw-TEi" firstAttribute="centerX" secondItem="ELv-2Z-OJg" secondAttribute="centerX" id="vho-hi-fHM"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="sw2-FM-XsM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="742" y="95.5"/>
+        </scene>
         <!--Clock View Controller-->
         <scene sceneID="YXm-rq-ncp">
             <objects>
@@ -828,16 +928,16 @@
                                         <rect key="frame" x="84" y="242" width="103" height="32"/>
                                         <buttonCell key="cell" type="push" title="Add Alarm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yDO-fw-oRb">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="label" size="13"/>
+                                            <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="addAlarm:" target="jsi-dr-Kid" id="0kt-j4-UYS"/>
                                         </connections>
                                     </button>
                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="72" horizontalPageScroll="10" verticalLineScroll="72" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeL-au-qBm">
-                                        <rect key="frame" x="43" y="0.0" width="184" height="229"/>
+                                        <rect key="frame" x="47" y="0.0" width="177" height="229"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="1wB-iL-xvO">
-                                            <rect key="frame" x="0.0" y="0.0" width="184" height="214"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="177" height="214"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" viewBased="YES" id="Vdc-vV-Lyv">
@@ -849,12 +949,12 @@
                                                     <tableColumns>
                                                         <tableColumn width="125" minWidth="40" maxWidth="1000" id="LqQ-mW-bZZ">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                                <font key="font" metaFont="label" size="11"/>
+                                                                <font key="font" metaFont="controlContent" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                             </tableHeaderCell>
                                                             <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="T4f-HY-SCU">
-                                                                <font key="font" metaFont="label" size="13"/>
+                                                                <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
@@ -896,12 +996,12 @@
                                                         </tableColumn>
                                                         <tableColumn width="86" minWidth="10" maxWidth="3.4028234663852886e+38" id="H9s-Xz-RAN">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                                <font key="font" metaFont="label" size="11"/>
+                                                                <font key="font" metaFont="controlContent" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </tableHeaderCell>
                                                             <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="CRM-Lz-q8C">
-                                                                <font key="font" metaFont="label" size="13"/>
+                                                                <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
@@ -914,7 +1014,7 @@
                                                                         <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gzk-Uy-1Gt">
                                                                             <rect key="frame" x="7.5" y="23" width="71" height="23"/>
                                                                             <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillProportionally" style="capsule" trackingMode="selectOne" id="dZp-sL-Q5i">
-                                                                                <font key="font" metaFont="label" size="13"/>
+                                                                                <font key="font" metaFont="system"/>
                                                                                 <segments>
                                                                                     <segment label="Off" width="32" selected="YES"/>
                                                                                     <segment label="On" width="32" tag="1"/>
@@ -934,12 +1034,12 @@
                                                         </tableColumn>
                                                         <tableColumn width="10" minWidth="10" maxWidth="3.4028234663852886e+38" id="OTB-nB-oHv">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                                <font key="font" metaFont="label" size="11"/>
+                                                                <font key="font" metaFont="controlContent" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </tableHeaderCell>
                                                             <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="znV-Vy-I7j">
-                                                                <font key="font" metaFont="label" size="13"/>
+                                                                <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
@@ -957,7 +1057,7 @@
                                                                             </constraints>
                                                                             <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAdvanced" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="XST-qh-5B4">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                <font key="font" metaFont="label" size="13"/>
+                                                                                <font key="font" metaFont="system"/>
                                                                             </buttonCell>
                                                                         </button>
                                                                     </subviews>
@@ -977,7 +1077,7 @@
                                             <nil key="backgroundColor"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="r4j-UB-Phi">
-                                            <rect key="frame" x="0.0" y="214" width="184" height="15"/>
+                                            <rect key="frame" x="0.0" y="214" width="177" height="15"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="eZy-yX-3TV">
@@ -1062,7 +1162,7 @@
                                         <rect key="frame" x="24" y="274" width="118" height="32"/>
                                         <buttonCell key="cell" type="push" title="Delete Alarm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tcq-pT-hWA">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="label" size="13"/>
+                                            <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="delete:" target="9uc-jD-1ug" id="2YB-Wr-U53"/>
@@ -1074,7 +1174,7 @@
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7Lf-a3-wQo">
                                                 <rect key="frame" x="-2" y="4" width="38" height="16"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Time:" id="r3v-5s-2vZ">
-                                                    <font key="font" metaFont="label" size="13"/>
+                                                    <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
@@ -1082,7 +1182,7 @@
                                             <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fId-H7-Vhr">
                                                 <rect key="frame" x="42" y="0.0" width="85" height="28"/>
                                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="mjY-bc-eEV">
-                                                    <font key="font" metaFont="label" size="13"/>
+                                                    <font key="font" metaFont="system"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="-595926000">
                                                         <!--1982-02-12 17:00:00 +0000-->
                                                     </date>
@@ -1108,7 +1208,7 @@
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CAo-ws-YFD">
                                         <rect key="frame" x="59" y="221" width="47" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Sound:" id="mDJ-hu-g4n">
-                                            <font key="font" metaFont="label" size="13"/>
+                                            <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -1117,7 +1217,7 @@
                                         <rect key="frame" x="57" y="194" width="52" height="18"/>
                                         <buttonCell key="cell" type="radio" title="Alert" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="hyr-eO-u4C">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="label" size="13"/>
+                                            <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="useBeepChosen:" target="9uc-jD-1ug" id="VLd-8s-b0N"/>
@@ -1127,7 +1227,7 @@
                                         <rect key="frame" x="56" y="168" width="54" height="18"/>
                                         <buttonCell key="cell" type="radio" title="Song" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="8A0-aY-plZ">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="label" size="13"/>
+                                            <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="useSongChosen:" target="9uc-jD-1ug" id="v03-jY-9VU"/>
@@ -1136,7 +1236,7 @@
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XnX-lk-Kwl">
                                         <rect key="frame" x="49" y="143" width="68" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Alert: Ping" id="bls-7Q-dTY">
-                                            <font key="font" metaFont="label" size="13"/>
+                                            <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -1145,7 +1245,7 @@
                                         <rect key="frame" x="23" y="105" width="119" height="32"/>
                                         <buttonCell key="cell" type="push" title="Choose Alert" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ow5-Es-BIm">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="label" size="13"/>
+                                            <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="chooseAlert:" target="9uc-jD-1ug" id="5Tx-6o-byE"/>
@@ -1154,7 +1254,7 @@
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bvu-xi-gW8">
                                         <rect key="frame" x="17" y="86" width="132" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Playlist: none chosen" id="zKT-5G-8cb">
-                                            <font key="font" metaFont="label" size="13"/>
+                                            <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -1163,7 +1263,7 @@
                                         <rect key="frame" x="16" y="48" width="133" height="32"/>
                                         <buttonCell key="cell" type="push" title="Choose Playlist" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vkx-n3-RrX">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="label" size="13"/>
+                                            <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="choosePlaylist:" target="9uc-jD-1ug" id="Hv9-ta-yTf"/>
@@ -1173,7 +1273,7 @@
                                         <rect key="frame" x="44" y="29" width="78" height="18"/>
                                         <buttonCell key="cell" type="check" title="Everyday" bezelStyle="regularSquare" imagePosition="left" inset="2" id="XDr-6M-bfO">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="label" size="13"/>
+                                            <font key="font" metaFont="system"/>
                                         </buttonCell>
                                     </button>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WLu-rB-an7">
@@ -1183,7 +1283,7 @@
                                                 <rect key="frame" x="-6" y="-7" width="82" height="32"/>
                                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XeG-Ad-Mac">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="label" size="13"/>
+                                                    <font key="font" metaFont="system"/>
                                                     <string key="keyEquivalent" base64-UTF8="YES">
 Gw
 </string>
@@ -1196,7 +1296,7 @@ Gw
                                                 <rect key="frame" x="72" y="-7" width="100" height="32"/>
                                                 <buttonCell key="cell" type="push" title="Set Alarm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fcC-xF-rmW">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="label" size="13"/>
+                                                    <font key="font" metaFont="system"/>
                                                     <string key="keyEquivalent" base64-UTF8="YES">
 DQ
 </string>
@@ -1313,12 +1413,12 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="236" minWidth="40" maxWidth="1000" id="7af-du-yPg">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
                                                     <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="McM-f8-jKw">
-                                                        <font key="font" metaFont="label" size="13"/>
+                                                        <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -1331,7 +1431,7 @@ DQ
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Pl-s2-tkZ">
                                                                     <rect key="frame" x="18" y="0.0" width="236" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Alert Name" id="uVd-dv-NvU">
-                                                                        <font key="font" metaFont="label" size="13"/>
+                                                                        <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -1365,7 +1465,7 @@ DQ
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Choose Alert" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kMr-gb-WI0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="chooseAlertButton:" target="WeC-3E-QE7" id="QSt-iB-zj3"/>
@@ -1414,7 +1514,7 @@ DQ
                                 <rect key="frame" x="20" y="249" width="309" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="TSb-vN-zY2">
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
@@ -1435,12 +1535,12 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="304" minWidth="40" maxWidth="1000" id="h46-K1-f75">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
                                                     <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="lF7-by-iyw">
-                                                        <font key="font" metaFont="label" size="13"/>
+                                                        <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -1453,7 +1553,7 @@ DQ
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7jg-b0-ebH">
                                                                     <rect key="frame" x="18" y="0.0" width="236" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Media Name" id="0lU-V1-VhW">
-                                                                        <font key="font" metaFont="label" size="13"/>
+                                                                        <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -1486,7 +1586,7 @@ DQ
                                 <rect key="frame" x="18" y="285" width="313" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" id="s31-xd-3am">
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <string key="title">Please note: a system alert will play in place of playlists that haven't been downloaded if they fail to play , and non-downloaded playlists appear here too.</string>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1499,7 +1599,7 @@ DQ
                                         <rect key="frame" x="-6" y="-7" width="82" height="32"/>
                                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lt3-o9-sV5">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="label" size="13"/>
+                                            <font key="font" metaFont="system"/>
                                             <string key="keyEquivalent" base64-UTF8="YES">
 Gw
 </string>
@@ -1512,7 +1612,7 @@ Gw
                                         <rect key="frame" x="84" y="-7" width="133" height="32"/>
                                         <buttonCell key="cell" type="push" title="Choose Playlist" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MpJ-bD-kzm">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="label" size="13"/>
+                                            <font key="font" metaFont="system"/>
                                             <string key="keyEquivalent" base64-UTF8="YES">
 DQ
 </string>
@@ -1543,6 +1643,7 @@ DQ
         </scene>
     </scenes>
     <resources>
+        <image name="Clock" width="256" height="256"/>
         <image name="NSAdvanced" width="32" height="32"/>
     </resources>
 </document>
