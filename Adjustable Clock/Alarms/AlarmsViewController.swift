@@ -53,7 +53,6 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 			\.objectToObserve.activeAlarms,
             options: [.old, .new]
         ) { _, change in
-			
 			self.shorOrHideNotifier(numberOfAlarms: change.newValue ?? 0)
         }
     }
@@ -99,7 +98,7 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 		}
 		return NSTableCellView()
 	  }
-	@objc func onOffSelected(sender: Any){
+	@objc func onOffSelected(sender: Any) {
 		if let segmentedControl=sender as? NSSegmentedControl {
 			guard let tableViewCell=segmentedControl.superview as? AlarmStatusTableCellView else { return }
 			guard let alarmTableView=tableView else {

@@ -87,7 +87,7 @@ class AlarmCenter: NSObject {
 				}
 					if let alarmViewController: AlarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController {
 						let row = self.alarms.firstIndex(where: { (alarmInstance) -> Bool in
-							return alarmInstance.date==alarm.date })					
+							return alarmInstance.date==alarm.date })
 						let tableView=alarmViewController.tableView
 						tableView?.reloadData(forRowIndexes: [(row ?? 0)], columnIndexes: [0, 1])
 					}

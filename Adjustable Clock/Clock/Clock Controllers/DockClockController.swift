@@ -19,11 +19,12 @@ class DockClockController: NSObject {
 	var observation: NSKeyValueObservation?
 	private override init() {
 		super.init()
+		GeneralPreferencesStorage.sharedInstance.loadUserPreferences()
 		objectToObserve=digitalClockView
 		observation = observe(
 			\.objectToObserve.dark,
             options: [.old, .new]
-        ) { _, change in
+        ) { _, _ in
 			self.applyColorScheme(digitalClockView: self.digitalClockView, analogClockView: self.analogClockView)
 			self.digitalClockView.setNeedsDisplay(self.digitalClockView.bounds)
         }

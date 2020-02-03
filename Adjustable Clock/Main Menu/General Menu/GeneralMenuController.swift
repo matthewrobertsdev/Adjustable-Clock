@@ -18,7 +18,7 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 		observation = observe(
 			\.objectToObserve.activeAlarms,
             options: []
-        ) { _, change in
+        ) { _, _ in
 			self.showPreventsSleep()
 		}
 		updateUI()
@@ -30,13 +30,29 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 		updateUI()
 	}
 	func updateUI() {
-		if GeneralPreferencesStorage.sharedInstance.use24Hours {
+		if preferences.use24Hours {
 			menu.use24HoursMenuItem.state=NSControl.StateValue.on
 		} else {
 			menu.use24HoursMenuItem.state=NSControl.StateValue.off
 		}
 		menu.preventingSleepMenuItem.isEnabled=false
 		showPreventsSleep()
+		menu.analogNoSecondsMenuItem.state=NSControl.StateValue.off
+		menu.analogWithSecondsMenuItem.state=NSControl.StateValue.off
+		menu.digitalNoSecondsMenuItem.state=NSControl.StateValue.off
+		menu.digitalWithSecondsMenuItem.state=NSControl.StateValue.off
+		switch preferences.dockClock {
+		case preferences.useAnalogNoSeconds:
+			menu.analogNoSecondsMenuItem.state=NSControl.StateValue.on
+		case preferences.useAnalogWithSeconds:
+			menu.analogWithSecondsMenuItem.state=NSControl.StateValue.on
+		case preferences.useDigitalNoSeconds:
+			menu.digitalNoSecondsMenuItem.state=NSControl.StateValue.on
+		case preferences.useDigitalWithSeconds:
+			menu.digitalWithSecondsMenuItem.state=NSControl.StateValue.on
+		default:
+			break
+		}
 	}
 	func showPreventsSleep() {
 		if AlarmCenter.sharedInstance.activeAlarms>0 {
@@ -47,28 +63,27 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 	}
 	func analogClockNoSecondsClicked() {
 		preferences.updateDockClockPreferences(mode: preferences.useAnalogNoSeconds)
-		updateDockClock()
-		
+		updateDockClockChoice()
 	}
 	func analogClockWithSecondsClicked() {
 		preferences.updateDockClockPreferences(mode: preferences.useAnalogWithSeconds)
-		updateDockClock()
+		updateDockClockChoice()
 	}
 	func digitalClockNoSecondsClicked() {
 		preferences.updateDockClockPreferences(mode: preferences.useDigitalNoSeconds)
-		updateDockClock()
+		updateDockClockChoice()
 	}
 	func digitalClockWithSecondsClicked() {
 		preferences.updateDockClockPreferences(mode: preferences.useDigitalWithSeconds)
-		updateDockClock()
+		updateDockClockChoice()
 	}
 	func justColorsClicked() {
-		
 	}
 	func justAppIconClicked() {
-		
 	}
-	func updateDockClock(){
+	func updateDockClockChoice() {
+		updateUI()
+		preferences.updateModelToPreferences()
 		DockClockController.dockClockObject.updateModelToPreferencesChange()
 		DockClockController.dockClockObject.updateClockForPreferencesChange()
 	}

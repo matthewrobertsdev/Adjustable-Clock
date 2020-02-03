@@ -12,6 +12,10 @@ class GeneralMenu: NSMenu {
 	weak var generalMenuDelegate: GeneralMenuDelegate!
 	@IBOutlet weak var preventingSleepMenuItem: NSMenuItem!
 	@IBOutlet weak var use24HoursMenuItem: NSMenuItem!
+	@IBOutlet weak var analogNoSecondsMenuItem: NSMenuItem!
+	@IBOutlet weak var analogWithSecondsMenuItem: NSMenuItem!
+	@IBOutlet weak var digitalNoSecondsMenuItem: NSMenuItem!
+	@IBOutlet weak var digitalWithSecondsMenuItem: NSMenuItem!
 	@IBAction func use24Hour(nsMenuItem: NSMenuItem) {
 		generalMenuDelegate.use24HoursClicked()
 	}

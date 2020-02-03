@@ -25,14 +25,17 @@ class GeneralPreferencesStorage {
 	func loadUserPreferences() {
 		use24Hours=userDefaults.bool(forKey: use24HoursKey)
 		dockClock=userDefaults.string(forKey: dockClockKey) ?? "useAnalogNoSeconds"
+		updateModelToPreferences()
 	}
 	func changeAndSaveUseAmPM() {
         use24Hours=(!use24Hours)
         userDefaults.set(use24Hours, forKey: use24HoursKey)
     }
-	func updateDockClockPreferences(mode: String){
+	func updateDockClockPreferences(mode: String) {
 		userDefaults.set(mode, forKey: dockClockKey)
 		dockClock=mode
+	}
+	func updateModelToPreferences() {
 		switch dockClock {
 		case "useAnalogNoSeconds":
 			digital=false

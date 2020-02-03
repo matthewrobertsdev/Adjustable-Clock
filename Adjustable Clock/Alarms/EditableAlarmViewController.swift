@@ -33,7 +33,7 @@ class EditableAlarmViewController: NSViewController {
 		guard let chooseAlertViewController =
  mainStoryBoard.instantiateController(withIdentifier:
 			"ChooseAlertViewController") as? ChooseAlertViewController else { return }
-		chooseAlertViewController.chooseAlertAction={ (alert: String) -> Void in
+		chooseAlertViewController.chooseAlertAction = { (alert: String) -> Void in
 			self.alertName=alert
 			self.alertTextField.stringValue="Alert: "+alert
 		}
@@ -43,7 +43,7 @@ class EditableAlarmViewController: NSViewController {
 	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 				guard let chooseSongViewController = mainStoryBoard.instantiateController(withIdentifier:
 				   "ChooseSongViewController") as? ChoosePlaylistViewController else { return }
-		chooseSongViewController.choosePlaylistAction={ (playlist: String) -> Void in
+		chooseSongViewController.choosePlaylistAction = { (playlist: String) -> Void in
 			self.playlistName=playlist
 			if playlist=="" {
 				self.playlistTextField.stringValue="Playlist: None chosen"
