@@ -13,5 +13,4 @@ protocol GeneralMenuDelegate: AnyObject {
 	func digitalClockNoSecondsClicked()
 	func digitalClockWithSecondsClicked()
 	func justColorsClicked()
-	func justAppIconClicked()
 }
