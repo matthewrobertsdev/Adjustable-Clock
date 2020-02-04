@@ -75,7 +75,7 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 			guard let cell0 = (tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmTimeTableCellView"), owner: nil) as? AlarmTimeTableCellView) else { return NSTableCellView() }
 		cell0.alarmTimeTextField.textColor=colorController?.textColor
 			cell0.alarmRepeatTextField.textColor=colorController?.textColor
-			cell0.alarmTimeTextField.stringValue=timeFormatter.string(from: alarm.date)
+			cell0.alarmTimeTextField.stringValue=timeFormatter.string(from: alarm.time)
 			cell0.alarmRepeatTextField.stringValue = !alarm.active ? "Off" : (alarm.repeats ? "Everyday" : "Just once")
 			return cell0
 		} else if tableColumn == tableView.tableColumns[1] {
@@ -109,11 +109,13 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 			switch segmentedControl.selectedTag() {
 			case 0: alarm.active=false
 			case 1: alarm.active=true
+			alarm.setExpirationDate(currentDate: Date())
 			default:
 				alarm.active=true
 			}
 			alarmTableView.reloadData(forRowIndexes:[index], columnIndexes: [0])
 		}
+		AlarmCenter.sharedInstance.saveAlarms()
 		AlarmCenter.sharedInstance.setAlarms()
 	}
 	@objc func showPopover(sender: Any?) {
