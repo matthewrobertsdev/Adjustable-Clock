@@ -190,12 +190,10 @@ class ClockViewController: NSViewController {
 		}
 	}
 	func resizeContents(maxWidth: CGFloat) {
-		magnifierSemaphore.wait()
 			digitalClock.sizeToFit()
 			animatedDay.sizeToFit()
 			let desiredMaginifcation=maxWidth/model.width
 			maginiferScrollView.magnification=desiredMaginifcation
-		magnifierSemaphore.signal()
 	}
 	func resizeContents(maxHeight: CGFloat) {
 		magnifierSemaphore.wait()

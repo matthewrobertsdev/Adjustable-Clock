@@ -30,37 +30,6 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
         }
         enableClockMenu(enabled: true)
         updateClockMenuUI()
-		/*
-		if ClockPreferencesStorage.sharedInstance.hasLaunchedBefore() {
-		print("Should begin alert")
-		let alert=NSAlert()
-		alert.messageText =
-		"""
-		Welcome to Clock Suite!  Click OK to begin the process of allowing Clock Suite to control your music.  It will send a \
-		one-time command to the Music app to stop your music that allows it to allow you to give it permission to play and stop Music from then on.
-		"""
-		alert.addButton(withTitle: "OK")
-		alert.addButton(withTitle: "Dismiss")
-		alert.beginSheetModal(for: self.window ?? NSWindow()) { (modalResponse) in
-			if modalResponse==NSApplication.ModalResponse.alertFirstButtonReturn {
-				let appleScript =
-				"""
-				tell application "Music"
-					stop
-				end tell
-				"""
-				var error: NSDictionary?
-				if let scriptObject = NSAppleScript(source: appleScript) {
-					if let outputString = scriptObject.executeAndReturnError(&error).stringValue {
-					print(outputString)
-					} else if error != nil {
-					print("Error: ", error ?? "")
-					}
-				}
-			}
-		}
-		}
-*/
     }
 	func clockWindowPresent() -> Bool {
 		return windowPresent(identifier: UserInterfaceIdentifier.digitalClockWindow)
@@ -146,7 +115,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 			digitalClockVC.activateHeightConstraints()
 			digitalClockVC.resizeContents(maxHeight: windowSize.height)
 		}
-		if ClockPreferencesStorage.sharedInstance.useAnalog&&ClockPreferencesStorage.sharedInstance.fullscreen {
+		if ClockPreferencesStorage.sharedInstance.useAnalog && ClockPreferencesStorage.sharedInstance.fullscreen {
 			digitalClockVC.analogClockAnimator?.animate()
 		}
 	}

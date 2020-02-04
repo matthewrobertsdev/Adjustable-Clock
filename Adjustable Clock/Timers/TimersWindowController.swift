@@ -6,13 +6,14 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 
-import Cocoa
+import AppKit
 
-class TimersWindowController: NSWindowController, NSTableViewDataSource, NSTableViewDelegate {
+class TimersWindowController: NSWindowController, NSWindowDelegate  {
 	static var timersObject=TimersWindowController()
     override func windowDidLoad() {
         super.windowDidLoad()
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+		window?.delegate=self
+		window?.minSize=NSSize(width: 450, height: 224)
     }
 	func showTimers() {
 		//if alarmsWindowPresent()==false {
@@ -33,4 +34,10 @@ class TimersWindowController: NSWindowController, NSTableViewDataSource, NSTable
 				}
 			}*/
 	}
+	func windowDidResize(_ notification: Notification) {
+    }
+	func windowDidEnterFullScreen(_ notification: Notification) {
+	}
+    func windowWillExitFullScreen(_ notification: Notification) {
+    }
 }
