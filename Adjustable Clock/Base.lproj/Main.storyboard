@@ -679,23 +679,31 @@
             <objects>
                 <viewController id="qQs-hZ-6sh" customClass="OnboardingViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ELv-2Z-OJg">
-                        <rect key="frame" x="0.0" y="0.0" width="230" height="303"/>
+                        <rect key="frame" x="0.0" y="0.0" width="230" height="353"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="acT-yy-F1i">
-                                <rect key="frame" x="18" y="49" width="194" height="160"/>
+                                <rect key="frame" x="18" y="49" width="194" height="210"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="160" id="kdU-NG-nQx"/>
+                                    <constraint firstAttribute="height" constant="210" id="kdU-NG-nQx"/>
                                 </constraints>
                                 <textFieldCell key="cell" selectable="YES" alignment="center" id="KRU-y6-F1x">
                                     <font key="font" usesAppearanceFont="YES"/>
-                                    <string key="title">Welcome to Clock Suite!  Click OK to begin the process of allowing Clock Suite to control your music.  It will get macOS to ask you for permission to play and stop Music from then on, and send a one-time command to stop Music as part of this process.</string>
+                                    <string key="title">Welcome to Clock Suite!  Click OK to begin the process of allowing Clock Suite to control your music.  It will get macOS to ask you for permission to play and stop Music from then on, and send a one-time command to stop Music as part of this process.  Please open the Music app if Clock Suite does not finish the command on its own.</string>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NiE-ff-bCO">
-                                <rect key="frame" x="59" y="20" width="130" height="21"/>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AUS-Iw-TEi">
+                                <rect key="frame" x="82" y="267" width="67" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="EvC-8p-2aP"/>
+                                    <constraint firstAttribute="width" constant="67" id="SvJ-Fe-0k1"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Clock" id="EPo-Bn-gTF"/>
+                            </imageView>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NiE-ff-bCO">
+                                <rect key="frame" x="50" y="20" width="130" height="21"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PXM-hj-wxd">
                                         <rect key="frame" x="-6" y="-7" width="87" height="32"/>
@@ -730,27 +738,21 @@ DQ
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AUS-Iw-TEi">
-                                <rect key="frame" x="82" y="217" width="67" height="66"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="66" id="EvC-8p-2aP"/>
-                                    <constraint firstAttribute="width" constant="67" id="SvJ-Fe-0k1"/>
-                                </constraints>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Clock" id="EPo-Bn-gTF"/>
-                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="acT-yy-F1i" firstAttribute="top" secondItem="ELv-2Z-OJg" secondAttribute="top" constant="94" id="8tT-a7-vSk"/>
                             <constraint firstAttribute="trailing" secondItem="acT-yy-F1i" secondAttribute="trailing" constant="20" id="9DU-at-yWk"/>
                             <constraint firstItem="AUS-Iw-TEi" firstAttribute="top" secondItem="ELv-2Z-OJg" secondAttribute="top" constant="20" id="E3g-jc-7by"/>
                             <constraint firstItem="acT-yy-F1i" firstAttribute="leading" secondItem="ELv-2Z-OJg" secondAttribute="leading" constant="20" id="H8r-Mi-gBp"/>
+                            <constraint firstAttribute="bottom" secondItem="NiE-ff-bCO" secondAttribute="bottom" constant="20" id="fNR-F0-M88"/>
+                            <constraint firstItem="NiE-ff-bCO" firstAttribute="centerX" secondItem="ELv-2Z-OJg" secondAttribute="centerX" id="kfd-qi-QIJ"/>
                             <constraint firstItem="AUS-Iw-TEi" firstAttribute="centerX" secondItem="ELv-2Z-OJg" secondAttribute="centerX" id="vho-hi-fHM"/>
                         </constraints>
                     </view>
                 </viewController>
                 <customObject id="sw2-FM-XsM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="742" y="95.5"/>
+            <point key="canvasLocation" x="742" y="120.5"/>
         </scene>
         <!--Clock View Controller-->
         <scene sceneID="YXm-rq-ncp">
@@ -1024,7 +1026,7 @@ DQ
                                                     <tableColumns>
                                                         <tableColumn width="125" minWidth="40" maxWidth="1000" id="LqQ-mW-bZZ">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                                <font key="font" metaFont="label" size="11"/>
+                                                                <font key="font" metaFont="menu" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                             </tableHeaderCell>
@@ -1071,7 +1073,7 @@ DQ
                                                         </tableColumn>
                                                         <tableColumn width="86" minWidth="10" maxWidth="3.4028234663852886e+38" id="H9s-Xz-RAN">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                                <font key="font" metaFont="label" size="11"/>
+                                                                <font key="font" metaFont="menu" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </tableHeaderCell>
@@ -1109,7 +1111,7 @@ DQ
                                                         </tableColumn>
                                                         <tableColumn width="10" minWidth="10" maxWidth="3.4028234663852886e+38" id="OTB-nB-oHv">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                                <font key="font" metaFont="label" size="11"/>
+                                                                <font key="font" metaFont="menu" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </tableHeaderCell>
@@ -1488,7 +1490,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="236" minWidth="40" maxWidth="1000" id="7af-du-yPg">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1610,7 +1612,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="304" minWidth="40" maxWidth="1000" id="h46-K1-f75">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
