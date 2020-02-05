@@ -6,7 +6,7 @@
 //  Copyright © 2017 Matt Roberts. All rights reserved.
 //
 import Cocoa
-class ClockViewController: NSViewController {
+class ClockViewController: ColorfulViewController {
 	@IBOutlet weak var analogClock: AnalogClockView!
 	@IBOutlet weak var digitalClock: NSTextField!
 	@IBOutlet weak var animatedDay: NSTextField!
@@ -72,11 +72,13 @@ class ClockViewController: NSViewController {
 		guard let timer=updateTimer else { return }
 		digitalClockAnimator=DigitalClockAnimator(model: model, tellingTime: timeProtocol, updateTimer: timer, digitalClock: digitalClock, animatedDay: animatedDay)
 		analogClockAnimator=AnalogClockAnimator(model: model, tellingTime: timeProtocol, updateTimer: timer, analogClock: analogClock, animatedDay: animatedDay)
-		colorController=ClockColorController(visualEffectView: visualEffectView, view: backgroundView, digitalClock: digitalClock, animatedDay: animatedDay, analogClock: analogClock)
+		//colorController=ClockColorController(visualEffectView: visualEffectView, view: backgroundView, digitalClock: digitalClock, animatedDay: animatedDay, analogClock: analogClock)
+		
 		showClock()
 	}
 	@objc func interfaceModeChanged(sender: NSNotification) {
-		colorController?.applyColorScheme()
+		applyColors()
+		
 		backgroundView.draw(backgroundView.bounds)
 	}
 	func showClock() {
@@ -150,7 +152,7 @@ class ClockViewController: NSViewController {
 	func updateClock() {
 		model.updateClockModelForPreferences()
 		updateSizeConstraints()
-		colorController?.applyColorScheme()
+		applyColors()
 		if let windowController=self.view.window?.windowController as? ClockWindowController {
 			windowController.applyFloatState()
 		}
@@ -203,8 +205,15 @@ class ClockViewController: NSViewController {
 			maginiferScrollView.magnification=desiredMaginifcation
 		magnifierSemaphore.signal()
 	}
-	@objc func applyColors(sender: NSNotification) { colorController?.applyColorScheme() }
+	@objc func applyColors(sender: NSNotification) {
+		applyColors()
+		}
 	deinit { digitalClockAnimator?.stopAnimating()
+	}
+	func applyColors() {
+		let labels=[digitalClock!, animatedDay!]
+		applyColorScheme(visualEffect: visualEffectView, views: [analogClock], backgrounds: [backgroundView], foregrounds: [ForegroundColorView](), labels: labels)
+		print("abcd apply colors")
 	}
 	func displayForDock() {
 		if ClockPreferencesStorage.sharedInstance.useAnalog {

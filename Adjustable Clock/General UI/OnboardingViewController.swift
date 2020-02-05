@@ -22,7 +22,7 @@ class OnboardingViewController: NSViewController {
 		let appleScript =
 		"""
 		tell application "Music"
-			stop
+			open
 		end tell
 		"""
 		var error: NSDictionary?

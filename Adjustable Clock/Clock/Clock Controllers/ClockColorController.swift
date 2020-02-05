@@ -38,7 +38,7 @@ class ClockColorController {
 				if #available(OSX 10.13, *) {
 					contrastColor=NSColor(named: "BlackBackground") ?? NSColor.systemGray
 				}
-				self.view.contrastColor=contrastColor
+				self.view.backgroundColor=contrastColor
 				analogClock.color=NSColor.labelColor
 				analogClock.setNeedsDisplay(analogClock.bounds)
 			} else if isDarkMode() {
@@ -47,11 +47,11 @@ class ClockColorController {
 						contrastColor=NSColor(named: "WhiteBackground") ?? NSColor.systemGray
 					}
 				}
-				self.view.contrastColor=contrastColor
+				self.view.backgroundColor=contrastColor
 					analogClock.color=NSColor.labelColor
 					analogClock.setNeedsDisplay(analogClock.bounds)
 			} else {
-				self.view.contrastColor=contrastColor
+				self.view.backgroundColor=contrastColor
 				analogClock.color=NSColor.labelColor
 				analogClock.setNeedsDisplay(analogClock.bounds)
 			}
@@ -62,7 +62,7 @@ class ClockColorController {
 			analogClock.color=contrastColor
 			if ClockPreferencesStorage.sharedInstance.colorForForeground { analogClock.setNeedsDisplay(analogClock.bounds)
 			}
-			self.view.contrastColor = NSColor.labelColor
+			self.view.backgroundColor = NSColor.labelColor
 		}
 		self.view.setNeedsDisplay(view.bounds)
 	}

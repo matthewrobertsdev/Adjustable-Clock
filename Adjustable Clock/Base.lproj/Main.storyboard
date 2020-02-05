@@ -31,7 +31,7 @@
         <scene sceneID="CYt-gL-g6F">
             <objects>
                 <windowController storyboardIdentifier="SimplePreferencesWC" id="Vwz-lD-iVt" customClass="SimplePreferenceWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="SimplePreferencesWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="gvf-d8-yDj" userLabel="Preferences">
+                    <window key="window" identifier="SimplePreferencesWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="gvf-d8-yDj" userLabel="Preferences">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES" managed="YES" fullScreenAuxiliary="YES" fullScreenDisallowsTiling="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -656,7 +656,7 @@
         <scene sceneID="OCN-R1-2ij">
             <objects>
                 <windowController storyboardIdentifier="OnboardingWindowController" id="wLp-s1-mSY" customClass="OnboardingWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="84X-62-Hul">
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titleVisibility="hidden" id="84X-62-Hul">
                         <windowStyleMask key="styleMask" titled="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES" fullScreenDisallowsTiling="YES"/>
                         <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
@@ -879,7 +879,7 @@ DQ
         <scene sceneID="TeY-CA-Flb">
             <objects>
                 <windowController storyboardIdentifier="AlarmsWindowController" id="Ymg-Mv-RWx" customClass="AlarmsWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="AlarmsWindow" title="Alarms" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="SKW-hm-43b">
+                    <window key="window" identifier="AlarmsWindow" title="Alarms" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="SKW-hm-43b">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES" fullScreenDisallowsTiling="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -901,7 +901,7 @@ DQ
         <scene sceneID="v9s-Dr-xNz">
             <objects>
                 <windowController storyboardIdentifier="TimersWindowController" id="7qg-yV-28o" customClass="TimersWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="TimersWindow" title="Timers" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="7mb-fx-SVb">
+                    <window key="window" identifier="TimersWindow" title="Timers" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="7mb-fx-SVb">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="395" height="204"/>
@@ -1012,9 +1012,9 @@ DQ
                                         </connections>
                                     </button>
                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="72" horizontalPageScroll="10" verticalLineScroll="72" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeL-au-qBm">
-                                        <rect key="frame" x="53" y="0.0" width="165" height="229"/>
+                                        <rect key="frame" x="54" y="0.0" width="163" height="229"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="1wB-iL-xvO">
-                                            <rect key="frame" x="0.0" y="0.0" width="165" height="229"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="163" height="229"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" viewBased="YES" id="Vdc-vV-Lyv">
@@ -1089,7 +1089,7 @@ DQ
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gzk-Uy-1Gt">
-                                                                            <rect key="frame" x="8" y="23" width="71" height="23"/>
+                                                                            <rect key="frame" x="7.5" y="23" width="71" height="23"/>
                                                                             <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillProportionally" style="capsule" trackingMode="selectOne" id="dZp-sL-Q5i">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <segments>
@@ -1154,7 +1154,7 @@ DQ
                                             <nil key="backgroundColor"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="r4j-UB-Phi">
-                                            <rect key="frame" x="0.0" y="213" width="165" height="16"/>
+                                            <rect key="frame" x="0.0" y="213" width="163" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="eZy-yX-3TV">
@@ -1204,7 +1204,7 @@ DQ
         <scene sceneID="rEh-6m-9kw">
             <objects>
                 <windowController storyboardIdentifier="NewAlarmWindowController" id="ZgF-XD-PaL" customClass="EditableAlarmWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="NewAlarmWindow" title="Create Alarm" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" frameAutosaveName="" animationBehavior="default" id="PbG-Vp-cuU">
+                    <window key="window" identifier="NewAlarmWindow" title="Create Alarm" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="PbG-Vp-cuU">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES" fullScreenDisallowsTiling="YES"/>
                         <rect key="contentRect" x="196" y="240" width="313" height="155"/>
@@ -1449,7 +1449,7 @@ DQ
         <scene sceneID="eiJ-5x-zzy">
             <objects>
                 <windowController id="kT8-Zw-iPl" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="iTa-K4-mYl">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="iTa-K4-mYl">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="315" height="270"/>

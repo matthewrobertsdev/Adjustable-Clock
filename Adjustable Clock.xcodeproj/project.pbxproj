@@ -52,6 +52,10 @@
 		9F8EBE482050C4C7005BA4F2 /* ClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8EBE472050C4C7005BA4F2 /* ClockViewController.swift */; };
 		9F8ED1711FEC73C100C0553C /* WindowFrameRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8ED1701FEC73C100C0553C /* WindowFrameRestorer.swift */; };
 		9F93B36E23C81E620086B3CC /* DigitalClockAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F93B36D23C81E620086B3CC /* DigitalClockAnimator.swift */; };
+		9F97C85E23EB7B1E005381A0 /* ColorfulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F97C85D23EB7B1E005381A0 /* ColorfulViewController.swift */; };
+		9F97C86223EB7C40005381A0 /* ForegroundColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F97C86123EB7C40005381A0 /* ForegroundColorView.swift */; };
+		9F97C86423EB7C48005381A0 /* BackgroundColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F97C86323EB7C48005381A0 /* BackgroundColorView.swift */; };
+		9F97C86623EB8586005381A0 /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F97C86523EB8586005381A0 /* ColorView.swift */; };
 		9FA60EA423DB6F20004F787F /* AlertSoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA60EA323DB6F20004F787F /* AlertSoundModel.swift */; };
 		9FA60EA623DB7286004F787F /* GenericTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA60EA523DB7286004F787F /* GenericTableCellView.swift */; };
 		9FA6A7A323D8E2BC005564E7 /* GeneralPreferencesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA6A7A223D8E2BC005564E7 /* GeneralPreferencesStorage.swift */; };
@@ -153,6 +157,10 @@
 		9F8EBE472050C4C7005BA4F2 /* ClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockViewController.swift; sourceTree = "<group>"; };
 		9F8ED1701FEC73C100C0553C /* WindowFrameRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowFrameRestorer.swift; sourceTree = "<group>"; };
 		9F93B36D23C81E620086B3CC /* DigitalClockAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalClockAnimator.swift; sourceTree = "<group>"; };
+		9F97C85D23EB7B1E005381A0 /* ColorfulViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorfulViewController.swift; sourceTree = "<group>"; };
+		9F97C86123EB7C40005381A0 /* ForegroundColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForegroundColorView.swift; sourceTree = "<group>"; };
+		9F97C86323EB7C48005381A0 /* BackgroundColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundColorView.swift; sourceTree = "<group>"; };
+		9F97C86523EB8586005381A0 /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
 		9FA60EA323DB6F20004F787F /* AlertSoundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSoundModel.swift; sourceTree = "<group>"; };
 		9FA60EA523DB7286004F787F /* GenericTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableCellView.swift; sourceTree = "<group>"; };
 		9FA6A7A223D8E2BC005564E7 /* GeneralPreferencesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesStorage.swift; sourceTree = "<group>"; };
@@ -225,6 +233,8 @@
 		9F0F972823DB5EC9005456E6 /* General UI */ = {
 			isa = PBXGroup;
 			children = (
+				9F97C86323EB7C48005381A0 /* BackgroundColorView.swift */,
+				9F97C86123EB7C40005381A0 /* ForegroundColorView.swift */,
 				9F0F972923DB5FF8005456E6 /* ChooseAlertViewController.swift */,
 				9FA60EA323DB6F20004F787F /* AlertSoundModel.swift */,
 				9FA60EA523DB7286004F787F /* GenericTableCellView.swift */,
@@ -236,6 +246,8 @@
 				9F51F6C323E5E92900392880 /* OnboardingViewController.swift */,
 				9F3AD84723C7D22C005FCC0A /* MagnifierScrollView.swift */,
 				9F8C862723E8E89000E0C124 /* VerticaFullscreenlScrollView.swift */,
+				9F97C85D23EB7B1E005381A0 /* ColorfulViewController.swift */,
+				9F97C86523EB8586005381A0 /* ColorView.swift */,
 			);
 			path = "General UI";
 			sourceTree = "<group>";
@@ -658,6 +670,7 @@
 				9F14F37723C9828F009BF6CA /* CALayerExtension.swift in Sources */,
 				9FFEB30923CBD7DD00C1A6D3 /* DockClockController.swift in Sources */,
 				9FA8A51023C54A19005F0579 /* NSLayoutConstraintExtension.swift in Sources */,
+				9F97C85E23EB7B1E005381A0 /* ColorfulViewController.swift in Sources */,
 				9FB78CFD23E4994A00B123B5 /* DockClockModel.swift in Sources */,
 				9FEA48AA23E94AAF001001D8 /* TimerCollectionViewItem.swift in Sources */,
 				9F8BF21720EEBEFE00ADF294 /* ColorsMenuController.swift in Sources */,
@@ -685,6 +698,7 @@
 				9FEAE9DD1F4F7249004EB641 /* MainMenu.swift in Sources */,
 				9F1375DA23D94F70003B2B15 /* AlarmTimeTableCellView.swift in Sources */,
 				9FE390871FECBCF400AF5442 /* PreferencesWindowRestorer.swift in Sources */,
+				9F97C86623EB8586005381A0 /* ColorView.swift in Sources */,
 				9FC97F581F480BB500035D30 /* PreferencesVC.swift in Sources */,
 				9F51F6C223E5E90A00392880 /* OnboardingWindowController.swift in Sources */,
 				9F51284023DB42E300B87C29 /* NSViewToImage.swift in Sources */,
@@ -715,6 +729,8 @@
 				9F1375DC23D94FE5003B2B15 /* AlarmStatusTableCellView.swift in Sources */,
 				9F4EF1E320C273CB00E08C57 /* ColorModel.swift in Sources */,
 				9FFD327323D6805500A678BE /* ClockMenuProtocol.swift in Sources */,
+				9F97C86223EB7C40005381A0 /* ForegroundColorView.swift in Sources */,
+				9F97C86423EB7C48005381A0 /* BackgroundColorView.swift in Sources */,
 				9FB1D95A23EA886E00E8A35F /* TimerTableCellView.swift in Sources */,
 				9FF6912B23D76CD60057C4F6 /* AlarmMenuController.swift in Sources */,
 				9F8ED1711FEC73C100C0553C /* WindowFrameRestorer.swift in Sources */,
