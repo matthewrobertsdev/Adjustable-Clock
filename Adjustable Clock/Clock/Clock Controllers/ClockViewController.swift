@@ -11,7 +11,6 @@ class ClockViewController: ColorfulViewController {
 	@IBOutlet weak var digitalClock: NSTextField!
 	@IBOutlet weak var animatedDay: NSTextField!
 	@IBOutlet weak var clockStackView: NSStackView!
-	@IBOutlet weak var visualEffectView: NSVisualEffectView!
 	@IBOutlet weak var maginiferScrollView: MagnifierScrollView!
 	@IBOutlet weak var visibleView: NSView!
 	@IBOutlet weak var maginfierAspectRatioConstraint: NSLayoutConstraint!
@@ -24,20 +23,10 @@ class ClockViewController: ColorfulViewController {
 	var tellingTime: NSObjectProtocol?
 	var updateTimer: DispatchSourceTimer?
 	let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
-	var colorController: ClockColorController?
 	var digitalClockAnimator: DigitalClockAnimator?
-	let backgroundView=DarkAndLightBackgroundView()
 	var analogClockAnimator: AnalogClockAnimator?
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.addSubview(backgroundView, positioned: .below, relativeTo: view)
-		backgroundView.translatesAutoresizingMaskIntoConstraints=false
-		//*
-		let leadingConstraint=NSLayoutConstraint(item: backgroundView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
-		let trailingConstraint=NSLayoutConstraint(item: backgroundView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-		let topConstraint=NSLayoutConstraint(item: backgroundView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
-		let bottomConstraint=NSLayoutConstraint(item: backgroundView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
-		NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
 		updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		maginiferScrollView.maxMagnification=200
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
@@ -72,13 +61,10 @@ class ClockViewController: ColorfulViewController {
 		guard let timer=updateTimer else { return }
 		digitalClockAnimator=DigitalClockAnimator(model: model, tellingTime: timeProtocol, updateTimer: timer, digitalClock: digitalClock, animatedDay: animatedDay)
 		analogClockAnimator=AnalogClockAnimator(model: model, tellingTime: timeProtocol, updateTimer: timer, analogClock: analogClock, animatedDay: animatedDay)
-		//colorController=ClockColorController(visualEffectView: visualEffectView, view: backgroundView, digitalClock: digitalClock, animatedDay: animatedDay, analogClock: analogClock)
-		
 		showClock()
 	}
 	@objc func interfaceModeChanged(sender: NSNotification) {
 		applyColors()
-		
 		backgroundView.draw(backgroundView.bounds)
 	}
 	func showClock() {
@@ -212,7 +198,7 @@ class ClockViewController: ColorfulViewController {
 	}
 	func applyColors() {
 		let labels=[digitalClock!, animatedDay!]
-		applyColorScheme(visualEffect: visualEffectView, views: [analogClock], backgrounds: [backgroundView], foregrounds: [ForegroundColorView](), labels: labels)
+		applyColorScheme(views: [analogClock], labels: labels)
 		print("abcd apply colors")
 	}
 	func displayForDock() {

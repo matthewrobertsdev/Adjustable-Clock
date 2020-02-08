@@ -23,6 +23,7 @@ class OnboardingViewController: NSViewController {
 		"""
 		tell application "Music"
 			open
+			stop
 		end tell
 		"""
 		var error: NSDictionary?

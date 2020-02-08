@@ -235,6 +235,7 @@
 			children = (
 				9F97C86323EB7C48005381A0 /* BackgroundColorView.swift */,
 				9F97C86123EB7C40005381A0 /* ForegroundColorView.swift */,
+				9F97C86523EB8586005381A0 /* ColorView.swift */,
 				9F0F972923DB5FF8005456E6 /* ChooseAlertViewController.swift */,
 				9FA60EA323DB6F20004F787F /* AlertSoundModel.swift */,
 				9FA60EA523DB7286004F787F /* GenericTableCellView.swift */,
@@ -247,7 +248,6 @@
 				9F3AD84723C7D22C005FCC0A /* MagnifierScrollView.swift */,
 				9F8C862723E8E89000E0C124 /* VerticaFullscreenlScrollView.swift */,
 				9F97C85D23EB7B1E005381A0 /* ColorfulViewController.swift */,
-				9F97C86523EB8586005381A0 /* ColorView.swift */,
 			);
 			path = "General UI";
 			sourceTree = "<group>";

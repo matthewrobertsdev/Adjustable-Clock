@@ -762,9 +762,6 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="332" height="151"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="7lE-Vi-cYq">
-                                <rect key="frame" x="0.0" y="0.0" width="332" height="151"/>
-                            </visualEffectView>
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="go5-1Y-2aB" customClass="MagnifierScrollView" customModule="Adjustable_Clock" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="332" height="151"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="V38-FW-xgq">
@@ -845,14 +842,10 @@ DQ
                             </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="7lE-Vi-cYq" firstAttribute="leading" secondItem="hTG-P0-Z21" secondAttribute="leading" id="P27-bA-wUZ"/>
                             <constraint firstItem="go5-1Y-2aB" firstAttribute="centerY" secondItem="hTG-P0-Z21" secondAttribute="centerY" id="PXq-cX-iNV"/>
                             <constraint firstItem="go5-1Y-2aB" firstAttribute="top" secondItem="hTG-P0-Z21" secondAttribute="top" id="VzX-8k-t4Y"/>
                             <constraint firstItem="go5-1Y-2aB" firstAttribute="leading" secondItem="hTG-P0-Z21" secondAttribute="leading" id="Z6e-fM-Z4b"/>
                             <constraint firstItem="go5-1Y-2aB" firstAttribute="centerX" secondItem="hTG-P0-Z21" secondAttribute="centerX" id="eJX-9p-ZqZ"/>
-                            <constraint firstAttribute="trailing" secondItem="7lE-Vi-cYq" secondAttribute="trailing" id="gIG-21-pcb"/>
-                            <constraint firstItem="7lE-Vi-cYq" firstAttribute="top" secondItem="hTG-P0-Z21" secondAttribute="top" id="pdx-mX-asb"/>
-                            <constraint firstAttribute="bottom" secondItem="7lE-Vi-cYq" secondAttribute="bottom" id="rf1-eg-nCD"/>
                         </constraints>
                     </view>
                     <connections>
@@ -868,7 +861,6 @@ DQ
                         <outlet property="magnifierLeadingConstraint" destination="Z6e-fM-Z4b" id="fKn-4D-WYy"/>
                         <outlet property="magnifierTopConstraint" destination="VzX-8k-t4Y" id="U1g-sD-uWN"/>
                         <outlet property="visibleView" destination="1rG-JS-1O3" id="txd-dt-1ZX"/>
-                        <outlet property="visualEffectView" destination="7lE-Vi-cYq" id="bqY-T7-Ac7"/>
                     </connections>
                 </viewController>
                 <customObject id="HOX-re-87A" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -928,7 +920,7 @@ DQ
                         <subviews>
                             <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7Q-Wo-kc1">
                                 <rect key="frame" x="0.0" y="0.0" width="449" height="206"/>
-                                <clipView key="contentView" id="bXY-wo-YzA">
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="bXY-wo-YzA">
                                     <rect key="frame" x="0.0" y="0.0" width="449" height="206"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -938,9 +930,10 @@ DQ
                                             <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="Lab-3U-20t">
                                                 <size key="itemSize" width="450" height="204"/>
                                             </collectionViewFlowLayout>
-                                            <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="primaryBackgroundColor" red="0.22146842782307463" green="0.22039853203648974" blue="0.22253832360965953" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
                                         </collectionView>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="4OA-ho-GV7">
                                     <rect key="frame" x="0.0" y="190" width="449" height="16"/>
@@ -975,9 +968,6 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="270" height="420"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView hidden="YES" appearanceType="vibrantDark" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="P1B-8G-caW">
-                                <rect key="frame" x="0.0" y="0.0" width="270" height="426"/>
-                            </visualEffectView>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xt3-TQ-yqa">
                                 <rect key="frame" x="0.0" y="0.0" width="270" height="406"/>
                                 <subviews>
@@ -1012,9 +1002,9 @@ DQ
                                         </connections>
                                     </button>
                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="72" horizontalPageScroll="10" verticalLineScroll="72" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeL-au-qBm">
-                                        <rect key="frame" x="54" y="0.0" width="163" height="229"/>
+                                        <rect key="frame" x="63" y="0.0" width="145" height="229"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="1wB-iL-xvO">
-                                            <rect key="frame" x="0.0" y="0.0" width="163" height="229"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="145" height="229"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" viewBased="YES" id="Vdc-vV-Lyv">
@@ -1026,7 +1016,7 @@ DQ
                                                     <tableColumns>
                                                         <tableColumn width="125" minWidth="40" maxWidth="1000" id="LqQ-mW-bZZ">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                                <font key="font" metaFont="menu" size="11"/>
+                                                                <font key="font" metaFont="label" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                             </tableHeaderCell>
@@ -1073,7 +1063,7 @@ DQ
                                                         </tableColumn>
                                                         <tableColumn width="86" minWidth="10" maxWidth="3.4028234663852886e+38" id="H9s-Xz-RAN">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                                <font key="font" metaFont="menu" size="11"/>
+                                                                <font key="font" metaFont="label" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </tableHeaderCell>
@@ -1089,7 +1079,7 @@ DQ
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gzk-Uy-1Gt">
-                                                                            <rect key="frame" x="7.5" y="23" width="71" height="23"/>
+                                                                            <rect key="frame" x="8" y="23" width="71" height="23"/>
                                                                             <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillProportionally" style="capsule" trackingMode="selectOne" id="dZp-sL-Q5i">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <segments>
@@ -1111,7 +1101,7 @@ DQ
                                                         </tableColumn>
                                                         <tableColumn width="10" minWidth="10" maxWidth="3.4028234663852886e+38" id="OTB-nB-oHv">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                                <font key="font" metaFont="menu" size="11"/>
+                                                                <font key="font" metaFont="label" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </tableHeaderCell>
@@ -1154,7 +1144,7 @@ DQ
                                             <nil key="backgroundColor"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="r4j-UB-Phi">
-                                            <rect key="frame" x="0.0" y="213" width="163" height="16"/>
+                                            <rect key="frame" x="0.0" y="213" width="145" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="eZy-yX-3TV">
@@ -1179,21 +1169,15 @@ DQ
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Xt3-TQ-yqa" secondAttribute="trailing" id="9bh-3C-cMe"/>
-                            <constraint firstAttribute="bottom" secondItem="P1B-8G-caW" secondAttribute="bottom" id="ClJ-IK-VfU"/>
-                            <constraint firstAttribute="trailing" secondItem="P1B-8G-caW" secondAttribute="trailing" id="Ora-EX-b1M"/>
                             <constraint firstAttribute="bottom" secondItem="Xt3-TQ-yqa" secondAttribute="bottom" id="YqA-ld-pMA"/>
-                            <constraint firstItem="P1B-8G-caW" firstAttribute="leading" secondItem="P05-f5-a90" secondAttribute="leading" id="ZCw-w8-pRv"/>
-                            <constraint firstItem="P1B-8G-caW" firstAttribute="top" secondItem="P05-f5-a90" secondAttribute="top" id="bsW-IV-7WB"/>
                             <constraint firstItem="Xt3-TQ-yqa" firstAttribute="leading" secondItem="P05-f5-a90" secondAttribute="leading" id="uKL-zx-o8J"/>
                             <constraint firstItem="Xt3-TQ-yqa" firstAttribute="top" secondItem="P05-f5-a90" secondAttribute="top" constant="20" id="uWs-DH-v4T"/>
-                            <constraint firstAttribute="bottom" secondItem="P1B-8G-caW" secondAttribute="bottom" id="wDg-PX-YEv"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="alarmNotifierTextField" destination="zQZ-To-CvJ" id="8JM-Vl-GLI"/>
                         <outlet property="tableView" destination="Vdc-vV-Lyv" id="TQ3-CO-mAE"/>
                         <outlet property="titleTextField" destination="CoE-q1-tay" id="o3X-bw-EdL"/>
-                        <outlet property="visualEffectView" destination="P1B-8G-caW" id="ZZA-12-Uax"/>
                     </connections>
                 </viewController>
                 <customObject id="ldb-hh-cAO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1490,7 +1474,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="236" minWidth="40" maxWidth="1000" id="7af-du-yPg">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1612,7 +1596,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="304" minWidth="40" maxWidth="1000" id="h46-K1-f75">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>

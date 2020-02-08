@@ -8,9 +8,11 @@
 import AppKit
 class TimerCollectionViewItem: NSCollectionViewItem {
 
-    override func viewDidLoad() {
+	@IBOutlet weak var titleTextField: NSTextField!
+	@IBOutlet weak var countdownTextField: NSTextField!
+	@IBOutlet weak var stopTimeTextField: NSTextField!
+	override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
     }
-    
 }

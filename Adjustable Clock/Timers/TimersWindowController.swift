@@ -40,4 +40,12 @@ class TimersWindowController: NSWindowController, NSWindowDelegate  {
 	}
     func windowWillExitFullScreen(_ notification: Notification) {
     }
+	func update() {
+        let appObject = NSApp as NSApplication
+		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.timersWindow {
+			if let timersViewController=window.contentViewController as? TimersViewController {
+					timersViewController.update()
+            }
+        }
+    }
 }
