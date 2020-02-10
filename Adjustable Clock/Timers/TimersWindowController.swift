@@ -17,7 +17,6 @@ class TimersWindowController: NSWindowController, NSWindowDelegate  {
 		if (TimersPreferenceStorage.sharedInstance.haslaunchedBefore()) {
 			TimersWindowRestorer().loadSavedWindowCGRect(window: window)
 		}
-		TimersPreferenceStorage.sharedInstance.setHasLaunched()
     }
 	func showTimers() {
 		if isTimersWindowPresent() == false {
@@ -62,6 +61,7 @@ class TimersWindowController: NSWindowController, NSWindowDelegate  {
     }
 	func saveState() {
 		TimersWindowRestorer().windowSaveCGRect(window: window)
+		TimersPreferenceStorage.sharedInstance.setHasLaunched()
     }
 	func isTimersWindowPresent() -> Bool {
 		return isWindowPresent(identifier: UserInterfaceIdentifier.timersWindow)

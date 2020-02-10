@@ -14,6 +14,7 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 		collectionView.delegate=self
 		collectionView.register(TimerCollectionViewItem.self, forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TimerCollectionViewItem"))
 		update()
+		animateTimers()
     }
 	func update() {
 		applyColorScheme(views: [ColorView](), labels: [NSTextField]())
@@ -29,6 +30,24 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 		timerCollectionViewItem.titleTextField.textColor=textColor
 		timerCollectionViewItem.countdownTextField.textColor=textColor
 		timerCollectionViewItem.stopTimeTextField.textColor=textColor
+		timerCollectionViewItem.countdownTextField.stringValue=getCountDownString(index: indexPath.item)
 		return timerCollectionViewItem
+	}
+	func scrollToTimer(index: Int) {
+		collectionView.scrollToItems(at: [IndexPath(item: index, section: 0)], scrollPosition: NSCollectionView.ScrollPosition.centeredVertically)
+	}
+	func animateTimers() {
+		for index in 0...2 {
+			animateTimer(index: index)
+		}
+	}
+	func animateTimer(index: Int) {
+		guard let colectionViewItem=collectionView.item(at: index) as? TimerCollectionViewItem else {
+			return
+		}
+		colectionViewItem.countdownTextField.stringValue=getCountDownString(index: index)
+	}
+	func getCountDownString(index: Int) -> String {
+		return  String(TimersCenter.sharedInstance.timers[index].secondsRemaining)
 	}
 }

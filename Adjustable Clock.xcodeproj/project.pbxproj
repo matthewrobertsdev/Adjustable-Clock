@@ -20,6 +20,8 @@
 		9F1C725723E1D9C1008B6B79 /* GeneralMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C725623E1D9C1008B6B79 /* GeneralMenuController.swift */; };
 		9F2245D523B84FED000413F0 /* AnalogClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2245D423B84FED000413F0 /* AnalogClockView.swift */; };
 		9F2E8AFD23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E8AFC23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift */; };
+		9F35462B23F20E40009FA191 /* TimersCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35462A23F20E40009FA191 /* TimersCenter.swift */; };
+		9F35462D23F20FDF009FA191 /* CountDownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35462C23F20FDF009FA191 /* CountDownTimer.swift */; };
 		9F3AD84823C7D22C005FCC0A /* MagnifierScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3AD84723C7D22C005FCC0A /* MagnifierScrollView.swift */; };
 		9F3C6BB923F1DA9B00EA9E73 /* TimersMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C6BB823F1DA9B00EA9E73 /* TimersMenuController.swift */; };
 		9F3C6BBC23F1DAAE00EA9E73 /* TimersMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C6BBA23F1DAAE00EA9E73 /* TimersMenu.swift */; };
@@ -129,6 +131,8 @@
 		9F1C725623E1D9C1008B6B79 /* GeneralMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralMenuController.swift; sourceTree = "<group>"; };
 		9F2245D423B84FED000413F0 /* AnalogClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogClockView.swift; sourceTree = "<group>"; };
 		9F2E8AFC23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkAndLightBackgroundView.swift; sourceTree = "<group>"; };
+		9F35462A23F20E40009FA191 /* TimersCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersCenter.swift; sourceTree = "<group>"; };
+		9F35462C23F20FDF009FA191 /* CountDownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownTimer.swift; sourceTree = "<group>"; };
 		9F3AD84723C7D22C005FCC0A /* MagnifierScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnifierScrollView.swift; sourceTree = "<group>"; };
 		9F3C6BB823F1DA9B00EA9E73 /* TimersMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersMenuController.swift; sourceTree = "<group>"; };
 		9F3C6BBA23F1DAAE00EA9E73 /* TimersMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersMenu.swift; sourceTree = "<group>"; };
@@ -395,6 +399,8 @@
 				9FB1D95923EA886E00E8A35F /* TimerTableCellView.swift */,
 				9FB1D95B23EA889F00E8A35F /* TimerStatusTableCellView.swift */,
 				9F407E1823F1D4F000557EA4 /* TimersPrefrenceStorage.swift */,
+				9F35462A23F20E40009FA191 /* TimersCenter.swift */,
+				9F35462C23F20FDF009FA191 /* CountDownTimer.swift */,
 			);
 			path = Timers;
 			sourceTree = "<group>";
@@ -697,6 +703,7 @@
 				9FB78CFD23E4994A00B123B5 /* DockClockModel.swift in Sources */,
 				9FEA48AA23E94AAF001001D8 /* TimerCollectionViewItem.swift in Sources */,
 				9F8BF21720EEBEFE00ADF294 /* ColorsMenuController.swift in Sources */,
+				9F35462B23F20E40009FA191 /* TimersCenter.swift in Sources */,
 				9FF6912F23D775D50057C4F6 /* AlarmsColorController.swift in Sources */,
 				9F078A9D23CA7A79007072BB /* FullViewWindowController.swift in Sources */,
 				9FA6A7A523D8E687005564E7 /* EditableAlarmWindowController.swift in Sources */,
@@ -711,6 +718,7 @@
 				9FB1D95C23EA889F00E8A35F /* TimerStatusTableCellView.swift in Sources */,
 				9FE390851FECBCE300AF5442 /* ClockWindowRestorer.swift in Sources */,
 				9F1375DE23D95055003B2B15 /* AlarmSettingsTableCellView.swift in Sources */,
+				9F35462D23F20FDF009FA191 /* CountDownTimer.swift in Sources */,
 				9F2E8AFD23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift in Sources */,
 				9F82250423DD4E6E00E337BD /* ChoosePlaylistViewController.swift in Sources */,
 				9F407E1723F1D17A00557EA4 /* TimersWindowRestorer.swift in Sources */,

@@ -5,9 +5,7 @@
 //  Created by Matt Roberts on 2/10/20.
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
-
-import Foundation
-
+import AppKit
 class TimersMenuController: TimerMenuDelegate {
 	var menu: TimersMenu
 	init(menu: TimersMenu) {
@@ -16,17 +14,23 @@ class TimersMenuController: TimerMenuDelegate {
 		updateClockMenuUI()
 	}
 	func showTimerOneClicked() {
-		
+		showTimer(index: 0)
 	}
-	
 	func showTimerTwoClicked() {
-		
+		showTimer(index: 1)
 	}
-	
 	func showTimerThreeClicked() {
-		
+		showTimer(index: 2)
 	}
-	
+	func showTimer(index: Int){
+		TimersWindowController.timersObject.showTimers()
+		let appObject = NSApp as NSApplication
+		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.timersWindow {
+			if let timersViewController=window.contentViewController as? TimersViewController {
+				timersViewController.scrollToTimer(index: index)
+            }
+        }
+	}
 	func showTimersClicked() {
 		TimersWindowController.timersObject.showTimers()
 	}
