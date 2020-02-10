@@ -11,8 +11,8 @@ class ClockWindowRestorer: WindowFrameRestorer {
     private let yKey="clockYPosition"
     private let widthKey="clockWidthKey"
     private let heightKey="clockHeightKey"
-	private let minWidth: CGFloat=10
-    private let minHeight: CGFloat=10
+	private let minWidth: CGFloat=150
+    private let minHeight: CGFloat=150
     init() {
 		super.init(xKey: xKey, yKey: yKey, widthKey: widthKey, heightKey: heightKey, minWidth: minWidth, minHeight: minHeight, maxWidth: nil, maxHeight: nil)
     }

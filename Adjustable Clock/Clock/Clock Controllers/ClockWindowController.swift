@@ -10,10 +10,10 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 	static var clockObject=ClockWindowController()
     override func windowDidLoad() {
         super.windowDidLoad()
+		window?.delegate=self
 		ClockWindowController.clockObject=ClockWindowController()
 		guard let clockViewController=window?.contentViewController as? ClockViewController else { return }
 		window?.minSize=CGSize(width: 150, height: 150)
-		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
 		if ClockPreferencesStorage.sharedInstance.hasLaunchedBefore() {
 			ClockWindowRestorer().loadSavedWindowCGRect(window: window)
         }
@@ -32,7 +32,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
         updateClockMenuUI()
     }
 	func clockWindowPresent() -> Bool {
-		return windowPresent(identifier: UserInterfaceIdentifier.digitalClockWindow)
+		return isWindowPresent(identifier: UserInterfaceIdentifier.digitalClockWindow)
 	}
 	func showClock() {
 		if clockWindowPresent()==false {

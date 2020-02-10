@@ -26,7 +26,7 @@ func isThereASimplePreferencesWindow() -> Bool {
     }
     return false
 }
-func windowPresent(identifier: NSUserInterfaceItemIdentifier) -> Bool {
+func isWindowPresent(identifier: NSUserInterfaceItemIdentifier) -> Bool {
 	//get the app object
 	let appObject = NSApp as NSApplication
 	//search for the Digital Clock window

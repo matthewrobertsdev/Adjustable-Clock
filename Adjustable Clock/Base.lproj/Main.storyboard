@@ -498,9 +498,9 @@
                                     </connections>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Alarm" id="G6m-ZG-7cp">
+                            <menuItem title="Alarms" id="G6m-ZG-7cp">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Alarm" id="Dah-wr-0hi" customClass="AlarmsMenu" customModule="Adjustable_Clock" customModuleProvider="target">
+                                <menu key="submenu" title="Alarms" id="Dah-wr-0hi" customClass="AlarmsMenu" customModule="Adjustable_Clock" customModuleProvider="target">
                                     <items>
                                         <menuItem title="Add Alarm" id="gqt-pv-27g">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -512,6 +512,37 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showAlarmsWithNsMenuItem:" target="Dah-wr-0hi" id="Xvz-fH-GLQ"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Timers" id="jed-9l-giX">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Timers" id="fWd-IJ-eGk" customClass="TimersMenu" customModule="Adjustable_Clock" customModuleProvider="target">
+                                    <items>
+                                        <menuItem title="Show Timer #1" id="UbI-Mw-Zn3">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showTimerNumber1WithNsMenuItem:" target="fWd-IJ-eGk" id="2GL-7u-GM5"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Timer #2" id="kJm-AM-Nwj">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showTimerNumber2WithNsMenuItem:" target="fWd-IJ-eGk" id="Qnv-w6-sdi"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Timer #3" id="cHh-to-7dU">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showTimerNumber3WithNsMenuItem:" target="fWd-IJ-eGk" id="I8g-j0-Jmf"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Timers" id="NWt-qo-N82">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showTimersWithNsMenuItem:" target="fWd-IJ-eGk" id="rey-Y6-J0m"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -619,6 +650,7 @@
                             <outlet property="datePreferencesMenu" destination="irh-WD-Jdm" id="29f-ig-oxy"/>
                             <outlet property="generalMenu" destination="Eej-0A-sXa" id="PHo-8d-jV9"/>
                             <outlet property="preferenceMenuItem" destination="1Xt-HY-uBw" id="SPi-0S-rRf"/>
+                            <outlet property="timersMenu" destination="fWd-IJ-eGk" id="WSc-ZL-Ew9"/>
                         </connections>
                     </menu>
                     <connections>
@@ -871,7 +903,7 @@ DQ
         <scene sceneID="TeY-CA-Flb">
             <objects>
                 <windowController storyboardIdentifier="AlarmsWindowController" id="Ymg-Mv-RWx" customClass="AlarmsWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="AlarmsWindow" title="Alarms" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="SKW-hm-43b">
+                    <window key="window" identifier="AlarmsWindow" title="Alarms" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="SKW-hm-43b">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES" fullScreenDisallowsTiling="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -893,7 +925,7 @@ DQ
         <scene sceneID="v9s-Dr-xNz">
             <objects>
                 <windowController storyboardIdentifier="TimersWindowController" id="7qg-yV-28o" customClass="TimersWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="TimersWindow" title="Timers" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="7mb-fx-SVb">
+                    <window key="window" identifier="TimersWindow" title="Timers" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="7mb-fx-SVb">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="395" height="204"/>
@@ -969,10 +1001,10 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xt3-TQ-yqa">
-                                <rect key="frame" x="0.0" y="0.0" width="270" height="406"/>
+                                <rect key="frame" x="0.0" y="0.0" width="270" height="416"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CoE-q1-tay">
-                                        <rect key="frame" x="75" y="360" width="120" height="46"/>
+                                        <rect key="frame" x="75" y="370" width="120" height="46"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Alarms" id="zrM-Kp-7vW">
                                             <font key="font" metaFont="system" size="39"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -980,12 +1012,12 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="203" translatesAutoresizingMaskIntoConstraints="NO" id="zQZ-To-CvJ">
-                                        <rect key="frame" x="32" y="290" width="207" height="50"/>
+                                        <rect key="frame" x="32" y="290" width="207" height="60"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="EmH-hn-f4e"/>
+                                            <constraint firstAttribute="height" constant="60" id="EmH-hn-f4e"/>
                                             <constraint firstAttribute="width" constant="203" id="uLX-A7-Gis"/>
                                         </constraints>
-                                        <textFieldCell key="cell" title="Alarm Active: Please do not shut computer, logout, or quit the program." id="4z5-XM-3fW">
+                                        <textFieldCell key="cell" allowsUndo="NO" title="Alarm Active: Please do not shut computer, logout, or quit the program." id="4z5-XM-3fW">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1002,9 +1034,9 @@ DQ
                                         </connections>
                                     </button>
                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="72" horizontalPageScroll="10" verticalLineScroll="72" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeL-au-qBm">
-                                        <rect key="frame" x="63" y="0.0" width="145" height="229"/>
+                                        <rect key="frame" x="23" y="0.0" width="225" height="229"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="1wB-iL-xvO">
-                                            <rect key="frame" x="0.0" y="0.0" width="145" height="229"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="225" height="229"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" viewBased="YES" id="Vdc-vV-Lyv">
@@ -1079,7 +1111,7 @@ DQ
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gzk-Uy-1Gt">
-                                                                            <rect key="frame" x="8" y="23" width="71" height="23"/>
+                                                                            <rect key="frame" x="7.5" y="23" width="71" height="23"/>
                                                                             <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillProportionally" style="capsule" trackingMode="selectOne" id="dZp-sL-Q5i">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <segments>
@@ -1144,7 +1176,7 @@ DQ
                                             <nil key="backgroundColor"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="r4j-UB-Phi">
-                                            <rect key="frame" x="0.0" y="213" width="145" height="16"/>
+                                            <rect key="frame" x="0.0" y="213" width="225" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="eZy-yX-3TV">

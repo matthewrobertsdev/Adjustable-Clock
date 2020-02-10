@@ -11,8 +11,8 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 	static var alarmsObject=AlarmsWindowController()
     override func windowDidLoad() {
         super.windowDidLoad()
-		window?.delegate=self
 		AlarmsWindowController.alarmsObject=AlarmsWindowController()
+		window?.delegate=self
 		AlarmsPreferencesStorage.sharedInstance.setWindowIsClosed()
 		window?.minSize=CGSize(width: 271, height: 400)
 		window?.maxSize=CGSize(width: 271, height: 2000)
@@ -51,7 +51,7 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 			}
 	}
 	func alarmsWindowPresent() -> Bool {
-		return windowPresent(identifier: UserInterfaceIdentifier.alarmsWindow)
+		return isWindowPresent(identifier: UserInterfaceIdentifier.alarmsWindow)
 	}
 	func updateForPreferencesChange() {
         let appObject = NSApp as NSApplication

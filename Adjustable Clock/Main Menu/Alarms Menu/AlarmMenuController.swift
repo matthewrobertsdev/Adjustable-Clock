@@ -7,7 +7,6 @@
 //
 import AppKit
 class AlarmsMenuController: AlarmMenuDelegate {
-	let clockPreferences=ClockPreferencesStorage.sharedInstance
 	var menu: AlarmsMenu
 	init(menu: AlarmsMenu) {
 		self.menu=menu

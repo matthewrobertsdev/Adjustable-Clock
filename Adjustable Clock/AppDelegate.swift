@@ -19,6 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var colorsMenuController: ColorsMenuController?
 	var clockMenuController: ClockMenuController?
 	var alarmsMenuController: AlarmsMenuController?
+	var timersMenuController: TimersMenuController?
 	var player: AVAudioPlayer?
 	//on launch
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -32,12 +33,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			colorsMenuController=ColorsMenuController(colorsMenu: mainMenu.colorsMenu)
 			clockMenuController=ClockMenuController(menu: mainMenu.clockMenu)
 			alarmsMenuController=AlarmsMenuController(menu: mainMenu.alarmsMenu)
+			timersMenuController=TimersMenuController(menu: mainMenu.timersMenu)
 			generalMenuController=GeneralMenuController(menu: mainMenu.generalMenu)
 		}
 		DockClockController.dockClockObject.updateDockTile()
 		AlarmCenter.sharedInstance
 		if AlarmsPreferencesStorage.sharedInstance.windowIsOpen {
 			AlarmsWindowController.alarmsObject.showAlarms()
+		}
+		if TimersPreferenceStorage.sharedInstance.windowIsOpen {
+			TimersWindowController.timersObject.showTimers()
 		}
 		if ClockPreferencesStorage.sharedInstance.hasLaunchedBefore() {
 		print("Onboarding")

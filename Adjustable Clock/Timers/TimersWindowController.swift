@@ -14,9 +14,13 @@ class TimersWindowController: NSWindowController, NSWindowDelegate  {
         super.windowDidLoad()
 		window?.delegate=self
 		window?.minSize=NSSize(width: 450, height: 224)
+		if (TimersPreferenceStorage.sharedInstance.haslaunchedBefore()) {
+			TimersWindowRestorer().loadSavedWindowCGRect(window: window)
+		}
+		TimersPreferenceStorage.sharedInstance.setHasLaunched()
     }
 	func showTimers() {
-		//if alarmsWindowPresent()==false {
+		if isTimersWindowPresent() == false {
 		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 		guard let timersWindowController =
 			mainStoryBoard.instantiateController(withIdentifier:
@@ -24,7 +28,7 @@ class TimersWindowController: NSWindowController, NSWindowDelegate  {
 			TimersWindowController.timersObject=timersWindowController
 			TimersWindowController.timersObject.loadWindow()
 			TimersWindowController.timersObject.showWindow(nil)
-		/*} else {
+		} else {
 			let appObject = NSApp as NSApplication
 			for window in appObject.windows where window.identifier==UserInterfaceIdentifier.timersWindow {
 				if let timersWindowController=window.windowController as? TimersWindowController {
@@ -32,7 +36,7 @@ class TimersWindowController: NSWindowController, NSWindowDelegate  {
 						window.makeKeyAndOrderFront(nil)
 					}
 				}
-			}*/
+			}
 	}
 	func windowDidResize(_ notification: Notification) {
     }
@@ -48,4 +52,18 @@ class TimersWindowController: NSWindowController, NSWindowDelegate  {
             }
         }
     }
+	func windowWillClose(_ notification: Notification) {
+		saveState()
+		if GeneralPreferencesStorage.sharedInstance.closing {
+			TimersPreferenceStorage.sharedInstance.setWindowIsOpen()
+		} else {
+			TimersPreferenceStorage.sharedInstance.setWindowIsClosed()
+		}
+    }
+	func saveState() {
+		TimersWindowRestorer().windowSaveCGRect(window: window)
+    }
+	func isTimersWindowPresent() -> Bool {
+		return isWindowPresent(identifier: UserInterfaceIdentifier.timersWindow)
+	}
 }
