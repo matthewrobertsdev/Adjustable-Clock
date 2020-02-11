@@ -23,7 +23,7 @@ class ChoosePlaylistViewController: NSViewController, NSTableViewDataSource, NST
 		dismiss(nil)
 	}
 	var library=TracksLibrary.sharedInstance
-	var choosePlaylistAction={ (_ : String) -> Void in}
+	var choosePlaylistAction = { (_ : String) -> Void in }
 	override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.dataSource=self
@@ -48,6 +48,5 @@ class ChoosePlaylistViewController: NSViewController, NSTableViewDataSource, NST
 	   return cell0
 	 }
 	func tableViewSelectionDidChange(_ notification: Notification) {
-			
 	}
 }

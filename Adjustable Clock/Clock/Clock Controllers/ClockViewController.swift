@@ -6,12 +6,11 @@
 //  Copyright © 2017 Matt Roberts. All rights reserved.
 //
 import Cocoa
-class ClockViewController: NSViewController {
+class ClockViewController: ColorfulViewController {
 	@IBOutlet weak var analogClock: AnalogClockView!
 	@IBOutlet weak var digitalClock: NSTextField!
 	@IBOutlet weak var animatedDay: NSTextField!
 	@IBOutlet weak var clockStackView: NSStackView!
-	@IBOutlet weak var visualEffectView: NSVisualEffectView!
 	@IBOutlet weak var maginiferScrollView: MagnifierScrollView!
 	@IBOutlet weak var visibleView: NSView!
 	@IBOutlet weak var maginfierAspectRatioConstraint: NSLayoutConstraint!
@@ -24,20 +23,10 @@ class ClockViewController: NSViewController {
 	var tellingTime: NSObjectProtocol?
 	var updateTimer: DispatchSourceTimer?
 	let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
-	var colorController: ClockColorController?
 	var digitalClockAnimator: DigitalClockAnimator?
-	let backgroundView=DarkAndLightBackgroundView()
 	var analogClockAnimator: AnalogClockAnimator?
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.addSubview(backgroundView, positioned: .below, relativeTo: view)
-		backgroundView.translatesAutoresizingMaskIntoConstraints=false
-		//*
-		let leadingConstraint=NSLayoutConstraint(item: backgroundView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
-		let trailingConstraint=NSLayoutConstraint(item: backgroundView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-		let topConstraint=NSLayoutConstraint(item: backgroundView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
-		let bottomConstraint=NSLayoutConstraint(item: backgroundView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
-		NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
 		updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		maginiferScrollView.maxMagnification=200
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
@@ -72,11 +61,10 @@ class ClockViewController: NSViewController {
 		guard let timer=updateTimer else { return }
 		digitalClockAnimator=DigitalClockAnimator(model: model, tellingTime: timeProtocol, updateTimer: timer, digitalClock: digitalClock, animatedDay: animatedDay)
 		analogClockAnimator=AnalogClockAnimator(model: model, tellingTime: timeProtocol, updateTimer: timer, analogClock: analogClock, animatedDay: animatedDay)
-		colorController=ClockColorController(visualEffectView: visualEffectView, view: backgroundView, digitalClock: digitalClock, animatedDay: animatedDay, analogClock: analogClock)
 		showClock()
 	}
 	@objc func interfaceModeChanged(sender: NSNotification) {
-		colorController?.applyColorScheme()
+		applyColors()
 		backgroundView.draw(backgroundView.bounds)
 	}
 	func showClock() {
@@ -150,7 +138,7 @@ class ClockViewController: NSViewController {
 	func updateClock() {
 		model.updateClockModelForPreferences()
 		updateSizeConstraints()
-		colorController?.applyColorScheme()
+		applyColors()
 		if let windowController=self.view.window?.windowController as? ClockWindowController {
 			windowController.applyFloatState()
 		}
@@ -190,12 +178,10 @@ class ClockViewController: NSViewController {
 		}
 	}
 	func resizeContents(maxWidth: CGFloat) {
-		magnifierSemaphore.wait()
 			digitalClock.sizeToFit()
 			animatedDay.sizeToFit()
 			let desiredMaginifcation=maxWidth/model.width
 			maginiferScrollView.magnification=desiredMaginifcation
-		magnifierSemaphore.signal()
 	}
 	func resizeContents(maxHeight: CGFloat) {
 		magnifierSemaphore.wait()
@@ -205,8 +191,15 @@ class ClockViewController: NSViewController {
 			maginiferScrollView.magnification=desiredMaginifcation
 		magnifierSemaphore.signal()
 	}
-	@objc func applyColors(sender: NSNotification) { colorController?.applyColorScheme() }
+	@objc func applyColors(sender: NSNotification) {
+		applyColors()
+		}
 	deinit { digitalClockAnimator?.stopAnimating()
+	}
+	func applyColors() {
+		let labels=[digitalClock!, animatedDay!]
+		applyColorScheme(views: [analogClock], labels: labels)
+		print("abcd apply colors")
 	}
 	func displayForDock() {
 		if ClockPreferencesStorage.sharedInstance.useAnalog {

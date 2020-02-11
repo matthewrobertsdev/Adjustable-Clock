@@ -17,8 +17,10 @@ class AlarmCenter: NSObject {
 	private var alarmTimers=[DispatchSourceTimer]()
 	private let timeFormatter=DateFormatter()
 	private let appObject = NSApp as NSApplication
+	private let notifcationCenter=NotificationCenter.default
 	override private init() {
 		super.init()
+		notifcationCenter.addObserver(self, selector: #selector(scheduleAlarms), name: NSNotification.Name.NSSystemClockDidChange, object: nil)
 		timeFormatter.locale=Locale(identifier: "en_US")
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
 		jsonEncoder.outputFormatting = .prettyPrinted
@@ -70,13 +72,25 @@ class AlarmCenter: NSObject {
 		activeAlarms=activeCount
 		return activeCount
 	}
-	private func scheduleAlarms() {
+	@objc private func scheduleAlarms() {
+		print("schedule")
+		for timer in alarmTimers {
+			timer.cancel()
+		}
 		for alarm in alarms where alarm.active {
 			scheduleAlarm(alarm: alarm)
+		}
+		if let alarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController {
+			alarmsViewController.tableView.reloadData()
 		}
 	}
 	private func scheduleAlarm(alarm: Alarm) {
 		if alarm.active {
+			if !alarm.repeats && alarm.expiresDate<Date() {
+				print("now inactive")
+				alarm.active=false
+				return
+			}
 			var hasError=false
 			let alarmTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 			print("abcd"+String(getTimeInterval(alarm: alarm)))
@@ -87,7 +101,7 @@ class AlarmCenter: NSObject {
 				}
 					if let alarmViewController: AlarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController {
 						let row = self.alarms.firstIndex(where: { (alarmInstance) -> Bool in
-							return alarmInstance.date==alarm.date })					
+							return alarmInstance.time==alarm.time })
 						let tableView=alarmViewController.tableView
 						tableView?.reloadData(forRowIndexes: [(row ?? 0)], columnIndexes: [0, 1])
 					}
@@ -118,12 +132,17 @@ class AlarmCenter: NSObject {
 					}
 				}
 				let alarmAlert=NSAlert()
-				alarmAlert.messageText="Alarm for \(self.timeFormatter.string(from: alarm.date))  has gone off."
+				alarmAlert.messageText="Alarm for \(self.timeFormatter.string(from: alarm.time))  has gone off."
 				alarmAlert.addButton(withTitle: "Dismiss")
-				alarmAlert.icon=DockClockController.dockClockObject.getFreezeView(time: alarm.date).image()
+				alarmAlert.icon=DockClockController.dockClockObject.getFreezeView(time: alarm.time).image()
 				AlarmsWindowController.alarmsObject.showAlarms()
 				if alarm.usesSong && !hasError {
 					alarmAlert.addButton(withTitle: "Stop Music")
+				} else if (alarm.usesSong) {
+					alarmAlert.messageText+="""
+					  A playlist was supposed to play.  Please check your internet connection and that automation \
+					of Music is allowed in Settings->Security and Privacy->Automation->Clock Suite.
+					"""
 				}
 				alarmAlert.beginSheetModal(for: AlarmsWindowController.alarmsObject.window ?? NSWindow()) { (modalResponse) in
 					if !alarm.usesSong {
@@ -148,6 +167,7 @@ class AlarmCenter: NSObject {
 						}
 						alarmSound?.stop()
 					}
+					self.scheduleAlarms()
 				}
 			}
 			alarmTimer.resume()
@@ -156,7 +176,7 @@ class AlarmCenter: NSObject {
 	}
 	func replaceAlarm(date: Date, alarm: Alarm) {
 		if let index=self.alarms.firstIndex(where: { (alarmInstance) -> Bool in
-			return alarmInstance.date==date }) {
+			return alarmInstance.time==date }) {
 			alarms[index]=alarm
 		}
 		saveAlarms()
@@ -169,9 +189,9 @@ class AlarmCenter: NSObject {
 		let minute=calendar.dateComponents([.minute], from: now).minute ?? 0
 		let second=calendar.dateComponents([.second], from: now).second ?? 0
 		let nanoseconds=calendar.dateComponents([.nanosecond], from: now).nanosecond ?? 0
-		let alarmHour=calendar.dateComponents([.hour], from: alarm.date).hour ?? 0
-		let alarmMinute=calendar.dateComponents([.minute], from: alarm.date).minute ?? 0
-		let alarmSecond=calendar.dateComponents([.second], from: alarm.date).second ?? 0
+		let alarmHour=calendar.dateComponents([.hour], from: alarm.time).hour ?? 0
+		let alarmMinute=calendar.dateComponents([.minute], from: alarm.time).minute ?? 0
+		let alarmSecond=calendar.dateComponents([.second], from: alarm.time).second ?? 0
 		if hour>alarmHour {
 			tomorrow=true
 		}

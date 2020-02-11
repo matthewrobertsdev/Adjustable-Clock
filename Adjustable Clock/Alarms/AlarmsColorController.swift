@@ -47,7 +47,7 @@ class AlarmsColorController {
 			textColor=NSColor.labelColor
 			notifierTextField.textColor=NSColor.labelColor
 			textColor=NSColor.labelColor
-			self.view.contrastColor=contrastColor
+			self.view.backgroundColor=contrastColor
 		} else {
 			visualEffectView.isHidden=false
 			titleTextField.textColor=contrastColor

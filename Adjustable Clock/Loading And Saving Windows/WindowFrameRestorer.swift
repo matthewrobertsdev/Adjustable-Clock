@@ -26,6 +26,7 @@ class WindowFrameRestorer {
 		self.maxHeight=maxHeight
     }
     func windowSaveCGRect(window: NSWindow?) {
+		print("saving")
         let userDefaults=UserDefaults()
         let savedWindowSize=window?.frame.size
         let savedWindowPosition=window?.frame.origin
@@ -41,6 +42,7 @@ class WindowFrameRestorer {
         userDefaults.set(savedYPosition, forKey: yKey)
     }
     func loadSavedWindowCGRect(window: NSWindow?) {
+		print("loading")
         let userDefaults=UserDefaults()
         //get the window size
 		let width=userDefaults.integer(forKey: widthKey)

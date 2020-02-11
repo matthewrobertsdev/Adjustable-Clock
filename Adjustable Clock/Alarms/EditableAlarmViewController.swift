@@ -33,7 +33,7 @@ class EditableAlarmViewController: NSViewController {
 		guard let chooseAlertViewController =
  mainStoryBoard.instantiateController(withIdentifier:
 			"ChooseAlertViewController") as? ChooseAlertViewController else { return }
-		chooseAlertViewController.chooseAlertAction={ (alert: String) -> Void in
+		chooseAlertViewController.chooseAlertAction = { (alert: String) -> Void in
 			self.alertName=alert
 			self.alertTextField.stringValue="Alert: "+alert
 		}
@@ -43,7 +43,7 @@ class EditableAlarmViewController: NSViewController {
 	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 				guard let chooseSongViewController = mainStoryBoard.instantiateController(withIdentifier:
 				   "ChooseSongViewController") as? ChoosePlaylistViewController else { return }
-		chooseSongViewController.choosePlaylistAction={ (playlist: String) -> Void in
+		chooseSongViewController.choosePlaylistAction = { (playlist: String) -> Void in
 			self.playlistName=playlist
 			if playlist=="" {
 				self.playlistTextField.stringValue="Playlist: None chosen"
@@ -73,7 +73,7 @@ class EditableAlarmViewController: NSViewController {
 				return
 			}
 		}
-		let alarm=Alarm(date: datePicker.dateValue, usesSong: usesSong, repeats: repeating, alert: alertName, song: playlistName, active: true)
+		let alarm=Alarm(time: datePicker.dateValue, usesSong: usesSong, repeats: repeating, alert: alertName, song: playlistName, active: true)
 		if new {
 			AlarmCenter.sharedInstance.addAlarm(alarm: alarm)
 			self.view.window?.close()
@@ -115,8 +115,8 @@ class EditableAlarmViewController: NSViewController {
 		}
     }
 	func assignAlarm(alarm: Alarm) {
-		oldDate=alarm.date
-		datePicker.dateValue=alarm.date
+		oldDate=alarm.time
+		datePicker.dateValue=alarm.time
 		alertName=alarm.alertString
 		alertTextField.stringValue="Alert: "+alarm.alertString
 		playlistName=alarm.song=="" ? "none chosen": alarm.song

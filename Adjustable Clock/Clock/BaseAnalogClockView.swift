@@ -6,7 +6,7 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import Cocoa
-class BaseAnalogClockView: NSView {
+class BaseAnalogClockView: NSView, ColorView {
 	var color=NSColor.labelColor
 	var lineWidth=CGFloat(10)
 	func drawDash(cgContext: CGContext, angle: CGFloat, start: CGFloat, startProportion: CGFloat, end: CGFloat) {

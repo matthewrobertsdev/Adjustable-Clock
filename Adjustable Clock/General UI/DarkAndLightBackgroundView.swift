@@ -8,25 +8,20 @@
 
 import Cocoa
 
-class DarkAndLightBackgroundView: NSView {
-	var contrastColor=NSColor.clear
+class DarkAndLightBackgroundView: NSView, BackgroundColorView {
+	var backgroundColor=NSColor.systemGray
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 		self.wantsLayer=true
-		//let origin=CGPoint(x: 0, y: 0)
-		//let path=NSBezierPath(roundedRect: NSRect(origin: origin, size: CGSize(width: frame.size.width, height: frame.size.height)), xRadius: 0, yRadius: 0)
 					var backgroundColorCopy=NSColor.labelColor
-					if hasDarkAppearance && contrastColor != NSColor.labelColor {
-						backgroundColorCopy=contrastColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.white
-						//backgroundColorCopy.setFill()
+					if hasDarkAppearance && backgroundColor != NSColor.labelColor {
+						backgroundColorCopy=backgroundColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.white
 						layer?.backgroundColor=backgroundColorCopy.cgColor
-					} else if !hasDarkAppearance && contrastColor != NSColor.labelColor {
-						//contrastColor.setFill()
-						layer?.backgroundColor=contrastColor.cgColor
+					} else if !hasDarkAppearance && backgroundColor != NSColor.labelColor {
+						layer?.backgroundColor=backgroundColor.cgColor
 					} else {
 						backgroundColorCopy=NSColor.black
 						backgroundColorCopy.setFill()
 					}
-					//path.fill()
 		}
 }

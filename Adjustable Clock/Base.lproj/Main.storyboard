@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
@@ -31,7 +31,7 @@
         <scene sceneID="CYt-gL-g6F">
             <objects>
                 <windowController storyboardIdentifier="SimplePreferencesWC" id="Vwz-lD-iVt" customClass="SimplePreferenceWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="SimplePreferencesWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="gvf-d8-yDj" userLabel="Preferences">
+                    <window key="window" identifier="SimplePreferencesWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="gvf-d8-yDj" userLabel="Preferences">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES" managed="YES" fullScreenAuxiliary="YES" fullScreenDisallowsTiling="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -373,8 +373,50 @@
                                                 <action selector="use24HourWithNsMenuItem:" target="Eej-0A-sXa" id="v3o-x4-J82"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Dock Clock" id="xDY-Ah-cid">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Dock Clock" id="4fu-25-hve">
+                                                <items>
+                                                    <menuItem title="Analog Clock No Seconds" id="Ubo-xN-gRX">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="useAnalogNoSecondsWithNsMenuItem:" target="Eej-0A-sXa" id="SVh-9b-5Hh"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Analog Clock with Seconds" id="SK1-Mc-0iN">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="useAnalogWithSecondsWithNsMenuItem:" target="Eej-0A-sXa" id="T0Z-KY-Ona"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Digital Clock No Seconds" id="qnl-IC-gbZ">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="useDigitalNoSecondsWithNsMenuItem:" target="Eej-0A-sXa" id="LhX-kr-Vre"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Digital Clock With Seconds" id="SA5-xh-5lE">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="useDigitalWithSecondsWithNsMenuItem:" target="Eej-0A-sXa" id="GJC-cF-D3X"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Just Colors" id="VfR-LN-WWf">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="useJustColorsWithNsMenuItem:" target="Eej-0A-sXa" id="ShA-3V-N4K"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
                                     </items>
                                     <connections>
+                                        <outlet property="analogNoSecondsMenuItem" destination="Ubo-xN-gRX" id="P8K-ns-M08"/>
+                                        <outlet property="analogWithSecondsMenuItem" destination="SK1-Mc-0iN" id="6l5-ng-63e"/>
+                                        <outlet property="digitalNoSecondsMenuItem" destination="qnl-IC-gbZ" id="r3q-gI-ra7"/>
+                                        <outlet property="digitalWithSecondsMenuItem" destination="SA5-xh-5lE" id="gnU-8F-HPm"/>
+                                        <outlet property="justColorsMenuItem" destination="VfR-LN-WWf" id="Xyw-eb-OQi"/>
                                         <outlet property="preventingSleepMenuItem" destination="eH4-3h-cz8" id="IiJ-HI-w7x"/>
                                         <outlet property="use24HoursMenuItem" destination="gzb-V8-DrA" id="eRm-VZ-Wnt"/>
                                     </connections>
@@ -456,9 +498,9 @@
                                     </connections>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Alarm" id="G6m-ZG-7cp">
+                            <menuItem title="Alarms" id="G6m-ZG-7cp">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Alarm" id="Dah-wr-0hi" customClass="AlarmsMenu" customModule="Adjustable_Clock" customModuleProvider="target">
+                                <menu key="submenu" title="Alarms" id="Dah-wr-0hi" customClass="AlarmsMenu" customModule="Adjustable_Clock" customModuleProvider="target">
                                     <items>
                                         <menuItem title="Add Alarm" id="gqt-pv-27g">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -470,6 +512,37 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showAlarmsWithNsMenuItem:" target="Dah-wr-0hi" id="Xvz-fH-GLQ"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Timers" id="jed-9l-giX">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Timers" id="fWd-IJ-eGk" customClass="TimersMenu" customModule="Adjustable_Clock" customModuleProvider="target">
+                                    <items>
+                                        <menuItem title="Show Timer #1" id="UbI-Mw-Zn3">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showTimerNumber1WithNsMenuItem:" target="fWd-IJ-eGk" id="2GL-7u-GM5"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Timer #2" id="kJm-AM-Nwj">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showTimerNumber2WithNsMenuItem:" target="fWd-IJ-eGk" id="Qnv-w6-sdi"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Timer #3" id="cHh-to-7dU">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showTimerNumber3WithNsMenuItem:" target="fWd-IJ-eGk" id="I8g-j0-Jmf"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Timers" id="NWt-qo-N82">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showTimersWithNsMenuItem:" target="fWd-IJ-eGk" id="rey-Y6-J0m"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -577,6 +650,7 @@
                             <outlet property="datePreferencesMenu" destination="irh-WD-Jdm" id="29f-ig-oxy"/>
                             <outlet property="generalMenu" destination="Eej-0A-sXa" id="PHo-8d-jV9"/>
                             <outlet property="preferenceMenuItem" destination="1Xt-HY-uBw" id="SPi-0S-rRf"/>
+                            <outlet property="timersMenu" destination="fWd-IJ-eGk" id="WSc-ZL-Ew9"/>
                         </connections>
                     </menu>
                     <connections>
@@ -610,6 +684,108 @@
             </objects>
             <point key="canvasLocation" x="-20" y="275"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="OCN-R1-2ij">
+            <objects>
+                <windowController storyboardIdentifier="OnboardingWindowController" id="wLp-s1-mSY" customClass="OnboardingWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titleVisibility="hidden" id="84X-62-Hul">
+                        <windowStyleMask key="styleMask" titled="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES" fullScreenDisallowsTiling="YES"/>
+                        <windowPositionMask key="initialPositionMask" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="522" width="283" height="180"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="wLp-s1-mSY" id="dfM-FG-EbL"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="qQs-hZ-6sh" kind="relationship" relationship="window.shadowedContentViewController" id="GdE-gK-dAa"/>
+                    </connections>
+                </windowController>
+                <customObject id="9Q1-2u-awZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="340" y="99"/>
+        </scene>
+        <!--Onboarding View Controller-->
+        <scene sceneID="5mM-aU-iuC">
+            <objects>
+                <viewController id="qQs-hZ-6sh" customClass="OnboardingViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="ELv-2Z-OJg">
+                        <rect key="frame" x="0.0" y="0.0" width="230" height="353"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="acT-yy-F1i">
+                                <rect key="frame" x="18" y="49" width="194" height="210"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="210" id="kdU-NG-nQx"/>
+                                </constraints>
+                                <textFieldCell key="cell" selectable="YES" alignment="center" id="KRU-y6-F1x">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <string key="title">Welcome to Clock Suite!  Click OK to begin the process of allowing Clock Suite to control your music.  It will get macOS to ask you for permission to play and stop Music from then on, and send a one-time command to stop Music as part of this process.  Please open the Music app if Clock Suite does not finish the command on its own.</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AUS-Iw-TEi">
+                                <rect key="frame" x="82" y="267" width="67" height="66"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="EvC-8p-2aP"/>
+                                    <constraint firstAttribute="width" constant="67" id="SvJ-Fe-0k1"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Clock" id="EPo-Bn-gTF"/>
+                            </imageView>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NiE-ff-bCO">
+                                <rect key="frame" x="50" y="20" width="130" height="21"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PXM-hj-wxd">
+                                        <rect key="frame" x="-6" y="-7" width="87" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Dismiss" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HFK-80-8Xu">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="dismiss:" target="qQs-hZ-6sh" id="ZxZ-e7-poU"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xbP-nr-9cz">
+                                        <rect key="frame" x="77" y="-7" width="59" height="32"/>
+                                        <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ahz-T0-Tws">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="okAction:" target="qQs-hZ-6sh" id="eJJ-dK-JeQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="acT-yy-F1i" firstAttribute="top" secondItem="ELv-2Z-OJg" secondAttribute="top" constant="94" id="8tT-a7-vSk"/>
+                            <constraint firstAttribute="trailing" secondItem="acT-yy-F1i" secondAttribute="trailing" constant="20" id="9DU-at-yWk"/>
+                            <constraint firstItem="AUS-Iw-TEi" firstAttribute="top" secondItem="ELv-2Z-OJg" secondAttribute="top" constant="20" id="E3g-jc-7by"/>
+                            <constraint firstItem="acT-yy-F1i" firstAttribute="leading" secondItem="ELv-2Z-OJg" secondAttribute="leading" constant="20" id="H8r-Mi-gBp"/>
+                            <constraint firstAttribute="bottom" secondItem="NiE-ff-bCO" secondAttribute="bottom" constant="20" id="fNR-F0-M88"/>
+                            <constraint firstItem="NiE-ff-bCO" firstAttribute="centerX" secondItem="ELv-2Z-OJg" secondAttribute="centerX" id="kfd-qi-QIJ"/>
+                            <constraint firstItem="AUS-Iw-TEi" firstAttribute="centerX" secondItem="ELv-2Z-OJg" secondAttribute="centerX" id="vho-hi-fHM"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="sw2-FM-XsM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="742" y="120.5"/>
+        </scene>
         <!--Clock View Controller-->
         <scene sceneID="YXm-rq-ncp">
             <objects>
@@ -618,9 +794,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="332" height="151"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <visualEffectView appearanceType="vibrantDark" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="7lE-Vi-cYq">
-                                <rect key="frame" x="0.0" y="0.0" width="332" height="151"/>
-                            </visualEffectView>
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="go5-1Y-2aB" customClass="MagnifierScrollView" customModule="Adjustable_Clock" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="332" height="151"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="V38-FW-xgq">
@@ -694,21 +867,17 @@
                                     <rect key="frame" x="-100" y="-100" width="166" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Rfk-k5-w3s">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Rfk-k5-w3s">
                                     <rect key="frame" x="-100" y="-100" width="15" height="94"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="7lE-Vi-cYq" firstAttribute="leading" secondItem="hTG-P0-Z21" secondAttribute="leading" id="P27-bA-wUZ"/>
                             <constraint firstItem="go5-1Y-2aB" firstAttribute="centerY" secondItem="hTG-P0-Z21" secondAttribute="centerY" id="PXq-cX-iNV"/>
                             <constraint firstItem="go5-1Y-2aB" firstAttribute="top" secondItem="hTG-P0-Z21" secondAttribute="top" id="VzX-8k-t4Y"/>
                             <constraint firstItem="go5-1Y-2aB" firstAttribute="leading" secondItem="hTG-P0-Z21" secondAttribute="leading" id="Z6e-fM-Z4b"/>
                             <constraint firstItem="go5-1Y-2aB" firstAttribute="centerX" secondItem="hTG-P0-Z21" secondAttribute="centerX" id="eJX-9p-ZqZ"/>
-                            <constraint firstAttribute="trailing" secondItem="7lE-Vi-cYq" secondAttribute="trailing" id="gIG-21-pcb"/>
-                            <constraint firstItem="7lE-Vi-cYq" firstAttribute="top" secondItem="hTG-P0-Z21" secondAttribute="top" id="pdx-mX-asb"/>
-                            <constraint firstAttribute="bottom" secondItem="7lE-Vi-cYq" secondAttribute="bottom" id="rf1-eg-nCD"/>
                         </constraints>
                     </view>
                     <connections>
@@ -724,7 +893,6 @@
                         <outlet property="magnifierLeadingConstraint" destination="Z6e-fM-Z4b" id="fKn-4D-WYy"/>
                         <outlet property="magnifierTopConstraint" destination="VzX-8k-t4Y" id="U1g-sD-uWN"/>
                         <outlet property="visibleView" destination="1rG-JS-1O3" id="txd-dt-1ZX"/>
-                        <outlet property="visualEffectView" destination="7lE-Vi-cYq" id="bqY-T7-Ac7"/>
                     </connections>
                 </viewController>
                 <customObject id="HOX-re-87A" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -735,7 +903,7 @@
         <scene sceneID="TeY-CA-Flb">
             <objects>
                 <windowController storyboardIdentifier="AlarmsWindowController" id="Ymg-Mv-RWx" customClass="AlarmsWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="AlarmsWindow" title="Alarms" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="SKW-hm-43b">
+                    <window key="window" identifier="AlarmsWindow" title="Alarms" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="SKW-hm-43b">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES" fullScreenDisallowsTiling="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -753,6 +921,77 @@
             </objects>
             <point key="canvasLocation" x="777.5" y="423"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="v9s-Dr-xNz">
+            <objects>
+                <windowController storyboardIdentifier="TimersWindowController" id="7qg-yV-28o" customClass="TimersWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" identifier="TimersWindow" title="Timers" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="7mb-fx-SVb">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="395" height="204"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <connections>
+                            <outlet property="delegate" destination="7qg-yV-28o" id="JPg-wq-XpM"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="Fch-iR-SvQ" kind="relationship" relationship="window.shadowedContentViewController" id="4Y1-VA-BUK"/>
+                    </connections>
+                </windowController>
+                <customObject id="Pcd-gQ-WfV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="649.5" y="644"/>
+        </scene>
+        <!--Timers View Controller-->
+        <scene sceneID="IkZ-kU-Aih">
+            <objects>
+                <viewController id="Fch-iR-SvQ" customClass="TimersViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="gv6-gj-aTH">
+                        <rect key="frame" x="0.0" y="0.0" width="449" height="206"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7Q-Wo-kc1">
+                                <rect key="frame" x="0.0" y="0.0" width="449" height="206"/>
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="bXY-wo-YzA">
+                                    <rect key="frame" x="0.0" y="0.0" width="449" height="206"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView id="zzm-Pa-2aK">
+                                            <rect key="frame" x="0.0" y="0.0" width="449" height="158"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="Lab-3U-20t">
+                                                <size key="itemSize" width="450" height="204"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" red="0.22146842782307463" green="0.22039853203648974" blue="0.22253832360965953" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="4OA-ho-GV7">
+                                    <rect key="frame" x="0.0" y="190" width="449" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="V6w-nk-33H">
+                                    <rect key="frame" x="306" y="1" width="16" height="155"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Z7Q-Wo-kc1" firstAttribute="leading" secondItem="gv6-gj-aTH" secondAttribute="leading" id="X7i-Ix-h36"/>
+                            <constraint firstItem="Z7Q-Wo-kc1" firstAttribute="top" secondItem="gv6-gj-aTH" secondAttribute="top" id="ZYz-AO-mN7"/>
+                            <constraint firstAttribute="bottom" secondItem="Z7Q-Wo-kc1" secondAttribute="bottom" id="Zhu-lD-dwP"/>
+                            <constraint firstAttribute="trailing" secondItem="Z7Q-Wo-kc1" secondAttribute="trailing" id="ncW-fJ-COJ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="zzm-Pa-2aK" id="QsZ-zY-zCW"/>
+                    </connections>
+                </viewController>
+                <customObject id="dUP-Sx-2Yi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="627.5" y="1015"/>
+        </scene>
         <!--Alarms View Controller-->
         <scene sceneID="wPV-y4-U0G">
             <objects>
@@ -761,14 +1000,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="270" height="420"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView hidden="YES" appearanceType="vibrantDark" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="P1B-8G-caW">
-                                <rect key="frame" x="0.0" y="0.0" width="270" height="446"/>
-                            </visualEffectView>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xt3-TQ-yqa">
-                                <rect key="frame" x="0.0" y="20" width="270" height="406"/>
+                                <rect key="frame" x="0.0" y="0.0" width="270" height="416"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CoE-q1-tay">
-                                        <rect key="frame" x="75" y="360" width="120" height="46"/>
+                                        <rect key="frame" x="75" y="370" width="120" height="46"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Alarms" id="zrM-Kp-7vW">
                                             <font key="font" metaFont="system" size="39"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -776,12 +1012,12 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="203" translatesAutoresizingMaskIntoConstraints="NO" id="zQZ-To-CvJ">
-                                        <rect key="frame" x="32" y="290" width="207" height="50"/>
+                                        <rect key="frame" x="32" y="290" width="207" height="60"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="EmH-hn-f4e"/>
+                                            <constraint firstAttribute="height" constant="60" id="EmH-hn-f4e"/>
                                             <constraint firstAttribute="width" constant="203" id="uLX-A7-Gis"/>
                                         </constraints>
-                                        <textFieldCell key="cell" title="Alarm Active: Please do not shut computer, logout, or quit the program." id="4z5-XM-3fW">
+                                        <textFieldCell key="cell" allowsUndo="NO" title="Alarm Active: Please do not shut computer, logout, or quit the program." id="4z5-XM-3fW">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -798,13 +1034,13 @@
                                         </connections>
                                     </button>
                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="72" horizontalPageScroll="10" verticalLineScroll="72" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeL-au-qBm">
-                                        <rect key="frame" x="37" y="0.0" width="196" height="229"/>
+                                        <rect key="frame" x="27" y="0.0" width="217" height="229"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="1wB-iL-xvO">
-                                            <rect key="frame" x="0.0" y="0.0" width="196" height="214"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="217" height="229"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" viewBased="YES" id="Vdc-vV-Lyv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="230" height="214"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="230" height="229"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -812,7 +1048,7 @@
                                                     <tableColumns>
                                                         <tableColumn width="125" minWidth="40" maxWidth="1000" id="LqQ-mW-bZZ">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                                <font key="font" metaFont="label" size="11"/>
+                                                                <font key="font" metaFont="message" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                             </tableHeaderCell>
@@ -859,7 +1095,7 @@
                                                         </tableColumn>
                                                         <tableColumn width="86" minWidth="10" maxWidth="3.4028234663852886e+38" id="H9s-Xz-RAN">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                                <font key="font" metaFont="label" size="11"/>
+                                                                <font key="font" metaFont="message" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </tableHeaderCell>
@@ -875,7 +1111,7 @@
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gzk-Uy-1Gt">
-                                                                            <rect key="frame" x="7.5" y="23" width="71" height="23"/>
+                                                                            <rect key="frame" x="8" y="23" width="71" height="23"/>
                                                                             <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillProportionally" style="capsule" trackingMode="selectOne" id="dZp-sL-Q5i">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <segments>
@@ -897,7 +1133,7 @@
                                                         </tableColumn>
                                                         <tableColumn width="10" minWidth="10" maxWidth="3.4028234663852886e+38" id="OTB-nB-oHv">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                                <font key="font" metaFont="label" size="11"/>
+                                                                <font key="font" metaFont="message" size="11"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </tableHeaderCell>
@@ -940,7 +1176,7 @@
                                             <nil key="backgroundColor"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="r4j-UB-Phi">
-                                            <rect key="frame" x="0.0" y="214" width="196" height="15"/>
+                                            <rect key="frame" x="0.0" y="213" width="217" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="eZy-yX-3TV">
@@ -965,21 +1201,15 @@
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Xt3-TQ-yqa" secondAttribute="trailing" id="9bh-3C-cMe"/>
-                            <constraint firstAttribute="bottom" secondItem="P1B-8G-caW" secondAttribute="bottom" id="ClJ-IK-VfU"/>
-                            <constraint firstAttribute="trailing" secondItem="P1B-8G-caW" secondAttribute="trailing" id="Ora-EX-b1M"/>
-                            <constraint firstAttribute="bottom" secondItem="Xt3-TQ-yqa" secondAttribute="bottom" constant="20" id="YqA-ld-pMA"/>
-                            <constraint firstItem="P1B-8G-caW" firstAttribute="leading" secondItem="P05-f5-a90" secondAttribute="leading" id="ZCw-w8-pRv"/>
-                            <constraint firstItem="P1B-8G-caW" firstAttribute="top" secondItem="P05-f5-a90" secondAttribute="top" id="bsW-IV-7WB"/>
+                            <constraint firstAttribute="bottom" secondItem="Xt3-TQ-yqa" secondAttribute="bottom" id="YqA-ld-pMA"/>
                             <constraint firstItem="Xt3-TQ-yqa" firstAttribute="leading" secondItem="P05-f5-a90" secondAttribute="leading" id="uKL-zx-o8J"/>
                             <constraint firstItem="Xt3-TQ-yqa" firstAttribute="top" secondItem="P05-f5-a90" secondAttribute="top" constant="20" id="uWs-DH-v4T"/>
-                            <constraint firstAttribute="bottom" secondItem="P1B-8G-caW" secondAttribute="bottom" id="wDg-PX-YEv"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="alarmNotifierTextField" destination="zQZ-To-CvJ" id="8JM-Vl-GLI"/>
                         <outlet property="tableView" destination="Vdc-vV-Lyv" id="TQ3-CO-mAE"/>
                         <outlet property="titleTextField" destination="CoE-q1-tay" id="o3X-bw-EdL"/>
-                        <outlet property="visualEffectView" destination="P1B-8G-caW" id="ZZA-12-Uax"/>
                     </connections>
                 </viewController>
                 <customObject id="ldb-hh-cAO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -990,7 +1220,7 @@
         <scene sceneID="rEh-6m-9kw">
             <objects>
                 <windowController storyboardIdentifier="NewAlarmWindowController" id="ZgF-XD-PaL" customClass="EditableAlarmWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="NewAlarmWindow" title="Create Alarm" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" frameAutosaveName="" animationBehavior="default" id="PbG-Vp-cuU">
+                    <window key="window" identifier="NewAlarmWindow" title="Create Alarm" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="PbG-Vp-cuU">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES" fullScreenDisallowsTiling="YES"/>
                         <rect key="contentRect" x="196" y="240" width="313" height="155"/>
@@ -1235,7 +1465,7 @@ DQ
         <scene sceneID="eiJ-5x-zzy">
             <objects>
                 <windowController id="kT8-Zw-iPl" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="iTa-K4-mYl">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="iTa-K4-mYl">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="315" height="270"/>
@@ -1276,7 +1506,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="236" minWidth="40" maxWidth="1000" id="7af-du-yPg">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1398,7 +1628,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="304" minWidth="40" maxWidth="1000" id="h46-K1-f75">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1506,6 +1736,7 @@ DQ
         </scene>
     </scenes>
     <resources>
+        <image name="Clock" width="256" height="256"/>
         <image name="NSAdvanced" width="32" height="32"/>
     </resources>
 </document>

@@ -33,6 +33,6 @@ class EditableAlarmWindowController: NSWindowController {
 			}
 	}
 	func newAlarmWindowPresent() -> Bool {
-		return windowPresent(identifier: UserInterfaceIdentifier.newAlarmWindow)
+		return isWindowPresent(identifier: UserInterfaceIdentifier.newAlarmWindow)
 	}
 }

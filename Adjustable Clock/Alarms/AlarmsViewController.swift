@@ -7,15 +7,12 @@
 //
 import Foundation
 import Cocoa
-class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+class AlarmsViewController: ColorfulViewController, NSTableViewDataSource, NSTableViewDelegate {
 	@objc var objectToObserve=AlarmCenter.sharedInstance
 	var observation: NSKeyValueObservation?
 	var observation2: NSKeyValueObservation?
-	var colorController: AlarmsColorController?
 	let timeFormatter=DateFormatter()
 	let popover = NSPopover()
-	@IBOutlet weak var visualEffectView: NSVisualEffectView!
-	var backgroundView=DarkAndLightBackgroundView()
 	@IBOutlet weak var tableView: NSTableView!
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var alarmNotifierTextField: NSTextField!
@@ -39,8 +36,6 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 		let topConstraint=NSLayoutConstraint(item: backgroundView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
 		let bottomConstraint=NSLayoutConstraint(item: backgroundView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
 		NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
-		colorController=AlarmsColorController(visualEffectView: visualEffectView, view: backgroundView, titleTextField: titleTextField, notifierTextField: alarmNotifierTextField, tableView: tableView)
-		colorController?.applyColorScheme()
 		observation = observe(
 			\.objectToObserve.count,
             options: [.old, .new]
@@ -53,9 +48,9 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 			\.objectToObserve.activeAlarms,
             options: [.old, .new]
         ) { _, change in
-			
 			self.shorOrHideNotifier(numberOfAlarms: change.newValue ?? 0)
         }
+		update()
     }
 	func shorOrHideNotifier(numberOfAlarms: Int) {
 		if (numberOfAlarms)>0 {
@@ -65,7 +60,8 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 		}
 	}
 	func update() {
-		colorController?.applyColorScheme()
+		applyColorScheme(views: [ColorView](), labels: [titleTextField, alarmNotifierTextField])
+		tableView.reloadData()
 	}
 	func numberOfRows(in tableView: NSTableView) -> Int {
 		return AlarmCenter.sharedInstance.count
@@ -74,9 +70,9 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 		let alarm = AlarmCenter.sharedInstance.getAlarm(index: row)
 		if tableColumn == tableView.tableColumns[0] {
 			guard let cell0 = (tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmTimeTableCellView"), owner: nil) as? AlarmTimeTableCellView) else { return NSTableCellView() }
-		cell0.alarmTimeTextField.textColor=colorController?.textColor
-			cell0.alarmRepeatTextField.textColor=colorController?.textColor
-			cell0.alarmTimeTextField.stringValue=timeFormatter.string(from: alarm.date)
+		cell0.alarmTimeTextField.textColor=textColor
+			cell0.alarmRepeatTextField.textColor=textColor
+			cell0.alarmTimeTextField.stringValue=timeFormatter.string(from: alarm.time)
 			cell0.alarmRepeatTextField.stringValue = !alarm.active ? "Off" : (alarm.repeats ? "Everyday" : "Just once")
 			return cell0
 		} else if tableColumn == tableView.tableColumns[1] {
@@ -99,7 +95,7 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 		}
 		return NSTableCellView()
 	  }
-	@objc func onOffSelected(sender: Any){
+	@objc func onOffSelected(sender: Any) {
 		if let segmentedControl=sender as? NSSegmentedControl {
 			guard let tableViewCell=segmentedControl.superview as? AlarmStatusTableCellView else { return }
 			guard let alarmTableView=tableView else {
@@ -110,11 +106,13 @@ class AlarmsViewController: NSViewController, NSTableViewDataSource, NSTableView
 			switch segmentedControl.selectedTag() {
 			case 0: alarm.active=false
 			case 1: alarm.active=true
+			alarm.setExpirationDate(currentDate: Date())
 			default:
 				alarm.active=true
 			}
 			alarmTableView.reloadData(forRowIndexes:[index], columnIndexes: [0])
 		}
+		AlarmCenter.sharedInstance.saveAlarms()
 		AlarmCenter.sharedInstance.setAlarms()
 	}
 	@objc func showPopover(sender: Any?) {

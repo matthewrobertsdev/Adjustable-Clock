@@ -8,4 +8,9 @@
 import Foundation
 protocol GeneralMenuDelegate: AnyObject {
 	func use24HoursClicked()
+	func analogClockNoSecondsClicked()
+	func analogClockWithSecondsClicked()
+	func digitalClockNoSecondsClicked()
+	func digitalClockWithSecondsClicked()
+	func justColorsClicked()
 }

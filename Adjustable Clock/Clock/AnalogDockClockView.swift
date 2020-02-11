@@ -6,13 +6,14 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import Cocoa
-class DockClockView: BaseAnalogClockView {
+class AnalogDockClockView: BaseAnalogClockView {
 	var backgroundColor=NSColor.labelColor
 	var handsColor=NSColor.labelColor
 	var displaySeconds=false
 	var calendar=Calendar.current
 	var current=true
 	var freezeDate=Date()
+	var justColors=false
 	@objc dynamic var dark=false
 	override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
@@ -56,7 +57,10 @@ class DockClockView: BaseAnalogClockView {
 		for hour in 1...12 {
 			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(hour)/Double(12)), start: 0.3, startProportion: 0, end: 0.4)
 		}
-		if displaySeconds {
+		if justColors {
+			
+		}
+		else if displaySeconds {
 			displayHandsWithSeconds()
 		} else {
 			displayeHandsNoSeconds()

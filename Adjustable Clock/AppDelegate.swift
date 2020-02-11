@@ -19,6 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var colorsMenuController: ColorsMenuController?
 	var clockMenuController: ClockMenuController?
 	var alarmsMenuController: AlarmsMenuController?
+	var timersMenuController: TimersMenuController?
 	var player: AVAudioPlayer?
 	//on launch
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -32,6 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			colorsMenuController=ColorsMenuController(colorsMenu: mainMenu.colorsMenu)
 			clockMenuController=ClockMenuController(menu: mainMenu.clockMenu)
 			alarmsMenuController=AlarmsMenuController(menu: mainMenu.alarmsMenu)
+			timersMenuController=TimersMenuController(menu: mainMenu.timersMenu)
 			generalMenuController=GeneralMenuController(menu: mainMenu.generalMenu)
 		}
 		DockClockController.dockClockObject.updateDockTile()
@@ -39,20 +41,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		if AlarmsPreferencesStorage.sharedInstance.windowIsOpen {
 			AlarmsWindowController.alarmsObject.showAlarms()
 		}
-		let appleScript =
-		"""
-		tell application "Music"
-			stop
-		end tell
-		"""
-		var error: NSDictionary?
-		if let scriptObject = NSAppleScript(source: appleScript) {
-			if let outputString = scriptObject.executeAndReturnError(&error).stringValue {
-				print(outputString)
-			} else if error != nil {
-				print("Error: ", error ?? "")
-			}
+		if TimersPreferenceStorage.sharedInstance.windowIsOpen {
+			TimersWindowController.timersObject.showTimers()
 		}
+		if ClockPreferencesStorage.sharedInstance.hasLaunchedBefore() {
+		print("Onboarding")
+			OnboardingWindowController.onboardingObject.showOnboarding()
+			//OnboardingAlertController.onboardingObject.showOnboarding()
+		} else {
+			ClockWindowController.clockObject.showClock()
+		}
+		TimersWindowController.timersObject.showTimers()
 	}
     //if the dock icon is clicked
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {

@@ -6,24 +6,62 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import AppKit
-class DockClockController {
+class DockClockController: NSObject {
 	static let dockClockObject=DockClockController()
-	let dockClockView=DockClockView()
+	let analogClockView=AnalogDockClockView()
+	let digitalClockView=DigitalDockClockView()
 	let appObject = NSApp as NSApplication
 	var tellingTime: NSObjectProtocol?
 	var updateTimer: DispatchSourceTimer?
-	private init() {
+	var model=DockClockModel()
+	var preferences=GeneralPreferencesStorage.sharedInstance
+	@objc var objectToObserve: DigitalDockClockView!
+	var observation: NSKeyValueObservation?
+	private override init() {
+		super.init()
+		GeneralPreferencesStorage.sharedInstance.loadUserPreferences()
+		objectToObserve=digitalClockView
+		observation = observe(
+			\.objectToObserve.dark,
+            options: [.old, .new]
+        ) { _, _ in
+			self.applyColorScheme(digitalClockView: self.digitalClockView, analogClockView: self.analogClockView)
+			self.digitalClockView.setNeedsDisplay(self.digitalClockView.bounds)
+        }
 		animateTime()
 	}
 	func updateDockTile() {
-		dockClockView.setFrameSize(appObject.dockTile.size)
-		applyColorScheme(dockClockView: dockClockView)
-		appObject.dockTile.contentView=dockClockView
+		if preferences.digital {
+			digitalClockView.setFrameSize(appObject.dockTile.size)
+			appObject.dockTile.contentView=digitalClockView
+			digitalClockView.displaySeconds=preferences.seconds
+			if !preferences.seconds {
+				digitalClockView.removeSeconds()
+			} else {
+				digitalClockView.addSeconds()
+			}
+			updateDigitalClock()
+		} else if !preferences.digital {
+			if preferences.justColors {
+				analogClockView.justColors=true
+			} else {
+				analogClockView.justColors=false
+			}
+			analogClockView.setFrameSize(appObject.dockTile.size)
+			appObject.dockTile.contentView=analogClockView
+				analogClockView.displaySeconds=preferences.seconds
+		}
+		applyColorScheme(digitalClockView: digitalClockView, analogClockView: analogClockView)
+		digitalClockView.setNeedsDisplay(digitalClockView.bounds)
 		appObject.dockTile.display()
 	}
 	func updateClockForPreferencesChange() {
-		applyColorScheme(dockClockView: dockClockView)
-		appObject.dockTile.display()
+		updateDockTile()
+		if (preferences.justColors) {
+			updateTimer?.cancel()
+		} else {
+			animateTime()
+		}
 	}
 	private func animateTime() {
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
@@ -31,10 +69,20 @@ class DockClockController {
 		timer.schedule(deadline: .now()+getSecondAdjustment(), repeating: .milliseconds(1000), leeway: .milliseconds(0))
 		timer.setEventHandler {
 			//self.dockClockView.draw(self.dockClockView.frame)
-			self.dockClockView.setNeedsDisplay(self.dockClockView.bounds)
+			if self.preferences.digital {
+				self.updateDigitalClock()
+			} else {
+				self.analogClockView.setNeedsDisplay(self.analogClockView.bounds)
+			}
 			self.appObject.dockTile.display()
 		}
 		timer.resume()
+	}
+	func updateDigitalClock() {
+		digitalClockView.digitalClock.stringValue=model.getTimeString(date: Date())
+		self.digitalClockView.digitalClock.sizeToFit()
+		digitalClockView.digitalSeconds.stringValue=model.getSecondsString(date: Date())
+		self.digitalClockView.digitalSeconds.sizeToFit()
 	}
 	func getSecondAdjustment() -> Double {
 		let start=Date()
@@ -42,16 +90,16 @@ class DockClockController {
 		let missingNanoceconds=1_000_000_000-(nanoseconds.nanosecond ?? 0)
 		return Double(missingNanoceconds)/1_000_000_000
 	}
-	func getFreezeView(time: Date)->DockClockView{
-		let clockView=DockClockView()
-		clockView.setFrameSize(self.appObject.dockTile.size)
-		applyColorScheme(dockClockView: clockView)
-		clockView.current=false
-		clockView.freezeDate=time
-		clockView.draw(clockView.bounds)
-		return clockView
+	func getFreezeView(time: Date) -> AnalogDockClockView {
+		let analogClockView=AnalogDockClockView()
+		analogClockView.setFrameSize(self.appObject.dockTile.size)
+		applyColorScheme(digitalClockView: digitalClockView, analogClockView: analogClockView)
+		analogClockView.current=false
+		analogClockView.freezeDate=time
+		analogClockView.draw(analogClockView.bounds)
+		return analogClockView
 	}
-	func applyColorScheme(dockClockView: DockClockView) {
+	func applyColorScheme(digitalClockView: DigitalDockClockView, analogClockView: AnalogDockClockView) {
 			var contrastColor: NSColor
 			let clockNSColors=ColorDictionary()
 			if ClockPreferencesStorage.sharedInstance.colorChoice=="custom"{
@@ -61,25 +109,48 @@ class DockClockController {
 					clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
 			}
 			if ClockPreferencesStorage.sharedInstance.colorForForeground==false {
-				dockClockView.color=NSColor.labelColor
+				analogClockView.color=NSColor.labelColor
+				digitalClockView.backgroundColor=NSColor.labelColor
 				if contrastColor==NSColor.black {
-					contrastColor=NSColor.systemGray
+					analogClockView.backgroundColor=NSColor.systemGray
 				}
-				dockClockView.backgroundColor=contrastColor
-				dockClockView.color=NSColor.white
+				analogClockView.backgroundColor=contrastColor
+				digitalClockView.backgroundColor=contrastColor
+				analogClockView.color=NSColor.white
+				digitalClockView.digitalClock.textColor=NSColor.white
+				digitalClockView.digitalSeconds.textColor=NSColor.white
 				if contrastColor != NSColor.black {
-					dockClockView.handsColor=NSColor.black
+					analogClockView.handsColor=NSColor.black
+					if digitalClockView.hasDarkAppearance { digitalClockView.digitalClock.textColor=NSColor.white
+					digitalClockView.digitalSeconds.textColor=NSColor.white
+					} else {
+						digitalClockView.digitalClock.textColor=NSColor.black
+						digitalClockView.digitalSeconds.textColor=NSColor.black
+					}
 				} else {
-					dockClockView.handsColor=NSColor.systemGray
+				print("should be gray")
+					analogClockView.handsColor=NSColor.systemGray
+					digitalClockView.digitalClock.textColor=NSColor.systemGray
+					digitalClockView.digitalSeconds.textColor=NSColor.systemGray
 				}
 			} else {
-				dockClockView.backgroundColor=NSColor.labelColor
+				analogClockView.backgroundColor=NSColor.labelColor
+				digitalClockView.backgroundColor=NSColor.black
+				print("should be black")
 				if contrastColor != NSColor.black {
-					dockClockView.color=contrastColor
+					analogClockView.color=contrastColor
+					digitalClockView.digitalClock.textColor=contrastColor
+					digitalClockView.digitalSeconds.textColor=contrastColor
 				} else {
-					dockClockView.color=NSColor.systemGray
+					analogClockView.color=NSColor.systemGray
+					digitalClockView.backgroundColor=NSColor(named: "BlackBackground") ?? NSColor.systemGray
+					digitalClockView.digitalClock.textColor=NSColor.systemGray
+					digitalClockView.digitalSeconds.textColor=NSColor.systemGray
 				}
-				dockClockView.handsColor=NSColor.white
+				analogClockView.handsColor=NSColor.white
 			}
 		}
+	func updateModelToPreferencesChange() {
+		model.setTimeFormatter()
+	}
 }
