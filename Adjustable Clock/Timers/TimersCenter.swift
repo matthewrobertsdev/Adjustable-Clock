@@ -6,9 +6,9 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import Foundation
-class TimersCenter{
+class TimersCenter {
 	static let sharedInstance=TimersCenter()
-	private init(){
+	private init() {
 	}
 	var timers=[CountDownTimer(), CountDownTimer(), CountDownTimer()]
 }

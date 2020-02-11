@@ -13,5 +13,5 @@ class CountDownTimer {
 	var usesSong: Bool?
 	var alertString="Ping"
 	var song=""
-	var active=false
+	var active=true
 }
