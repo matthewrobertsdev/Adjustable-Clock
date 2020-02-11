@@ -8,7 +8,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="TimerCollectionViewItem" customModule="Adjustable_Clock" customModuleProvider="target">
             <connections>
-                <outlet property="cancelButton" destination="kUn-XX-Vr1" id="zay-o4-baR"/>
                 <outlet property="countdownTextField" destination="xEI-KT-zbD" id="ch0-fl-Hhj"/>
                 <outlet property="startPauseButton" destination="zCm-pV-pco" id="6DF-Ty-E7R"/>
                 <outlet property="stopTimeTextField" destination="rGD-4H-Rts" id="uzp-FK-mK0"/>
@@ -66,46 +65,23 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <stackView distribution="equalSpacing" orientation="horizontal" alignment="top" spacing="70" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k1y-qn-Hvb">
-                            <rect key="frame" x="77" y="10" width="198" height="21"/>
-                            <subviews>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kUn-XX-Vr1">
-                                    <rect key="frame" x="-6" y="-7" width="82" height="32"/>
-                                    <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ecx-6V-hB0">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                        <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                                    </buttonCell>
-                                </button>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zCm-pV-pco">
-                                    <rect key="frame" x="134" y="-7" width="70" height="32"/>
-                                    <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="A3L-lq-Bmu">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                    </buttonCell>
-                                </button>
-                            </subviews>
-                            <visibilityPriorities>
-                                <integer value="1000"/>
-                                <integer value="1000"/>
-                            </visibilityPriorities>
-                            <customSpacing>
-                                <real value="3.4028234663852886e+38"/>
-                                <real value="3.4028234663852886e+38"/>
-                            </customSpacing>
-                        </stackView>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zCm-pV-pco">
+                            <rect key="frame" x="141" y="3" width="70" height="32"/>
+                            <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="A3L-lq-Bmu">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="rGD-4H-Rts" firstAttribute="top" secondItem="DQp-vv-F9v" secondAttribute="top" constant="127" id="6yW-1X-YuL"/>
                         <constraint firstItem="PIs-qO-OS2" firstAttribute="top" secondItem="DQp-vv-F9v" secondAttribute="top" constant="20" id="JPv-B7-K7L"/>
-                        <constraint firstItem="k1y-qn-Hvb" firstAttribute="centerX" secondItem="DQp-vv-F9v" secondAttribute="centerX" id="Nfr-6u-YH7"/>
                         <constraint firstItem="rGD-4H-Rts" firstAttribute="centerX" secondItem="DQp-vv-F9v" secondAttribute="centerX" id="SSk-kx-ahe"/>
+                        <constraint firstItem="zCm-pV-pco" firstAttribute="centerX" secondItem="DQp-vv-F9v" secondAttribute="centerX" id="ZML-jw-MUd"/>
                         <constraint firstItem="xEI-KT-zbD" firstAttribute="centerX" secondItem="DQp-vv-F9v" secondAttribute="centerX" id="gmS-wV-byp"/>
                         <constraint firstItem="xEI-KT-zbD" firstAttribute="top" secondItem="DQp-vv-F9v" secondAttribute="top" constant="44" id="okx-FR-n2G"/>
-                        <constraint firstItem="k1y-qn-Hvb" firstAttribute="top" secondItem="DQp-vv-F9v" secondAttribute="top" constant="173" id="sw1-Ti-1eb"/>
                         <constraint firstItem="PIs-qO-OS2" firstAttribute="centerX" secondItem="DQp-vv-F9v" secondAttribute="centerX" id="u2Y-xA-O7c"/>
+                        <constraint firstItem="zCm-pV-pco" firstAttribute="top" secondItem="rGD-4H-Rts" secondAttribute="bottom" constant="8" id="vaD-FU-8eX"/>
                     </constraints>
                 </customView>
             </subviews>

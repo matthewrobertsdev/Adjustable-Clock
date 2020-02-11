@@ -9,7 +9,6 @@ import Cocoa
 class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTableViewDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate {
 	@IBOutlet weak var collectionView: NSCollectionView!
 	var tellingTime: NSObjectProtocol?
-	var gcdTimers=[DispatchSourceTimer]()
 	override func viewDidLoad() {
         super.viewDidLoad()
 		collectionView.dataSource=self
@@ -18,10 +17,6 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 		update()
 		let processOptions: ProcessInfo.ActivityOptions=[ProcessInfo.ActivityOptions.userInitiatedAllowingIdleSystemSleep]
 		tellingTime = ProcessInfo().beginActivity(options: processOptions, reason: "Need accurate time for timers")
-		for index in 0...2 {
-			gcdTimers.append(DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main))
-			//animateTimer(index: index)
-		}
     }
 	func update() {
 		applyColorScheme(views: [ColorView](), labels: [NSTextField]())
@@ -37,7 +32,7 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 		timerCollectionViewItem.titleTextField.textColor=textColor
 		timerCollectionViewItem.countdownTextField.textColor=textColor
 		timerCollectionViewItem.stopTimeTextField.textColor=textColor
-		timerCollectionViewItem.countdownTextField.stringValue=getCountDownString(index: indexPath.item)
+		timerCollectionViewItem.countdownTextField.stringValue=TimersCenter.sharedInstance.getCountDownString(index: indexPath.item)
 		timerCollectionViewItem.startPauseButton.action=#selector(startPauseAction(sender:))
 		timerCollectionViewItem.startPauseButton.tag=indexPath.item
 		return timerCollectionViewItem
@@ -50,12 +45,12 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 	}
 	private func animateTimer(index: Int) {
 		displayTimer(index: index)
-		gcdTimers[index].schedule(deadline: .now(), repeating: .milliseconds(1000), leeway: .milliseconds(0))
-		gcdTimers[index].setEventHandler {
+		TimersCenter.sharedInstance.gcdTimers[index].schedule(deadline: .now(), repeating: .milliseconds(1000), leeway: .milliseconds(0))
+		TimersCenter.sharedInstance.gcdTimers[index].setEventHandler {
 			self.updateTimer(index: index)
 			self.displayTimer(index: index)
 		}
-		gcdTimers[index].resume()
+		TimersCenter.sharedInstance.gcdTimers[index].resume()
 	}
 	func displayTimer(index: Int) {
 		if !TimersCenter.sharedInstance.timers[index].active {
@@ -64,16 +59,24 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 		guard let colectionViewItem=collectionView.item(at: index) as? TimerCollectionViewItem else {
 			return
 		}
-		colectionViewItem.countdownTextField.stringValue=getCountDownString(index: index)
-	}
-	func getCountDownString(index: Int) -> String {
-		return  String(TimersCenter.sharedInstance.timers[index].secondsRemaining)
+		colectionViewItem.countdownTextField.stringValue=TimersCenter.sharedInstance.getCountDownString(index: index)
 	}
 	@objc func startPauseAction(sender: Any?) {
 		guard let startPauseButton=sender as? NSButton else {
 			return
 		}
-		let index=startPauseButton.tag ?? 0
-		animateTimer(index: index)
+		let index=startPauseButton.tag
+		guard let timerCollectionViewItem=collectionView.item(at: index) as? TimerCollectionViewItem else {
+			return
+		}
+		if TimersCenter.sharedInstance.timers[index].active {
+			TimersCenter.sharedInstance.timers[index].active=false
+			TimersCenter.sharedInstance.gcdTimers[index].suspend()
+			timerCollectionViewItem.startPauseButton.title="Resume"
+		} else {
+			TimersCenter.sharedInstance.timers[index].active=true
+			animateTimer(index: index)
+			timerCollectionViewItem.startPauseButton.title="Pause"
+		}
 	}
 }

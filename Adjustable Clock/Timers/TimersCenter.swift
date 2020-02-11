@@ -9,6 +9,13 @@ import Foundation
 class TimersCenter {
 	static let sharedInstance=TimersCenter()
 	private init() {
+		for _ in 0...2 {
+			gcdTimers.append(DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main))
+		}
 	}
 	var timers=[CountDownTimer(), CountDownTimer(), CountDownTimer()]
+	var gcdTimers=[DispatchSourceTimer]()
+	func getCountDownString(index: Int) -> String {
+		return  String(TimersCenter.sharedInstance.timers[index].secondsRemaining)
+	}
 }
