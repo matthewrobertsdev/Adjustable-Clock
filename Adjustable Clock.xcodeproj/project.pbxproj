@@ -71,8 +71,6 @@
 		9FAD49CF23E3DDEC00767C1D /* DigitalDockClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAD49CE23E3DDEC00767C1D /* DigitalDockClockView.swift */; };
 		9FB1D95623EA7F5000E8A35F /* TimersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1D95523EA7F5000E8A35F /* TimersViewController.swift */; };
 		9FB1D95823EA7FD500E8A35F /* TimersWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1D95723EA7FD500E8A35F /* TimersWindowController.swift */; };
-		9FB1D95A23EA886E00E8A35F /* TimerTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1D95923EA886E00E8A35F /* TimerTableCellView.swift */; };
-		9FB1D95C23EA889F00E8A35F /* TimerStatusTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB1D95B23EA889F00E8A35F /* TimerStatusTableCellView.swift */; };
 		9FB47E5E1F480A43009D82FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB47E5D1F480A43009D82FF /* AppDelegate.swift */; };
 		9FB47E621F480A43009D82FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9FB47E611F480A43009D82FF /* Assets.xcassets */; };
 		9FB47E651F480A43009D82FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9FB47E631F480A43009D82FF /* Main.storyboard */; };
@@ -83,11 +81,11 @@
 		9FC7A9AF23C8000500276431 /* ClockColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC7A9AE23C8000500276431 /* ClockColorController.swift */; };
 		9FC97F581F480BB500035D30 /* PreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC97F531F480BB500035D30 /* PreferencesVC.swift */; };
 		9FC97F591F480BB500035D30 /* PreferencesWC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC97F541F480BB500035D30 /* PreferencesWC.swift */; };
+		9FD2825C23F26BEA00C204A2 /* TimerCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2825B23F26BEA00C204A2 /* TimerCollectionViewItem.xib */; };
 		9FD6B30523CC170100EFEF3C /* BaseAnalogClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6B30423CC170100EFEF3C /* BaseAnalogClockView.swift */; };
 		9FE390851FECBCE300AF5442 /* ClockWindowRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE390841FECBCE300AF5442 /* ClockWindowRestorer.swift */; };
 		9FE390871FECBCF400AF5442 /* PreferencesWindowRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE390861FECBCF400AF5442 /* PreferencesWindowRestorer.swift */; };
 		9FEA48AA23E94AAF001001D8 /* TimerCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA48A923E94AAF001001D8 /* TimerCollectionViewItem.swift */; };
-		9FEA48AC23E95119001001D8 /* TimerCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FEA48AB23E95119001001D8 /* TimerCollectionViewItem.xib */; };
 		9FEAE9DD1F4F7249004EB641 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEAE9DC1F4F7249004EB641 /* MainMenu.swift */; };
 		9FF6912823D76C810057C4F6 /* AlarmsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF6912723D76C810057C4F6 /* AlarmsWindowController.swift */; };
 		9FF6912B23D76CD60057C4F6 /* AlarmMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF6912A23D76CD60057C4F6 /* AlarmMenuController.swift */; };
@@ -183,8 +181,6 @@
 		9FAD49CE23E3DDEC00767C1D /* DigitalDockClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalDockClockView.swift; sourceTree = "<group>"; };
 		9FB1D95523EA7F5000E8A35F /* TimersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersViewController.swift; sourceTree = "<group>"; };
 		9FB1D95723EA7FD500E8A35F /* TimersWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersWindowController.swift; sourceTree = "<group>"; };
-		9FB1D95923EA886E00E8A35F /* TimerTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerTableCellView.swift; sourceTree = "<group>"; };
-		9FB1D95B23EA889F00E8A35F /* TimerStatusTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStatusTableCellView.swift; sourceTree = "<group>"; };
 		9FB47E5A1F480A43009D82FF /* Adjustable Clock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adjustable Clock.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FB47E5D1F480A43009D82FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9FB47E611F480A43009D82FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -201,11 +197,11 @@
 		9FC7A9AE23C8000500276431 /* ClockColorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockColorController.swift; sourceTree = "<group>"; };
 		9FC97F531F480BB500035D30 /* PreferencesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesVC.swift; sourceTree = "<group>"; };
 		9FC97F541F480BB500035D30 /* PreferencesWC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWC.swift; sourceTree = "<group>"; };
+		9FD2825B23F26BEA00C204A2 /* TimerCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerCollectionViewItem.xib; sourceTree = "<group>"; };
 		9FD6B30423CC170100EFEF3C /* BaseAnalogClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAnalogClockView.swift; sourceTree = "<group>"; };
 		9FE390841FECBCE300AF5442 /* ClockWindowRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockWindowRestorer.swift; sourceTree = "<group>"; };
 		9FE390861FECBCF400AF5442 /* PreferencesWindowRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowRestorer.swift; sourceTree = "<group>"; };
 		9FEA48A923E94AAF001001D8 /* TimerCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCollectionViewItem.swift; sourceTree = "<group>"; };
-		9FEA48AB23E95119001001D8 /* TimerCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimerCollectionViewItem.xib; sourceTree = "<group>"; };
 		9FEAE9DC1F4F7249004EB641 /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		9FF6912723D76C810057C4F6 /* AlarmsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsWindowController.swift; sourceTree = "<group>"; };
 		9FF6912A23D76CD60057C4F6 /* AlarmMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmMenuController.swift; sourceTree = "<group>"; };
@@ -396,8 +392,6 @@
 				9FEA48A923E94AAF001001D8 /* TimerCollectionViewItem.swift */,
 				9FB1D95523EA7F5000E8A35F /* TimersViewController.swift */,
 				9FB1D95723EA7FD500E8A35F /* TimersWindowController.swift */,
-				9FB1D95923EA886E00E8A35F /* TimerTableCellView.swift */,
-				9FB1D95B23EA889F00E8A35F /* TimerStatusTableCellView.swift */,
 				9F407E1823F1D4F000557EA4 /* TimersPrefrenceStorage.swift */,
 				9F35462A23F20E40009FA191 /* TimersCenter.swift */,
 				9F35462C23F20FDF009FA191 /* CountDownTimer.swift */,
@@ -443,8 +437,8 @@
 				9F86695B203BBAD30074C1BA /* Filler UI Classes */,
 				9FB5FA1F20C8F5B200EE8963 /* Utilities */,
 				9FB47E611F480A43009D82FF /* Assets.xcassets */,
+				9FD2825B23F26BEA00C204A2 /* TimerCollectionViewItem.xib */,
 				9FB47E631F480A43009D82FF /* Main.storyboard */,
-				9FEA48AB23E95119001001D8 /* TimerCollectionViewItem.xib */,
 				9FABAA29216595BF00161D83 /* Code to Discard? */,
 				9FB47E661F480A43009D82FF /* Info.plist */,
 				9F7E63A323DEAF6B00A52ECE /* Adjustable Clock.entitlements */,
@@ -640,7 +634,7 @@
 			files = (
 				9FB47E621F480A43009D82FF /* Assets.xcassets in Resources */,
 				9FB47E651F480A43009D82FF /* Main.storyboard in Resources */,
-				9FEA48AC23E95119001001D8 /* TimerCollectionViewItem.xib in Resources */,
+				9FD2825C23F26BEA00C204A2 /* TimerCollectionViewItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,7 +709,6 @@
 				9F71B69923C93A0C0079A79A /* ClockAnimator.swift in Sources */,
 				9F793AAD2063849C00AF703E /* ClockModel.swift in Sources */,
 				9F3C6BBC23F1DAAE00EA9E73 /* TimersMenu.swift in Sources */,
-				9FB1D95C23EA889F00E8A35F /* TimerStatusTableCellView.swift in Sources */,
 				9FE390851FECBCE300AF5442 /* ClockWindowRestorer.swift in Sources */,
 				9F1375DE23D95055003B2B15 /* AlarmSettingsTableCellView.swift in Sources */,
 				9F35462D23F20FDF009FA191 /* CountDownTimer.swift in Sources */,
@@ -767,7 +760,6 @@
 				9FFD327323D6805500A678BE /* ClockMenuProtocol.swift in Sources */,
 				9F97C86223EB7C40005381A0 /* ForegroundColorView.swift in Sources */,
 				9F97C86423EB7C48005381A0 /* BackgroundColorView.swift in Sources */,
-				9FB1D95A23EA886E00E8A35F /* TimerTableCellView.swift in Sources */,
 				9FF6912B23D76CD60057C4F6 /* AlarmMenuController.swift in Sources */,
 				9F8ED1711FEC73C100C0553C /* WindowFrameRestorer.swift in Sources */,
 			);

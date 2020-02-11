@@ -20,7 +20,7 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 		tellingTime = ProcessInfo().beginActivity(options: processOptions, reason: "Need accurate time for timers")
 		for index in 0...2 {
 			gcdTimers.append(DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main))
-			animateTimer(index: index)
+			//animateTimer(index: index)
 		}
     }
 	func update() {
@@ -38,6 +38,8 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 		timerCollectionViewItem.countdownTextField.textColor=textColor
 		timerCollectionViewItem.stopTimeTextField.textColor=textColor
 		timerCollectionViewItem.countdownTextField.stringValue=getCountDownString(index: indexPath.item)
+		timerCollectionViewItem.startPauseButton.action=#selector(startPauseAction(sender:))
+		timerCollectionViewItem.startPauseButton.tag=indexPath.item
 		return timerCollectionViewItem
 	}
 	func scrollToTimer(index: Int) {
@@ -66,5 +68,12 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 	}
 	func getCountDownString(index: Int) -> String {
 		return  String(TimersCenter.sharedInstance.timers[index].secondsRemaining)
+	}
+	@objc func startPauseAction(sender: Any?) {
+		guard let startPauseButton=sender as? NSButton else {
+			return
+		}
+		let index=startPauseButton.tag ?? 0
+		animateTimer(index: index)
 	}
 }
