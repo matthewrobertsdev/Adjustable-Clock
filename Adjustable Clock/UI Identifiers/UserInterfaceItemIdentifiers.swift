@@ -11,6 +11,7 @@ struct UserInterfaceIdentifier {
 	 static let alarmsWindow=NSUserInterfaceItemIdentifier("AlarmsWindow")
 	static let timersWindow=NSUserInterfaceItemIdentifier("TimersWindow")
 	static let newAlarmWindow=NSUserInterfaceItemIdentifier("NewAlarmWindow")
+	static let worldClockWindow=NSUserInterfaceItemIdentifier("WorldClockWindow")
     static let prefrencesWindow=NSUserInterfaceItemIdentifier("PreferencesWindow")
     static let simplePrefrencesWindow=NSUserInterfaceItemIdentifier("SimplePreferencesWindow")
 }

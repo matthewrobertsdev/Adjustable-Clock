@@ -57,7 +57,7 @@ class DockClockController: NSObject {
 	}
 	func updateClockForPreferencesChange() {
 		updateDockTile()
-		if (preferences.justColors) {
+		if preferences.justColors {
 			updateTimer?.cancel()
 		} else {
 			animateTime()

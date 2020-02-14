@@ -13,6 +13,7 @@ class MainMenu: NSMenu {
     @IBOutlet weak var clockMenu: ClockMenu!
     @IBOutlet weak var alarmsMenu: AlarmsMenu!
 	@IBOutlet weak var timersMenu: TimersMenu!
+	@IBOutlet weak var worldClockMenu: WorldClockMenu!
     @IBAction func pressSimplePreferencesMenuItem(preferenceMenuItem: NSMenuItem) {
         let appObject = NSApp as NSApplication
 		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {

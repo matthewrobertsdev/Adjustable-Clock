@@ -8,13 +8,13 @@
 
 import AppKit
 
-class TimersWindowController: NSWindowController, NSWindowDelegate  {
+class TimersWindowController: NSWindowController, NSWindowDelegate {
 	static var timersObject=TimersWindowController()
     override func windowDidLoad() {
         super.windowDidLoad()
 		window?.delegate=self
 		window?.minSize=NSSize(width: 450, height: 224)
-		if (TimersPreferenceStorage.sharedInstance.haslaunchedBefore()) {
+		if TimersPreferenceStorage.sharedInstance.haslaunchedBefore() {
 			TimersWindowRestorer().loadSavedWindowCGRect(window: window)
 		}
     }

@@ -14,16 +14,14 @@ import AVFoundation
 import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-	var clock=ClockWindowController.clockObject.window
 	var generalMenuController: GeneralMenuController?
     var colorsMenuController: ColorsMenuController?
 	var clockMenuController: ClockMenuController?
 	var alarmsMenuController: AlarmsMenuController?
 	var timersMenuController: TimersMenuController?
-	var player: AVAudioPlayer?
+	var worldClockMenuController: WorldClockMenuController?
 	//on launch
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-	//playSong()
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
 		AlarmsPreferencesStorage.sharedInstance.loadPreferences()
 		updateClockMenuUI()
@@ -35,6 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			alarmsMenuController=AlarmsMenuController(menu: mainMenu.alarmsMenu)
 			timersMenuController=TimersMenuController(menu: mainMenu.timersMenu)
 			generalMenuController=GeneralMenuController(menu: mainMenu.generalMenu)
+			worldClockMenuController=WorldClockMenuController(menu: mainMenu.worldClockMenu)
 		}
 		DockClockController.dockClockObject.updateDockTile()
 		AlarmCenter.sharedInstance

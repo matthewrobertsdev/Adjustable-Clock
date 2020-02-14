@@ -37,7 +37,6 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 	func showClock() {
 		if clockWindowPresent()==false {
 		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
-			print("clock not present")
 		guard let clockWindowController =
 			mainStoryBoard.instantiateController(withIdentifier:
 				"ClockWindowController") as? ClockWindowController else { return }
@@ -48,7 +47,6 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 				ClockWindowController.clockObject.showWindow(nil)
 			}
 		} else {
-			print("clock present")
 			let appObject = NSApp as NSApplication
 			for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
 				if let clockWindowController=window.windowController as? ClockWindowController {

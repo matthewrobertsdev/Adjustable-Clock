@@ -110,7 +110,7 @@ class AlarmsViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 			default:
 				alarm.active=true
 			}
-			alarmTableView.reloadData(forRowIndexes:[index], columnIndexes: [0])
+			alarmTableView.reloadData(forRowIndexes: [index], columnIndexes: [0])
 		}
 		AlarmCenter.sharedInstance.saveAlarms()
 		AlarmCenter.sharedInstance.setAlarms()

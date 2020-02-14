@@ -22,7 +22,7 @@ class TimersMenuController: TimerMenuDelegate {
 	func showTimerThreeClicked() {
 		showTimer(index: 2)
 	}
-	func showTimer(index: Int){
+	func showTimer(index: Int) {
 		TimersWindowController.timersObject.showTimers()
 		let appObject = NSApp as NSApplication
 		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.timersWindow {

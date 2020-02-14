@@ -24,7 +24,7 @@ class TimersPreferenceStorage {
 	func setHasLaunched() {
 		userDefaults.set(true, forKey: hasLaunchedKey)
 	}
-	func haslaunchedBefore()->Bool{
+	func haslaunchedBefore() -> Bool {
 		return userDefaults.bool(forKey: hasLaunchedKey)
 	}
 }
