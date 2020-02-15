@@ -15,6 +15,7 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
         super.viewDidLoad()
 		collectionView.dataSource=self
 		collectionView.delegate=self
+		popover.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)
 		collectionView.register(TimerCollectionViewItem.self, forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TimerCollectionViewItem"))
 		update()
 		let processOptions: ProcessInfo.ActivityOptions=[ProcessInfo.ActivityOptions.userInitiatedAllowingIdleSystemSleep]
@@ -47,7 +48,7 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 	func updateTimer(index: Int) {
 		TimersCenter.sharedInstance.timers[index].secondsRemaining-=1
 	}
-	private func animateTimer(index: Int) {
+	func animateTimer(index: Int) {
 		displayTimer(index: index)
 		TimersCenter.sharedInstance.gcdTimers[index].schedule(deadline: .now(), repeating: .milliseconds(1000), leeway: .milliseconds(0))
 		TimersCenter.sharedInstance.gcdTimers[index].setEventHandler {
@@ -78,7 +79,7 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 			TimersCenter.sharedInstance.gcdTimers[index].suspend()
 			timerCollectionViewItem.startPauseButton.title="Resume"
 		} else {
-			TimersCenter.sharedInstance.timers[index].active=true
+		TimersCenter.sharedInstance.timers[index].active=true
 			animateTimer(index: index)
 			timerCollectionViewItem.startPauseButton.title="Pause"
 		}
@@ -95,9 +96,9 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 				mainStoryBoard.instantiateController(withIdentifier:
 				   "EditableTimerViewController") as? EditableTimerViewController else { return }
 		let index=settingsButton.tag
-			let alarm=AlarmCenter.sharedInstance.getAlarm(index: index)
-			editableTimerViewController.cancel = { () -> Void in self.popover.close() }
+			editableTimerViewController.closeAction = { () -> Void in self.popover.close() }
 			popover.contentViewController = editableTimerViewController
+			editableTimerViewController.index=index
 			popover.show(relativeTo: settingsButton.bounds, of: settingsButton, preferredEdge: NSRectEdge.minY)
 		}
 	}
