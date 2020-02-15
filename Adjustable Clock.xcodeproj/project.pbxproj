@@ -34,6 +34,8 @@
 		9F3C7D6A20CCE40D00C91506 /* ClockPreferencesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C7D6920CCE40D00C91506 /* ClockPreferencesStorage.swift */; };
 		9F407E1723F1D17A00557EA4 /* TimersWindowRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F407E1623F1D17A00557EA4 /* TimersWindowRestorer.swift */; };
 		9F407E1923F1D4F000557EA4 /* TimersPrefrenceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F407E1823F1D4F000557EA4 /* TimersPrefrenceStorage.swift */; };
+		9F4A9C5E23F7A67D0046A7F2 /* EditableTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A9C5D23F7A67D0046A7F2 /* EditableTimerViewController.swift */; };
+		9F4A9C6023F7A69E0046A7F2 /* EditableTimerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A9C5F23F7A69E0046A7F2 /* EditableTimerWindowController.swift */; };
 		9F4D87452055E99400AF63D1 /* ClockWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D87442055E99400AF63D1 /* ClockWindowController.swift */; };
 		9F4EF1E320C273CB00E08C57 /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4EF1E220C273CB00E08C57 /* ColorModel.swift */; };
 		9F51284023DB42E300B87C29 /* NSViewToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F51283F23DB42E300B87C29 /* NSViewToImage.swift */; };
@@ -150,6 +152,8 @@
 		9F3C7D6920CCE40D00C91506 /* ClockPreferencesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockPreferencesStorage.swift; sourceTree = "<group>"; };
 		9F407E1623F1D17A00557EA4 /* TimersWindowRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersWindowRestorer.swift; sourceTree = "<group>"; };
 		9F407E1823F1D4F000557EA4 /* TimersPrefrenceStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersPrefrenceStorage.swift; sourceTree = "<group>"; };
+		9F4A9C5D23F7A67D0046A7F2 /* EditableTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTimerViewController.swift; sourceTree = "<group>"; };
+		9F4A9C5F23F7A69E0046A7F2 /* EditableTimerWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTimerWindowController.swift; sourceTree = "<group>"; };
 		9F4D87442055E99400AF63D1 /* ClockWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockWindowController.swift; sourceTree = "<group>"; };
 		9F4EF1E220C273CB00E08C57 /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
 		9F51283F23DB42E300B87C29 /* NSViewToImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewToImage.swift; sourceTree = "<group>"; };
@@ -429,6 +433,8 @@
 				9F407E1823F1D4F000557EA4 /* TimersPrefrenceStorage.swift */,
 				9F35462A23F20E40009FA191 /* TimersCenter.swift */,
 				9F35462C23F20FDF009FA191 /* CountDownTimer.swift */,
+				9F4A9C5D23F7A67D0046A7F2 /* EditableTimerViewController.swift */,
+				9F4A9C5F23F7A69E0046A7F2 /* EditableTimerWindowController.swift */,
 			);
 			path = Timers;
 			sourceTree = "<group>";
@@ -764,6 +770,7 @@
 				9FA6A7A323D8E2BC005564E7 /* GeneralPreferencesStorage.swift in Sources */,
 				9F8EBE482050C4C7005BA4F2 /* ClockViewController.swift in Sources */,
 				9FEAE9DD1F4F7249004EB641 /* MainMenu.swift in Sources */,
+				9F4A9C5E23F7A67D0046A7F2 /* EditableTimerViewController.swift in Sources */,
 				9F1375DA23D94F70003B2B15 /* AlarmTimeTableCellView.swift in Sources */,
 				9FE390871FECBCF400AF5442 /* PreferencesWindowRestorer.swift in Sources */,
 				9F97C86623EB8586005381A0 /* ColorView.swift in Sources */,
@@ -790,6 +797,7 @@
 				9FD6B30523CC170100EFEF3C /* BaseAnalogClockView.swift in Sources */,
 				9FB1D95623EA7F5000E8A35F /* TimersViewController.swift in Sources */,
 				9F53421623D90C1500FDD0F3 /* EditableAlarmViewController.swift in Sources */,
+				9F4A9C6023F7A69E0046A7F2 /* EditableTimerWindowController.swift in Sources */,
 				9F7FF69823D2A56A009E5DA8 /* NSViewDetectDarkMode.swift in Sources */,
 				9F0F972A23DB5FF8005456E6 /* ChooseAlertViewController.swift in Sources */,
 				9F538C4D2116AC1500A72242 /* SimplePreferenceWindowController.swift in Sources */,

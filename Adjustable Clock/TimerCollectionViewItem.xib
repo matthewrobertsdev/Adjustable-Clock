@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="TimerCollectionViewItem" customModule="Adjustable_Clock" customModuleProvider="target">
             <connections>
                 <outlet property="countdownTextField" destination="xEI-KT-zbD" id="ch0-fl-Hhj"/>
+                <outlet property="settingsButton" destination="fdb-1N-ueH" id="S1x-Zp-pGE"/>
                 <outlet property="startPauseButton" destination="zCm-pV-pco" id="6DF-Ty-E7R"/>
                 <outlet property="stopTimeTextField" destination="rGD-4H-Rts" id="uzp-FK-mK0"/>
                 <outlet property="titleTextField" destination="PIs-qO-OS2" id="WWG-zd-FsU"/>

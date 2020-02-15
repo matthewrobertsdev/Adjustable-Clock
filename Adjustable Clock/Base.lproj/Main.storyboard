@@ -1378,9 +1378,9 @@ DQ
                                         </connections>
                                     </button>
                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="72" horizontalPageScroll="10" verticalLineScroll="72" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeL-au-qBm">
-                                        <rect key="frame" x="37" y="0.0" width="196" height="229"/>
+                                        <rect key="frame" x="38" y="0.0" width="194" height="229"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="1wB-iL-xvO">
-                                            <rect key="frame" x="0.0" y="0.0" width="196" height="229"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="194" height="229"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" viewBased="YES" id="Vdc-vV-Lyv">
@@ -1520,7 +1520,7 @@ DQ
                                             <nil key="backgroundColor"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="r4j-UB-Phi">
-                                            <rect key="frame" x="0.0" y="213" width="196" height="16"/>
+                                            <rect key="frame" x="0.0" y="213" width="194" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="eZy-yX-3TV">
@@ -1561,6 +1561,212 @@ DQ
             <point key="canvasLocation" x="1138" y="639"/>
         </scene>
         <!--Window Controller-->
+        <scene sceneID="hms-QU-P9Z">
+            <objects>
+                <windowController id="JWA-H8-NkN" customClass="EditableTimerWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Change Timer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="qRy-Tt-rUs">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="163" y="199" width="292" height="148"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <connections>
+                            <outlet property="delegate" destination="JWA-H8-NkN" id="X0E-5L-ako"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="uPZ-Mw-0vQ" kind="relationship" relationship="window.shadowedContentViewController" id="pdf-E7-4MB"/>
+                    </connections>
+                </windowController>
+                <customObject id="sZb-QG-peU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1394" y="145"/>
+        </scene>
+        <!--Editable Timer View Controller-->
+        <scene sceneID="pSq-el-Yiz">
+            <objects>
+                <viewController storyboardIdentifier="EditableTimerViewController" id="uPZ-Mw-0vQ" customClass="EditableTimerViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="4zw-uu-jp5">
+                        <rect key="frame" x="0.0" y="0.0" width="206" height="287"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bre-QP-Dok">
+                                <rect key="frame" x="21" y="20" width="165" height="247"/>
+                                <subviews>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gd6-Mg-GGN">
+                                        <rect key="frame" x="1" y="223" width="163" height="24"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3oD-Jn-M7N">
+                                                <rect key="frame" x="-2" y="4" width="56" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Duration" id="ULu-aX-iCE">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yGd-LK-w7c">
+                                                <rect key="frame" x="60" y="0.0" width="106" height="28"/>
+                                                <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="rL9-yf-Drg">
+                                                    <font key="font" metaFont="system"/>
+                                                    <date key="date" timeIntervalSinceReferenceDate="-595926000">
+                                                        <!--1982-02-12 17:00:00 +0000-->
+                                                    </date>
+                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <datePickerElements key="datePickerElements" hour="YES" minute="YES" second="YES"/>
+                                                </datePickerCell>
+                                            </datePicker>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="yGd-LK-w7c" firstAttribute="centerY" secondItem="gd6-Mg-GGN" secondAttribute="centerY" id="DuR-Sv-lFi"/>
+                                            <constraint firstItem="3oD-Jn-M7N" firstAttribute="centerY" secondItem="gd6-Mg-GGN" secondAttribute="centerY" id="a3h-UY-cGy"/>
+                                        </constraints>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RKV-N7-jah">
+                                        <rect key="frame" x="59" y="197" width="47" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Sound:" id="lXB-vD-sLM">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VA9-rf-Dv1">
+                                        <rect key="frame" x="57" y="170" width="52" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Alert" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Hf5-aK-1RO">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="useBeepChosen:" target="9uc-jD-1ug" id="qX0-86-XqD"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="D1a-7x-Xl8">
+                                        <rect key="frame" x="56" y="144" width="54" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Song" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="SNw-Qw-4dm">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="useSongChosen:" target="9uc-jD-1ug" id="VM1-xH-cHs"/>
+                                        </connections>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qhw-8c-8Kq">
+                                        <rect key="frame" x="49" y="119" width="68" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Alert: Ping" id="rZm-LI-98W">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="92G-Nk-W31">
+                                        <rect key="frame" x="23" y="81" width="119" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Choose Alert" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DPT-k1-GMb">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="chooseAlert:" target="9uc-jD-1ug" id="Ydc-FW-fQR"/>
+                                        </connections>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="irB-Zz-ang">
+                                        <rect key="frame" x="17" y="62" width="132" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Playlist: none chosen" id="nDp-lH-3JG">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="019-4P-Lfd">
+                                        <rect key="frame" x="16" y="24" width="133" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Choose Playlist" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bay-0J-iIT">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="choosePlaylist:" target="9uc-jD-1ug" id="ugH-vo-mlI"/>
+                                        </connections>
+                                    </button>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WIJ-QC-asP">
+                                        <rect key="frame" x="0.0" y="0.0" width="165" height="21"/>
+                                        <subviews>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BWr-UR-xqZ">
+                                                <rect key="frame" x="-6" y="-7" width="82" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NXv-cY-yVo">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="cancel:" target="uPZ-Mw-0vQ" id="XsE-VW-QGa"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0bl-Mg-606">
+                                                <rect key="frame" x="72" y="-7" width="99" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Set Timer" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YRb-kp-qCm">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="setTimer:" target="uPZ-Mw-0vQ" id="CWk-tg-sxj"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="timerDatePicker" destination="yGd-LK-w7c" id="0bq-4a-jQ4"/>
+                    </connections>
+                </viewController>
+                <customObject id="tRf-vt-bax" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1746" y="153.5"/>
+        </scene>
+        <!--Window Controller-->
         <scene sceneID="rEh-6m-9kw">
             <objects>
                 <windowController storyboardIdentifier="NewAlarmWindowController" id="ZgF-XD-PaL" customClass="EditableAlarmWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
@@ -1589,9 +1795,6 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="243" height="343"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <visualEffectView hidden="YES" appearanceType="vibrantDark" blendingMode="behindWindow" material="dark" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="nkM-RZ-mMN">
-                                <rect key="frame" x="0.0" y="0.0" width="243" height="343"/>
-                            </visualEffectView>
                             <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="flv-ip-qrW">
                                 <rect key="frame" x="39" y="21" width="166" height="302"/>
                                 <subviews>
@@ -1782,12 +1985,8 @@ DQ
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="nkM-RZ-mMN" secondAttribute="bottom" id="2Mc-P5-w9B"/>
                             <constraint firstItem="flv-ip-qrW" firstAttribute="centerX" secondItem="hmW-cO-luP" secondAttribute="centerX" id="2Ya-RK-wqu"/>
-                            <constraint firstItem="nkM-RZ-mMN" firstAttribute="top" secondItem="hmW-cO-luP" secondAttribute="top" id="6AJ-gP-dfd"/>
                             <constraint firstItem="flv-ip-qrW" firstAttribute="centerY" secondItem="hmW-cO-luP" secondAttribute="centerY" id="Z6n-1R-oOn"/>
-                            <constraint firstAttribute="trailing" secondItem="nkM-RZ-mMN" secondAttribute="trailing" id="gfE-Cd-Rtm"/>
-                            <constraint firstItem="nkM-RZ-mMN" firstAttribute="leading" secondItem="hmW-cO-luP" secondAttribute="leading" id="zkl-SP-kWF"/>
                         </constraints>
                     </view>
                     <connections>

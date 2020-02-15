@@ -10,7 +10,6 @@ import Cocoa
 
 class EditableAlarmWindowController: NSWindowController {
 	static var newAlarmConfigurer=EditableAlarmWindowController()
-	static var newTimerConfigurer=EditableAlarmWindowController()
     override func windowDidLoad() {
         super.windowDidLoad()
     }

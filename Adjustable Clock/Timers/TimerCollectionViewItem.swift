@@ -11,6 +11,7 @@ class TimerCollectionViewItem: NSCollectionViewItem {
 	@IBOutlet weak var countdownTextField: NSTextField!
 	@IBOutlet weak var stopTimeTextField: NSTextField!
 	@IBOutlet weak var startPauseButton: NSButton!
+	@IBOutlet weak var settingsButton: NSButton!
 	override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.

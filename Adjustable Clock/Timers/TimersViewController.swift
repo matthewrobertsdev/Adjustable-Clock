@@ -7,6 +7,7 @@
 //
 import Cocoa
 class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTableViewDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate {
+	let popover = NSPopover()
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var collectionView: NSCollectionView!
 	var tellingTime: NSObjectProtocol?
@@ -36,6 +37,8 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 		timerCollectionViewItem.countdownTextField.stringValue=TimersCenter.sharedInstance.getCountDownString(index: indexPath.item)
 		timerCollectionViewItem.startPauseButton.action=#selector(startPauseAction(sender:))
 		timerCollectionViewItem.startPauseButton.tag=indexPath.item
+		timerCollectionViewItem.settingsButton.tag=indexPath.item
+		timerCollectionViewItem.settingsButton.action=#selector(showPopover(sender:))
 		return timerCollectionViewItem
 	}
 	func scrollToTimer(index: Int) {
@@ -78,6 +81,24 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 			TimersCenter.sharedInstance.timers[index].active=true
 			animateTimer(index: index)
 			timerCollectionViewItem.startPauseButton.title="Pause"
+		}
+	}
+	@objc func showPopover(sender: Any?) {
+		guard let settingsButton=sender as? NSButton else {
+			return
+		}
+		if  popover.isShown {
+			popover.close()
+		} else {
+			let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
+			   guard let editableTimerViewController =
+				mainStoryBoard.instantiateController(withIdentifier:
+				   "EditableTimerViewController") as? EditableTimerViewController else { return }
+		let index=settingsButton.tag
+			let alarm=AlarmCenter.sharedInstance.getAlarm(index: index)
+			editableTimerViewController.cancel = { () -> Void in self.popover.close() }
+			popover.contentViewController = editableTimerViewController
+			popover.show(relativeTo: settingsButton.bounds, of: settingsButton, preferredEdge: NSRectEdge.minY)
 		}
 	}
 }
