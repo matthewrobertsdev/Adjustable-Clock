@@ -8,7 +8,7 @@
 
 import AppKit
 
-class TimersWindowController: NSWindowController, NSWindowDelegate {
+class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 	static var timersObject=TimersWindowController()
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -17,6 +17,7 @@ class TimersWindowController: NSWindowController, NSWindowDelegate {
 		if TimersPreferenceStorage.sharedInstance.haslaunchedBefore() {
 			TimersWindowRestorer().loadSavedWindowCGRect(window: window)
 		}
+		prepareWindowButtons()
     }
 	func showTimers() {
 		if isTimersWindowPresent() == false {

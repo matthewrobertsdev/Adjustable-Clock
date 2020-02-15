@@ -939,8 +939,8 @@ DQ
         <scene sceneID="v9s-Dr-xNz">
             <objects>
                 <windowController storyboardIdentifier="TimersWindowController" id="7qg-yV-28o" customClass="TimersWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="TimersWindow" title="Timers" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="7mb-fx-SVb">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                    <window key="window" identifier="TimersWindow" title="Timers" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="7mb-fx-SVb">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="395" height="204"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
@@ -961,50 +961,73 @@ DQ
             <objects>
                 <viewController id="Fch-iR-SvQ" customClass="TimersViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="gv6-gj-aTH">
-                        <rect key="frame" x="0.0" y="0.0" width="449" height="206"/>
+                        <rect key="frame" x="0.0" y="0.0" width="449" height="327"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7Q-Wo-kc1">
-                                <rect key="frame" x="0.0" y="0.0" width="449" height="206"/>
-                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="bXY-wo-YzA">
-                                    <rect key="frame" x="0.0" y="0.0" width="449" height="206"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <collectionView id="zzm-Pa-2aK">
-                                            <rect key="frame" x="0.0" y="0.0" width="449" height="158"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="Lab-3U-20t">
-                                                <size key="itemSize" width="450" height="204"/>
-                                            </collectionViewFlowLayout>
-                                            <color key="primaryBackgroundColor" red="0.22146842782307463" green="0.22039853203648974" blue="0.22253832360965953" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
-                                        </collectionView>
-                                    </subviews>
-                                    <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="4OA-ho-GV7">
-                                    <rect key="frame" x="0.0" y="190" width="449" height="16"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="V6w-nk-33H">
-                                    <rect key="frame" x="306" y="1" width="16" height="155"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                            </scrollView>
+                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="3" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="li0-1M-reH">
+                                <rect key="frame" x="0.0" y="0.0" width="449" height="307"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sxf-Lb-5wq">
+                                        <rect key="frame" x="165" y="261" width="119" height="46"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Timers" id="jTc-VM-bBw">
+                                            <font key="font" metaFont="system" size="39"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7Q-Wo-kc1">
+                                        <rect key="frame" x="0.0" y="0.0" width="449" height="258"/>
+                                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="bXY-wo-YzA">
+                                            <rect key="frame" x="0.0" y="0.0" width="449" height="258"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <collectionView id="zzm-Pa-2aK">
+                                                    <rect key="frame" x="0.0" y="0.0" width="449" height="258"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="Lab-3U-20t">
+                                                        <size key="itemSize" width="450" height="204"/>
+                                                    </collectionViewFlowLayout>
+                                                    <color key="primaryBackgroundColor" red="0.22146842782307463" green="0.22039853203648974" blue="0.22253832360965953" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </collectionView>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </clipView>
+                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="4OA-ho-GV7">
+                                            <rect key="frame" x="-100" y="-100" width="449" height="16"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="V6w-nk-33H">
+                                            <rect key="frame" x="433" y="0.0" width="16" height="206"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </scroller>
+                                    </scrollView>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Z7Q-Wo-kc1" firstAttribute="leading" secondItem="gv6-gj-aTH" secondAttribute="leading" id="X7i-Ix-h36"/>
-                            <constraint firstItem="Z7Q-Wo-kc1" firstAttribute="top" secondItem="gv6-gj-aTH" secondAttribute="top" id="ZYz-AO-mN7"/>
-                            <constraint firstAttribute="bottom" secondItem="Z7Q-Wo-kc1" secondAttribute="bottom" id="Zhu-lD-dwP"/>
-                            <constraint firstAttribute="trailing" secondItem="Z7Q-Wo-kc1" secondAttribute="trailing" id="ncW-fJ-COJ"/>
+                            <constraint firstItem="li0-1M-reH" firstAttribute="leading" secondItem="gv6-gj-aTH" secondAttribute="leading" id="McB-wM-CCC"/>
+                            <constraint firstAttribute="bottom" secondItem="li0-1M-reH" secondAttribute="bottom" id="VRF-3g-Mc8"/>
+                            <constraint firstItem="li0-1M-reH" firstAttribute="top" secondItem="gv6-gj-aTH" secondAttribute="top" constant="20" id="aVg-mI-Fdm"/>
+                            <constraint firstAttribute="trailing" secondItem="li0-1M-reH" secondAttribute="trailing" id="afO-KW-8cG"/>
+                            <constraint firstAttribute="bottom" secondItem="Z7Q-Wo-kc1" secondAttribute="bottom" id="hgH-EJ-l4Z"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="zzm-Pa-2aK" id="QsZ-zY-zCW"/>
+                        <outlet property="titleTextField" destination="sxf-Lb-5wq" id="0sa-pw-5D7"/>
                     </connections>
                 </viewController>
                 <customObject id="dUP-Sx-2Yi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="627.5" y="1015"/>
+            <point key="canvasLocation" x="627.5" y="1059.5"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="iis-X9-kH4">
@@ -1355,9 +1378,9 @@ DQ
                                         </connections>
                                     </button>
                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="72" horizontalPageScroll="10" verticalLineScroll="72" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeL-au-qBm">
-                                        <rect key="frame" x="34" y="0.0" width="202" height="229"/>
+                                        <rect key="frame" x="37" y="0.0" width="196" height="229"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="1wB-iL-xvO">
-                                            <rect key="frame" x="0.0" y="0.0" width="202" height="229"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="196" height="229"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" viewBased="YES" id="Vdc-vV-Lyv">
@@ -1497,7 +1520,7 @@ DQ
                                             <nil key="backgroundColor"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="r4j-UB-Phi">
-                                            <rect key="frame" x="0.0" y="213" width="202" height="16"/>
+                                            <rect key="frame" x="0.0" y="213" width="196" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="eZy-yX-3TV">
@@ -1541,7 +1564,7 @@ DQ
         <scene sceneID="rEh-6m-9kw">
             <objects>
                 <windowController storyboardIdentifier="NewAlarmWindowController" id="ZgF-XD-PaL" customClass="EditableAlarmWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="NewAlarmWindow" title="Create Alarm" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="PbG-Vp-cuU">
+                    <window key="window" identifier="NewAlarmWindow" title="Create Alarm" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="PbG-Vp-cuU">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES" fullScreenDisallowsTiling="YES"/>
                         <rect key="contentRect" x="196" y="240" width="313" height="155"/>

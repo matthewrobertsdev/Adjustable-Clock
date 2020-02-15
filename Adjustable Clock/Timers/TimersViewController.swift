@@ -7,6 +7,7 @@
 //
 import Cocoa
 class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTableViewDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate {
+	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var collectionView: NSCollectionView!
 	var tellingTime: NSObjectProtocol?
 	override func viewDidLoad() {
@@ -19,7 +20,7 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 		tellingTime = ProcessInfo().beginActivity(options: processOptions, reason: "Need accurate time for timers")
     }
 	func update() {
-		applyColorScheme(views: [ColorView](), labels: [NSTextField]())
+		applyColorScheme(views: [ColorView](), labels: [titleTextField])
 		collectionView.reloadData()
 	}
 	func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
