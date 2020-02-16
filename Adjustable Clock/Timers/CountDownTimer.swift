@@ -12,7 +12,7 @@ class CountDownTimer {
 	var totalSeconds=180
 	var title=""
 	var usesSong: Bool?
-	var alertString="Ping"
+	var alertStyle=AlertStyle.sound
 	var song=""
 	var active=false
 }

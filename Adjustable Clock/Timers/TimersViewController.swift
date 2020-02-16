@@ -45,15 +45,17 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 	func scrollToTimer(index: Int) {
 		collectionView.scrollToItems(at: [IndexPath(item: index, section: 0)], scrollPosition: NSCollectionView.ScrollPosition.centeredVertically)
 	}
-	func updateTimer(index: Int) {
-		TimersCenter.sharedInstance.timers[index].secondsRemaining-=1
-	}
 	func animateTimer(index: Int) {
 		displayTimer(index: index)
 		TimersCenter.sharedInstance.gcdTimers[index].schedule(deadline: .now(), repeating: .milliseconds(1000), leeway: .milliseconds(0))
 		TimersCenter.sharedInstance.gcdTimers[index].setEventHandler {
-			self.updateTimer(index: index)
+			TimersCenter.sharedInstance.updateTimer(index: index)
 			self.displayTimer(index: index)
+			if TimersCenter.sharedInstance.timers[index].active==false {
+				if let timerCollectionViewItem=self.collectionView.item(at: index) as? TimerCollectionViewItem {
+					timerCollectionViewItem.startPauseButton.title="Start"
+				}
+			}
 		}
 		TimersCenter.sharedInstance.gcdTimers[index].resume()
 	}

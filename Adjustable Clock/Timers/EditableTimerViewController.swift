@@ -6,6 +6,11 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import Cocoa
+enum AlertStyle {
+	case sound
+	case song
+	case noSound
+}
 class EditableTimerViewController: NSViewController {
 	var index=0
 	let calendar=Calendar.current
@@ -13,7 +18,8 @@ class EditableTimerViewController: NSViewController {
 	@IBOutlet weak var playlistTextField: NSButton!
 	@IBOutlet weak var beepButton: NSButton!
 	@IBOutlet weak var songButton: NSButton!
-	var usesSong=false
+	@IBOutlet weak var noSoundButton: NSButton!
+	var alertStyle=AlertStyle.sound
 	var oldDate: Date?
 	var alertName="Ping"
 	var playlistName=""
@@ -28,22 +34,16 @@ class EditableTimerViewController: NSViewController {
 	}
 	@IBAction func setTimer(_ sender: Any) {
 		let timerDate=timerDatePicker.dateValue
-		let hours=calendar.dateComponents([.hour], from: timerDate).hour ?? 0
-		let minutes=calendar.dateComponents([.minute], from: timerDate).minute ?? 0
-		let seconds=calendar.dateComponents([.second], from: timerDate).second ?? 0
-		let totalSeconds=60*60*hours+60*minutes+seconds
-		let timer=TimersCenter.sharedInstance.timers[index]
-		timer.totalSeconds=totalSeconds
-		timer.secondsRemaining=totalSeconds
+		
 		guard let timerViewController=TimersWindowController.timersObject.contentViewController as? TimersViewController else {
 			return
 		}
-		if TimersCenter.sharedInstance.timers[index].active {
-		TimersCenter.sharedInstance.timers[index].active=false
-		TimersCenter.sharedInstance.gcdTimers[index].suspend()
-		}
-		timer.active=true
+		TimersCenter.sharedInstance.setSeconds(index: index, time: timerDate)
+		TimersCenter.sharedInstance.stopTimer(index: index)
+		TimersCenter.sharedInstance.timers[index].active=true
 		timerViewController.animateTimer(index: index)
+		let timerCollectionViewItem=timerViewController.collectionView.item(at: index) as? TimerCollectionViewItem
+		timerCollectionViewItem?.startPauseButton.title="Pause"
 		closeAction()
 	}
 	@IBAction func chooseAlert(_ sender: Any) {
@@ -75,16 +75,27 @@ class EditableTimerViewController: NSViewController {
 		useBeep()
 	}
 	func useBeep() {
-		beepButton.state=NSControl.StateValue.on
+		noSoundButton.state=NSControl.StateValue.off
 		songButton.state=NSControl.StateValue.off
-		usesSong=false
+		beepButton.state=NSControl.StateValue.on
+		alertStyle=AlertStyle.sound
 	}
 	@IBAction func useSongChosen(_ sender: Any) {
 		useSong()
 	}
 	func useSong() {
 		beepButton.state=NSControl.StateValue.off
+		noSoundButton.state=NSControl.StateValue.off
 		songButton.state=NSControl.StateValue.on
-		usesSong=true
+		alertStyle=AlertStyle.song
+	}
+	@IBAction func useNoSoundChosen(_ sender: Any) {
+		useNoSound()
+	}
+	func useNoSound(){
+		beepButton.state=NSControl.StateValue.off
+		songButton.state=NSControl.StateValue.off
+		noSoundButton.state=NSControl.StateValue.on
+		alertStyle=AlertStyle.noSound
 	}
 }
