@@ -51,7 +51,7 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 		TimersCenter.sharedInstance.gcdTimers[index].setEventHandler {
 			TimersCenter.sharedInstance.updateTimer(index: index)
 			self.displayTimer(index: index)
-			if TimersCenter.sharedInstance.timers[index].active==false {
+			if TimersCenter.sharedInstance.timers[index].secondsRemaining<1 {
 				if let timerCollectionViewItem=self.collectionView.item(at: index) as? TimerCollectionViewItem {
 					timerCollectionViewItem.startPauseButton.title="Start"
 				}
@@ -60,9 +60,6 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 		TimersCenter.sharedInstance.gcdTimers[index].resume()
 	}
 	func displayTimer(index: Int) {
-		if !TimersCenter.sharedInstance.timers[index].active {
-			return
-		}
 		guard let colectionViewItem=collectionView.item(at: index) as? TimerCollectionViewItem else {
 			return
 		}

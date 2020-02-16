@@ -20,13 +20,14 @@ class TimersCenter {
 		return  String(TimersCenter.sharedInstance.timers[index].secondsRemaining)
 	}
 	func updateTimer(index: Int) {
-		timers[index].secondsRemaining-=1
 		if timers[index].secondsRemaining<1 {
 			gcdTimers[index].suspend()
 			timers[index].active=false
+		} else {
+			timers[index].secondsRemaining-=1
 		}
 	}
-	func setSeconds(index: Int, time: Date){
+	func setSeconds(index: Int, time: Date) {
 		let hours=calendar.dateComponents([.hour], from: time).hour ?? 0
 		let minutes=calendar.dateComponents([.minute], from: time).minute ?? 0
 		let seconds=calendar.dateComponents([.second], from: time).second ?? 0

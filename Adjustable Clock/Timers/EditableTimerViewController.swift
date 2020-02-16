@@ -92,7 +92,7 @@ class EditableTimerViewController: NSViewController {
 	@IBAction func useNoSoundChosen(_ sender: Any) {
 		useNoSound()
 	}
-	func useNoSound(){
+	func useNoSound() {
 		beepButton.state=NSControl.StateValue.off
 		songButton.state=NSControl.StateValue.off
 		noSoundButton.state=NSControl.StateValue.on
