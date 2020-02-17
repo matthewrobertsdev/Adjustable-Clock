@@ -34,11 +34,14 @@ class EditableTimerViewController: NSViewController {
 	}
 	@IBAction func setTimer(_ sender: Any) {
 		let timerDate=timerDatePicker.dateValue
-		
 		guard let timerViewController=TimersWindowController.timersObject.contentViewController as? TimersViewController else {
 			return
 		}
 		TimersCenter.sharedInstance.setSeconds(index: index, time: timerDate)
+		let timer=TimersCenter.sharedInstance.timers[index]
+		timer.alertStyle=alertStyle
+		timer.alertString=alertName
+		timer.song=playlistName
 		TimersCenter.sharedInstance.stopTimer(index: index)
 		TimersCenter.sharedInstance.timers[index].active=true
 		timerViewController.animateTimer(index: index)

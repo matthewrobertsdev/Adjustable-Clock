@@ -11,8 +11,8 @@ class CountDownTimer {
 	var secondsRemaining=180
 	var totalSeconds=180
 	var title=""
-	var usesSong: Bool?
 	var alertStyle=AlertStyle.sound
+	var alertString=""
 	var song=""
 	var active=false
 }

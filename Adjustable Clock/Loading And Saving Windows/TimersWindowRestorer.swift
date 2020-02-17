@@ -7,7 +7,6 @@
 //
 import Foundation
 class TimersWindowRestorer: WindowFrameRestorer {
-	
 	private let xKey="timersXPosition"
 	   private let yKey="timersYPosition"
 	   private let widthKey="timersWidthKey"

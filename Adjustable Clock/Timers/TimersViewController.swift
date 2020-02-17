@@ -7,6 +7,7 @@
 //
 import Cocoa
 class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTableViewDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate {
+	private let timeFormatter=DateFormatter()
 	let popover = NSPopover()
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var collectionView: NSCollectionView!
@@ -20,6 +21,8 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 		update()
 		let processOptions: ProcessInfo.ActivityOptions=[ProcessInfo.ActivityOptions.userInitiatedAllowingIdleSystemSleep]
 		tellingTime = ProcessInfo().beginActivity(options: processOptions, reason: "Need accurate time for timers")
+		timeFormatter.locale=Locale(identifier: "en_US")
+		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
     }
 	func update() {
 		applyColorScheme(views: [ColorView](), labels: [titleTextField])
@@ -55,9 +58,77 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 				if let timerCollectionViewItem=self.collectionView.item(at: index) as? TimerCollectionViewItem {
 					timerCollectionViewItem.startPauseButton.title="Start"
 				}
+				self.timerStopped(index: index)
+				//TimersCenter.sharedInstance.gcdTimers[index].suspend()
 			}
 		}
 		TimersCenter.sharedInstance.gcdTimers[index].resume()
+	}
+	func timerStopped(index: Int) {
+		let timer=TimersCenter.sharedInstance.timers[index]
+		let alertSound=NSSound(named: NSSound.Name(timer.alertString))
+		var hasError=false
+		if timer.alertStyle==AlertStyle.sound {
+			alertSound?.loops=true
+			alertSound?.play()
+		} else if timer.alertStyle==AlertStyle.song {
+			print("should play music")
+			let playlistName=timer.song
+			let appleScript =
+			"""
+			tell application "Music"
+				play playlist "\(playlistName)"
+			end tell
+			"""
+			var error: NSDictionary?
+			if let scriptObject = NSAppleScript(source: appleScript) {
+				if let outputString = scriptObject.executeAndReturnError(&error).stringValue {
+					print(outputString)
+				} else if error != nil {
+					print("Error: ", error ?? "")
+					hasError=true
+					let alarmSound=NSSound(named: "Ping")
+					alarmSound?.loops=true
+					alarmSound?.play()
+				}
+			}
+		}
+		let timerAlert=NSAlert()
+		timerAlert.messageText="Timer has gone off at \(self.timeFormatter.string(from: Date()))."
+		timerAlert.addButton(withTitle: "Dismiss")
+		timerAlert.icon=DockClockController.dockClockObject.getFreezeView(time: Date()).image()
+		AlarmsWindowController.alarmsObject.showAlarms()
+		if timer.alertStyle==AlertStyle.song && !hasError {
+			timerAlert.addButton(withTitle: "Stop Music")
+		} else if timer.alertStyle==AlertStyle.song {
+			timerAlert.messageText+="""
+			  A playlist was supposed to play.  Please check your internet connection and that automation \
+			of Music is allowed in Settings->Security and Privacy->Automation->Clock Suite.
+			"""
+		}
+		timerAlert.beginSheetModal(for: TimersWindowController.timersObject.window ?? NSWindow()) { (modalResponse) in
+			if timer.alertStyle==AlertStyle.sound {
+				alertSound?.stop()
+			} else if timer.alertStyle==AlertStyle.song{
+				if modalResponse==NSApplication.ModalResponse.alertSecondButtonReturn {
+					let appleScript =
+					"""
+					tell application "Music"
+						stop
+					end tell
+					"""
+					var error: NSDictionary?
+					if let scriptObject = NSAppleScript(source: appleScript) {
+						if let outputString = scriptObject.executeAndReturnError(&error).stringValue {
+							print(outputString)
+						} else if error != nil {
+							print("Error: ", error ?? "")
+						}
+					}
+				}
+				alertSound?.stop()
+			}
+		}
 	}
 	func displayTimer(index: Int) {
 		guard let colectionViewItem=collectionView.item(at: index) as? TimerCollectionViewItem else {
