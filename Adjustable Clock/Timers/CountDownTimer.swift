@@ -9,9 +9,10 @@ import Foundation
 class CountDownTimer {
 	var calendar=Calendar.current
 	var secondsRemaining=180
+	var totalSeconds=180
 	var title=""
-	var usesSong: Bool?
-	var alertString="Ping"
+	var alertStyle=AlertStyle.sound
+	var alertString=""
 	var song=""
-	var active=true
+	var active=false
 }

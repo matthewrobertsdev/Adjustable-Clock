@@ -8,15 +8,16 @@
 
 import AppKit
 
-class TimersWindowController: NSWindowController, NSWindowDelegate  {
+class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 	static var timersObject=TimersWindowController()
     override func windowDidLoad() {
         super.windowDidLoad()
 		window?.delegate=self
 		window?.minSize=NSSize(width: 450, height: 224)
-		if (TimersPreferenceStorage.sharedInstance.haslaunchedBefore()) {
+		if TimersPreferenceStorage.sharedInstance.haslaunchedBefore() {
 			TimersWindowRestorer().loadSavedWindowCGRect(window: window)
 		}
+		prepareWindowButtons()
     }
 	func showTimers() {
 		if isTimersWindowPresent() == false {
@@ -60,6 +61,7 @@ class TimersWindowController: NSWindowController, NSWindowDelegate  {
 		}
     }
 	func saveState() {
+		print("should save timer window state")
 		TimersWindowRestorer().windowSaveCGRect(window: window)
 		TimersPreferenceStorage.sharedInstance.setHasLaunched()
     }

@@ -14,18 +14,17 @@ import AVFoundation
 import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-	var clock=ClockWindowController.clockObject.window
 	var generalMenuController: GeneralMenuController?
     var colorsMenuController: ColorsMenuController?
 	var clockMenuController: ClockMenuController?
 	var alarmsMenuController: AlarmsMenuController?
 	var timersMenuController: TimersMenuController?
-	var player: AVAudioPlayer?
+	var worldClockMenuController: WorldClockMenuController?
 	//on launch
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-	//playSong()
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
 		AlarmsPreferencesStorage.sharedInstance.loadPreferences()
+		TimersPreferenceStorage.sharedInstance.loadPreferences()
 		updateClockMenuUI()
 		enableClockMenu(enabled: true)
         let appObject = NSApp as NSApplication
@@ -35,6 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			alarmsMenuController=AlarmsMenuController(menu: mainMenu.alarmsMenu)
 			timersMenuController=TimersMenuController(menu: mainMenu.timersMenu)
 			generalMenuController=GeneralMenuController(menu: mainMenu.generalMenu)
+			worldClockMenuController=WorldClockMenuController(menu: mainMenu.worldClockMenu)
 		}
 		DockClockController.dockClockObject.updateDockTile()
 		AlarmCenter.sharedInstance
@@ -43,15 +43,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 		if TimersPreferenceStorage.sharedInstance.windowIsOpen {
 			TimersWindowController.timersObject.showTimers()
+			print("should show timer")
 		}
-		if ClockPreferencesStorage.sharedInstance.hasLaunchedBefore() {
-		print("Onboarding")
-			OnboardingWindowController.onboardingObject.showOnboarding()
-			//OnboardingAlertController.onboardingObject.showOnboarding()
-		} else {
-			ClockWindowController.clockObject.showClock()
-		}
-		TimersWindowController.timersObject.showTimers()
+		ClockWindowController.clockObject.showClock()
 	}
     //if the dock icon is clicked
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {

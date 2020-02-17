@@ -146,5 +146,6 @@ class ColorsMenuController: NSObject {
 		DockClockController.dockClockObject.updateClockForPreferencesChange()
 		AlarmsWindowController.alarmsObject.updateForPreferencesChange()
 		TimersWindowController.timersObject.update()
+		WorldClockWindowController.worldClockObject.update()
 	}
 }
