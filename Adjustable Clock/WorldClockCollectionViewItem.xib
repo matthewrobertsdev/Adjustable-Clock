@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="WorldClockCollectionViewItem" customModule="Adjustable_Clock" customModuleProvider="target">
+            <connections>
+                <outlet property="analogClock" destination="dC9-Ds-RcV" id="FT0-mG-2wQ"/>
+                <outlet property="view" destination="c22-O7-iKe" id="W81-kw-wyg"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView identifier="WorldClockCollectionViewItem" id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="332" height="563"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sa3-7u-PDx">
+                    <rect key="frame" x="3" y="17" width="327" height="530"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vky-1M-zDo">
+                            <rect key="frame" x="99" y="485" width="129" height="45"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Boston" id="d8S-Ig-2LC">
+                                <font key="font" size="39" name="HelveticaNeue"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LkW-Ki-yyF">
+                            <rect key="frame" x="9" y="389" width="308" height="88"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="12:00 PM" id="ISz-oJ-6EV">
+                                <font key="font" metaFont="system" size="74"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="dC9-Ds-RcV" customClass="AnalogClockView" customModule="Adjustable_Clock" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="54" width="327" height="327"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="327" id="pvb-4S-of6"/>
+                                <constraint firstAttribute="width" constant="327" id="xeD-4R-LD2"/>
+                            </constraints>
+                        </customView>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Lq-h1-uAD">
+                            <rect key="frame" x="-2" y="0.0" width="331" height="46"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="December 31, 2019" id="rxw-7f-0Cl">
+                                <font key="font" metaFont="system" size="39"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Sa3-7u-PDx" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="J4y-R8-Yj2"/>
+                <constraint firstItem="Sa3-7u-PDx" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="lSn-Dd-Csy"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="-15.5"/>
+        </customView>
+    </objects>
+</document>

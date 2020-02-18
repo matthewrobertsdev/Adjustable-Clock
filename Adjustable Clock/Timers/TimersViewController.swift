@@ -6,7 +6,7 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import Cocoa
-class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTableViewDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate {
+class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
 	private let timeFormatter=DateFormatter()
 	let popover = NSPopover()
 	@IBOutlet weak var titleTextField: NSTextField!

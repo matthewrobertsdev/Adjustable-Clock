@@ -58,8 +58,8 @@ class AnalogDockClockView: BaseAnalogClockView {
 			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(hour)/Double(12)), start: 0.3, startProportion: 0, end: 0.4)
 		}
 		if justColors {
-		}
-		else if displaySeconds {
+			
+		} else if displaySeconds {
 			displayHandsWithSeconds()
 		} else {
 			displayeHandsNoSeconds()

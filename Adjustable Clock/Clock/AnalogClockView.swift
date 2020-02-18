@@ -14,6 +14,7 @@ class AnalogClockView: BaseAnalogClockView {
 	var secondLayer=CAShapeLayer()
 	var immutableBounds: NSRect!
 	let amPmLabel=NSTextField(labelWithString: "")
+	var worldClock=false
 	override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         setUp()
@@ -71,8 +72,13 @@ class AnalogClockView: BaseAnalogClockView {
 		}
 	}
 	private func positionLabel(label: NSTextField, twelfth: Double) {
-		let firstConstant=widthConstraint.constant*2*(0.5-(0.34*CGFloat(sin(Double.pi/6*twelfth+Double.pi/2)))-0.01)
-		let secondConstant = -widthConstraint.constant*(0.5-(0.34*CGFloat(cos(Double.pi/6*twelfth+Double.pi/2))))
+		var multiplier: CGFloat=2.0
+		if worldClock {
+			multiplier=1
+		}
+		let heightMultiplier=(0.5-(0.34*CGFloat(sin(Double.pi/6*twelfth+Double.pi/2)))-0.01)
+		let firstConstant=widthConstraint.constant*multiplier*heightMultiplier
+		let secondConstant =  -widthConstraint.constant*(0.5-(0.34*CGFloat(cos(Double.pi/6*twelfth+Double.pi/2))))
 		NSLayoutConstraint.activate([
 			NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: firstConstant),
 			NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: secondConstant)

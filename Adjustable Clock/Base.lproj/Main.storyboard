@@ -1073,7 +1073,7 @@ DQ
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
-                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYP-Dc-db5">
+                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" allowsMagnification="YES" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYP-Dc-db5">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="155"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="mPn-LI-QZg">
                                     <rect key="frame" x="0.0" y="0.0" width="480" height="155"/>
@@ -1112,6 +1112,8 @@ DQ
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="collectionView" destination="GcD-1Y-mXz" id="8Ap-wu-77U"/>
+                        <outlet property="collectionViewFlowLayout" destination="30e-2B-9mo" id="0vU-qK-4h9"/>
                         <outlet property="titleTextField" destination="jFx-4k-rBx" id="mLU-94-1D2"/>
                     </connections>
                 </viewController>
@@ -1378,9 +1380,9 @@ DQ
                                         </connections>
                                     </button>
                                     <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="72" horizontalPageScroll="10" verticalLineScroll="72" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeL-au-qBm">
-                                        <rect key="frame" x="42" y="0.0" width="187" height="229"/>
+                                        <rect key="frame" x="45" y="0.0" width="180" height="229"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="1wB-iL-xvO">
-                                            <rect key="frame" x="0.0" y="0.0" width="187" height="229"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="229"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="70" viewBased="YES" id="Vdc-vV-Lyv">
@@ -1455,7 +1457,7 @@ DQ
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gzk-Uy-1Gt">
-                                                                            <rect key="frame" x="7.5" y="23" width="71" height="23"/>
+                                                                            <rect key="frame" x="8" y="23" width="71" height="23"/>
                                                                             <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillProportionally" style="capsule" trackingMode="selectOne" id="dZp-sL-Q5i">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <segments>
@@ -1520,7 +1522,7 @@ DQ
                                             <nil key="backgroundColor"/>
                                         </clipView>
                                         <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="r4j-UB-Phi">
-                                            <rect key="frame" x="0.0" y="213" width="187" height="16"/>
+                                            <rect key="frame" x="0.0" y="213" width="180" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="eZy-yX-3TV">
@@ -1808,7 +1810,7 @@ DQ
         <scene sceneID="BRn-vx-vUe">
             <objects>
                 <viewController storyboardIdentifier="NewAlarmViewController" id="9uc-jD-1ug" customClass="EditableAlarmViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" appearanceType="darkAqua" id="hmW-cO-luP">
+                    <view key="view" id="hmW-cO-luP">
                         <rect key="frame" x="0.0" y="0.0" width="243" height="343"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>

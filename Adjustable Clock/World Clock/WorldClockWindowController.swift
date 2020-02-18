@@ -34,7 +34,7 @@ class WorldClockWindowController: FullViewWindowController {
 	func worldClockWindowPresent() -> Bool {
 		return isWindowPresent(identifier: UserInterfaceIdentifier.worldClockWindow)
 	}
-	func update(){
+	func update() {
 		guard let worldClockViewController=self.contentViewController as? WorldClockViewController else {
 			return
 		}
