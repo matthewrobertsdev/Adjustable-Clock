@@ -25,6 +25,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
 		AlarmsPreferencesStorage.sharedInstance.loadPreferences()
 		TimersPreferenceStorage.sharedInstance.loadPreferences()
+		WorldClockPreferencesStorage.sharedInstance.loadPreferences()
 		updateClockMenuUI()
 		enableClockMenu(enabled: true)
         let appObject = NSApp as NSApplication
@@ -43,7 +44,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 		if TimersPreferenceStorage.sharedInstance.windowIsOpen {
 			TimersWindowController.timersObject.showTimers()
-			print("should show timer")
+		}
+		if WorldClockPreferencesStorage.sharedInstance.windowIsOpen {
+			WorldClockWindowController.worldClockObject.showWorldClock()
 		}
 		ClockWindowController.clockObject.showClock()
 	}

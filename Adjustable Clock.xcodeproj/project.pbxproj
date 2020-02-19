@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9F04FDF120EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F04FDF020EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift */; };
+		9F073FB423FDEE5B00B404C5 /* WorldClockFrameRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F073FB323FDEE5B00B404C5 /* WorldClockFrameRestorer.swift */; };
+		9F073FB623FDEEFE00B404C5 /* WorldClockPreferencesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F073FB523FDEEFE00B404C5 /* WorldClockPreferencesStorage.swift */; };
 		9F078A9D23CA7A79007072BB /* FullViewWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F078A9C23CA7A79007072BB /* FullViewWindowController.swift */; };
 		9F0F972A23DB5FF8005456E6 /* ChooseAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0F972923DB5FF8005456E6 /* ChooseAlertViewController.swift */; };
 		9F1137DF23FB6F5900C6C92B /* WorldClockCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1137DE23FB6F5900C6C92B /* WorldClockCollectionViewItem.swift */; };
@@ -127,6 +129,8 @@
 
 /* Begin PBXFileReference section */
 		9F04FDF020EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInterfaceItemIdentifiers.swift; sourceTree = "<group>"; };
+		9F073FB323FDEE5B00B404C5 /* WorldClockFrameRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockFrameRestorer.swift; sourceTree = "<group>"; };
+		9F073FB523FDEEFE00B404C5 /* WorldClockPreferencesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockPreferencesStorage.swift; sourceTree = "<group>"; };
 		9F078A9C23CA7A79007072BB /* FullViewWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullViewWindowController.swift; sourceTree = "<group>"; };
 		9F0F972923DB5FF8005456E6 /* ChooseAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseAlertViewController.swift; sourceTree = "<group>"; };
 		9F1137DE23FB6F5900C6C92B /* WorldClockCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockCollectionViewItem.swift; sourceTree = "<group>"; };
@@ -299,6 +303,7 @@
 				9F260CAB23F64D2200D021BB /* WorldClockViewController.swift */,
 				9F1137DE23FB6F5900C6C92B /* WorldClockCollectionViewItem.swift */,
 				9F28E7C623FDCE620034F5C6 /* WorldClockModel.swift */,
+				9F073FB523FDEEFE00B404C5 /* WorldClockPreferencesStorage.swift */,
 			);
 			path = "World Clock";
 			sourceTree = "<group>";
@@ -540,6 +545,7 @@
 				9FF6913623D784110057C4F6 /* AlarmsWindowRestorer.swift */,
 				9FE390861FECBCF400AF5442 /* PreferencesWindowRestorer.swift */,
 				9F407E1623F1D17A00557EA4 /* TimersWindowRestorer.swift */,
+				9F073FB323FDEE5B00B404C5 /* WorldClockFrameRestorer.swift */,
 			);
 			path = "Loading And Saving Windows";
 			sourceTree = "<group>";
@@ -730,6 +736,7 @@
 				9F6974772065BA19007886DE /* PreferencesController.swift in Sources */,
 				9F260CAA23F64D0300D021BB /* WorldClockWindowController.swift in Sources */,
 				9F87CCC323D4156B005D402B /* isDarkMode.swift in Sources */,
+				9F073FB623FDEEFE00B404C5 /* WorldClockPreferencesStorage.swift in Sources */,
 				9F51F6C423E5E92900392880 /* OnboardingViewController.swift in Sources */,
 				9FF6913723D784110057C4F6 /* AlarmsWindowRestorer.swift in Sources */,
 				9F7D055723D6629F00E6CBA2 /* AlarmsViewController.swift in Sources */,
@@ -765,6 +772,7 @@
 				9F2E8AFD23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift in Sources */,
 				9F82250423DD4E6E00E337BD /* ChoosePlaylistViewController.swift in Sources */,
 				9F407E1723F1D17A00557EA4 /* TimersWindowRestorer.swift in Sources */,
+				9F073FB423FDEE5B00B404C5 /* WorldClockFrameRestorer.swift in Sources */,
 				9F4D87452055E99400AF63D1 /* ClockWindowController.swift in Sources */,
 				9F7E636A23DE96EE00A52ECE /* TracksLibrary.swift in Sources */,
 				9F7D055F23D6716600E6CBA2 /* ClockMenu.swift in Sources */,
