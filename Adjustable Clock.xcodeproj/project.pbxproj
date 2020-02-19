@@ -25,6 +25,7 @@
 		9F260CAF23F64FC100D021BB /* WorldClockMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F260CAE23F64FC100D021BB /* WorldClockMenuController.swift */; };
 		9F260CB123F64FDE00D021BB /* WorldClockMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F260CB023F64FDE00D021BB /* WorldClockMenu.swift */; };
 		9F260CB323F64FF000D021BB /* WorldClockMenuProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F260CB223F64FF000D021BB /* WorldClockMenuProtocol.swift */; };
+		9F28E7C723FDCE620034F5C6 /* WorldClockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F28E7C623FDCE620034F5C6 /* WorldClockModel.swift */; };
 		9F2E8AFD23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E8AFC23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift */; };
 		9F35462B23F20E40009FA191 /* TimersCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35462A23F20E40009FA191 /* TimersCenter.swift */; };
 		9F35462D23F20FDF009FA191 /* CountDownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35462C23F20FDF009FA191 /* CountDownTimer.swift */; };
@@ -49,7 +50,6 @@
 		9F538C4F2116B06300A72242 /* SimplePreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C4E2116B06300A72242 /* SimplePreferencesVC.swift */; };
 		9F538C512116B0AF00A72242 /* SimplePreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C502116B0AF00A72242 /* SimplePreferencesController.swift */; };
 		9F54E6C223F76B9600840BE4 /* WorldClockCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F54E6C123F76B9600840BE4 /* WorldClockCollectionViewItem.xib */; };
-		9F54E6C423F76BAF00840BE4 /* AnalogWorldClockCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F54E6C323F76BAF00840BE4 /* AnalogWorldClockCollectionViewItem.xib */; };
 		9F6974772065BA19007886DE /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6974762065BA19007886DE /* PreferencesController.swift */; };
 		9F7174A11F5DADE800595C8D /* DigItalClockAppFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7174A01F5DADE800595C8D /* DigItalClockAppFunctions.swift */; };
 		9F71B69723C939140079A79A /* AnalogClockAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F71B69623C939140079A79A /* AnalogClockAnimator.swift */; };
@@ -144,6 +144,7 @@
 		9F260CAE23F64FC100D021BB /* WorldClockMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockMenuController.swift; sourceTree = "<group>"; };
 		9F260CB023F64FDE00D021BB /* WorldClockMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockMenu.swift; sourceTree = "<group>"; };
 		9F260CB223F64FF000D021BB /* WorldClockMenuProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockMenuProtocol.swift; sourceTree = "<group>"; };
+		9F28E7C623FDCE620034F5C6 /* WorldClockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockModel.swift; sourceTree = "<group>"; };
 		9F2E8AFC23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkAndLightBackgroundView.swift; sourceTree = "<group>"; };
 		9F35462A23F20E40009FA191 /* TimersCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersCenter.swift; sourceTree = "<group>"; };
 		9F35462C23F20FDF009FA191 /* CountDownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownTimer.swift; sourceTree = "<group>"; };
@@ -168,7 +169,6 @@
 		9F538C4E2116B06300A72242 /* SimplePreferencesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferencesVC.swift; sourceTree = "<group>"; };
 		9F538C502116B0AF00A72242 /* SimplePreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferencesController.swift; sourceTree = "<group>"; };
 		9F54E6C123F76B9600840BE4 /* WorldClockCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorldClockCollectionViewItem.xib; sourceTree = "<group>"; };
-		9F54E6C323F76BAF00840BE4 /* AnalogWorldClockCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnalogWorldClockCollectionViewItem.xib; sourceTree = "<group>"; };
 		9F6974762065BA19007886DE /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
 		9F7174A01F5DADE800595C8D /* DigItalClockAppFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigItalClockAppFunctions.swift; sourceTree = "<group>"; };
 		9F71B69623C939140079A79A /* AnalogClockAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogClockAnimator.swift; sourceTree = "<group>"; };
@@ -298,6 +298,7 @@
 				9F260CA923F64D0300D021BB /* WorldClockWindowController.swift */,
 				9F260CAB23F64D2200D021BB /* WorldClockViewController.swift */,
 				9F1137DE23FB6F5900C6C92B /* WorldClockCollectionViewItem.swift */,
+				9F28E7C623FDCE620034F5C6 /* WorldClockModel.swift */,
 			);
 			path = "World Clock";
 			sourceTree = "<group>";
@@ -482,7 +483,6 @@
 				9FB5FA1F20C8F5B200EE8963 /* Utilities */,
 				9FB47E611F480A43009D82FF /* Assets.xcassets */,
 				9F54E6C123F76B9600840BE4 /* WorldClockCollectionViewItem.xib */,
-				9F54E6C323F76BAF00840BE4 /* AnalogWorldClockCollectionViewItem.xib */,
 				9FD2825B23F26BEA00C204A2 /* TimerCollectionViewItem.xib */,
 				9FB47E631F480A43009D82FF /* Main.storyboard */,
 				9FABAA29216595BF00161D83 /* Code to Discard? */,
@@ -679,7 +679,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F54E6C223F76B9600840BE4 /* WorldClockCollectionViewItem.xib in Resources */,
-				9F54E6C423F76BAF00840BE4 /* AnalogWorldClockCollectionViewItem.xib in Resources */,
 				9FB47E621F480A43009D82FF /* Assets.xcassets in Resources */,
 				9FB47E651F480A43009D82FF /* Main.storyboard in Resources */,
 				9FD2825C23F26BEA00C204A2 /* TimerCollectionViewItem.xib in Resources */,
@@ -812,6 +811,7 @@
 				9F750CC02056073F007980F9 /* DefaultNSWindow.swift in Sources */,
 				9F1375DC23D94FE5003B2B15 /* AlarmStatusTableCellView.swift in Sources */,
 				9F4EF1E320C273CB00E08C57 /* ColorModel.swift in Sources */,
+				9F28E7C723FDCE620034F5C6 /* WorldClockModel.swift in Sources */,
 				9FFD327323D6805500A678BE /* ClockMenuProtocol.swift in Sources */,
 				9F97C86223EB7C40005381A0 /* ForegroundColorView.swift in Sources */,
 				9F260CAF23F64FC100D021BB /* WorldClockMenuController.swift in Sources */,

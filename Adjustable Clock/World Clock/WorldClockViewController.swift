@@ -7,9 +7,10 @@
 //
 import Cocoa
 class WorldClockViewController: ColorfulViewController, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
+	var model=[WorldClockModel]()
 	@IBOutlet weak var collectionViewFlowLayout: NSCollectionViewFlowLayout!
 	func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-		1
+		model.count
 	}
 	func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
 		guard let worldClockCollectionViewItem=collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier("WorldClockCollectionViewItem"), for: indexPath) as? WorldClockCollectionViewItem else {
@@ -18,19 +19,24 @@ class WorldClockViewController: ColorfulViewController, NSCollectionViewDataSour
 			let analogClock=worldClockCollectionViewItem.analogClock
 		analogClock?.worldClock=true
 		analogClock?.widthConstraint.constant=327
-		//analogClock?.immutableBounds=NSRect(origin: CGPoint(x:0, y:0), size: CGSize(width: 327, height: 200))
-		//analogClock?.layout()
-		//analogClock?.display(analogClock?.frame ?? CGRect(x: 0, y: 0, width: 100, height: 100))
-		//print("world "+(analogClock?.frame.width.description)!)
-		//print("world "+(analogClock?.frame.height.description)!)
-		//analogClock?.draw(analogClock?.frame ?? CGRect(x: 0, y: 0, width: 100, height: 100))
-		analogClock?.setNeedsDisplay(analogClock!.bounds)
+		guard let analogClockBounds=analogClock?.bounds else {
+			return worldClockCollectionViewItem
+		}
+		//analogClock?.setNeedsDisplay(analogClockBounds)
 		analogClock?.positionLabels()
-		analogClock?.setNeedsDisplay(analogClock!.bounds)
+		analogClock?.color=textColor
+		analogClock?.draw(analogClockBounds)
+		worldClockCollectionViewItem.cityTextField.textColor=textColor
+		worldClockCollectionViewItem.digitalClock.textColor=textColor
+		worldClockCollectionViewItem.animatedDate.textColor=textColor
 		return worldClockCollectionViewItem
 	}
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var collectionView: NSCollectionView!
+	@IBAction func addWorldClock(_ sender: Any) {
+		model.append(WorldClockModel())
+		collectionView.insertItems(at: [IndexPath(item: 0, section: 0)])
+	}
 	override func viewDidLoad() {
         super.viewDidLoad()
 		collectionView.register(WorldClockCollectionViewItem.self, forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "WorldClockCollectionViewItem"))

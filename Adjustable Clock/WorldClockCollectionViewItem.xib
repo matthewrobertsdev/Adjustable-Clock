@@ -9,6 +9,9 @@
         <customObject id="-2" userLabel="File's Owner" customClass="WorldClockCollectionViewItem" customModule="Adjustable_Clock" customModuleProvider="target">
             <connections>
                 <outlet property="analogClock" destination="dC9-Ds-RcV" id="FT0-mG-2wQ"/>
+                <outlet property="animatedDate" destination="2Lq-h1-uAD" id="fZE-Hu-P6o"/>
+                <outlet property="cityTextField" destination="Vky-1M-zDo" id="2Rl-Fd-xoN"/>
+                <outlet property="digitalClock" destination="LkW-Ki-yyF" id="Bo5-vF-pik"/>
                 <outlet property="view" destination="c22-O7-iKe" id="W81-kw-wyg"/>
             </connections>
         </customObject>

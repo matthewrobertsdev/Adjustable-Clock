@@ -7,8 +7,11 @@
 //
 import Cocoa
 class WorldClockCollectionViewItem: NSCollectionViewItem {
+	@IBOutlet weak var cityTextField: NSTextField!
+	@IBOutlet weak var digitalClock: NSTextField!
 	@IBOutlet weak var analogClock: AnalogClockView!
 	override func viewDidLoad() {
         super.viewDidLoad()
     }
+	@IBOutlet weak var animatedDate: NSTextField!
 }
