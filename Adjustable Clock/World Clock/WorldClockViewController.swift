@@ -34,8 +34,13 @@ class WorldClockViewController: ColorfulViewController, NSCollectionViewDataSour
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var collectionView: NSCollectionView!
 	@IBAction func addWorldClock(_ sender: Any) {
-		model.append(WorldClockModel())
-		collectionView.insertItems(at: [IndexPath(item: 0, section: 0)])
+		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
+					  guard let chooseCityViewController =
+			   mainStoryBoard.instantiateController(withIdentifier:
+						  "ChooseCityViewController") as? ChooseCityViewController else { return }
+					self.presentAsSheet(chooseCityViewController)
+		//model.append(WorldClockModel())
+		//collectionView.insertItems(at: [IndexPath(item: 0, section: 0)])
 	}
 	override func viewDidLoad() {
         super.viewDidLoad()

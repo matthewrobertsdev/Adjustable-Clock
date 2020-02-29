@@ -5,12 +5,6 @@
 //  Created by Matt Roberts on 7/14/17.
 //  Copyright © 2017 Matt Roberts. All rights reserved.
 //
-/*
-other possibilities that could be done possibly from the same app:
---a stopwatch
---a timer
-*/
-import AVFoundation
 import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {

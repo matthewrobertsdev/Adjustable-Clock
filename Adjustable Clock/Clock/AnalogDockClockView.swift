@@ -30,15 +30,21 @@ class AnalogDockClockView: BaseAnalogClockView {
 		lineWidth=CGFloat(frame.size.width/25)
         let origin=CGPoint(x: bounds.width*0.05, y: bounds.height*0.05)
 		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.size.width*0.9, height: frame.size.height*0.9)))
-		var backgroundColorCopy=NSColor.labelColor
+		//var backgroundColorCopy=NSColor.labelColor
 		if hasDarkAppearance && dark==false {
 			dark=true
 		} else if !hasDarkAppearance && dark==true {
 			dark=false
 		}
+		let clockNSColors=ColorDictionary()
+		if hasDarkAppearance {
+		 backgroundColor=clockNSColors.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
+		} else {
+			backgroundColor=clockNSColors.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
+		}
 		if hasDarkAppearance && backgroundColor != NSColor.labelColor {
-			backgroundColorCopy=backgroundColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.white
-			backgroundColorCopy.setFill()
+			//backgroundColorCopy=backgroundColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.white
+			backgroundColor.setFill()
 			handsColor=NSColor.white
 			color=NSColor.black
 		} else if !hasDarkAppearance && backgroundColor != NSColor.labelColor {
@@ -47,8 +53,8 @@ class AnalogDockClockView: BaseAnalogClockView {
 			backgroundColor.setFill()
 		} else {
 			handsColor=NSColor.white
-			backgroundColorCopy=NSColor.black
-			backgroundColorCopy.setFill()
+			backgroundColor=NSColor.black
+			backgroundColor.setFill()
 		}
 		path.fill()
 		guard let cgContext=NSGraphicsContext.current?.cgContext else {

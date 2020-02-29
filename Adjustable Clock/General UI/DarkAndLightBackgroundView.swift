@@ -15,13 +15,13 @@ class DarkAndLightBackgroundView: NSView, BackgroundColorView {
 		self.wantsLayer=true
 					var backgroundColorCopy=NSColor.labelColor
 					if hasDarkAppearance && backgroundColor != NSColor.labelColor {
-						backgroundColorCopy=backgroundColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.white
-						layer?.backgroundColor=backgroundColorCopy.cgColor
+						//backgroundColorCopy=backgroundColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.white
+						layer?.backgroundColor=backgroundColor.cgColor
 					} else if !hasDarkAppearance && backgroundColor != NSColor.labelColor {
 						layer?.backgroundColor=backgroundColor.cgColor
 					} else {
-						backgroundColorCopy=NSColor.black
-						backgroundColorCopy.setFill()
+						backgroundColor=NSColor.black
+						backgroundColor.setFill()
 					}
 		}
 }

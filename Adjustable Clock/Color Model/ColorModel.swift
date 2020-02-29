@@ -40,18 +40,48 @@ class ColorDictionary {
     //name for identification
     //color for actual color values
     var colorsDictionary=[String: NSColor]()
+	var lightColorsDictionary=[String: NSColor]()
+	var darkColorsDictionary=[String: NSColor]()
     //init should make the dictionary
     init() {
         makeColorDictionary()
+		makeLightColorDictionary()
+		makeDarkColorDictionary()
     }
     //actually pair the keys with the colors
     func makeColorDictionary() {
 		colorsDictionary=[ColorChoice.black: NSColor.black,
 			ColorChoice.gray: NSColor.systemGray,
 			ColorChoice.white: NSColor.white,
+			ColorChoice.red: NSColor(named: "Red") ?? NSColor.systemRed,
+			ColorChoice.orange: NSColor(named: "Orange") ?? NSColor.systemOrange,
+			ColorChoice.yellow: NSColor(named: "Yellow") ?? NSColor.systemYellow,
+			ColorChoice.green: NSColor.systemGreen,
+			ColorChoice.blue: NSColor.systemBlue,
+			ColorChoice.purple: NSColor.systemPurple,
+			ColorChoice.pink: NSColor.systemPink,
+			ColorChoice.brown: NSColor.systemBrown]
+    }
+	func makeLightColorDictionary() {
+		lightColorsDictionary=[ColorChoice.black: NSColor.black,
+			ColorChoice.gray: NSColor.systemGray,
+			ColorChoice.white: NSColor.white,
 			ColorChoice.red: NSColor.systemRed,
 			ColorChoice.orange: NSColor.systemOrange,
-			ColorChoice.yellow: NSColor.systemYellow,
+			ColorChoice.yellow: NSColor(named: "LightYellow") ?? NSColor.systemYellow,
+			ColorChoice.green: NSColor.systemGreen,
+			ColorChoice.blue: NSColor.systemBlue,
+			ColorChoice.purple: NSColor.systemPurple,
+			ColorChoice.pink: NSColor.systemPink,
+			ColorChoice.brown: NSColor.systemBrown]
+    }
+	func makeDarkColorDictionary() {
+		darkColorsDictionary=[ColorChoice.black: NSColor.black,
+			ColorChoice.gray: NSColor.systemGray,
+			ColorChoice.white: NSColor.white,
+			ColorChoice.red: NSColor.systemRed,
+			ColorChoice.orange: NSColor.systemOrange,
+			ColorChoice.yellow: NSColor(named: "DarkYellow") ?? NSColor.systemYellow,
 			ColorChoice.green: NSColor.systemGreen,
 			ColorChoice.blue: NSColor.systemBlue,
 			ColorChoice.purple: NSColor.systemPurple,

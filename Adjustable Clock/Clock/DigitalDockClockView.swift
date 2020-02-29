@@ -64,20 +64,25 @@ class DigitalDockClockView: NSView {
 		} else {
 			path=NSBezierPath(roundedRect: NSRect(x: 0, y: 0.25*frame.height, width: frame.size.width, height: 0.5*frame.height), xRadius: radius, yRadius: radius)
 		}
-		var backgroundColorCopy=NSColor.labelColor
+		let clockNSColors=ColorDictionary()
+		if hasDarkAppearance {
+		 backgroundColor=clockNSColors.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
+		} else {
+			backgroundColor=clockNSColors.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
+		}
 		if hasDarkAppearance && dark==false {
 			dark=true
 		} else if !hasDarkAppearance && dark==true {
 			dark=false
 		}
 		if hasDarkAppearance && backgroundColor != NSColor.labelColor {
-			backgroundColorCopy=backgroundColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.white
-			backgroundColorCopy.setFill()
+			//backgroundColorCopy=backgroundColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.white
+			backgroundColor.setFill()
 		} else if !hasDarkAppearance && backgroundColor != NSColor.labelColor {
 			backgroundColor.setFill()
 		} else {
-			backgroundColorCopy=NSColor.black
-			backgroundColorCopy.setFill()
+			backgroundColor=NSColor.black
+			backgroundColor.setFill()
 		}
 		path.fill()
 	}
