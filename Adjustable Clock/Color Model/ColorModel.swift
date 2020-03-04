@@ -51,16 +51,16 @@ class ColorDictionary {
     //actually pair the keys with the colors
     func makeColorDictionary() {
 		colorsDictionary=[ColorChoice.black: NSColor.black,
-			ColorChoice.gray: NSColor.systemGray,
+			ColorChoice.gray: NSColor(named: "Gray")  ?? NSColor.systemGray,
 			ColorChoice.white: NSColor.white,
 			ColorChoice.red: NSColor(named: "Red") ?? NSColor.systemRed,
 			ColorChoice.orange: NSColor(named: "Orange") ?? NSColor.systemOrange,
 			ColorChoice.yellow: NSColor(named: "Yellow") ?? NSColor.systemYellow,
-			ColorChoice.green: NSColor.systemGreen,
-			ColorChoice.blue: NSColor.systemBlue,
-			ColorChoice.purple: NSColor.systemPurple,
-			ColorChoice.pink: NSColor.systemPink,
-			ColorChoice.brown: NSColor.systemBrown]
+			ColorChoice.green: NSColor(named: "Green") ?? NSColor.systemGreen,
+			ColorChoice.blue: NSColor(named: "Blue") ?? NSColor.systemBlue,
+			ColorChoice.purple: NSColor(named: "Purple") ?? NSColor.systemPurple,
+			ColorChoice.pink: NSColor(named: "Pink") ?? NSColor.systemPink,
+			ColorChoice.brown: NSColor(named: "Brown") ?? NSColor.systemBrown]
     }
 	func makeLightColorDictionary() {
 		lightColorsDictionary=[ColorChoice.black: NSColor.black,

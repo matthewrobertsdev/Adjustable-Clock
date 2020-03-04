@@ -8,7 +8,7 @@
       "idiom" : "universal",
       "color" : {
         "platform" : "osx",
-        "reference" : "systemOrangeColor"
+        "reference" : "systemPurpleColor"
       }
     },
     {
@@ -21,7 +21,7 @@
       ],
       "color" : {
         "platform" : "osx",
-        "reference" : "systemOrangeColor"
+        "reference" : "systemPurpleColor"
       }
     },
     {
@@ -35,10 +35,10 @@
       "color" : {
         "color-space" : "display-p3",
         "components" : {
-          "red" : "239",
+          "red" : "145",
           "alpha" : "1.000",
-          "blue" : "52",
-          "green" : "140"
+          "blue" : "148",
+          "green" : "68"
         }
       }
     }
