@@ -65,7 +65,9 @@ class DigitalDockClockView: NSView {
 			path=NSBezierPath(roundedRect: NSRect(x: 0, y: 0.25*frame.height, width: frame.size.width, height: 0.5*frame.height), xRadius: radius, yRadius: radius)
 		}
 		let clockNSColors=ColorDictionary()
-		if hasDarkAppearance {
+		if ClockPreferencesStorage.sharedInstance.colorChoice=="custom" {
+		backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
+		} else if hasDarkAppearance {
 		 backgroundColor=clockNSColors.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
 		} else {
 			backgroundColor=clockNSColors.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray

@@ -37,13 +37,20 @@ class AnalogDockClockView: BaseAnalogClockView {
 			dark=false
 		}
 		let clockNSColors=ColorDictionary()
-		if hasDarkAppearance {
+		if ClockPreferencesStorage.sharedInstance.colorChoice=="custom" {
+		backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
+		} else if hasDarkAppearance {
 		 backgroundColor=clockNSColors.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
+			if backgroundColor==NSColor.white {
+				backgroundColor=NSColor.systemGray
+			}
 		} else {
 			backgroundColor=clockNSColors.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
+			if backgroundColor==NSColor.black {
+				backgroundColor=NSColor.systemGray
+			}
 		}
 		if hasDarkAppearance && backgroundColor != NSColor.labelColor {
-			//backgroundColorCopy=backgroundColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.white
 			backgroundColor.setFill()
 			handsColor=NSColor.white
 			color=NSColor.black

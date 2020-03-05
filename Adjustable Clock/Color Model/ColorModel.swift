@@ -68,7 +68,7 @@ class ColorDictionary {
 			ColorChoice.white: NSColor.white,
 			ColorChoice.red: NSColor.systemRed,
 			ColorChoice.orange: NSColor.systemOrange,
-			ColorChoice.yellow: NSColor(named: "LightYellow") ?? NSColor.systemYellow,
+			ColorChoice.yellow: NSColor.systemYellow,
 			ColorChoice.green: NSColor.systemGreen,
 			ColorChoice.blue: NSColor.systemBlue,
 			ColorChoice.purple: NSColor.systemPurple,
@@ -77,16 +77,16 @@ class ColorDictionary {
     }
 	func makeDarkColorDictionary() {
 		darkColorsDictionary=[ColorChoice.black: NSColor.black,
-			ColorChoice.gray: NSColor.systemGray,
+			ColorChoice.gray: NSColor(named: "DarkGray") ?? NSColor.systemGray,
 			ColorChoice.white: NSColor.white,
-			ColorChoice.red: NSColor.systemRed,
-			ColorChoice.orange: NSColor.systemOrange,
+			ColorChoice.red: NSColor(named: "DarkRed") ?? NSColor.systemRed,
+			ColorChoice.orange: NSColor(named: "DarkOrange") ?? NSColor.systemOrange,
 			ColorChoice.yellow: NSColor(named: "DarkYellow") ?? NSColor.systemYellow,
-			ColorChoice.green: NSColor.systemGreen,
-			ColorChoice.blue: NSColor.systemBlue,
-			ColorChoice.purple: NSColor.systemPurple,
-			ColorChoice.pink: NSColor.systemPink,
-			ColorChoice.brown: NSColor.systemBrown]
+			ColorChoice.green: NSColor(named: "DarkGreen") ?? NSColor.systemGreen,
+			ColorChoice.blue: NSColor(named: "DarkBlue") ?? NSColor.systemBlue,
+			ColorChoice.purple: NSColor(named: "DarkPurple") ?? NSColor.systemPurple,
+			ColorChoice.pink: NSColor(named: "DarkPink") ?? NSColor.systemPink,
+			ColorChoice.brown: NSColor(named: "DarkBrown") ?? NSColor.systemBrown]
     }
 }
 //just an array of color choices so that the colors can be displayed in an order
