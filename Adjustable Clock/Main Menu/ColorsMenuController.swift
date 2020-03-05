@@ -87,9 +87,9 @@ class ColorsMenuController: NSObject {
 			colorsMenu.items[index].action=#selector(changeColor(sender:))
 			var templateImage=NSImage()
 			var tintColor=NSColor.clear
-			if dark && !ClockPreferencesStorage.sharedInstance.colorForForeground {
+			if dark {
 				templateImage=NSImage(named: "white_rectangle") ?? NSImage()
-				tintColor=clockNSColors.colorsDictionary[colorArray.colorArray[index]]?.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
+				tintColor=clockNSColors.darkColorsDictionary[colorArray.colorArray[index]]  ?? NSColor.clear
 			} else {
 			templateImage=NSImage(named: "black_rectangle") ?? NSImage()
 				tintColor=clockNSColors.colorsDictionary[colorArray.colorArray[index]] ?? NSColor.clear
