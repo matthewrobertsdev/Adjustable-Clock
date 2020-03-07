@@ -199,7 +199,6 @@ class ClockViewController: ColorfulViewController {
 	func applyColors() {
 		let labels=[digitalClock!, animatedDay!]
 		applyColorScheme(views: [analogClock], labels: labels)
-		print("abcd apply colors")
 	}
 	func displayForDock() {
 		if ClockPreferencesStorage.sharedInstance.useAnalog {
