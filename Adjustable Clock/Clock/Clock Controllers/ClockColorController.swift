@@ -6,6 +6,7 @@
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 import AppKit
+/*
 class ClockColorController {
 	private var visualEffectView: NSVisualEffectView
 	private var view: DarkAndLightBackgroundView
@@ -67,3 +68,4 @@ class ClockColorController {
 		self.view.setNeedsDisplay(view.bounds)
 	}
 }
+*/

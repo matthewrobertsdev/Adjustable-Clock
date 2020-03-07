@@ -103,7 +103,7 @@ class AnalogClockAnimator: ClockAnimator {
 		}
 	}
 	func updateHours(hour: Int) {
-		if ClockPreferencesStorage.sharedInstance.use24hourClock {
+		if GeneralPreferencesStorage.sharedInstance.use24Hours {
 			updateHourNums(hour: hour)
 		} else {
 			updateAmPm(hour: hour)
