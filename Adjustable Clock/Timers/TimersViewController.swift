@@ -68,10 +68,10 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		let timer=TimersCenter.sharedInstance.timers[index]
 		let alertSound=NSSound(named: NSSound.Name(timer.alertString))
 		var hasError=false
-		if timer.alertStyle==AlertStyle.sound {
+		if timer.alertStyle=="sound" {
 			alertSound?.loops=true
 			alertSound?.play()
-		} else if timer.alertStyle==AlertStyle.song {
+		} else if timer.alertStyle=="song" {
 			print("should play music")
 			let playlistName=timer.song
 			let appleScript =
@@ -98,18 +98,18 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		timerAlert.addButton(withTitle: "Dismiss")
 		timerAlert.icon=DockClockController.dockClockObject.getFreezeView(time: Date()).image()
 		AlarmsWindowController.alarmsObject.showAlarms()
-		if timer.alertStyle==AlertStyle.song && !hasError {
+		if timer.alertStyle=="song" && !hasError {
 			timerAlert.addButton(withTitle: "Stop Music")
-		} else if timer.alertStyle==AlertStyle.song {
+		} else if timer.alertStyle=="song" {
 			timerAlert.messageText+="""
 			  A playlist was supposed to play.  Please check your internet connection and that automation \
 			of Music is allowed in Settings->Security and Privacy->Automation->Clock Suite.
 			"""
 		}
 		timerAlert.beginSheetModal(for: TimersWindowController.timersObject.window ?? NSWindow()) { (modalResponse) in
-			if timer.alertStyle==AlertStyle.sound {
+			if timer.alertStyle=="sound" {
 				alertSound?.stop()
-			} else if timer.alertStyle==AlertStyle.song{
+			} else if timer.alertStyle=="song"{
 				if modalResponse==NSApplication.ModalResponse.alertSecondButtonReturn {
 					let appleScript =
 					"""

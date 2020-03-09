@@ -6,11 +6,6 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import Cocoa
-enum AlertStyle {
-	case sound
-	case song
-	case noSound
-}
 class EditableTimerViewController: NSViewController {
 	var index=0
 	let calendar=Calendar.current
@@ -19,7 +14,7 @@ class EditableTimerViewController: NSViewController {
 	@IBOutlet weak var beepButton: NSButton!
 	@IBOutlet weak var songButton: NSButton!
 	@IBOutlet weak var noSoundButton: NSButton!
-	var alertStyle=AlertStyle.sound
+	var alertStyle="sound"
 	var oldDate: Date?
 	var alertName="Ping"
 	var playlistName=""
@@ -81,7 +76,7 @@ class EditableTimerViewController: NSViewController {
 		noSoundButton.state=NSControl.StateValue.off
 		songButton.state=NSControl.StateValue.off
 		beepButton.state=NSControl.StateValue.on
-		alertStyle=AlertStyle.sound
+		alertStyle="sound"
 	}
 	@IBAction func useSongChosen(_ sender: Any) {
 		useSong()
@@ -90,7 +85,7 @@ class EditableTimerViewController: NSViewController {
 		beepButton.state=NSControl.StateValue.off
 		noSoundButton.state=NSControl.StateValue.off
 		songButton.state=NSControl.StateValue.on
-		alertStyle=AlertStyle.song
+		alertStyle="song"
 	}
 	@IBAction func useNoSoundChosen(_ sender: Any) {
 		useNoSound()
@@ -99,6 +94,6 @@ class EditableTimerViewController: NSViewController {
 		beepButton.state=NSControl.StateValue.off
 		songButton.state=NSControl.StateValue.off
 		noSoundButton.state=NSControl.StateValue.on
-		alertStyle=AlertStyle.noSound
+		alertStyle="noSound"
 	}
 }
