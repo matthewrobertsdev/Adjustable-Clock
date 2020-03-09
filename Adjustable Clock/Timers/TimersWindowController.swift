@@ -61,6 +61,7 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 		}
     }
 	func saveState() {
+		TimersCenter.sharedInstance.saveTimers()
 		TimersWindowRestorer().windowSaveCGRect(window: window)
 		TimersPreferenceStorage.sharedInstance.setHasLaunched()
     }

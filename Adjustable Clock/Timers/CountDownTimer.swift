@@ -11,7 +11,7 @@ class CountDownTimer: Codable{
 	var secondsRemaining=180
 	var totalSeconds=180
 	var title=""
-	var alertStyle="sound"
+	var alertStyle=AlertStyle.sound
 	var alertString=""
 	var song=""
 	var active=false
