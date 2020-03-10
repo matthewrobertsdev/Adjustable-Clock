@@ -10,7 +10,7 @@ class AnalogDockClockView: BaseAnalogClockView {
 	var backgroundColor=NSColor.labelColor
 	var handsColor=NSColor.labelColor
 	var displaySeconds=false
-	var calendar=Calendar.current
+	var calendar=Calendar.autoupdatingCurrent
 	var current=true
 	var freezeDate=Date()
 	var justColors=false

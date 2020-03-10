@@ -38,12 +38,6 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 				}
 			}
 	}
-	func windowDidResize(_ notification: Notification) {
-    }
-	func windowDidEnterFullScreen(_ notification: Notification) {
-	}
-    func windowWillExitFullScreen(_ notification: Notification) {
-    }
 	func update() {
         let appObject = NSApp as NSApplication
 		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.timersWindow {
@@ -68,4 +62,15 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 	func isTimersWindowPresent() -> Bool {
 		return isWindowPresent(identifier: UserInterfaceIdentifier.timersWindow)
 	}
+	func windowDidEnterFullScreen(_ notification: Notification) {
+        removeTrackingArea()
+        hideButtonsTimer?.invalidate()
+        updateClockMenuUI()
+        showButtons(show: true)
+    }
+	func windowDidExitFullScreen(_ notification: Notification) {
+        window?.makeKey()
+		prepareWindowButtons()
+        updateClockMenuUI()
+    }
 }

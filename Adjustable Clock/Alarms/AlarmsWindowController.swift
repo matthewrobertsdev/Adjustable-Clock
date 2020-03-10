@@ -61,6 +61,15 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
             }
         }
     }
-	deinit {
-	}
+	func windowDidEnterFullScreen(_ notification: Notification) {
+        removeTrackingArea()
+        hideButtonsTimer?.invalidate()
+        updateClockMenuUI()
+        showButtons(show: true)
+    }
+	func windowDidExitFullScreen(_ notification: Notification) {
+        window?.makeKey()
+		prepareWindowButtons()
+        updateClockMenuUI()
+    }
 }
