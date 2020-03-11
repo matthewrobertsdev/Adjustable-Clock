@@ -29,7 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			alarmsMenuController=AlarmsMenuController(menu: mainMenu.alarmsMenu)
 			timersMenuController=TimersMenuController(menu: mainMenu.timersMenu)
 			generalMenuController=GeneralMenuController(menu: mainMenu.generalMenu)
-			worldClockMenuController=WorldClockMenuController(menu: mainMenu.worldClockMenu)
+			//worldClockMenuController=WorldClockMenuController(menu: mainMenu.worldClockMenu)
 		}
 		DockClockController.dockClockObject.updateDockTile()
 		AlarmCenter.sharedInstance
