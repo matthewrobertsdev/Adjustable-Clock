@@ -9,6 +9,7 @@
 import Cocoa
 
 class AlarmCollectionViewItem: NSCollectionViewItem {
+	weak var alarmDelegate: AlarmCollectionItemProtocol?
 	@IBOutlet weak var alarmTimeTextField: NSTextField!
 	@IBOutlet weak var alarmRepeatTextField: NSTextField!
 	@IBOutlet weak var alarmStatusSegmentedControl: NSSegmentedControl!
@@ -17,5 +18,11 @@ class AlarmCollectionViewItem: NSCollectionViewItem {
         super.viewDidLoad()
         // Do view setup here.
     }
-    
+	@IBAction func settingsButtonClicked(_ sender: Any) {
+		guard let alarmDelegate = alarmDelegate else {
+			return
+		}
+		let index=alarmDelegate.getCellIndex(cell: self)
+		alarmDelegate.showPopover(sender: sender, index: index)
+	}
 }

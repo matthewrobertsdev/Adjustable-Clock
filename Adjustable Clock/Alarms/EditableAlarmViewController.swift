@@ -8,6 +8,7 @@
 import Cocoa
 class EditableAlarmViewController: NSViewController {
 	var song: String?
+	weak var alarmCollectionViewDelegate: AlarmCollectionItemProtocol?
 	@IBOutlet weak var verticalStackView: NSStackView!
 	@IBOutlet weak var deleteButton: NSButton!
 	@IBOutlet weak var alertTextField: NSTextField!
@@ -75,15 +76,20 @@ class EditableAlarmViewController: NSViewController {
 		}
 		let alarm=Alarm(time: datePicker.dateValue, usesSong: usesSong, repeats: repeating, alert: alertName, song: playlistName, active: true)
 		if new {
+			print("here matt")
+			guard let alarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController else {
+				return
+			}
+			guard let alarmTableView=alarmsViewController.collectionView else {
+				return
+			}
+					print("here matt 3")
 			AlarmCenter.sharedInstance.addAlarm(alarm: alarm)
+			alarmTableView.animator().insertItems(at: [IndexPath(item: 0, section: 0)])
+			print("here matt 2")
 			self.view.window?.close()
 		} else {
 			AlarmCenter.sharedInstance.replaceAlarm(date: oldDate ?? Date(), alarm: alarm)
-			if let button=settingsButton {
-				if let alarmTableView=collectionView {
-					alarmTableView.reloadData()
-				}
-			}
 			cancel()
 		}
 		AlarmCenter.sharedInstance.setAlarms()
@@ -124,13 +130,5 @@ class EditableAlarmViewController: NSViewController {
 		} else {
 			repeatsButton.state=NSControl.StateValue.off
 		}
-	}
-	func indexPathForView(cellItem: NSView, collectionView: NSCollectionView) -> IndexPath? {
-		let point = cellItem.convert(cellItem.bounds.origin, to: collectionView)
-		if let indexPath = collectionView.indexPathForItem(at: point){
-			return indexPath
-		}
-		return nil
-
 	}
 }

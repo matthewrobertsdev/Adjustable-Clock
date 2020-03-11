@@ -81,7 +81,7 @@ class AlarmCenter: NSObject {
 			scheduleAlarm(alarm: alarm)
 		}
 		if let alarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController {
-			alarmsViewController.collectionView.reloadData()
+			//alarmsViewController.collectionView.reloadData()
 		}
 	}
 	private func scheduleAlarm(alarm: Alarm) {
