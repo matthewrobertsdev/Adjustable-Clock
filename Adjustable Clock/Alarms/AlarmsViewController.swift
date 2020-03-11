@@ -7,13 +7,26 @@
 //
 import Foundation
 import Cocoa
-class AlarmsViewController: ColorfulViewController, NSTableViewDataSource, NSTableViewDelegate {
+class AlarmsViewController: ColorfulViewController, NSTableViewDataSource, NSTableViewDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate {
+	func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
+		return AlarmCenter.sharedInstance.count
+	}
+	
+	func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+		guard let alarmCollectionViewItem=collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmCollectionViewItem"), for: indexPath) as? AlarmCollectionViewItem else {
+			return NSCollectionViewItem()
+		}
+		return alarmCollectionViewItem
+	}
+	
 	@objc var objectToObserve=AlarmCenter.sharedInstance
 	var observation: NSKeyValueObservation?
 	var observation2: NSKeyValueObservation?
 	let timeFormatter=DateFormatter()
 	let popover = NSPopover()
-	@IBOutlet weak var tableView: NSTableView!
+	//@IBOutlet weak var tableView: NSTableView!
+	
+	@IBOutlet weak var collectionView: NSCollectionView!
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var alarmNotifierTextField: NSTextField!
 	@IBAction func addAlarm(_ sender: Any) {
@@ -21,14 +34,15 @@ class AlarmsViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 	}
 	override func viewDidLoad() {
         super.viewDidLoad()
+		collectionView.register(AlarmCollectionViewItem.self, forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmCollectionViewItem"))
        view.addSubview(backgroundView, positioned: .below, relativeTo: view)
 		self.shorOrHideNotifier(numberOfAlarms: AlarmCenter.sharedInstance.count)
 		popover.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)
-		tableView.selectionHighlightStyle=NSTableView.SelectionHighlightStyle.none
+		//tableView.selectionHighlightStyle=NSTableView.SelectionHighlightStyle.none
 		timeFormatter.locale=Locale(identifier: "en_US")
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
-		tableView.delegate=self
-		tableView.dataSource=self
+		collectionView.delegate=self
+		collectionView.dataSource=self
 		backgroundView.translatesAutoresizingMaskIntoConstraints=false
 		//*
 		let leadingConstraint=NSLayoutConstraint(item: backgroundView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
@@ -41,7 +55,7 @@ class AlarmsViewController: ColorfulViewController, NSTableViewDataSource, NSTab
             options: [.old, .new]
         ) { _, change in
 			if change.newValue ?? 0>change.oldValue ?? 0 {
-				self.tableView.insertRows(at: [0], withAnimation: NSTableView.AnimationOptions.slideDown)
+				self.collectionView.insertItems(at: [IndexPath(item: 0, section: 0)])
 			}
         }
 		observation2 = observe(
@@ -61,11 +75,12 @@ class AlarmsViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 	}
 	func update() {
 		applyColorScheme(views: [ColorView](), labels: [titleTextField, alarmNotifierTextField])
-		tableView.reloadData()
+		collectionView.reloadData()
 	}
 	func numberOfRows(in tableView: NSTableView) -> Int {
 		return AlarmCenter.sharedInstance.count
 	 }
+	
 	  func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		let alarm = AlarmCenter.sharedInstance.getAlarm(index: row)
 		if tableColumn == tableView.tableColumns[0] {
@@ -98,10 +113,12 @@ class AlarmsViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 	@objc func onOffSelected(sender: Any) {
 		if let segmentedControl=sender as? NSSegmentedControl {
 			guard let tableViewCell=segmentedControl.superview as? AlarmStatusTableCellView else { return }
-			guard let alarmTableView=tableView else {
+			guard let alarmTableView=collectionView else {
 				return
 			}
-			let index: Int=alarmTableView.row(for: tableViewCell)
+			guard let index: Int=indexPathForView(cellItem: tableViewCell, collectionView: collectionView)?.item else {
+				return
+			}
 				let alarm=AlarmCenter.sharedInstance.getAlarm(index: index)
 			switch segmentedControl.selectedTag() {
 			case 0: alarm.active=false
@@ -110,7 +127,7 @@ class AlarmsViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 			default:
 				alarm.active=true
 			}
-			alarmTableView.reloadData(forRowIndexes: [index], columnIndexes: [0])
+			alarmTableView.reloadData()
 		}
 		AlarmCenter.sharedInstance.saveAlarms()
 		AlarmCenter.sharedInstance.setAlarms()
@@ -128,18 +145,29 @@ class AlarmsViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 				   "NewAlarmViewController") as? EditableAlarmViewController else { return }
 			editableAlarmViewController.new=false
 			guard let tableViewCell=settingsButton.superview as? NSTableCellView else { return }
-		let index=self.tableView.row(for: tableViewCell)
+		guard let index=indexPathForView(cellItem: tableViewCell, collectionView: collectionView)?.item else {
+		return
+			}
 			let alarm=AlarmCenter.sharedInstance.getAlarm(index: index)
 			editableAlarmViewController.cancel = { () -> Void in self.popover.close() }
 			editableAlarmViewController.delete = { () -> Void in
 				AlarmCenter.sharedInstance.removeAlarm(index: index)
-				self.tableView.removeRows(at: [index], withAnimation: NSTableView.AnimationOptions.slideUp)
+				self.collectionView.reloadData()
 			}
 			popover.contentViewController = editableAlarmViewController
 			popover.show(relativeTo: settingsButton.bounds, of: settingsButton, preferredEdge: NSRectEdge.minY)
 			editableAlarmViewController.settingsButton=settingsButton
-			editableAlarmViewController.tableView=tableView
+			editableAlarmViewController.collectionView=collectionView
 			editableAlarmViewController.assignAlarm(alarm: alarm)
 		}
 	}
+	func indexPathForView(cellItem: NSView, collectionView: NSCollectionView) -> IndexPath? {
+		let point = cellItem.convert(cellItem.bounds.origin, to: collectionView)
+		if let indexPath = collectionView.indexPathForItem(at: point){
+			return indexPath
+		}
+		return nil
+
+	}
+
 }

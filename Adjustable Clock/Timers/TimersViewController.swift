@@ -14,6 +14,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	var tellingTime: NSObjectProtocol?
 	override func viewDidLoad() {
         super.viewDidLoad()
+		//collectionView.indexPathForItem(at: NSPoint)
 		collectionView.dataSource=self
 		collectionView.delegate=self
 		popover.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)

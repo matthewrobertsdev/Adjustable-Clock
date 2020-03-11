@@ -81,7 +81,7 @@ class AlarmCenter: NSObject {
 			scheduleAlarm(alarm: alarm)
 		}
 		if let alarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController {
-			alarmsViewController.tableView.reloadData()
+			alarmsViewController.collectionView.reloadData()
 		}
 	}
 	private func scheduleAlarm(alarm: Alarm) {
@@ -102,8 +102,8 @@ class AlarmCenter: NSObject {
 					if let alarmViewController: AlarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController {
 						let row = self.alarms.firstIndex(where: { (alarmInstance) -> Bool in
 							return alarmInstance.time==alarm.time })
-						let tableView=alarmViewController.tableView
-						tableView?.reloadData(forRowIndexes: [(row ?? 0)], columnIndexes: [0, 1])
+						let tableView=alarmViewController.collectionView
+						tableView?.reloadData()
 					}
 				let alarmSound=NSSound(named: NSSound.Name(alarm.alertString))
 				if !alarm.usesSong {

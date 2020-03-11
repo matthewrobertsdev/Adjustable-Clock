@@ -17,7 +17,7 @@ class EditableAlarmViewController: NSViewController {
 	@IBOutlet weak var beepButton: NSButton!
 	@IBOutlet weak var songButton: NSButton!
 	var settingsButton: NSButton?
-	var tableView: NSTableView?
+	var collectionView: NSCollectionView?
 	var usesSong=false
 	var oldDate: Date?
 	var delete = { () -> Void in }
@@ -80,11 +80,8 @@ class EditableAlarmViewController: NSViewController {
 		} else {
 			AlarmCenter.sharedInstance.replaceAlarm(date: oldDate ?? Date(), alarm: alarm)
 			if let button=settingsButton {
-				if let alarmTableView=tableView {
-					guard let tableViewCell=button.superview as? NSTableCellView else { return }
-					let index=alarmTableView.row(for: tableViewCell)
-					alarmTableView.reloadData(forRowIndexes: [index],
-					columnIndexes: [0, 1, 2])
+				if let alarmTableView=collectionView {
+					alarmTableView.reloadData()
 				}
 			}
 			cancel()
@@ -127,5 +124,13 @@ class EditableAlarmViewController: NSViewController {
 		} else {
 			repeatsButton.state=NSControl.StateValue.off
 		}
+	}
+	func indexPathForView(cellItem: NSView, collectionView: NSCollectionView) -> IndexPath? {
+		let point = cellItem.convert(cellItem.bounds.origin, to: collectionView)
+		if let indexPath = collectionView.indexPathForItem(at: point){
+			return indexPath
+		}
+		return nil
+
 	}
 }

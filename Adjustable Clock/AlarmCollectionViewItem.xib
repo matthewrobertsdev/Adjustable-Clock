@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AlarmCollectionViewItem" customModule="Adjustable_Clock" customModuleProvider="target">
+            <connections>
+                <outlet property="alarmRepeatTextField" destination="N0E-kZ-ov1" id="3T7-mZ-Sg7"/>
+                <outlet property="alarmSettingsButton" destination="Ui2-A7-jPT" id="2Na-y0-g2e"/>
+                <outlet property="alarmStatusSegmentedControl" destination="58v-8Z-avA" id="En4-T3-zs4"/>
+                <outlet property="alarmTimeTextField" destination="JSa-zh-KZI" id="cwC-88-qpe"/>
+                <outlet property="view" destination="c22-O7-iKe" id="kc2-iA-GVh"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView identifier="AlarmCollectionViewItem" id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="270" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Pbq-Ve-PDk">
+                    <rect key="frame" x="0.0" y="0.0" width="125" height="70"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JSa-zh-KZI">
+                            <rect key="frame" x="3" y="32" width="118" height="32"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="12:00 PM" id="ivt-uY-fIh">
+                                <font key="font" metaFont="system" size="27"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N0E-kZ-ov1">
+                            <rect key="frame" x="27" y="11" width="71" height="19"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Everyday" id="IKU-sn-iW1">
+                                <font key="font" metaFont="system" size="16"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="N0E-kZ-ov1" firstAttribute="top" secondItem="Pbq-Ve-PDk" secondAttribute="top" constant="40" id="MeF-yb-EMD"/>
+                        <constraint firstItem="JSa-zh-KZI" firstAttribute="leading" secondItem="Pbq-Ve-PDk" secondAttribute="leading" constant="5" id="nPc-gX-1cm"/>
+                        <constraint firstAttribute="height" constant="70" id="pMc-wf-Vc7"/>
+                        <constraint firstItem="N0E-kZ-ov1" firstAttribute="leading" secondItem="Pbq-Ve-PDk" secondAttribute="leading" constant="29" id="pwx-y6-n38"/>
+                        <constraint firstItem="JSa-zh-KZI" firstAttribute="top" secondItem="Pbq-Ve-PDk" secondAttribute="top" constant="6" id="yOX-sU-Oim"/>
+                        <constraint firstAttribute="width" constant="125" id="zSi-It-mGO"/>
+                    </constraints>
+                </customView>
+                <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="58v-8Z-avA">
+                    <rect key="frame" x="131" y="22" width="85" height="24"/>
+                    <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="2ni-RM-JbH">
+                        <font key="font" metaFont="system"/>
+                        <segments>
+                            <segment label="Off" selected="YES"/>
+                            <segment label="On" tag="1"/>
+                        </segments>
+                    </segmentedCell>
+                </segmentedControl>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="Ui2-A7-jPT">
+                    <rect key="frame" x="222" y="21" width="28" height="28"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="W5i-tx-txn"/>
+                        <constraint firstAttribute="width" constant="28" id="l87-kZ-FHc"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAdvanced" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="nGW-zW-nnu">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="58v-8Z-avA" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="25" id="0QQ-1U-vRi"/>
+                <constraint firstItem="Ui2-A7-jPT" firstAttribute="leading" secondItem="58v-8Z-avA" secondAttribute="trailing" constant="8" id="0r4-3D-IbM"/>
+                <constraint firstItem="58v-8Z-avA" firstAttribute="leading" secondItem="Pbq-Ve-PDk" secondAttribute="trailing" constant="8" id="Xdy-fh-WGT"/>
+                <constraint firstItem="Ui2-A7-jPT" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="21" id="bfN-W2-B4l"/>
+                <constraint firstItem="Pbq-Ve-PDk" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="vpK-Ho-Nf4"/>
+                <constraint firstItem="Pbq-Ve-PDk" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="wMe-mD-7Tx"/>
+            </constraints>
+            <point key="canvasLocation" x="34" y="53"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="NSAdvanced" width="32" height="32"/>
+    </resources>
+</document>
