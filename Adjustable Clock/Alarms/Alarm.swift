@@ -9,19 +9,21 @@ import Foundation
 class Alarm: Codable {
 	var calendar=Calendar.current
 	var time: Date
+	var timeString: String
 	var expiresDate=Date()
 	var usesSong: Bool
 	var repeats: Bool
 	var alertString="Ping"
 	var song=""
 	var active=false
-	init(time: Date, usesSong: Bool, repeats: Bool, alert: String, song: String, active: Bool) {
+	init(time: Date, timeString: String, usesSong: Bool, repeats: Bool, alert: String, song: String, active: Bool) {
 		self.time=time
 		self.usesSong=usesSong
 		self.repeats=repeats
 		self.alertString=alert
 		self.song=song
 		self.active=active
+		self.timeString=timeString
 		setExpirationDate(currentDate: Date())
 	}
 	func setExpirationDate(currentDate: Date) {

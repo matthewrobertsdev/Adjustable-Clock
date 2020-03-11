@@ -118,8 +118,11 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		AlarmCenter.sharedInstance.saveAlarms()
 		AlarmCenter.sharedInstance.setAlarms()
 	}
-	func showPopover(sender: Any, index: IndexPath) {
+	func showPopover(sender: Any, collectionViewItem: NSCollectionViewItem) {
 		guard let settingsButton=sender as? NSButton else {
+			return
+		}
+		guard let index=self.collectionView?.indexPath(for: collectionViewItem) else {
 			return
 		}
 		if  popover.isShown {
@@ -144,11 +147,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			editableAlarmViewController.assignAlarm(alarm: alarm)
 		}
 	}
-	func getCellIndex(cell: NSCollectionViewItem) -> IndexPath {
-		return self.collectionView!.indexPath(for: cell) ?? IndexPath(item: 0, section: 0)
-	}
 }
 protocol AlarmCollectionItemProtocol: AnyObject {
-	func getCellIndex(cell: NSCollectionViewItem) -> IndexPath
-	func showPopover(sender: Any, index: IndexPath) -> Void
+	func showPopover(sender: Any, collectionViewItem: NSCollectionViewItem) -> Void
 }

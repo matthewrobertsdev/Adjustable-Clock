@@ -22,7 +22,6 @@ class AlarmCollectionViewItem: NSCollectionViewItem {
 		guard let alarmDelegate = alarmDelegate else {
 			return
 		}
-		let index=alarmDelegate.getCellIndex(cell: self)
-		alarmDelegate.showPopover(sender: sender, index: index)
+		alarmDelegate.showPopover(sender: sender, collectionViewItem: self)
 	}
 }
