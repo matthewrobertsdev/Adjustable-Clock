@@ -185,7 +185,6 @@ class AlarmCenter: NSObject {
 		getActiveAlarms()
 	}
 	private func getTimeInterval(alarm: Alarm) -> TimeInterval {
-		var tomorrow=false
 		let now=Date()
 		let timeFormatter=DateFormatter()
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
@@ -193,20 +192,13 @@ class AlarmCenter: NSObject {
 		let month=calendar.dateComponents([.month], from: now).month
 		let day=calendar.dateComponents([.day], from: now).day
 		let year=calendar.dateComponents([.year], from: now).year
-		
 		let hour=calendar.dateComponents([.hour], from: alarmTime).hour ?? 0
 		let minute=calendar.dateComponents([.minute], from: alarmTime).minute ?? 0
-		let second=calendar.dateComponents([.second], from: alarmTime).second ?? 0
 		var alarmDate=calendar.date(from: DateComponents(calendar: calendar, timeZone:
 			nil, era: nil, year: year, month: month, day: day, hour: hour, minute: minute, second: 0,
 				 nanosecond: 0, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil,
 				 weekOfYear: nil, yearForWeekOfYear: nil))
-		let nanoseconds=calendar.dateComponents([.nanosecond], from: now).nanosecond ?? 0
-		let alarmHour=calendar.dateComponents([.hour], from: alarm.time).hour ?? 0
-		let alarmMinute=calendar.dateComponents([.minute], from: alarm.time).minute ?? 0
-		let alarmSecond=calendar.dateComponents([.second], from: alarm.time).second ?? 0
 		if (alarmDate ?? Date())<now {
-			tomorrow=true
 			alarmDate=calendar.date(byAdding: DateComponents(calendar: calendar, timeZone:
 			nil, era: nil, year: 0, month: 0, day: 1, hour: 0, minute: 0, second: 0,
 				 nanosecond: 0, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil,
