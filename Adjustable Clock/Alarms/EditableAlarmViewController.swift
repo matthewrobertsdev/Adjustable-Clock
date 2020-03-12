@@ -9,6 +9,7 @@ import Cocoa
 class EditableAlarmViewController: NSViewController {
 	var song: String?
 	weak var alarmCollectionViewDelegate: AlarmCollectionItemProtocol?
+	let timeFormatter=DateFormatter()
 	@IBOutlet weak var verticalStackView: NSStackView!
 	@IBOutlet weak var deleteButton: NSButton!
 	@IBOutlet weak var alertTextField: NSTextField!
@@ -74,19 +75,18 @@ class EditableAlarmViewController: NSViewController {
 				return
 			}
 		}
-		let alarm=Alarm(time: datePicker.dateValue, usesSong: usesSong, repeats: repeating, alert: alertName, song: playlistName, active: true)
+		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
+		let timeString=timeFormatter.string(from: datePicker.dateValue)
+		let alarm=Alarm(time: datePicker.dateValue, timeString: timeString, usesSong: usesSong, repeats: repeating, alert: alertName, song: playlistName, active: true)
 		if new {
-			print("here matt")
 			guard let alarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController else {
 				return
 			}
 			guard let alarmTableView=alarmsViewController.collectionView else {
 				return
 			}
-					print("here matt 3")
 			AlarmCenter.sharedInstance.addAlarm(alarm: alarm)
 			alarmTableView.animator().insertItems(at: [IndexPath(item: 0, section: 0)])
-			print("here matt 2")
 			self.view.window?.close()
 		} else {
 			AlarmCenter.sharedInstance.replaceAlarm(date: oldDate ?? Date(), alarm: alarm)

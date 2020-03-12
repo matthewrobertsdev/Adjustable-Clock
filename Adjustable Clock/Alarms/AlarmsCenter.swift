@@ -13,7 +13,7 @@ class AlarmCenter: NSObject {
 	let jsonEncoder=JSONEncoder()
 	let jsonDecoder=JSONDecoder()
 	private var alarmProtocol: NSObjectProtocol?
-	private let calendar=Calendar.current
+	private let calendar=Calendar.autoupdatingCurrent
 	private var alarmTimers=[DispatchSourceTimer]()
 	private let timeFormatter=DateFormatter()
 	private let appObject = NSApp as NSApplication
@@ -21,6 +21,7 @@ class AlarmCenter: NSObject {
 	override private init() {
 		super.init()
 		notifcationCenter.addObserver(self, selector: #selector(scheduleAlarms), name: NSNotification.Name.NSSystemClockDidChange, object: nil)
+		notifcationCenter.addObserver(self, selector: #selector(scheduleAlarms), name: NSNotification.Name.NSSystemTimeZoneDidChange, object: nil)
 		timeFormatter.locale=Locale(identifier: "en_US")
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
 		jsonEncoder.outputFormatting = .prettyPrinted
@@ -85,6 +86,7 @@ class AlarmCenter: NSObject {
 		}
 	}
 	private func scheduleAlarm(alarm: Alarm) {
+		print("scheduling alarms")
 		if alarm.active {
 			if !alarm.repeats && alarm.expiresDate<Date() {
 				print("now inactive")
@@ -132,7 +134,7 @@ class AlarmCenter: NSObject {
 					}
 				}
 				let alarmAlert=NSAlert()
-				alarmAlert.messageText="Alarm for \(self.timeFormatter.string(from: alarm.time))  has gone off."
+				alarmAlert.messageText="Alarm for \( alarm.timeString))  has gone off."
 				alarmAlert.addButton(withTitle: "Dismiss")
 				alarmAlert.icon=DockClockController.dockClockObject.getFreezeView(time: alarm.time).image()
 				AlarmsWindowController.alarmsObject.showAlarms()
@@ -185,28 +187,37 @@ class AlarmCenter: NSObject {
 	private func getTimeInterval(alarm: Alarm) -> TimeInterval {
 		var tomorrow=false
 		let now=Date()
-		let hour=calendar.dateComponents([.hour], from: now).hour ?? 0
-		let minute=calendar.dateComponents([.minute], from: now).minute ?? 0
-		let second=calendar.dateComponents([.second], from: now).second ?? 0
+		let timeFormatter=DateFormatter()
+		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
+		let alarmTime=timeFormatter.date(from: alarm.timeString) ?? Date()
+		let month=calendar.dateComponents([.month], from: now).month
+		let day=calendar.dateComponents([.day], from: now).day
+		let year=calendar.dateComponents([.year], from: now).year
+		
+		let hour=calendar.dateComponents([.hour], from: alarmTime).hour ?? 0
+		let minute=calendar.dateComponents([.minute], from: alarmTime).minute ?? 0
+		let second=calendar.dateComponents([.second], from: alarmTime).second ?? 0
+		var alarmDate=calendar.date(from: DateComponents(calendar: calendar, timeZone:
+			nil, era: nil, year: year, month: month, day: day, hour: hour, minute: minute, second: 0,
+				 nanosecond: 0, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil,
+				 weekOfYear: nil, yearForWeekOfYear: nil))
 		let nanoseconds=calendar.dateComponents([.nanosecond], from: now).nanosecond ?? 0
 		let alarmHour=calendar.dateComponents([.hour], from: alarm.time).hour ?? 0
 		let alarmMinute=calendar.dateComponents([.minute], from: alarm.time).minute ?? 0
 		let alarmSecond=calendar.dateComponents([.second], from: alarm.time).second ?? 0
-		if hour>alarmHour {
+		if (alarmDate ?? Date())<now {
 			tomorrow=true
+			alarmDate=calendar.date(byAdding: DateComponents(calendar: calendar, timeZone:
+			nil, era: nil, year: 0, month: 0, day: 1, hour: 0, minute: 0, second: 0,
+				 nanosecond: 0, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil,
+				 weekOfYear: nil, yearForWeekOfYear: nil), to: (alarmDate ?? Date()), wrappingComponents: false)
 		}
-		if hour==alarmHour && minute>=alarmMinute {
-			tomorrow=true
-		}
+		let dateComponents=calendar.dateComponents([.hour, .minute, .second, .nanosecond], from: Date(), to: (alarmDate ?? Date()))
 		var totalSeconds: Double=0
-		totalSeconds+=Double((alarmHour-hour)*60*60)
-		totalSeconds+=Double((alarmMinute-minute)*60)
-		totalSeconds+=Double((alarmSecond-second))
-		totalSeconds += Double(0-nanoseconds/1_000_000_000)
-		if tomorrow {
-			totalSeconds *= -1
-			totalSeconds+=24*3600
-		}
+		totalSeconds+=Double((dateComponents.hour ?? 0)*60*60)
+		totalSeconds+=Double((dateComponents.minute ?? 0)*60)
+		totalSeconds+=Double(dateComponents.second ?? 0)
+		totalSeconds += Double((Double(dateComponents.nanosecond ?? 0))/Double(1_000_000_000))
 		return TimeInterval(exactly: totalSeconds) ?? 0
 	}
 	@objc dynamic var count=0

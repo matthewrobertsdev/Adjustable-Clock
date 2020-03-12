@@ -23,7 +23,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		alarmCollectionViewItem.alarmSettingsButton.tag=indexPath.item
 		alarmCollectionViewItem.alarmTimeTextField.textColor=textColor
 		alarmCollectionViewItem.alarmRepeatTextField.textColor=textColor
-		alarmCollectionViewItem.alarmTimeTextField.stringValue=timeFormatter.string(from: alarm.time)
+		alarmCollectionViewItem.alarmTimeTextField.stringValue=alarm.timeString
 		alarmCollectionViewItem.alarmRepeatTextField.stringValue = !alarm.active ? "Off" : (alarm.repeats ? "Everyday" : "Just once")
 		alarmCollectionViewItem.alarmStatusSegmentedControl.setTag(0, forSegment: 0)
 		alarmCollectionViewItem.alarmStatusSegmentedControl.setTag(1, forSegment: 1)
@@ -103,7 +103,6 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			guard let alarmTableView=collectionView else {
 				return
 			}
-			print("abcd")
 			let index=segmentedControl.tag
 				let alarm=AlarmCenter.sharedInstance.getAlarm(index: index)
 			switch segmentedControl.selectedTag() {
