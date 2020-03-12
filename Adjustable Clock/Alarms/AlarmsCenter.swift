@@ -134,7 +134,7 @@ class AlarmCenter: NSObject {
 					}
 				}
 				let alarmAlert=NSAlert()
-				alarmAlert.messageText="Alarm for \( alarm.timeString))  has gone off."
+				alarmAlert.messageText="Alarm for \( alarm.timeString)  has gone off."
 				alarmAlert.addButton(withTitle: "Dismiss")
 				alarmAlert.icon=DockClockController.dockClockObject.getFreezeView(time: alarm.time).image()
 				AlarmsWindowController.alarmsObject.showAlarms()
@@ -183,6 +183,14 @@ class AlarmCenter: NSObject {
 		}
 		saveAlarms()
 		getActiveAlarms()
+	}
+	func getAlarmIndex(alarm: Alarm) -> Int{
+		if let index=self.alarms.firstIndex(where: { (alarmInstance) -> Bool in
+			alarmInstance.time==alarm.time })
+		{
+			return index
+		}
+		return 0
 	}
 	private func getTimeInterval(alarm: Alarm) -> TimeInterval {
 		let now=Date()

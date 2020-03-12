@@ -90,6 +90,8 @@ class EditableAlarmViewController: NSViewController {
 			self.view.window?.close()
 		} else {
 			AlarmCenter.sharedInstance.replaceAlarm(date: oldDate ?? Date(), alarm: alarm)
+			let index=AlarmCenter.sharedInstance.getAlarmIndex(alarm: alarm)
+			collectionView?.reloadItems(at: [IndexPath(item: index, section: 0)])
 			cancel()
 		}
 		AlarmCenter.sharedInstance.setAlarms()
