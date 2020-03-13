@@ -15,4 +15,5 @@ class CountDownTimer: Codable{
 	var alertString=""
 	var song=""
 	var active=false
+	var going=false
 }

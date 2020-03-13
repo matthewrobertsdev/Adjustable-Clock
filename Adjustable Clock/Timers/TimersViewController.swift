@@ -50,23 +50,25 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		collectionView.scrollToItems(at: [IndexPath(item: index, section: 0)], scrollPosition: NSCollectionView.ScrollPosition.centeredVertically)
 	}
 	func animateTimer(index: Int) {
+		TimersCenter.sharedInstance.timers[index].going=true
 		displayTimer(index: index)
 		TimersCenter.sharedInstance.gcdTimers[index].schedule(deadline: .now(), repeating: .milliseconds(1000), leeway: .milliseconds(0))
 		TimersCenter.sharedInstance.gcdTimers[index].setEventHandler {
 			TimersCenter.sharedInstance.updateTimer(index: index)
 			self.displayTimer(index: index)
-			if TimersCenter.sharedInstance.timers[index].secondsRemaining<1 {
+			if TimersCenter.sharedInstance.timers[index].secondsRemaining<=0&&TimersCenter.sharedInstance.timers[index].going{
+				print("abcd"+TimersCenter.sharedInstance.timers[index].secondsRemaining.description)
 				if let timerCollectionViewItem=self.collectionView.item(at: index) as? TimerCollectionViewItem {
 					timerCollectionViewItem.startPauseButton.title="Start"
 				}
 				self.timerStopped(index: index)
-				//TimersCenter.sharedInstance.gcdTimers[index].suspend()
 			}
 		}
 		TimersCenter.sharedInstance.gcdTimers[index].resume()
 	}
 	func timerStopped(index: Int) {
 		let timer=TimersCenter.sharedInstance.timers[index]
+		timer.going=false
 		let alertSound=NSSound(named: NSSound.Name(timer.alertString))
 		var hasError=false
 		if timer.alertStyle==AlertStyle.sound {
@@ -98,7 +100,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		timerAlert.messageText="Timer has gone off at \(self.timeFormatter.string(from: Date()))."
 		timerAlert.addButton(withTitle: "Dismiss")
 		timerAlert.icon=DockClockController.dockClockObject.getFreezeView(time: Date()).image()
-		AlarmsWindowController.alarmsObject.showAlarms()
+		TimersWindowController.timersObject.showTimers()
 		if timer.alertStyle==AlertStyle.song && !hasError {
 			timerAlert.addButton(withTitle: "Stop Music")
 		} else if timer.alertStyle==AlertStyle.song {

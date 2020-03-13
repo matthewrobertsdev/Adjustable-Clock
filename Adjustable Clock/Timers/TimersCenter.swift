@@ -44,10 +44,11 @@ class TimersCenter {
 	var timers=[CountDownTimer(), CountDownTimer(), CountDownTimer()]
 	var gcdTimers=[DispatchSourceTimer]()
 	func getCountDownString(index: Int) -> String {
-		return  String(TimersCenter.sharedInstance.timers[index].secondsRemaining)
+		return TimersCenter.sharedInstance.timers[index].secondsRemaining >= 0 ? String(TimersCenter.sharedInstance.timers[index].secondsRemaining) : String(0)
 	}
 	func updateTimer(index: Int) {
-		if timers[index].secondsRemaining<1 {
+		if timers[index].secondsRemaining<=0 {
+			timers[index].secondsRemaining-=1
 			gcdTimers[index].suspend()
 			timers[index].active=false
 		} else {
@@ -63,7 +64,7 @@ class TimersCenter {
 		timer.totalSeconds=totalSeconds
 		timer.secondsRemaining=totalSeconds
 	}
-	func stopTimer(index: Int){
+	func stopTimer(index: Int) {
 		if timers[index].active {
 			timers[index].active=false
 			gcdTimers[index].suspend()
