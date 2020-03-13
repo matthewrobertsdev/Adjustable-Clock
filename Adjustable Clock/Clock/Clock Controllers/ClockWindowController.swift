@@ -120,6 +120,11 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
 		saveState()
 		enableClockMenu(enabled: false)
+		if GeneralPreferencesStorage.sharedInstance.closing {
+			ClockPreferencesStorage.sharedInstance.setWindowIsOpen()
+		} else {
+			ClockPreferencesStorage.sharedInstance.setWindowIsClosed()
+		}
     }
     func windowWillEnterFullScreen(_ notification: Notification) {
         saveState()

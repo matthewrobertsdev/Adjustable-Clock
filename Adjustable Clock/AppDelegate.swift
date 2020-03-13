@@ -42,11 +42,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		if WorldClockPreferencesStorage.sharedInstance.windowIsOpen {
 			WorldClockWindowController.worldClockObject.showWorldClock()
 		}
-		ClockWindowController.clockObject.showClock()
+		if ClockPreferencesStorage.sharedInstance.windowIsOpen {
+			ClockWindowController.clockObject.showClock()
+		}
+		print("abcd count"+NSApp.windows.count.description)
+		if NSApp.orderedWindows.count==0 {
+			ClockWindowController.clockObject.showClock()
+		} else {
+			NSApp.orderedWindows[0].makeKeyAndOrderFront(nil)
+		}
 	}
     //if the dock icon is clicked
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-		ClockWindowController.clockObject.showClock()
+		if NSApp.orderedWindows.count==0 {
+			ClockWindowController.clockObject.showClock()
+		} else {
+			NSApp.orderedWindows[0].makeKeyAndOrderFront(nil)
+		}
         return false
     }
     func applicationWillTerminate(_ aNotification: Notification) {

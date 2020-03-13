@@ -347,6 +347,18 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="File" id="lYl-mh-hXa">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="File" id="a3t-mT-qM7">
+                                    <items>
+                                        <menuItem title="Close Window" keyEquivalent="w" id="IJP-sP-FuO">
+                                            <connections>
+                                                <action selector="performClose:" target="Ady-hI-5gd" id="Sz0-U4-kMX"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="View" id="uZz-Ba-QeA">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="kzd-Bb-TPD">
@@ -479,8 +491,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="bUe-XQ-4Ad"/>
-                                        <menuItem title="Show Clock" id="Vhi-ah-dEJ">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Show Clock" keyEquivalent="1" id="Vhi-ah-dEJ">
                                             <connections>
                                                 <action selector="showClockWithNsMenuItem:" target="esu-23-zsK" id="ISN-rA-kwO"/>
                                             </connections>
@@ -508,8 +519,7 @@
                                                 <action selector="addAlarmWithNsMenuItem:" target="Dah-wr-0hi" id="Wrb-KW-SKy"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Show Alarms" id="oB7-Ye-eci">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Show Alarms" keyEquivalent="2" id="oB7-Ye-eci">
                                             <connections>
                                                 <action selector="showAlarmsWithNsMenuItem:" target="Dah-wr-0hi" id="Xvz-fH-GLQ"/>
                                             </connections>
@@ -539,8 +549,7 @@
                                                 <action selector="showTimerNumber3WithNsMenuItem:" target="fWd-IJ-eGk" id="I8g-j0-Jmf"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Show Timers" id="NWt-qo-N82">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Show Timers" keyEquivalent="3" id="NWt-qo-N82">
                                             <connections>
                                                 <action selector="showTimersWithNsMenuItem:" target="fWd-IJ-eGk" id="rey-Y6-J0m"/>
                                             </connections>
@@ -1233,7 +1242,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="141.5" minWidth="40" maxWidth="1000" id="72b-sf-9fX">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1266,7 +1275,7 @@ DQ
                                                 </tableColumn>
                                                 <tableColumn width="143.5" minWidth="40" maxWidth="1000" id="Kc6-Qb-l2w">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1937,7 +1946,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="233" minWidth="40" maxWidth="1000" id="7af-du-yPg">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2081,7 +2090,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="280" minWidth="40" maxWidth="1000" id="nxT-P1-PJ8">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2205,7 +2214,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="304" minWidth="40" maxWidth="1000" id="h46-K1-f75">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>

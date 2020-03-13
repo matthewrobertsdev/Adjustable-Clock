@@ -5,10 +5,10 @@
 //  Created by Matt Roberts on 2/14/20.
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
-enum AlertStyle: String, Codable{
-	case sound="sound"
-	case song="song"
-	case noSound="noSound"
+enum AlertStyle: String, Codable {
+	case sound
+	case song
+	case noSound
 }
 import Cocoa
 class EditableTimerViewController: NSViewController {
