@@ -149,7 +149,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		}
 		if TimersCenter.sharedInstance.timers[index].active {
 			TimersCenter.sharedInstance.timers[index].active=false
-			TimersCenter.sharedInstance.gcdTimers[index].suspend()
+			TimersCenter.sharedInstance.gcdTimers[index].cancel()
 			timerCollectionViewItem.startPauseButton.title="Resume"
 		} else {
 		TimersCenter.sharedInstance.timers[index].active=true

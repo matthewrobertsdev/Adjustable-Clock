@@ -9,7 +9,7 @@
 import Cocoa
 
 class FullViewWindowController: NSWindowController {
-	var hideButtonsTimer: Timer?
+	var hideButtonsTimer: DispatchSourceTimer?
     var backgroundView: NSView?
     var trackingArea: NSTrackingArea?
     override func windowDidLoad() {
@@ -28,7 +28,7 @@ class FullViewWindowController: NSWindowController {
 		guard let area=trackingArea else { return }
 		view.removeTrackingArea(area)
     }
-    @objc func hideButtons(timer: Timer) {
+    func hideButtons() {
 		if ClockPreferencesStorage.sharedInstance.fullscreen==false {
             showButtons(show: false)
         }
@@ -46,12 +46,13 @@ class FullViewWindowController: NSWindowController {
     }
     func flashButtons() {
         showButtons(show: true)
-        hideButtonsTimer?.invalidate()
-        hideButtonsTimer = Timer.scheduledTimer(timeInterval: 1,
-                                                target: self,
-                                                selector: #selector(hideButtons(timer:)),
-                                                userInfo: nil,
-                                                repeats: false)
+		hideButtonsTimer?.cancel()
+		hideButtonsTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
+		hideButtonsTimer?.schedule(deadline: .now()+1, repeating: .never, leeway: .milliseconds(0))
+		hideButtonsTimer?.setEventHandler {
+			self.hideButtons()
+		}
+		hideButtonsTimer?.resume()
     }
     override func mouseMoved(with event: NSEvent) {
         flashButtons()

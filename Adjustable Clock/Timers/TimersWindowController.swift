@@ -64,7 +64,7 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 	}
 	func windowDidEnterFullScreen(_ notification: Notification) {
         removeTrackingArea()
-        hideButtonsTimer?.invalidate()
+		hideButtonsTimer?.suspend()
         updateClockMenuUI()
         showButtons(show: true)
     }

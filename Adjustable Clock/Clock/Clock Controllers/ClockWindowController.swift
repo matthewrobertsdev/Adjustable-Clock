@@ -136,7 +136,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 	}
     func windowDidEnterFullScreen(_ notification: Notification) {
         removeTrackingArea()
-        hideButtonsTimer?.invalidate()
+		hideButtonsTimer?.cancel()
         updateClockMenuUI()
         reloadPreferencesWindowIfOpen()
         showButtons(show: true)

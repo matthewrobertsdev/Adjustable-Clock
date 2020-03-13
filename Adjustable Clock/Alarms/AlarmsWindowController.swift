@@ -63,7 +63,7 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
     }
 	func windowDidEnterFullScreen(_ notification: Notification) {
         removeTrackingArea()
-        hideButtonsTimer?.invalidate()
+		hideButtonsTimer?.cancel()
         updateClockMenuUI()
         showButtons(show: true)
     }
