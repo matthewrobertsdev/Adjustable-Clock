@@ -74,7 +74,6 @@ class AlarmCenter: NSObject {
 		return activeCount
 	}
 	@objc private func scheduleAlarms() {
-		print("schedule")
 		for timer in alarmTimers {
 			timer.cancel()
 		}
@@ -86,10 +85,8 @@ class AlarmCenter: NSObject {
 		}
 	}
 	private func scheduleAlarm(alarm: Alarm) {
-		print("scheduling alarms")
 		if alarm.active {
 			if !alarm.repeats && alarm.expiresDate<Date() {
-				print("now inactive")
 				alarm.active=false
 				return
 			}

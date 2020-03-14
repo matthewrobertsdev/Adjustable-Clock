@@ -13,10 +13,8 @@ class ChooseCityViewController: NSViewController, NSTableViewDataSource, NSTable
         super.viewDidLoad()
 		tableView.dataSource=self
 		tableView.delegate=self
-		print(timeZoneStrings[0])
     }
 	func numberOfRows(in tableView: NSTableView) -> Int {
-		print("abcd")
 		return timeZoneStrings.count
 	}
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {

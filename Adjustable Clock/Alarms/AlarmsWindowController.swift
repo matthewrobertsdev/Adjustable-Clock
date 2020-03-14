@@ -11,6 +11,7 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 	static var alarmsObject=AlarmsWindowController()
     override func windowDidLoad() {
         super.windowDidLoad()
+		WindowManager.sharedInstance.count+=1
 		AlarmsWindowController.alarmsObject=AlarmsWindowController()
 		window?.delegate=self
 		AlarmsPreferencesStorage.sharedInstance.setWindowIsClosed()
@@ -21,6 +22,7 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 		prepareWindowButtons()
     }
 	func windowWillClose(_ notification: Notification) {
+		WindowManager.sharedInstance.count-=1
 		saveState()
 		if GeneralPreferencesStorage.sharedInstance.closing {
 			AlarmsPreferencesStorage.sharedInstance.setWindowIsOpen()

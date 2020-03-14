@@ -9,6 +9,7 @@ import Cocoa
 class WorldClockWindowController: FullViewWindowController, NSWindowDelegate {
 	static var worldClockObject=WorldClockWindowController()
     override func windowDidLoad() {
+		WindowManager.sharedInstance.count+=1
         super.windowDidLoad()
 		window?.delegate=self
 		if WorldClockPreferencesStorage.sharedInstance.haslaunchedBefore() {
@@ -36,6 +37,7 @@ class WorldClockWindowController: FullViewWindowController, NSWindowDelegate {
 		}
 	}
 	func windowWillClose(_ notification: Notification) {
+		WindowManager.sharedInstance.count-=1
 		saveState()
 		if GeneralPreferencesStorage.sharedInstance.closing {
 			WorldClockPreferencesStorage.sharedInstance.setWindowIsOpen()

@@ -45,7 +45,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		if ClockPreferencesStorage.sharedInstance.windowIsOpen {
 			ClockWindowController.clockObject.showClock()
 		}
-		print("abcd count"+NSApp.windows.count.description)
 		if NSApp.orderedWindows.count==0 {
 			ClockWindowController.clockObject.showClock()
 		}
@@ -55,7 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		if !flag {
 			ClockWindowController.clockObject.showClock()
 		}
-		if WindowManager.sharedInstance.dockWindowArray.count==NSApp.orderedWindows.count {
+		if WindowManager.sharedInstance.dockWindowArray.count==WindowManager.sharedInstance.count {
 			WindowManager.sharedInstance.dockWindowArray.last?.deminiaturize(nil)
 		}
 		return false

@@ -11,4 +11,5 @@ class WindowManager {
 	private init(){
 	}
 	var dockWindowArray=[NSWindow]()
+	var count=0
 }

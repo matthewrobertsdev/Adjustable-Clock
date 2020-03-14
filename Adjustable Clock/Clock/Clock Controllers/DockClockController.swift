@@ -136,7 +136,6 @@ class DockClockController: NSObject {
 						digitalClockView.digitalSeconds.textColor=NSColor.black
 					}
 				} else {
-				print("should be gray")
 					analogClockView.handsColor=NSColor.systemGray
 					digitalClockView.digitalClock.textColor=NSColor.systemGray
 					digitalClockView.digitalSeconds.textColor=NSColor.systemGray
@@ -144,7 +143,6 @@ class DockClockController: NSObject {
 			} else {
 				analogClockView.backgroundColor=NSColor.labelColor
 				digitalClockView.backgroundColor=NSColor.black
-				print("should be black")
 				if contrastColor != NSColor.black {
 					analogClockView.color=contrastColor
 					digitalClockView.digitalClock.textColor=contrastColor

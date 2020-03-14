@@ -10,6 +10,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 	static var clockObject=ClockWindowController()
     override func windowDidLoad() {
         super.windowDidLoad()
+		WindowManager.sharedInstance.count+=1
 		window?.delegate=self
 		ClockWindowController.clockObject=ClockWindowController()
 		guard let clockViewController=window?.contentViewController as? ClockViewController else { return }
@@ -119,6 +120,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 	}
     func windowWillClose(_ notification: Notification) {
 		saveState()
+		WindowManager.sharedInstance.count-=1
 		enableClockMenu(enabled: false)
 		if GeneralPreferencesStorage.sharedInstance.closing {
 			ClockPreferencesStorage.sharedInstance.setWindowIsOpen()

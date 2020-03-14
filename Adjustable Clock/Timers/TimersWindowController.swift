@@ -12,6 +12,7 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 	static var timersObject=TimersWindowController()
     override func windowDidLoad() {
         super.windowDidLoad()
+		WindowManager.sharedInstance.count+=1
 		window?.delegate=self
 		window?.minSize=NSSize(width: 450, height: 224)
 		if TimersPreferenceStorage.sharedInstance.haslaunchedBefore() {
@@ -47,6 +48,7 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
         }
     }
 	func windowWillClose(_ notification: Notification) {
+		WindowManager.sharedInstance.count-=1
 		saveState()
 		if GeneralPreferencesStorage.sharedInstance.closing {
 			TimersPreferenceStorage.sharedInstance.setWindowIsOpen()
@@ -74,9 +76,17 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
         updateClockMenuUI()
     }
 	func windowWillMiniaturize(_ notification: Notification) {
+		guard let timerViewController=window?.contentViewController as? TimersViewController else {
+			return
+		}
+		timerViewController.displayForDock()
 		WindowManager.sharedInstance.dockWindowArray.append(window ?? NSWindow())
 	}
 	func windowDidDeminiaturize(_ notification: Notification) {
+		guard let timerViewController=window?.contentViewController as? TimersViewController else {
+			return
+		}
+		timerViewController.displayNormally()
 		WindowManager.sharedInstance.dockWindowArray.removeAll { (dockWindow) -> Bool in
 			return dockWindow==window
 		}
