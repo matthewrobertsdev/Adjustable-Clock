@@ -48,18 +48,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		print("abcd count"+NSApp.windows.count.description)
 		if NSApp.orderedWindows.count==0 {
 			ClockWindowController.clockObject.showClock()
-		} else {
-			NSApp.orderedWindows[0].makeKeyAndOrderFront(nil)
 		}
 	}
     //if the dock icon is clicked
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-		if NSApp.orderedWindows.count==0 {
+		if !flag {
 			ClockWindowController.clockObject.showClock()
-		} else {
-			NSApp.orderedWindows[0].makeKeyAndOrderFront(nil)
 		}
-        return false
+		if WindowManager.sharedInstance.dockWindowArray.count==NSApp.orderedWindows.count {
+			WindowManager.sharedInstance.dockWindowArray.last?.deminiaturize(nil)
+		}
+		return false
     }
     func applicationWillTerminate(_ aNotification: Notification) {
 		GeneralPreferencesStorage.sharedInstance.closing=true

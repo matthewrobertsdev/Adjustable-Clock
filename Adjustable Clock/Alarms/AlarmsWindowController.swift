@@ -72,4 +72,12 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 		prepareWindowButtons()
         updateClockMenuUI()
     }
+	func windowWillMiniaturize(_ notification: Notification) {
+		WindowManager.sharedInstance.dockWindowArray.append(window ?? NSWindow())
+	}
+	func windowDidDeminiaturize(_ notification: Notification) {
+		WindowManager.sharedInstance.dockWindowArray.removeAll { (dockWindow) -> Bool in
+			return dockWindow==window
+		}
+	}
 }

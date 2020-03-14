@@ -182,11 +182,15 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 		if let digitalClockVC=window?.contentViewController as? ClockViewController {
 			digitalClockVC.displayForDock()
 		}
+		WindowManager.sharedInstance.dockWindowArray.append(window ?? NSWindow())
 	}
 	func windowDidDeminiaturize(_ notification: Notification) {
 		if let digitalClockVC=window?.contentViewController as? ClockViewController {
 			digitalClockVC.backgroundView.draw(digitalClockVC.backgroundView.bounds)
 			digitalClockVC.animateClock()
+		}
+		WindowManager.sharedInstance.dockWindowArray.removeAll { (dockWindow) -> Bool in
+			return dockWindow==window
 		}
 	}
 	func updateClockToPreferencesChange() {

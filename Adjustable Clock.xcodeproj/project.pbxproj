@@ -29,6 +29,7 @@
 		9F260CB323F64FF000D021BB /* WorldClockMenuProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F260CB223F64FF000D021BB /* WorldClockMenuProtocol.swift */; };
 		9F28E7C723FDCE620034F5C6 /* WorldClockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F28E7C623FDCE620034F5C6 /* WorldClockModel.swift */; };
 		9F29083F23FDFE0A00AE995B /* ChooseCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F29083E23FDFE0A00AE995B /* ChooseCityViewController.swift */; };
+		9F2A500F241D400F00369109 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2A500E241D400F00369109 /* WindowManager.swift */; };
 		9F2E8AFD23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2E8AFC23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift */; };
 		9F35462B23F20E40009FA191 /* TimersCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35462A23F20E40009FA191 /* TimersCenter.swift */; };
 		9F35462D23F20FDF009FA191 /* CountDownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F35462C23F20FDF009FA191 /* CountDownTimer.swift */; };
@@ -153,6 +154,7 @@
 		9F260CB223F64FF000D021BB /* WorldClockMenuProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockMenuProtocol.swift; sourceTree = "<group>"; };
 		9F28E7C623FDCE620034F5C6 /* WorldClockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockModel.swift; sourceTree = "<group>"; };
 		9F29083E23FDFE0A00AE995B /* ChooseCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCityViewController.swift; sourceTree = "<group>"; };
+		9F2A500E241D400F00369109 /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 		9F2E8AFC23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkAndLightBackgroundView.swift; sourceTree = "<group>"; };
 		9F35462A23F20E40009FA191 /* TimersCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersCenter.swift; sourceTree = "<group>"; };
 		9F35462C23F20FDF009FA191 /* CountDownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownTimer.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				9F3AD84723C7D22C005FCC0A /* MagnifierScrollView.swift */,
 				9F8C862723E8E89000E0C124 /* VerticaFullscreenlScrollView.swift */,
 				9F97C85D23EB7B1E005381A0 /* ColorfulViewController.swift */,
+				9F2A500E241D400F00369109 /* WindowManager.swift */,
 			);
 			path = "General UI";
 			sourceTree = "<group>";
@@ -821,6 +824,7 @@
 				9FB1D95623EA7F5000E8A35F /* TimersViewController.swift in Sources */,
 				9F53421623D90C1500FDD0F3 /* EditableAlarmViewController.swift in Sources */,
 				9F4A9C6023F7A69E0046A7F2 /* EditableTimerWindowController.swift in Sources */,
+				9F2A500F241D400F00369109 /* WindowManager.swift in Sources */,
 				9F7FF69823D2A56A009E5DA8 /* NSViewDetectDarkMode.swift in Sources */,
 				9F0F972A23DB5FF8005456E6 /* ChooseAlertViewController.swift in Sources */,
 				9F538C4D2116AC1500A72242 /* SimplePreferenceWindowController.swift in Sources */,
