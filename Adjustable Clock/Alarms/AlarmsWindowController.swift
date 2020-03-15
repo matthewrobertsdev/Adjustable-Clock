@@ -82,4 +82,7 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 			return dockWindow==window
 		}
 	}
+	func windowDidBecomeKey(_ notification: Notification) {
+		flashButtons()
+    }
 }

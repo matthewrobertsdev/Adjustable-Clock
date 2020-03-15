@@ -86,8 +86,18 @@ class AlarmCenter: NSObject {
 	}
 	private func scheduleAlarm(alarm: Alarm) {
 		if alarm.active {
+			alarm.updateExpirationDate()
+			let dateFormatter=DateFormatter()
+			dateFormatter.setLocalizedDateFormatFromTemplate("MMdyyyyhhmm")
+			print("abcd"+dateFormatter.string(from: alarm.expiresDate))
 			if !alarm.repeats && alarm.expiresDate<Date() {
 				alarm.active=false
+				if let alarmViewController: AlarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController {
+					let row = self.alarms.firstIndex(where: { (alarmInstance) -> Bool in
+						return alarmInstance.time==alarm.time })
+					let tableView=alarmViewController.collectionView
+					tableView?.reloadData()
+				}
 				return
 			}
 			var hasError=false
