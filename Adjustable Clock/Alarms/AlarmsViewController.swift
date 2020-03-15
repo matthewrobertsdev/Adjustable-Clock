@@ -8,9 +8,6 @@
 import Foundation
 import Cocoa
 class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, NSCollectionViewDelegate, AlarmCollectionItemProtocol {
-
-	
-	
 	func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
 		return AlarmCenter.sharedInstance.count
 	}
@@ -23,7 +20,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		alarmCollectionViewItem.alarmSettingsButton.tag=indexPath.item
 		alarmCollectionViewItem.alarmTimeTextField.textColor=textColor
 		alarmCollectionViewItem.alarmRepeatTextField.textColor=textColor
-		alarmCollectionViewItem.alarmTimeTextField.stringValue=alarm.timeString
+		alarmCollectionViewItem.alarmTimeTextField.stringValue=alarm.getTimeString()
 		alarmCollectionViewItem.alarmRepeatTextField.stringValue = !alarm.active ? "Off" : (alarm.repeats ? "Everyday" : "Just once")
 		alarmCollectionViewItem.alarmStatusSegmentedControl.setTag(0, forSegment: 0)
 		alarmCollectionViewItem.alarmStatusSegmentedControl.setTag(1, forSegment: 1)

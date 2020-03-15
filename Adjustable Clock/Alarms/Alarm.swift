@@ -26,6 +26,43 @@ class Alarm: Codable {
 		self.timeString=timeString
 		setExpirationDate(currentDate: Date())
 	}
+	func getTimeString() -> String {
+		if GeneralPreferencesStorage.sharedInstance.use24Hours {
+			return get24HourTime()
+		} else {
+			return timeString
+		}
+	}
+	func get24HourTime() -> String {
+		var twentyFourHourString=""
+		if timeString.hasPrefix("12") && timeString.hasSuffix("AM") {
+			twentyFourHourString+="00:"
+			let prefixString=timeString.dropLast(3)
+			let components=prefixString.components(separatedBy: ":")
+			twentyFourHourString+=components[1]
+			return twentyFourHourString
+		} else if timeString.hasSuffix("AM") &&
+			!timeString.hasPrefix("10") && !timeString.hasPrefix("11") && !timeString.hasPrefix("12") {
+			twentyFourHourString+="0"
+			let prefixString=timeString.dropLast(3)
+			let components=prefixString.components(separatedBy: ":")
+			twentyFourHourString+=components[0]+":"+components[1]
+			return twentyFourHourString
+		} else if timeString.hasSuffix("AM") {
+			let prefixString=timeString.dropLast(3)
+			return String(prefixString)
+		} else if timeString.hasPrefix("12") && timeString.hasSuffix("PM") {
+			let prefixString=timeString.dropLast(3)
+			let components=prefixString.components(separatedBy: ":")
+			twentyFourHourString+=components[0]+":"+components[1]
+			return twentyFourHourString
+		} else {
+			let prefixString=timeString.dropLast(3)
+			let components=prefixString.components(separatedBy: ":")
+			twentyFourHourString+=String((Int(components[0]) ?? 0)+12)+":"+components[1]
+			return twentyFourHourString
+		}
+	}
 	func setExpirationDate(currentDate: Date) {
 		var tomorrow=false
 		let hour=calendar.dateComponents([.hour], from: currentDate).hour ?? 0
