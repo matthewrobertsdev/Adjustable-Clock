@@ -13,7 +13,7 @@ class AlarmCenter: NSObject {
 	let jsonEncoder=JSONEncoder()
 	let jsonDecoder=JSONDecoder()
 	private var alarmProtocol: NSObjectProtocol?
-	private let calendar=Calendar.current
+	private let calendar=Calendar.autoupdatingCurrent
 	private var alarmTimers=[DispatchSourceTimer]()
 	private let timeFormatter=DateFormatter()
 	private let appObject = NSApp as NSApplication
@@ -21,6 +21,7 @@ class AlarmCenter: NSObject {
 	override private init() {
 		super.init()
 		notifcationCenter.addObserver(self, selector: #selector(scheduleAlarms), name: NSNotification.Name.NSSystemClockDidChange, object: nil)
+		notifcationCenter.addObserver(self, selector: #selector(scheduleAlarms), name: NSNotification.Name.NSSystemTimeZoneDidChange, object: nil)
 		timeFormatter.locale=Locale(identifier: "en_US")
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
 		jsonEncoder.outputFormatting = .prettyPrinted
@@ -73,7 +74,6 @@ class AlarmCenter: NSObject {
 		return activeCount
 	}
 	@objc private func scheduleAlarms() {
-		print("schedule")
 		for timer in alarmTimers {
 			timer.cancel()
 		}
@@ -81,13 +81,12 @@ class AlarmCenter: NSObject {
 			scheduleAlarm(alarm: alarm)
 		}
 		if let alarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController {
-			alarmsViewController.tableView.reloadData()
+			//alarmsViewController.collectionView.reloadData()
 		}
 	}
 	private func scheduleAlarm(alarm: Alarm) {
 		if alarm.active {
 			if !alarm.repeats && alarm.expiresDate<Date() {
-				print("now inactive")
 				alarm.active=false
 				return
 			}
@@ -102,8 +101,8 @@ class AlarmCenter: NSObject {
 					if let alarmViewController: AlarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController {
 						let row = self.alarms.firstIndex(where: { (alarmInstance) -> Bool in
 							return alarmInstance.time==alarm.time })
-						let tableView=alarmViewController.tableView
-						tableView?.reloadData(forRowIndexes: [(row ?? 0)], columnIndexes: [0, 1])
+						let tableView=alarmViewController.collectionView
+						tableView?.reloadData()
 					}
 				let alarmSound=NSSound(named: NSSound.Name(alarm.alertString))
 				if !alarm.usesSong {
@@ -132,7 +131,7 @@ class AlarmCenter: NSObject {
 					}
 				}
 				let alarmAlert=NSAlert()
-				alarmAlert.messageText="Alarm for \(self.timeFormatter.string(from: alarm.time))  has gone off."
+				alarmAlert.messageText="Alarm for \( alarm.timeString)  has gone off."
 				alarmAlert.addButton(withTitle: "Dismiss")
 				alarmAlert.icon=DockClockController.dockClockObject.getFreezeView(time: alarm.time).image()
 				AlarmsWindowController.alarmsObject.showAlarms()
@@ -182,31 +181,40 @@ class AlarmCenter: NSObject {
 		saveAlarms()
 		getActiveAlarms()
 	}
+	func getAlarmIndex(alarm: Alarm) -> Int{
+		if let index=self.alarms.firstIndex(where: { (alarmInstance) -> Bool in
+			alarmInstance.time==alarm.time })
+		{
+			return index
+		}
+		return 0
+	}
 	private func getTimeInterval(alarm: Alarm) -> TimeInterval {
-		var tomorrow=false
 		let now=Date()
-		let hour=calendar.dateComponents([.hour], from: now).hour ?? 0
-		let minute=calendar.dateComponents([.minute], from: now).minute ?? 0
-		let second=calendar.dateComponents([.second], from: now).second ?? 0
-		let nanoseconds=calendar.dateComponents([.nanosecond], from: now).nanosecond ?? 0
-		let alarmHour=calendar.dateComponents([.hour], from: alarm.time).hour ?? 0
-		let alarmMinute=calendar.dateComponents([.minute], from: alarm.time).minute ?? 0
-		let alarmSecond=calendar.dateComponents([.second], from: alarm.time).second ?? 0
-		if hour>alarmHour {
-			tomorrow=true
+		let timeFormatter=DateFormatter()
+		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
+		let alarmTime=timeFormatter.date(from: alarm.timeString) ?? Date()
+		let month=calendar.dateComponents([.month], from: now).month
+		let day=calendar.dateComponents([.day], from: now).day
+		let year=calendar.dateComponents([.year], from: now).year
+		let hour=calendar.dateComponents([.hour], from: alarmTime).hour ?? 0
+		let minute=calendar.dateComponents([.minute], from: alarmTime).minute ?? 0
+		var alarmDate=calendar.date(from: DateComponents(calendar: calendar, timeZone:
+			nil, era: nil, year: year, month: month, day: day, hour: hour, minute: minute, second: 0,
+				 nanosecond: 0, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil,
+				 weekOfYear: nil, yearForWeekOfYear: nil))
+		if (alarmDate ?? Date())<now {
+			alarmDate=calendar.date(byAdding: DateComponents(calendar: calendar, timeZone:
+			nil, era: nil, year: 0, month: 0, day: 1, hour: 0, minute: 0, second: 0,
+				 nanosecond: 0, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil,
+				 weekOfYear: nil, yearForWeekOfYear: nil), to: (alarmDate ?? Date()), wrappingComponents: false)
 		}
-		if hour==alarmHour && minute>=alarmMinute {
-			tomorrow=true
-		}
+		let dateComponents=calendar.dateComponents([.hour, .minute, .second, .nanosecond], from: Date(), to: (alarmDate ?? Date()))
 		var totalSeconds: Double=0
-		totalSeconds+=Double((alarmHour-hour)*60*60)
-		totalSeconds+=Double((alarmMinute-minute)*60)
-		totalSeconds+=Double((alarmSecond-second))
-		totalSeconds += Double(0-nanoseconds/1_000_000_000)
-		if tomorrow {
-			totalSeconds *= -1
-			totalSeconds+=24*3600
-		}
+		totalSeconds+=Double((dateComponents.hour ?? 0)*60*60)
+		totalSeconds+=Double((dateComponents.minute ?? 0)*60)
+		totalSeconds+=Double(dateComponents.second ?? 0)
+		totalSeconds += Double((Double(dateComponents.nanosecond ?? 0))/Double(1_000_000_000))
 		return TimeInterval(exactly: totalSeconds) ?? 0
 	}
 	@objc dynamic var count=0

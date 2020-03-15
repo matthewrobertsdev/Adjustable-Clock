@@ -5,12 +5,12 @@
 //  Created by Matt Roberts on 2/14/20.
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
-import Cocoa
-enum AlertStyle {
+enum AlertStyle: String, Codable {
 	case sound
 	case song
 	case noSound
 }
+import Cocoa
 class EditableTimerViewController: NSViewController {
 	var index=0
 	let calendar=Calendar.current

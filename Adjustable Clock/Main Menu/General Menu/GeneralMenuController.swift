@@ -27,6 +27,7 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 		GeneralPreferencesStorage.sharedInstance.changeAndSaveUseAmPM()
 		ClockWindowController.clockObject.updateClockToPreferencesChange()
 		DockClockController.dockClockObject.updateModelToPreferencesChange()
+		AlarmsWindowController.alarmsObject.updateForPreferencesChange()
 		updateUI()
 	}
 	func updateUI() {

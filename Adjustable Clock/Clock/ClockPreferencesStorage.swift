@@ -16,6 +16,8 @@ class ClockPreferencesStorage {
     }
     let userDefaults=UserDefaults()
 	//window
+	private let windowIsOpenKey="clockIsOpen"
+	var windowIsOpen=false
     var clockFloats = false
     var fullscreen = false
     var colorChoice = ""
@@ -55,6 +57,7 @@ class ClockPreferencesStorage {
 		userDefaults.set(true, forKey: applicationHasLaunched)
 	}
     func loadUserPreferences() {
+		windowIsOpen=userDefaults.bool(forKey: windowIsOpenKey)
         clockFloats=userDefaults.bool(forKey: clockWindowFloatsKey)
 		useAnalog=userDefaults.bool(forKey: useAnalogKey)
 		showSeconds=userDefaults.bool(forKey: showSeocndsKey)
@@ -135,4 +138,10 @@ class ClockPreferencesStorage {
         userDefaults.set(false, forKey: showDateKey)
         userDefaults.set("", forKey: colorSchemeKey)
     }
+	func setWindowIsOpen() {
+		userDefaults.set(true, forKey: windowIsOpenKey)
+	}
+	func setWindowIsClosed() {
+		userDefaults.set(false, forKey: windowIsOpenKey)
+	}
 }

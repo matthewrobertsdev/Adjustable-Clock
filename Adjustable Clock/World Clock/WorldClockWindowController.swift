@@ -6,10 +6,15 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import Cocoa
-class WorldClockWindowController: FullViewWindowController {
+class WorldClockWindowController: FullViewWindowController, NSWindowDelegate {
 	static var worldClockObject=WorldClockWindowController()
     override func windowDidLoad() {
+		WindowManager.sharedInstance.count+=1
         super.windowDidLoad()
+		window?.delegate=self
+		if WorldClockPreferencesStorage.sharedInstance.haslaunchedBefore() {
+			WorldClockWindowRestorer().loadSavedWindowCGRect(window: window)
+		}
 		prepareWindowButtons()
     }
 	func showWorldClock() {
@@ -31,10 +36,23 @@ class WorldClockWindowController: FullViewWindowController {
 				}
 		}
 	}
+	func windowWillClose(_ notification: Notification) {
+		WindowManager.sharedInstance.count-=1
+		saveState()
+		if GeneralPreferencesStorage.sharedInstance.closing {
+			WorldClockPreferencesStorage.sharedInstance.setWindowIsOpen()
+		} else {
+			WorldClockPreferencesStorage.sharedInstance.setWindowIsClosed()
+		}
+    }
+	func saveState() {
+		WorldClockWindowRestorer().windowSaveCGRect(window: window)
+		WorldClockPreferencesStorage.sharedInstance.setHasLaunched()
+    }
 	func worldClockWindowPresent() -> Bool {
 		return isWindowPresent(identifier: UserInterfaceIdentifier.worldClockWindow)
 	}
-	func update(){
+	func update() {
 		guard let worldClockViewController=self.contentViewController as? WorldClockViewController else {
 			return
 		}

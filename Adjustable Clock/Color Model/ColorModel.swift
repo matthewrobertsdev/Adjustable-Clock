@@ -40,13 +40,30 @@ class ColorDictionary {
     //name for identification
     //color for actual color values
     var colorsDictionary=[String: NSColor]()
+	var lightColorsDictionary=[String: NSColor]()
+	var darkColorsDictionary=[String: NSColor]()
     //init should make the dictionary
     init() {
         makeColorDictionary()
+		makeLightColorDictionary()
+		makeDarkColorDictionary()
     }
     //actually pair the keys with the colors
     func makeColorDictionary() {
 		colorsDictionary=[ColorChoice.black: NSColor.black,
+			ColorChoice.gray: NSColor(named: "Gray")  ?? NSColor.systemGray,
+			ColorChoice.white: NSColor.white,
+			ColorChoice.red: NSColor(named: "Red") ?? NSColor.systemRed,
+			ColorChoice.orange: NSColor(named: "Orange") ?? NSColor.systemOrange,
+			ColorChoice.yellow: NSColor(named: "Yellow") ?? NSColor.systemYellow,
+			ColorChoice.green: NSColor(named: "Green") ?? NSColor.systemGreen,
+			ColorChoice.blue: NSColor(named: "Blue") ?? NSColor.systemBlue,
+			ColorChoice.purple: NSColor(named: "Purple") ?? NSColor.systemPurple,
+			ColorChoice.pink: NSColor(named: "Pink") ?? NSColor.systemPink,
+			ColorChoice.brown: NSColor(named: "Brown") ?? NSColor.systemBrown]
+    }
+	func makeLightColorDictionary() {
+		lightColorsDictionary=[ColorChoice.black: NSColor.black,
 			ColorChoice.gray: NSColor.systemGray,
 			ColorChoice.white: NSColor.white,
 			ColorChoice.red: NSColor.systemRed,
@@ -57,6 +74,19 @@ class ColorDictionary {
 			ColorChoice.purple: NSColor.systemPurple,
 			ColorChoice.pink: NSColor.systemPink,
 			ColorChoice.brown: NSColor.systemBrown]
+    }
+	func makeDarkColorDictionary() {
+		darkColorsDictionary=[ColorChoice.black: NSColor.black,
+			ColorChoice.gray: NSColor(named: "DarkGray") ?? NSColor.systemGray,
+			ColorChoice.white: NSColor.white,
+			ColorChoice.red: NSColor(named: "DarkRed") ?? NSColor.systemRed,
+			ColorChoice.orange: NSColor(named: "DarkOrange") ?? NSColor.systemOrange,
+			ColorChoice.yellow: NSColor(named: "DarkYellow") ?? NSColor.systemYellow,
+			ColorChoice.green: NSColor(named: "DarkGreen") ?? NSColor.systemGreen,
+			ColorChoice.blue: NSColor(named: "DarkBlue") ?? NSColor.systemBlue,
+			ColorChoice.purple: NSColor(named: "DarkPurple") ?? NSColor.systemPurple,
+			ColorChoice.pink: NSColor(named: "DarkPink") ?? NSColor.systemPink,
+			ColorChoice.brown: NSColor(named: "DarkBrown") ?? NSColor.systemBrown]
     }
 }
 //just an array of color choices so that the colors can be displayed in an order

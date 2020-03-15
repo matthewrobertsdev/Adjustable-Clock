@@ -15,14 +15,12 @@ class OnboardingWindowController: NSWindowController {
         super.windowDidLoad()
     }
 	func showOnboarding() {
-		print("trying to onboard")
 	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 	guard let onboardingWindowController =
 		mainStoryBoard.instantiateController(withIdentifier:
 			"OnboardingWindowController") as? OnboardingWindowController else { return }
 	onboardingWindowController.loadWindow()
 		onboardingWindowController.showWindow(nil)
-		print("should load window")
 		window?.makeKeyAndOrderFront(nil)
 	}
 }

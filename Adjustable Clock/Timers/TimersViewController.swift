@@ -6,14 +6,16 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import Cocoa
-class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTableViewDelegate, NSCollectionViewDataSource, NSCollectionViewDelegate {
+class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
 	private let timeFormatter=DateFormatter()
 	let popover = NSPopover()
+	var dockDisplay=false
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var collectionView: NSCollectionView!
 	var tellingTime: NSObjectProtocol?
 	override func viewDidLoad() {
         super.viewDidLoad()
+		//collectionView.indexPathForItem(at: NSPoint)
 		collectionView.dataSource=self
 		collectionView.delegate=self
 		popover.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)
@@ -38,34 +40,43 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 		timerCollectionViewItem.titleTextField.textColor=textColor
 		timerCollectionViewItem.countdownTextField.textColor=textColor
 		timerCollectionViewItem.stopTimeTextField.textColor=textColor
-		timerCollectionViewItem.countdownTextField.stringValue=TimersCenter.sharedInstance.getCountDownString(index: indexPath.item)
+		timerCollectionViewItem.countdownTextField.stringValue=dockDisplay ? "--" : TimersCenter.sharedInstance.getCountDownString(index: indexPath.item)
 		timerCollectionViewItem.startPauseButton.action=#selector(startPauseAction(sender:))
 		timerCollectionViewItem.startPauseButton.tag=indexPath.item
 		timerCollectionViewItem.settingsButton.tag=indexPath.item
 		timerCollectionViewItem.settingsButton.action=#selector(showPopover(sender:))
 		return timerCollectionViewItem
 	}
+	func displayForDock() {
+		dockDisplay=true
+		collectionView.reloadData()
+	}
+	func displayNormally() {
+		dockDisplay=false
+		collectionView.reloadData()
+	}
 	func scrollToTimer(index: Int) {
 		collectionView.scrollToItems(at: [IndexPath(item: index, section: 0)], scrollPosition: NSCollectionView.ScrollPosition.centeredVertically)
 	}
 	func animateTimer(index: Int) {
+		TimersCenter.sharedInstance.timers[index].going=true
 		displayTimer(index: index)
 		TimersCenter.sharedInstance.gcdTimers[index].schedule(deadline: .now(), repeating: .milliseconds(1000), leeway: .milliseconds(0))
 		TimersCenter.sharedInstance.gcdTimers[index].setEventHandler {
 			TimersCenter.sharedInstance.updateTimer(index: index)
 			self.displayTimer(index: index)
-			if TimersCenter.sharedInstance.timers[index].secondsRemaining<1 {
+			if TimersCenter.sharedInstance.timers[index].secondsRemaining<=0&&TimersCenter.sharedInstance.timers[index].going {
 				if let timerCollectionViewItem=self.collectionView.item(at: index) as? TimerCollectionViewItem {
 					timerCollectionViewItem.startPauseButton.title="Start"
 				}
 				self.timerStopped(index: index)
-				//TimersCenter.sharedInstance.gcdTimers[index].suspend()
 			}
 		}
 		TimersCenter.sharedInstance.gcdTimers[index].resume()
 	}
 	func timerStopped(index: Int) {
 		let timer=TimersCenter.sharedInstance.timers[index]
+		timer.going=false
 		let alertSound=NSSound(named: NSSound.Name(timer.alertString))
 		var hasError=false
 		if timer.alertStyle==AlertStyle.sound {
@@ -97,7 +108,7 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 		timerAlert.messageText="Timer has gone off at \(self.timeFormatter.string(from: Date()))."
 		timerAlert.addButton(withTitle: "Dismiss")
 		timerAlert.icon=DockClockController.dockClockObject.getFreezeView(time: Date()).image()
-		AlarmsWindowController.alarmsObject.showAlarms()
+		TimersWindowController.timersObject.showTimers()
 		if timer.alertStyle==AlertStyle.song && !hasError {
 			timerAlert.addButton(withTitle: "Stop Music")
 		} else if timer.alertStyle==AlertStyle.song {
@@ -109,7 +120,7 @@ class TimersViewController: ColorfulViewController, NSTableViewDataSource, NSTab
 		timerAlert.beginSheetModal(for: TimersWindowController.timersObject.window ?? NSWindow()) { (modalResponse) in
 			if timer.alertStyle==AlertStyle.sound {
 				alertSound?.stop()
-			} else if timer.alertStyle==AlertStyle.song{
+			} else if timer.alertStyle==AlertStyle.song {
 				if modalResponse==NSApplication.ModalResponse.alertSecondButtonReturn {
 					let appleScript =
 					"""

@@ -18,27 +18,9 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customView identifier="TimerCollectionViewItem" id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="450" height="204"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="204"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="x09-NJ-HB3">
-                    <rect key="frame" x="359" y="81" width="71" height="71"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="71" id="2aB-cQ-Pal"/>
-                        <constraint firstAttribute="width" constant="71" id="qmt-dr-C90"/>
-                    </constraints>
-                </customView>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="fdb-1N-ueH">
-                    <rect key="frame" x="377" y="38" width="35" height="35"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="35" id="V9u-If-IfW"/>
-                        <constraint firstAttribute="height" constant="35" id="kyB-sx-A1Q"/>
-                    </constraints>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAdvanced" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="vd7-Sd-Awn">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="DQp-vv-F9v">
                     <rect key="frame" x="0.0" y="0.0" width="351" height="204"/>
                     <subviews>
@@ -76,6 +58,7 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="rGD-4H-Rts" firstAttribute="top" secondItem="DQp-vv-F9v" secondAttribute="top" constant="127" id="6yW-1X-YuL"/>
+                        <constraint firstAttribute="width" constant="351" id="BeM-DL-OnU"/>
                         <constraint firstItem="PIs-qO-OS2" firstAttribute="top" secondItem="DQp-vv-F9v" secondAttribute="top" constant="20" id="JPv-B7-K7L"/>
                         <constraint firstItem="rGD-4H-Rts" firstAttribute="centerX" secondItem="DQp-vv-F9v" secondAttribute="centerX" id="SSk-kx-ahe"/>
                         <constraint firstItem="zCm-pV-pco" firstAttribute="centerX" secondItem="DQp-vv-F9v" secondAttribute="centerX" id="ZML-jw-MUd"/>
@@ -85,18 +68,26 @@
                         <constraint firstItem="zCm-pV-pco" firstAttribute="top" secondItem="rGD-4H-Rts" secondAttribute="bottom" constant="8" id="vaD-FU-8eX"/>
                     </constraints>
                 </customView>
+                <button translatesAutoresizingMaskIntoConstraints="NO" id="fdb-1N-ueH">
+                    <rect key="frame" x="359" y="39" width="35" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="35" id="V9u-If-IfW"/>
+                        <constraint firstAttribute="height" constant="35" id="kyB-sx-A1Q"/>
+                    </constraints>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAdvanced" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="vd7-Sd-Awn">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
             </subviews>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="fdb-1N-ueH" secondAttribute="trailing" constant="20" id="D8d-M7-E35"/>
                 <constraint firstItem="DQp-vv-F9v" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="DZg-d2-1jj"/>
-                <constraint firstAttribute="trailing" secondItem="fdb-1N-ueH" secondAttribute="trailing" constant="38" id="NrW-8g-vqW"/>
-                <constraint firstItem="fdb-1N-ueH" firstAttribute="top" secondItem="x09-NJ-HB3" secondAttribute="bottom" constant="8" id="TkT-Uu-asZ"/>
-                <constraint firstAttribute="trailing" secondItem="DQp-vv-F9v" secondAttribute="trailing" constant="99" id="bwa-SG-cVf"/>
                 <constraint firstAttribute="bottom" secondItem="DQp-vv-F9v" secondAttribute="bottom" id="mAw-bR-Bpe"/>
                 <constraint firstItem="DQp-vv-F9v" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="qLs-TA-pfa"/>
-                <constraint firstItem="x09-NJ-HB3" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="52" id="uSG-7n-0Uj"/>
-                <constraint firstAttribute="trailing" secondItem="x09-NJ-HB3" secondAttribute="trailing" constant="20" id="uVD-IM-Ivx"/>
+                <constraint firstAttribute="bottom" secondItem="fdb-1N-ueH" secondAttribute="bottom" constant="39" id="zEk-mv-veF"/>
             </constraints>
-            <point key="canvasLocation" x="139" y="154"/>
+            <point key="canvasLocation" x="121" y="154"/>
         </customView>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
     </objects>

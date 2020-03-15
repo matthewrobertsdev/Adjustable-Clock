@@ -12,6 +12,7 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 	static var timersObject=TimersWindowController()
     override func windowDidLoad() {
         super.windowDidLoad()
+		WindowManager.sharedInstance.count+=1
 		window?.delegate=self
 		window?.minSize=NSSize(width: 450, height: 224)
 		if TimersPreferenceStorage.sharedInstance.haslaunchedBefore() {
@@ -38,12 +39,6 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 				}
 			}
 	}
-	func windowDidResize(_ notification: Notification) {
-    }
-	func windowDidEnterFullScreen(_ notification: Notification) {
-	}
-    func windowWillExitFullScreen(_ notification: Notification) {
-    }
 	func update() {
         let appObject = NSApp as NSApplication
 		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.timersWindow {
@@ -53,6 +48,7 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
         }
     }
 	func windowWillClose(_ notification: Notification) {
+		WindowManager.sharedInstance.count-=1
 		saveState()
 		if GeneralPreferencesStorage.sharedInstance.closing {
 			TimersPreferenceStorage.sharedInstance.setWindowIsOpen()
@@ -61,11 +57,38 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 		}
     }
 	func saveState() {
-		print("should save timer window state")
+		TimersCenter.sharedInstance.saveTimers()
 		TimersWindowRestorer().windowSaveCGRect(window: window)
 		TimersPreferenceStorage.sharedInstance.setHasLaunched()
     }
 	func isTimersWindowPresent() -> Bool {
 		return isWindowPresent(identifier: UserInterfaceIdentifier.timersWindow)
+	}
+	func windowDidEnterFullScreen(_ notification: Notification) {
+        removeTrackingArea()
+		hideButtonsTimer?.suspend()
+        updateClockMenuUI()
+        showButtons(show: true)
+    }
+	func windowDidExitFullScreen(_ notification: Notification) {
+        window?.makeKey()
+		prepareWindowButtons()
+        updateClockMenuUI()
+    }
+	func windowWillMiniaturize(_ notification: Notification) {
+		guard let timerViewController=window?.contentViewController as? TimersViewController else {
+			return
+		}
+		timerViewController.displayForDock()
+		WindowManager.sharedInstance.dockWindowArray.append(window ?? NSWindow())
+	}
+	func windowDidDeminiaturize(_ notification: Notification) {
+		guard let timerViewController=window?.contentViewController as? TimersViewController else {
+			return
+		}
+		timerViewController.displayNormally()
+		WindowManager.sharedInstance.dockWindowArray.removeAll { (dockWindow) -> Bool in
+			return dockWindow==window
+		}
 	}
 }

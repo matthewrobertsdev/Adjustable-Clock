@@ -6,7 +6,7 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import Foundation
-class CountDownTimer {
+class CountDownTimer: Codable {
 	var calendar=Calendar.current
 	var secondsRemaining=180
 	var totalSeconds=180
@@ -15,4 +15,5 @@ class CountDownTimer {
 	var alertString=""
 	var song=""
 	var active=false
+	var going=false
 }

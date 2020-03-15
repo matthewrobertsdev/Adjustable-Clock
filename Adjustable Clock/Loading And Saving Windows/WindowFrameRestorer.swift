@@ -51,8 +51,6 @@ class WindowFrameRestorer {
         //and the window origin
 		let originX=userDefaults.integer(forKey: xKey)
 		let originY=userDefaults.integer(forKey: yKey)
-		print("window x "+originX.description)
-		print("window y "+originY.description)
         var savedClockOrigin=CGPoint(x: originX, y: originY)
         //if it's too small in any way, give it a minimum
         if savedWindowSize.width<minWidth {

@@ -87,12 +87,18 @@ class ColorsMenuController: NSObject {
 			colorsMenu.items[index].action=#selector(changeColor(sender:))
 			var templateImage=NSImage()
 			var tintColor=NSColor.clear
-			if dark && !ClockPreferencesStorage.sharedInstance.colorForForeground {
+			if dark {
 				templateImage=NSImage(named: "white_rectangle") ?? NSImage()
-				tintColor=clockNSColors.colorsDictionary[colorArray.colorArray[index]]?.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
+				tintColor=clockNSColors.darkColorsDictionary[colorArray.colorArray[index]]  ?? NSColor.clear
+				if index==2 && !ClockPreferencesStorage.sharedInstance.colorForForeground {
+					tintColor=NSColor.systemGray
+				}
 			} else {
 			templateImage=NSImage(named: "black_rectangle") ?? NSImage()
 				tintColor=clockNSColors.colorsDictionary[colorArray.colorArray[index]] ?? NSColor.clear
+				if index==0 && !ClockPreferencesStorage.sharedInstance.colorForForeground {
+					tintColor=NSColor.systemGray
+				}
 			}
 			templateImage.isTemplate=true
 			let colorImage=templateImage.tintExceptBorder(tintColor: tintColor, borderPixels: CGFloat(0.25))
@@ -123,10 +129,9 @@ class ColorsMenuController: NSObject {
         }
         //update color image for custom color based on current custum color
         var templateImage=NSImage()
-        var tintColor=ClockPreferencesStorage.sharedInstance.customColor
-		if dark && !ClockPreferencesStorage.sharedInstance.colorForForeground {
+		let tintColor=ClockPreferencesStorage.sharedInstance.customColor
+		if dark {
 			templateImage=NSImage(named: "white_rectangle") ?? NSImage()
-			tintColor=tintColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.clear
 		} else {
 			templateImage=NSImage(named: "black_rectangle") ?? NSImage()
 		}

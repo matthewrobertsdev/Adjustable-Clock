@@ -8,6 +8,8 @@
 import Cocoa
 class EditableAlarmViewController: NSViewController {
 	var song: String?
+	weak var alarmCollectionViewDelegate: AlarmCollectionItemProtocol?
+	let timeFormatter=DateFormatter()
 	@IBOutlet weak var verticalStackView: NSStackView!
 	@IBOutlet weak var deleteButton: NSButton!
 	@IBOutlet weak var alertTextField: NSTextField!
@@ -17,7 +19,7 @@ class EditableAlarmViewController: NSViewController {
 	@IBOutlet weak var beepButton: NSButton!
 	@IBOutlet weak var songButton: NSButton!
 	var settingsButton: NSButton?
-	var tableView: NSTableView?
+	var collectionView: NSCollectionView?
 	var usesSong=false
 	var oldDate: Date?
 	var delete = { () -> Void in }
@@ -73,20 +75,23 @@ class EditableAlarmViewController: NSViewController {
 				return
 			}
 		}
-		let alarm=Alarm(time: datePicker.dateValue, usesSong: usesSong, repeats: repeating, alert: alertName, song: playlistName, active: true)
+		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
+		let timeString=timeFormatter.string(from: datePicker.dateValue)
+		let alarm=Alarm(time: datePicker.dateValue, timeString: timeString, usesSong: usesSong, repeats: repeating, alert: alertName, song: playlistName, active: true)
 		if new {
+			guard let alarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController else {
+				return
+			}
+			guard let alarmTableView=alarmsViewController.collectionView else {
+				return
+			}
 			AlarmCenter.sharedInstance.addAlarm(alarm: alarm)
+			alarmTableView.animator().insertItems(at: [IndexPath(item: 0, section: 0)])
 			self.view.window?.close()
 		} else {
 			AlarmCenter.sharedInstance.replaceAlarm(date: oldDate ?? Date(), alarm: alarm)
-			if let button=settingsButton {
-				if let alarmTableView=tableView {
-					guard let tableViewCell=button.superview as? NSTableCellView else { return }
-					let index=alarmTableView.row(for: tableViewCell)
-					alarmTableView.reloadData(forRowIndexes: [index],
-					columnIndexes: [0, 1, 2])
-				}
-			}
+			let index=AlarmCenter.sharedInstance.getAlarmIndex(alarm: alarm)
+			collectionView?.reloadItems(at: [IndexPath(item: index, section: 0)])
 			cancel()
 		}
 		AlarmCenter.sharedInstance.setAlarms()

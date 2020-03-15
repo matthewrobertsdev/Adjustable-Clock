@@ -11,16 +11,18 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 	static var alarmsObject=AlarmsWindowController()
     override func windowDidLoad() {
         super.windowDidLoad()
+		WindowManager.sharedInstance.count+=1
 		AlarmsWindowController.alarmsObject=AlarmsWindowController()
 		window?.delegate=self
 		AlarmsPreferencesStorage.sharedInstance.setWindowIsClosed()
-		window?.minSize=CGSize(width: 271, height: 400)
-		window?.maxSize=CGSize(width: 271, height: 2000)
+		//window?.minSize=CGSize(width: 271, height: 400)
+		window?.minSize=CGSize(width: 271, height: 300)
 		AlarmsWindowRestorer().loadSavedWindowCGRect(window: window)
-		self.window?.standardWindowButton(.zoomButton)?.isEnabled=false
+		//self.window?.standardWindowButton(.zoomButton)?.isEnabled=false
 		prepareWindowButtons()
     }
 	func windowWillClose(_ notification: Notification) {
+		WindowManager.sharedInstance.count-=1
 		saveState()
 		if GeneralPreferencesStorage.sharedInstance.closing {
 			AlarmsPreferencesStorage.sharedInstance.setWindowIsOpen()
@@ -61,6 +63,23 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
             }
         }
     }
-	deinit {
+	func windowDidEnterFullScreen(_ notification: Notification) {
+        removeTrackingArea()
+		hideButtonsTimer?.cancel()
+        updateClockMenuUI()
+        showButtons(show: true)
+    }
+	func windowDidExitFullScreen(_ notification: Notification) {
+        window?.makeKey()
+		prepareWindowButtons()
+        updateClockMenuUI()
+    }
+	func windowWillMiniaturize(_ notification: Notification) {
+		WindowManager.sharedInstance.dockWindowArray.append(window ?? NSWindow())
+	}
+	func windowDidDeminiaturize(_ notification: Notification) {
+		WindowManager.sharedInstance.dockWindowArray.removeAll { (dockWindow) -> Bool in
+			return dockWindow==window
+		}
 	}
 }

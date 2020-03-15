@@ -10,6 +10,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 	static var clockObject=ClockWindowController()
     override func windowDidLoad() {
         super.windowDidLoad()
+		WindowManager.sharedInstance.count+=1
 		window?.delegate=self
 		ClockWindowController.clockObject=ClockWindowController()
 		guard let clockViewController=window?.contentViewController as? ClockViewController else { return }
@@ -119,15 +120,17 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 	}
     func windowWillClose(_ notification: Notification) {
 		saveState()
+		WindowManager.sharedInstance.count-=1
 		enableClockMenu(enabled: false)
+		if GeneralPreferencesStorage.sharedInstance.closing {
+			ClockPreferencesStorage.sharedInstance.setWindowIsOpen()
+		} else {
+			ClockPreferencesStorage.sharedInstance.setWindowIsClosed()
+		}
     }
     func windowWillEnterFullScreen(_ notification: Notification) {
         saveState()
         ClockPreferencesStorage.sharedInstance.fullscreen=true
-		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
-		//digitalClockVC.setConstraints()
-		//resizeContents()
-		//setFullScreenFrame()
 		self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
     }
 	func setFullScreenFrame() {
@@ -140,10 +143,9 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 	}
     func windowDidEnterFullScreen(_ notification: Notification) {
         removeTrackingArea()
-        hideButtonsTimer?.invalidate()
+		hideButtonsTimer?.cancel()
         updateClockMenuUI()
         reloadPreferencesWindowIfOpen()
-        //window?.makeKey()
         showButtons(show: true)
     }
     func windowWillExitFullScreen(_ notification: Notification) {
@@ -182,11 +184,15 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 		if let digitalClockVC=window?.contentViewController as? ClockViewController {
 			digitalClockVC.displayForDock()
 		}
+		WindowManager.sharedInstance.dockWindowArray.append(window ?? NSWindow())
 	}
 	func windowDidDeminiaturize(_ notification: Notification) {
 		if let digitalClockVC=window?.contentViewController as? ClockViewController {
 			digitalClockVC.backgroundView.draw(digitalClockVC.backgroundView.bounds)
 			digitalClockVC.animateClock()
+		}
+		WindowManager.sharedInstance.dockWindowArray.removeAll { (dockWindow) -> Bool in
+			return dockWindow==window
 		}
 	}
 	func updateClockToPreferencesChange() {
