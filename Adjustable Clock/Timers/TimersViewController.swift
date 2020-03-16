@@ -12,7 +12,6 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	var dockDisplay=false
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var collectionView: NSCollectionView!
-	var tellingTime: NSObjectProtocol?
 	override func viewDidLoad() {
         super.viewDidLoad()
 		//collectionView.indexPathForItem(at: NSPoint)
@@ -21,8 +20,6 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		popover.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)
 		collectionView.register(TimerCollectionViewItem.self, forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TimerCollectionViewItem"))
 		update()
-		let processOptions: ProcessInfo.ActivityOptions=[ProcessInfo.ActivityOptions.userInitiatedAllowingIdleSystemSleep]
-		tellingTime = ProcessInfo().beginActivity(options: processOptions, reason: "Need accurate time for timers")
 		timeFormatter.locale=Locale(identifier: "en_US")
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
     }
@@ -59,6 +56,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		collectionView.scrollToItems(at: [IndexPath(item: index, section: 0)], scrollPosition: NSCollectionView.ScrollPosition.centeredVertically)
 	}
 	func animateTimer(index: Int) {
+		TimersCenter.sharedInstance.activeTimers+=1
 		TimersCenter.sharedInstance.timers[index].going=true
 		displayTimer(index: index)
 		TimersCenter.sharedInstance.gcdTimers[index].schedule(deadline: .now(), repeating: .milliseconds(1000), leeway: .milliseconds(0))
@@ -157,10 +155,12 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		}
 		if TimersCenter.sharedInstance.timers[index].active {
 			TimersCenter.sharedInstance.timers[index].active=false
+			TimersCenter.sharedInstance.activeTimers-=1
 			TimersCenter.sharedInstance.gcdTimers[index].suspend()
 			timerCollectionViewItem.startPauseButton.title="Resume"
 		} else {
 		TimersCenter.sharedInstance.timers[index].active=true
+			TimersCenter.sharedInstance.activeTimers+=1
 			animateTimer(index: index)
 			timerCollectionViewItem.startPauseButton.title="Pause"
 		}

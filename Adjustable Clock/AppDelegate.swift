@@ -31,8 +31,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			generalMenuController=GeneralMenuController(menu: mainMenu.generalMenu)
 			//worldClockMenuController=WorldClockMenuController(menu: mainMenu.worldClockMenu)
 		}
+		AlarmCenter.sharedInstance.setUp()
 		DockClockController.dockClockObject.updateDockTile()
-		AlarmCenter.sharedInstance
 		if AlarmsPreferencesStorage.sharedInstance.windowIsOpen {
 			AlarmsWindowController.alarmsObject.showAlarms()
 		}

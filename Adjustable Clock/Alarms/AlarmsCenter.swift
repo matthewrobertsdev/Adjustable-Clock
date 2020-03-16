@@ -12,6 +12,8 @@ class AlarmCenter: NSObject {
 	let alarmsKey="savedAlarms"
 	let jsonEncoder=JSONEncoder()
 	let jsonDecoder=JSONDecoder()
+	@objc dynamic var count=0
+	@objc dynamic var activeAlarms=0
 	private var alarmProtocol: NSObjectProtocol?
 	private let calendar=Calendar.autoupdatingCurrent
 	private var alarmTimers=[DispatchSourceTimer]()
@@ -20,6 +22,9 @@ class AlarmCenter: NSObject {
 	private let notifcationCenter=NotificationCenter.default
 	override private init() {
 		super.init()
+		setUp()
+	}
+	func setUp() {
 		notifcationCenter.addObserver(self, selector: #selector(scheduleAlarms), name: NSNotification.Name.NSSystemClockDidChange, object: nil)
 		notifcationCenter.addObserver(self, selector: #selector(scheduleAlarms), name: NSNotification.Name.NSSystemTimeZoneDidChange, object: nil)
 		timeFormatter.locale=Locale(identifier: "en_US")
@@ -37,6 +42,7 @@ class AlarmCenter: NSObject {
 		}
 	}
 	func loadAlarms() {
+		count=0
 		do {
 			if let alarmsData=userDefaults.data(forKey: alarmsKey) {
 				let savedAlarms=try jsonDecoder.decode([Alarm].self, from: alarmsData)
@@ -64,13 +70,13 @@ class AlarmCenter: NSObject {
 		getActiveAlarms()
 		return alarms[index]
 	}
-	@objc dynamic var activeAlarms=0
 	func getActiveAlarms() -> Int {
 		var activeCount=0
 		for alarm in alarms where alarm.active {
 			activeCount+=1
 		}
 		activeAlarms=activeCount
+		NotificationCenter.default.post(name: Notification.Name.activeCountChanged, object: nil)
 		return activeCount
 	}
 	@objc private func scheduleAlarms() {
@@ -227,17 +233,19 @@ class AlarmCenter: NSObject {
 		totalSeconds += Double((Double(dateComponents.nanosecond ?? 0))/Double(1_000_000_000))
 		return TimeInterval(exactly: totalSeconds) ?? 0
 	}
-	@objc dynamic var count=0
 	func setAlarms() {
 		for timer in alarmTimers {
 			timer.cancel()
 		}
 		alarmTimers=[DispatchSourceTimer]()
+		scheduleAlarms()
 		if getActiveAlarms() > 0 {
 			alarmProtocol = ProcessInfo().beginActivity(options: .idleSystemSleepDisabled, reason: "So alarms can go off")
 		} else {
 			alarmProtocol=nil
 		}
-		scheduleAlarms()
 	}
+}
+extension Notification.Name {
+    static let activeCountChanged = Notification.Name("activeCountChanged")
 }

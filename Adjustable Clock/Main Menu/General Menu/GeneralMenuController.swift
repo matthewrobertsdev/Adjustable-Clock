@@ -15,12 +15,7 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 		self.menu=menu
 		super.init()
 		menu.generalMenuDelegate=self
-		observation = observe(
-			\.objectToObserve.activeAlarms,
-            options: []
-        ) { _, _ in
-			self.showPreventsSleep()
-		}
+		NotificationCenter.default.addObserver(self, selector: #selector(showPreventsSleep), name: NSNotification.Name.activeCountChanged, object: nil)
 		updateUI()
 	}
 	func use24HoursClicked() {
@@ -58,8 +53,10 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 			break
 		}
 	}
-	func showPreventsSleep() {
-		if AlarmCenter.sharedInstance.activeAlarms>0 {
+	@objc func showPreventsSleep() {
+		print("abcd active number changed")
+		print("abcd"+AlarmCenter.sharedInstance.activeAlarms.description)
+		if AlarmCenter.sharedInstance.activeAlarms>0||TimersCenter.sharedInstance.activeTimers>0 {
 			menu.preventingSleepMenuItem.title="Preventing Sleep"
 		} else {
 			menu.preventingSleepMenuItem.title="Can Sleep"

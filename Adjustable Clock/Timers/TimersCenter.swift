@@ -7,17 +7,32 @@
 //
 import Foundation
 class TimersCenter {
+	var tellingTime: NSObjectProtocol?
 	let calendar=Calendar.current
 	let timersKey="savedTimers"
 	let jsonEncoder=JSONEncoder()
 	let jsonDecoder=JSONDecoder()
 	let userDefaults=UserDefaults()
+	var activeTimers=0 {
+		didSet {
+			NotificationCenter.default.post(name: NSNotification.Name.activeCountChanged, object: nil)
+		}
+	}
 	static let sharedInstance=TimersCenter()
 	private init() {
 		for _ in 0...2 {
 			gcdTimers.append(DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main))
 		}
 		loadTimers()
+		NotificationCenter.default.addObserver(self, selector: #selector(setActivity), name: NSNotification.Name.activeCountChanged, object: nil)
+	}
+	@objc func setActivity() {
+		print("abcd set activity"+activeTimers.description)
+		if activeTimers>0 {
+			tellingTime = ProcessInfo().beginActivity(options: .idleSystemSleepDisabled, reason: "Need accurate time for timers")
+		} else {
+			tellingTime=nil
+		}
 	}
 	func saveTimers() {
 		for timer in timers {
@@ -51,6 +66,7 @@ class TimersCenter {
 			timers[index].secondsRemaining-=1
 			gcdTimers[index].suspend()
 			timers[index].active=false
+			activeTimers-=1
 		} else {
 			timers[index].secondsRemaining-=1
 		}
@@ -66,6 +82,7 @@ class TimersCenter {
 	}
 	func stopTimer(index: Int) {
 		if timers[index].active {
+			activeTimers-=1
 			timers[index].active=false
 			gcdTimers[index].suspend()
 		}
