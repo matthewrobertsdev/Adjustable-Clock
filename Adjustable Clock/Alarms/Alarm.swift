@@ -10,6 +10,7 @@ class Alarm: Codable {
 	var time: Date
 	var timeString: String
 	var expiresDate=Date()
+	var expiresString=""
 	var usesSong: Bool
 	var repeats: Bool
 	var alertString="Ping"
@@ -87,11 +88,13 @@ class Alarm: Codable {
 		if tomorrow {
 			expiresDate=calendar.date(byAdding: .day, value: 1, to: expiresDate) ?? Date()
 		}
+		let dateFormatter=DateFormatter()
+		dateFormatter.setLocalizedDateFormatFromTemplate("MMdyyyyhhmm")
+		expiresString=dateFormatter.string(from: expiresDate)
 	}
 	func updateExpirationDate() {
-		expiresDate+=Double(secondsFromGMT)
-		let calendar=Calendar.autoupdatingCurrent
-		secondsFromGMT=calendar.timeZone.secondsFromGMT(for: expiresDate)
-		expiresDate-=Double(secondsFromGMT)
+		let dateFormatter=DateFormatter()
+		dateFormatter.setLocalizedDateFormatFromTemplate("MMdyyyyhhmm")
+		expiresDate=dateFormatter.date(from: expiresString) ?? Date()
 	}
 }
