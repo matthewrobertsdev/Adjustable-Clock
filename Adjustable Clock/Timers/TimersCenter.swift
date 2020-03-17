@@ -8,6 +8,7 @@
 import Foundation
 class TimersCenter {
 	var tellingTime: NSObjectProtocol?
+	let timeFormatter=DateFormatter()
 	let calendar=Calendar.current
 	let timersKey="savedTimers"
 	let jsonEncoder=JSONEncoder()
@@ -20,6 +21,9 @@ class TimersCenter {
 	}
 	static let sharedInstance=TimersCenter()
 	private init() {
+		timeFormatter.locale=Locale(identifier: "de_AT")
+		timeFormatter.setLocalizedDateFormatFromTemplate("HHmmss")
+		timeFormatter.timeZone=TimeZone(secondsFromGMT: 0)
 		for _ in 0...2 {
 			gcdTimers.append(DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main))
 		}
@@ -58,7 +62,14 @@ class TimersCenter {
 	var timers=[CountDownTimer(), CountDownTimer(), CountDownTimer()]
 	var gcdTimers=[DispatchSourceTimer]()
 	func getCountDownString(index: Int) -> String {
-		return TimersCenter.sharedInstance.timers[index].secondsRemaining >= 0 ? String(TimersCenter.sharedInstance.timers[index].secondsRemaining) : String(0)
+			//TimersPreferenceStorage.sharedInstance
+		if TimersCenter.sharedInstance.timers[index].secondsRemaining < 0 {
+			return String(0)
+		} else if TimersPreferenceStorage.sharedInstance.asSeconds {
+			return String(TimersCenter.sharedInstance.timers[index].secondsRemaining)
+		} else {
+			return String(timeFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(TimersCenter.sharedInstance.timers[index].secondsRemaining))))
+		}
 	}
 	func updateTimer(index: Int) {
 		if timers[index].secondsRemaining<=0 {
