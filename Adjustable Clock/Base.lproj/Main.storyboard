@@ -561,49 +561,48 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Colors" id="65N-u4-pRd">
                                     <items>
-                                        <menuItem title="Black or Gray" id="LZV-KO-2AF">
+                                        <menuItem title="System Color" id="M7M-RB-oPM">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Gray" tag="1" id="vNP-0q-WID">
+                                        <menuItem title="Black or Gray" tag="1" id="LZV-KO-2AF">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="White or Gray" tag="2" id="KML-5u-Wit">
+                                        <menuItem title="Gray" tag="2" id="vNP-0q-WID">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Red" tag="3" id="UQR-HH-VX8">
+                                        <menuItem title="White or Gray" tag="3" id="KML-5u-Wit">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Orange" tag="4" id="96g-Up-Nqc">
+                                        <menuItem title="Red" tag="4" id="UQR-HH-VX8">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Yellow" tag="5" id="ZhT-iE-X78">
+                                        <menuItem title="Orange" tag="5" id="96g-Up-Nqc">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Green" tag="6" id="sos-1G-Fw1">
+                                        <menuItem title="Yellow" tag="6" id="ZhT-iE-X78">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Blue" tag="7" id="ype-oU-VhQ">
+                                        <menuItem title="Green" tag="7" id="sos-1G-Fw1">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Purple" tag="8" id="NWc-oh-8Ui">
+                                        <menuItem title="Blue" tag="8" id="ype-oU-VhQ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Pink" tag="9" id="lSa-4J-CEK">
+                                        <menuItem title="Purple" tag="9" id="NWc-oh-8Ui">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Brown" tag="10" id="EzH-eA-SJg">
+                                        <menuItem title="Pink" tag="10" id="lSa-4J-CEK">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Custom Color" tag="11" id="SVH-i7-CgM">
+                                        <menuItem title="Brown" tag="11" id="EzH-eA-SJg">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Custom Color" tag="12" id="SVH-i7-CgM">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="PpC-zj-EBg"/>
-                                        <menuItem title="Choice as Foreground" tag="8" id="x6R-qH-Eos">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="Choice as Background" id="5BG-bt-wNy">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
+                                        <menuItem title="Choice as Foreground" tag="8" keyEquivalent="f" id="x6R-qH-Eos"/>
+                                        <menuItem title="Choice as Background" keyEquivalent="b" id="5BG-bt-wNy"/>
                                         <menuItem isSeparatorItem="YES" id="hb7-11-9Kz"/>
                                         <menuItem title="Choose Custom Color..." id="3zO-s4-7Me">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -1242,7 +1241,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="141.5" minWidth="40" maxWidth="1000" id="72b-sf-9fX">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1275,7 +1274,7 @@ DQ
                                                 </tableColumn>
                                                 <tableColumn width="143.5" minWidth="40" maxWidth="1000" id="Kc6-Qb-l2w">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1946,7 +1945,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="233" minWidth="40" maxWidth="1000" id="7af-du-yPg">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2090,7 +2089,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="280" minWidth="40" maxWidth="1000" id="nxT-P1-PJ8">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2214,7 +2213,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="304" minWidth="40" maxWidth="1000" id="h46-K1-f75">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>

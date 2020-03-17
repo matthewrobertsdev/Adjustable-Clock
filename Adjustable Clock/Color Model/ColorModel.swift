@@ -20,6 +20,7 @@ Color Arrays
 //standard colors and custom colors
 //string "keys" are convenient for UserDefaults
 struct ColorChoice {
+	static let systemColor="systemColor"
 	static let black="black"
     static let gray="gray"
     static let white="white"
@@ -50,7 +51,8 @@ class ColorDictionary {
     }
     //actually pair the keys with the colors
     func makeColorDictionary() {
-		colorsDictionary=[ColorChoice.black: NSColor.black,
+		colorsDictionary=[ColorChoice.systemColor: NSColor.textBackgroundColor,
+			ColorChoice.black: NSColor.black,
 			ColorChoice.gray: NSColor(named: "Gray")  ?? NSColor.systemGray,
 			ColorChoice.white: NSColor.white,
 			ColorChoice.red: NSColor(named: "Red") ?? NSColor.systemRed,
@@ -63,7 +65,8 @@ class ColorDictionary {
 			ColorChoice.brown: NSColor(named: "Brown") ?? NSColor.systemBrown]
     }
 	func makeLightColorDictionary() {
-		lightColorsDictionary=[ColorChoice.black: NSColor.black,
+		lightColorsDictionary=[ColorChoice.systemColor: NSColor.textBackgroundColor,
+			ColorChoice.black: NSColor.black,
 			ColorChoice.gray: NSColor.systemGray,
 			ColorChoice.white: NSColor.white,
 			ColorChoice.red: NSColor.systemRed,
@@ -76,7 +79,8 @@ class ColorDictionary {
 			ColorChoice.brown: NSColor.systemBrown]
     }
 	func makeDarkColorDictionary() {
-		darkColorsDictionary=[ColorChoice.black: NSColor.black,
+		darkColorsDictionary=[ColorChoice.systemColor: NSColor.textBackgroundColor,
+			ColorChoice.black: NSColor.black,
 			ColorChoice.gray: NSColor(named: "DarkGray") ?? NSColor.systemGray,
 			ColorChoice.white: NSColor.white,
 			ColorChoice.red: NSColor(named: "DarkRed") ?? NSColor.systemRed,
@@ -99,6 +103,7 @@ class ColorArrays {
     }
     //put color choice strings in the standard order
     func makeColorArray() {
+		colorArray.append(ColorChoice.systemColor)
 		colorArray.append(ColorChoice.black)
         colorArray.append(ColorChoice.gray)
 		colorArray.append(ColorChoice.white)

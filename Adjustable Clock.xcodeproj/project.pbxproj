@@ -497,6 +497,7 @@
 				9FBBCCA320DDDD5900F44160 /* UI Identifiers */,
 				9F86695B203BBAD30074C1BA /* Filler UI Classes */,
 				9FB5FA1F20C8F5B200EE8963 /* Utilities */,
+				9F36DCC62409AC87009DD228 /* Assets.xcassets */,
 				9F54E6C123F76B9600840BE4 /* WorldClockCollectionViewItem.xib */,
 				9FF3F89624188BA1006751A0 /* AlarmCollectionViewItem.xib */,
 				9FD2825B23F26BEA00C204A2 /* TimerCollectionViewItem.xib */,
@@ -529,7 +530,6 @@
 		9FB5FA1F20C8F5B200EE8963 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				9F36DCC62409AC87009DD228 /* Assets.xcassets */,
 				9FBBCCA420DDDD9F00F44160 /* NSImageTemplate.swift */,
 				9F7FF69723D2A56A009E5DA8 /* NSViewDetectDarkMode.swift */,
 				9F87CCC223D4156B005D402B /* isDarkMode.swift */,
