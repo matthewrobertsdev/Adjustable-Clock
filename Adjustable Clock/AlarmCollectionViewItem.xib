@@ -9,7 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="AlarmCollectionViewItem" customModule="Adjustable_Clock" customModuleProvider="target">
             <connections>
                 <outlet property="alarmRepeatTextField" destination="N0E-kZ-ov1" id="3T7-mZ-Sg7"/>
-                <outlet property="alarmSettingsButton" destination="Ui2-A7-jPT" id="2Na-y0-g2e"/>
+                <outlet property="alarmSettingsButton" destination="cRn-XY-JoI" id="22t-fb-gxX"/>
                 <outlet property="alarmStatusSegmentedControl" destination="58v-8Z-avA" id="En4-T3-zs4"/>
                 <outlet property="alarmTimeTextField" destination="JSa-zh-KZI" id="cwC-88-qpe"/>
                 <outlet property="view" destination="c22-O7-iKe" id="kc2-iA-GVh"/>
@@ -18,7 +18,7 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView identifier="AlarmCollectionViewItem" id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="270" height="70"/>
+            <rect key="frame" x="0.0" y="0.0" width="302" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="Pbq-Ve-PDk">
@@ -60,33 +60,25 @@
                         </segments>
                     </segmentedCell>
                 </segmentedControl>
-                <button translatesAutoresizingMaskIntoConstraints="NO" id="Ui2-A7-jPT">
-                    <rect key="frame" x="222" y="21" width="28" height="28"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="28" id="W5i-tx-txn"/>
-                        <constraint firstAttribute="width" constant="28" id="l87-kZ-FHc"/>
-                    </constraints>
-                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSAdvanced" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="nGW-zW-nnu">
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cRn-XY-JoI">
+                    <rect key="frame" x="224" y="17" width="64" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jtQ-xQ-okf">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="settingsButtonClicked:" target="-2" id="Qcz-jC-Ifi"/>
+                        <action selector="settingsButtonClicked:" target="-2" id="3uW-Kv-woy"/>
                     </connections>
                 </button>
             </subviews>
             <constraints>
                 <constraint firstItem="58v-8Z-avA" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="25" id="0QQ-1U-vRi"/>
-                <constraint firstItem="Ui2-A7-jPT" firstAttribute="leading" secondItem="58v-8Z-avA" secondAttribute="trailing" constant="8" id="0r4-3D-IbM"/>
                 <constraint firstItem="58v-8Z-avA" firstAttribute="leading" secondItem="Pbq-Ve-PDk" secondAttribute="trailing" constant="8" id="Xdy-fh-WGT"/>
-                <constraint firstItem="Ui2-A7-jPT" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="21" id="bfN-W2-B4l"/>
                 <constraint firstItem="Pbq-Ve-PDk" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="vpK-Ho-Nf4"/>
                 <constraint firstItem="Pbq-Ve-PDk" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="wMe-mD-7Tx"/>
             </constraints>
-            <point key="canvasLocation" x="34" y="53"/>
+            <point key="canvasLocation" x="50" y="53"/>
         </customView>
     </objects>
-    <resources>
-        <image name="NSAdvanced" width="32" height="32"/>
-    </resources>
 </document>
