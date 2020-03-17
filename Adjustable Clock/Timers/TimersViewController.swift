@@ -54,6 +54,8 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		}
 		timerCollectionViewItem.titleTextField.textColor=textColor
 		timerCollectionViewItem.countdownTextField.textColor=textColor
+		let title=TimersCenter.sharedInstance.timers[indexPath.item].title
+		timerCollectionViewItem.titleTextField.stringValue=title=="" ? "Alarm \(indexPath.item+1)" : title
 		timerCollectionViewItem.stopTimeTextField.textColor=textColor
 		timerCollectionViewItem.countdownTextField.stringValue=dockDisplay ? "--" : TimersCenter.sharedInstance.getCountDownString(index: indexPath.item)
 		timerCollectionViewItem.startPauseButton.action=#selector(startPauseAction(sender:))
@@ -66,8 +68,10 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			timerCollectionViewItem.stopTimeTextField.stringValue=getStopTimeString(timerIndex: indexPath.item)
 			timerCollectionViewItem.startPauseButton.title="Pause"
 		} else if timers[indexPath.item].active && !timers[indexPath.item].going {
+			timerCollectionViewItem.stopTimeTextField.isHidden=true
 			timerCollectionViewItem.startPauseButton.title="Resume"
 		} else {
+			timerCollectionViewItem.stopTimeTextField.isHidden=true
 			timerCollectionViewItem.startPauseButton.title="Start"
 		}
 		return timerCollectionViewItem
@@ -220,7 +224,10 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 				mainStoryBoard.instantiateController(withIdentifier:
 				   "EditableTimerViewController") as? EditableTimerViewController else { return }
 		let index=settingsButton.tag
-			editableTimerViewController.closeAction = { () -> Void in self.popover.close() }
+			editableTimerViewController.closeAction = { () -> Void in
+				self.collectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
+				self.popover.close()
+			}
 			popover.contentViewController = editableTimerViewController
 			editableTimerViewController.index=index
 			popover.show(relativeTo: settingsButton.bounds, of: settingsButton, preferredEdge: NSRectEdge.minY)

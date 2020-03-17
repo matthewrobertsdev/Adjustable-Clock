@@ -23,6 +23,7 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 		ClockWindowController.clockObject.updateClockToPreferencesChange()
 		DockClockController.dockClockObject.updateModelToPreferencesChange()
 		AlarmsWindowController.alarmsObject.updateForPreferencesChange()
+		TimersWindowController.timersObject.update()
 		updateUI()
 	}
 	func updateUI() {
@@ -54,8 +55,6 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 		}
 	}
 	@objc func showPreventsSleep() {
-		print("abcd active number changed")
-		print("abcd"+AlarmCenter.sharedInstance.activeAlarms.description)
 		if AlarmCenter.sharedInstance.activeAlarms>0||TimersCenter.sharedInstance.activeTimers>0 {
 			menu.preventingSleepMenuItem.title="Preventing Sleep"
 		} else {

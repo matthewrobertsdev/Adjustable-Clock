@@ -19,6 +19,7 @@ class EditableTimerViewController: NSViewController {
 	@IBOutlet weak var beepButton: NSButton!
 	@IBOutlet weak var songButton: NSButton!
 	@IBOutlet weak var noSoundButton: NSButton!
+	@IBOutlet weak var titleTextField: NSTextField!
 	var alertStyle=AlertStyle.sound
 	var oldDate: Date?
 	var alertName="Ping"
@@ -42,6 +43,7 @@ class EditableTimerViewController: NSViewController {
 		timer.alertStyle=alertStyle
 		timer.alertString=alertName
 		timer.song=playlistName
+		timer.title=titleTextField.stringValue
 		TimersCenter.sharedInstance.stopTimer(index: index)
 		TimersCenter.sharedInstance.timers[index].active=true
 		timerViewController.animateTimer(index: index)

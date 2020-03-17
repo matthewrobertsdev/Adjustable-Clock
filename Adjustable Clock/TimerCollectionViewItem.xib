@@ -24,14 +24,6 @@
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="DQp-vv-F9v">
                     <rect key="frame" x="0.0" y="0.0" width="351" height="204"/>
                     <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PIs-qO-OS2">
-                            <rect key="frame" x="160" y="168" width="31" height="16"/>
-                            <textFieldCell key="cell" lineBreakMode="clipping" title="Title" id="J3g-0X-dif">
-                                <font key="font" metaFont="system"/>
-                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xEI-KT-zbD">
                             <rect key="frame" x="98" y="74" width="155" height="86"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="3:00" id="YWd-Rd-Pol">
@@ -75,12 +67,20 @@
                                 <real value="3.4028234663852886e+38"/>
                             </customSpacing>
                         </stackView>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PIs-qO-OS2">
+                            <rect key="frame" x="143" y="153" width="64" height="38"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Title" id="J3g-0X-dif">
+                                <font key="font" metaFont="system" size="32"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
                     </subviews>
                     <constraints>
                         <constraint firstItem="rGD-4H-Rts" firstAttribute="top" secondItem="DQp-vv-F9v" secondAttribute="top" constant="127" id="6yW-1X-YuL"/>
                         <constraint firstAttribute="width" constant="351" id="BeM-DL-OnU"/>
-                        <constraint firstItem="PIs-qO-OS2" firstAttribute="top" secondItem="DQp-vv-F9v" secondAttribute="top" constant="20" id="JPv-B7-K7L"/>
                         <constraint firstItem="rGD-4H-Rts" firstAttribute="centerX" secondItem="DQp-vv-F9v" secondAttribute="centerX" id="SSk-kx-ahe"/>
+                        <constraint firstItem="PIs-qO-OS2" firstAttribute="top" secondItem="DQp-vv-F9v" secondAttribute="top" constant="13" id="bKa-Jw-fHx"/>
                         <constraint firstItem="7am-kp-jp5" firstAttribute="centerX" secondItem="DQp-vv-F9v" secondAttribute="centerX" id="fvj-NM-Y5b"/>
                         <constraint firstItem="xEI-KT-zbD" firstAttribute="centerX" secondItem="DQp-vv-F9v" secondAttribute="centerX" id="gmS-wV-byp"/>
                         <constraint firstItem="xEI-KT-zbD" firstAttribute="top" secondItem="DQp-vv-F9v" secondAttribute="top" constant="44" id="okx-FR-n2G"/>
