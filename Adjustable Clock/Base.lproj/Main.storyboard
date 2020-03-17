@@ -2067,7 +2067,7 @@ DQ
         <scene sceneID="oMT-gM-k7c">
             <objects>
                 <windowController id="Hxd-L4-CXp" sceneMemberID="viewController">
-                    <window key="window" title="Choose Playlist" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="vFf-Ff-qGO">
+                    <window key="window" title="Clock Suite Playlist" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="vFf-Ff-qGO">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -2229,25 +2229,16 @@ DQ
             </objects>
             <point key="canvasLocation" x="3011.5" y="1559.5"/>
         </scene>
-        <!--Choose Playlist View Controller-->
+        <!--Playlist View Controller-->
         <scene sceneID="NMy-5T-vtc">
             <objects>
-                <viewController storyboardIdentifier="ChooseSongViewController" id="Udh-xA-6tS" customClass="ChoosePlaylistViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlaylistViewController" id="Udh-xA-6tS" customClass="PlaylistViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="inG-ay-1vv">
-                        <rect key="frame" x="0.0" y="0.0" width="349" height="379"/>
+                        <rect key="frame" x="0.0" y="0.0" width="349" height="326"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVa-lC-taw">
-                                <rect key="frame" x="20" y="249" width="309" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="TSb-vN-zY2">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </searchFieldCell>
-                            </searchField>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9c-Ep-EZV">
-                                <rect key="frame" x="20" y="49" width="309" height="192"/>
+                                <rect key="frame" x="20" y="75" width="309" height="192"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" id="Ibf-8S-T6V">
                                     <rect key="frame" x="1" y="1" width="307" height="190"/>
@@ -2310,18 +2301,8 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MOk-4m-MB9">
-                                <rect key="frame" x="18" y="285" width="313" height="80"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" id="s31-xd-3am">
-                                    <font key="font" metaFont="system"/>
-                                    <string key="title">Please note: a system alert will play in place of playlists that haven't been downloaded if they fail to play , and non-downloaded playlists appear here too.</string>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <stackView distribution="equalSpacing" orientation="horizontal" alignment="top" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z5C-6f-XMB">
-                                <rect key="frame" x="69" y="20" width="211" height="21"/>
+                                <rect key="frame" x="74" y="30" width="199" height="21"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Boa-ja-PTg">
                                         <rect key="frame" x="-6" y="-7" width="82" height="32"/>
@@ -2333,12 +2314,12 @@ Gw
 </string>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="cancel:" target="Udh-xA-6tS" id="pR0-tt-8Z8"/>
+                                            <action selector="cancel:" target="Udh-xA-6tS" id="a3K-K5-ib5"/>
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jsb-52-tVS">
-                                        <rect key="frame" x="84" y="-7" width="133" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Choose Playlist" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MpJ-bD-kzm">
+                                        <rect key="frame" x="84" y="-7" width="121" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Choose Song" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="MpJ-bD-kzm">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                             <string key="keyEquivalent" base64-UTF8="YES">
@@ -2346,8 +2327,35 @@ DQ
 </string>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="choosePlaylist:" target="Udh-xA-6tS" id="Vfa-Wx-Vz5"/>
+                                            <action selector="chooseSong:" target="Udh-xA-6tS" id="vkc-gK-T6P"/>
                                         </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ngl-mH-VsA">
+                                <rect key="frame" x="74" y="285" width="197" height="21"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Eeu-tN-BES">
+                                        <rect key="frame" x="-6" y="-7" width="99" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Add Song" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5Ah-eY-hdS">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mHN-wE-7dd">
+                                        <rect key="frame" x="89" y="-7" width="114" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Delete Song" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZFd-hk-aL7">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
                                     </button>
                                 </subviews>
                                 <visibilityPriorities>
@@ -2362,12 +2370,12 @@ DQ
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="UHa-5h-UHW" id="ROW-cf-d3Q"/>
+                        <outlet property="tableView" destination="UHa-5h-UHW" id="0A4-eQ-mfp"/>
                     </connections>
                 </viewController>
                 <customObject id="lSo-QJ-nKn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2762.5" y="1174.5"/>
+            <point key="canvasLocation" x="2762.5" y="1148"/>
         </scene>
     </scenes>
     <resources>
