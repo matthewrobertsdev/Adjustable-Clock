@@ -27,7 +27,6 @@ class TimersCenter {
 		NotificationCenter.default.addObserver(self, selector: #selector(setActivity), name: NSNotification.Name.activeCountChanged, object: nil)
 	}
 	@objc func setActivity() {
-		print("abcd set activity"+activeTimers.description)
 		if activeTimers>0 {
 			tellingTime = ProcessInfo().beginActivity(options: .idleSystemSleepDisabled, reason: "Need accurate time for timers")
 		} else {

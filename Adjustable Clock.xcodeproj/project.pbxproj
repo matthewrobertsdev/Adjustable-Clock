@@ -52,7 +52,7 @@
 		9F53421423D90A1100FDD0F3 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F53421323D90A1100FDD0F3 /* Alarm.swift */; };
 		9F53421623D90C1500FDD0F3 /* EditableAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F53421523D90C1500FDD0F3 /* EditableAlarmViewController.swift */; };
 		9F538C4D2116AC1500A72242 /* SimplePreferenceWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C4C2116AC1500A72242 /* SimplePreferenceWindowController.swift */; };
-		9F538C4F2116B06300A72242 /* SimplePreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C4E2116B06300A72242 /* SimplePreferencesVC.swift */; };
+		9F538C4F2116B06300A72242 /* SimplePreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C4E2116B06300A72242 /* SimplePreferencesViewController.swift */; };
 		9F538C512116B0AF00A72242 /* SimplePreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C502116B0AF00A72242 /* SimplePreferencesController.swift */; };
 		9F54E6C223F76B9600840BE4 /* WorldClockCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F54E6C123F76B9600840BE4 /* WorldClockCollectionViewItem.xib */; };
 		9F6974772065BA19007886DE /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6974762065BA19007886DE /* PreferencesController.swift */; };
@@ -177,7 +177,7 @@
 		9F53421323D90A1100FDD0F3 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		9F53421523D90C1500FDD0F3 /* EditableAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableAlarmViewController.swift; sourceTree = "<group>"; };
 		9F538C4C2116AC1500A72242 /* SimplePreferenceWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferenceWindowController.swift; sourceTree = "<group>"; };
-		9F538C4E2116B06300A72242 /* SimplePreferencesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferencesVC.swift; sourceTree = "<group>"; };
+		9F538C4E2116B06300A72242 /* SimplePreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferencesViewController.swift; sourceTree = "<group>"; };
 		9F538C502116B0AF00A72242 /* SimplePreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferencesController.swift; sourceTree = "<group>"; };
 		9F54E6C123F76B9600840BE4 /* WorldClockCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorldClockCollectionViewItem.xib; sourceTree = "<group>"; };
 		9F6974762065BA19007886DE /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
@@ -384,7 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				9F538C4C2116AC1500A72242 /* SimplePreferenceWindowController.swift */,
-				9F538C4E2116B06300A72242 /* SimplePreferencesVC.swift */,
+				9F538C4E2116B06300A72242 /* SimplePreferencesViewController.swift */,
 				9F538C502116B0AF00A72242 /* SimplePreferencesController.swift */,
 			);
 			path = Preferences;
@@ -770,7 +770,7 @@
 				9FF6912F23D775D50057C4F6 /* AlarmsColorController.swift in Sources */,
 				9F078A9D23CA7A79007072BB /* FullViewWindowController.swift in Sources */,
 				9FA6A7A523D8E687005564E7 /* EditableAlarmWindowController.swift in Sources */,
-				9F538C4F2116B06300A72242 /* SimplePreferencesVC.swift in Sources */,
+				9F538C4F2116B06300A72242 /* SimplePreferencesViewController.swift in Sources */,
 				9F8C862823E8E89000E0C124 /* VerticaFullscreenlScrollView.swift in Sources */,
 				9FF3F89924188E14006751A0 /* AlarmCollectionViewItem.swift in Sources */,
 				9F260CB323F64FF000D021BB /* WorldClockMenuProtocol.swift in Sources */,
