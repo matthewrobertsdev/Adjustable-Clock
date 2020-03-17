@@ -28,7 +28,6 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		showHideTimerActiveLabel()
     }
 	@objc func showHideTimerActiveLabel() {
-		print("abcd123\(TimersCenter.sharedInstance.activeTimers)")
 		if (TimersCenter.sharedInstance.activeTimers)>0 {
 			self.timerActiveLabel.isHidden=false
 		} else {
@@ -48,14 +47,13 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		3
 	}
 	func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-		print("abcd123\(TimersCenter.sharedInstance.activeTimers)")
 		guard let timerCollectionViewItem=collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TimerCollectionViewItem"), for: indexPath) as? TimerCollectionViewItem else {
 			return NSCollectionViewItem()
 		}
 		timerCollectionViewItem.titleTextField.textColor=textColor
 		timerCollectionViewItem.countdownTextField.textColor=textColor
 		let title=TimersCenter.sharedInstance.timers[indexPath.item].title
-		timerCollectionViewItem.titleTextField.stringValue=title=="" ? "Alarm \(indexPath.item+1)" : title
+		timerCollectionViewItem.titleTextField.stringValue=title=="" ? "Timer \(indexPath.item+1)" : title
 		timerCollectionViewItem.stopTimeTextField.textColor=textColor
 		timerCollectionViewItem.countdownTextField.stringValue=dockDisplay ? "--" : TimersCenter.sharedInstance.getCountDownString(index: indexPath.item)
 		timerCollectionViewItem.startPauseButton.action=#selector(startPauseAction(sender:))
@@ -64,7 +62,11 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		timerCollectionViewItem.settingsButton.action=#selector(showPopover(sender:))
 		let timers=TimersCenter.sharedInstance.timers
 		if timers[indexPath.item].active && timers[indexPath.item].going {
-			timerCollectionViewItem.stopTimeTextField.isHidden=false
+			if dockDisplay {
+				timerCollectionViewItem.stopTimeTextField.isHidden=true
+			} else {
+				timerCollectionViewItem.stopTimeTextField.isHidden=false
+			}
 			timerCollectionViewItem.stopTimeTextField.stringValue=getStopTimeString(timerIndex: indexPath.item)
 			timerCollectionViewItem.startPauseButton.title="Pause"
 		} else if timers[indexPath.item].active && !timers[indexPath.item].going {
