@@ -8,6 +8,7 @@
 import Cocoa
 class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
 	private let timeFormatter=DateFormatter()
+	private let stopTimeFormatter=DateFormatter()
 	let popover = NSPopover()
 	var dockDisplay=false
 	@IBOutlet weak var titleTextField: NSTextField!
@@ -36,6 +37,11 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	}
 	func update() {
 		applyColorScheme(views: [ColorView](), labels: [titleTextField, timerActiveLabel])
+		if GeneralPreferencesStorage.sharedInstance.use24Hours {
+			stopTimeFormatter.setLocalizedDateFormatFromTemplate("HHmmss")
+		} else {
+			stopTimeFormatter.setLocalizedDateFormatFromTemplate("hmmss")
+		}
 		collectionView.reloadData()
 	}
 	func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -56,6 +62,8 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		timerCollectionViewItem.settingsButton.action=#selector(showPopover(sender:))
 		let timers=TimersCenter.sharedInstance.timers
 		if timers[indexPath.item].active && timers[indexPath.item].going {
+			timerCollectionViewItem.stopTimeTextField.isHidden=false
+			timerCollectionViewItem.stopTimeTextField.stringValue=getStopTimeString(timerIndex: indexPath.item)
 			timerCollectionViewItem.startPauseButton.title="Pause"
 		} else if timers[indexPath.item].active && !timers[indexPath.item].going {
 			timerCollectionViewItem.startPauseButton.title="Resume"
@@ -63,6 +71,9 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			timerCollectionViewItem.startPauseButton.title="Start"
 		}
 		return timerCollectionViewItem
+	}
+	func getStopTimeString(timerIndex: Int) -> String {
+		return "Ends: "+stopTimeFormatter.string(from: Date().addingTimeInterval(TimeInterval(TimersCenter.sharedInstance.timers[timerIndex].secondsRemaining)))
 	}
 	func displayForDock() {
 		dockDisplay=true
@@ -76,6 +87,10 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		collectionView.scrollToItems(at: [IndexPath(item: index, section: 0)], scrollPosition: NSCollectionView.ScrollPosition.centeredVertically)
 	}
 	func animateTimer(index: Int) {
+		let timerCollectionViewItem=collectionView.item(at: IndexPath(item: index, section: 0)) as? TimerCollectionViewItem
+		timerCollectionViewItem?.stopTimeTextField.isHidden=false
+		timerCollectionViewItem?.stopTimeTextField.stringValue=getStopTimeString(timerIndex: index)
+		
 		TimersCenter.sharedInstance.activeTimers+=1
 		TimersCenter.sharedInstance.timers[index].going=true
 		displayTimer(index: index)
@@ -98,6 +113,8 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		TimersCenter.sharedInstance.gcdTimers[index].resume()
 	}
 	func timerStopped(index: Int) {
+		let timerCollectionViewItem=collectionView.item(at: IndexPath(item: index, section: 0)) as? TimerCollectionViewItem
+		timerCollectionViewItem?.stopTimeTextField.isHidden=true
 		TimersCenter.sharedInstance.activeTimers-=1
 		let timer=TimersCenter.sharedInstance.timers[index]
 		timer.going=false
@@ -180,14 +197,13 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			return
 		}
 		if TimersCenter.sharedInstance.timers[index].active {
-			print("here2")
+			timerCollectionViewItem.stopTimeTextField.isHidden=true
 			TimersCenter.sharedInstance.activeTimers-=1
 			TimersCenter.sharedInstance.timers[index].active=false
 			TimersCenter.sharedInstance.gcdTimers[index].suspend()
 			timerCollectionViewItem.startPauseButton.title="Resume"
 		} else {
 		TimersCenter.sharedInstance.timers[index].active=true
-			print("here3")
 			animateTimer(index: index)
 			timerCollectionViewItem.startPauseButton.title="Pause"
 		}
