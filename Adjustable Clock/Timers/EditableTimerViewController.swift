@@ -66,12 +66,12 @@ class EditableTimerViewController: NSViewController {
 		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 				guard let chooseSongViewController = mainStoryBoard.instantiateController(withIdentifier:
 				   "PlaylistViewController") as? PlaylistViewController else { return }
-		chooseSongViewController.choosePlaylistAction = { (playlist: String) -> Void in
-			self.playlistName=playlist
-			if playlist=="" {
+		chooseSongViewController.choosePlaylistAction = { (playlistURL: String) -> Void in
+			self.playlistName=playlistURL
+			if playlistURL=="" {
 				self.playlistTextField.stringValue="Song: None chosen"
 			} else {
-				self.playlistTextField.stringValue="Song: "+playlist
+				self.playlistTextField.stringValue="Song: "+playlistURL
 			}
 		}
 		self.presentAsSheet(chooseSongViewController)

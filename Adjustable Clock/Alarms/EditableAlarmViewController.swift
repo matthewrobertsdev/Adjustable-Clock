@@ -44,7 +44,7 @@ class EditableAlarmViewController: NSViewController {
 	@IBAction func choosePlaylist(_ sender: Any) {
 	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 				guard let chooseSongViewController = mainStoryBoard.instantiateController(withIdentifier:
-				   "ChooseSongViewController") as? ChoosePlaylistViewController else { return }
+				   "PlaylistViewController") as? PlaylistViewController else { return }
 		chooseSongViewController.choosePlaylistAction = { (playlist: String) -> Void in
 			self.playlistName=playlist
 			if playlist=="" {
@@ -126,7 +126,7 @@ class EditableAlarmViewController: NSViewController {
 		alertName=alarm.alertString
 		alertTextField.stringValue="Alert: "+alarm.alertString
 		playlistName=alarm.song=="" ? "none chosen": alarm.song
-		playlistTextField.stringValue="Playlist: "+(alarm.song=="" ? "none chosen": alarm.song)
+		playlistTextField.stringValue="Song: "+(alarm.song=="" ? "none chosen": alarm.song)
 		alarm.usesSong ? useSong() : useBeep()
 		if alarm.repeats {
 			repeatsButton.state=NSControl.StateValue.on

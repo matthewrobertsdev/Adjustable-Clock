@@ -16,4 +16,5 @@ class CountDownTimer: Codable {
 	var song=""
 	var active=false
 	var going=false
+	var playlistURL=""
 }

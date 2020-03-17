@@ -6,6 +6,7 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import Cocoa
+import AVFoundation
 class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
 	private let timeFormatter=DateFormatter()
 	private let stopTimeFormatter=DateFormatter()
@@ -130,6 +131,13 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			alertSound?.loops=true
 			alertSound?.play()
 		} else if timer.alertStyle==AlertStyle.song {
+			do {
+				let player=try AVAudioPlayer(contentsOf: URL(fileURLWithPath: timer.playlistURL))
+			} catch {
+				alertSound?.loops=true
+				alertSound?.play()
+			}
+			/*
 			print("should play music")
 			let playlistName=timer.song
 			let appleScript =
@@ -150,6 +158,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 					alarmSound?.play()
 				}
 			}
+*/
 		}
 		let timerAlert=NSAlert()
 		timerAlert.messageText="Timer has gone off at \(self.timeFormatter.string(from: Date()))."

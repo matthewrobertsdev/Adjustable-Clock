@@ -7,15 +7,36 @@
 //
 
 import Cocoa
-class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, NSOpenSavePanelDelegate {
+	var songURLs=[String]()
 	@IBOutlet weak var tableView: NSTableView!
+	@IBAction func addSong(_ sender: Any) {
+		let openPanel=NSOpenPanel()
+		openPanel.canChooseFiles=true
+		openPanel.canChooseDirectories=false
+		openPanel.canCreateDirectories=false
+		openPanel.allowedFileTypes=["mp3"]
+		openPanel.allowsMultipleSelection=false
+		openPanel.begin { (result) -> Void in
+			if result.rawValue == NSFileHandlingPanelOKButton {
+			}
+			var saveURL=FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+			saveURL?.appendingPathComponent("Clock%2Suite")
+			
+		}
+
+		print("abcd+\(FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first)")
+	}
+	@IBAction func deleteSong(_ sender: Any) {
+	}
+	
 	@IBAction func chooseSong(_ sender: Any) {
 		if tableView.selectedRow == -1 {
 			let alert=NSAlert()
 			alert.messageText="Please select a song or choose cancel."
 			alert.runModal()
 		} else {
-			//code
+			choosePlaylistAction(songURLs[tableView.selectedRow])
 			dismiss(nil)
 		}
 	}
