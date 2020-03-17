@@ -12,6 +12,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	var dockDisplay=false
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var collectionView: NSCollectionView!
+	@IBOutlet weak var timerActiveLabel: NSTextField!
 	override func viewDidLoad() {
         super.viewDidLoad()
 		//collectionView.indexPathForItem(at: NSPoint)
@@ -22,15 +23,26 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		update()
 		timeFormatter.locale=Locale(identifier: "en_US")
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
+		NotificationCenter.default.addObserver(self, selector: #selector(showHideTimerActiveLabel), name: NSNotification.Name.activeCountChanged, object: nil)
+		showHideTimerActiveLabel()
     }
+	@objc func showHideTimerActiveLabel() {
+		print("abcd123\(TimersCenter.sharedInstance.activeTimers)")
+		if (TimersCenter.sharedInstance.activeTimers)>0 {
+			self.timerActiveLabel.isHidden=false
+		} else {
+			self.timerActiveLabel.isHidden=true
+		}
+	}
 	func update() {
-		applyColorScheme(views: [ColorView](), labels: [titleTextField])
+		applyColorScheme(views: [ColorView](), labels: [titleTextField, timerActiveLabel])
 		collectionView.reloadData()
 	}
 	func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
 		3
 	}
 	func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+		print("abcd123\(TimersCenter.sharedInstance.activeTimers)")
 		guard let timerCollectionViewItem=collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TimerCollectionViewItem"), for: indexPath) as? TimerCollectionViewItem else {
 			return NSCollectionViewItem()
 		}
@@ -42,6 +54,14 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		timerCollectionViewItem.startPauseButton.tag=indexPath.item
 		timerCollectionViewItem.settingsButton.tag=indexPath.item
 		timerCollectionViewItem.settingsButton.action=#selector(showPopover(sender:))
+		let timers=TimersCenter.sharedInstance.timers
+		if timers[indexPath.item].active && timers[indexPath.item].going {
+			timerCollectionViewItem.startPauseButton.title="Pause"
+		} else if timers[indexPath.item].active && !timers[indexPath.item].going {
+			timerCollectionViewItem.startPauseButton.title="Resume"
+		} else {
+			timerCollectionViewItem.startPauseButton.title="Start"
+		}
 		return timerCollectionViewItem
 	}
 	func displayForDock() {
@@ -67,12 +87,18 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 				if let timerCollectionViewItem=self.collectionView.item(at: index) as? TimerCollectionViewItem {
 					timerCollectionViewItem.startPauseButton.title="Start"
 				}
+				if TimersCenter.sharedInstance.timers[index].active {
+					if let 	timerCollectionViewItem=self.collectionView.item(at: index) as? TimerCollectionViewItem {
+						timerCollectionViewItem.startPauseButton.title="Pause"
+					}
+				}
 				self.timerStopped(index: index)
 			}
 		}
 		TimersCenter.sharedInstance.gcdTimers[index].resume()
 	}
 	func timerStopped(index: Int) {
+		TimersCenter.sharedInstance.activeTimers-=1
 		let timer=TimersCenter.sharedInstance.timers[index]
 		timer.going=false
 		let alertSound=NSSound(named: NSSound.Name(timer.alertString))
@@ -154,13 +180,14 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			return
 		}
 		if TimersCenter.sharedInstance.timers[index].active {
-			TimersCenter.sharedInstance.timers[index].active=false
+			print("here2")
 			TimersCenter.sharedInstance.activeTimers-=1
+			TimersCenter.sharedInstance.timers[index].active=false
 			TimersCenter.sharedInstance.gcdTimers[index].suspend()
 			timerCollectionViewItem.startPauseButton.title="Resume"
 		} else {
 		TimersCenter.sharedInstance.timers[index].active=true
-			TimersCenter.sharedInstance.activeTimers+=1
+			print("here3")
 			animateTimer(index: index)
 			timerCollectionViewItem.startPauseButton.title="Pause"
 		}

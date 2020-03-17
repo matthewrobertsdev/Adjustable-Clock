@@ -604,9 +604,7 @@
                                         <menuItem title="Choice as Foreground" tag="8" keyEquivalent="f" id="x6R-qH-Eos"/>
                                         <menuItem title="Choice as Background" keyEquivalent="b" id="5BG-bt-wNy"/>
                                         <menuItem isSeparatorItem="YES" id="hb7-11-9Kz"/>
-                                        <menuItem title="Choose Custom Color..." id="3zO-s4-7Me">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
+                                        <menuItem title="Choose Custom Color..." keyEquivalent="c" id="3zO-s4-7Me"/>
                                     </items>
                                     <connections>
                                         <outlet property="reveseColorsMenuItem" destination="x6R-qH-Eos" id="syE-Df-CkG"/>
@@ -955,22 +953,34 @@ DQ
             <objects>
                 <viewController id="Fch-iR-SvQ" customClass="TimersViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="gv6-gj-aTH">
-                        <rect key="frame" x="0.0" y="0.0" width="351" height="327"/>
+                        <rect key="frame" x="0.0" y="0.0" width="522" height="390"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="3" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="li0-1M-reH">
-                                <rect key="frame" x="0.0" y="0.0" width="351" height="307"/>
+                                <rect key="frame" x="0.0" y="0.0" width="522" height="370"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sxf-Lb-5wq">
-                                        <rect key="frame" x="116" y="261" width="119" height="46"/>
+                                        <rect key="frame" x="202" y="324" width="119" height="46"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Timers" id="jTc-VM-bBw">
                                             <font key="font" metaFont="system" size="39"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WYv-C8-oRU">
+                                        <rect key="frame" x="158" y="261" width="207" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="203" id="ByD-aY-zzB"/>
+                                            <constraint firstAttribute="height" constant="60" id="XIA-Ah-BEE"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" title="Timer(s) Active: Please do not shut computer, logout, put it to sleep, or quit the program." id="mac-37-9QW">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                     <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7Q-Wo-kc1">
-                                        <rect key="frame" x="0.0" y="0.0" width="351" height="258"/>
+                                        <rect key="frame" x="86" y="0.0" width="351" height="258"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="bXY-wo-YzA">
                                             <rect key="frame" x="0.0" y="0.0" width="351" height="258"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -999,8 +1009,10 @@ DQ
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
@@ -1016,6 +1028,7 @@ DQ
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="zzm-Pa-2aK" id="QsZ-zY-zCW"/>
+                        <outlet property="timerActiveLabel" destination="WYv-C8-oRU" id="iHL-bW-vUY"/>
                         <outlet property="titleTextField" destination="sxf-Lb-5wq" id="0sa-pw-5D7"/>
                     </connections>
                 </viewController>
@@ -1241,7 +1254,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="141.5" minWidth="40" maxWidth="1000" id="72b-sf-9fX">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1274,7 +1287,7 @@ DQ
                                                 </tableColumn>
                                                 <tableColumn width="143.5" minWidth="40" maxWidth="1000" id="Kc6-Qb-l2w">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1360,7 +1373,7 @@ DQ
                                             <constraint firstAttribute="height" constant="60" id="EmH-hn-f4e"/>
                                             <constraint firstAttribute="width" constant="203" id="uLX-A7-Gis"/>
                                         </constraints>
-                                        <textFieldCell key="cell" allowsUndo="NO" title="Alarm Active: Please do not shut computer, logout, or quit the program." id="4z5-XM-3fW">
+                                        <textFieldCell key="cell" allowsUndo="NO" title="Alarm(s) Active: Please do not shut computer, logout, put it to sleep, or quit the program." id="4z5-XM-3fW">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1945,7 +1958,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="233" minWidth="40" maxWidth="1000" id="7af-du-yPg">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2089,7 +2102,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="280" minWidth="40" maxWidth="1000" id="nxT-P1-PJ8">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2213,7 +2226,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="304" minWidth="40" maxWidth="1000" id="h46-K1-f75">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
