@@ -18,11 +18,31 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 		openPanel.allowedFileTypes=["mp3"]
 		openPanel.allowsMultipleSelection=false
 		openPanel.begin { (result) -> Void in
-			if result.rawValue == NSFileHandlingPanelOKButton {
+			if result == NSApplication.ModalResponse.OK {
 			}
 			var saveURL=FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
-			saveURL?.appendingPathComponent("Clock%2Suite")
-			
+			saveURL=saveURL?.appendingPathComponent("Clock Suite")
+			guard var validSaveURL=saveURL else {
+				return
+			}
+			do {
+				try FileManager.default.createDirectory(at: validSaveURL, withIntermediateDirectories: true)
+				guard let filename=openPanel.urls.first?.lastPathComponent else {
+					return
+				}
+				validSaveURL=validSaveURL.appendingPathComponent(filename)
+				guard let fileURL=openPanel.urls.first else {
+					return
+				}
+				do {
+					try FileManager.default.copyItem(atPath: fileURL.path, toPath: validSaveURL.path)
+				} catch {
+					print("error copying file to applicatiohn support Clock Suite folder")
+				}
+			} catch {
+				print("error creating applicatiohn support Clock Suite folder")
+			}
+
 		}
 
 		print("abcd+\(FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first)")
