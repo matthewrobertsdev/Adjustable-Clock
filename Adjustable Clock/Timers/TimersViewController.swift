@@ -12,6 +12,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	private let stopTimeFormatter=DateFormatter()
 	let popover = NSPopover()
 	var dockDisplay=false
+	var player: AVAudioPlayer?
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var collectionView: NSCollectionView!
 	@IBOutlet weak var timerActiveLabel: NSTextField!
@@ -126,73 +127,36 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		let timer=TimersCenter.sharedInstance.timers[index]
 		timer.going=false
 		let alertSound=NSSound(named: NSSound.Name(timer.alertString))
-		var hasError=false
 		if timer.alertStyle==AlertStyle.sound {
 			alertSound?.loops=true
 			alertSound?.play()
 		} else if timer.alertStyle==AlertStyle.song {
 			do {
-				let player=try AVAudioPlayer(contentsOf: URL(fileURLWithPath: timer.playlistURL))
+				var saveURL=FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+				saveURL=saveURL?.appendingPathComponent("Clock Suite")
+				guard var validSaveURL=saveURL else {
+					return
+				}
+				validSaveURL=validSaveURL.appendingPathComponent(timer.song)
+				player=try AVAudioPlayer(contentsOf: URL(fileURLWithPath: validSaveURL.path))
+				player?.prepareToPlay()
+				player?.volume = 1.0
+				player?.play()
 			} catch {
 				alertSound?.loops=true
 				alertSound?.play()
 			}
-			/*
-			print("should play music")
-			let playlistName=timer.song
-			let appleScript =
-			"""
-			tell application "Music"
-				play playlist "\(playlistName)"
-			end tell
-			"""
-			var error: NSDictionary?
-			if let scriptObject = NSAppleScript(source: appleScript) {
-				if let outputString = scriptObject.executeAndReturnError(&error).stringValue {
-					print(outputString)
-				} else if error != nil {
-					print("Error: ", error ?? "")
-					hasError=true
-					let alarmSound=NSSound(named: "Ping")
-					alarmSound?.loops=true
-					alarmSound?.play()
-				}
-			}
-*/
 		}
 		let timerAlert=NSAlert()
 		timerAlert.messageText="Timer has gone off at \(self.timeFormatter.string(from: Date()))."
 		timerAlert.addButton(withTitle: "Dismiss")
 		timerAlert.icon=DockClockController.dockClockObject.getFreezeView(time: Date()).image()
 		TimersWindowController.timersObject.showTimers()
-		if timer.alertStyle==AlertStyle.song && !hasError {
-			timerAlert.addButton(withTitle: "Stop Music")
-		} else if timer.alertStyle==AlertStyle.song {
-			timerAlert.messageText+="""
-			  A playlist was supposed to play.  Please check your internet connection and that automation \
-			of Music is allowed in Settings->Security and Privacy->Automation->Clock Suite.
-			"""
-		}
 		timerAlert.beginSheetModal(for: TimersWindowController.timersObject.window ?? NSWindow()) { (modalResponse) in
 			if timer.alertStyle==AlertStyle.sound {
 				alertSound?.stop()
 			} else if timer.alertStyle==AlertStyle.song {
-				if modalResponse==NSApplication.ModalResponse.alertSecondButtonReturn {
-					let appleScript =
-					"""
-					tell application "Music"
-						stop
-					end tell
-					"""
-					var error: NSDictionary?
-					if let scriptObject = NSAppleScript(source: appleScript) {
-						if let outputString = scriptObject.executeAndReturnError(&error).stringValue {
-							print(outputString)
-						} else if error != nil {
-							print("Error: ", error ?? "")
-						}
-					}
-				}
+				self.player?.stop()
 				alertSound?.stop()
 			}
 		}

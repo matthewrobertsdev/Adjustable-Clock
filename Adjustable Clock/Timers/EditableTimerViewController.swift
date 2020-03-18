@@ -55,7 +55,7 @@ class EditableTimerViewController: NSViewController {
 		   let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 			   guard let chooseAlertViewController =
 		mainStoryBoard.instantiateController(withIdentifier:
-				   "ChooseAlertViewController") as? ChooseAlertViewController else { return }
+				   "ChooseAlertViewController") as? AlertViewController else { return }
 			   chooseAlertViewController.chooseAlertAction = { (alert: String) -> Void in
 				   self.alertName=alert
 				   self.alertTextField.stringValue="Alert: "+alert

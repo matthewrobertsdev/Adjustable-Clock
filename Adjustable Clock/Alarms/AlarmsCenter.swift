@@ -6,6 +6,7 @@
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 import AppKit
+import AVFoundation
 class AlarmCenter: NSObject {
 	static let sharedInstance=AlarmCenter()
 	let userDefaults=UserDefaults()
@@ -20,6 +21,7 @@ class AlarmCenter: NSObject {
 	private let timeFormatter=DateFormatter()
 	private let appObject = NSApp as NSApplication
 	private let notifcationCenter=NotificationCenter.default
+	private var player: AVAudioPlayer?
 	override private init() {
 		super.init()
 		setUp()
@@ -125,25 +127,20 @@ class AlarmCenter: NSObject {
 					alarmSound?.loops=true
 					alarmSound?.play()
 				} else {
-					print("should play music")
-					let playlistName=alarm.song
-					let appleScript =
-					"""
-					tell application "Music"
-						play playlist "\(playlistName ?? "")"
-					end tell
-					"""
-					var error: NSDictionary?
-					if let scriptObject = NSAppleScript(source: appleScript) {
-						if let outputString = scriptObject.executeAndReturnError(&error).stringValue {
-							print(outputString)
-						} else if error != nil {
-							print("Error: ", error ?? "")
-							hasError=true
-							let alarmSound=NSSound(named: "Ping")
-							alarmSound?.loops=true
-							alarmSound?.play()
+					do {
+						var saveURL=FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+						saveURL=saveURL?.appendingPathComponent("Clock Suite")
+						guard var validSaveURL=saveURL else {
+							return
 						}
+						validSaveURL=validSaveURL.appendingPathComponent(alarm.song)
+						self.player=try AVAudioPlayer(contentsOf: URL(fileURLWithPath: validSaveURL.path))
+						self.player?.prepareToPlay()
+						self.player?.volume = 1.0
+						self.player?.play()
+					} catch {
+						alarmSound?.loops=true
+						alarmSound?.play()
 					}
 				}
 				let alarmAlert=NSAlert()
@@ -151,37 +148,11 @@ class AlarmCenter: NSObject {
 				alarmAlert.addButton(withTitle: "Dismiss")
 				alarmAlert.icon=DockClockController.dockClockObject.getFreezeView(time: alarm.time).image()
 				AlarmsWindowController.alarmsObject.showAlarms()
-				if alarm.usesSong && !hasError {
-					alarmAlert.addButton(withTitle: "Stop Music")
-				} else if alarm.usesSong {
-					alarmAlert.messageText+="""
-					  A playlist was supposed to play.  Please check your internet connection and that automation \
-					of Music is allowed in Settings->Security and Privacy->Automation->Clock Suite.
-					"""
-				}
+
 				alarmAlert.beginSheetModal(for: AlarmsWindowController.alarmsObject.window ?? NSWindow()) { (modalResponse) in
-					if !alarm.usesSong {
-						alarmSound?.stop()
-						alarmTimer.cancel()
-					} else {
-						if modalResponse==NSApplication.ModalResponse.alertSecondButtonReturn {
-							let appleScript =
-							"""
-							tell application "Music"
-								stop
-							end tell
-							"""
-							var error: NSDictionary?
-							if let scriptObject = NSAppleScript(source: appleScript) {
-								if let outputString = scriptObject.executeAndReturnError(&error).stringValue {
-									print(outputString)
-								} else if error != nil {
-									print("Error: ", error ?? "")
-								}
-							}
-						}
-						alarmSound?.stop()
-					}
+					alarmTimer.cancel()
+					self.player?.stop()
+					alarmSound?.stop()
 					self.scheduleAlarms()
 				}
 			}

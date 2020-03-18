@@ -34,14 +34,14 @@ class EditableAlarmViewController: NSViewController {
 	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 		guard let chooseAlertViewController =
  mainStoryBoard.instantiateController(withIdentifier:
-			"ChooseAlertViewController") as? ChooseAlertViewController else { return }
+			"ChooseAlertViewController") as? AlertViewController else { return }
 		chooseAlertViewController.chooseAlertAction = { (alert: String) -> Void in
 			self.alertName=alert
 			self.alertTextField.stringValue="Alert: "+alert
 		}
 		self.presentAsSheet(chooseAlertViewController)
 	}
-	@IBAction func choosePlaylist(_ sender: Any) {
+	@IBAction func chooseSong(_ sender: Any) {
 	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 				guard let chooseSongViewController = mainStoryBoard.instantiateController(withIdentifier:
 				   "PlaylistViewController") as? PlaylistViewController else { return }

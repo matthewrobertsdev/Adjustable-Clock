@@ -6,7 +6,7 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import Cocoa
-class ChooseAlertViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+class AlertViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 	var chooseAlertAction = {( _ : String) -> Void in }
 	let soundNames=AlertSoundModel().soundsNames
 	var loaded=false
@@ -19,6 +19,7 @@ class ChooseAlertViewController: NSViewController, NSTableViewDataSource, NSTabl
         super.viewDidLoad()
 		tableView.dataSource=self
 		tableView.delegate=self
+		tableView.usesAlternatingRowBackgroundColors=true
 		tableView.reloadData()
 		tableView.selectRowIndexes(IndexSet([0]), byExtendingSelection: false)
 		loaded=true
