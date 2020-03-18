@@ -34,17 +34,17 @@ class EditableAlarmViewController: NSViewController {
 	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 		guard let chooseAlertViewController =
  mainStoryBoard.instantiateController(withIdentifier:
-			"ChooseAlertViewController") as? ChooseAlertViewController else { return }
+			"ChooseAlertViewController") as? AlertViewController else { return }
 		chooseAlertViewController.chooseAlertAction = { (alert: String) -> Void in
 			self.alertName=alert
 			self.alertTextField.stringValue="Alert: "+alert
 		}
-		self.presentAsSheet(chooseAlertViewController)
+		self.presentAsModalWindow(chooseAlertViewController)
 	}
-	@IBAction func choosePlaylist(_ sender: Any) {
+	@IBAction func chooseSong(_ sender: Any) {
 	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 				guard let chooseSongViewController = mainStoryBoard.instantiateController(withIdentifier:
-				   "ChooseSongViewController") as? ChoosePlaylistViewController else { return }
+				   "PlaylistViewController") as? PlaylistViewController else { return }
 		chooseSongViewController.choosePlaylistAction = { (playlist: String) -> Void in
 			self.playlistName=playlist
 			if playlist=="" {
@@ -53,7 +53,8 @@ class EditableAlarmViewController: NSViewController {
 				self.playlistTextField.stringValue="Playlist: "+playlist
 			}
 		}
-		self.presentAsSheet(chooseSongViewController)
+		//self.presentAsSheet(chooseSongViewController)
+		presentAsModalWindow(chooseSongViewController)
 	}
 	@IBAction func cancel(_ sender: Any) {
 		self.view.window?.close()
@@ -78,6 +79,7 @@ class EditableAlarmViewController: NSViewController {
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
 		let timeString=timeFormatter.string(from: datePicker.dateValue)
 		let alarm=Alarm(time: datePicker.dateValue, timeString: timeString, usesSong: usesSong, repeats: repeating, alert: alertName, song: playlistName, active: true)
+		alarm.setExpirationDate(currentDate: Date())
 		if new {
 			guard let alarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController else {
 				return
@@ -125,7 +127,7 @@ class EditableAlarmViewController: NSViewController {
 		alertName=alarm.alertString
 		alertTextField.stringValue="Alert: "+alarm.alertString
 		playlistName=alarm.song=="" ? "none chosen": alarm.song
-		playlistTextField.stringValue="Playlist: "+(alarm.song=="" ? "none chosen": alarm.song)
+		playlistTextField.stringValue="Song: "+(alarm.song=="" ? "none chosen": alarm.song)
 		alarm.usesSong ? useSong() : useBeep()
 		if alarm.repeats {
 			repeatsButton.state=NSControl.StateValue.on

@@ -11,7 +11,19 @@ class TimersMenuController: TimerMenuDelegate {
 	init(menu: TimersMenu) {
 		self.menu=menu
 		menu.timersMenuDelegate=self
-		updateClockMenuUI()
+		updateUI()
+	}
+	func updateUI(){
+		if TimersPreferenceStorage.sharedInstance.asSeconds {
+			menu.asSecondsMenuItem.state=NSControl.StateValue.on
+		} else {
+			menu.asSecondsMenuItem.state=NSControl.StateValue.off
+		}
+	}
+	func asSecondsClicked() {
+		TimersPreferenceStorage.sharedInstance.setAsSeconds()
+		updateUI()
+		TimersWindowController.timersObject.update()
 	}
 	func showTimerOneClicked() {
 		showTimer(index: 0)

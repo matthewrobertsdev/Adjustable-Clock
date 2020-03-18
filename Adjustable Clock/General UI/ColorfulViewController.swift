@@ -31,6 +31,7 @@ class ColorfulViewController: NSViewController {
 		visualEffectView.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)
 	}
 	func applyColorScheme(views: [ColorView], labels: [NSTextField]) {
+		visualEffectView.material = .dark
 		var contrastColor: NSColor
 		let clockNSColors=ColorDictionary()
 			backgroundView.wantsLayer=true
@@ -71,6 +72,22 @@ class ColorfulViewController: NSViewController {
 			}
 		} else {
 			visualEffectView.isHidden=false
+			if contrastColor==NSColor.textBackgroundColor {
+				contrastColor=NSColor.labelColor
+				if !isDarkMode() {
+					visualEffectView.material = .light
+				} else {
+					visualEffectView.material = .dark
+				}
+			} else if contrastColor==NSColor.labelColor || contrastColor==NSColor.black {
+				if !isDarkMode() {
+					visualEffectView.material = .light
+				} else {
+					visualEffectView.material = .dark
+				}
+			}else {
+				visualEffectView.material = .dark
+			}
 			textColor=contrastColor
 				for label in labels {
 					label.textColor=contrastColor

@@ -6,7 +6,7 @@
 //  Copyright © 2018 Matt Roberts. All rights reserved.
 //
 import Cocoa
-class SimplePreferencesVC: NSViewController {
+class SimplePreferencesViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.

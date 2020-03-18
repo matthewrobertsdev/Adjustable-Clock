@@ -11,4 +11,5 @@ protocol TimerMenuDelegate: AnyObject {
 	func showTimerTwoClicked()
 	func showTimerThreeClicked()
 	func showTimersClicked()
+	func asSecondsClicked()
 }

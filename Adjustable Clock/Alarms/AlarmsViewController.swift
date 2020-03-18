@@ -52,7 +52,6 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
        view.addSubview(backgroundView, positioned: .below, relativeTo: view)
 		self.shorOrHideNotifier(numberOfAlarms: AlarmCenter.sharedInstance.count)
 		popover.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)
-		//tableView.selectionHighlightStyle=NSTableView.SelectionHighlightStyle.none
 		timeFormatter.locale=Locale(identifier: "en_US")
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
 		collectionView.delegate=self
@@ -64,14 +63,6 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		let topConstraint=NSLayoutConstraint(item: backgroundView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
 		let bottomConstraint=NSLayoutConstraint(item: backgroundView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
 		NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
-		observation = observe(
-			\.objectToObserve.count,
-            options: [.old, .new]
-        ) { _, change in
-			if change.newValue ?? 0>change.oldValue ?? 0 {
-				//self.collectionView.insertItems(at: [IndexPath(item: 0, section: 0)])
-			}
-        }
 		observation2 = observe(
 			\.objectToObserve.activeAlarms,
             options: [.old, .new]

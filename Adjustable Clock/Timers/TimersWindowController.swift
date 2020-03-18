@@ -66,14 +66,12 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 	}
 	func windowDidEnterFullScreen(_ notification: Notification) {
         removeTrackingArea()
-		hideButtonsTimer?.suspend()
-        updateClockMenuUI()
+		hideButtonsTimer?.cancel()
         showButtons(show: true)
     }
 	func windowDidExitFullScreen(_ notification: Notification) {
         window?.makeKey()
 		prepareWindowButtons()
-        updateClockMenuUI()
     }
 	func windowWillMiniaturize(_ notification: Notification) {
 		guard let timerViewController=window?.contentViewController as? TimersViewController else {
@@ -91,4 +89,7 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 			return dockWindow==window
 		}
 	}
+	func windowDidBecomeKey(_ notification: Notification) {
+		flashButtons()
+    }
 }

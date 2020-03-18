@@ -115,12 +115,17 @@ class DockClockController: NSObject {
 			} else {
 				contrastColor =
 					clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
+				print("color\(ClockPreferencesStorage.sharedInstance.colorChoice)")
 			}
 			if ClockPreferencesStorage.sharedInstance.colorForForeground==false {
 				analogClockView.color=NSColor.labelColor
 				digitalClockView.backgroundColor=NSColor.labelColor
 				if contrastColor==NSColor.black {
 					analogClockView.backgroundColor=NSColor.systemGray
+				}
+				if contrastColor==NSColor.textBackgroundColor && digitalClockView.hasDarkAppearance||analogClockView.hasDarkAppearance {
+					print("oh")
+					contrastColor=NSColor(named: "SystemDarkBackground") ?? NSColor.black
 				}
 				analogClockView.backgroundColor=contrastColor
 				digitalClockView.backgroundColor=contrastColor
@@ -136,6 +141,14 @@ class DockClockController: NSObject {
 						digitalClockView.digitalSeconds.textColor=NSColor.black
 					}
 				} else {
+					if contrastColor==NSColor.textBackgroundColor {
+						if digitalClockView.hasDarkAppearance||analogClockView.hasDarkAppearance {
+							print("here123")
+							contrastColor=NSColor(named: "SystemDarkBackground") ?? NSColor.black
+						} else {
+							contrastColor=NSColor.white
+						}
+					}
 					analogClockView.handsColor=NSColor.systemGray
 					digitalClockView.digitalClock.textColor=NSColor.systemGray
 					digitalClockView.digitalSeconds.textColor=NSColor.systemGray

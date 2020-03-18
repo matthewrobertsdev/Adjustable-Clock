@@ -7,7 +7,6 @@
 //
 import Foundation
 class CountDownTimer: Codable {
-	var calendar=Calendar.current
 	var secondsRemaining=180
 	var totalSeconds=180
 	var title=""
@@ -16,4 +15,5 @@ class CountDownTimer: Codable {
 	var song=""
 	var active=false
 	var going=false
+	var playlistURL=""
 }

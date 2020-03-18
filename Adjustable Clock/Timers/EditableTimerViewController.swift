@@ -15,10 +15,11 @@ class EditableTimerViewController: NSViewController {
 	var index=0
 	let calendar=Calendar.current
 	@IBOutlet weak var timerDatePicker: NSDatePicker!
-	@IBOutlet weak var playlistTextField: NSButton!
 	@IBOutlet weak var beepButton: NSButton!
 	@IBOutlet weak var songButton: NSButton!
 	@IBOutlet weak var noSoundButton: NSButton!
+	@IBOutlet weak var playlistTextField: NSTextField!
+	@IBOutlet weak var titleTextField: NSTextField!
 	var alertStyle=AlertStyle.sound
 	var oldDate: Date?
 	var alertName="Ping"
@@ -42,6 +43,7 @@ class EditableTimerViewController: NSViewController {
 		timer.alertStyle=alertStyle
 		timer.alertString=alertName
 		timer.song=playlistName
+		timer.title=titleTextField.stringValue
 		TimersCenter.sharedInstance.stopTimer(index: index)
 		TimersCenter.sharedInstance.timers[index].active=true
 		timerViewController.animateTimer(index: index)
@@ -53,26 +55,27 @@ class EditableTimerViewController: NSViewController {
 		   let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 			   guard let chooseAlertViewController =
 		mainStoryBoard.instantiateController(withIdentifier:
-				   "ChooseAlertViewController") as? ChooseAlertViewController else { return }
+				   "ChooseAlertViewController") as? AlertViewController else { return }
 			   chooseAlertViewController.chooseAlertAction = { (alert: String) -> Void in
 				   self.alertName=alert
 				   self.alertTextField.stringValue="Alert: "+alert
 			   }
-			   self.presentAsSheet(chooseAlertViewController)
+		self.presentAsModalWindow(chooseAlertViewController)
 	}
 	@IBAction func chooseSong(_ sender: Any) {
 		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 				guard let chooseSongViewController = mainStoryBoard.instantiateController(withIdentifier:
-				   "ChooseSongViewController") as? ChoosePlaylistViewController else { return }
-		chooseSongViewController.choosePlaylistAction = { (playlist: String) -> Void in
-			self.playlistName=playlist
-			if playlist=="" {
-				self.playlistTextField.stringValue="Playlist: None chosen"
+				   "PlaylistViewController") as? PlaylistViewController else { return }
+		chooseSongViewController.choosePlaylistAction = { (playlistURL: String) -> Void in
+			print("abcd"+playlistURL)
+			self.playlistName=playlistURL
+			if playlistURL=="" {
+				self.playlistTextField.stringValue="Song: None chosen"
 			} else {
-				self.playlistTextField.stringValue="Playlist: "+playlist
+				self.playlistTextField.stringValue="Song: "+playlistURL
 			}
 		}
-		self.presentAsSheet(chooseSongViewController)
+		self.presentAsModalWindow(chooseSongViewController)
 	}
 	@IBAction func useBeepChosen(_ sender: Any) {
 		useBeep()

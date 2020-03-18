@@ -7,17 +7,35 @@
 //
 import Foundation
 class TimersCenter {
+	var tellingTime: NSObjectProtocol?
+	let timeFormatter=DateFormatter()
 	let calendar=Calendar.current
 	let timersKey="savedTimers"
 	let jsonEncoder=JSONEncoder()
 	let jsonDecoder=JSONDecoder()
 	let userDefaults=UserDefaults()
+	var activeTimers=0 {
+		didSet {
+			NotificationCenter.default.post(name: NSNotification.Name.activeCountChanged, object: nil)
+		}
+	}
 	static let sharedInstance=TimersCenter()
 	private init() {
+		timeFormatter.locale=Locale(identifier: "de_AT")
+		timeFormatter.setLocalizedDateFormatFromTemplate("HHmmss")
+		timeFormatter.timeZone=TimeZone(secondsFromGMT: 0)
 		for _ in 0...2 {
 			gcdTimers.append(DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main))
 		}
 		loadTimers()
+		NotificationCenter.default.addObserver(self, selector: #selector(setActivity), name: NSNotification.Name.activeCountChanged, object: nil)
+	}
+	@objc func setActivity() {
+		if activeTimers>0 {
+			tellingTime = ProcessInfo().beginActivity(options: .idleSystemSleepDisabled, reason: "Need accurate time for timers")
+		} else {
+			tellingTime=nil
+		}
 	}
 	func saveTimers() {
 		for timer in timers {
@@ -43,14 +61,31 @@ class TimersCenter {
 	}
 	var timers=[CountDownTimer(), CountDownTimer(), CountDownTimer()]
 	var gcdTimers=[DispatchSourceTimer]()
+	func resetTimer(index: Int){
+		if timers[index].active {
+			stopTimer(index: index)
+		}
+		timers[index].secondsRemaining=timers[index].totalSeconds
+	}
 	func getCountDownString(index: Int) -> String {
-		return TimersCenter.sharedInstance.timers[index].secondsRemaining >= 0 ? String(TimersCenter.sharedInstance.timers[index].secondsRemaining) : String(0)
+		if TimersCenter.sharedInstance.timers[index].secondsRemaining < 0 {
+			if TimersPreferenceStorage.sharedInstance.asSeconds {
+				return String(0)
+			} else {
+				return String(timeFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(0))))
+			}
+		} else if TimersPreferenceStorage.sharedInstance.asSeconds {
+			return String(TimersCenter.sharedInstance.timers[index].secondsRemaining)
+		} else {
+			return String(timeFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(TimersCenter.sharedInstance.timers[index].secondsRemaining))))
+		}
 	}
 	func updateTimer(index: Int) {
 		if timers[index].secondsRemaining<=0 {
 			timers[index].secondsRemaining-=1
 			gcdTimers[index].suspend()
 			timers[index].active=false
+			activeTimers-=1
 		} else {
 			timers[index].secondsRemaining-=1
 		}
@@ -66,8 +101,10 @@ class TimersCenter {
 	}
 	func stopTimer(index: Int) {
 		if timers[index].active {
+			activeTimers-=1
 			timers[index].active=false
 			gcdTimers[index].suspend()
 		}
 	}
 }
+

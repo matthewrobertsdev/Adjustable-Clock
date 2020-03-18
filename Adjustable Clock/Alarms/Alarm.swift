@@ -7,15 +7,16 @@
 //
 import Foundation
 class Alarm: Codable {
-	var calendar=Calendar.current
 	var time: Date
 	var timeString: String
 	var expiresDate=Date()
+	var expiresString=""
 	var usesSong: Bool
 	var repeats: Bool
 	var alertString="Ping"
 	var song=""
 	var active=false
+	var secondsFromGMT=0
 	init(time: Date, timeString: String, usesSong: Bool, repeats: Bool, alert: String, song: String, active: Bool) {
 		self.time=time
 		self.usesSong=usesSong
@@ -24,7 +25,6 @@ class Alarm: Codable {
 		self.song=song
 		self.active=active
 		self.timeString=timeString
-		setExpirationDate(currentDate: Date())
 	}
 	func getTimeString() -> String {
 		if GeneralPreferencesStorage.sharedInstance.use24Hours {
@@ -64,13 +64,15 @@ class Alarm: Codable {
 		}
 	}
 	func setExpirationDate(currentDate: Date) {
+		let calendar=Calendar.autoupdatingCurrent
+		secondsFromGMT=calendar.timeZone.secondsFromGMT(for: expiresDate)
 		var tomorrow=false
 		let hour=calendar.dateComponents([.hour], from: currentDate).hour ?? 0
 		let minute=calendar.dateComponents([.minute], from: currentDate).minute ?? 0
 		let alarmHour=calendar.dateComponents([.hour], from: time).hour ?? 0
 		let alarmMinute=calendar.dateComponents([.minute], from: time).minute ?? 0
 		let alarmSecond=calendar.dateComponents([.second], from: time).second ?? 0
-		let alarmNanosecond=calendar.dateComponents([.nanosecond], from: time).minute ?? 0
+		let alarmNanosecond=calendar.dateComponents([.nanosecond], from: time).nanosecond ?? 0
 		var alarmDateComponents=calendar.dateComponents([.day, .month, .year], from: currentDate)
 		alarmDateComponents.hour=alarmHour
 		alarmDateComponents.minute=alarmMinute
@@ -86,5 +88,13 @@ class Alarm: Codable {
 		if tomorrow {
 			expiresDate=calendar.date(byAdding: .day, value: 1, to: expiresDate) ?? Date()
 		}
+		let dateFormatter=DateFormatter()
+		dateFormatter.setLocalizedDateFormatFromTemplate("MMdyyyyhhmm")
+		expiresString=dateFormatter.string(from: expiresDate)
+	}
+	func updateExpirationDate() {
+		let dateFormatter=DateFormatter()
+		dateFormatter.setLocalizedDateFormatFromTemplate("MMdyyyyhhmm")
+		expiresDate=dateFormatter.date(from: expiresString) ?? Date()
 	}
 }
