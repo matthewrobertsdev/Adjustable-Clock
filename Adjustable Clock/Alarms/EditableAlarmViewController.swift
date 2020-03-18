@@ -39,7 +39,7 @@ class EditableAlarmViewController: NSViewController {
 			self.alertName=alert
 			self.alertTextField.stringValue="Alert: "+alert
 		}
-		self.presentAsSheet(chooseAlertViewController)
+		self.presentAsModalWindow(chooseAlertViewController)
 	}
 	@IBAction func chooseSong(_ sender: Any) {
 	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
@@ -53,7 +53,8 @@ class EditableAlarmViewController: NSViewController {
 				self.playlistTextField.stringValue="Playlist: "+playlist
 			}
 		}
-		self.presentAsSheet(chooseSongViewController)
+		//self.presentAsSheet(chooseSongViewController)
+		presentAsModalWindow(chooseSongViewController)
 	}
 	@IBAction func cancel(_ sender: Any) {
 		self.view.window?.close()

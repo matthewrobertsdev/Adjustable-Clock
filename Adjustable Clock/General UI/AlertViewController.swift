@@ -24,6 +24,10 @@ class AlertViewController: NSViewController, NSTableViewDataSource, NSTableViewD
 		tableView.selectRowIndexes(IndexSet([0]), byExtendingSelection: false)
 		loaded=true
     }
+	override func viewDidAppear() {
+		super.viewDidAppear()
+		self.view.window?.title = "Choose Alert"
+	}
 	func numberOfRows(in tableView: NSTableView) -> Int {
 		return soundNames.count
 	}

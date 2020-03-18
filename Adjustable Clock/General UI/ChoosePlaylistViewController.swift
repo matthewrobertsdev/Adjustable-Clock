@@ -37,6 +37,10 @@ class ChoosePlaylistViewController: NSViewController, NSTableViewDataSource, NST
 			alert.runModal()
 		}
     }
+	override func viewDidAppear() {
+		super.viewDidAppear()
+		self.view.window?.title = "Choose Song"
+	}
 	func numberOfRows(in tableView: NSTableView) -> Int {
 		return library.playlists.count
 	}

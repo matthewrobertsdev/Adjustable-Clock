@@ -60,7 +60,7 @@ class EditableTimerViewController: NSViewController {
 				   self.alertName=alert
 				   self.alertTextField.stringValue="Alert: "+alert
 			   }
-		self.presentAsSheet(chooseAlertViewController)
+		self.presentAsModalWindow(chooseAlertViewController)
 	}
 	@IBAction func chooseSong(_ sender: Any) {
 		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
@@ -75,7 +75,7 @@ class EditableTimerViewController: NSViewController {
 				self.playlistTextField.stringValue="Song: "+playlistURL
 			}
 		}
-		self.presentAsSheet(chooseSongViewController)
+		self.presentAsModalWindow(chooseSongViewController)
 	}
 	@IBAction func useBeepChosen(_ sender: Any) {
 		useBeep()

@@ -18,6 +18,10 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 		getSongs()
 		tableView.reloadData()
 	}
+	override func viewDidAppear() {
+		super.viewDidAppear()
+		self.view.window?.title = "Clock Suite Playlist"
+	}
 	func getSongs(){
 		var saveURL=FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
 		saveURL=saveURL?.appendingPathComponent("Clock Suite")
@@ -46,9 +50,9 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 		openPanel.title="Choose Song or Sound"
 		openPanel.message="Choose song or sound file."
 		openPanel.prompt="Choose"
-		openPanel.begin { (result) -> Void in
+		
+		openPanel.beginSheetModal(for: self.view.window ?? NSWindow(), completionHandler: { (result) -> Void in
 			if result == NSApplication.ModalResponse.OK {
-			}
 			var saveURL=FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
 			saveURL=saveURL?.appendingPathComponent("Clock Suite")
 			guard var validSaveURL=saveURL else {
@@ -73,8 +77,8 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 			} catch {
 				print("error creating applicatiohn support Clock Suite folder")
 			}
-
-		}
+			}
+		})
 	}
 	@IBAction func deleteSong(_ sender: Any) {
 		if tableView.selectedRow == -1 {
