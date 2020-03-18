@@ -43,6 +43,9 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 		openPanel.canCreateDirectories=false
 		openPanel.allowedFileTypes=["mp3", "mp4", "m4a", "wav"]
 		openPanel.allowsMultipleSelection=false
+		openPanel.title="Choose Song or Sound"
+		openPanel.message="Choose song or sound file."
+		openPanel.prompt="Choose"
 		openPanel.begin { (result) -> Void in
 			if result == NSApplication.ModalResponse.OK {
 			}

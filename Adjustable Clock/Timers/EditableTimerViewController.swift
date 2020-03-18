@@ -60,7 +60,7 @@ class EditableTimerViewController: NSViewController {
 				   self.alertName=alert
 				   self.alertTextField.stringValue="Alert: "+alert
 			   }
-			   self.presentAsSheet(chooseAlertViewController)
+		self.presentAsSheet(chooseAlertViewController)
 	}
 	@IBAction func chooseSong(_ sender: Any) {
 		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
