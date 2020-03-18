@@ -64,7 +64,11 @@ class TimersCenter {
 	func getCountDownString(index: Int) -> String {
 			//TimersPreferenceStorage.sharedInstance
 		if TimersCenter.sharedInstance.timers[index].secondsRemaining < 0 {
-			return String(0)
+			if TimersPreferenceStorage.sharedInstance.asSeconds {
+				return String(0)
+			} else {
+				return String(timeFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(0))))
+			}
 		} else if TimersPreferenceStorage.sharedInstance.asSeconds {
 			return String(TimersCenter.sharedInstance.timers[index].secondsRemaining)
 		} else {
