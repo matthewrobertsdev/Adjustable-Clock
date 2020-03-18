@@ -7,8 +7,28 @@
 //
 
 import Cocoa
-class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate, NSOpenSavePanelDelegate {
+class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 	var songURLs=[String]()
+	var songs=[String]()
+	override func viewDidLoad(){
+		super.viewDidLoad()
+		tableView.dataSource=self
+		tableView.delegate=self
+		tableView.usesAlternatingRowBackgroundColors=true
+		var saveURL=FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+		saveURL=saveURL?.appendingPathComponent("Clock Suite")
+		guard let validSaveURL=saveURL else {
+			return
+		}
+		do {
+			try FileManager.default.createDirectory(at: validSaveURL, withIntermediateDirectories: true)
+			let files = try FileManager.default.contentsOfDirectory(atPath: validSaveURL.path)
+			songs=files
+			tableView.reloadData()
+		} catch {
+			print("Error with Clock Suite application support directory")
+		}
+	}
 	@IBOutlet weak var tableView: NSTableView!
 	@IBAction func addSong(_ sender: Any) {
 		let openPanel=NSOpenPanel()
@@ -36,6 +56,7 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 				}
 				do {
 					try FileManager.default.copyItem(atPath: fileURL.path, toPath: validSaveURL.path)
+					self.tableView.reloadData()
 				} catch {
 					print("error copying file to applicatiohn support Clock Suite folder")
 				}
@@ -44,8 +65,6 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 			}
 
 		}
-
-		print("abcd+\(FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first)")
 	}
 	@IBAction func deleteSong(_ sender: Any) {
 	}
@@ -56,7 +75,7 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 			alert.messageText="Please select a song or choose cancel."
 			alert.runModal()
 		} else {
-			choosePlaylistAction(songURLs[tableView.selectedRow])
+			choosePlaylistAction(songs[tableView.selectedRow])
 			dismiss(nil)
 		}
 	}
@@ -64,19 +83,14 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 		dismiss(nil)
 	}
 	var choosePlaylistAction = { (_ : String) -> Void in }
-	override func viewDidLoad() {
-        super.viewDidLoad()
-		tableView.dataSource=self
-		tableView.delegate=self
-    }
 	func numberOfRows(in tableView: NSTableView) -> Int {
-		return 0
+		return songs.count
 	}
 	 func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		guard let cell0 = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "GenericTableCellView"), owner: nil) as? GenericTableCellView else {
 				return NSTableCellView()
 			}
-		cell0.genericTextField?.stringValue=""
+		cell0.genericTextField?.stringValue=songs[row]
 	   return cell0
 	 }
 	func tableViewSelectionDidChange(_ notification: Notification) {
