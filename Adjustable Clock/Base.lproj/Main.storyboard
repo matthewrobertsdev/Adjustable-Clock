@@ -1265,7 +1265,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="141.5" minWidth="40" maxWidth="1000" id="72b-sf-9fX">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1298,7 +1298,7 @@ DQ
                                                 </tableColumn>
                                                 <tableColumn width="143.5" minWidth="40" maxWidth="1000" id="Kc6-Qb-l2w">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1701,7 +1701,7 @@ DQ
                         <outlet property="alertTextField" destination="Qhw-8c-8Kq" id="GCd-xI-zYt"/>
                         <outlet property="beepButton" destination="VA9-rf-Dv1" id="8ph-ns-1nB"/>
                         <outlet property="noSoundButton" destination="7R6-4X-fBa" id="ei3-l2-LOS"/>
-                        <outlet property="playlistTextField" destination="019-4P-Lfd" id="9lr-8c-hwq"/>
+                        <outlet property="playlistTextField" destination="irB-Zz-ang" id="koJ-ga-If5"/>
                         <outlet property="songButton" destination="D1a-7x-Xl8" id="v93-xd-9ut"/>
                         <outlet property="timerDatePicker" destination="yGd-LK-w7c" id="0bq-4a-jQ4"/>
                         <outlet property="titleTextField" destination="nCV-Iz-hel" id="YrP-bX-A1o"/>
@@ -1994,7 +1994,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="233" minWidth="40" maxWidth="1000" id="7af-du-yPg">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2138,7 +2138,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="280" minWidth="40" maxWidth="1000" id="nxT-P1-PJ8">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2253,7 +2253,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="304" minWidth="40" maxWidth="1000" id="h46-K1-f75">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>

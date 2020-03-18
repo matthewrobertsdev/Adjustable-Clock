@@ -15,10 +15,10 @@ class EditableTimerViewController: NSViewController {
 	var index=0
 	let calendar=Calendar.current
 	@IBOutlet weak var timerDatePicker: NSDatePicker!
-	@IBOutlet weak var playlistTextField: NSButton!
 	@IBOutlet weak var beepButton: NSButton!
 	@IBOutlet weak var songButton: NSButton!
 	@IBOutlet weak var noSoundButton: NSButton!
+	@IBOutlet weak var playlistTextField: NSTextField!
 	@IBOutlet weak var titleTextField: NSTextField!
 	var alertStyle=AlertStyle.sound
 	var oldDate: Date?
@@ -67,6 +67,7 @@ class EditableTimerViewController: NSViewController {
 				guard let chooseSongViewController = mainStoryBoard.instantiateController(withIdentifier:
 				   "PlaylistViewController") as? PlaylistViewController else { return }
 		chooseSongViewController.choosePlaylistAction = { (playlistURL: String) -> Void in
+			print("abcd"+playlistURL)
 			self.playlistName=playlistURL
 			if playlistURL=="" {
 				self.playlistTextField.stringValue="Song: None chosen"
