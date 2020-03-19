@@ -116,7 +116,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		TimersCenter.sharedInstance.activeTimers+=1
 		TimersCenter.sharedInstance.timers[index].going=true
 		displayTimer(index: index)
-		TimersCenter.sharedInstance.gcdTimers[index].schedule(deadline: .now(), repeating: .milliseconds(1000), leeway: .milliseconds(0))
+		TimersCenter.sharedInstance.gcdTimers[index].schedule(deadline: .now()+1, repeating: .milliseconds(1000), leeway: .milliseconds(0))
 		TimersCenter.sharedInstance.gcdTimers[index].setEventHandler {
 			TimersCenter.sharedInstance.updateTimer(index: index)
 			self.displayTimer(index: index)

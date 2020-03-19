@@ -45,7 +45,6 @@
 		9F4D87452055E99400AF63D1 /* ClockWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D87442055E99400AF63D1 /* ClockWindowController.swift */; };
 		9F4EF1E320C273CB00E08C57 /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4EF1E220C273CB00E08C57 /* ColorModel.swift */; };
 		9F51284023DB42E300B87C29 /* NSViewToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F51283F23DB42E300B87C29 /* NSViewToImage.swift */; };
-		9F51C06123DF7FEB0072E157 /* iTunesLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F51C06023DF7FEB0072E157 /* iTunesLibrary.framework */; };
 		9F53421423D90A1100FDD0F3 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F53421323D90A1100FDD0F3 /* Alarm.swift */; };
 		9F53421623D90C1500FDD0F3 /* EditableAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F53421523D90C1500FDD0F3 /* EditableAlarmViewController.swift */; };
 		9F538C4D2116AC1500A72242 /* SimplePreferenceWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C4C2116AC1500A72242 /* SimplePreferenceWindowController.swift */; };
@@ -164,7 +163,6 @@
 		9F4D87442055E99400AF63D1 /* ClockWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockWindowController.swift; sourceTree = "<group>"; };
 		9F4EF1E220C273CB00E08C57 /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
 		9F51283F23DB42E300B87C29 /* NSViewToImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewToImage.swift; sourceTree = "<group>"; };
-		9F51C06023DF7FEB0072E157 /* iTunesLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iTunesLibrary.framework; path = System/Library/Frameworks/iTunesLibrary.framework; sourceTree = SDKROOT; };
 		9F53421323D90A1100FDD0F3 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		9F53421523D90C1500FDD0F3 /* EditableAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableAlarmViewController.swift; sourceTree = "<group>"; };
 		9F538C4C2116AC1500A72242 /* SimplePreferenceWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferenceWindowController.swift; sourceTree = "<group>"; };
@@ -239,7 +237,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F51C06123DF7FEB0072E157 /* iTunesLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,7 +322,6 @@
 		9F51C05F23DF7FEB0072E157 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9F51C06023DF7FEB0072E157 /* iTunesLibrary.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
