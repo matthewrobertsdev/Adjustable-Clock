@@ -116,6 +116,11 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		TimersCenter.sharedInstance.activeTimers+=1
 		TimersCenter.sharedInstance.timers[index].going=true
 		displayTimer(index: index)
+		if TimersCenter.sharedInstance.timers[index].secondsRemaining<=0 {
+			self.timerStopped(index: index)
+			timerCollectionViewItem?.startPauseButton.title="Start"
+			return
+		}
 		TimersCenter.sharedInstance.gcdTimers[index].schedule(deadline: .now()+1, repeating: .milliseconds(1000), leeway: .milliseconds(0))
 		TimersCenter.sharedInstance.gcdTimers[index].setEventHandler {
 			TimersCenter.sharedInstance.updateTimer(index: index)
@@ -138,6 +143,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		let timerCollectionViewItem=collectionView.item(at: IndexPath(item: index, section: 0)) as? TimerCollectionViewItem
 		timerCollectionViewItem?.stopTimeTextField.isHidden=true
 		TimersCenter.sharedInstance.activeTimers-=1
+		TimersCenter.sharedInstance.timers[index].active=false
 		let timer=TimersCenter.sharedInstance.timers[index]
 		timer.going=false
 		let alertSound=NSSound(named: NSSound.Name(timer.alertString))
@@ -191,14 +197,15 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		}
 		if TimersCenter.sharedInstance.timers[index].active {
 			timerCollectionViewItem.stopTimeTextField.isHidden=true
-			TimersCenter.sharedInstance.activeTimers-=1
-			TimersCenter.sharedInstance.timers[index].active=false
-			TimersCenter.sharedInstance.gcdTimers[index].suspend()
+			TimersCenter.sharedInstance.stopTimer(index: index)
 			timerCollectionViewItem.startPauseButton.title="Resume"
 		} else {
 		TimersCenter.sharedInstance.timers[index].active=true
 			animateTimer(index: index)
 			timerCollectionViewItem.startPauseButton.title="Pause"
+			if TimersCenter.sharedInstance.timers[index].secondsRemaining<=0 {
+				timerCollectionViewItem.startPauseButton.title="Start"
+			}
 		}
 	}
 	@objc func showPopover(sender: Any?) {
