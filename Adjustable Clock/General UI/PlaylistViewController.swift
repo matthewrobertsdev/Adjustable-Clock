@@ -10,7 +10,7 @@ import Cocoa
 class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 	var songURLs=[String]()
 	var songs=[String]()
-	override func viewDidLoad(){
+	override func viewDidLoad() {
 		super.viewDidLoad()
 		tableView.dataSource=self
 		tableView.delegate=self
@@ -22,7 +22,7 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 		super.viewDidAppear()
 		self.view.window?.title = "Clock Suite Playlist"
 	}
-	func getSongs(){
+	func getSongs() {
 		var saveURL=FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
 		saveURL=saveURL?.appendingPathComponent("Clock Suite")
 		guard let validSaveURL=saveURL else {
@@ -50,7 +50,6 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 		openPanel.title="Choose Song or Sound"
 		openPanel.message="Choose song or sound file."
 		openPanel.prompt="Choose"
-		
 		openPanel.beginSheetModal(for: self.view.window ?? NSWindow(), completionHandler: { (result) -> Void in
 			if result == NSApplication.ModalResponse.OK {
 			var saveURL=FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
@@ -92,7 +91,7 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 			guard var validFileURL=fileURL else {
 				return
 			}
-			do{
+			do {
 				try FileManager.default.createDirectory(at: validFileURL, withIntermediateDirectories: true)
 			validFileURL=validFileURL.appendingPathComponent(filename)
 				try FileManager.default.removeItem(at: validFileURL)
@@ -103,7 +102,6 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 			tableView.reloadData()
 		}
 	}
-	
 	@IBAction func chooseSong(_ sender: Any) {
 		if tableView.selectedRow == -1 {
 			let alert=NSAlert()
