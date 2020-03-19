@@ -14,7 +14,7 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
         super.windowDidLoad()
 		WindowManager.sharedInstance.count+=1
 		window?.delegate=self
-		window?.minSize=NSSize(width: 450, height: 224)
+		window?.minSize=NSSize(width: 351, height: 224)
 		if TimersPreferenceStorage.sharedInstance.haslaunchedBefore() {
 			TimersWindowRestorer().loadSavedWindowCGRect(window: window)
 		}
