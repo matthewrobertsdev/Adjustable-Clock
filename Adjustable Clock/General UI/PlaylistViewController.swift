@@ -8,8 +8,9 @@
 
 import Cocoa
 class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
-	var songURLs=[String]()
+	@IBOutlet weak var tableView: NSTableView!
 	var songs=[String]()
+	var choosePlaylistAction = { (_ : String) -> Void in }
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		tableView.dataSource=self
@@ -39,7 +40,6 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 			print("Error with Clock Suite application support directory")
 		}
 	}
-	@IBOutlet weak var tableView: NSTableView!
 	@IBAction func addSong(_ sender: Any) {
 		let openPanel=NSOpenPanel()
 		openPanel.canChooseFiles=true
@@ -115,7 +115,6 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 	@IBAction func cancel(_ sender: Any) {
 		dismiss(nil)
 	}
-	var choosePlaylistAction = { (_ : String) -> Void in }
 	func numberOfRows(in tableView: NSTableView) -> Int {
 		return songs.count
 	}

@@ -48,8 +48,6 @@
 		9F4EF1E320C273CB00E08C57 /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4EF1E220C273CB00E08C57 /* ColorModel.swift */; };
 		9F51284023DB42E300B87C29 /* NSViewToImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F51283F23DB42E300B87C29 /* NSViewToImage.swift */; };
 		9F51C06123DF7FEB0072E157 /* iTunesLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F51C06023DF7FEB0072E157 /* iTunesLibrary.framework */; };
-		9F51F6C223E5E90A00392880 /* OnboardingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F51F6C123E5E90A00392880 /* OnboardingWindowController.swift */; };
-		9F51F6C423E5E92900392880 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F51F6C323E5E92900392880 /* OnboardingViewController.swift */; };
 		9F53421423D90A1100FDD0F3 /* Alarm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F53421323D90A1100FDD0F3 /* Alarm.swift */; };
 		9F53421623D90C1500FDD0F3 /* EditableAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F53421523D90C1500FDD0F3 /* EditableAlarmViewController.swift */; };
 		9F538C4D2116AC1500A72242 /* SimplePreferenceWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C4C2116AC1500A72242 /* SimplePreferenceWindowController.swift */; };
@@ -65,13 +63,10 @@
 		9F7D055723D6629F00E6CBA2 /* AlarmsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7D055623D6629F00E6CBA2 /* AlarmsViewController.swift */; };
 		9F7D055B23D6700900E6CBA2 /* AlarmsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7D055A23D6700900E6CBA2 /* AlarmsMenu.swift */; };
 		9F7D055F23D6716600E6CBA2 /* ClockMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7D055E23D6716600E6CBA2 /* ClockMenu.swift */; };
-		9F7E636A23DE96EE00A52ECE /* TracksLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7E636923DE96EE00A52ECE /* TracksLibrary.swift */; };
 		9F7FF69823D2A56A009E5DA8 /* NSViewDetectDarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7FF69723D2A56A009E5DA8 /* NSViewDetectDarkMode.swift */; };
-		9F82250423DD4E6E00E337BD /* ChoosePlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F82250323DD4E6E00E337BD /* ChoosePlaylistViewController.swift */; };
 		9F84B5B723D8BD0500221BF4 /* AlarmsPreferenceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F84B5B623D8BD0500221BF4 /* AlarmsPreferenceStorage.swift */; };
 		9F87CCC323D4156B005D402B /* isDarkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F87CCC223D4156B005D402B /* isDarkMode.swift */; };
 		9F8BF21720EEBEFE00ADF294 /* ColorsMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BF21620EEBEFE00ADF294 /* ColorsMenuController.swift */; };
-		9F8C862823E8E89000E0C124 /* VerticaFullscreenlScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8C862723E8E89000E0C124 /* VerticaFullscreenlScrollView.swift */; };
 		9F8EBE482050C4C7005BA4F2 /* ClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8EBE472050C4C7005BA4F2 /* ClockViewController.swift */; };
 		9F8ED1711FEC73C100C0553C /* WindowFrameRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8ED1701FEC73C100C0553C /* WindowFrameRestorer.swift */; };
 		9F93B36E23C81E620086B3CC /* DigitalClockAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F93B36D23C81E620086B3CC /* DigitalClockAnimator.swift */; };
@@ -174,8 +169,6 @@
 		9F4EF1E220C273CB00E08C57 /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
 		9F51283F23DB42E300B87C29 /* NSViewToImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewToImage.swift; sourceTree = "<group>"; };
 		9F51C06023DF7FEB0072E157 /* iTunesLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iTunesLibrary.framework; path = System/Library/Frameworks/iTunesLibrary.framework; sourceTree = SDKROOT; };
-		9F51F6C123E5E90A00392880 /* OnboardingWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingWindowController.swift; sourceTree = "<group>"; };
-		9F51F6C323E5E92900392880 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		9F53421323D90A1100FDD0F3 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		9F53421523D90C1500FDD0F3 /* EditableAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableAlarmViewController.swift; sourceTree = "<group>"; };
 		9F538C4C2116AC1500A72242 /* SimplePreferenceWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferenceWindowController.swift; sourceTree = "<group>"; };
@@ -191,14 +184,11 @@
 		9F7D055623D6629F00E6CBA2 /* AlarmsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsViewController.swift; sourceTree = "<group>"; };
 		9F7D055A23D6700900E6CBA2 /* AlarmsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsMenu.swift; sourceTree = "<group>"; };
 		9F7D055E23D6716600E6CBA2 /* ClockMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockMenu.swift; sourceTree = "<group>"; };
-		9F7E636923DE96EE00A52ECE /* TracksLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksLibrary.swift; sourceTree = "<group>"; };
 		9F7E63A323DEAF6B00A52ECE /* Adjustable Clock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Adjustable Clock.entitlements"; sourceTree = "<group>"; };
 		9F7FF69723D2A56A009E5DA8 /* NSViewDetectDarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewDetectDarkMode.swift; sourceTree = "<group>"; };
-		9F82250323DD4E6E00E337BD /* ChoosePlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePlaylistViewController.swift; sourceTree = "<group>"; };
 		9F84B5B623D8BD0500221BF4 /* AlarmsPreferenceStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsPreferenceStorage.swift; sourceTree = "<group>"; };
 		9F87CCC223D4156B005D402B /* isDarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = isDarkMode.swift; sourceTree = "<group>"; };
 		9F8BF21620EEBEFE00ADF294 /* ColorsMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsMenuController.swift; sourceTree = "<group>"; };
-		9F8C862723E8E89000E0C124 /* VerticaFullscreenlScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticaFullscreenlScrollView.swift; sourceTree = "<group>"; };
 		9F8EBE472050C4C7005BA4F2 /* ClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockViewController.swift; sourceTree = "<group>"; };
 		9F8ED1701FEC73C100C0553C /* WindowFrameRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowFrameRestorer.swift; sourceTree = "<group>"; };
 		9F93B36D23C81E620086B3CC /* DigitalClockAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalClockAnimator.swift; sourceTree = "<group>"; };
@@ -285,13 +275,8 @@
 				9FA60EA523DB7286004F787F /* GenericTableCellView.swift */,
 				9F078A9C23CA7A79007072BB /* FullViewWindowController.swift */,
 				9F2E8AFC23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift */,
-				9F82250323DD4E6E00E337BD /* ChoosePlaylistViewController.swift */,
 				9F0C2D8A2421469A007A031C /* PlaylistViewController.swift */,
-				9F7E636923DE96EE00A52ECE /* TracksLibrary.swift */,
-				9F51F6C123E5E90A00392880 /* OnboardingWindowController.swift */,
-				9F51F6C323E5E92900392880 /* OnboardingViewController.swift */,
 				9F3AD84723C7D22C005FCC0A /* MagnifierScrollView.swift */,
-				9F8C862723E8E89000E0C124 /* VerticaFullscreenlScrollView.swift */,
 				9F97C85D23EB7B1E005381A0 /* ColorfulViewController.swift */,
 				9F2A500E241D400F00369109 /* WindowManager.swift */,
 			);
@@ -753,7 +738,6 @@
 				9F260CAA23F64D0300D021BB /* WorldClockWindowController.swift in Sources */,
 				9F87CCC323D4156B005D402B /* isDarkMode.swift in Sources */,
 				9F073FB623FDEEFE00B404C5 /* WorldClockPreferencesStorage.swift in Sources */,
-				9F51F6C423E5E92900392880 /* OnboardingViewController.swift in Sources */,
 				9FF6913723D784110057C4F6 /* AlarmsWindowRestorer.swift in Sources */,
 				9F7D055723D6629F00E6CBA2 /* AlarmsViewController.swift in Sources */,
 				9FAD49CF23E3DDEC00767C1D /* DigitalDockClockView.swift in Sources */,
@@ -775,7 +759,6 @@
 				9F078A9D23CA7A79007072BB /* FullViewWindowController.swift in Sources */,
 				9FA6A7A523D8E687005564E7 /* EditableAlarmWindowController.swift in Sources */,
 				9F538C4F2116B06300A72242 /* SimplePreferencesViewController.swift in Sources */,
-				9F8C862823E8E89000E0C124 /* VerticaFullscreenlScrollView.swift in Sources */,
 				9FF3F89924188E14006751A0 /* AlarmCollectionViewItem.swift in Sources */,
 				9F260CB323F64FF000D021BB /* WorldClockMenuProtocol.swift in Sources */,
 				9F1C725523E1D9B0008B6B79 /* GeneralMenuProtocol.swift in Sources */,
@@ -788,12 +771,10 @@
 				9F1375DE23D95055003B2B15 /* AlarmSettingsTableCellView.swift in Sources */,
 				9F35462D23F20FDF009FA191 /* CountDownTimer.swift in Sources */,
 				9F2E8AFD23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift in Sources */,
-				9F82250423DD4E6E00E337BD /* ChoosePlaylistViewController.swift in Sources */,
 				9F407E1723F1D17A00557EA4 /* TimersWindowRestorer.swift in Sources */,
 				9F073FB423FDEE5B00B404C5 /* WorldClockFrameRestorer.swift in Sources */,
 				9F29083F23FDFE0A00AE995B /* ChooseCityViewController.swift in Sources */,
 				9F4D87452055E99400AF63D1 /* ClockWindowController.swift in Sources */,
-				9F7E636A23DE96EE00A52ECE /* TracksLibrary.swift in Sources */,
 				9F7D055F23D6716600E6CBA2 /* ClockMenu.swift in Sources */,
 				9F3AD84823C7D22C005FCC0A /* MagnifierScrollView.swift in Sources */,
 				9FA6A7A323D8E2BC005564E7 /* GeneralPreferencesStorage.swift in Sources */,
@@ -804,7 +785,6 @@
 				9FE390871FECBCF400AF5442 /* PreferencesWindowRestorer.swift in Sources */,
 				9F97C86623EB8586005381A0 /* ColorView.swift in Sources */,
 				9FC97F581F480BB500035D30 /* PreferencesVC.swift in Sources */,
-				9F51F6C223E5E90A00392880 /* OnboardingWindowController.swift in Sources */,
 				9F51284023DB42E300B87C29 /* NSViewToImage.swift in Sources */,
 				9F3C7D6A20CCE40D00C91506 /* ClockPreferencesStorage.swift in Sources */,
 				9F1137DF23FB6F5900C6C92B /* WorldClockCollectionViewItem.swift in Sources */,

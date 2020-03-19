@@ -5,9 +5,7 @@
 //  Created by Matt Roberts on 1/18/20.
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
-
 import Cocoa
-
 class DarkAndLightBackgroundView: NSView, BackgroundColorView {
 	var backgroundColor=NSColor.systemGray
 	override func draw(_ dirtyRect: NSRect) {
