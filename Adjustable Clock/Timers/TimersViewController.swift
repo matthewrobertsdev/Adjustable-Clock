@@ -74,6 +74,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		timerCollectionViewItem.startPauseButton.tag=indexPath.item
 		timerCollectionViewItem.setButton.tag=indexPath.item
 		timerCollectionViewItem.setButton.action=#selector(showPopover(sender:))
+		timerCollectionViewItem.resetButton.tag=indexPath.item
 		timerCollectionViewItem.resetButton.action=#selector(resetTimer(sender:))
 		let timers=TimersCenter.sharedInstance.timers
 		if timers[indexPath.item].active && timers[indexPath.item].going {
