@@ -15,8 +15,6 @@
 		9F0F972A23DB5FF8005456E6 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0F972923DB5FF8005456E6 /* AlertViewController.swift */; };
 		9F1137DF23FB6F5900C6C92B /* WorldClockCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1137DE23FB6F5900C6C92B /* WorldClockCollectionViewItem.swift */; };
 		9F1375D623D937FA003B2B15 /* AlarmsCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1375D523D937FA003B2B15 /* AlarmsCenter.swift */; };
-		9F1375DA23D94F70003B2B15 /* AlarmTimeTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1375D923D94F70003B2B15 /* AlarmTimeTableCellView.swift */; };
-		9F1375DC23D94FE5003B2B15 /* AlarmStatusTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1375DB23D94FE5003B2B15 /* AlarmStatusTableCellView.swift */; };
 		9F1375DE23D95055003B2B15 /* AlarmSettingsTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1375DD23D95055003B2B15 /* AlarmSettingsTableCellView.swift */; };
 		9F14F37723C9828F009BF6CA /* CALayerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F14F37623C9828F009BF6CA /* CALayerExtension.swift */; };
 		9F1C725323E1D99D008B6B79 /* GeneralMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C725223E1D99D008B6B79 /* GeneralMenu.swift */; };
@@ -136,8 +134,6 @@
 		9F0F972923DB5FF8005456E6 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		9F1137DE23FB6F5900C6C92B /* WorldClockCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockCollectionViewItem.swift; sourceTree = "<group>"; };
 		9F1375D523D937FA003B2B15 /* AlarmsCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsCenter.swift; sourceTree = "<group>"; };
-		9F1375D923D94F70003B2B15 /* AlarmTimeTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTimeTableCellView.swift; sourceTree = "<group>"; };
-		9F1375DB23D94FE5003B2B15 /* AlarmStatusTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmStatusTableCellView.swift; sourceTree = "<group>"; };
 		9F1375DD23D95055003B2B15 /* AlarmSettingsTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmSettingsTableCellView.swift; sourceTree = "<group>"; };
 		9F14F37623C9828F009BF6CA /* CALayerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CALayerExtension.swift; sourceTree = "<group>"; };
 		9F1C725223E1D99D008B6B79 /* GeneralMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralMenu.swift; sourceTree = "<group>"; };
@@ -345,8 +341,6 @@
 				9F84B5B623D8BD0500221BF4 /* AlarmsPreferenceStorage.swift */,
 				9F53421323D90A1100FDD0F3 /* Alarm.swift */,
 				9F1375D523D937FA003B2B15 /* AlarmsCenter.swift */,
-				9F1375D923D94F70003B2B15 /* AlarmTimeTableCellView.swift */,
-				9F1375DB23D94FE5003B2B15 /* AlarmStatusTableCellView.swift */,
 				9F1375DD23D95055003B2B15 /* AlarmSettingsTableCellView.swift */,
 				9FF3F89824188E14006751A0 /* AlarmCollectionViewItem.swift */,
 			);
@@ -781,7 +775,6 @@
 				9F8EBE482050C4C7005BA4F2 /* ClockViewController.swift in Sources */,
 				9FEAE9DD1F4F7249004EB641 /* MainMenu.swift in Sources */,
 				9F4A9C5E23F7A67D0046A7F2 /* EditableTimerViewController.swift in Sources */,
-				9F1375DA23D94F70003B2B15 /* AlarmTimeTableCellView.swift in Sources */,
 				9FE390871FECBCF400AF5442 /* PreferencesWindowRestorer.swift in Sources */,
 				9F97C86623EB8586005381A0 /* ColorView.swift in Sources */,
 				9FC97F581F480BB500035D30 /* PreferencesVC.swift in Sources */,
@@ -817,7 +810,6 @@
 				9FF6912823D76C810057C4F6 /* AlarmsWindowController.swift in Sources */,
 				9F84B5B723D8BD0500221BF4 /* AlarmsPreferenceStorage.swift in Sources */,
 				9F750CC02056073F007980F9 /* DefaultNSWindow.swift in Sources */,
-				9F1375DC23D94FE5003B2B15 /* AlarmStatusTableCellView.swift in Sources */,
 				9F4EF1E320C273CB00E08C57 /* ColorModel.swift in Sources */,
 				9F28E7C723FDCE620034F5C6 /* WorldClockModel.swift in Sources */,
 				9FFD327323D6805500A678BE /* ClockMenuProtocol.swift in Sources */,

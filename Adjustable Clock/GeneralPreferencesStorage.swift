@@ -17,11 +17,11 @@ class GeneralPreferencesStorage {
 	let userDefaults=UserDefaults()
 	private let use24HoursKey="use24Hours"
 	private let dockClockKey="dockClock"
-	private let useAnalogNoSeconds="useAnalogNoSeconds"
-	private let useAnalogWithSeconds="useAnalogWithSeconds"
-	private let useDigitalNoSeconds="useDigitalNoSeconds"
-	private let useDigitalWithSeconds="useDigitalWithSeconds"
-	private let useJustColors="useJustColors"
+	let useAnalogNoSeconds="useAnalogNoSeconds"
+	let useAnalogWithSeconds="useAnalogWithSeconds"
+	let useDigitalNoSeconds="useDigitalNoSeconds"
+	let useDigitalWithSeconds="useDigitalWithSeconds"
+	let useJustColors="useJustColors"
 	private init() {
 	}
 	func loadUserPreferences() {

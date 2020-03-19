@@ -8,14 +8,14 @@
 import Cocoa
 import AVFoundation
 class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
+	@IBOutlet weak var titleTextField: NSTextField!
+	@IBOutlet weak var collectionView: NSCollectionView!
+	@IBOutlet weak var timerActiveLabel: NSTextField!
 	private let timeFormatter=DateFormatter()
 	private let stopTimeFormatter=DateFormatter()
 	let popover = NSPopover()
 	var dockDisplay=false
 	var player: AVAudioPlayer?
-	@IBOutlet weak var titleTextField: NSTextField!
-	@IBOutlet weak var collectionView: NSCollectionView!
-	@IBOutlet weak var timerActiveLabel: NSTextField!
 	override func viewDidLoad() {
         super.viewDidLoad()
 		collectionView.dataSource=self

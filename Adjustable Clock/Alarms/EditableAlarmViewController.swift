@@ -22,14 +22,14 @@ class EditableAlarmViewController: NSViewController {
 	var collectionView: NSCollectionView?
 	var usesSong=false
 	var oldDate: Date?
-	var delete = { () -> Void in }
-	@IBAction func delete(_ sender: Any) {
-		delete()
-	}
 	var alertName="Ping"
 	var playlistName=""
 	var new=true
+	var delete = { () -> Void in }
 	var cancel = { () -> Void in }
+	@IBAction func delete(_ sender: Any) {
+		delete()
+	}
 	@IBAction func chooseAlert(_ sender: Any) {
 	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 		guard let chooseAlertViewController =
@@ -53,7 +53,6 @@ class EditableAlarmViewController: NSViewController {
 				self.playlistTextField.stringValue="Playlist: "+playlist
 			}
 		}
-		//self.presentAsSheet(chooseSongViewController)
 		presentAsModalWindow(chooseSongViewController)
 	}
 	@IBAction func cancel(_ sender: Any) {

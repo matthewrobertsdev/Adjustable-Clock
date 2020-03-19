@@ -8,6 +8,13 @@
 import Foundation
 import Cocoa
 class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, NSCollectionViewDelegate, AlarmCollectionItemProtocol {
+	@IBOutlet weak var collectionView: NSCollectionView!
+	@IBOutlet weak var titleTextField: NSTextField!
+	@IBOutlet weak var alarmNotifierTextField: NSTextField!
+	@objc var objectToObserve=AlarmCenter.sharedInstance
+	var kvoObservation: NSKeyValueObservation?
+	let timeFormatter=DateFormatter()
+	let popover = NSPopover()
 	func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
 		return AlarmCenter.sharedInstance.count
 	}
@@ -30,19 +37,10 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			alarmCollectionViewItem.alarmStatusSegmentedControl.selectSegment(withTag: 0)
 		}
 		alarmCollectionViewItem.alarmStatusSegmentedControl.action=#selector(onOffSelected(sender:))
-		//alarmCollectionViewItem.alarmSettingsButton.action=#selector(showPopover(sender:))
 		alarmCollectionViewItem.alarmDelegate=self
 		return alarmCollectionViewItem
 	}
-	@objc var objectToObserve=AlarmCenter.sharedInstance
-	var observation: NSKeyValueObservation?
-	var observation2: NSKeyValueObservation?
-	let timeFormatter=DateFormatter()
-	let popover = NSPopover()
-	//@IBOutlet weak var tableView: NSTableView!
-	@IBOutlet weak var collectionView: NSCollectionView!
-	@IBOutlet weak var titleTextField: NSTextField!
-	@IBOutlet weak var alarmNotifierTextField: NSTextField!
+
 	@IBAction func addAlarm(_ sender: Any) {
 		EditableAlarmWindowController.newAlarmConfigurer.showNewAlarmConfigurer()
 	}
@@ -57,13 +55,12 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		collectionView.delegate=self
 		collectionView.dataSource=self
 		backgroundView.translatesAutoresizingMaskIntoConstraints=false
-		//*
 		let leadingConstraint=NSLayoutConstraint(item: backgroundView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
 		let trailingConstraint=NSLayoutConstraint(item: backgroundView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
 		let topConstraint=NSLayoutConstraint(item: backgroundView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
 		let bottomConstraint=NSLayoutConstraint(item: backgroundView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
 		NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
-		observation2 = observe(
+		kvoObservation = observe(
 			\.objectToObserve.activeAlarms,
             options: [.old, .new]
         ) { _, change in
@@ -87,7 +84,6 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	 }
 	@objc func onOffSelected(sender: Any) {
 		if let segmentedControl=sender as? NSSegmentedControl {
-			guard let tableViewCell=segmentedControl.superview else { return }
 			guard let alarmTableView=collectionView else {
 				return
 			}

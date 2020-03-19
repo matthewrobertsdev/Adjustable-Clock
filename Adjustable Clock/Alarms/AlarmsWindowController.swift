@@ -15,10 +15,8 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 		AlarmsWindowController.alarmsObject=AlarmsWindowController()
 		window?.delegate=self
 		AlarmsPreferencesStorage.sharedInstance.setWindowIsClosed()
-		//window?.minSize=CGSize(width: 271, height: 400)
 		window?.minSize=CGSize(width: 317, height: 300)
 		AlarmsWindowRestorer().loadSavedWindowCGRect(window: window)
-		//self.window?.standardWindowButton(.zoomButton)?.isEnabled=false
 		prepareWindowButtons()
     }
 	func windowWillClose(_ notification: Notification) {
