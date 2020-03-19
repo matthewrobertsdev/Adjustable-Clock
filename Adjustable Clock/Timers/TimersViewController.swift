@@ -141,6 +141,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	}
 	func timerStopped(index: Int) {
 		let timerCollectionViewItem=collectionView.item(at: IndexPath(item: index, section: 0)) as? TimerCollectionViewItem
+		timerCollectionViewItem?.startPauseButton.title="Start"
 		timerCollectionViewItem?.stopTimeTextField.isHidden=true
 		TimersCenter.sharedInstance.activeTimers-=1
 		TimersCenter.sharedInstance.timers[index].active=false
