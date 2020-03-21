@@ -19,6 +19,7 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 			TimersWindowRestorer().loadSavedWindowCGRect(window: window)
 		}
 		prepareWindowButtons()
+		enableTimersMenu(enabled: true)
     }
 	func showTimers() {
 		if isTimersWindowPresent() == false {
@@ -55,6 +56,7 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 		} else {
 			TimersPreferenceStorage.sharedInstance.setWindowIsClosed()
 		}
+		enableTimersMenu(enabled: false)
     }
 	func saveState() {
 		TimersCenter.sharedInstance.saveTimers()
@@ -79,6 +81,7 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 		}
 		timerViewController.displayForDock()
 		WindowManager.sharedInstance.dockWindowArray.append(window ?? NSWindow())
+		enableTimersMenu(enabled: false)
 	}
 	func windowDidDeminiaturize(_ notification: Notification) {
 		guard let timerViewController=window?.contentViewController as? TimersViewController else {
@@ -88,8 +91,15 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 		WindowManager.sharedInstance.dockWindowArray.removeAll { (dockWindow) -> Bool in
 			return dockWindow==window
 		}
+		enableTimersMenu(enabled: true)
 	}
 	func windowDidBecomeKey(_ notification: Notification) {
 		flashButtons()
     }
+	func enableTimersMenu(enabled: Bool) {
+		guard let appDelagte = NSApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		appDelagte.timersMenuController?.enableMenu(enabled: enabled)
+	}
 }

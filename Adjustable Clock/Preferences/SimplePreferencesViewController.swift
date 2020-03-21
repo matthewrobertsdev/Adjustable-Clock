@@ -35,7 +35,7 @@ class SimplePreferencesViewController: NSViewController {
 			return
 		}
 		if let clockMenuController=appDelegate.clockMenuController {
-			clockMenuController.updateClockMenuUI()
+			clockMenuController.updateUserInterface()
 		}
     }
 	func updateTimerMenuUI() {

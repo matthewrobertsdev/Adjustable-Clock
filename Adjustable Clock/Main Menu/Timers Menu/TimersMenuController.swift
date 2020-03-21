@@ -11,9 +11,10 @@ class TimersMenuController: TimerMenuDelegate {
 	init(menu: TimersMenu) {
 		self.menu=menu
 		menu.timersMenuDelegate=self
+		menu.autoenablesItems=false
 		updateUI()
 	}
-	func updateUI(){
+	func updateUI() {
 		if TimersPreferenceStorage.sharedInstance.asSeconds {
 			menu.asSecondsMenuItem.state=NSControl.StateValue.on
 		} else {
@@ -45,5 +46,8 @@ class TimersMenuController: TimerMenuDelegate {
 	}
 	func showTimersClicked() {
 		TimersWindowController.timersObject.showTimers()
+	}
+	func enableMenu(enabled: Bool) {
+		menu.asSecondsMenuItem.isEnabled=enabled
 	}
 }

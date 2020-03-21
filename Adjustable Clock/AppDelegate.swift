@@ -21,7 +21,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		TimersPreferenceStorage.sharedInstance.loadPreferences()
 		WorldClockPreferencesStorage.sharedInstance.loadPreferences()
 		updateClockMenuUI()
-		enableClockMenu(enabled: true)
         let appObject = NSApp as NSApplication
 		if let mainMenu=appObject.mainMenu as? MainMenu {
 			colorsMenuController=ColorsMenuController(colorsMenu: mainMenu.colorsMenu)
@@ -38,15 +37,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 		if TimersPreferenceStorage.sharedInstance.windowIsOpen {
 			TimersWindowController.timersObject.showTimers()
+			timersMenuController?.enableMenu(enabled: true)
+		} else {
+			timersMenuController?.enableMenu(enabled: false)
 		}
 		if WorldClockPreferencesStorage.sharedInstance.windowIsOpen {
 			WorldClockWindowController.worldClockObject.showWorldClock()
 		}
 		if ClockPreferencesStorage.sharedInstance.windowIsOpen {
 			ClockWindowController.clockObject.showClock()
+			clockMenuController?.enableMenu(enabled: true)
+		} else {
+			clockMenuController?.enableMenu(enabled: false)
 		}
 		if NSApp.orderedWindows.count==0 {
 			ClockWindowController.clockObject.showClock()
+			clockMenuController?.enableMenu(enabled: true)
 		}
 	}
     //if the dock icon is clicked

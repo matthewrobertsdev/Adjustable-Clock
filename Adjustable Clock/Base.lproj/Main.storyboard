@@ -471,18 +471,11 @@
                                                 <action selector="clickShowDateWithNsMenuItem:" target="esu-23-zsK" id="YvB-dG-BCV"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Date Preferences" id="qte-mU-oqZ">
+                                        <menuItem title="Uses Numerical Date" id="WbK-Tg-DFs">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Date Preferences" id="irh-WD-Jdm">
-                                                <items>
-                                                    <menuItem title="Uses Numerical Date" id="WbK-Tg-DFs">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="useNumericalDateWithNsMenuItem:" target="esu-23-zsK" id="RLY-GP-06p"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                </items>
-                                            </menu>
+                                            <connections>
+                                                <action selector="useNumericalDateWithNsMenuItem:" target="esu-23-zsK" id="RLY-GP-06p"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem title="Shows Day of Week" id="phz-ro-t2T">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -500,7 +493,6 @@
                                     <connections>
                                         <outlet property="analogMenuItem" destination="ZDp-k8-QHp" id="JaE-mN-I74"/>
                                         <outlet property="clockFloatsMenuItem" destination="uEN-Ne-S2x" id="tu5-aW-4us"/>
-                                        <outlet property="datePreferencesMenu" destination="irh-WD-Jdm" id="9CX-4O-Tow"/>
                                         <outlet property="digitalMenuItem" destination="XzE-6n-W23" id="HVi-75-hS7"/>
                                         <outlet property="showDateMenuItem" destination="hPB-2N-q4c" id="L7M-El-dLB"/>
                                         <outlet property="showDayOfWeekMenuItem" destination="phz-ro-t2T" id="tCd-tB-tDe"/>
@@ -664,7 +656,6 @@
                             <outlet property="alarmsMenu" destination="Dah-wr-0hi" id="Dfl-Ep-z1x"/>
                             <outlet property="clockMenu" destination="esu-23-zsK" id="wtB-Fu-hY0"/>
                             <outlet property="colorsMenu" destination="65N-u4-pRd" id="QxW-PF-dZo"/>
-                            <outlet property="datePreferencesMenu" destination="irh-WD-Jdm" id="29f-ig-oxy"/>
                             <outlet property="generalMenu" destination="Eej-0A-sXa" id="PHo-8d-jV9"/>
                             <outlet property="preferenceMenuItem" destination="1Xt-HY-uBw" id="SPi-0S-rRf"/>
                             <outlet property="timersMenu" destination="fWd-IJ-eGk" id="WSc-ZL-Ew9"/>
@@ -1163,7 +1154,7 @@
                                             <tableColumns>
                                                 <tableColumn width="141.5" minWidth="40" maxWidth="1000" id="72b-sf-9fX">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="palette"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1196,7 +1187,7 @@
                                                 </tableColumn>
                                                 <tableColumn width="143.5" minWidth="40" maxWidth="1000" id="Kc6-Qb-l2w">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="palette"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1891,7 +1882,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="233" minWidth="40" maxWidth="1000" id="7af-du-yPg">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="palette"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2041,7 +2032,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="280" minWidth="40" maxWidth="1000" id="nxT-P1-PJ8">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="palette"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2155,7 +2146,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="304" minWidth="40" maxWidth="1000" id="h46-K1-f75">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="palette"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>

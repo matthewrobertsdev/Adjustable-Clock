@@ -12,17 +12,17 @@ class ClockMenuController: ClockMenuDelegate {
 	init(menu: ClockMenu) {
 		self.menu=menu
 		menu.clockMenuDelegate=self
-		updateClockMenuUI()
+		updateUserInterface()
 	}
 	func useDigitalClicked() {
 		clockPreferences.changeAndSaveUseDigital()
 		ClockWindowController.clockObject.showClock()
-		updateClockMenuUI()
+		updateUserInterface()
 	}
 	func useAnalogClicked() {
 		clockPreferences.changeAndSaveUseAnalog()
 		ClockWindowController.clockObject.showClock()
-		updateClockMenuUI()
+		updateUserInterface()
 	}
 	func floatClicked() {
 		clockPreferences.changeAndSaveClockFloats()
@@ -48,11 +48,10 @@ class ClockMenuController: ClockMenuDelegate {
 		ClockWindowController.clockObject.showClock()
 	}
 	func updateForPreferencesChange() {
-        updateClockMenuUI()
+        updateUserInterface()
 		ClockWindowController.clockObject.updateClockToPreferencesChange()
     }
-	func updateClockMenuUI() {
-		menu.datePreferencesMenu.autoenablesItems=false
+	func updateUserInterface() {
         if clockPreferences.fullscreen {
 			menu.clockFloatsMenuItem.isEnabled=false
         } else {
@@ -93,10 +92,18 @@ class ClockMenuController: ClockMenuDelegate {
             menu.useNumericalDateMenuItem.state=NSControl.StateValue.off
         }
     }
-	func enableClockMenuPreferences(enabled: Bool) {
+	func enableMenu(enabled: Bool) {
         menu.autoenablesItems=false
         menu.clockFloatsMenuItem.isEnabled=enabled
+		menu.digitalMenuItem.isEnabled=enabled
+		menu.analogMenuItem.isEnabled=enabled
         menu.showSecondsMenuItem.isEnabled=enabled
         menu.showDateMenuItem.isEnabled=enabled
+		if clockPreferences.showDate {
+            menu.useNumericalDateMenuItem.isEnabled=enabled
+        } else {
+            menu.useNumericalDateMenuItem.isEnabled=false
+        }
+		menu.showDayOfWeekMenuItem.isEnabled=enabled
     }
 }

@@ -39,11 +39,5 @@ func updateClockMenuUI() {
 	guard let appDelagte = NSApplication.shared.delegate as? AppDelegate else {
 		return
 	}
-	appDelagte.clockMenuController?.updateClockMenuUI()
-}
-func enableClockMenu(enabled: Bool) {
-	guard let appDelagte = NSApplication.shared.delegate as? AppDelegate else {
-		return
-	}
-	appDelagte.clockMenuController?.enableClockMenuPreferences(enabled: enabled)
+	appDelagte.clockMenuController?.updateUserInterface()
 }

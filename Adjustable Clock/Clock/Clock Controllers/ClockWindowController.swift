@@ -84,11 +84,13 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
     }
     func windowDidBecomeKey(_ notification: Notification) {
 		flashButtons()
+		enableClockMenu(enabled: true)
     }
     func windowDidResignKey(_ notification: Notification) {
         if ClockPreferencesStorage.sharedInstance.fullscreen==false {
             showButtons(show: false)
         }
+		enableClockMenu(enabled: false)
     }
     func windowDidResize(_ notification: Notification) {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
@@ -185,6 +187,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 			digitalClockVC.displayForDock()
 		}
 		WindowManager.sharedInstance.dockWindowArray.append(window ?? NSWindow())
+		enableClockMenu(enabled: false)
 	}
 	func windowDidDeminiaturize(_ notification: Notification) {
 		if let digitalClockVC=window?.contentViewController as? ClockViewController {
@@ -194,6 +197,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 		WindowManager.sharedInstance.dockWindowArray.removeAll { (dockWindow) -> Bool in
 			return dockWindow==window
 		}
+		enableClockMenu(enabled: true)
 	}
 	func updateClockToPreferencesChange() {
         let appObject = NSApp as NSApplication
@@ -210,6 +214,10 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 			self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
 		}
 	}
-	deinit {
+	func enableClockMenu(enabled: Bool) {
+		guard let appDelagte = NSApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		appDelagte.clockMenuController?.enableMenu(enabled: enabled)
 	}
 }
