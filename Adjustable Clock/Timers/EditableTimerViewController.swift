@@ -44,11 +44,13 @@ class EditableTimerViewController: NSViewController {
 		timer.alertString=alertName
 		timer.song=playlistName
 		timer.title=titleTextField.stringValue
+		timer.reset=true
 		TimersCenter.sharedInstance.stopTimer(index: index)
 		TimersCenter.sharedInstance.timers[index].active=true
 		timerViewController.animateTimer(index: index)
 		let timerCollectionViewItem=timerViewController.collectionView.item(at: index) as? TimerCollectionViewItem
 		timerCollectionViewItem?.startPauseButton.title="Pause"
+		timerCollectionViewItem?.resetButton.title="Reset"
 		closeAction()
 	}
 	@IBAction func chooseAlert(_ sender: Any) {
