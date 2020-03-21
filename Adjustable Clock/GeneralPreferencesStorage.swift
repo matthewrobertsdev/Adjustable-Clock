@@ -60,4 +60,8 @@ class GeneralPreferencesStorage {
 			seconds=false
 		}
 	}
+	func setDefaultUserDefaults() {
+		userDefaults.set(false, forKey: use24HoursKey)
+		userDefaults.set(false, forKey: dockClockKey)
+	}
 }

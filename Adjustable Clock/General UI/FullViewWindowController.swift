@@ -5,9 +5,7 @@
 //  Created by Matt Roberts on 1/11/20.
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
-
 import Cocoa
-
 class FullViewWindowController: NSWindowController {
 	var hideButtonsTimer: DispatchSourceTimer?
     var backgroundView: NSView?

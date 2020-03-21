@@ -16,7 +16,6 @@ class AlarmCollectionViewItem: NSCollectionViewItem {
 	@IBOutlet weak var alarmSettingsButton: NSButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
     }
 	@IBAction func settingsButtonClicked(_ sender: Any) {
 		guard let alarmDelegate = alarmDelegate else {

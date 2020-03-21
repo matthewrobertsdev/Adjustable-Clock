@@ -14,7 +14,6 @@ class TimerCollectionViewItem: NSCollectionViewItem {
 	@IBOutlet weak var setButton: NSButton!
 	@IBOutlet weak var resetButton: NSButton!
 	override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do view setup here.
-    }
+		super.viewDidLoad()
+	}
 }

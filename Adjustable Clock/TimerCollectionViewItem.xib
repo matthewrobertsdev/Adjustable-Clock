@@ -26,8 +26,8 @@
                     <rect key="frame" x="0.0" y="0.0" width="351" height="204"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xEI-KT-zbD">
-                            <rect key="frame" x="98" y="74" width="155" height="86"/>
-                            <textFieldCell key="cell" lineBreakMode="clipping" title="3:00" id="YWd-Rd-Pol">
+                            <rect key="frame" x="22" y="74" width="308" height="86"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="00:00:00" id="YWd-Rd-Pol">
                                 <font key="font" metaFont="system" size="73"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

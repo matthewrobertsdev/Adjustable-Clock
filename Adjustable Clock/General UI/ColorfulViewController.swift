@@ -39,7 +39,7 @@ class ColorfulViewController: NSViewController {
 			contrastColor=ClockPreferencesStorage.sharedInstance.customColor
 		} else {
 			contrastColor =
-				clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
+				clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? clockNSColors.colorsDictionary[ColorChoice.systemColor] ?? NSColor.systemGray
 		}
 		if ClockPreferencesStorage.sharedInstance.colorForForeground==false {
 			visualEffectView.isHidden=true

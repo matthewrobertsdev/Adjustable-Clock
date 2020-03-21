@@ -114,8 +114,7 @@ class DockClockController: NSObject {
 				contrastColor=ClockPreferencesStorage.sharedInstance.customColor
 			} else {
 				contrastColor =
-					clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
-				print("color\(ClockPreferencesStorage.sharedInstance.colorChoice)")
+					clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? clockNSColors.colorsDictionary[ColorChoice.systemColor] ?? NSColor.systemGray
 			}
 			if ClockPreferencesStorage.sharedInstance.colorForForeground==false {
 				analogClockView.color=NSColor.labelColor

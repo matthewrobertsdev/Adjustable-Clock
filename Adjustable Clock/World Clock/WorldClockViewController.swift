@@ -7,8 +7,8 @@
 //
 import Cocoa
 class WorldClockViewController: ColorfulViewController, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
-	var model=[WorldClockModel]()
 	@IBOutlet weak var collectionViewFlowLayout: NSCollectionViewFlowLayout!
+	var model=[WorldClockModel]()
 	func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
 		model.count
 	}
