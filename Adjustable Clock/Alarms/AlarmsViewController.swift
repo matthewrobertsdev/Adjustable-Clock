@@ -11,6 +11,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	@IBOutlet weak var collectionView: NSCollectionView!
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var alarmNotifierTextField: NSTextField!
+	@IBOutlet weak var clickRecognizer: NSClickGestureRecognizer!
 	@objc var objectToObserve=AlarmCenter.sharedInstance
 	var kvoObservation: NSKeyValueObservation?
 	let timeFormatter=DateFormatter()
@@ -40,12 +41,17 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		alarmCollectionViewItem.alarmDelegate=self
 		return alarmCollectionViewItem
 	}
-
+	@IBAction func click(_ sender: Any) {
+		popover.close()
+		clickRecognizer.isEnabled=false
+	}
+	
 	@IBAction func addAlarm(_ sender: Any) {
 		EditableAlarmWindowController.newAlarmConfigurer.showNewAlarmConfigurer()
 	}
 	override func viewDidLoad() {
         super.viewDidLoad()
+		clickRecognizer.isEnabled=false
 		collectionView.register(AlarmCollectionViewItem.self, forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmCollectionViewItem"))
        view.addSubview(backgroundView, positioned: .below, relativeTo: view)
 		self.shorOrHideNotifier(numberOfAlarms: AlarmCenter.sharedInstance.count)
@@ -111,6 +117,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		if  popover.isShown {
 			popover.close()
 		} else {
+			clickRecognizer.isEnabled=true
 			let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 			   guard let editableAlarmViewController =
 				mainStoryBoard.instantiateController(withIdentifier:

@@ -925,8 +925,16 @@
                             <constraint firstAttribute="trailing" secondItem="li0-1M-reH" secondAttribute="trailing" id="afO-KW-8cG"/>
                             <constraint firstAttribute="bottom" secondItem="Z7Q-Wo-kc1" secondAttribute="bottom" id="hgH-EJ-l4Z"/>
                         </constraints>
+                        <gestureRecognizers>
+                            <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="asf-TM-Bp2">
+                                <connections>
+                                    <action selector="click:" target="Fch-iR-SvQ" id="h7L-Er-9ev"/>
+                                </connections>
+                            </clickGestureRecognizer>
+                        </gestureRecognizers>
                     </view>
                     <connections>
+                        <outlet property="clickRecognizer" destination="asf-TM-Bp2" id="pMB-8N-YM1"/>
                         <outlet property="collectionView" destination="zzm-Pa-2aK" id="QsZ-zY-zCW"/>
                         <outlet property="timerActiveLabel" destination="WYv-C8-oRU" id="iHL-bW-vUY"/>
                         <outlet property="titleTextField" destination="sxf-Lb-5wq" id="0sa-pw-5D7"/>
@@ -1154,7 +1162,7 @@
                                             <tableColumns>
                                                 <tableColumn width="141.5" minWidth="40" maxWidth="1000" id="72b-sf-9fX">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1187,7 +1195,7 @@
                                                 </tableColumn>
                                                 <tableColumn width="143.5" minWidth="40" maxWidth="1000" id="Kc6-Qb-l2w">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1341,9 +1349,17 @@
                             <constraint firstItem="Xt3-TQ-yqa" firstAttribute="leading" secondItem="P05-f5-a90" secondAttribute="leading" id="uKL-zx-o8J"/>
                             <constraint firstItem="Xt3-TQ-yqa" firstAttribute="top" secondItem="P05-f5-a90" secondAttribute="top" constant="20" id="uWs-DH-v4T"/>
                         </constraints>
+                        <gestureRecognizers>
+                            <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="SyP-17-SH0">
+                                <connections>
+                                    <action selector="click:" target="jsi-dr-Kid" id="TS3-pb-0m4"/>
+                                </connections>
+                            </clickGestureRecognizer>
+                        </gestureRecognizers>
                     </view>
                     <connections>
                         <outlet property="alarmNotifierTextField" destination="zQZ-To-CvJ" id="8JM-Vl-GLI"/>
+                        <outlet property="clickRecognizer" destination="SyP-17-SH0" id="KTf-jA-otz"/>
                         <outlet property="collectionView" destination="BV1-fO-kYE" id="pPf-As-VfK"/>
                         <outlet property="titleTextField" destination="CoE-q1-tay" id="o3X-bw-EdL"/>
                     </connections>
@@ -1882,7 +1898,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="233" minWidth="40" maxWidth="1000" id="7af-du-yPg">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2032,7 +2048,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="280" minWidth="40" maxWidth="1000" id="nxT-P1-PJ8">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2146,7 +2162,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="304" minWidth="40" maxWidth="1000" id="h46-K1-f75">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>

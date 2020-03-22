@@ -11,6 +11,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var collectionView: NSCollectionView!
 	@IBOutlet weak var timerActiveLabel: NSTextField!
+	@IBOutlet weak var clickRecognizer: NSClickGestureRecognizer!
 	private let timeFormatter=DateFormatter()
 	private let stopTimeFormatter=DateFormatter()
 	let popover = NSPopover()
@@ -27,7 +28,12 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
 		NotificationCenter.default.addObserver(self, selector: #selector(showHideTimerActiveLabel), name: NSNotification.Name.activeCountChanged, object: nil)
 		showHideTimerActiveLabel()
+		clickRecognizer.isEnabled=false
     }
+	@IBAction func click(_ sender: Any) {
+		popover.close()
+		clickRecognizer.isEnabled=false
+	}
 	@objc func showHideTimerActiveLabel() {
 		if (TimersCenter.sharedInstance.activeTimers)>0 {
 			self.timerActiveLabel.isHidden=false
@@ -230,12 +236,20 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		}
 	}
 	@objc func showPopover(sender: Any?) {
+		let debugTimeFormatter=DateFormatter()
+		debugTimeFormatter.setLocalizedDateFormatFromTemplate("MMdyyyyhhmmss")
+		print("abcd \(debugTimeFormatter.string(from: Date())) popover should show")
 		guard let settingsButton=sender as? NSButton else {
+				print("abcd \(debugTimeFormatter.string(from: Date())) popover should show, but button was bad")
 			return
 		}
+		print("abcd \(debugTimeFormatter.string(from: Date())) popover should show 2")
 		if  popover.isShown {
 			popover.close()
+			print("abcd \(debugTimeFormatter.string(from: Date())) popover should close")
 		} else {
+			clickRecognizer.isEnabled=true
+			print("abcd \(debugTimeFormatter.string(from: Date())) popover should show 3")
 			let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 			   guard let editableTimerViewController =
 				mainStoryBoard.instantiateController(withIdentifier:
@@ -248,6 +262,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			popover.contentViewController = editableTimerViewController
 			editableTimerViewController.index=index
 			popover.show(relativeTo: settingsButton.bounds, of: settingsButton, preferredEdge: NSRectEdge.minY)
+			print("abcd \(debugTimeFormatter.string(from: Date())) popover should show 4")
 		}
 	}
 }
