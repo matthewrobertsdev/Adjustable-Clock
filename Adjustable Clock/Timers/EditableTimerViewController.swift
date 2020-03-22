@@ -61,6 +61,7 @@ class EditableTimerViewController: NSViewController {
 			   chooseAlertViewController.chooseAlertAction = { (alert: String) -> Void in
 				   self.alertName=alert
 				   self.alertTextField.stringValue="Alert: "+alert
+				self.useBeep()
 			   }
 		self.presentAsModalWindow(chooseAlertViewController)
 	}
@@ -75,6 +76,7 @@ class EditableTimerViewController: NSViewController {
 				self.playlistTextField.stringValue="Song: None chosen"
 			} else {
 				self.playlistTextField.stringValue="Song: "+playlistURL
+				self.useSong()
 			}
 		}
 		self.presentAsModalWindow(chooseSongViewController)

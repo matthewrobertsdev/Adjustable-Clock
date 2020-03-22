@@ -14,7 +14,13 @@ class AlarmsMenuController: AlarmMenuDelegate {
 		updateClockMenuUI()
 	}
 	func addAlarmClicked() {
+		if AlarmCenter.sharedInstance.count>=24 {
+			let alert=NSAlert()
+			alert.messageText="Sorry, but Clock Suite does not allow more than 24 alarms."
+			alert.runModal()
+		} else {
 		EditableAlarmWindowController.newAlarmConfigurer.showNewAlarmConfigurer()
+		}
 	}
 	func showAlarmsClicked() {
 		AlarmsWindowController.alarmsObject.showAlarms()

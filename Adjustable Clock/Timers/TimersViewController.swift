@@ -247,6 +247,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		if  popover.isShown {
 			popover.close()
 			print("abcd \(debugTimeFormatter.string(from: Date())) popover should close")
+			clickRecognizer.isEnabled=false
 		} else {
 			clickRecognizer.isEnabled=true
 			print("abcd \(debugTimeFormatter.string(from: Date())) popover should show 3")
@@ -258,6 +259,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			editableTimerViewController.closeAction = { () -> Void in
 				self.collectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
 				self.popover.close()
+				self.clickRecognizer.isEnabled=false
 			}
 			popover.contentViewController = editableTimerViewController
 			editableTimerViewController.index=index

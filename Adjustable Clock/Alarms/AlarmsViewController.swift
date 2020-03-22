@@ -45,9 +45,14 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		popover.close()
 		clickRecognizer.isEnabled=false
 	}
-	
 	@IBAction func addAlarm(_ sender: Any) {
+		if AlarmCenter.sharedInstance.count>=24 {
+			let alert=NSAlert()
+			alert.messageText="Sorry, but Clock Suite does not allow more than 24 alarms."
+			alert.runModal()
+		} else {
 		EditableAlarmWindowController.newAlarmConfigurer.showNewAlarmConfigurer()
+		}
 	}
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,6 +121,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		}
 		if  popover.isShown {
 			popover.close()
+			clickRecognizer.isEnabled=false
 		} else {
 			clickRecognizer.isEnabled=true
 			let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
@@ -125,11 +131,14 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			editableAlarmViewController.delete = { () -> Void in
 				AlarmCenter.sharedInstance.removeAlarm(index: index.item)
 				self.popover.close()
+				self.clickRecognizer.isEnabled=false
 				self.collectionView.animator().deleteItems(at: [IndexPath(item: index.item, section: 0)])
 				}
 			editableAlarmViewController.new=false
 			let alarm=AlarmCenter.sharedInstance.getAlarm(index: index.item)
-			editableAlarmViewController.cancel = { () -> Void in self.popover.close() }
+			editableAlarmViewController.cancel = { () -> Void in self.popover.close()
+				self.clickRecognizer.isEnabled=false
+			}
 			popover.contentViewController = editableAlarmViewController
 			popover.show(relativeTo: settingsButton.bounds, of: settingsButton, preferredEdge: NSRectEdge.minY)
 			editableAlarmViewController.settingsButton=settingsButton
