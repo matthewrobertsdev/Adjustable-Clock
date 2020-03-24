@@ -67,7 +67,7 @@ class DigitalDockClockView: NSView {
 		let clockNSColors=ColorDictionary()
 		if ClockPreferencesStorage.sharedInstance.colorChoice=="custom" {
 		backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
-		} else if hasDarkAppearance {
+		} else if hasDarkAppearance && !ClockPreferencesStorage.sharedInstance.colorForForeground {
 		 backgroundColor=clockNSColors.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
 		} else {
 			backgroundColor=clockNSColors.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray

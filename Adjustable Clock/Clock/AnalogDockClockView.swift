@@ -39,7 +39,7 @@ class AnalogDockClockView: BaseAnalogClockView {
 		let clockNSColors=ColorDictionary()
 		if ClockPreferencesStorage.sharedInstance.colorChoice=="custom" {
 		backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
-		} else if hasDarkAppearance {
+		} else if hasDarkAppearance && !ClockPreferencesStorage.sharedInstance.colorForForeground{
 		 backgroundColor=clockNSColors.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
 			if backgroundColor==NSColor.white {
 				backgroundColor=NSColor.systemGray
@@ -71,7 +71,6 @@ class AnalogDockClockView: BaseAnalogClockView {
 			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(hour)/Double(12)), start: 0.3, startProportion: 0, end: 0.4)
 		}
 		if justColors {
-			
 		} else if displaySeconds {
 			displayHandsWithSeconds()
 		} else {

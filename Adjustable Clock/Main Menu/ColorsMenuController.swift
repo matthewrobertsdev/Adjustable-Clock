@@ -89,7 +89,11 @@ class ColorsMenuController: NSObject {
 			var tintColor=NSColor.clear
 			if dark {
 				templateImage=NSImage(named: "white_rectangle") ?? NSImage()
-				tintColor=clockNSColors.darkColorsDictionary[colorArray.colorArray[index]]  ?? NSColor.clear
+				if ClockPreferencesStorage.sharedInstance.colorForForeground {
+					tintColor=clockNSColors.lightColorsDictionary[colorArray.colorArray[index]]  ?? NSColor.clear
+				} else {
+					tintColor=clockNSColors.darkColorsDictionary[colorArray.colorArray[index]]  ?? NSColor.clear
+				}
 				if index==0 { if ClockPreferencesStorage.sharedInstance.colorForForeground {
 						tintColor=NSColor.white
 				} else {

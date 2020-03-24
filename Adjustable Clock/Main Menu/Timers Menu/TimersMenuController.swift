@@ -56,5 +56,6 @@ class TimersMenuController: TimerMenuDelegate {
 	}
 	func enableMenu(enabled: Bool) {
 		menu.asSecondsMenuItem.isEnabled=enabled
+		menu.timerFloatsMenuItem.isEnabled=enabled
 	}
 }

@@ -67,11 +67,13 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 	func isTimersWindowPresent() -> Bool {
 		return isWindowPresent(identifier: UserInterfaceIdentifier.timersWindow)
 	}
+	func windowWillEnterFullScreen(_ notification: Notification) {
+		self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
+	}
 	func windowDidEnterFullScreen(_ notification: Notification) {
         removeTrackingArea()
 		hideButtonsTimer?.cancel()
         showButtons(show: true)
-		self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
     }
 	func windowDidExitFullScreen(_ notification: Notification) {
         window?.makeKey()

@@ -37,6 +37,9 @@ class ColorfulViewController: NSViewController {
 			backgroundView.wantsLayer=true
 		if ClockPreferencesStorage.sharedInstance.colorChoice=="custom"{
 			contrastColor=ClockPreferencesStorage.sharedInstance.customColor
+		} else if ClockPreferencesStorage.sharedInstance.colorForForeground {
+			contrastColor =
+			clockNSColors.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? clockNSColors.lightColorsDictionary[ColorChoice.systemColor] ?? NSColor.systemGray
 		} else {
 			contrastColor =
 				clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? clockNSColors.colorsDictionary[ColorChoice.systemColor] ?? NSColor.systemGray
@@ -85,7 +88,7 @@ class ColorfulViewController: NSViewController {
 				} else {
 					visualEffectView.material = .dark
 				}
-			}else {
+			} else {
 				visualEffectView.material = .dark
 			}
 			textColor=contrastColor
