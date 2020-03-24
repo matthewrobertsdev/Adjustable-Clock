@@ -84,18 +84,15 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
     }
     func windowDidBecomeKey(_ notification: Notification) {
 		flashButtons()
-		enableClockMenu(enabled: true)
     }
     func windowDidResignKey(_ notification: Notification) {
         if ClockPreferencesStorage.sharedInstance.fullscreen==false {
             showButtons(show: false)
         }
-		enableClockMenu(enabled: false)
     }
     func windowDidResize(_ notification: Notification) {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
 		digitalClockVC.updateSizeConstraints()
-		//digitalClockVC.setConstraints()
         resizeContents()
 		guard let windowIsZoomed=window?.isZoomed else { return }
         if windowIsZoomed==false && ClockPreferencesStorage.sharedInstance.fullscreen==false {

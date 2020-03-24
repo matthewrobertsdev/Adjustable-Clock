@@ -20,6 +20,7 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 		}
 		prepareWindowButtons()
 		enableTimersMenu(enabled: true)
+		applyFloatState()
     }
 	func showTimers() {
 		if isTimersWindowPresent() == false {
@@ -70,10 +71,12 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
         removeTrackingArea()
 		hideButtonsTimer?.cancel()
         showButtons(show: true)
+		self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
     }
 	func windowDidExitFullScreen(_ notification: Notification) {
         window?.makeKey()
 		prepareWindowButtons()
+		applyFloatState()
     }
 	func windowWillMiniaturize(_ notification: Notification) {
 		guard let timerViewController=window?.contentViewController as? TimersViewController else {
@@ -101,5 +104,12 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 			return
 		}
 		appDelagte.timersMenuController?.enableMenu(enabled: enabled)
+	}
+	func applyFloatState() {
+		if TimersPreferenceStorage.sharedInstance.timerFloats {
+			self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow))-1)
+		} else {
+			self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
+		}
 	}
 }

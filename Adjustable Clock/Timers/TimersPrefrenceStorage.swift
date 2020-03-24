@@ -11,9 +11,19 @@ class TimersPreferenceStorage {
 	static let sharedInstance=TimersPreferenceStorage()
 	private let windowIsOpenKey="timersIsOpen"
 	private let hasLaunchedKey="timersHasLaunched"
-	private let asSecondsKey="asSecondsKey"
+	private let asSecondsKey="asSeconds"
+	private let timersFloatsKey="timerFloats"
 	var windowIsOpen=false
 	var asSeconds=false
+	var timerFloats=false
+	func toggleTimerFloats() {
+		if timerFloats {
+			timerFloats=false
+		} else {
+			timerFloats=true
+		}
+		userDefaults.set(timerFloats, forKey: timersFloatsKey)
+	}
 	func setWindowIsOpen() {
 		userDefaults.set(true, forKey: windowIsOpenKey)
 	}
@@ -23,6 +33,7 @@ class TimersPreferenceStorage {
 	func loadPreferences() {
 		windowIsOpen=userDefaults.bool(forKey: windowIsOpenKey)
 		asSeconds=userDefaults.bool(forKey: asSecondsKey)
+		timerFloats=userDefaults.bool(forKey: timersFloatsKey)
 	}
 	func setHasLaunched() {
 		userDefaults.set(true, forKey: hasLaunchedKey)
