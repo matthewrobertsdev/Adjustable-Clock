@@ -115,7 +115,6 @@ class DockClockController: NSObject {
 			} else if ClockPreferencesStorage.sharedInstance.colorForForeground {
 				contrastColor =
 					clockNSColors.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? clockNSColors.colorsDictionary[ColorChoice.systemColor] ?? NSColor.systemGray
-				print("color for foreground")
 			} else {
 				contrastColor =
 				clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? clockNSColors.colorsDictionary[ColorChoice.systemColor] ?? NSColor.systemGray

@@ -68,7 +68,7 @@ class ClockPreferencesStorage {
         if let colorChoice=userDefaults.string(forKey: colorChoiceKey) {
 			self.colorChoice=colorChoice
         } else {
-			self.colorChoice=ColorChoice.gray
+			self.colorChoice=ColorChoice.systemColor
         }
         colorForForeground=userDefaults.bool(forKey: lightOnDarkKey)
         redComponent=CGFloat(userDefaults.float(forKey: customRedComponentKey))
