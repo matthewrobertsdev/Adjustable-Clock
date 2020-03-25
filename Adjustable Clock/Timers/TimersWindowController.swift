@@ -100,6 +100,7 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 	}
 	func windowDidBecomeKey(_ notification: Notification) {
 		flashButtons()
+		enableTimersMenu(enabled: true)
     }
 	func enableTimersMenu(enabled: Bool) {
 		guard let appDelagte = NSApplication.shared.delegate as? AppDelegate else {

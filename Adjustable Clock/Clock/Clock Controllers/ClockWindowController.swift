@@ -84,6 +84,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
     }
     func windowDidBecomeKey(_ notification: Notification) {
 		flashButtons()
+		enableClockMenu(enabled: true)
     }
     func windowDidResignKey(_ notification: Notification) {
         if ClockPreferencesStorage.sharedInstance.fullscreen==false {
