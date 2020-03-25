@@ -25,7 +25,8 @@ class DockClockController: NSObject {
 			\.objectToObserve.dark,
             options: [.old, .new]
         ) { _, _ in
-			self.applyColorScheme(digitalClockView: self.digitalClockView, analogClockView: self.analogClockView)
+			self.digitalClockView.draw(self.digitalClockView.bounds)
+			self.analogClockView.draw(self.analogClockView.bounds)
 			self.digitalClockView.setNeedsDisplay(self.digitalClockView.bounds)
         }
 		animateTime()
@@ -51,7 +52,8 @@ class DockClockController: NSObject {
 			appObject.dockTile.contentView=analogClockView
 				analogClockView.displaySeconds=preferences.seconds
 		}
-		applyColorScheme(digitalClockView: digitalClockView, analogClockView: analogClockView)
+		digitalClockView.draw(digitalClockView.bounds)
+		analogClockView.draw(analogClockView.bounds)
 		digitalClockView.setNeedsDisplay(digitalClockView.bounds)
 		appObject.dockTile.display()
 	}
@@ -90,16 +92,15 @@ class DockClockController: NSObject {
 		return Double(missingNanoceconds)/1_000_000_000
 	}
 	func getFreezeView(time: Date) -> NSView {
-		let analogClockView=AnalogDockClockView()
-		let digitalClockView=DigitalDockClockView()
-		applyColorScheme(digitalClockView: digitalClockView, analogClockView: analogClockView)
 		if preferences.digital {
+			let digitalClockView=DigitalDockClockView()
 			digitalClockView.setFrameSize(self.appObject.dockTile.size)
 			digitalClockView.removeSeconds()
 			digitalClockView.digitalClock.stringValue=model.getTimeString(date: time)
 			self.digitalClockView.digitalClock.sizeToFit()
 			return digitalClockView
 		} else {
+			let analogClockView=AnalogDockClockView()
 			analogClockView.setFrameSize(self.appObject.dockTile.size)
 			analogClockView.current=false
 			analogClockView.freezeDate=time
@@ -107,69 +108,6 @@ class DockClockController: NSObject {
 			return analogClockView
 		}
 	}
-	func applyColorScheme(digitalClockView: DigitalDockClockView, analogClockView: AnalogDockClockView) {
-			var contrastColor: NSColor
-			let clockNSColors=ColorDictionary()
-			if ClockPreferencesStorage.sharedInstance.colorChoice=="custom"{
-				contrastColor=ClockPreferencesStorage.sharedInstance.customColor
-			} else if ClockPreferencesStorage.sharedInstance.colorForForeground {
-				contrastColor =
-					clockNSColors.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? clockNSColors.colorsDictionary[ColorChoice.systemColor] ?? NSColor.systemGray
-			} else {
-				contrastColor =
-				clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? clockNSColors.colorsDictionary[ColorChoice.systemColor] ?? NSColor.systemGray
-			}
-			if ClockPreferencesStorage.sharedInstance.colorForForeground==false {
-				analogClockView.color=NSColor.labelColor
-				digitalClockView.backgroundColor=NSColor.labelColor
-				if contrastColor==NSColor.black {
-					analogClockView.backgroundColor=NSColor.systemGray
-				}
-				if contrastColor==NSColor.textBackgroundColor && digitalClockView.hasDarkAppearance||analogClockView.hasDarkAppearance {
-					contrastColor=NSColor(named: "SystemDarkBackground") ?? NSColor.black
-				}
-				analogClockView.backgroundColor=contrastColor
-				digitalClockView.backgroundColor=contrastColor
-				analogClockView.color=NSColor.white
-				digitalClockView.digitalClock.textColor=NSColor.white
-				digitalClockView.digitalSeconds.textColor=NSColor.white
-				if contrastColor != NSColor.black {
-					analogClockView.handsColor=NSColor.black
-					if digitalClockView.hasDarkAppearance { digitalClockView.digitalClock.textColor=NSColor.white
-					digitalClockView.digitalSeconds.textColor=NSColor.white
-					} else {
-						digitalClockView.digitalClock.textColor=NSColor.black
-						digitalClockView.digitalSeconds.textColor=NSColor.black
-					}
-				} else {
-					if contrastColor==NSColor.textBackgroundColor {
-						if digitalClockView.hasDarkAppearance||analogClockView.hasDarkAppearance {
-							print("here123")
-							contrastColor=NSColor(named: "SystemDarkBackground") ?? NSColor.black
-						} else {
-							contrastColor=NSColor.white
-						}
-					}
-					analogClockView.handsColor=NSColor.systemGray
-					digitalClockView.digitalClock.textColor=NSColor.systemGray
-					digitalClockView.digitalSeconds.textColor=NSColor.systemGray
-				}
-			} else {
-				analogClockView.backgroundColor=NSColor.labelColor
-				digitalClockView.backgroundColor=NSColor.black
-				if contrastColor != NSColor.black {
-					analogClockView.color=contrastColor
-					digitalClockView.digitalClock.textColor=contrastColor
-					digitalClockView.digitalSeconds.textColor=contrastColor
-				} else {
-					analogClockView.color=NSColor.systemGray
-					digitalClockView.backgroundColor=NSColor(named: "BlackBackground") ?? NSColor.systemGray
-					digitalClockView.digitalClock.textColor=NSColor.systemGray
-					digitalClockView.digitalSeconds.textColor=NSColor.systemGray
-				}
-				analogClockView.handsColor=NSColor.white
-			}
-		}
 	func updateModelToPreferencesChange() {
 		model.setTimeFormatter()
 	}
