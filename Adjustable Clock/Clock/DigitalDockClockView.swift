@@ -98,6 +98,11 @@ class DigitalDockClockView: NSView {
 			backgroundColor=NSColor.black
 			backgroundColor.setFill()
 		}
+		if hasDarkAppearance {
+			digitalClock.textColor=NSColor.white
+		} else {
+			digitalClock.textColor=NSColor.black
+		}
 		path.fill()
 	}
 }
