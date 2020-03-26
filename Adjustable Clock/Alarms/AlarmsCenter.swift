@@ -27,8 +27,10 @@ class AlarmCenter: NSObject {
 		setUp()
 	}
 	func setUp() {
-		notifcationCenter.addObserver(self, selector: #selector(scheduleAlarms), name: NSNotification.Name.NSSystemClockDidChange, object: nil)
-		notifcationCenter.addObserver(self, selector: #selector(scheduleAlarms), name: NSNotification.Name.NSSystemTimeZoneDidChange, object: nil)
+		notifcationCenter.addObserver(self, selector: #selector(scheduleAlarms),
+									  name: NSNotification.Name.NSSystemClockDidChange, object: nil)
+		notifcationCenter.addObserver(self, selector: #selector(scheduleAlarms),
+									  name: NSNotification.Name.NSSystemTimeZoneDidChange, object: nil)
 		timeFormatter.locale=Locale(identifier: "en_US")
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
 		jsonEncoder.outputFormatting = .prettyPrinted
@@ -100,15 +102,13 @@ class AlarmCenter: NSObject {
 			print("abcd"+dateFormatter.string(from: alarm.expiresDate))
 			if !alarm.repeats && alarm.expiresDate<Date() {
 				alarm.active=false
-				if let alarmViewController: AlarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController {
-					let row = self.alarms.firstIndex(where: { (alarmInstance) -> Bool in
-						return alarmInstance.time==alarm.time })
+				if let alarmViewController: AlarmsViewController=AlarmsWindowController.alarmsObject.contentViewController
+					as? AlarmsViewController {
 					let tableView=alarmViewController.collectionView
 					tableView?.reloadData()
 				}
 				return
 			}
-			var hasError=false
 			let alarmTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 			print("abcd"+String(getTimeInterval(alarm: alarm)))
 			alarmTimer.schedule(deadline: .now()+getTimeInterval(alarm: alarm), repeating: .never, leeway: .milliseconds(0))
@@ -116,9 +116,8 @@ class AlarmCenter: NSObject {
 				if alarm.repeats != true {
 					alarm.active=false
 				}
-					if let alarmViewController: AlarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController {
-						let row = self.alarms.firstIndex(where: { (alarmInstance) -> Bool in
-							return alarmInstance.time==alarm.time })
+					if let alarmViewController: AlarmsViewController=AlarmsWindowController.alarmsObject.contentViewController
+						as? AlarmsViewController {
 						let tableView=alarmViewController.collectionView
 						tableView?.reloadData()
 					}
@@ -149,7 +148,7 @@ class AlarmCenter: NSObject {
 				alarmAlert.icon=DockClockController.dockClockObject.getFreezeView(time: alarm.time).image()
 				AlarmsWindowController.alarmsObject.showAlarms()
 
-				alarmAlert.beginSheetModal(for: AlarmsWindowController.alarmsObject.window ?? NSWindow()) { (modalResponse) in
+				alarmAlert.beginSheetModal(for: AlarmsWindowController.alarmsObject.window ?? NSWindow()) { (_) in
 					alarmTimer.cancel()
 					self.player?.stop()
 					alarmSound?.stop()
@@ -168,10 +167,9 @@ class AlarmCenter: NSObject {
 		saveAlarms()
 		getActiveAlarms()
 	}
-	func getAlarmIndex(alarm: Alarm) -> Int{
+	func getAlarmIndex(alarm: Alarm) -> Int {
 		if let index=self.alarms.firstIndex(where: { (alarmInstance) -> Bool in
-			alarmInstance.time==alarm.time })
-		{
+			alarmInstance.time==alarm.time }) {
 			return index
 		}
 		return 0
@@ -196,7 +194,8 @@ class AlarmCenter: NSObject {
 				 nanosecond: 0, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil,
 				 weekOfYear: nil, yearForWeekOfYear: nil), to: (alarmDate ?? Date()), wrappingComponents: false)
 		}
-		let dateComponents=calendar.dateComponents([.hour, .minute, .second, .nanosecond], from: Date(), to: (alarmDate ?? Date()))
+		let dateComponents=calendar.dateComponents([.hour, .minute,
+													.second, .nanosecond], from: Date(), to: (alarmDate ?? Date()))
 		var totalSeconds: Double=0
 		totalSeconds+=Double((dateComponents.hour ?? 0)*60*60)
 		totalSeconds+=Double((dateComponents.minute ?? 0)*60)

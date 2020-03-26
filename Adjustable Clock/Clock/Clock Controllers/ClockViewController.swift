@@ -32,7 +32,8 @@ class ClockViewController: ColorfulViewController {
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
 		let distribitedNotificationCenter=DistributedNotificationCenter.default
 		let interfaceNotification=NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification")
-		distribitedNotificationCenter.addObserver(self, selector: #selector(interfaceModeChanged(sender:)), name: interfaceNotification, object: nil)
+		distribitedNotificationCenter.addObserver(self,
+												  selector: #selector(interfaceModeChanged(sender:)), name: interfaceNotification, object: nil)
 		let screenSleepObserver =
 			workspaceNotifcationCenter.addObserver(forName:
 			NSWorkspace.screensDidSleepNotification, object: nil, queue: nil) { (_) in
@@ -59,8 +60,10 @@ class ClockViewController: ColorfulViewController {
 				#selector(interfaceModeChanged(sender:)), name: colorChangeNotification, object: nil)
 		guard let timeProtocol=tellingTime else { return }
 		guard let timer=updateTimer else { return }
-		digitalClockAnimator=DigitalClockAnimator(model: model, tellingTime: timeProtocol, updateTimer: timer, digitalClock: digitalClock, animatedDay: animatedDay)
-		analogClockAnimator=AnalogClockAnimator(model: model, tellingTime: timeProtocol, updateTimer: timer, analogClock: analogClock, animatedDay: animatedDay)
+		digitalClockAnimator=DigitalClockAnimator(model: model, tellingTime: timeProtocol,
+												  updateTimer: timer, digitalClock: digitalClock, animatedDay: animatedDay)
+		analogClockAnimator=AnalogClockAnimator(model: model, tellingTime: timeProtocol,
+												updateTimer: timer, analogClock: analogClock, animatedDay: animatedDay)
 		showClock()
 	}
 	@objc func interfaceModeChanged(sender: NSNotification) {

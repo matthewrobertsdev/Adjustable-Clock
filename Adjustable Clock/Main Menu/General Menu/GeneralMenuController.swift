@@ -15,7 +15,8 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 		self.menu=menu
 		super.init()
 		menu.generalMenuDelegate=self
-		NotificationCenter.default.addObserver(self, selector: #selector(showPreventsSleep), name: NSNotification.Name.activeCountChanged, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(showPreventsSleep),
+											   name: NSNotification.Name.activeCountChanged, object: nil)
 		updateUI()
 	}
 	func use24HoursClicked() {

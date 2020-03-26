@@ -107,7 +107,8 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 	func resizeContents() {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
 		guard let windowSize=window?.frame.size else { return }
-		if digitalClockVC.view.frame.size.width/digitalClockVC.view.frame.size.height<digitalClockVC.model.width/digitalClockVC.model.height {
+		if digitalClockVC.view.frame.size.width/digitalClockVC.view.frame.size.height <
+		digitalClockVC.model.width/digitalClockVC.model.height {
 			digitalClockVC.activateWidthConstraints()
 			digitalClockVC.resizeContents(maxWidth: windowSize.width)
 		} else {

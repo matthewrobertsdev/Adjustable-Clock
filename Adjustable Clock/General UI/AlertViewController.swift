@@ -32,7 +32,8 @@ class AlertViewController: NSViewController, NSTableViewDataSource, NSTableViewD
 		return soundNames.count
 	}
 	 func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-		guard let cell0 = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "GenericTableCellView"), owner: nil) as? GenericTableCellView else {
+		guard let cell0 = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "GenericTableCellView"),
+											 owner: nil) as? GenericTableCellView else {
 				return NSTableCellView()
 			}
 		cell0.genericTextField?.stringValue=soundNames[row]

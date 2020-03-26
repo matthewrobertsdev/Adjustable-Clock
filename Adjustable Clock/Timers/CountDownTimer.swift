@@ -18,6 +18,7 @@ class CountDownTimer: Codable {
 	var playlistURL=""
 	var reset=true
 	static func == (left: CountDownTimer, right: CountDownTimer) -> Bool {
-		return left.secondsRemaining==right.secondsRemaining && left.totalSeconds==right.totalSeconds && left.title==right.title && left.alertStyle==right.alertStyle && left.song==right.song
+		return left.secondsRemaining==right.secondsRemaining && left.totalSeconds==right.totalSeconds
+			&& left.title==right.title && left.alertStyle==right.alertStyle && left.song==right.song
     }
 }

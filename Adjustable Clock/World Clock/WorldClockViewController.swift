@@ -12,8 +12,10 @@ class WorldClockViewController: ColorfulViewController, NSCollectionViewDataSour
 	func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
 		model.count
 	}
-	func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-		guard let worldClockCollectionViewItem=collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier("WorldClockCollectionViewItem"), for: indexPath) as? WorldClockCollectionViewItem else {
+	func collectionView(_ collectionView: NSCollectionView,
+						itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+		guard let worldClockCollectionViewItem=collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier("WorldClockCollectionViewItem"),
+																	   for: indexPath) as? WorldClockCollectionViewItem else {
 			return NSCollectionViewItem()
 		}
 			let analogClock=worldClockCollectionViewItem.analogClock
@@ -44,7 +46,8 @@ class WorldClockViewController: ColorfulViewController, NSCollectionViewDataSour
 	}
 	override func viewDidLoad() {
         super.viewDidLoad()
-		collectionView.register(WorldClockCollectionViewItem.self, forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "WorldClockCollectionViewItem"))
+		collectionView.register(WorldClockCollectionViewItem.self,
+								forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "WorldClockCollectionViewItem"))
 		collectionView.dataSource=self
 		collectionView.delegate=self
 		updateColors()

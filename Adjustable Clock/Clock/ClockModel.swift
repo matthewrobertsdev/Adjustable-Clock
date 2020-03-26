@@ -72,7 +72,8 @@ class ClockModel {
 		return dateFormatter.string(from: nowDate)
 	}
 	func updateClockModelForPreferences() {
-		if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek { showDayInfo=true }
+		if ClockPreferencesStorage.sharedInstance.showDate
+		|| ClockPreferencesStorage.sharedInstance.showDayOfWeek { showDayInfo=true }
 		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
 			if GeneralPreferencesStorage.sharedInstance.use24Hours==false {
 				if ClockPreferencesStorage.sharedInstance.showSeconds==false {

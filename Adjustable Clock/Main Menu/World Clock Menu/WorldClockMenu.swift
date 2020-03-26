@@ -8,7 +8,7 @@
 import AppKit
 class WorldClockMenu: NSMenu {
 	weak var worldClockMenuDelegate: WorldClockMenuDelegate!
-	@IBAction func showWorldClockClciked(nsMenuItem: NSMenuItem){
+	@IBAction func showWorldClockClciked(nsMenuItem: NSMenuItem) {
 		worldClockMenuDelegate.showWorldClockClicked()
 	}
 }

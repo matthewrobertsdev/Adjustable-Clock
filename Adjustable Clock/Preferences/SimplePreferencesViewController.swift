@@ -18,7 +18,6 @@ class SimplePreferencesViewController: NSViewController {
 		TimersPreferenceStorage.sharedInstance.loadPreferences()
 		GeneralPreferencesStorage.sharedInstance.setDefaultUserDefaults()
 		GeneralPreferencesStorage.sharedInstance.loadUserPreferences()
-		
         updateForPreferencesChange()
     }
     func updateForPreferencesChange() {

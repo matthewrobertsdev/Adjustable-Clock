@@ -15,7 +15,8 @@ class WindowFrameRestorer {
     private var minHeight: CGFloat
 	private var maxWidth: CGFloat?
     private var maxHeight: CGFloat?
-    init(xKey: String, yKey: String, widthKey: String, heightKey: String, minWidth: CGFloat, minHeight: CGFloat, maxWidth: CGFloat?, maxHeight: CGFloat?) {
+    init(xKey: String, yKey: String, widthKey: String, heightKey: String,
+		 minWidth: CGFloat, minHeight: CGFloat, maxWidth: CGFloat?, maxHeight: CGFloat?) {
         self.xKey=xKey
         self.yKey=yKey
         self.widthKey=widthKey

@@ -42,7 +42,8 @@ class TimersMenuController: TimerMenuDelegate {
 	}
 	func showTimer(index: Int) {
 		TimersWindowController.timersObject.showTimers()
-		if let timersViewController=TimersWindowController.timersObject.window?.contentViewController as? TimersViewController {
+		if let timersViewController=TimersWindowController.timersObject.window?.contentViewController
+			as? TimersViewController {
 			timersViewController.scrollToTimer(index: index)
         }
 	}

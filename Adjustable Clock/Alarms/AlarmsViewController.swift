@@ -19,8 +19,11 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
 		return AlarmCenter.sharedInstance.count
 	}
-	func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-		guard let alarmCollectionViewItem=collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmCollectionViewItem"), for: indexPath) as? AlarmCollectionViewItem else {
+	func collectionView(_ collectionView: NSCollectionView,
+						itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+		guard let alarmCollectionViewItem = 
+			collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmCollectionViewItem"),
+																  for: indexPath) as? AlarmCollectionViewItem else {
 			return NSCollectionViewItem()
 		}
 		let alarm = AlarmCenter.sharedInstance.getAlarm(index: indexPath.item)
@@ -29,7 +32,8 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		alarmCollectionViewItem.alarmTimeTextField.textColor=textColor
 		alarmCollectionViewItem.alarmRepeatTextField.textColor=textColor
 		alarmCollectionViewItem.alarmTimeTextField.stringValue=alarm.getTimeString()
-		alarmCollectionViewItem.alarmRepeatTextField.stringValue = !alarm.active ? "Off" : (alarm.repeats ? "Everyday" : "Just once")
+		alarmCollectionViewItem.alarmRepeatTextField.stringValue =
+			!alarm.active ? "Off" : (alarm.repeats ? "Everyday" : "Just once")
 		alarmCollectionViewItem.alarmStatusSegmentedControl.setTag(0, forSegment: 0)
 		alarmCollectionViewItem.alarmStatusSegmentedControl.setTag(1, forSegment: 1)
 		if alarm.active {
@@ -57,7 +61,8 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	override func viewDidLoad() {
         super.viewDidLoad()
 		clickRecognizer.isEnabled=false
-		collectionView.register(AlarmCollectionViewItem.self, forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmCollectionViewItem"))
+		collectionView.register(AlarmCollectionViewItem.self,
+								forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmCollectionViewItem"))
        view.addSubview(backgroundView, positioned: .below, relativeTo: view)
 		self.shorOrHideNotifier(numberOfAlarms: AlarmCenter.sharedInstance.count)
 		popover.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)
@@ -66,10 +71,14 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		collectionView.delegate=self
 		collectionView.dataSource=self
 		backgroundView.translatesAutoresizingMaskIntoConstraints=false
-		let leadingConstraint=NSLayoutConstraint(item: backgroundView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0)
-		let trailingConstraint=NSLayoutConstraint(item: backgroundView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
-		let topConstraint=NSLayoutConstraint(item: backgroundView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0)
-		let bottomConstraint=NSLayoutConstraint(item: backgroundView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
+		let leadingConstraint=NSLayoutConstraint(item: backgroundView, attribute: .leading, relatedBy: .equal,
+												 toItem: view, attribute: .leading, multiplier: 1, constant: 0)
+		let trailingConstraint=NSLayoutConstraint(item: backgroundView, attribute: .trailing, relatedBy: .equal,
+												  toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
+		let topConstraint=NSLayoutConstraint(item: backgroundView, attribute: .top, relatedBy: .equal,
+											 toItem: view, attribute: .top, multiplier: 1, constant: 0)
+		let bottomConstraint=NSLayoutConstraint(item: backgroundView, attribute: .bottom, relatedBy: .equal,
+												toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
 		NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
 		kvoObservation = observe(
 			\.objectToObserve.activeAlarms,
@@ -148,5 +157,5 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	}
 }
 protocol AlarmCollectionItemProtocol: AnyObject {
-	func showPopover(sender: Any, collectionViewItem: NSCollectionViewItem) -> Void
+	func showPopover(sender: Any, collectionViewItem: NSCollectionViewItem)
 }

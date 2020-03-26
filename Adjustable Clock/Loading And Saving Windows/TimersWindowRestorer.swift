@@ -14,6 +14,7 @@ class TimersWindowRestorer: WindowFrameRestorer {
 	   private let minWidth: CGFloat=351
 	   private let minHeight: CGFloat=350
 	   init() {
-		   super.init(xKey: xKey, yKey: yKey, widthKey: widthKey, heightKey: heightKey, minWidth: minWidth, minHeight: minHeight, maxWidth: nil, maxHeight: nil)
+		   super.init(xKey: xKey, yKey: yKey, widthKey: widthKey, heightKey: heightKey,
+					  minWidth: minWidth, minHeight: minHeight, maxWidth: nil, maxHeight: nil)
 	   }
 }

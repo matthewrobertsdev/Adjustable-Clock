@@ -31,14 +31,17 @@ class AnalogClockView: BaseAnalogClockView {
 			let textField=NSTextField(labelWithString: String(12-index))
 			setUpLabel(label: textField)
 		}
-		widthConstraint=NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 237)
+		widthConstraint=NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal,
+										   toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 237)
 		NSLayoutConstraint.activate([widthConstraint])
 		positionLabels()
 		amPmLabel.font=NSFont.systemFont(ofSize: 30)
 		amPmLabel.translatesAutoresizingMaskIntoConstraints = false
 		addSubview(amPmLabel)
-		let amPmXConstraint=NSLayoutConstraint(item: amPmLabel, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
-		let amPmYConstraint=NSLayoutConstraint(item: amPmLabel, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: widthConstraint.constant*1.33)
+		let amPmXConstraint=NSLayoutConstraint(item: amPmLabel, attribute: .centerX, relatedBy: .equal,
+											   toItem: self, attribute: .centerX, multiplier: 1, constant: 0)
+		let amPmYConstraint=NSLayoutConstraint(item: amPmLabel, attribute: .centerY, relatedBy: .equal,
+											   toItem: self, attribute: .top, multiplier: 1, constant: widthConstraint.constant*1.33)
 		NSLayoutConstraint.activate([amPmXConstraint, amPmYConstraint])
     }
 	func startHands(withSeconds: Bool) {
@@ -80,8 +83,10 @@ class AnalogClockView: BaseAnalogClockView {
 		let firstConstant=widthConstraint.constant*multiplier*heightMultiplier
 		let secondConstant =  -widthConstraint.constant*(0.5-(0.34*CGFloat(cos(Double.pi/6*twelfth+Double.pi/2))))
 		NSLayoutConstraint.activate([
-			NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: firstConstant),
-			NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: secondConstant)
+			NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal,
+							   toItem: self, attribute: .top, multiplier: 1, constant: firstConstant),
+			NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal,
+							   toItem: self, attribute: .trailing, multiplier: 1, constant: secondConstant)
 		])
 	}
 	private func setUpLabel(label: NSTextField) {
@@ -118,10 +123,12 @@ class AnalogClockView: BaseAnalogClockView {
 				return
 		}
 		for hour in 1...12 {
-			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(hour)/Double(12)), start: 0.4, startProportion: 0, end: 0.45)
+			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(hour)/Double(12)),
+					 start: 0.4, startProportion: 0, end: 0.45)
 		}
 		for minute in 1...60 {
-			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(minute)/60), start: 0.4, startProportion: 0.6, end: 0.45)
+			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(minute)/60),
+					 start: 0.4, startProportion: 0.6, end: 0.45)
 		}
     }
 	func use1to12Hours() {

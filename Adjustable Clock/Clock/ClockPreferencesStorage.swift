@@ -74,7 +74,8 @@ class ClockPreferencesStorage {
         redComponent=CGFloat(userDefaults.float(forKey: customRedComponentKey))
         greenComponent=CGFloat(userDefaults.float(forKey: customGreenComponentKey))
         blueComponent=CGFloat(userDefaults.float(forKey: customBlueComponentKey))
-		customColor=NSColor(deviceRed: redComponent ?? 100, green: greenComponent ?? 100, blue: blueComponent ?? 100, alpha: 100)
+		customColor=NSColor(deviceRed: redComponent ?? 100, green: greenComponent ?? 100,
+							blue: blueComponent ?? 100, alpha: 100)
     }
 	func changeAndSaveUseAnalog() {
         useAnalog=true

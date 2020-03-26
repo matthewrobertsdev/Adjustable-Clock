@@ -6,5 +6,5 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import Foundation
-class WorldClockModel{
+class WorldClockModel {
 }

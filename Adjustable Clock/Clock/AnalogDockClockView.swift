@@ -29,7 +29,8 @@ class AnalogDockClockView: BaseAnalogClockView {
         super.draw(dirtyRect)
 		lineWidth=CGFloat(frame.size.width/25)
         let origin=CGPoint(x: bounds.width*0.05, y: bounds.height*0.05)
-		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.size.width*0.9, height: frame.size.height*0.9)))
+		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.size.width*0.9,
+																		  height: frame.size.height*0.9)))
 		//var backgroundColorCopy=NSColor.labelColor
 		if hasDarkAppearance && dark==false {
 			dark=true
@@ -39,13 +40,15 @@ class AnalogDockClockView: BaseAnalogClockView {
 		let clockNSColors=ColorDictionary()
 		if ClockPreferencesStorage.sharedInstance.colorChoice=="custom" {
 		backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
-		} else if hasDarkAppearance && !ClockPreferencesStorage.sharedInstance.colorForForeground{
-		 backgroundColor=clockNSColors.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
+		} else if hasDarkAppearance && !ClockPreferencesStorage.sharedInstance.colorForForeground {
+		 backgroundColor=clockNSColors.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
+			?? NSColor.systemGray
 			if backgroundColor==NSColor.white {
 				backgroundColor=NSColor.systemGray
 			}
 		} else {
-			backgroundColor=clockNSColors.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
+			backgroundColor=clockNSColors.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
+				?? NSColor.systemGray
 			if backgroundColor==NSColor.black {
 				backgroundColor=NSColor.systemGray
 			}
@@ -73,7 +76,8 @@ class AnalogDockClockView: BaseAnalogClockView {
 				return
 		}
 		for hour in 1...12 {
-			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(hour)/Double(12)), start: 0.3, startProportion: 0, end: 0.4)
+			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(hour)/Double(12)),
+					 start: 0.3, startProportion: 0, end: 0.4)
 		}
 		if justColors {
 		} else if displaySeconds {

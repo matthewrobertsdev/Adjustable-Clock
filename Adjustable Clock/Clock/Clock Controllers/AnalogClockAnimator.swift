@@ -10,7 +10,8 @@ class AnalogClockAnimator: ClockAnimator {
 	private var analogClock: AnalogClockView
 	private var animatedDay: NSTextField
 	private var calendar=Calendar.current
-	init(model: ClockModel, tellingTime: NSObjectProtocol, updateTimer: DispatchSourceTimer, analogClock: AnalogClockView, animatedDay: NSTextField) {
+	init(model: ClockModel, tellingTime: NSObjectProtocol, updateTimer: DispatchSourceTimer,
+		 analogClock: AnalogClockView, animatedDay: NSTextField) {
 		self.analogClock=analogClock
 		self.animatedDay=animatedDay
 		super.init(model: model, tellingTime: tellingTime, updateTimer: updateTimer)

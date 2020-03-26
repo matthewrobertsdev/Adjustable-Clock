@@ -35,7 +35,8 @@ class EditableTimerViewController: NSViewController {
 	}
 	@IBAction func setTimer(_ sender: Any) {
 		let timerDate=timerDatePicker.dateValue
-		guard let timerViewController=TimersWindowController.timersObject.contentViewController as? TimersViewController else {
+		guard let timerViewController=TimersWindowController.timersObject.contentViewController
+			as? TimersViewController else {
 			return
 		}
 		TimersCenter.sharedInstance.setSeconds(index: index, time: timerDate)

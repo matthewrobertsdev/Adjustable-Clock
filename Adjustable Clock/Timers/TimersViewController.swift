@@ -22,11 +22,13 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		collectionView.dataSource=self
 		collectionView.delegate=self
 		popover.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)
-		collectionView.register(TimerCollectionViewItem.self, forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TimerCollectionViewItem"))
+		collectionView.register(TimerCollectionViewItem.self,
+								forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TimerCollectionViewItem"))
 		update()
 		timeFormatter.locale=Locale(identifier: "en_US")
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
-		NotificationCenter.default.addObserver(self, selector: #selector(showHideTimerActiveLabel), name: NSNotification.Name.activeCountChanged, object: nil)
+		NotificationCenter.default.addObserver(self,
+											   selector: #selector(showHideTimerActiveLabel), name: NSNotification.Name.activeCountChanged, object: nil)
 		showHideTimerActiveLabel()
 		clickRecognizer.isEnabled=false
     }
@@ -74,8 +76,10 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
 		3
 	}
-	func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-		guard let timerCollectionViewItem=collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TimerCollectionViewItem"), for: indexPath) as? TimerCollectionViewItem else {
+	func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt
+		indexPath: IndexPath) -> NSCollectionViewItem {
+		guard let timerCollectionViewItem=collectionView.makeItem(withIdentifier:
+			NSUserInterfaceItemIdentifier(rawValue: "TimerCollectionViewItem"), for: indexPath) as? TimerCollectionViewItem else {
 			return NSCollectionViewItem()
 		}
 		timerCollectionViewItem.titleTextField.textColor=textColor
@@ -83,7 +87,8 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		let title=TimersCenter.sharedInstance.timers[indexPath.item].title
 		timerCollectionViewItem.titleTextField.stringValue=title=="" ? "Timer \(indexPath.item+1)" : title
 		timerCollectionViewItem.stopTimeTextField.textColor=textColor
-		timerCollectionViewItem.countdownTextField.stringValue=dockDisplay ? "--" : TimersCenter.sharedInstance.getCountDownString(index: indexPath.item)
+		timerCollectionViewItem.countdownTextField.stringValue =
+			dockDisplay ? "--" : TimersCenter.sharedInstance.getCountDownString(index: indexPath.item)
 		timerCollectionViewItem.startPauseButton.action=#selector(startPauseAction(sender:))
 		timerCollectionViewItem.startPauseButton.tag=indexPath.item
 		timerCollectionViewItem.setButton.tag=indexPath.item
@@ -113,7 +118,8 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		return timerCollectionViewItem
 	}
 	func getStopTimeString(timerIndex: Int) -> String {
-		return "Ends: "+stopTimeFormatter.string(from: Date().addingTimeInterval(TimeInterval(TimersCenter.sharedInstance.timers[timerIndex].secondsRemaining)))
+		return "Ends: "+stopTimeFormatter.string(from: Date().addingTimeInterval(
+			TimeInterval(TimersCenter.sharedInstance.timers[timerIndex].secondsRemaining)))
 	}
 	func displayForDock() {
 		dockDisplay=true
@@ -124,7 +130,8 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		collectionView.reloadData()
 	}
 	func scrollToTimer(index: Int) {
-		collectionView.scrollToItems(at: [IndexPath(item: index, section: 0)], scrollPosition: NSCollectionView.ScrollPosition.centeredVertically)
+		collectionView.scrollToItems(at: [IndexPath(item: index, section: 0)],
+									 scrollPosition: NSCollectionView.ScrollPosition.centeredVertically)
 	}
 	func animateTimer(index: Int) {
 		TimersCenter.sharedInstance.timers[index].reset=false
@@ -140,7 +147,8 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			timerCollectionViewItem?.startPauseButton.title="Start"
 			return
 		}
-		TimersCenter.sharedInstance.gcdTimers[index].schedule(deadline: .now()+1, repeating: .milliseconds(1000), leeway: .milliseconds(0))
+		TimersCenter.sharedInstance.gcdTimers[index].schedule(deadline: .now()+1, repeating: .milliseconds(1000),
+															  leeway: .milliseconds(0))
 		TimersCenter.sharedInstance.gcdTimers[index].setEventHandler {
 			TimersCenter.sharedInstance.updateTimer(index: index)
 			self.displayTimer(index: index)
@@ -199,7 +207,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		timerAlert.addButton(withTitle: "Dismiss")
 		timerAlert.icon=DockClockController.dockClockObject.getFreezeView(time: Date()).image()
 		TimersWindowController.timersObject.showTimers()
-		timerAlert.beginSheetModal(for: TimersWindowController.timersObject.window ?? NSWindow()) { (modalResponse) in
+		timerAlert.beginSheetModal(for: TimersWindowController.timersObject.window ?? NSWindow()) { (_) in
 			if timer.alertStyle==AlertStyle.sound {
 				alertSound?.stop()
 			} else if timer.alertStyle==AlertStyle.song {
