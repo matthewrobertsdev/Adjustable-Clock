@@ -9,9 +9,16 @@ import Foundation
 class AlarmsPreferencesStorage {
 	static let sharedInstance=AlarmsPreferencesStorage()
 	private let windowIsOpenKey="windowIsOpen"
+	private let alarmsHasLaunchedKey="alarmsHasLaunched"
     let userDefaults=UserDefaults()
 	var windowIsOpen=false
 	private init() {
+	}
+	func hasLaunchedBefore() -> Bool {
+		return userDefaults.bool(forKey: alarmsHasLaunchedKey)
+	}
+	func setAlarmsAsHasLaunched() {
+		userDefaults.set(true, forKey: alarmsHasLaunchedKey)
 	}
 	func setWindowIsOpen() {
 		userDefaults.set(true, forKey: windowIsOpenKey)
