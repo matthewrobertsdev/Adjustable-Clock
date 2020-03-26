@@ -51,5 +51,6 @@ class TimersPreferenceStorage {
 	}
 	func setDefaultUserDefaults() {
         userDefaults.set(false, forKey: asSecondsKey)
+		userDefaults.set(false, forKey: timersFloatsKey)
     }
 }

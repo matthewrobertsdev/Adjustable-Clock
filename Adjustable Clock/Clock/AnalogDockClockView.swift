@@ -63,6 +63,11 @@ class AnalogDockClockView: BaseAnalogClockView {
 			backgroundColor=NSColor.black
 			backgroundColor.setFill()
 		}
+		if hasDarkAppearance && color == NSColor.textBackgroundColor {
+			color=NSColor.systemGray
+		} else if !hasDarkAppearance && backgroundColor==NSColor.textBackgroundColor {
+			color=NSColor.systemGray
+		}
 		path.fill()
 		guard let cgContext=NSGraphicsContext.current?.cgContext else {
 				return
