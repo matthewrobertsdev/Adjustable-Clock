@@ -142,7 +142,8 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		TimersCenter.sharedInstance.activeTimers+=1
 		TimersCenter.sharedInstance.timers[index].going=true
 		displayTimer(index: index)
-		if TimersCenter.sharedInstance.timers[index].secondsRemaining<=0 {
+		if TimersCenter.sharedInstance.timers[index].secondsRemaining<=0 &&  TimersCenter.sharedInstance.timers[index].active {
+			print("123 stopped 1")
 			self.timerStopped(index: index)
 			timerCollectionViewItem?.startPauseButton.title="Start"
 			return
@@ -160,9 +161,10 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 					if let 	timerCollectionViewItem=self.collectionView.item(at: index) as? TimerCollectionViewItem {
 						timerCollectionViewItem.startPauseButton.title="Pause"
 						timerCollectionViewItem.resetButton.title="Reset"
+						self.timerStopped(index: index)
+						print("123 stopped 2")
 					}
 				}
-				self.timerStopped(index: index)
 			}
 		}
 		TimersCenter.sharedInstance.gcdTimers[index].resume()

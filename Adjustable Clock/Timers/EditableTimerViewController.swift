@@ -34,6 +34,7 @@ class EditableTimerViewController: NSViewController {
 		closeAction()
 	}
 	@IBAction func setTimer(_ sender: Any) {
+		TimersCenter.sharedInstance.stopTimer(index: index)
 		let timerDate=timerDatePicker.dateValue
 		guard let timerViewController=TimersWindowController.timersObject.contentViewController
 			as? TimersViewController else {
@@ -46,7 +47,6 @@ class EditableTimerViewController: NSViewController {
 		timer.song=playlistName
 		timer.title=titleTextField.stringValue
 		timer.reset=true
-		TimersCenter.sharedInstance.stopTimer(index: index)
 		TimersCenter.sharedInstance.timers[index].active=true
 		timerViewController.animateTimer(index: index)
 		let timerCollectionViewItem=timerViewController.collectionView.item(at: index) as? TimerCollectionViewItem
