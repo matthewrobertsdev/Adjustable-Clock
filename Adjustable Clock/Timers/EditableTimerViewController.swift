@@ -25,15 +25,24 @@ class EditableTimerViewController: NSViewController {
 	var alertName="Ping"
 	var playlistName=""
 	var closeAction = { () -> Void in }
+	var startingDate: Date?
 	@IBOutlet weak var alertTextField: NSTextField!
 	override func viewDidLoad() {
         super.viewDidLoad()
 		timerDatePicker.locale=Locale(identifier: "de_AT")
+		startingDate=timerDatePicker.dateValue
     }
 	@IBAction func cancel(_ sender: Any) {
 		closeAction()
 	}
 	@IBAction func setTimer(_ sender: Any) {
+		if timerDatePicker.dateValue==startingDate {
+			let warningAlert=NSAlert()
+			warningAlert.messageText="Invalid Duration"
+			warningAlert.informativeText="Duration must be greater then 0.  Please wait for duration picker to update to have your duration."
+			warningAlert.runModal()
+			return
+		}
 		TimersCenter.sharedInstance.stopTimer(index: index)
 		let timerDate=timerDatePicker.dateValue
 		guard let timerViewController=TimersWindowController.timersObject.contentViewController
