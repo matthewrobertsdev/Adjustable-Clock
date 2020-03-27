@@ -177,7 +177,9 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			timerCollectionViewItem?.resetButton.title="Reset"
 		}
 		timerCollectionViewItem?.stopTimeTextField.isHidden=true
-		TimersCenter.sharedInstance.activeTimers-=1
+		if TimersCenter.sharedInstance.timers[index].active {
+			TimersCenter.sharedInstance.activeTimers-=1
+		}
 		TimersCenter.sharedInstance.timers[index].active=false
 		let timer=TimersCenter.sharedInstance.timers[index]
 		timer.going=false
