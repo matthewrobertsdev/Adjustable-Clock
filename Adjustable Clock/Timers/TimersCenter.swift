@@ -98,7 +98,6 @@ class TimersCenter {
 		let seconds=calendar.dateComponents([.second], from: time).second ?? 0
 		let totalSeconds=60*60*hours+60*minutes+seconds
 		let timer=timers[index]
-		print("123"+totalSeconds.description)
 		timer.totalSeconds=totalSeconds
 		timer.secondsRemaining=totalSeconds
 	}

@@ -21,7 +21,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	}
 	func collectionView(_ collectionView: NSCollectionView,
 						itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-		guard let alarmCollectionViewItem = 
+		guard let alarmCollectionViewItem =
 			collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmCollectionViewItem"),
 																  for: indexPath) as? AlarmCollectionViewItem else {
 			return NSCollectionViewItem()

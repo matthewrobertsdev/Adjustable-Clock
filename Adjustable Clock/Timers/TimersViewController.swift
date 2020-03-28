@@ -37,6 +37,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		clickRecognizer.isEnabled=false
 	}
 	@objc func showHideTimerActiveLabel() {
+		print("123"+TimersCenter.sharedInstance.activeTimers.description)
 		if (TimersCenter.sharedInstance.activeTimers)>0 {
 			self.timerActiveLabel.isHidden=false
 		} else {
@@ -143,7 +144,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		TimersCenter.sharedInstance.timers[index].going=true
 		displayTimer(index: index)
 		if TimersCenter.sharedInstance.timers[index].secondsRemaining<=0 &&  TimersCenter.sharedInstance.timers[index].active {
-			print("123 stopped 1")
+			TimersCenter.sharedInstance.activeTimers-=1
 			self.timerStopped(index: index)
 			timerCollectionViewItem?.startPauseButton.title="Start"
 			return
@@ -179,9 +180,6 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			timerCollectionViewItem?.resetButton.title="Reset"
 		}
 		timerCollectionViewItem?.stopTimeTextField.isHidden=true
-		if TimersCenter.sharedInstance.timers[index].active {
-			TimersCenter.sharedInstance.activeTimers-=1
-		}
 		TimersCenter.sharedInstance.timers[index].active=false
 		let timer=TimersCenter.sharedInstance.timers[index]
 		timer.going=false
