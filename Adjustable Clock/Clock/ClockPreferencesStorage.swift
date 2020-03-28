@@ -133,6 +133,7 @@ class ClockPreferencesStorage {
         userDefaults.set(blueComponent, forKey: customBlueComponentKey)
     }
 	func setDefaultUserDefaults() {
+		changeAndSaveCustomColor(customColor: NSColor.black)
         userDefaults.set(false, forKey: clockWindowFloatsKey)
         userDefaults.set(false, forKey: showSeocndsKey)
         userDefaults.set(false, forKey: use24hourClockKey)
@@ -140,7 +141,7 @@ class ClockPreferencesStorage {
 		userDefaults.set(false, forKey: showDateKey)
 		userDefaults.set(false, forKey: useNumericalDateKey)
 		userDefaults.set(false, forKey: useAnalogKey)
-        userDefaults.set("", forKey: colorSchemeKey)
+        userDefaults.set(nil, forKey: colorChoiceKey)
     }
 	func setWindowIsOpen() {
 		userDefaults.set(true, forKey: windowIsOpenKey)

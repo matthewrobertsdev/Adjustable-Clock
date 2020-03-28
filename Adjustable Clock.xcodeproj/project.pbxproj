@@ -49,7 +49,6 @@
 		9F53421623D90C1500FDD0F3 /* EditableAlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F53421523D90C1500FDD0F3 /* EditableAlarmViewController.swift */; };
 		9F538C4D2116AC1500A72242 /* SimplePreferenceWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C4C2116AC1500A72242 /* SimplePreferenceWindowController.swift */; };
 		9F538C4F2116B06300A72242 /* SimplePreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C4E2116B06300A72242 /* SimplePreferencesViewController.swift */; };
-		9F538C512116B0AF00A72242 /* SimplePreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C502116B0AF00A72242 /* SimplePreferencesController.swift */; };
 		9F54E6C223F76B9600840BE4 /* WorldClockCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F54E6C123F76B9600840BE4 /* WorldClockCollectionViewItem.xib */; };
 		9F6974772065BA19007886DE /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6974762065BA19007886DE /* PreferencesController.swift */; };
 		9F7174A11F5DADE800595C8D /* DigItalClockAppFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7174A01F5DADE800595C8D /* DigItalClockAppFunctions.swift */; };
@@ -166,7 +165,6 @@
 		9F53421523D90C1500FDD0F3 /* EditableAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableAlarmViewController.swift; sourceTree = "<group>"; };
 		9F538C4C2116AC1500A72242 /* SimplePreferenceWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferenceWindowController.swift; sourceTree = "<group>"; };
 		9F538C4E2116B06300A72242 /* SimplePreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferencesViewController.swift; sourceTree = "<group>"; };
-		9F538C502116B0AF00A72242 /* SimplePreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferencesController.swift; sourceTree = "<group>"; };
 		9F54E6C123F76B9600840BE4 /* WorldClockCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorldClockCollectionViewItem.xib; sourceTree = "<group>"; };
 		9F6974762065BA19007886DE /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
 		9F7174A01F5DADE800595C8D /* DigItalClockAppFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigItalClockAppFunctions.swift; sourceTree = "<group>"; };
@@ -360,7 +358,6 @@
 			children = (
 				9F538C4C2116AC1500A72242 /* SimplePreferenceWindowController.swift */,
 				9F538C4E2116B06300A72242 /* SimplePreferencesViewController.swift */,
-				9F538C502116B0AF00A72242 /* SimplePreferencesController.swift */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -720,7 +717,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9F538C512116B0AF00A72242 /* SimplePreferencesController.swift in Sources */,
 				9F6974772065BA19007886DE /* PreferencesController.swift in Sources */,
 				9F260CAA23F64D0300D021BB /* WorldClockWindowController.swift in Sources */,
 				9F87CCC323D4156B005D402B /* isDarkMode.swift in Sources */,

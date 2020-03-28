@@ -28,6 +28,15 @@ class SimplePreferencesViewController: NSViewController {
 		DockClockController.dockClockObject.updateClockForPreferencesChange()
 		updateGeneralMenuUI()
 		AlarmsWindowController.alarmsObject.updateForPreferencesChange()
+		updateColorMenuUI()
+    }
+	func updateColorMenuUI() {
+		guard let appDelegate = NSApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		if let colorsMenuController=appDelegate.colorsMenuController {
+			colorsMenuController.updateColorMenuUI()
+		}
     }
     func updateClockMenuUI() {
 		guard let appDelegate = NSApplication.shared.delegate as? AppDelegate else {
