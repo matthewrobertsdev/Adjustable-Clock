@@ -15,26 +15,12 @@ class MainMenu: NSMenu {
 	@IBOutlet weak var timersMenu: TimersMenu!
 	@IBOutlet weak var worldClockMenu: WorldClockMenu!
     @IBAction func pressSimplePreferencesMenuItem(preferenceMenuItem: NSMenuItem) {
-        let appObject = NSApp as NSApplication
-		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
-				guard let digitalClockVC=window.contentViewController as? ClockViewController else {
-					return
-				}
-                if digitalClockVC.model.fullscreen==true {
-                    for window in appObject.windows where window.identifier==UserInterfaceIdentifier.prefrencesWindow {
-						if let preferencesWC=window.windowController as? SimplePreferenceWindowController {
-							preferencesWC.close()
-						}
-                    }
-                    showSimplePreferencesWindow()
-				} else {
-                    if isThereASimplePreferencesWindow() {
-						SimplePreferenceWindowController.prefrencesObject.window?.makeKeyAndOrderFront(nil)
-                    } else {
-                        showSimplePreferencesWindow()
-                    }
-                }
-            }
+
+		if isThereASimplePreferencesWindow() {
+			SimplePreferenceWindowController.prefrencesObject.window?.makeKeyAndOrderFront(nil)
+		} else {
+			showSimplePreferencesWindow()
+		}
     }
     func showSimplePreferencesWindow() {
         let adjustableClockStoryboard = NSStoryboard(name: "Main", bundle: nil)

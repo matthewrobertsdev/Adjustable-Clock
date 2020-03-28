@@ -163,7 +163,6 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 						timerCollectionViewItem.startPauseButton.title="Pause"
 						timerCollectionViewItem.resetButton.title="Reset"
 						self.timerStopped(index: index)
-						print("123 stopped 2")
 					}
 				}
 			}
