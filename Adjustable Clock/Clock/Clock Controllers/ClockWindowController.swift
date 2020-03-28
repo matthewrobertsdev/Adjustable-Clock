@@ -8,6 +8,7 @@
 import Cocoa
 class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 	static var clockObject=ClockWindowController()
+	var fullscreen=false
     override func windowDidLoad() {
         super.windowDidLoad()
 		WindowManager.sharedInstance.count+=1
@@ -83,7 +84,9 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
         window?.setFrame(newRect, display: true)
     }
     func windowDidBecomeKey(_ notification: Notification) {
-		flashButtons()
+		if !fullscreen {
+			flashButtons()
+		}
 		enableClockMenu(enabled: true)
     }
     func windowDidResignKey(_ notification: Notification) {
@@ -143,6 +146,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 		}
 	}
     func windowDidEnterFullScreen(_ notification: Notification) {
+		fullscreen=true
         removeTrackingArea()
 		hideButtonsTimer?.cancel()
         updateClockMenuUI()
@@ -158,6 +162,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 		sizeWindowToFitClock(newWidth: maxWidth)
     }
     func windowDidExitFullScreen(_ notification: Notification) {
+		fullscreen=false
         window?.makeKey()
 		prepareWindowButtons()
         updateClockMenuUI()

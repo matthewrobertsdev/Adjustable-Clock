@@ -10,6 +10,7 @@ import AppKit
 
 class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 	static var timersObject=TimersWindowController()
+	var fullscreen=false
     override func windowDidLoad() {
         super.windowDidLoad()
 		WindowManager.sharedInstance.count+=1
@@ -68,6 +69,7 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 		return isWindowPresent(identifier: UserInterfaceIdentifier.timersWindow)
 	}
 	func windowWillEnterFullScreen(_ notification: Notification) {
+		fullscreen=true
 		self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
 	}
 	func windowDidEnterFullScreen(_ notification: Notification) {
@@ -76,6 +78,7 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
         showButtons(show: true)
     }
 	func windowDidExitFullScreen(_ notification: Notification) {
+		fullscreen=true
         window?.makeKey()
 		prepareWindowButtons()
 		applyFloatState()
@@ -99,7 +102,9 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 		enableTimersMenu(enabled: true)
 	}
 	func windowDidBecomeKey(_ notification: Notification) {
-		flashButtons()
+		if !fullscreen {
+			flashButtons()
+		}
 		enableTimersMenu(enabled: true)
     }
 	func enableTimersMenu(enabled: Bool) {

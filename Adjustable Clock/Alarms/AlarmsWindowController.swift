@@ -9,6 +9,7 @@
 import Cocoa
 class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 	static var alarmsObject=AlarmsWindowController()
+	var fullscreen=false
     override func windowDidLoad() {
         super.windowDidLoad()
 		WindowManager.sharedInstance.count+=1
@@ -68,9 +69,11 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
         removeTrackingArea()
 		hideButtonsTimer?.cancel()
         updateClockMenuUI()
+		fullscreen=true
         showButtons(show: true)
     }
 	func windowDidExitFullScreen(_ notification: Notification) {
+		fullscreen=false
         window?.makeKey()
 		prepareWindowButtons()
         updateClockMenuUI()
@@ -84,6 +87,8 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 		}
 	}
 	func windowDidBecomeKey(_ notification: Notification) {
-		flashButtons()
+		if !fullscreen {
+			flashButtons()
+		}
     }
 }
