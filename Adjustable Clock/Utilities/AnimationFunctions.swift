@@ -9,17 +9,15 @@
 // https://stackoverflow.com/users/4720722/cryinghippo
 // https://stackoverflow.com/questions/226354/how-do-you-move-a-calayer-instantly-without-animation
 import AppKit
-extension CALayer {
-    class func performWithoutAnimation(_ actionsWithoutAnimation: () -> Void) {
+func performWithoutAnimation(_ actionsWithoutAnimation: () -> Void) {
         CATransaction.begin()
         CATransaction.setValue(true, forKey: kCATransactionDisableActions)
         actionsWithoutAnimation()
         CATransaction.commit()
     }
-	class func performAnimationWithDuration(seconds: Double, _ actionsWithAnimation: () -> Void) {
+func performAnimationWithDuration(seconds: Double, _ actionsWithAnimation: () -> Void) {
         CATransaction.begin()
 		CATransaction.setValue(NSNumber(value: seconds), forKey: kCATransactionAnimationDuration)
         actionsWithAnimation()
         CATransaction.commit()
     }
-}

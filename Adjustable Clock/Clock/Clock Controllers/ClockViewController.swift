@@ -131,7 +131,7 @@ class ClockViewController: ColorfulViewController {
 		}
 	}
 	func updateSizeConstraints() {
-		maginfierAspectRatioConstraint=maginfierAspectRatioConstraint.setMultiplier(model.width/model.height)
+		maginfierAspectRatioConstraint=setMultiplier(layoutConstraint: maginfierAspectRatioConstraint, multiplier: model.width/model.height)
 		clockWidthConstraint.constant=model.width
 		clockHeightConstraint.constant=model.height
 		analogClock.widthConstraint.constant=model.width

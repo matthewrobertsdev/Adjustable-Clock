@@ -32,15 +32,15 @@ class AnalogDockClockView: BaseAnalogClockView {
 		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.size.width*0.9,
 																		  height: frame.size.height*0.9)))
 		//var backgroundColorCopy=NSColor.labelColor
-		if hasDarkAppearance && dark==false {
+		if hasDarkAppearance(view: self) && dark==false {
 			dark=true
-		} else if !hasDarkAppearance && dark==true {
+		} else if !hasDarkAppearance(view: self) && dark==true {
 			dark=false
 		}
 		let clockNSColors=ColorDictionary()
 		if ClockPreferencesStorage.sharedInstance.colorChoice=="custom" {
 		backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
-		} else if hasDarkAppearance && !ClockPreferencesStorage.sharedInstance.colorForForeground {
+		} else if hasDarkAppearance(view: self) && !ClockPreferencesStorage.sharedInstance.colorForForeground {
 		 backgroundColor=clockNSColors.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
 			?? NSColor.systemGray
 			if backgroundColor==NSColor.white {
@@ -53,11 +53,11 @@ class AnalogDockClockView: BaseAnalogClockView {
 				backgroundColor=NSColor.systemGray
 			}
 		}
-		if hasDarkAppearance && backgroundColor != NSColor.labelColor {
+		if hasDarkAppearance(view: self) && backgroundColor != NSColor.labelColor {
 			backgroundColor.setFill()
 			handsColor=NSColor.white
 			color=clockNSColors.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
-		} else if !hasDarkAppearance && backgroundColor != NSColor.labelColor {
+		} else if !hasDarkAppearance(view: self) && backgroundColor != NSColor.labelColor {
 			handsColor=NSColor.black
 			color=NSColor.white
 			backgroundColor.setFill()
@@ -66,9 +66,9 @@ class AnalogDockClockView: BaseAnalogClockView {
 			backgroundColor=NSColor.black
 			backgroundColor.setFill()
 		}
-		if hasDarkAppearance && color == NSColor.textBackgroundColor {
+		if hasDarkAppearance(view: self) && color == NSColor.textBackgroundColor {
 			color=NSColor.systemGray
-		} else if !hasDarkAppearance && backgroundColor==NSColor.textBackgroundColor {
+		} else if !hasDarkAppearance(view: self) && backgroundColor==NSColor.textBackgroundColor {
 			color=NSColor.systemGray
 		}
 		path.fill()

@@ -114,7 +114,7 @@ class ColorsMenuController: NSObject {
 				}
 			}
 			templateImage.isTemplate=true
-			let colorImage=templateImage.tintExceptBorder(tintColor: tintColor, borderPixels: CGFloat(0.25))
+			let colorImage=tintExceptBorder(image: templateImage, tintColor: tintColor, borderPixels: CGFloat(0.25))
 					colorsMenu.items[index].image=colorImage
 		}
         //set-up reverse color mode menuItem
@@ -149,7 +149,7 @@ class ColorsMenuController: NSObject {
 			templateImage=NSImage(named: "black_rectangle") ?? NSImage()
 		}
         templateImage.isTemplate=true
-		let colorImage=templateImage.tintExceptBorder(tintColor: tintColor, borderPixels: CGFloat(0.25))
+		let colorImage=tintExceptBorder(image: templateImage, tintColor: tintColor, borderPixels: CGFloat(0.25))
 		colorsMenu?.items[colorArray.colorArray.count-1].image=colorImage
 		if ClockPreferencesStorage.sharedInstance.colorForForeground {
 			colorsMenu?.items[colorArray.colorArray.count+1].state=NSControl.StateValue.on

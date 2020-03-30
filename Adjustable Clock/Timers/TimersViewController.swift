@@ -206,7 +206,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		let timerAlert=NSAlert()
 		timerAlert.messageText="Timer has gone off at \(self.timeFormatter.string(from: Date()))."
 		timerAlert.addButton(withTitle: "Dismiss")
-		timerAlert.icon=DockClockController.dockClockObject.getFreezeView(time: Date()).image()
+		timerAlert.icon=imageFromView(view: DockClockController.dockClockObject.getFreezeView(time: Date()))
 		TimersWindowController.timersObject.showTimers()
 		timerAlert.beginSheetModal(for: TimersWindowController.timersObject.window ?? NSWindow()) { (_) in
 			if timer.alertStyle==AlertStyle.sound {

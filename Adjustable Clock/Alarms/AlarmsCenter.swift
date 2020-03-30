@@ -145,7 +145,7 @@ class AlarmCenter: NSObject {
 				let alarmAlert=NSAlert()
 				alarmAlert.messageText="Alarm for \( alarm.timeString)  has gone off."
 				alarmAlert.addButton(withTitle: "Dismiss")
-				alarmAlert.icon=DockClockController.dockClockObject.getFreezeView(time: alarm.time).image()
+				alarmAlert.icon=imageFromView(view: DockClockController.dockClockObject.getFreezeView(time: alarm.time))
 				AlarmsWindowController.alarmsObject.showAlarms()
 
 				alarmAlert.beginSheetModal(for: AlarmsWindowController.alarmsObject.window ?? NSWindow()) { (_) in

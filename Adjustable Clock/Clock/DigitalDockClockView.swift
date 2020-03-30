@@ -77,28 +77,28 @@ class DigitalDockClockView: NSView {
 		let clockNSColors=ColorDictionary()
 		if ClockPreferencesStorage.sharedInstance.colorChoice=="custom" {
 		backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
-		} else if hasDarkAppearance && !ClockPreferencesStorage.sharedInstance.colorForForeground {
+		} else if hasDarkAppearance(view: self) && !ClockPreferencesStorage.sharedInstance.colorForForeground {
 		 backgroundColor=clockNSColors.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
 			?? NSColor.systemGray
 		} else {
 			backgroundColor=clockNSColors.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
 				?? NSColor.systemGray
 		}
-		if hasDarkAppearance && dark==false {
+		if hasDarkAppearance(view: self) && dark==false {
 			dark=true
-		} else if !hasDarkAppearance && dark==true {
+		} else if !hasDarkAppearance(view: self) && dark==true {
 			dark=false
 		}
-		if hasDarkAppearance && backgroundColor != NSColor.labelColor {
+		if hasDarkAppearance(view: self) && backgroundColor != NSColor.labelColor {
 			//backgroundColorCopy=backgroundColor.blended(withFraction: 0.5, of: NSColor.black) ?? NSColor.white
 			backgroundColor.setFill()
-		} else if !hasDarkAppearance && backgroundColor != NSColor.labelColor {
+		} else if !hasDarkAppearance(view: self) && backgroundColor != NSColor.labelColor {
 			backgroundColor.setFill()
 		} else {
 			backgroundColor=NSColor.black
 			backgroundColor.setFill()
 		}
-		if hasDarkAppearance {
+		if hasDarkAppearance(view: self) {
 			digitalClock.textColor=NSColor.white
 		} else {
 			digitalClock.textColor=NSColor.black

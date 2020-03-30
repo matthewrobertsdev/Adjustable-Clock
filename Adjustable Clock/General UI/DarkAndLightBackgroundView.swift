@@ -11,14 +11,14 @@ class DarkAndLightBackgroundView: NSView, BackgroundColorView {
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
 		self.wantsLayer=true
-		if hasDarkAppearance && backgroundColor != NSColor.labelColor {
+		if hasDarkAppearance(view: self) && backgroundColor != NSColor.labelColor {
 			if backgroundColor==NSColor.white {
 				if #available(OSX 10.13, *) {
 					backgroundColor=NSColor(named: "WhiteBackground") ?? NSColor.systemGray
 				}
 			}
 			layer?.backgroundColor=backgroundColor.cgColor
-		} else if !hasDarkAppearance && backgroundColor != NSColor.labelColor {
+		} else if !hasDarkAppearance(view: self) && backgroundColor != NSColor.labelColor {
 			if backgroundColor==NSColor.black {
 				if #available(OSX 10.13, *) {
 					backgroundColor=NSColor(named: "BlackBackground") ?? NSColor.systemGray
