@@ -9,6 +9,7 @@
 import Cocoa
 class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 	static var alarmsObject=AlarmsWindowController()
+	var fullscreen=false
     override func windowDidLoad() {
         super.windowDidLoad()
 		WindowManager.sharedInstance.count+=1
@@ -16,12 +17,15 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 		window?.delegate=self
 		AlarmsPreferencesStorage.sharedInstance.setWindowIsClosed()
 		window?.minSize=CGSize(width: 317, height: 300)
-		AlarmsWindowRestorer().loadSavedWindowCGRect(window: window)
+		if AlarmsPreferencesStorage.sharedInstance.hasLaunchedBefore() {
+			AlarmsWindowRestorer().loadSavedWindowCGRect(window: window)
+		}
 		prepareWindowButtons()
     }
 	func windowWillClose(_ notification: Notification) {
 		WindowManager.sharedInstance.count-=1
 		saveState()
+		AlarmsPreferencesStorage.sharedInstance.setAlarmsAsHasLaunched()
 		if GeneralPreferencesStorage.sharedInstance.closing {
 			AlarmsPreferencesStorage.sharedInstance.setWindowIsOpen()
 		} else {
@@ -65,9 +69,11 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
         removeTrackingArea()
 		hideButtonsTimer?.cancel()
         updateClockMenuUI()
+		fullscreen=true
         showButtons(show: true)
     }
 	func windowDidExitFullScreen(_ notification: Notification) {
+		fullscreen=false
         window?.makeKey()
 		prepareWindowButtons()
         updateClockMenuUI()
@@ -81,6 +87,8 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 		}
 	}
 	func windowDidBecomeKey(_ notification: Notification) {
-		flashButtons()
+		if !fullscreen {
+			flashButtons()
+		}
     }
 }

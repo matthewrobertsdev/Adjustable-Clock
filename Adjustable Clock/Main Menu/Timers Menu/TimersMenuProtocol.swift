@@ -7,6 +7,7 @@
 //
 import Foundation
 protocol TimerMenuDelegate: AnyObject {
+	func toggleTimerFloatsClicked()
 	func showTimerOneClicked()
 	func showTimerTwoClicked()
 	func showTimerThreeClicked()

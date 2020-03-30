@@ -8,7 +8,7 @@
 import AppKit
 class WindowManager {
 	static let sharedInstance=WindowManager()
-	private init(){
+	private init() {
 	}
 	var dockWindowArray=[NSWindow]()
 	var count=0

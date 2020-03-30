@@ -14,7 +14,8 @@ class AlarmsWindowRestorer: WindowFrameRestorer {
 	private let minWidth: CGFloat=317
     private let minHeight: CGFloat=400
     init() {
-		super.init(xKey: xKey, yKey: yKey, widthKey: widthKey, heightKey: heightKey, minWidth: minWidth, minHeight: minHeight, maxWidth: nil, maxHeight: nil)
+		super.init(xKey: xKey, yKey: yKey, widthKey: widthKey, heightKey: heightKey,
+				   minWidth: minWidth, minHeight: minHeight, maxWidth: nil, maxHeight: nil)
     }
 	func getAlarmsHeight() -> Int {
 		return UserDefaults().integer(forKey: heightKey)

@@ -14,7 +14,7 @@ func isDarkMode() -> Bool {
 			switch NSAppearance.current.name {
 			case .darkAqua, .vibrantDark, .accessibilityHighContrastDarkAqua, .accessibilityHighContrastVibrantDark:
                 return true
-            default:
+			default:
                 return false
             }
         } else {

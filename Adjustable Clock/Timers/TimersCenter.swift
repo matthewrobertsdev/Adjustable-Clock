@@ -28,7 +28,8 @@ class TimersCenter {
 			gcdTimers.append(DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main))
 		}
 		loadTimers()
-		NotificationCenter.default.addObserver(self, selector: #selector(setActivity), name: NSNotification.Name.activeCountChanged, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(setActivity),
+											   name: NSNotification.Name.activeCountChanged, object: nil)
 	}
 	@objc func setActivity() {
 		if activeTimers>0 {
@@ -61,7 +62,7 @@ class TimersCenter {
 	}
 	var timers=[CountDownTimer(), CountDownTimer(), CountDownTimer()]
 	var gcdTimers=[DispatchSourceTimer]()
-	func resetTimer(index: Int){
+	func resetTimer(index: Int) {
 		if timers[index].active {
 			stopTimer(index: index)
 		}
@@ -77,7 +78,8 @@ class TimersCenter {
 		} else if TimersPreferenceStorage.sharedInstance.asSeconds {
 			return String(TimersCenter.sharedInstance.timers[index].secondsRemaining)
 		} else {
-			return String(timeFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(TimersCenter.sharedInstance.timers[index].secondsRemaining))))
+			return String(timeFormatter.string(from:
+				Date(timeIntervalSince1970: TimeInterval(TimersCenter.sharedInstance.timers[index].secondsRemaining))))
 		}
 	}
 	func updateTimer(index: Int) {
@@ -103,8 +105,8 @@ class TimersCenter {
 		if timers[index].active {
 			activeTimers-=1
 			timers[index].active=false
-			gcdTimers[index].suspend()
+			gcdTimers[index].cancel()
+			gcdTimers[index]=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		}
 	}
 }
-

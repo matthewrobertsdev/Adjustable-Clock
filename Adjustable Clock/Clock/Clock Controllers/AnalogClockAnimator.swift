@@ -10,7 +10,8 @@ class AnalogClockAnimator: ClockAnimator {
 	private var analogClock: AnalogClockView
 	private var animatedDay: NSTextField
 	private var calendar=Calendar.current
-	init(model: ClockModel, tellingTime: NSObjectProtocol, updateTimer: DispatchSourceTimer, analogClock: AnalogClockView, animatedDay: NSTextField) {
+	init(model: ClockModel, tellingTime: NSObjectProtocol, updateTimer: DispatchSourceTimer,
+		 analogClock: AnalogClockView, animatedDay: NSTextField) {
 		self.analogClock=analogClock
 		self.animatedDay=animatedDay
 		super.init(model: model, tellingTime: tellingTime, updateTimer: updateTimer)
@@ -54,15 +55,15 @@ class AnalogClockAnimator: ClockAnimator {
 		}
 		analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
-		CALayer.performWithoutAnimation {
+		performWithoutAnimation {
 			runAnimation(early: false)
 		}
-		CALayer.performAnimationWithDuration(seconds: getSecondAdjustment()) {
+		performAnimationWithDuration(seconds: getSecondAdjustment()) {
 			runAnimation(early: true)
 		}
 		updateTimer.schedule(deadline: .now()+0.8, repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
 		updateTimer.setEventHandler {
-			CALayer.performAnimationWithDuration(seconds: 0.2) {
+			performAnimationWithDuration(seconds: 0.2) {
 				self.runAnimation(early: true)
 			}
 			if self.animatedDay.stringValue != self.model.getDayInfo() {
@@ -74,15 +75,15 @@ class AnalogClockAnimator: ClockAnimator {
 	private func animateTime() {
 		analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
-		CALayer.performWithoutAnimation {
+		performWithoutAnimation {
 			runAnimation(early: false)
 		}
-		CALayer.performAnimationWithDuration(seconds: getSecondAdjustment()) {
+		performAnimationWithDuration(seconds: getSecondAdjustment()) {
 			runAnimation(early: true)
 		}
 		updateTimer.schedule(deadline: .now()+0.8, repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
 		updateTimer.setEventHandler {
-			CALayer.performAnimationWithDuration(seconds: 0.2) {
+			performAnimationWithDuration(seconds: 0.2) {
 				self.runAnimation(early: true)
 			}
 		}

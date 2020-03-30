@@ -9,7 +9,8 @@ import AppKit
 class DigitalClockAnimator: ClockAnimator {
 	private var digitalClock: NSTextField
 	private var animatedDay: NSTextField
-	init(model: ClockModel, tellingTime: NSObjectProtocol, updateTimer: DispatchSourceTimer, digitalClock: NSTextField, animatedDay: NSTextField) {
+	init(model: ClockModel, tellingTime: NSObjectProtocol, updateTimer: DispatchSourceTimer,
+		 digitalClock: NSTextField, animatedDay: NSTextField) {
 		self.digitalClock=digitalClock
 		self.animatedDay=animatedDay
 		super.init(model: model, tellingTime: tellingTime, updateTimer: updateTimer)
@@ -37,7 +38,8 @@ class DigitalClockAnimator: ClockAnimator {
 		digitalClock.stringValue=model.getTime()
 		animatedDay.stringValue=model.getDayInfo()
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
-		updateTimer.schedule(deadline: .now()+getSecondAdjustment(), repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
+		updateTimer.schedule(deadline: .now()+getSecondAdjustment(),
+							 repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
 		updateTimer.setEventHandler {
 			self.updateTimeAndDayInfo()
 		}
@@ -46,7 +48,8 @@ class DigitalClockAnimator: ClockAnimator {
 	private func animateTime() {
 		digitalClock.stringValue=model.getTime()
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
-		updateTimer.schedule(deadline: .now()+getSecondAdjustment(), repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
+		updateTimer.schedule(deadline: .now()+getSecondAdjustment(),
+							 repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
 		updateTimer.setEventHandler {
 			self.updateTime()
 		}

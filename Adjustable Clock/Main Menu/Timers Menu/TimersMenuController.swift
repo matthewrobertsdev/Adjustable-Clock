@@ -20,6 +20,11 @@ class TimersMenuController: TimerMenuDelegate {
 		} else {
 			menu.asSecondsMenuItem.state=NSControl.StateValue.off
 		}
+		if TimersPreferenceStorage.sharedInstance.timerFloats {
+			menu.timerFloatsMenuItem.state=NSControl.StateValue.on
+		} else {
+			menu.timerFloatsMenuItem.state=NSControl.StateValue.off
+		}
 	}
 	func asSecondsClicked() {
 		TimersPreferenceStorage.sharedInstance.setAsSeconds()
@@ -37,17 +42,21 @@ class TimersMenuController: TimerMenuDelegate {
 	}
 	func showTimer(index: Int) {
 		TimersWindowController.timersObject.showTimers()
-		let appObject = NSApp as NSApplication
-		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.timersWindow {
-			if let timersViewController=window.contentViewController as? TimersViewController {
-				timersViewController.scrollToTimer(index: index)
-            }
+		if let timersViewController=TimersWindowController.timersObject.window?.contentViewController
+			as? TimersViewController {
+			timersViewController.scrollToTimer(index: index)
         }
+	}
+	func toggleTimerFloatsClicked() {
+		TimersPreferenceStorage.sharedInstance.toggleTimerFloats()
+		updateUI()
+		TimersWindowController.timersObject.applyFloatState()
 	}
 	func showTimersClicked() {
 		TimersWindowController.timersObject.showTimers()
 	}
 	func enableMenu(enabled: Bool) {
 		menu.asSecondsMenuItem.isEnabled=enabled
+		menu.timerFloatsMenuItem.isEnabled=enabled
 	}
 }

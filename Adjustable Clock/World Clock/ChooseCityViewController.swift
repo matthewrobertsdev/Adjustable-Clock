@@ -19,7 +19,8 @@ class ChooseCityViewController: NSViewController, NSTableViewDataSource, NSTable
 	}
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		print("abcd"+timeZoneStrings[row])
-		guard let cell0 = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "GenericTableCellView"), owner: nil) as? GenericTableCellView else {
+		guard let cell0 = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "GenericTableCellView"),
+											 owner: nil) as? GenericTableCellView else {
 					return NSTableCellView()
 			}
 		cell0.genericTextField?.stringValue=timeZoneStrings[row]

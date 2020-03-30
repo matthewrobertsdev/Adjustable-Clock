@@ -34,6 +34,5 @@ class DockClockModel {
 	}
 	func getSecondsString(date: Date) -> String {
 		return ":"+(secondsFormatter.string(from: calendar.dateComponents([.second], from: date)) ?? "--")
-		
 	}
 }

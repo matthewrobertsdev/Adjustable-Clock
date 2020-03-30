@@ -25,17 +25,28 @@ class EditableTimerViewController: NSViewController {
 	var alertName="Ping"
 	var playlistName=""
 	var closeAction = { () -> Void in }
+	var startingDate: Date?
 	@IBOutlet weak var alertTextField: NSTextField!
 	override func viewDidLoad() {
         super.viewDidLoad()
 		timerDatePicker.locale=Locale(identifier: "de_AT")
+		startingDate=timerDatePicker.dateValue
     }
 	@IBAction func cancel(_ sender: Any) {
 		closeAction()
 	}
 	@IBAction func setTimer(_ sender: Any) {
+		if timerDatePicker.dateValue==startingDate {
+			let warningAlert=NSAlert()
+			warningAlert.messageText="Invalid Duration"
+			warningAlert.informativeText="Duration must be greater then 0.  Please wait for duration picker to update to have your duration."
+			warningAlert.runModal()
+			return
+		}
+		TimersCenter.sharedInstance.stopTimer(index: index)
 		let timerDate=timerDatePicker.dateValue
-		guard let timerViewController=TimersWindowController.timersObject.contentViewController as? TimersViewController else {
+		guard let timerViewController=TimersWindowController.timersObject.contentViewController
+			as? TimersViewController else {
 			return
 		}
 		TimersCenter.sharedInstance.setSeconds(index: index, time: timerDate)
@@ -44,11 +55,12 @@ class EditableTimerViewController: NSViewController {
 		timer.alertString=alertName
 		timer.song=playlistName
 		timer.title=titleTextField.stringValue
-		TimersCenter.sharedInstance.stopTimer(index: index)
+		timer.reset=true
 		TimersCenter.sharedInstance.timers[index].active=true
 		timerViewController.animateTimer(index: index)
 		let timerCollectionViewItem=timerViewController.collectionView.item(at: index) as? TimerCollectionViewItem
 		timerCollectionViewItem?.startPauseButton.title="Pause"
+		timerCollectionViewItem?.resetButton.title="Reset"
 		closeAction()
 	}
 	@IBAction func chooseAlert(_ sender: Any) {
@@ -59,6 +71,7 @@ class EditableTimerViewController: NSViewController {
 			   chooseAlertViewController.chooseAlertAction = { (alert: String) -> Void in
 				   self.alertName=alert
 				   self.alertTextField.stringValue="Alert: "+alert
+				self.useBeep()
 			   }
 		self.presentAsModalWindow(chooseAlertViewController)
 	}
@@ -73,6 +86,7 @@ class EditableTimerViewController: NSViewController {
 				self.playlistTextField.stringValue="Song: None chosen"
 			} else {
 				self.playlistTextField.stringValue="Song: "+playlistURL
+				self.useSong()
 			}
 		}
 		self.presentAsModalWindow(chooseSongViewController)

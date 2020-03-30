@@ -77,10 +77,13 @@ class EditableAlarmViewController: NSViewController {
 		}
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
 		let timeString=timeFormatter.string(from: datePicker.dateValue)
-		let alarm=Alarm(time: datePicker.dateValue, timeString: timeString, usesSong: usesSong, repeats: repeating, alert: alertName, song: playlistName, active: true)
+		let alarm=Alarm(time: datePicker.dateValue,
+						timeString: timeString, usesSong: usesSong, repeats: repeating,
+						alert: alertName, song: playlistName, active: true)
 		alarm.setExpirationDate(currentDate: Date())
 		if new {
-			guard let alarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController else {
+			guard let alarmsViewController=AlarmsWindowController.alarmsObject.contentViewController
+				as? AlarmsViewController else {
 				return
 			}
 			guard let alarmTableView=alarmsViewController.collectionView else {

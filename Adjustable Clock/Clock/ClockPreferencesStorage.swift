@@ -68,13 +68,14 @@ class ClockPreferencesStorage {
         if let colorChoice=userDefaults.string(forKey: colorChoiceKey) {
 			self.colorChoice=colorChoice
         } else {
-			self.colorChoice=ColorChoice.gray
+			self.colorChoice=ColorChoice.systemColor
         }
         colorForForeground=userDefaults.bool(forKey: lightOnDarkKey)
         redComponent=CGFloat(userDefaults.float(forKey: customRedComponentKey))
         greenComponent=CGFloat(userDefaults.float(forKey: customGreenComponentKey))
         blueComponent=CGFloat(userDefaults.float(forKey: customBlueComponentKey))
-		customColor=NSColor(deviceRed: redComponent ?? 100, green: greenComponent ?? 100, blue: blueComponent ?? 100, alpha: 100)
+		customColor=NSColor(deviceRed: redComponent ?? 100, green: greenComponent ?? 100,
+							blue: blueComponent ?? 100, alpha: 100)
     }
 	func changeAndSaveUseAnalog() {
         useAnalog=true
@@ -132,6 +133,7 @@ class ClockPreferencesStorage {
         userDefaults.set(blueComponent, forKey: customBlueComponentKey)
     }
 	func setDefaultUserDefaults() {
+		changeAndSaveCustomColor(customColor: NSColor.black)
         userDefaults.set(false, forKey: clockWindowFloatsKey)
         userDefaults.set(false, forKey: showSeocndsKey)
         userDefaults.set(false, forKey: use24hourClockKey)
@@ -139,7 +141,7 @@ class ClockPreferencesStorage {
 		userDefaults.set(false, forKey: showDateKey)
 		userDefaults.set(false, forKey: useNumericalDateKey)
 		userDefaults.set(false, forKey: useAnalogKey)
-        userDefaults.set("", forKey: colorSchemeKey)
+        userDefaults.set(nil, forKey: colorChoiceKey)
     }
 	func setWindowIsOpen() {
 		userDefaults.set(true, forKey: windowIsOpenKey)

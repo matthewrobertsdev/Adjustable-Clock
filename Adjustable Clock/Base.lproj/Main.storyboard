@@ -523,6 +523,13 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Timers" id="fWd-IJ-eGk" customClass="TimersMenu" customModule="Adjustable_Clock" customModuleProvider="target">
                                     <items>
+                                        <menuItem title="Floats on Top" id="gka-sQ-iLp">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleTimersFloatsWithNsMenuItem:" target="fWd-IJ-eGk" id="hLr-Ee-XeW"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="AzZ-TF-w8t"/>
                                         <menuItem title="As Seconds" id="S8Z-Ct-J3h">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -557,6 +564,7 @@
                                     </items>
                                     <connections>
                                         <outlet property="asSecondsMenuItem" destination="S8Z-Ct-J3h" id="XRK-Du-5U7"/>
+                                        <outlet property="timerFloatsMenuItem" destination="gka-sQ-iLp" id="cS3-ur-Ldg"/>
                                     </connections>
                                 </menu>
                             </menuItem>
@@ -812,7 +820,6 @@
                     <window key="window" identifier="AlarmsWindow" title="Alarms" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="SKW-hm-43b">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenDisallowsTiling="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="921" y="551" width="302" height="164"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                         <connections>
@@ -833,7 +840,7 @@
                 <windowController storyboardIdentifier="TimersWindowController" id="7qg-yV-28o" customClass="TimersWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="TimersWindow" title="Timers" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="7mb-fx-SVb">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="196" y="240" width="395" height="204"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                         <connections>
@@ -925,8 +932,16 @@
                             <constraint firstAttribute="trailing" secondItem="li0-1M-reH" secondAttribute="trailing" id="afO-KW-8cG"/>
                             <constraint firstAttribute="bottom" secondItem="Z7Q-Wo-kc1" secondAttribute="bottom" id="hgH-EJ-l4Z"/>
                         </constraints>
+                        <gestureRecognizers>
+                            <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="asf-TM-Bp2">
+                                <connections>
+                                    <action selector="click:" target="Fch-iR-SvQ" id="h7L-Er-9ev"/>
+                                </connections>
+                            </clickGestureRecognizer>
+                        </gestureRecognizers>
                     </view>
                     <connections>
+                        <outlet property="clickRecognizer" destination="asf-TM-Bp2" id="pMB-8N-YM1"/>
                         <outlet property="collectionView" destination="zzm-Pa-2aK" id="QsZ-zY-zCW"/>
                         <outlet property="timerActiveLabel" destination="WYv-C8-oRU" id="iHL-bW-vUY"/>
                         <outlet property="titleTextField" destination="sxf-Lb-5wq" id="0sa-pw-5D7"/>
@@ -1341,9 +1356,17 @@
                             <constraint firstItem="Xt3-TQ-yqa" firstAttribute="leading" secondItem="P05-f5-a90" secondAttribute="leading" id="uKL-zx-o8J"/>
                             <constraint firstItem="Xt3-TQ-yqa" firstAttribute="top" secondItem="P05-f5-a90" secondAttribute="top" constant="20" id="uWs-DH-v4T"/>
                         </constraints>
+                        <gestureRecognizers>
+                            <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="SyP-17-SH0">
+                                <connections>
+                                    <action selector="click:" target="jsi-dr-Kid" id="TS3-pb-0m4"/>
+                                </connections>
+                            </clickGestureRecognizer>
+                        </gestureRecognizers>
                     </view>
                     <connections>
                         <outlet property="alarmNotifierTextField" destination="zQZ-To-CvJ" id="8JM-Vl-GLI"/>
+                        <outlet property="clickRecognizer" destination="SyP-17-SH0" id="KTf-jA-otz"/>
                         <outlet property="collectionView" destination="BV1-fO-kYE" id="pPf-As-VfK"/>
                         <outlet property="titleTextField" destination="CoE-q1-tay" id="o3X-bw-EdL"/>
                     </connections>
@@ -1384,21 +1407,111 @@
                             <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bre-QP-Dok">
                                 <rect key="frame" x="21" y="20" width="284" height="330"/>
                                 <subviews>
-                                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gd6-Mg-GGN">
-                                        <rect key="frame" x="59" y="306" width="167" height="24"/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RKV-N7-jah">
+                                        <rect key="frame" x="119" y="314" width="47" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Sound:" id="lXB-vD-sLM">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VA9-rf-Dv1">
+                                        <rect key="frame" x="117" y="287" width="52" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Alert" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Hf5-aK-1RO">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="useBeepChosen:" target="uPZ-Mw-0vQ" id="NTg-cg-a70"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="D1a-7x-Xl8">
+                                        <rect key="frame" x="116" y="261" width="54" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Song" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="SNw-Qw-4dm">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="useSongChosen:" target="uPZ-Mw-0vQ" id="OuY-Wj-vSR"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7R6-4X-fBa">
+                                        <rect key="frame" x="102" y="235" width="82" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="No Sound" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="6m2-Om-kt3">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="useNoSoundChosen:" target="uPZ-Mw-0vQ" id="cSP-cI-uGs"/>
+                                        </connections>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qhw-8c-8Kq">
+                                        <rect key="frame" x="108" y="210" width="68" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Alert: Ping" id="rZm-LI-98W">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="92G-Nk-W31">
+                                        <rect key="frame" x="83" y="172" width="119" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Choose Alert" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DPT-k1-GMb">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="chooseAlert:" target="uPZ-Mw-0vQ" id="bHy-qz-KMx"/>
+                                        </connections>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="irB-Zz-ang">
+                                        <rect key="frame" x="82" y="153" width="121" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Song: none chosen" id="nDp-lH-3JG">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="019-4P-Lfd">
+                                        <rect key="frame" x="82" y="115" width="121" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Choose Song" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bay-0J-iIT">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="chooseSong:" target="uPZ-Mw-0vQ" id="8dZ-LO-ggG"/>
+                                        </connections>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TMe-Se-v0C">
+                                        <rect key="frame" x="125" y="96" width="35" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Title:" id="W00-eO-EvY">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nCV-Iz-hel">
+                                        <rect key="frame" x="0.0" y="65" width="284" height="21"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" drawsBackground="YES" id="lVu-2m-aoE">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gd6-Mg-GGN">
+                                        <rect key="frame" x="25" y="31" width="234" height="24"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3oD-Jn-M7N">
-                                                <rect key="frame" x="-2" y="4" width="60" height="16"/>
+                                                <rect key="frame" x="-2" y="0.0" width="88" height="24"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Duration:" id="ULu-aX-iCE">
-                                                    <font key="font" metaFont="system"/>
+                                                    <font key="font" metaFont="system" size="21"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                             <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yGd-LK-w7c">
-                                                <rect key="frame" x="64" y="0.0" width="106" height="28"/>
+                                                <rect key="frame" x="92" y="0.0" width="145" height="28"/>
                                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="rL9-yf-Drg">
-                                                    <font key="font" metaFont="system"/>
+                                                    <font key="font" metaFont="system" size="20"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="-598647600">
                                                         <!--1982-01-12 05:00:00 +0000-->
                                                     </date>
@@ -1421,96 +1534,6 @@
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
                                     </stackView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RKV-N7-jah">
-                                        <rect key="frame" x="119" y="280" width="47" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Sound:" id="lXB-vD-sLM">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VA9-rf-Dv1">
-                                        <rect key="frame" x="117" y="253" width="52" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Alert" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Hf5-aK-1RO">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="useBeepChosen:" target="uPZ-Mw-0vQ" id="NTg-cg-a70"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="D1a-7x-Xl8">
-                                        <rect key="frame" x="116" y="227" width="54" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Song" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="SNw-Qw-4dm">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="useSongChosen:" target="uPZ-Mw-0vQ" id="OuY-Wj-vSR"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7R6-4X-fBa">
-                                        <rect key="frame" x="102" y="201" width="82" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="No Sound" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="6m2-Om-kt3">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="useNoSoundChosen:" target="uPZ-Mw-0vQ" id="cSP-cI-uGs"/>
-                                        </connections>
-                                    </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qhw-8c-8Kq">
-                                        <rect key="frame" x="108" y="176" width="68" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Alert: Ping" id="rZm-LI-98W">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="92G-Nk-W31">
-                                        <rect key="frame" x="83" y="138" width="119" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Choose Alert" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DPT-k1-GMb">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="chooseAlert:" target="uPZ-Mw-0vQ" id="bHy-qz-KMx"/>
-                                        </connections>
-                                    </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="irB-Zz-ang">
-                                        <rect key="frame" x="82" y="119" width="121" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Song: none chosen" id="nDp-lH-3JG">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="019-4P-Lfd">
-                                        <rect key="frame" x="82" y="81" width="121" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Choose Song" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bay-0J-iIT">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="chooseSong:" target="uPZ-Mw-0vQ" id="8dZ-LO-ggG"/>
-                                        </connections>
-                                    </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TMe-Se-v0C">
-                                        <rect key="frame" x="125" y="62" width="35" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Title:" id="W00-eO-EvY">
-                                            <font key="font" usesAppearanceFont="YES"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nCV-Iz-hel">
-                                        <rect key="frame" x="0.0" y="31" width="284" height="21"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" drawsBackground="YES" id="lVu-2m-aoE">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WIJ-QC-asP">
                                         <rect key="frame" x="60" y="0.0" width="165" height="21"/>
                                         <subviews>
@@ -1630,10 +1653,10 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="flv-ip-qrW">
-                                <rect key="frame" x="69" y="19" width="166" height="302"/>
+                                <rect key="frame" x="68" y="19" width="168" height="302"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nQf-7w-BpU">
-                                        <rect key="frame" x="24" y="274" width="118" height="32"/>
+                                        <rect key="frame" x="25" y="274" width="118" height="32"/>
                                         <buttonCell key="cell" type="push" title="Delete Alarm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tcq-pT-hWA">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1642,21 +1665,92 @@ DQ
                                             <action selector="delete:" target="9uc-jD-1ug" id="2YB-Wr-U53"/>
                                         </connections>
                                     </button>
-                                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8aq-7r-1ob">
-                                        <rect key="frame" x="21" y="247" width="124" height="24"/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CAo-ws-YFD">
+                                        <rect key="frame" x="61" y="255" width="47" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Sound:" id="mDJ-hu-g4n">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Pd-K7-1xp">
+                                        <rect key="frame" x="59" y="228" width="52" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Alert" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="hyr-eO-u4C">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="useBeepChosen:" target="9uc-jD-1ug" id="VLd-8s-b0N"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2wM-kb-fM2">
+                                        <rect key="frame" x="58" y="202" width="54" height="18"/>
+                                        <buttonCell key="cell" type="radio" title="Song" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="8A0-aY-plZ">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="useSongChosen:" target="9uc-jD-1ug" id="v03-jY-9VU"/>
+                                        </connections>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XnX-lk-Kwl">
+                                        <rect key="frame" x="50" y="177" width="68" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Alert: Ping" id="bls-7Q-dTY">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UVM-Rd-4Nu">
+                                        <rect key="frame" x="25" y="139" width="119" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Choose Alert" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ow5-Es-BIm">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="chooseAlert:" target="9uc-jD-1ug" id="5Tx-6o-byE"/>
+                                        </connections>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bvu-xi-gW8">
+                                        <rect key="frame" x="24" y="120" width="121" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Song: none chosen" id="zKT-5G-8cb">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rSu-94-0yx">
+                                        <rect key="frame" x="24" y="82" width="121" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Choose Song" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vkx-n3-RrX">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="chooseSong:" target="9uc-jD-1ug" id="Hv9-ta-yTf"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GOp-An-FYm">
+                                        <rect key="frame" x="45" y="63" width="78" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Everyday" bezelStyle="regularSquare" imagePosition="left" inset="2" id="XDr-6M-bfO">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8aq-7r-1ob">
+                                        <rect key="frame" x="0.0" y="31" width="168" height="24"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7Lf-a3-wQo">
-                                                <rect key="frame" x="-2" y="4" width="38" height="16"/>
+                                                <rect key="frame" x="-2" y="1" width="53" height="23"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Time:" id="r3v-5s-2vZ">
-                                                    <font key="font" metaFont="system"/>
+                                                    <font key="font" metaFont="system" size="20"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                             <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fId-H7-Vhr">
-                                                <rect key="frame" x="42" y="0.0" width="85" height="28"/>
+                                                <rect key="frame" x="57" y="0.0" width="114" height="28"/>
                                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="mjY-bc-eEV">
-                                                    <font key="font" metaFont="system"/>
+                                                    <font key="font" metaFont="system" size="20"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="-595926000">
                                                         <!--1982-02-12 17:00:00 +0000-->
                                                     </date>
@@ -1679,79 +1773,8 @@ DQ
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
                                     </stackView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CAo-ws-YFD">
-                                        <rect key="frame" x="60" y="221" width="47" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Sound:" id="mDJ-hu-g4n">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Pd-K7-1xp">
-                                        <rect key="frame" x="58" y="194" width="52" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Alert" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="hyr-eO-u4C">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="useBeepChosen:" target="9uc-jD-1ug" id="VLd-8s-b0N"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2wM-kb-fM2">
-                                        <rect key="frame" x="57" y="168" width="54" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Song" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="8A0-aY-plZ">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="useSongChosen:" target="9uc-jD-1ug" id="v03-jY-9VU"/>
-                                        </connections>
-                                    </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XnX-lk-Kwl">
-                                        <rect key="frame" x="49" y="143" width="68" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Alert: Ping" id="bls-7Q-dTY">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UVM-Rd-4Nu">
-                                        <rect key="frame" x="24" y="105" width="119" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Choose Alert" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ow5-Es-BIm">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="chooseAlert:" target="9uc-jD-1ug" id="5Tx-6o-byE"/>
-                                        </connections>
-                                    </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bvu-xi-gW8">
-                                        <rect key="frame" x="23" y="86" width="121" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Song: none chosen" id="zKT-5G-8cb">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rSu-94-0yx">
-                                        <rect key="frame" x="23" y="48" width="121" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Choose Song" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vkx-n3-RrX">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="chooseSong:" target="9uc-jD-1ug" id="Hv9-ta-yTf"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GOp-An-FYm">
-                                        <rect key="frame" x="44" y="29" width="78" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Everyday" bezelStyle="regularSquare" imagePosition="left" inset="2" id="XDr-6M-bfO">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
                                     <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WLu-rB-an7">
-                                        <rect key="frame" x="0.0" y="0.0" width="166" height="21"/>
+                                        <rect key="frame" x="1" y="0.0" width="166" height="21"/>
                                         <subviews>
                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ULf-Hj-4eM">
                                                 <rect key="frame" x="-6" y="-7" width="82" height="32"/>

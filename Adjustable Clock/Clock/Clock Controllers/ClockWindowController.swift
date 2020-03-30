@@ -8,6 +8,7 @@
 import Cocoa
 class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 	static var clockObject=ClockWindowController()
+	var fullscreen=false
     override func windowDidLoad() {
         super.windowDidLoad()
 		WindowManager.sharedInstance.count+=1
@@ -83,19 +84,19 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
         window?.setFrame(newRect, display: true)
     }
     func windowDidBecomeKey(_ notification: Notification) {
-		flashButtons()
+		if !fullscreen {
+			flashButtons()
+		}
 		enableClockMenu(enabled: true)
     }
     func windowDidResignKey(_ notification: Notification) {
         if ClockPreferencesStorage.sharedInstance.fullscreen==false {
             showButtons(show: false)
         }
-		enableClockMenu(enabled: false)
     }
     func windowDidResize(_ notification: Notification) {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
 		digitalClockVC.updateSizeConstraints()
-		//digitalClockVC.setConstraints()
         resizeContents()
 		guard let windowIsZoomed=window?.isZoomed else { return }
         if windowIsZoomed==false && ClockPreferencesStorage.sharedInstance.fullscreen==false {
@@ -109,7 +110,8 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 	func resizeContents() {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
 		guard let windowSize=window?.frame.size else { return }
-		if digitalClockVC.view.frame.size.width/digitalClockVC.view.frame.size.height<digitalClockVC.model.width/digitalClockVC.model.height {
+		if digitalClockVC.view.frame.size.width/digitalClockVC.view.frame.size.height <
+		digitalClockVC.model.width/digitalClockVC.model.height {
 			digitalClockVC.activateWidthConstraints()
 			digitalClockVC.resizeContents(maxWidth: windowSize.width)
 		} else {
@@ -144,6 +146,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 		}
 	}
     func windowDidEnterFullScreen(_ notification: Notification) {
+		fullscreen=true
         removeTrackingArea()
 		hideButtonsTimer?.cancel()
         updateClockMenuUI()
@@ -159,6 +162,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 		sizeWindowToFitClock(newWidth: maxWidth)
     }
     func windowDidExitFullScreen(_ notification: Notification) {
+		fullscreen=false
         window?.makeKey()
 		prepareWindowButtons()
         updateClockMenuUI()

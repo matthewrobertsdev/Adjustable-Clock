@@ -9,8 +9,7 @@
 // https://stackoverflow.com/users/187676/erik-aigner
 // https://stackoverflow.com/questions/25207077/how-to-detect-if-os-x-is-in-dark-mode
 import AppKit
-extension NSView {
-    var hasDarkAppearance: Bool {
+func hasDarkAppearance(view: NSView) -> Bool {
         if #available(OSX 10.14, *) {
 			switch NSApp.effectiveAppearance.name {
 			case .darkAqua, .vibrantDark, .accessibilityHighContrastDarkAqua, .accessibilityHighContrastVibrantDark:
@@ -19,12 +18,11 @@ extension NSView {
                 return false
             }
         } else {
-			switch effectiveAppearance.name {
+			switch view.effectiveAppearance.name {
 			case .vibrantDark:
                 return true
 			default:
                 return false
             }
         }
-    }
 }

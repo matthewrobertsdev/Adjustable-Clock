@@ -9,15 +9,13 @@
 // https://stackoverflow.com/users/1271826/rob
 // https://stackoverflow.com/questions/41386423/get-image-from-calayer-or-nsview-swift-3
 import AppKit
-extension NSView {
-    func image() -> NSImage {
-		guard let imageRepresentation = bitmapImageRepForCachingDisplay(in: bounds) else {
+func imageFromView(view: NSView) -> NSImage {
+	guard let imageRepresentation = view.bitmapImageRepForCachingDisplay(in: view.bounds) else {
 			return NSImage()
 		}
-        cacheDisplay(in: bounds, to: imageRepresentation)
+	view.cacheDisplay(in: view.bounds, to: imageRepresentation)
 		guard let cgImage=imageRepresentation.cgImage else {
 			return NSImage()
 		}
-        return NSImage(cgImage: cgImage, size: bounds.size)
+	return NSImage(cgImage: cgImage, size: view.bounds.size)
     }
-}

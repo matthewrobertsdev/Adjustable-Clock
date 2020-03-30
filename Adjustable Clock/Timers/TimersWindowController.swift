@@ -10,16 +10,18 @@ import AppKit
 
 class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 	static var timersObject=TimersWindowController()
+	var fullscreen=false
     override func windowDidLoad() {
         super.windowDidLoad()
 		WindowManager.sharedInstance.count+=1
 		window?.delegate=self
-		window?.minSize=NSSize(width: 351, height: 224)
+		window?.minSize=NSSize(width: 351, height: 350)
 		if TimersPreferenceStorage.sharedInstance.haslaunchedBefore() {
 			TimersWindowRestorer().loadSavedWindowCGRect(window: window)
 		}
 		prepareWindowButtons()
 		enableTimersMenu(enabled: true)
+		applyFloatState()
     }
 	func showTimers() {
 		if isTimersWindowPresent() == false {
@@ -66,14 +68,20 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 	func isTimersWindowPresent() -> Bool {
 		return isWindowPresent(identifier: UserInterfaceIdentifier.timersWindow)
 	}
+	func windowWillEnterFullScreen(_ notification: Notification) {
+		fullscreen=true
+		self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
+	}
 	func windowDidEnterFullScreen(_ notification: Notification) {
         removeTrackingArea()
 		hideButtonsTimer?.cancel()
         showButtons(show: true)
     }
 	func windowDidExitFullScreen(_ notification: Notification) {
+		fullscreen=true
         window?.makeKey()
 		prepareWindowButtons()
+		applyFloatState()
     }
 	func windowWillMiniaturize(_ notification: Notification) {
 		guard let timerViewController=window?.contentViewController as? TimersViewController else {
@@ -94,12 +102,22 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 		enableTimersMenu(enabled: true)
 	}
 	func windowDidBecomeKey(_ notification: Notification) {
-		flashButtons()
+		if !fullscreen {
+			flashButtons()
+		}
+		enableTimersMenu(enabled: true)
     }
 	func enableTimersMenu(enabled: Bool) {
 		guard let appDelagte = NSApplication.shared.delegate as? AppDelegate else {
 			return
 		}
 		appDelagte.timersMenuController?.enableMenu(enabled: enabled)
+	}
+	func applyFloatState() {
+		if TimersPreferenceStorage.sharedInstance.timerFloats {
+			self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow))-1)
+		} else {
+			self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
+		}
 	}
 }
