@@ -16,11 +16,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	var worldClockMenuController: WorldClockMenuController?
 	//on launch
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+		/*
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
 		AlarmsPreferencesStorage.sharedInstance.loadPreferences()
 		TimersPreferenceStorage.sharedInstance.loadPreferences()
 		WorldClockPreferencesStorage.sharedInstance.loadPreferences()
-		updateClockMenuUI()
+
         let appObject = NSApp as NSApplication
 		if let mainMenu=appObject.mainMenu as? MainMenu {
 			colorsMenuController=ColorsMenuController(colorsMenu: mainMenu.colorsMenu)
@@ -54,15 +55,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			ClockWindowController.clockObject.showClock()
 			clockMenuController?.enableMenu(enabled: true)
 		}
+*/
 	}
+
     //if the dock icon is clicked
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
 		if !flag {
 			ClockWindowController.clockObject.showClock()
 		}
+		/*
 		if WindowManager.sharedInstance.dockWindowArray.count==WindowManager.sharedInstance.count {
 			WindowManager.sharedInstance.dockWindowArray.last?.deminiaturize(nil)
 		}
+*/
 		return false
     }
     func applicationWillTerminate(_ aNotification: Notification) {
