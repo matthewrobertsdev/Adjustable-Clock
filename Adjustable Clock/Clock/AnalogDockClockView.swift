@@ -38,7 +38,7 @@ class AnalogDockClockView: BaseAnalogClockView {
 			dark=false
 		}
 		let clockNSColors=ColorDictionary()
-		if ClockPreferencesStorage.sharedInstance.colorChoice=="custom" {
+		if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom {
 		backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
 		} else if hasDarkAppearance(view: self) && !ClockPreferencesStorage.sharedInstance.colorForForeground {
 		 backgroundColor=clockNSColors.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]

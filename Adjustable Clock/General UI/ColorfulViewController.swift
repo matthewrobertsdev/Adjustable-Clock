@@ -43,7 +43,7 @@ class ColorfulViewController: NSViewController {
 		var contrastColor: NSColor
 		let clockNSColors=ColorDictionary()
 			backgroundView.wantsLayer=true
-		if ClockPreferencesStorage.sharedInstance.colorChoice=="custom"{
+		if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom{
 			contrastColor=ClockPreferencesStorage.sharedInstance.customColor
 		} else if ClockPreferencesStorage.sharedInstance.colorForForeground {
 			contrastColor =

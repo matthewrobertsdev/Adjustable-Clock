@@ -19,30 +19,30 @@ Color Arrays
  */
 //standard colors and custom colors
 //string "keys" are convenient for UserDefaults
-struct ColorChoice {
-	static let systemColor="systemColor"
-	static let black="black"
-    static let gray="gray"
-    static let white="white"
-    static let red="red"
-    static let orange="orange"
-    static let yellow="yellow"
-    static let green="green"
-    static let blue="blue"
-	static let indigo="indigo"
-    static let purple="purple"
-	static let pink="pink"
-	static let brown="brown"
-    static let custom="custom"
+enum ColorChoice: String {
+	case systemColor="systemColor"
+	case black="black"
+    case gray="gray"
+    case white="white"
+    case red="red"
+    case orange="orange"
+    case yellow="yellow"
+    case green="green"
+    case blue="blue"
+	case indigo="indigo"
+    case purple="purple"
+	case pink="pink"
+	case brown="brown"
+    case custom="custom"
 }
 //color choice strings act as keys for NSColors
 class ColorDictionary {
     //name-color dictionary
     //name for identification
     //color for actual color values
-    var colorsDictionary=[String: NSColor]()
-	var lightColorsDictionary=[String: NSColor]()
-	var darkColorsDictionary=[String: NSColor]()
+    var colorsDictionary=[ColorChoice: NSColor]()
+	var lightColorsDictionary=[ColorChoice: NSColor]()
+	var darkColorsDictionary=[ColorChoice: NSColor]()
     //init should make the dictionary
     init() {
         makeColorDictionary()
@@ -96,7 +96,7 @@ class ColorDictionary {
 //just an array of color choices so that the colors can be displayed in an order
 class ColorArrays {
     //an array of color choice strings
-    var colorArray=[String]()
+    var colorArray=[ColorChoice]()
     //init should make the array
     init() {
         makeColorArray()

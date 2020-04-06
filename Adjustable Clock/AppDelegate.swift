@@ -21,7 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		//ClockPreferencesStorage.sharedInstance.loadUserPreferences()
 		AlarmsPreferencesStorage.sharedInstance.loadPreferences()
 		TimersPreferenceStorage.sharedInstance.loadPreferences()
-		//WorldClockPreferencesStorage.sharedInstance.loadPreferences()
+		WorldClockPreferencesStorage.sharedInstance.loadPreferences()
 
 		/*
         let appObject = NSApp as NSApplication
