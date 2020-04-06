@@ -10,7 +10,7 @@ class AlarmsPreferencesStorage {
 	static let sharedInstance=AlarmsPreferencesStorage()
 	private let windowIsOpenKey="windowIsOpen"
 	private let alarmsHasLaunchedKey="alarmsHasLaunched"
-    let userDefaults=UserDefaults()
+	let userDefaults=UserDefaults.standard
 	var windowIsOpen=false
 	private init() {
 	}

@@ -7,7 +7,7 @@
 //
 import Foundation
 class TimersPreferenceStorage {
-	let userDefaults=UserDefaults()
+	let userDefaults=UserDefaults.standard
 	static let sharedInstance=TimersPreferenceStorage()
 	private let windowIsOpenKey="timersIsOpen"
 	private let hasLaunchedKey="timersHasLaunched"
@@ -16,6 +16,8 @@ class TimersPreferenceStorage {
 	var windowIsOpen=false
 	var asSeconds=false
 	var timerFloats=false
+	private init() {
+	}
 	func toggleTimerFloats() {
 		if timerFloats {
 			timerFloats=false
