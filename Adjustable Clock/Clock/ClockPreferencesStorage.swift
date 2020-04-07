@@ -115,7 +115,7 @@ class ClockPreferencesStorage {
     }
     func changeAndSaveColorSceme(colorChoice: ColorChoice) {
         self.colorChoice=colorChoice
-        userDefaults.set(self.colorChoice, forKey: colorChoiceKey)
+		userDefaults.set(self.colorChoice.rawValue, forKey: colorChoiceKey)
     }
     func changeAndSaveClockFloats() {
         clockFloats=(!clockFloats)

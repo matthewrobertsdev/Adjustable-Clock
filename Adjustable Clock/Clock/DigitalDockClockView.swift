@@ -13,7 +13,16 @@ class DigitalDockClockView: NSView {
 	var contentHeight: NSLayoutConstraint!
 	var displaySeconds=false
 	var backgroundColor=NSColor.systemGray
-	@objc dynamic var dark=false
+	let notifcationCenter=NotificationCenter.default
+	var dark=false {
+		didSet {
+			if dark {
+				notifcationCenter.post(name: NSNotification.Name.didChangToDarkMode, object: nil)
+			} else {
+				notifcationCenter.post(name: NSNotification.Name.didChangToLightMode, object: nil)
+			}
+		}
+	}
 	override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         setUp()
@@ -74,14 +83,13 @@ class DigitalDockClockView: NSView {
 			path=NSBezierPath(roundedRect: NSRect(x: 0, y: 0.25*frame.height, width: frame.size.width,
 												  height: 0.5*frame.height), xRadius: radius, yRadius: radius)
 		}
-		let clockNSColors=ColorDictionary()
 		if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom {
 		backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
 		} else if hasDarkAppearance(view: self) && !ClockPreferencesStorage.sharedInstance.colorForForeground {
-		 backgroundColor=clockNSColors.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
+			backgroundColor=ColorModel.sharedInstance.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
 			?? NSColor.systemGray
 		} else {
-			backgroundColor=clockNSColors.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
+			backgroundColor=ColorModel.sharedInstance.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
 				?? NSColor.systemGray
 		}
 		if hasDarkAppearance(view: self) && dark==false {
@@ -105,4 +113,9 @@ class DigitalDockClockView: NSView {
 		}
 		path.fill()
 	}
+}
+
+extension Notification.Name {
+	static let didChangToDarkMode=Notification.Name(rawValue: "DidChangToDarkMode")
+	static let didChangToLightMode=Notification.Name(rawValue: "DidChangToLightMode")
 }

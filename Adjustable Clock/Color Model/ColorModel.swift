@@ -20,23 +20,24 @@ Color Arrays
 //standard colors and custom colors
 //string "keys" are convenient for UserDefaults
 enum ColorChoice: String {
-	case systemColor="systemColor"
-	case black="black"
-    case gray="gray"
-    case white="white"
-    case red="red"
-    case orange="orange"
-    case yellow="yellow"
-    case green="green"
-    case blue="blue"
-	case indigo="indigo"
-    case purple="purple"
-	case pink="pink"
-	case brown="brown"
-    case custom="custom"
+	case systemColor
+	case black
+    case gray
+    case white
+    case red
+    case orange
+    case yellow
+    case green
+    case blue
+	case indigo
+    case purple
+	case pink
+	case brown
+    case custom
 }
 //color choice strings act as keys for NSColors
-class ColorDictionary {
+class ColorModel {
+	static let sharedInstance=ColorModel()
     //name-color dictionary
     //name for identification
     //color for actual color values
@@ -45,6 +46,7 @@ class ColorDictionary {
 	var darkColorsDictionary=[ColorChoice: NSColor]()
     //init should make the dictionary
     init() {
+		 makeColorArray()
         makeColorDictionary()
 		makeLightColorDictionary()
 		makeDarkColorDictionary()
@@ -92,15 +94,10 @@ class ColorDictionary {
 			ColorChoice.pink: NSColor(named: "DarkPink") ?? NSColor.systemPink,
 			ColorChoice.brown: NSColor(named: "DarkBrown") ?? NSColor.systemBrown]
     }
-}
 //just an array of color choices so that the colors can be displayed in an order
-class ColorArrays {
     //an array of color choice strings
     var colorArray=[ColorChoice]()
     //init should make the array
-    init() {
-        makeColorArray()
-    }
     //put color choice strings in the standard order
     func makeColorArray() {
 		colorArray.append(ColorChoice.systemColor)

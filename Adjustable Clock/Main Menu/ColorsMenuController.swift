@@ -8,13 +8,8 @@
 import Cocoa
 class ColorsMenuController: NSObject {
     var colorsMenu: NSMenu?
-    let clockNSColors=ColorDictionary()
-    let colorArray=ColorArrays()
 	let nsColorPanel=NSColorPanel.shared
-	@objc var objectToObserve=DockClockController.dockClockObject.analogClockView
-	@objc var objectToObserve2=DockClockController.dockClockObject.digitalClockView
-	var observation: NSKeyValueObservation?
-	var observation2: NSKeyValueObservation?
+	let notificationCenter=NotificationCenter.default
 	var dark=false
     init(colorsMenu: NSMenu) {
 		super.init()
@@ -22,26 +17,22 @@ class ColorsMenuController: NSObject {
         makeColorMenuUI()
         //reflect saved (or default) choice
         updateColorMenuUI()
-		observation = observe(
-			\.objectToObserve.dark,
-            options: [.old, .new]
-        ) { _, change in
-			self.dark=change.newValue ?? false
-			self.makeColorMenuUI()
-			self.updateColorMenuUI()
-        }
-		observation2 = observe(
-			\.objectToObserve2.dark,
-            options: [.old, .new]
-        ) { _, change in
-			self.dark=change.newValue ?? false
-			self.makeColorMenuUI()
-			self.updateColorMenuUI()
-        }
+		notificationCenter.addObserver(self, selector: #selector(handleChangeToDarkMode), name: NSNotification.Name.didChangToDarkMode, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(handleChangeToDarkMode), name: NSNotification.Name.didChangToLightMode, object: nil)
     }
+	@objc func handleChangeToDarkMode(sender: Any) {
+		dark=true
+		makeColorMenuUI()
+		updateColorMenuUI()
+	}
+	@objc func handleChangeToLightMode(sender: Any) {
+		dark=false
+		makeColorMenuUI()
+		updateColorMenuUI()
+	}
     @objc func changeColor(sender: NSMenuItem) {
-        let newColorChoice=colorArray.colorArray[sender.tag]
-        ClockPreferencesStorage.sharedInstance.changeAndSaveColorSceme(colorChoice: newColorChoice)
+        let newColorChoice=ColorModel.sharedInstance.colorArray[sender.tag]
+		ClockPreferencesStorage.sharedInstance.changeAndSaveColorSceme(colorChoice: newColorChoice)
         updateColorMenuUI()
         updateClocksForPreferenceChanges()
     }
@@ -81,7 +72,7 @@ class ColorsMenuController: NSObject {
 		//so program can conrol what user can select
         colorsMenu.autoenablesItems=false
         //enable menu items
-        for index in 0...colorArray.colorArray.count-1 {
+        for index in 0...ColorModel.sharedInstance.colorArray.count-1 {
             colorsMenu.items[index].isEnabled=true
             colorsMenu.items[index].target=self
 			colorsMenu.items[index].action=#selector(changeColor(sender:))
@@ -90,9 +81,9 @@ class ColorsMenuController: NSObject {
 			if dark {
 				templateImage=NSImage(named: "white_rectangle") ?? NSImage()
 				if ClockPreferencesStorage.sharedInstance.colorForForeground {
-					tintColor=clockNSColors.lightColorsDictionary[colorArray.colorArray[index]]  ?? NSColor.clear
+					tintColor=ColorModel.sharedInstance.lightColorsDictionary[ColorModel.sharedInstance.colorArray[index]]  ?? NSColor.clear
 				} else {
-					tintColor=clockNSColors.darkColorsDictionary[colorArray.colorArray[index]]  ?? NSColor.clear
+					tintColor=ColorModel.sharedInstance.darkColorsDictionary[ColorModel.sharedInstance.colorArray[index]]  ?? NSColor.clear
 				}
 				if index==0 { if ClockPreferencesStorage.sharedInstance.colorForForeground {
 						tintColor=NSColor.white
@@ -105,7 +96,7 @@ class ColorsMenuController: NSObject {
 				}
 			} else {
 			templateImage=NSImage(named: "black_rectangle") ?? NSImage()
-				tintColor=clockNSColors.colorsDictionary[colorArray.colorArray[index]] ?? NSColor.clear
+				tintColor=ColorModel.sharedInstance.colorsDictionary[ColorModel.sharedInstance.colorArray[index]] ?? NSColor.clear
 				if index==0 && ClockPreferencesStorage.sharedInstance.colorForForeground {
 					tintColor=NSColor.black
 				}
@@ -118,21 +109,21 @@ class ColorsMenuController: NSObject {
 					colorsMenu.items[index].image=colorImage
 		}
         //set-up reverse color mode menuItem
-		colorsMenu.items[colorArray.colorArray.count+1].isEnabled=true
-		colorsMenu.items[colorArray.colorArray.count+1].target=self
-		colorsMenu.items[colorArray.colorArray.count+1].action=#selector(colorOnForeground(sender:))
-		colorsMenu.items[colorArray.colorArray.count+2].isEnabled=true
-		colorsMenu.items[colorArray.colorArray.count+2].target=self
-		colorsMenu.items[colorArray.colorArray.count+2].action=#selector(colorOnBackground(sender:))
+		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+1].isEnabled=true
+		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+1].target=self
+		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+1].action=#selector(colorOnForeground(sender:))
+		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+2].isEnabled=true
+		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+2].target=self
+		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+2].action=#selector(colorOnBackground(sender:))
 		//set-up show color panel menuItem
-		colorsMenu.items[colorArray.colorArray.count+4].isEnabled=true
-        colorsMenu.items[colorArray.colorArray.count+4].target=self
-        colorsMenu.items[colorArray.colorArray.count+4].action=#selector(showColorPanel(sender:))
+		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+4].isEnabled=true
+        colorsMenu.items[ColorModel.sharedInstance.colorArray.count+4].target=self
+        colorsMenu.items[ColorModel.sharedInstance.colorArray.count+4].action=#selector(showColorPanel(sender:))
 	}
 	func updateColorMenuUI() {
-        for index in 0...colorArray.colorArray.count-1 {
+        for index in 0...ColorModel.sharedInstance.colorArray.count-1 {
             //if saved color string matches the array at menuItem's index, select
-            if ClockPreferencesStorage.sharedInstance.colorChoice==colorArray.colorArray[index] {
+            if ClockPreferencesStorage.sharedInstance.colorChoice==ColorModel.sharedInstance.colorArray[index] {
 				colorsMenu?.items[index].state=NSControl.StateValue.on
             }
             //otherwise, deselect
@@ -150,13 +141,13 @@ class ColorsMenuController: NSObject {
 		}
         templateImage.isTemplate=true
 		let colorImage=tintExceptBorder(image: templateImage, tintColor: tintColor, borderPixels: CGFloat(0.25))
-		colorsMenu?.items[colorArray.colorArray.count-1].image=colorImage
+		colorsMenu?.items[ColorModel.sharedInstance.colorArray.count-1].image=colorImage
 		if ClockPreferencesStorage.sharedInstance.colorForForeground {
-			colorsMenu?.items[colorArray.colorArray.count+1].state=NSControl.StateValue.on
-			colorsMenu?.items[colorArray.colorArray.count+2].state=NSControl.StateValue.off
+			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+1].state=NSControl.StateValue.on
+			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+2].state=NSControl.StateValue.off
 		} else {
-			colorsMenu?.items[colorArray.colorArray.count+1].state=NSControl.StateValue.off
-			colorsMenu?.items[colorArray.colorArray.count+2].state=NSControl.StateValue.on
+			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+1].state=NSControl.StateValue.off
+			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+2].state=NSControl.StateValue.on
 		}
     }
 	func updateClocksForPreferenceChanges() {

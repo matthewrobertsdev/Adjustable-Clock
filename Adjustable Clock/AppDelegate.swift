@@ -18,12 +18,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 		//*
 		GeneralPreferencesStorage.sharedInstance.loadUserPreferences()
-		//ClockPreferencesStorage.sharedInstance.loadUserPreferences()
+		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
 		AlarmsPreferencesStorage.sharedInstance.loadPreferences()
 		TimersPreferenceStorage.sharedInstance.loadPreferences()
 		WorldClockPreferencesStorage.sharedInstance.loadPreferences()
 
-		/*
+		//*
         let appObject = NSApp as NSApplication
 		if let mainMenu=appObject.mainMenu as? MainMenu {
 			colorsMenuController=ColorsMenuController(colorsMenu: mainMenu.colorsMenu)
@@ -33,10 +33,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			generalMenuController=GeneralMenuController(menu: mainMenu.generalMenu)
 			//worldClockMenuController=WorldClockMenuController(menu: mainMenu.worldClockMenu)
 		}
-*/
-		/*
-		AlarmCenter.sharedInstance.setUp()
+		//*
+		//AlarmCenter.sharedInstance.setUp()
 		DockClockController.dockClockObject.updateDockTile()
+		/*
 		if AlarmsPreferencesStorage.sharedInstance.windowIsOpen {
 			AlarmsWindowController.alarmsObject.showAlarms()
 		}

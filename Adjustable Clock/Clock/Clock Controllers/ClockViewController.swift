@@ -19,9 +19,8 @@ class ClockViewController: ColorfulViewController {
 	@IBOutlet weak var clockWidthConstraint: NSLayoutConstraint!
 	@IBOutlet weak var clockHeightConstraint: NSLayoutConstraint!
 	let model=ClockModel()
-	var magnifierSemaphore=DispatchSemaphore(value: 1)
 	var tellingTime: NSObjectProtocol?
-	var updateTimer: DispatchSourceTimer?
+	var updateTimer: DispatchSourceTimer!
 	let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
 	var digitalClockAnimator: DigitalClockAnimator?
 	var analogClockAnimator: AnalogClockAnimator?
@@ -58,12 +57,6 @@ class ClockViewController: ColorfulViewController {
 		let colorChangeObserver =
 			notifier.addObserver(self, selector:
 				#selector(interfaceModeChanged(sender:)), name: colorChangeNotification, object: nil)
-		guard let timeProtocol=tellingTime else { return }
-		guard let timer=updateTimer else { return }
-		digitalClockAnimator=DigitalClockAnimator(model: model, tellingTime: timeProtocol,
-												  updateTimer: timer, digitalClock: digitalClock, animatedDay: animatedDay)
-		analogClockAnimator=AnalogClockAnimator(model: model, tellingTime: timeProtocol,
-												updateTimer: timer, analogClock: analogClock, animatedDay: animatedDay)
 		showClock()
 	}
 	@objc func interfaceModeChanged(sender: NSNotification) {
@@ -77,6 +70,10 @@ class ClockViewController: ColorfulViewController {
 			showDigitalClock() }
 	}
 	func showAnalogClock() {
+		guard let timeProtocol=tellingTime else { return }
+		guard let timer=updateTimer else { return }
+		analogClockAnimator=AnalogClockAnimator(model: model, tellingTime: timeProtocol,
+		updateTimer: timer, analogClock: analogClock, animatedDay: animatedDay)
 		setConstraints()
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: digitalClock)
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: analogClock)
@@ -92,6 +89,10 @@ class ClockViewController: ColorfulViewController {
 		analogClockAnimator?.animate()
 	}
 	func showDigitalClock() {
+		guard let timeProtocol=tellingTime else { return }
+		guard let timer=updateTimer else { return }
+		digitalClockAnimator=DigitalClockAnimator(model: model, tellingTime: timeProtocol,
+		updateTimer: timer, digitalClock: digitalClock, animatedDay: animatedDay)
 		setConstraints()
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: analogClock)
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: digitalClock)
@@ -187,12 +188,10 @@ class ClockViewController: ColorfulViewController {
 			maginiferScrollView.magnification=desiredMaginifcation
 	}
 	func resizeContents(maxHeight: CGFloat) {
-		magnifierSemaphore.wait()
 			digitalClock.sizeToFit()
 			animatedDay.sizeToFit()
 			let desiredMaginifcation=maxHeight/model.height
 			maginiferScrollView.magnification=desiredMaginifcation
-		magnifierSemaphore.signal()
 	}
 	@objc func applyColors(sender: NSNotification) {
 		applyColors()

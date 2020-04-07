@@ -70,6 +70,7 @@
 		9F97C86223EB7C40005381A0 /* ForegroundColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F97C86123EB7C40005381A0 /* ForegroundColorView.swift */; };
 		9F97C86423EB7C48005381A0 /* BackgroundColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F97C86323EB7C48005381A0 /* BackgroundColorView.swift */; };
 		9F97C86623EB8586005381A0 /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F97C86523EB8586005381A0 /* ColorView.swift */; };
+		9F9ABDC8243BBECC00F47510 /* InterfaceChangedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9ABDC7243BBECC00F47510 /* InterfaceChangedView.swift */; };
 		9FA60EA423DB6F20004F787F /* AlertSoundModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA60EA323DB6F20004F787F /* AlertSoundModel.swift */; };
 		9FA60EA623DB7286004F787F /* GenericTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA60EA523DB7286004F787F /* GenericTableCellView.swift */; };
 		9FA6A7A323D8E2BC005564E7 /* GeneralPreferencesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FA6A7A223D8E2BC005564E7 /* GeneralPreferencesStorage.swift */; };
@@ -187,6 +188,7 @@
 		9F97C86123EB7C40005381A0 /* ForegroundColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForegroundColorView.swift; sourceTree = "<group>"; };
 		9F97C86323EB7C48005381A0 /* BackgroundColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundColorView.swift; sourceTree = "<group>"; };
 		9F97C86523EB8586005381A0 /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
+		9F9ABDC7243BBECC00F47510 /* InterfaceChangedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceChangedView.swift; sourceTree = "<group>"; };
 		9FA60EA323DB6F20004F787F /* AlertSoundModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSoundModel.swift; sourceTree = "<group>"; };
 		9FA60EA523DB7286004F787F /* GenericTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableCellView.swift; sourceTree = "<group>"; };
 		9FA6A7A223D8E2BC005564E7 /* GeneralPreferencesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesStorage.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				9F3AD84723C7D22C005FCC0A /* MagnifierScrollView.swift */,
 				9F97C85D23EB7B1E005381A0 /* ColorfulViewController.swift */,
 				9F2A500E241D400F00369109 /* WindowManager.swift */,
+				9F9ABDC7243BBECC00F47510 /* InterfaceChangedView.swift */,
 			);
 			path = "General UI";
 			sourceTree = "<group>";
@@ -740,6 +743,7 @@
 				9F35462B23F20E40009FA191 /* TimersCenter.swift in Sources */,
 				9F078A9D23CA7A79007072BB /* FullViewWindowController.swift in Sources */,
 				9FA6A7A523D8E687005564E7 /* EditableAlarmWindowController.swift in Sources */,
+				9F9ABDC8243BBECC00F47510 /* InterfaceChangedView.swift in Sources */,
 				9F538C4F2116B06300A72242 /* SimplePreferencesViewController.swift in Sources */,
 				9FF3F89924188E14006751A0 /* AlarmCollectionViewItem.swift in Sources */,
 				9F260CB323F64FF000D021BB /* WorldClockMenuProtocol.swift in Sources */,

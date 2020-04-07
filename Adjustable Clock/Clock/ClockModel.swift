@@ -10,7 +10,6 @@ class ClockModel {
 	//properties
 	var fullscreen=false
 	var color=""
-	var clockNSColors=ColorDictionary()
 	var showDayInfo=false
 	var updateTime=1000
 	var dockTimeString="", dockDateString=""

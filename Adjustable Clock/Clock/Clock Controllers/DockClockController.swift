@@ -6,7 +6,7 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import AppKit
-class DockClockController: NSObject {
+class DockClockController {
 	static let dockClockObject=DockClockController()
 	let analogClockView=AnalogDockClockView()
 	let digitalClockView=DigitalDockClockView()
@@ -17,18 +17,8 @@ class DockClockController: NSObject {
 	var preferences=GeneralPreferencesStorage.sharedInstance
 	@objc var objectToObserve: DigitalDockClockView!
 	var observation: NSKeyValueObservation?
-	private override init() {
-		super.init()
+	private init() {
 		GeneralPreferencesStorage.sharedInstance.loadUserPreferences()
-		objectToObserve=digitalClockView
-		observation = observe(
-			\.objectToObserve.dark,
-            options: [.old, .new]
-        ) { _, _ in
-			self.digitalClockView.draw(self.digitalClockView.bounds)
-			self.analogClockView.draw(self.analogClockView.bounds)
-			self.digitalClockView.setNeedsDisplay(self.digitalClockView.bounds)
-        }
 		animateTime()
 	}
 	func updateDockTile() {
