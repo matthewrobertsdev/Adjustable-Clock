@@ -8,6 +8,9 @@
 import Cocoa
 class ClockModel {
 	//properties
+	static let standard=ClockModel()
+	private init() {
+	}
 	var fullscreen=false
 	var color=""
 	var showDayInfo=false

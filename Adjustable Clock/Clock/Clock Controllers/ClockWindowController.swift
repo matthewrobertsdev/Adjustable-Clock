@@ -7,13 +7,11 @@
 //
 import Cocoa
 class ClockWindowController: FullViewWindowController, NSWindowDelegate {
-	static var clockObject=ClockWindowController()
 	var fullscreen=false
     override func windowDidLoad() {
         super.windowDidLoad()
 		WindowManager.sharedInstance.count+=1
 		window?.delegate=self
-		ClockWindowController.clockObject=ClockWindowController()
 		guard let clockViewController=window?.contentViewController as? ClockViewController else { return }
 		window?.minSize=CGSize(width: 150, height: 150)
 		if ClockPreferencesStorage.sharedInstance.hasLaunchedBefore() {
@@ -33,34 +31,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
         enableClockMenu(enabled: true)
         updateClockMenuUI()
     }
-	func clockWindowPresent() -> Bool {
-		return isWindowPresent(identifier: UserInterfaceIdentifier.digitalClockWindow)
-	}
-	func showClock() {
-		if clockWindowPresent()==false {
-		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
-		guard let clockWindowController =
-			mainStoryBoard.instantiateController(withIdentifier:
-				"ClockWindowController") as? ClockWindowController else { return }
-		ClockWindowController.clockObject=clockWindowController
-		ClockWindowController.clockObject.loadWindow()
-			if let clockViewController=clockWindowController.contentViewController as? ClockViewController {
-				clockViewController.showClock()
-				ClockWindowController.clockObject.showWindow(nil)
-			}
-		} else {
-			let appObject = NSApp as NSApplication
-			for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
-				if let clockWindowController=window.windowController as? ClockWindowController {
-					ClockWindowController.clockObject=clockWindowController
-					if let clockViewController=clockWindowController.contentViewController as? ClockViewController {
-						clockViewController.showClock()
-						window.makeKeyAndOrderFront(nil)
-					}
-				}
-			}
-		}
-	}
+	
 	func closeDigitalClock() {
 		let appObject = NSApp as NSApplication
 		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow { window.close() }
@@ -119,7 +90,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 			digitalClockVC.resizeContents(maxHeight: windowSize.height)
 		}
 		if ClockPreferencesStorage.sharedInstance.useAnalog && ClockPreferencesStorage.sharedInstance.fullscreen {
-			digitalClockVC.analogClockAnimator?.animate()
+			digitalClockVC.animateAnalog()
 		}
 	}
     func windowWillClose(_ notification: Notification) {

@@ -14,6 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	var alarmsMenuController: AlarmsMenuController?
 	var timersMenuController: TimersMenuController?
 	var worldClockMenuController: WorldClockMenuController?
+	var clockWindowController: ClockWindowController!
 	//on launch
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 		//*
@@ -65,7 +66,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     //if the dock icon is clicked
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
 		if !flag {
-			ClockWindowController.clockObject.showClock()
+			showClock()
 		}
 		/*
 		if WindowManager.sharedInstance.dockWindowArray.count==WindowManager.sharedInstance.count {
@@ -76,5 +77,34 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     func applicationWillTerminate(_ aNotification: Notification) {
 		GeneralPreferencesStorage.sharedInstance.closing=true
+	}
+	
+	func clockWindowPresent() -> Bool {
+		return isWindowPresent(identifier: UserInterfaceIdentifier.digitalClockWindow)
+	}
+	func showClock() {
+		if clockWindowPresent()==false {
+		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
+		guard let windowController =
+			mainStoryBoard.instantiateController(withIdentifier:
+				"ClockWindowController") as? ClockWindowController else { return }
+		clockWindowController=windowController
+		clockWindowController.loadWindow()
+			if let clockViewController=clockWindowController.contentViewController as? ClockViewController {
+				clockViewController.showClock()
+				clockWindowController.showWindow(nil)
+			}
+		} else {
+			let appObject = NSApp as NSApplication
+			for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
+				if let windowController=window.windowController as? ClockWindowController {
+					clockWindowController=windowController
+					if let clockViewController=clockWindowController.contentViewController as? ClockViewController {
+						clockViewController.showClock()
+						window.makeKeyAndOrderFront(nil)
+					}
+				}
+			}
+		}
 	}
 }
