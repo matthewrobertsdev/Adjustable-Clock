@@ -122,6 +122,7 @@ extension ClockViewController {
 		}
 	}
 	func displayAnalogForDock() {
+		updateTimer?.cancel()
 		analogClock.clearHands()
 		animatedDay.stringValue=model.dockDateString
 	}
