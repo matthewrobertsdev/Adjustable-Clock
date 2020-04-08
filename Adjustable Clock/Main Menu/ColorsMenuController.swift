@@ -18,7 +18,7 @@ class ColorsMenuController: NSObject {
         //reflect saved (or default) choice
         updateColorMenuUI()
 		notificationCenter.addObserver(self, selector: #selector(handleChangeToDarkMode), name: NSNotification.Name.didChangToDarkMode, object: nil)
-		notificationCenter.addObserver(self, selector: #selector(handleChangeToDarkMode), name: NSNotification.Name.didChangToLightMode, object: nil)
+		notificationCenter.addObserver(self, selector: #selector(handleChangeToLightMode), name: NSNotification.Name.didChangToLightMode, object: nil)
     }
 	@objc func handleChangeToDarkMode(sender: Any) {
 		dark=true
