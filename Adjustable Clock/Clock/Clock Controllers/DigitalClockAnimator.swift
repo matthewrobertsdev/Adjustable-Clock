@@ -9,6 +9,8 @@ import AppKit
 extension ClockViewController {
 	func displayDigitalForDock() {
 		updateTimer.cancel()
+		updateTimer.setEventHandler {
+		}
 		self.digitalClock.stringValue=model.dockTimeString
 		self.animatedDay.stringValue=model.dockDateString
 	}

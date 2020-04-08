@@ -46,10 +46,12 @@ class ClockMenuController: ClockMenuDelegate {
 	}
 	func showClockClicked() {
 		//ClockWindowController.clockObject.showClock()
+		updateClock()
 	}
 	func updateForPreferencesChange() {
         updateUserInterface()
 		//ClockWindowController.clockObject.updateClockToPreferencesChange()
+		updateClock()
     }
 	func updateUserInterface() {
         if clockPreferences.fullscreen {

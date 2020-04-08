@@ -65,7 +65,6 @@ extension ClockViewController {
 	}
 	private func animateTime() {
 		analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
-		updateTimer.cancel()
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		performWithoutAnimation {
 			runAnimation(early: false)

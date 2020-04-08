@@ -78,7 +78,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
 		GeneralPreferencesStorage.sharedInstance.closing=true
 	}
-	
 	func clockWindowPresent() -> Bool {
 		return isWindowPresent(identifier: UserInterfaceIdentifier.digitalClockWindow)
 	}
