@@ -14,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	var alarmsMenuController: AlarmsMenuController?
 	var timersMenuController: TimersMenuController?
 	var worldClockMenuController: WorldClockMenuController?
-	var clockWindowController: ClockWindowController!
+	var clockWindowController: ClockWindowController?
 	//on launch
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 		//*
@@ -88,17 +88,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			mainStoryBoard.instantiateController(withIdentifier:
 				"ClockWindowController") as? ClockWindowController else { return }
 		clockWindowController=windowController
-		clockWindowController.loadWindow()
-			if let clockViewController=clockWindowController.contentViewController as? ClockViewController {
+			clockWindowController?.loadWindow()
+			if let clockViewController=clockWindowController?.contentViewController as? ClockViewController {
 				clockViewController.showClock()
-				clockWindowController.showWindow(nil)
+				clockWindowController?.showWindow(nil)
 			}
 		} else {
 			let appObject = NSApp as NSApplication
 			for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
 				if let windowController=window.windowController as? ClockWindowController {
 					clockWindowController=windowController
-					if let clockViewController=clockWindowController.contentViewController as? ClockViewController {
+					if let clockViewController=clockWindowController?.contentViewController as? ClockViewController {
 						clockViewController.showClock()
 						window.makeKeyAndOrderFront(nil)
 					}

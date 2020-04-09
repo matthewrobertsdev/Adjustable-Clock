@@ -31,7 +31,6 @@ extension ClockViewController {
 	private func animateTimeAndDayInfo() {
 		digitalClock.stringValue=model.getTime()
 		animatedDay.stringValue=model.getDayInfo()
-		updateTimer.cancel()
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		updateTimer.schedule(deadline: .now()+getSecondAdjustment(),
 							 repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))

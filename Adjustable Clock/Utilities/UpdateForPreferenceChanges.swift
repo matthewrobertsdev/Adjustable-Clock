@@ -10,7 +10,8 @@ import Cocoa
 
 func updateClock() {
 	if let app=NSApp.delegate as? AppDelegate {
-		if let viewController=app.clockWindowController.contentViewController as? ClockViewController {
+		app.showClock()
+		if let viewController=app.clockWindowController?.contentViewController as? ClockViewController {
 			viewController.updateClock()
 		}
 	}

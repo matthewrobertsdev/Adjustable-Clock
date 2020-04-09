@@ -17,12 +17,13 @@ class ClockMenuController: ClockMenuDelegate {
 	func useDigitalClicked() {
 		clockPreferences.changeAndSaveUseDigital()
 		//ClockWindowController.clockObject.showClock()
-		updateUserInterface()
+		updateForPreferencesChange()
 	}
 	func useAnalogClicked() {
 		clockPreferences.changeAndSaveUseAnalog()
 		//ClockWindowController.clockObject.showClock()
-		updateUserInterface()
+		updateForPreferencesChange()
+		
 	}
 	func floatClicked() {
 		clockPreferences.changeAndSaveClockFloats()
@@ -52,6 +53,7 @@ class ClockMenuController: ClockMenuDelegate {
         updateUserInterface()
 		//ClockWindowController.clockObject.updateClockToPreferencesChange()
 		updateClock()
+		
     }
 	func updateUserInterface() {
         if clockPreferences.fullscreen {
