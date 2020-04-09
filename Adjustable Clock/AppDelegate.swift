@@ -29,6 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		if let mainMenu=appObject.mainMenu as? MainMenu {
 			colorsMenuController=ColorsMenuController(colorsMenu: mainMenu.colorsMenu)
 			clockMenuController=ClockMenuController(menu: mainMenu.clockMenu)
+			enableClockMenu(enabled: false)
 			alarmsMenuController=AlarmsMenuController(menu: mainMenu.alarmsMenu)
 			timersMenuController=TimersMenuController(menu: mainMenu.timersMenu)
 			generalMenuController=GeneralMenuController(menu: mainMenu.generalMenu)

@@ -46,8 +46,7 @@ class ClockMenuController: ClockMenuDelegate {
         updateForPreferencesChange()
 	}
 	func showClockClicked() {
-		//ClockWindowController.clockObject.showClock()
-		updateClock()
+		showClock()
 	}
 	func updateForPreferencesChange() {
         updateUserInterface()

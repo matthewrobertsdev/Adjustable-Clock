@@ -189,10 +189,4 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 			self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
 		}
 	}
-	func enableClockMenu(enabled: Bool) {
-		guard let appDelagte = NSApplication.shared.delegate as? AppDelegate else {
-			return
-		}
-		appDelagte.clockMenuController?.enableMenu(enabled: enabled)
-	}
 }
