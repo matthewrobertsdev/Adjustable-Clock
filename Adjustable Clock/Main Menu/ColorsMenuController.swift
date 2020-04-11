@@ -151,7 +151,7 @@ class ColorsMenuController: NSObject {
 		}
     }
 	func updateClocksForPreferenceChanges() {
-		updateClock()
+		ClockWindowController.clockObject.updateClockToPreferencesChange()
 		DockClockController.dockClockObject.updateClockForPreferencesChange()
 		AlarmsWindowController.alarmsObject.updateForPreferencesChange()
 		TimersWindowController.timersObject.update()

@@ -18,7 +18,7 @@ class ClockViewController: ColorfulViewController {
 	@IBOutlet var magnifierLeadingConstraint: NSLayoutConstraint!
 	@IBOutlet weak var clockWidthConstraint: NSLayoutConstraint!
 	@IBOutlet weak var clockHeightConstraint: NSLayoutConstraint!
-	let model=ClockModel.standard
+	let model=ClockModel()
 	var tellingTime: NSObjectProtocol?
 	var updateTimer: DispatchSourceTimer!
 	let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter

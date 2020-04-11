@@ -7,6 +7,7 @@
 //
 import Cocoa
 class ClockWindowController: FullViewWindowController, NSWindowDelegate {
+	static var clockObject=ClockWindowController()
 	var fullscreen=false
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -189,4 +190,39 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 			self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
 		}
 	}
+	func clockWindowPresent() -> Bool {
+		return isWindowPresent(identifier: UserInterfaceIdentifier.digitalClockWindow)
+	}
+	func showClock() {
+		if clockWindowPresent()==false {
+		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
+		guard let clockWindowController =
+			mainStoryBoard.instantiateController(withIdentifier:
+				"ClockWindowController") as? ClockWindowController else { return }
+		ClockWindowController.clockObject=clockWindowController
+		ClockWindowController.clockObject.loadWindow()
+			if let clockViewController=clockWindowController.contentViewController as? ClockViewController {
+				clockViewController.showClock()
+				ClockWindowController.clockObject.showWindow(nil)
+			}
+		} else {
+			let appObject = NSApp as NSApplication
+			for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
+				if let clockWindowController=window.windowController as? ClockWindowController {
+					ClockWindowController.clockObject=clockWindowController
+					if let clockViewController=clockWindowController.contentViewController as? ClockViewController {
+						clockViewController.showClock()
+						window.makeKeyAndOrderFront(nil)
+					}
+				}
+			}
+		}
+	}
+	func enableClockMenu(enabled: Bool) {
+		guard let appDelagte = NSApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		appDelagte.clockMenuController?.enableMenu(enabled: enabled)
+	}
+
 }

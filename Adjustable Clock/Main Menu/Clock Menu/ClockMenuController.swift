@@ -11,17 +11,18 @@ class ClockMenuController: ClockMenuDelegate {
 	var menu: ClockMenu
 	init(menu: ClockMenu) {
 		self.menu=menu
+		menu.autoenablesItems=false
 		menu.clockMenuDelegate=self
 		updateUserInterface()
 	}
 	func useDigitalClicked() {
 		clockPreferences.changeAndSaveUseDigital()
-		//ClockWindowController.clockObject.showClock()
+		ClockWindowController.clockObject.showClock()
 		updateForPreferencesChange()
 	}
 	func useAnalogClicked() {
 		clockPreferences.changeAndSaveUseAnalog()
-		//ClockWindowController.clockObject.showClock()
+		ClockWindowController.clockObject.showClock()
 		updateForPreferencesChange()
 		
 	}
@@ -46,12 +47,12 @@ class ClockMenuController: ClockMenuDelegate {
         updateForPreferencesChange()
 	}
 	func showClockClicked() {
-		showClock()
+		ClockWindowController.clockObject.showClock()
 	}
 	func updateForPreferencesChange() {
         updateUserInterface()
 		//ClockWindowController.clockObject.updateClockToPreferencesChange()
-		updateClock()
+		ClockWindowController.clockObject.updateClockToPreferencesChange()
 		
     }
 	func updateUserInterface() {

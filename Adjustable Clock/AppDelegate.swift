@@ -14,7 +14,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	var alarmsMenuController: AlarmsMenuController?
 	var timersMenuController: TimersMenuController?
 	var worldClockMenuController: WorldClockMenuController?
-	var clockWindowController: ClockWindowController?
 	//on launch
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 		//*
@@ -29,7 +28,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		if let mainMenu=appObject.mainMenu as? MainMenu {
 			colorsMenuController=ColorsMenuController(colorsMenu: mainMenu.colorsMenu)
 			clockMenuController=ClockMenuController(menu: mainMenu.clockMenu)
-			enableClockMenu(enabled: false)
 			alarmsMenuController=AlarmsMenuController(menu: mainMenu.alarmsMenu)
 			timersMenuController=TimersMenuController(menu: mainMenu.timersMenu)
 			generalMenuController=GeneralMenuController(menu: mainMenu.generalMenu)
@@ -38,7 +36,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		//*
 		//AlarmCenter.sharedInstance.setUp()
 		DockClockController.dockClockObject.updateDockTile()
-		/*
 		if AlarmsPreferencesStorage.sharedInstance.windowIsOpen {
 			AlarmsWindowController.alarmsObject.showAlarms()
 		}
@@ -61,50 +58,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			ClockWindowController.clockObject.showClock()
 			clockMenuController?.enableMenu(enabled: true)
 		}
-*/
+
 	}
 
     //if the dock icon is clicked
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
 		if !flag {
-			showClock()
+			ClockWindowController.clockObject.showClock()
 		}
-		/*
 		if WindowManager.sharedInstance.dockWindowArray.count==WindowManager.sharedInstance.count {
 			WindowManager.sharedInstance.dockWindowArray.last?.deminiaturize(nil)
 		}
-*/
 		return false
     }
     func applicationWillTerminate(_ aNotification: Notification) {
 		GeneralPreferencesStorage.sharedInstance.closing=true
-	}
-	func clockWindowPresent() -> Bool {
-		return isWindowPresent(identifier: UserInterfaceIdentifier.digitalClockWindow)
-	}
-	func showClock() {
-		if clockWindowPresent()==false {
-		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
-		guard let windowController =
-			mainStoryBoard.instantiateController(withIdentifier:
-				"ClockWindowController") as? ClockWindowController else { return }
-		clockWindowController=windowController
-			clockWindowController?.loadWindow()
-			if let clockViewController=clockWindowController?.contentViewController as? ClockViewController {
-				clockViewController.showClock()
-				clockWindowController?.showWindow(nil)
-			}
-		} else {
-			let appObject = NSApp as NSApplication
-			for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
-				if let windowController=window.windowController as? ClockWindowController {
-					clockWindowController=windowController
-					if let clockViewController=clockWindowController?.contentViewController as? ClockViewController {
-						clockViewController.showClock()
-						window.makeKeyAndOrderFront(nil)
-					}
-				}
-			}
-		}
 	}
 }
