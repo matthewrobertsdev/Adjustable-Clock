@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9FB47E591F480A43009D82FF"
-               BuildableName = "Adjustable Clock.app"
-               BlueprintName = "Adjustable Clock"
-               ReferencedContainer = "container:Adjustable Clock.xcodeproj">
+               BuildableName = "Clock Suite.app"
+               BlueprintName = "Clock Suite"
+               ReferencedContainer = "container:Clock Suite.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -31,9 +31,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9FB47E591F480A43009D82FF"
-            BuildableName = "Adjustable Clock.app"
-            BlueprintName = "Adjustable Clock"
-            ReferencedContainer = "container:Adjustable Clock.xcodeproj">
+            BuildableName = "Clock Suite.app"
+            BlueprintName = "Clock Suite"
+            ReferencedContainer = "container:Clock Suite.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -42,9 +42,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9FB47E6A1F480A43009D82FF"
-               BuildableName = "Adjustable ClockTests.xctest"
-               BlueprintName = "Adjustable ClockTests"
-               ReferencedContainer = "container:Adjustable Clock.xcodeproj">
+               BuildableName = "Clock SuiteTests.xctest"
+               BlueprintName = "Clock SuiteTests"
+               ReferencedContainer = "container:Clock Suite.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -52,9 +52,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9FB47E751F480A43009D82FF"
-               BuildableName = "Adjustable ClockUITests.xctest"
-               BlueprintName = "Adjustable ClockUITests"
-               ReferencedContainer = "container:Adjustable Clock.xcodeproj">
+               BuildableName = "Clock SuiteUITests.xctest"
+               BlueprintName = "Clock SuiteUITests"
+               ReferencedContainer = "container:Clock Suite.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -74,9 +74,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9FB47E591F480A43009D82FF"
-            BuildableName = "Adjustable Clock.app"
-            BlueprintName = "Adjustable Clock"
-            ReferencedContainer = "container:Adjustable Clock.xcodeproj">
+            BuildableName = "Clock Suite.app"
+            BlueprintName = "Clock Suite"
+            ReferencedContainer = "container:Clock Suite.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -110,9 +110,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9FB47E591F480A43009D82FF"
-            BuildableName = "Adjustable Clock.app"
-            BlueprintName = "Adjustable Clock"
-            ReferencedContainer = "container:Adjustable Clock.xcodeproj">
+            BuildableName = "Clock Suite.app"
+            BlueprintName = "Clock Suite"
+            ReferencedContainer = "container:Clock Suite.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -9,7 +9,7 @@
         <!--Window Controller-->
         <scene sceneID="qLc-eI-AOP">
             <objects>
-                <windowController storyboardIdentifier="PreferencesWC" id="UZL-fB-8bP" customClass="PreferencesWC" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="PreferencesWC" id="UZL-fB-8bP" customClass="PreferencesWC" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="PreferencesWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="RUY-yz-txr">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -30,7 +30,7 @@
         <!--Window Controller-->
         <scene sceneID="CYt-gL-g6F">
             <objects>
-                <windowController storyboardIdentifier="SimplePreferencesWC" id="Vwz-lD-iVt" customClass="SimplePreferenceWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="SimplePreferencesWC" id="Vwz-lD-iVt" customClass="SimplePreferenceWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="SimplePreferencesWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="gvf-d8-yDj" userLabel="Preferences">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES" managed="YES" fullScreenAuxiliary="YES" fullScreenDisallowsTiling="YES"/>
@@ -52,7 +52,7 @@
         <!--Simple Preferences View Controller-->
         <scene sceneID="qhq-Ea-gL3">
             <objects>
-                <viewController id="xaW-Ua-yCx" customClass="SimplePreferencesViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xaW-Ua-yCx" customClass="SimplePreferencesViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ycP-gP-i8G">
                         <rect key="frame" x="0.0" y="0.0" width="297" height="202"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -81,7 +81,7 @@
         <!--PreferencesVC-->
         <scene sceneID="y7S-Mt-4lX">
             <objects>
-                <viewController id="2LC-Yg-FMM" customClass="PreferencesVC" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2LC-Yg-FMM" customClass="PreferencesVC" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="fb1-YN-QwB">
                         <rect key="frame" x="0.0" y="0.0" width="341" height="356"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -302,13 +302,13 @@
         <scene sceneID="JPo-4y-FX3">
             <objects>
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
-                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6" customClass="MainMenu" customModule="Adjustable_Clock" customModuleProvider="target">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6" customClass="MainMenu" customModule="Clock_Suite" customModuleProvider="target">
                         <items>
-                            <menuItem title="Adjustable Clock" id="1Xt-HY-uBw">
+                            <menuItem title="Clock Suite" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Adjustable Clock" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="Clock Suite" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About Adjustable Clock" id="5kV-Vb-QxS">
+                                        <menuItem title="About Clock Suite" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -321,7 +321,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide Adjustable Clock" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="Hide Clock Suite" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -339,7 +339,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit Adjustable Clock" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit Clock Suite" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -374,7 +374,7 @@
                             </menuItem>
                             <menuItem title="General" id="MRG-Hz-Gmh">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="General" id="Eej-0A-sXa" customClass="GeneralMenu" customModule="Adjustable_Clock" customModuleProvider="target">
+                                <menu key="submenu" title="General" id="Eej-0A-sXa" customClass="GeneralMenu" customModule="Clock_Suite" customModuleProvider="target">
                                     <items>
                                         <menuItem title="Preventing Sleep" id="eH4-3h-cz8">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -436,7 +436,7 @@
                             </menuItem>
                             <menuItem title="Clock" id="3p9-he-isl">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Clock" id="esu-23-zsK" customClass="ClockMenu" customModule="Adjustable_Clock" customModuleProvider="target">
+                                <menu key="submenu" title="Clock" id="esu-23-zsK" customClass="ClockMenu" customModule="Clock_Suite" customModuleProvider="target">
                                     <items>
                                         <menuItem title="Floats on Top" id="uEN-Ne-S2x">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -503,7 +503,7 @@
                             </menuItem>
                             <menuItem title="Alarms" id="G6m-ZG-7cp">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Alarms" id="Dah-wr-0hi" customClass="AlarmsMenu" customModule="Adjustable_Clock" customModuleProvider="target">
+                                <menu key="submenu" title="Alarms" id="Dah-wr-0hi" customClass="AlarmsMenu" customModule="Clock_Suite" customModuleProvider="target">
                                     <items>
                                         <menuItem title="Add Alarm" id="gqt-pv-27g">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -521,7 +521,7 @@
                             </menuItem>
                             <menuItem title="Timers" id="jed-9l-giX">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Timers" id="fWd-IJ-eGk" customClass="TimersMenu" customModule="Adjustable_Clock" customModuleProvider="target">
+                                <menu key="submenu" title="Timers" id="fWd-IJ-eGk" customClass="TimersMenu" customModule="Clock_Suite" customModuleProvider="target">
                                     <items>
                                         <menuItem title="Floats on Top" id="gka-sQ-iLp">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -651,7 +651,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
-                                        <menuItem title="Adjustable Clock Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="Clock Suite Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -673,7 +673,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Adjustable_Clock" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Clock_Suite" customModuleProvider="target"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="9sj-3t-TAb"/>
             </objects>
@@ -682,8 +682,8 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController storyboardIdentifier="ClockWindowController" showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="ClockWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="ClockWindow" title="Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA" customClass="DefaultNSWindow" customModule="Adjustable_Clock" customModuleProvider="target">
+                <windowController storyboardIdentifier="ClockWindowController" showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="ClockWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" identifier="ClockWindow" title="Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA" customClass="DefaultNSWindow" customModule="Clock_Suite" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" managed="YES" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="709" y="402" width="300" height="175"/>
@@ -703,12 +703,12 @@
         <!--Clock View Controller-->
         <scene sceneID="YXm-rq-ncp">
             <objects>
-                <viewController id="ik9-Ty-6xp" customClass="ClockViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ik9-Ty-6xp" customClass="ClockViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hTG-P0-Z21">
                         <rect key="frame" x="0.0" y="0.0" width="332" height="151"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="go5-1Y-2aB" customClass="MagnifierScrollView" customModule="Adjustable_Clock" customModuleProvider="target">
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="go5-1Y-2aB" customClass="MagnifierScrollView" customModule="Clock_Suite" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="332" height="151"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="V38-FW-xgq">
                                     <rect key="frame" x="0.0" y="0.0" width="332" height="151"/>
@@ -724,7 +724,7 @@
                                                         <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnO-xZ-G0J">
                                                             <rect key="frame" x="3" y="-155" width="327" height="461"/>
                                                             <subviews>
-                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="AyC-ZK-hRt" customClass="AnalogClockView" customModule="Adjustable_Clock" customModuleProvider="target">
+                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="AyC-ZK-hRt" customClass="AnalogClockView" customModule="Clock_Suite" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="134" width="327" height="327"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="AyC-ZK-hRt" secondAttribute="height" multiplier="1:1" id="ExY-6Q-V6v"/>
@@ -816,7 +816,7 @@
         <!--Window Controller-->
         <scene sceneID="TeY-CA-Flb">
             <objects>
-                <windowController storyboardIdentifier="AlarmsWindowController" id="Ymg-Mv-RWx" customClass="AlarmsWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="AlarmsWindowController" id="Ymg-Mv-RWx" customClass="AlarmsWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="AlarmsWindow" title="Alarms" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="SKW-hm-43b">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenDisallowsTiling="YES"/>
@@ -837,7 +837,7 @@
         <!--Window Controller-->
         <scene sceneID="v9s-Dr-xNz">
             <objects>
-                <windowController storyboardIdentifier="TimersWindowController" id="7qg-yV-28o" customClass="TimersWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="TimersWindowController" id="7qg-yV-28o" customClass="TimersWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="TimersWindow" title="Timers" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="7mb-fx-SVb">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
@@ -858,7 +858,7 @@
         <!--Timers View Controller-->
         <scene sceneID="IkZ-kU-Aih">
             <objects>
-                <viewController id="Fch-iR-SvQ" customClass="TimersViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Fch-iR-SvQ" customClass="TimersViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="gv6-gj-aTH">
                         <rect key="frame" x="0.0" y="0.0" width="351" height="394"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -954,7 +954,7 @@
         <!--Window Controller-->
         <scene sceneID="iis-X9-kH4">
             <objects>
-                <windowController storyboardIdentifier="WorldClockWindowController" id="EZz-Pg-MDR" customClass="WorldClockWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="WorldClockWindowController" id="EZz-Pg-MDR" customClass="WorldClockWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="WorldClockWindow" title="World Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="f25-pX-8nA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -975,7 +975,7 @@
         <!--World Clock View Controller-->
         <scene sceneID="dpb-Ya-aOP">
             <objects>
-                <viewController id="msZ-4Z-U3O" customClass="WorldClockViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="msZ-4Z-U3O" customClass="WorldClockViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="zw0-yw-oQG">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1076,7 +1076,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="291" height="250"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Yc-JI-f3x" customClass="MagnifierScrollView" customModule="Adjustable_Clock" customModuleProvider="target">
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Yc-JI-f3x" customClass="MagnifierScrollView" customModule="Clock_Suite" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="121" width="291" height="129"/>
                                 <clipView key="contentView" id="EkU-iB-7K8">
                                     <rect key="frame" x="0.0" y="0.0" width="291" height="129"/>
@@ -1169,7 +1169,7 @@
                                             <tableColumns>
                                                 <tableColumn width="141.5" minWidth="40" maxWidth="1000" id="72b-sf-9fX">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1202,7 +1202,7 @@
                                                 </tableColumn>
                                                 <tableColumn width="143.5" minWidth="40" maxWidth="1000" id="Kc6-Qb-l2w">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1214,7 +1214,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="RLi-zz-p4w">
-                                                            <rect key="frame" x="145.5" y="1" width="143" height="17"/>
+                                                            <rect key="frame" x="146" y="1" width="143" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bQ7-JE-ioD">
@@ -1266,7 +1266,7 @@
         <!--Alarms View Controller-->
         <scene sceneID="wPV-y4-U0G">
             <objects>
-                <viewController id="jsi-dr-Kid" customClass="AlarmsViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jsi-dr-Kid" customClass="AlarmsViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="P05-f5-a90">
                         <rect key="frame" x="0.0" y="0.0" width="322" height="482"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1378,7 +1378,7 @@
         <!--Window Controller-->
         <scene sceneID="hms-QU-P9Z">
             <objects>
-                <windowController id="JWA-H8-NkN" customClass="EditableTimerWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController id="JWA-H8-NkN" customClass="EditableTimerWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Change Timer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="qRy-Tt-rUs">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -1399,7 +1399,7 @@
         <!--Editable Timer View Controller-->
         <scene sceneID="pSq-el-Yiz">
             <objects>
-                <viewController storyboardIdentifier="EditableTimerViewController" id="uPZ-Mw-0vQ" customClass="EditableTimerViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditableTimerViewController" id="uPZ-Mw-0vQ" customClass="EditableTimerViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="4zw-uu-jp5">
                         <rect key="frame" x="0.0" y="0.0" width="324" height="370"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1626,7 +1626,7 @@ DQ
         <!--Window Controller-->
         <scene sceneID="rEh-6m-9kw">
             <objects>
-                <windowController storyboardIdentifier="NewAlarmWindowController" id="ZgF-XD-PaL" customClass="EditableAlarmWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="NewAlarmWindowController" id="ZgF-XD-PaL" customClass="EditableAlarmWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="NewAlarmWindow" title="Create Alarm" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="PbG-Vp-cuU">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES" fullScreenDisallowsTiling="YES"/>
@@ -1647,7 +1647,7 @@ DQ
         <!--Editable Alarm View Controller-->
         <scene sceneID="BRn-vx-vUe">
             <objects>
-                <viewController storyboardIdentifier="NewAlarmViewController" id="9uc-jD-1ug" customClass="EditableAlarmViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewAlarmViewController" id="9uc-jD-1ug" customClass="EditableAlarmViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hmW-cO-luP">
                         <rect key="frame" x="0.0" y="0.0" width="304" height="340"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1885,7 +1885,7 @@ DQ
         <!--Alert View Controller-->
         <scene sceneID="G34-5b-Zds">
             <objects>
-                <viewController storyboardIdentifier="ChooseAlertViewController" id="WeC-3E-QE7" customClass="AlertViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChooseAlertViewController" id="WeC-3E-QE7" customClass="AlertViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Vem-cr-fJe">
                         <rect key="frame" x="0.0" y="0.0" width="281" height="273"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1905,7 +1905,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="233" minWidth="40" maxWidth="1000" id="7af-du-yPg">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1916,7 +1916,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="GenericTableCellView" id="UUM-N6-q0D" customClass="GenericTableCellView" customModule="Adjustable_Clock" customModuleProvider="target">
+                                                        <tableCellView identifier="GenericTableCellView" id="UUM-N6-q0D" customClass="GenericTableCellView" customModule="Clock_Suite" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="233" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -2025,7 +2025,7 @@ DQ
         <!--Choose City View Controller-->
         <scene sceneID="vYC-sg-Pdh">
             <objects>
-                <viewController storyboardIdentifier="ChooseCityViewController" id="FRh-Vw-bnb" customClass="ChooseCityViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChooseCityViewController" id="FRh-Vw-bnb" customClass="ChooseCityViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="IeS-3F-NLb">
                         <rect key="frame" x="0.0" y="0.0" width="323" height="453"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2055,7 +2055,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="280" minWidth="40" maxWidth="1000" id="nxT-P1-PJ8">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2066,7 +2066,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="GenericTableCellView" id="YAK-iE-gL7" customClass="GenericTableCellView" customModule="Adjustable_Clock" customModuleProvider="target">
+                                                        <tableCellView identifier="GenericTableCellView" id="YAK-iE-gL7" customClass="GenericTableCellView" customModule="Clock_Suite" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="280" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -2149,7 +2149,7 @@ DQ
         <!--Playlist View Controller-->
         <scene sceneID="NMy-5T-vtc">
             <objects>
-                <viewController storyboardIdentifier="PlaylistViewController" id="Udh-xA-6tS" customClass="PlaylistViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlaylistViewController" id="Udh-xA-6tS" customClass="PlaylistViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="inG-ay-1vv">
                         <rect key="frame" x="0.0" y="0.0" width="349" height="326"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2169,7 +2169,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="304" minWidth="40" maxWidth="1000" id="h46-K1-f75">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2180,7 +2180,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="GenericTableCellView" id="eTv-80-Owk" customClass="GenericTableCellView" customModule="Adjustable_Clock" customModuleProvider="target">
+                                                        <tableCellView identifier="GenericTableCellView" id="eTv-80-Owk" customClass="GenericTableCellView" customModule="Clock_Suite" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="304" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
