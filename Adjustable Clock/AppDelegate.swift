@@ -72,6 +72,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		return false
     }
     func applicationWillTerminate(_ aNotification: Notification) {
+		NSColorPanel.shared.close()
 		GeneralPreferencesStorage.sharedInstance.closing=true
 	}
 }
