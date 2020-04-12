@@ -7,17 +7,27 @@
 //
 import Cocoa
 class ClockWindowController: FullViewWindowController, NSWindowDelegate {
+	override func encodeRestorableState(with coder: NSCoder) {
+	super.encodeRestorableState(with: coder)
+	}
+
+	override func restoreState(with coder: NSCoder) {
+		super.restoreState(with: coder)
+	}
 	static var clockObject=ClockWindowController()
 	var fullscreen=false
     override func windowDidLoad() {
         super.windowDidLoad()
 		WindowManager.sharedInstance.count+=1
 		window?.delegate=self
+		window?.isRestorable=true
+		window?.restorationClass=AppDelegate.self
 		guard let clockViewController=window?.contentViewController as? ClockViewController else { return }
 		window?.minSize=CGSize(width: 150, height: 150)
-		if ClockPreferencesStorage.sharedInstance.hasLaunchedBefore() {
+		/*if ClockPreferencesStorage.sharedInstance.hasLaunchedBefore() {
 			ClockWindowRestorer().loadSavedWindowCGRect(window: window)
         }
+*/
 		ClockPreferencesStorage.sharedInstance.setApplicationAsHasLaunched()
         clockViewController.updateClock()
 		if let windowSize=window?.frame.size {

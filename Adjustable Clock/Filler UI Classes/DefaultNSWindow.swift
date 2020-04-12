@@ -7,4 +7,11 @@
 //
 import Cocoa
 class DefaultNSWindow: NSWindow {
+	override func encodeRestorableState(with coder: NSCoder) {
+	super.encodeRestorableState(with: coder)
+	}
+
+	override func restoreState(with coder: NSCoder) {
+		super.restoreState(with: coder)
+	}
 }
