@@ -42,7 +42,7 @@ class ColorfulViewController: NSViewController {
 		visualEffectView.material = .dark
 		var contrastColor: NSColor
 			backgroundView.wantsLayer=true
-		if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom{
+		if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom {
 			contrastColor=ClockPreferencesStorage.sharedInstance.customColor
 		} else if ClockPreferencesStorage.sharedInstance.colorForForeground {
 			contrastColor =

@@ -84,7 +84,10 @@ class DigitalDockClockView: NSView {
 												  height: 0.5*frame.height), xRadius: radius, yRadius: radius)
 		}
 		if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom {
-		backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
+		if !hasDarkAppearance(view: self) { backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
+		} else {
+			backgroundColor=ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black) ?? NSColor.systemGray
+		}
 		} else if hasDarkAppearance(view: self) && !ClockPreferencesStorage.sharedInstance.colorForForeground {
 			backgroundColor=ColorModel.sharedInstance.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
 			?? NSColor.systemGray

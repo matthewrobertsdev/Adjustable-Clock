@@ -11,11 +11,17 @@ class DarkAndLightBackgroundView: NSView, BackgroundColorView {
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
 		self.wantsLayer=true
-		if hasDarkAppearance(view: self) && backgroundColor != NSColor.labelColor {
+		if hasDarkAppearance(view: self) &&
+		backgroundColor != NSColor.labelColor {
+			
 			if backgroundColor==NSColor.white {
 				if #available(OSX 10.13, *) {
 					backgroundColor=NSColor(named: "WhiteBackground") ?? NSColor.systemGray
 				}
+			}
+			if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom {
+				print("should be dark")
+				backgroundColor=ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black) ?? NSColor.systemGray
 			}
 			layer?.backgroundColor=backgroundColor.cgColor
 		} else if !hasDarkAppearance(view: self) && backgroundColor != NSColor.labelColor {
@@ -23,6 +29,10 @@ class DarkAndLightBackgroundView: NSView, BackgroundColorView {
 				if #available(OSX 10.13, *) {
 					backgroundColor=NSColor(named: "BlackBackground") ?? NSColor.systemGray
 				}
+			}
+			if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom {
+				print("should be light")
+				backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
 			}
 			layer?.backgroundColor=backgroundColor.cgColor
 		} else {

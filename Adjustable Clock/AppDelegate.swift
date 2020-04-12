@@ -7,20 +7,7 @@
 //
 import Cocoa
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, NSWindowRestoration {
-	static func restoreWindow(withIdentifier identifier: NSUserInterfaceItemIdentifier,
-							  state: NSCoder, completionHandler: @escaping (NSWindow?, Error?) -> Void) {
-		print("abcd restore")
-		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
-
-		//if identifier==UserInterfaceIdentifier.digitalClockWindow {
-			guard let clockWindowController =
-				mainStoryBoard.instantiateController(withIdentifier:
-					"ClockWindowController") as? ClockWindowController else { return }
-			ClockWindowController.clockObject=clockWindowController
-			completionHandler(clockWindowController.window, nil)
-		//}
-	}
+class AppDelegate: NSObject, NSApplicationDelegate {
 	var generalMenuController: GeneralMenuController?
     var colorsMenuController: ColorsMenuController?
 	var clockMenuController: ClockMenuController?

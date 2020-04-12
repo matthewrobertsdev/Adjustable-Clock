@@ -59,7 +59,8 @@ class ColorsMenuController: NSObject {
         nsColorPanel.setAction(#selector(useCustomColor))
     }
     @objc func useCustomColor() {
-		ClockPreferencesStorage.sharedInstance.changeAndSaveCustomColor(customColor: nsColorPanel.color)
+		var custumColor=nsColorPanel.color
+		ClockPreferencesStorage.sharedInstance.changeAndSaveCustomColor(customColor: custumColor)
 		updateColorMenuUI()
 		updateClocksForPreferenceChanges()
     }
@@ -133,7 +134,10 @@ class ColorsMenuController: NSObject {
         }
         //update color image for custom color based on current custum color
         var templateImage=NSImage()
-		let tintColor=ClockPreferencesStorage.sharedInstance.customColor
+		var tintColor=ClockPreferencesStorage.sharedInstance.customColor
+		if dark {
+			tintColor=ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black) ?? NSColor.systemGray
+		}
 		if dark {
 			templateImage=NSImage(named: "white_rectangle") ?? NSImage()
 		} else {
