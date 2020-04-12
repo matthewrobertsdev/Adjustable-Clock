@@ -6,17 +6,11 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import AppKit
-class DigitalClockAnimator: ClockAnimator {
-	private var digitalClock: NSTextField
-	private var animatedDay: NSTextField
-	init(model: ClockModel, tellingTime: NSObjectProtocol, updateTimer: DispatchSourceTimer,
-		 digitalClock: NSTextField, animatedDay: NSTextField) {
-		self.digitalClock=digitalClock
-		self.animatedDay=animatedDay
-		super.init(model: model, tellingTime: tellingTime, updateTimer: updateTimer)
-	}
-	func displayForDock() {
+extension ClockViewController {
+	func displayDigitalForDock() {
 		updateTimer.cancel()
+		updateTimer.setEventHandler {
+		}
 		self.digitalClock.stringValue=model.dockTimeString
 		self.animatedDay.stringValue=model.dockDateString
 	}
@@ -55,7 +49,7 @@ class DigitalClockAnimator: ClockAnimator {
 		}
 		updateTimer.resume()
 	}
-	func animate() {
+	func animateDigital() {
 		if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
 			animateTimeAndDayInfo()
 		} else {

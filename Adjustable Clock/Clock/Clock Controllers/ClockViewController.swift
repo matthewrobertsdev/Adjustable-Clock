@@ -19,56 +19,60 @@ class ClockViewController: ColorfulViewController {
 	@IBOutlet weak var clockWidthConstraint: NSLayoutConstraint!
 	@IBOutlet weak var clockHeightConstraint: NSLayoutConstraint!
 	let model=ClockModel()
-	var magnifierSemaphore=DispatchSemaphore(value: 1)
 	var tellingTime: NSObjectProtocol?
-	var updateTimer: DispatchSourceTimer?
+	var updateTimer: DispatchSourceTimer!
 	let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
-	var digitalClockAnimator: DigitalClockAnimator?
-	var analogClockAnimator: AnalogClockAnimator?
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
+		//updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		maginiferScrollView.maxMagnification=200
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
-		let distribitedNotificationCenter=DistributedNotificationCenter.default
-		let interfaceNotification=NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification")
-		distribitedNotificationCenter.addObserver(self,
-												  selector: #selector(interfaceModeChanged(sender:)), name: interfaceNotification, object: nil)
+		/*
 		let screenSleepObserver =
 			workspaceNotifcationCenter.addObserver(forName:
-			NSWorkspace.screensDidSleepNotification, object: nil, queue: nil) { (_) in
-				self.updateTimer?.cancel()
-				self.digitalClock.stringValue="Relaunch To Resume"
-				self.animatedDay.stringValue=""
-				self.resizeContents(maxWidth: self.view.window?.frame.width ?? CGFloat(200))
-		}
-		let screenWakeObserver =
-			workspaceNotifcationCenter.addObserver(forName:
-			NSWorkspace.screensDidWakeNotification, object: nil, queue: nil) { (_) in
-				self.animateClock()
-				guard let windowWidth=self.view.window?.frame.width else {
+			NSWorkspace.screensDidSleepNotification, object: nil, queue: nil) { [weak self] (_)  in
+				guard let strongSelf=self else {
 					return
 				}
-				self.resizeContents(maxWidth: windowWidth)
+				strongSelf.updateTimer?.cancel()
+				strongSelf.digitalClock.stringValue="Relaunch To Resume"
+				strongSelf.animatedDay.stringValue=""
+				strongSelf.resizeContents(maxWidth: strongSelf.view.window?.frame.width ?? CGFloat(200))
 		}
+		*/	/*workspaceNotifcationCenter.addObserver(forName:
+			NSWorkspace.screensDidWakeNotification, object: nil, queue: nil) {[weak self] (_)  in
+				guard let strongSelf=self else {
+					return
+				}
+				strongSelf.animateClock()
+				guard let windowWidth=strongSelf.view.window?.frame.width else {
+					return
+				}
+				strongSelf.resizeContents(maxWidth: windowWidth)} */
+		let screenSleepObserver = workspaceNotifcationCenter.addObserver(self, selector: #selector(endForSleep), name: NSWorkspace.screensDidSleepNotification, object: nil)
+				
+		let screenWakeObserver = workspaceNotifcationCenter.addObserver(self, selector: #selector(startForWake), name: NSWorkspace.screensDidWakeNotification, object: nil)
+		
 		let processOptions: ProcessInfo.ActivityOptions=[ProcessInfo.ActivityOptions.userInitiatedAllowingIdleSystemSleep]
 		tellingTime = ProcessInfo().beginActivity(options: processOptions, reason: "Need accurate time all the time")
-		let notifier=DistributedNotificationCenter.default
-		let colorChangeNotification=NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification")
-		let colorChangeObserver =
-			notifier.addObserver(self, selector:
-				#selector(interfaceModeChanged(sender:)), name: colorChangeNotification, object: nil)
-		guard let timeProtocol=tellingTime else { return }
-		guard let timer=updateTimer else { return }
-		digitalClockAnimator=DigitalClockAnimator(model: model, tellingTime: timeProtocol,
-												  updateTimer: timer, digitalClock: digitalClock, animatedDay: animatedDay)
-		analogClockAnimator=AnalogClockAnimator(model: model, tellingTime: timeProtocol,
-												updateTimer: timer, analogClock: analogClock, animatedDay: animatedDay)
 		showClock()
 	}
 	@objc func interfaceModeChanged(sender: NSNotification) {
 		applyColors()
 		backgroundView.draw(backgroundView.bounds)
+	}
+	@objc func endForSleep(){
+		updateTimer?.cancel()
+		digitalClock.stringValue="Relaunch To Resume"
+		animatedDay.stringValue=""
+		resizeContents(maxWidth: view.window?.frame.width ?? CGFloat(200))
+	}
+	@objc func startForWake(){
+		animateClock()
+		guard let windowWidth=view.window?.frame.width else {
+			return
+		}
+		resizeContents(maxWidth: windowWidth)
 	}
 	func showClock() {
 		if ClockPreferencesStorage.sharedInstance.useAnalog {
@@ -89,7 +93,7 @@ class ClockViewController: ColorfulViewController {
 				clockWindowController.sizeWindowToFitClock(newWidth: width)
 			}
 		analogClock.setNeedsDisplay(analogClock.bounds)
-		analogClockAnimator?.animate()
+		animateAnalog()
 	}
 	func showDigitalClock() {
 		setConstraints()
@@ -105,7 +109,7 @@ class ClockViewController: ColorfulViewController {
 		if ClockPreferencesStorage.sharedInstance.fullscreen==false {
 			clockWindowController.sizeWindowToFitClock(newWidth: width)
 		}
-		digitalClockAnimator?.animate()
+		animateDigital()
 	}
 	func setConstraints() {
 			if self.view.frame.size.width/self.view.frame.size.height<model.width/model.height {
@@ -187,17 +191,15 @@ class ClockViewController: ColorfulViewController {
 			maginiferScrollView.magnification=desiredMaginifcation
 	}
 	func resizeContents(maxHeight: CGFloat) {
-		magnifierSemaphore.wait()
 			digitalClock.sizeToFit()
 			animatedDay.sizeToFit()
 			let desiredMaginifcation=maxHeight/model.height
 			maginiferScrollView.magnification=desiredMaginifcation
-		magnifierSemaphore.signal()
 	}
 	@objc func applyColors(sender: NSNotification) {
 		applyColors()
 		}
-	deinit { digitalClockAnimator?.stopAnimating()
+	deinit { stopAnimating()
 	}
 	func applyColors() {
 		let labels=[digitalClock!, animatedDay!]
@@ -205,9 +207,20 @@ class ClockViewController: ColorfulViewController {
 	}
 	func displayForDock() {
 		if ClockPreferencesStorage.sharedInstance.useAnalog {
-			analogClockAnimator?.displayForDock()
+			displayAnalogForDock()
 		} else {
-			digitalClockAnimator?.displayForDock()
+			displayDigitalForDock()
 		}
+	}
+	func getSecondAdjustment() -> Double {
+		let start=Date()
+		let nanoseconds=Calendar.current.dateComponents([.nanosecond], from: start)
+		let missingNanoceconds=1_000_000_000-(nanoseconds.nanosecond ?? 0)
+		return Double(missingNanoceconds)/1_000_000_000
+	}
+	func stopAnimating() {
+		ProcessInfo().endActivity(tellingTime!)
+		tellingTime=nil
+		updateTimer.cancel()
 	}
 }

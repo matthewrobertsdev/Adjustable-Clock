@@ -14,7 +14,16 @@ class AnalogDockClockView: BaseAnalogClockView {
 	var current=true
 	var freezeDate=Date()
 	var justColors=false
-	@objc dynamic var dark=false
+	let notifcationCenter=NotificationCenter.default
+	var dark=false {
+		didSet {
+			if dark {
+				notifcationCenter.post(name: NSNotification.Name.didChangToDarkMode, object: nil)
+			} else {
+				notifcationCenter.post(name: NSNotification.Name.didChangToLightMode, object: nil)
+			}
+		}
+	}
 	override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         setUp()
@@ -37,17 +46,19 @@ class AnalogDockClockView: BaseAnalogClockView {
 		} else if !hasDarkAppearance(view: self) && dark==true {
 			dark=false
 		}
-		let clockNSColors=ColorDictionary()
-		if ClockPreferencesStorage.sharedInstance.colorChoice=="custom" {
-		backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
+		if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom {
+			if !hasDarkAppearance(view: self) ||  ClockPreferencesStorage.sharedInstance.colorForForeground{ backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
+			} else {
+				backgroundColor=ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black) ?? NSColor.systemGray
+			}
 		} else if hasDarkAppearance(view: self) && !ClockPreferencesStorage.sharedInstance.colorForForeground {
-		 backgroundColor=clockNSColors.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
+		 backgroundColor=ColorModel.sharedInstance.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
 			?? NSColor.systemGray
 			if backgroundColor==NSColor.white {
 				backgroundColor=NSColor.systemGray
 			}
 		} else {
-			backgroundColor=clockNSColors.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
+			backgroundColor=ColorModel.sharedInstance.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
 				?? NSColor.systemGray
 			if backgroundColor==NSColor.black {
 				backgroundColor=NSColor.systemGray
@@ -56,7 +67,11 @@ class AnalogDockClockView: BaseAnalogClockView {
 		if hasDarkAppearance(view: self) && backgroundColor != NSColor.labelColor {
 			backgroundColor.setFill()
 			handsColor=NSColor.white
-			color=clockNSColors.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.systemGray
+			if ClockPreferencesStorage.sharedInstance.colorForForeground {
+					color=NSColor.black
+			} else {
+					color=ColorModel.sharedInstance.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.black
+			}
 		} else if !hasDarkAppearance(view: self) && backgroundColor != NSColor.labelColor {
 			handsColor=NSColor.black
 			color=NSColor.white

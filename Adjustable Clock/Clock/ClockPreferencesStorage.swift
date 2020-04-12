@@ -20,7 +20,7 @@ class ClockPreferencesStorage {
 	var windowIsOpen=false
     var clockFloats = false
     var fullscreen = false
-    var colorChoice = ""
+	var colorChoice = ColorChoice.systemColor
 	var useAnalog = false
     //time
     var showSeconds = false
@@ -65,7 +65,7 @@ class ClockPreferencesStorage {
 		showDate=userDefaults.bool(forKey: showDateKey)
 		showDayOfWeek=userDefaults.bool(forKey: showDayOfWeekKey)
 		useNumericalDate=userDefaults.bool(forKey: useNumericalDateKey)
-        if let colorChoice=userDefaults.string(forKey: colorChoiceKey) {
+		if let colorChoice = ColorChoice(rawValue: userDefaults.string(forKey: colorChoiceKey) ?? ColorChoice.systemColor.rawValue) {
 			self.colorChoice=colorChoice
         } else {
 			self.colorChoice=ColorChoice.systemColor
@@ -113,9 +113,9 @@ class ClockPreferencesStorage {
 		colorForForeground=false
 		userDefaults.set(false, forKey: lightOnDarkKey)
     }
-    func changeAndSaveColorSceme(colorChoice: String) {
+    func changeAndSaveColorSceme(colorChoice: ColorChoice) {
         self.colorChoice=colorChoice
-        userDefaults.set(self.colorChoice, forKey: colorChoiceKey)
+		userDefaults.set(self.colorChoice.rawValue, forKey: colorChoiceKey)
     }
     func changeAndSaveClockFloats() {
         clockFloats=(!clockFloats)

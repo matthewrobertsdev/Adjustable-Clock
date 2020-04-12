@@ -21,7 +21,7 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 	}
 	func use24HoursClicked() {
 		GeneralPreferencesStorage.sharedInstance.changeAndSaveUseAmPM()
-		ClockWindowController.clockObject.updateClockToPreferencesChange()
+		//ClockWindowController.clockObject.updateClockToPreferencesChange()
 		DockClockController.dockClockObject.updateModelToPreferencesChange()
 		AlarmsWindowController.alarmsObject.updateForPreferencesChange()
 		TimersWindowController.timersObject.update()

@@ -19,32 +19,34 @@ Color Arrays
  */
 //standard colors and custom colors
 //string "keys" are convenient for UserDefaults
-struct ColorChoice {
-	static let systemColor="systemColor"
-	static let black="black"
-    static let gray="gray"
-    static let white="white"
-    static let red="red"
-    static let orange="orange"
-    static let yellow="yellow"
-    static let green="green"
-    static let blue="blue"
-	static let indigo="indigo"
-    static let purple="purple"
-	static let pink="pink"
-	static let brown="brown"
-    static let custom="custom"
+enum ColorChoice: String {
+	case systemColor
+	case black
+    case gray
+    case white
+    case red
+    case orange
+    case yellow
+    case green
+    case blue
+	case indigo
+    case purple
+	case pink
+	case brown
+    case custom
 }
 //color choice strings act as keys for NSColors
-class ColorDictionary {
+class ColorModel {
+	static let sharedInstance=ColorModel()
     //name-color dictionary
     //name for identification
     //color for actual color values
-    var colorsDictionary=[String: NSColor]()
-	var lightColorsDictionary=[String: NSColor]()
-	var darkColorsDictionary=[String: NSColor]()
+    var colorsDictionary=[ColorChoice: NSColor]()
+	var lightColorsDictionary=[ColorChoice: NSColor]()
+	var darkColorsDictionary=[ColorChoice: NSColor]()
     //init should make the dictionary
     init() {
+		 makeColorArray()
         makeColorDictionary()
 		makeLightColorDictionary()
 		makeDarkColorDictionary()
@@ -92,15 +94,10 @@ class ColorDictionary {
 			ColorChoice.pink: NSColor(named: "DarkPink") ?? NSColor.systemPink,
 			ColorChoice.brown: NSColor(named: "DarkBrown") ?? NSColor.systemBrown]
     }
-}
 //just an array of color choices so that the colors can be displayed in an order
-class ColorArrays {
     //an array of color choice strings
-    var colorArray=[String]()
+    var colorArray=[ColorChoice]()
     //init should make the array
-    init() {
-        makeColorArray()
-    }
     //put color choice strings in the standard order
     func makeColorArray() {
 		colorArray.append(ColorChoice.systemColor)

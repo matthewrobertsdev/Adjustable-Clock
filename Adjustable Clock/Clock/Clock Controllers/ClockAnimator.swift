@@ -9,8 +9,8 @@
 import AppKit
 class ClockAnimator {
 	var model: ClockModel
-	var tellingTime: NSObjectProtocol
-	var updateTimer: DispatchSourceTimer
+	var tellingTime: NSObjectProtocol!
+	var updateTimer: DispatchSourceTimer!
 	init(model: ClockModel, tellingTime: NSObjectProtocol, updateTimer: DispatchSourceTimer) {
 		self.model=model
 		self.tellingTime=tellingTime

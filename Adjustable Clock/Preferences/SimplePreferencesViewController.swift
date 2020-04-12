@@ -21,7 +21,7 @@ class SimplePreferencesViewController: NSViewController {
         updateForPreferencesChange()
     }
     func updateForPreferencesChange() {
-		ClockWindowController.clockObject.updateClockToPreferencesChange()
+		//ClockWindowController.clockObject.updateClockToPreferencesChange()
 		updateClockMenuUI()
 		TimersWindowController.timersObject.update()
 		updateTimerMenuUI()

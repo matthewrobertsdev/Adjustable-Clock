@@ -6,21 +6,12 @@
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 import AppKit
-class AnalogClockAnimator: ClockAnimator {
-	private var analogClock: AnalogClockView
-	private var animatedDay: NSTextField
-	private var calendar=Calendar.current
-	init(model: ClockModel, tellingTime: NSObjectProtocol, updateTimer: DispatchSourceTimer,
-		 analogClock: AnalogClockView, animatedDay: NSTextField) {
-		self.analogClock=analogClock
-		self.animatedDay=animatedDay
-		super.init(model: model, tellingTime: tellingTime, updateTimer: updateTimer)
-	}
+extension ClockViewController {
 	private func animateHandsWithSeconds(early: Bool) {
 		let now=Date()
-		let hour=calendar.dateComponents([.hour], from: now).hour ?? 0
-		var minute=calendar.dateComponents([.minute], from: now).minute ?? 0
-		var second=calendar.dateComponents([.second], from: now).second ?? 0
+		let hour=Calendar.autoupdatingCurrent.dateComponents([.hour], from: now).hour ?? 0
+		var minute=Calendar.autoupdatingCurrent.dateComponents([.minute], from: now).minute ?? 0
+		var second=Calendar.autoupdatingCurrent.dateComponents([.second], from: now).second ?? 0
 		if early {
 			second+=1
 			if second==60 {
@@ -35,9 +26,9 @@ class AnalogClockAnimator: ClockAnimator {
 	}
 	private func animateHandsNoSeconds(early: Bool) {
 		let now=Date()
-		let hour=calendar.dateComponents([.hour], from: now).hour ?? 0
-		var minute=calendar.dateComponents([.minute], from: now).minute ?? 0
-		var second=calendar.dateComponents([.second], from: now).second ?? 0
+		let hour=Calendar.autoupdatingCurrent.dateComponents([.hour], from: now).hour ?? 0
+		var minute=Calendar.autoupdatingCurrent.dateComponents([.minute], from: now).minute ?? 0
+		var second=Calendar.autoupdatingCurrent.dateComponents([.second], from: now).second ?? 0
 		if early {
 			second+=1
 			if second==60 {
@@ -96,7 +87,7 @@ class AnalogClockAnimator: ClockAnimator {
 			self.animateHandsNoSeconds(early: early)
 		}
 	}
-	func animate() {
+	func animateAnalog() {
 		if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
 			animateTimeAndDayInfo()
 		} else {
@@ -130,7 +121,8 @@ class AnalogClockAnimator: ClockAnimator {
 			analogClock.use12to23Hours()
 		}
 	}
-	func displayForDock() {
+	func displayAnalogForDock() {
+		updateTimer?.cancel()
 		analogClock.clearHands()
 		animatedDay.stringValue=model.dockDateString
 	}

@@ -11,7 +11,6 @@ class AlarmsMenuController: AlarmMenuDelegate {
 	init(menu: AlarmsMenu) {
 		self.menu=menu
 		menu.alarmMenuDelegate=self
-		updateClockMenuUI()
 	}
 	func addAlarmClicked() {
 		if AlarmCenter.sharedInstance.count>=24 {

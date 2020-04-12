@@ -41,18 +41,17 @@ class ColorfulViewController: NSViewController {
 	func applyColorScheme(views: [ColorView], labels: [NSTextField]) {
 		visualEffectView.material = .dark
 		var contrastColor: NSColor
-		let clockNSColors=ColorDictionary()
 			backgroundView.wantsLayer=true
-		if ClockPreferencesStorage.sharedInstance.colorChoice=="custom"{
+		if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom {
 			contrastColor=ClockPreferencesStorage.sharedInstance.customColor
 		} else if ClockPreferencesStorage.sharedInstance.colorForForeground {
 			contrastColor =
-			clockNSColors.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
-				?? clockNSColors.lightColorsDictionary[ColorChoice.systemColor] ?? NSColor.systemGray
+			ColorModel.sharedInstance.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
+				?? ColorModel.sharedInstance.lightColorsDictionary[ColorChoice.systemColor] ?? NSColor.systemGray
 		} else {
 			contrastColor =
-				clockNSColors.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
-				?? clockNSColors.colorsDictionary[ColorChoice.systemColor] ?? NSColor.systemGray
+				ColorModel.sharedInstance.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
+				?? ColorModel.sharedInstance.colorsDictionary[ColorChoice.systemColor] ?? NSColor.systemGray
 		}
 		if ClockPreferencesStorage.sharedInstance.colorForForeground==false {
 			visualEffectView.isHidden=true
