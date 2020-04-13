@@ -46,10 +46,10 @@ class AnalogClockView: BaseAnalogClockView {
     }
 	func startHands(withSeconds: Bool) {
 		clearHands()
-		addHand(handLayer: hourLayer, lengthProportion: 0.75)
-		addHand(handLayer: minuteLayer, lengthProportion: 0.8)
+		addHand(handLayer: hourLayer, lengthProportion: 0.75, widthProportion: 1.2)
+		addHand(handLayer: minuteLayer, lengthProportion: 0.8, widthProportion: 1.2)
 		if withSeconds {
-			addHand(handLayer: secondLayer, lengthProportion: 0.7)
+			addHand(handLayer: secondLayer, lengthProportion: 0.7, widthProportion: 0.8)
 		}
 	}
 	func clearHands() {
@@ -96,10 +96,10 @@ class AnalogClockView: BaseAnalogClockView {
 		label.sizeToFit()
 		hourLabels.append(label)
 	}
-	private func addHand(handLayer: CAShapeLayer, lengthProportion: CGFloat) {
+	private func addHand(handLayer: CAShapeLayer, lengthProportion: CGFloat, widthProportion: CGFloat) {
 		handLayer.frame = bounds
 		let hand = CGMutablePath()
-		let lineWidth=frame.width/100
+		let lineWidth=frame.width/100*widthProportion
 		hand.move(to: CGPoint(x: bounds.midX, y: bounds.midY))
 		hand.addLine(to: CGPoint(x: bounds.midX, y: bounds.height*lengthProportion))
 		handLayer.path = hand
