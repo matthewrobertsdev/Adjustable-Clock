@@ -37,6 +37,7 @@ class AnalogDockClockView: BaseAnalogClockView {
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 		lineWidth=CGFloat(frame.size.width/25)
+		let circle=NSBezierPath(ovalIn: NSRect(origin: CGPoint(x: frame.width/2-lineWidth/2, y: frame.width/2-lineWidth/2), size: CGSize(width: lineWidth, height: lineWidth)))
         let origin=CGPoint(x: bounds.width*0.05, y: bounds.height*0.05)
 		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.size.width*0.9,
 																		  height: frame.size.height*0.9)))
@@ -87,6 +88,8 @@ class AnalogDockClockView: BaseAnalogClockView {
 			color=NSColor.systemGray
 		}
 		path.fill()
+		handsColor.setFill()
+		circle.fill()
 		guard let cgContext=NSGraphicsContext.current?.cgContext else {
 				return
 		}
@@ -107,9 +110,9 @@ class AnalogDockClockView: BaseAnalogClockView {
 		let minute=calendar.dateComponents([.minute], from: time).minute ?? 0
 		let second=calendar.dateComponents([.second], from: time).second ?? 0
 		let totalSeconds=(Double(hour)*3600.0+Double(minute)*60.0+Double(second))
-		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2, endProportion: 0.35)
-		displayHand(radians: -CGFloat.pi*CGFloat(minute)/30+CGFloat.pi/2, endProportion: 0.4)
-		displayHand(radians: -CGFloat.pi*CGFloat(second)/30+CGFloat.pi/2, endProportion: 0.3)
+		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2, endProportion: 0.35, relativeWidth: 1.2)
+		displayHand(radians: -CGFloat.pi*CGFloat(minute)/30+CGFloat.pi/2, endProportion: 0.4, relativeWidth: 1.2)
+		displayHand(radians: -CGFloat.pi*CGFloat(second)/30+CGFloat.pi/2, endProportion: 0.3, relativeWidth: 1)
 	}
 	private func displayeHandsNoSeconds() {
 		let time=current ? Date() : freezeDate
@@ -117,10 +120,10 @@ class AnalogDockClockView: BaseAnalogClockView {
 		let minute=calendar.dateComponents([.minute], from: time).minute ?? 0
 		let second=calendar.dateComponents([.second], from: time).second ?? 0
 		let totalSeconds=(Double(hour)*3600.0+Double(minute)*60.0+Double(second))
-		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2, endProportion: 0.35)
-		displayHand(radians: -CGFloat.pi*CGFloat(minute)/30+CGFloat.pi/2, endProportion: 0.4)
+		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2, endProportion: 0.35, relativeWidth: 1.2)
+		displayHand(radians: -CGFloat.pi*CGFloat(minute)/30+CGFloat.pi/2, endProportion: 0.4, relativeWidth: 1.2)
 	}
-	private func displayHand(radians: CGFloat, endProportion: CGFloat) {
+	private func displayHand(radians: CGFloat, endProportion: CGFloat, relativeWidth: CGFloat) {
 		guard let cgContext=NSGraphicsContext.current?.cgContext else {
 				return
 		}
@@ -134,7 +137,8 @@ class AnalogDockClockView: BaseAnalogClockView {
 		line.closeSubpath()
 		cgContext.addPath(line)
 		cgContext.setStrokeColor(handsColor.cgColor)
-		cgContext.setLineWidth(lineWidth)
+		cgContext.setLineWidth(lineWidth*relativeWidth)
+		cgContext.setLineCap(.round)
 		cgContext.strokePath()
 	}
 }

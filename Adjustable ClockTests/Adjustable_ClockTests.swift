@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Adjustable_Clock
+@testable import Clock_Suite
 
 class AdjustableClockTests: XCTestCase {
     override func setUp() {
