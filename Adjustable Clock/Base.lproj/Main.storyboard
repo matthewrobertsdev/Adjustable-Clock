@@ -575,13 +575,13 @@
                                         <menuItem title="System Color" id="M7M-RB-oPM">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Black or Gray" tag="1" id="LZV-KO-2AF">
+                                        <menuItem title="Black in Dark Mode" tag="1" id="LZV-KO-2AF">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem title="Gray" tag="2" id="vNP-0q-WID">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="White or Gray" tag="3" id="KML-5u-Wit">
+                                        <menuItem title="White in Light Mode" tag="3" id="KML-5u-Wit">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem title="Red" tag="4" id="UQR-HH-VX8">

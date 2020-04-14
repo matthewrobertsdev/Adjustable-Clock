@@ -85,7 +85,6 @@
 		9FB47E7B1F480A43009D82FF /* Adjustable_ClockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB47E7A1F480A43009D82FF /* Adjustable_ClockUITests.swift */; };
 		9FB78CFD23E4994A00B123B5 /* DockClockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB78CFC23E4994A00B123B5 /* DockClockModel.swift */; };
 		9FBBCCA520DDDD9F00F44160 /* ImageTemplateSetTint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBCCA420DDDD9F00F44160 /* ImageTemplateSetTint.swift */; };
-		9FC7A9AF23C8000500276431 /* ClockColorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC7A9AE23C8000500276431 /* ClockColorController.swift */; };
 		9FC97F581F480BB500035D30 /* PreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC97F531F480BB500035D30 /* PreferencesVC.swift */; };
 		9FC97F591F480BB500035D30 /* PreferencesWC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC97F541F480BB500035D30 /* PreferencesWC.swift */; };
 		9FD2825C23F26BEA00C204A2 /* TimerCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2825B23F26BEA00C204A2 /* TimerCollectionViewItem.xib */; };
@@ -209,7 +208,6 @@
 		9FB47E7C1F480A43009D82FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FB78CFC23E4994A00B123B5 /* DockClockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockClockModel.swift; sourceTree = "<group>"; };
 		9FBBCCA420DDDD9F00F44160 /* ImageTemplateSetTint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTemplateSetTint.swift; sourceTree = "<group>"; };
-		9FC7A9AE23C8000500276431 /* ClockColorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockColorController.swift; sourceTree = "<group>"; };
 		9FC97F531F480BB500035D30 /* PreferencesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesVC.swift; sourceTree = "<group>"; };
 		9FC97F541F480BB500035D30 /* PreferencesWC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWC.swift; sourceTree = "<group>"; };
 		9FD2825B23F26BEA00C204A2 /* TimerCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -378,7 +376,6 @@
 			children = (
 				9F4D87442055E99400AF63D1 /* ClockWindowController.swift */,
 				9F8EBE472050C4C7005BA4F2 /* ClockViewController.swift */,
-				9FC7A9AE23C8000500276431 /* ClockColorController.swift */,
 				9F93B36D23C81E620086B3CC /* DigitalClockAnimator.swift */,
 				9F71B69823C93A0C0079A79A /* ClockAnimator.swift */,
 				9F71B69623C939140079A79A /* AnalogClockAnimator.swift */,
@@ -798,7 +795,6 @@
 				9F0F972A23DB5FF8005456E6 /* AlertViewController.swift in Sources */,
 				9F538C4D2116AC1500A72242 /* SimplePreferenceWindowController.swift in Sources */,
 				9F7174A11F5DADE800595C8D /* DigItalClockAppFunctions.swift in Sources */,
-				9FC7A9AF23C8000500276431 /* ClockColorController.swift in Sources */,
 				9FF6912823D76C810057C4F6 /* AlarmsWindowController.swift in Sources */,
 				9F84B5B723D8BD0500221BF4 /* AlarmsPreferenceStorage.swift in Sources */,
 				9F750CC02056073F007980F9 /* DefaultNSWindow.swift in Sources */,
