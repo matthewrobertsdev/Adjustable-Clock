@@ -168,10 +168,9 @@ class ClockViewController: ColorfulViewController {
 	}
 	}
 	func resizeClock() {
-		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
-			if let windowWidth=view.window?.frame.size.width {
-				resizeContents(maxWidth: windowWidth)
-			}
+		if let windowWidth=view.window?.frame.size.width {
+			self.resizeContents(maxWidth: windowWidth)
+		}
 			guard let digitalClockWC=view.window?.windowController as? ClockWindowController else {
 				return
 			}
@@ -182,7 +181,6 @@ class ClockViewController: ColorfulViewController {
 			} else {
 				digitalClockWC.sizeWindowToFitClock(newWidth: analogClock.frame.width)
 			}
-		}
 	}
 	func resizeContents(maxWidth: CGFloat) {
 			digitalClock.sizeToFit()
