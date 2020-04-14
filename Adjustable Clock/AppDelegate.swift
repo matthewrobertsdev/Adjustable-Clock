@@ -34,7 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			//worldClockMenuController=WorldClockMenuController(menu: mainMenu.worldClockMenu)
 		}
 		//*
-		//AlarmCenter.sharedInstance.setUp()
+		AlarmCenter.sharedInstance.setUp()
 		DockClockController.dockClockObject.updateDockTile()
 		if AlarmsPreferencesStorage.sharedInstance.windowIsOpen {
 			AlarmsWindowController.alarmsObject.showAlarms()
@@ -55,7 +55,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			clockMenuController?.enableMenu(enabled: false)
 		}
 		if NSApp.orderedWindows.count==0 {
-			//ClockWindowController.clockObject.showClock()
+			ClockWindowController.clockObject.showClock()
 			//clockMenuController?.enableMenu(enabled: true)
 		}
 

@@ -39,7 +39,7 @@ class EditableTimerViewController: NSViewController {
 		if timerDatePicker.dateValue==startingDate {
 			let warningAlert=NSAlert()
 			warningAlert.messageText="Invalid Duration"
-			warningAlert.informativeText="Duration must be greater then 0.  Please wait for duration picker to update to have your duration."
+			warningAlert.informativeText="Please give the duration picker a second to get your duration."
 			warningAlert.runModal()
 			return
 		}

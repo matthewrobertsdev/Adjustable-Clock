@@ -82,6 +82,7 @@ class EditableAlarmViewController: NSViewController {
 						alert: alertName, song: playlistName, active: true)
 		alarm.setExpirationDate(currentDate: Date())
 		if new {
+			AlarmsWindowController.alarmsObject.showAlarms()
 			guard let alarmsViewController=AlarmsWindowController.alarmsObject.contentViewController
 				as? AlarmsViewController else {
 				return
