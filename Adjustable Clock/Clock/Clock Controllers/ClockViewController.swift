@@ -85,6 +85,7 @@ class ClockViewController: ColorfulViewController {
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: digitalClock)
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: analogClock)
 		model.updateClockModelForPreferences()
+		animateAnalog()
 		updateSizeConstraints()
 		guard let clockWindowController=view.window?.windowController as? ClockWindowController else { return }
 			clockWindowController.resizeContents()
@@ -93,7 +94,6 @@ class ClockViewController: ColorfulViewController {
 				clockWindowController.sizeWindowToFitClock(newWidth: width)
 			}
 		analogClock.setNeedsDisplay(analogClock.bounds)
-		animateAnalog()
 	}
 	func showDigitalClock() {
 		setConstraints()
@@ -104,12 +104,12 @@ class ClockViewController: ColorfulViewController {
 		}
 		model.updateClockModelForPreferences()
 		updateSizeConstraints()
+		animateDigital()
 		clockWindowController.resizeContents()
 		guard let width=self.view.window?.frame.width else { return }
 		if ClockPreferencesStorage.sharedInstance.fullscreen==false {
 			clockWindowController.sizeWindowToFitClock(newWidth: width)
 		}
-		animateDigital()
 	}
 	func setConstraints() {
 			if self.view.frame.size.width/self.view.frame.size.height<model.width/model.height {
@@ -144,12 +144,12 @@ class ClockViewController: ColorfulViewController {
 	}
 	func updateClock() {
 		model.updateClockModelForPreferences()
+		animateClock()
 		updateSizeConstraints()
 		applyColors()
 		if let windowController=self.view.window?.windowController as? ClockWindowController {
 			windowController.applyFloatState()
 		}
-		animateClock()
 		resizeClock()
 		analogClock.setNeedsDisplay(analogClock.frame)
 	}
@@ -168,12 +168,13 @@ class ClockViewController: ColorfulViewController {
 	}
 	}
 	func resizeClock() {
+		guard let digitalClockWC=view.window?.windowController as? ClockWindowController else {
+			return
+		}
+		if !ClockPreferencesStorage.sharedInstance.useAnalog || !digitalClockWC.fullscreen {
 		if let windowWidth=view.window?.frame.size.width {
 			self.resizeContents(maxWidth: windowWidth)
 		}
-			guard let digitalClockWC=view.window?.windowController as? ClockWindowController else {
-				return
-			}
 			if ClockPreferencesStorage.sharedInstance.fullscreen==false && self.view.window?.isZoomed==false {
 				if let newWidth=self.view.window?.frame.width {
 					digitalClockWC.sizeWindowToFitClock(newWidth: newWidth)
@@ -181,6 +182,7 @@ class ClockViewController: ColorfulViewController {
 			} else {
 				digitalClockWC.sizeWindowToFitClock(newWidth: analogClock.frame.width)
 			}
+		}
 	}
 	func resizeContents(maxWidth: CGFloat) {
 			digitalClock.sizeToFit()
