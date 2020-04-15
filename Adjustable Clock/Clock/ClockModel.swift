@@ -72,7 +72,11 @@ class ClockModel {
 	}
 	func updateClockModelForPreferences() {
 		if ClockPreferencesStorage.sharedInstance.showDate
-		|| ClockPreferencesStorage.sharedInstance.showDayOfWeek { showDayInfo=true }
+			|| ClockPreferencesStorage.sharedInstance.showDayOfWeek {
+			showDayInfo=true
+		} else {
+			showDayInfo=false
+		}
 		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
 			if GeneralPreferencesStorage.sharedInstance.use24Hours==false {
 				if ClockPreferencesStorage.sharedInstance.showSeconds==false {
@@ -92,7 +96,7 @@ class ClockModel {
 		}
 		if showDayInfo {
 			if ClockPreferencesStorage.sharedInstance.useAnalog {
-				height+=70
+				height=530
 				if ClockPreferencesStorage.sharedInstance.showDate==false {
 					if ClockPreferencesStorage.sharedInstance.showDayOfWeek==false {
 						useWeekdayDate()
@@ -137,7 +141,7 @@ class ClockModel {
 			if ClockPreferencesStorage.sharedInstance.useAnalog==false {
 				height=140
 			} else {
-				height=width
+				width=CGFloat(460); height=CGFloat(460)
 			}
 		}
 	}

@@ -50,9 +50,7 @@ class ClockViewController: ColorfulViewController {
 				}
 				strongSelf.resizeContents(maxWidth: windowWidth)} */
 		let screenSleepObserver = workspaceNotifcationCenter.addObserver(self, selector: #selector(endForSleep), name: NSWorkspace.screensDidSleepNotification, object: nil)
-				
 		let screenWakeObserver = workspaceNotifcationCenter.addObserver(self, selector: #selector(startForWake), name: NSWorkspace.screensDidWakeNotification, object: nil)
-		
 		let processOptions: ProcessInfo.ActivityOptions=[ProcessInfo.ActivityOptions.userInitiatedAllowingIdleSystemSleep]
 		tellingTime = ProcessInfo().beginActivity(options: processOptions, reason: "Need accurate time all the time")
 		showClock()
@@ -61,13 +59,13 @@ class ClockViewController: ColorfulViewController {
 		applyColors()
 		backgroundView.draw(backgroundView.bounds)
 	}
-	@objc func endForSleep(){
+	@objc func endForSleep() {
 		updateTimer?.cancel()
 		digitalClock.stringValue="Relaunch To Resume"
 		animatedDay.stringValue=""
 		resizeContents(maxWidth: view.window?.frame.width ?? CGFloat(200))
 	}
-	@objc func startForWake(){
+	@objc func startForWake() {
 		animateClock()
 		guard let windowWidth=view.window?.frame.width else {
 			return
