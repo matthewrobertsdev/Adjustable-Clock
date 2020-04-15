@@ -80,7 +80,6 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
     }
 	func resizeContents() {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
-		digitalClockVC.analogClock.clearHands()
 		guard let windowSize=window?.frame.size else { return }
 		if ClockPreferencesStorage.sharedInstance.fullscreen || digitalClockVC.wasAnalog {
 			if digitalClockVC.view.frame.size.width/digitalClockVC.view.frame.size.height <
@@ -91,11 +90,16 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 					digitalClockVC.activateHeightConstraints()
 					digitalClockVC.resizeContents(maxHeight: windowSize.height)
 				}
-			digitalClockVC.analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
-			digitalClockVC.animateAnalog()
 		} else {
+			if !digitalClockVC.wasAnalog {
+				digitalClockVC.analogClock.clearHands()
+			}
 			digitalClockVC.activateWidthConstraints()
 			digitalClockVC.resizeContents(maxWidth: windowSize.width)
+			digitalClockVC.analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
+			if !digitalClockVC.wasAnalog {
+				digitalClockVC.animateAnalog()
+			}
 		}
 		if ClockPreferencesStorage.sharedInstance.useAnalog && ClockPreferencesStorage.sharedInstance.fullscreen {
 			digitalClockVC.animateAnalog()
