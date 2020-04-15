@@ -81,7 +81,9 @@ class ClockViewController: ColorfulViewController {
 	}
 	func showAnalogClock() {
 		model.updateClockModelForPreferences()
-		animateAnalog()
+		if wasAnalog {
+			analogClock.clearHands()
+		}
 		analogClock.setNeedsDisplay(analogClock.bounds)
 		setConstraints()
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: digitalClock)
@@ -101,7 +103,11 @@ class ClockViewController: ColorfulViewController {
 		analogClock.isHidden=false
 		showHideDate()
 		analogClock.setNeedsDisplay(analogClock.bounds)
+		if wasAnalog {
+			analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
+		}
 		wasAnalog=true
+		animateAnalog()
 	}
 	func showDigitalClock() {
 		wasAnalog=false
