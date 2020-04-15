@@ -92,13 +92,13 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 				}
 		} else {
 			if !digitalClockVC.wasAnalog {
-				digitalClockVC.analogClock.clearHands()
+				//digitalClockVC.analogClock.clearHands()
 			}
 			digitalClockVC.activateWidthConstraints()
 			digitalClockVC.resizeContents(maxWidth: windowSize.width)
-			digitalClockVC.analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
+			//digitalClockVC.analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
 			if !digitalClockVC.wasAnalog && ClockPreferencesStorage.sharedInstance.useAnalog {
-				digitalClockVC.animateAnalog()
+				//digitalClockVC.animateAnalog()
 			}
 		}
 		if ClockPreferencesStorage.sharedInstance.useAnalog && ClockPreferencesStorage.sharedInstance.fullscreen {
