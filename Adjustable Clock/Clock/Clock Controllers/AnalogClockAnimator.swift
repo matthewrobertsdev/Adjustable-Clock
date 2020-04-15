@@ -80,7 +80,7 @@ extension ClockViewController {
 		}
 		updateTimer.resume()
 	}
-	private func runAnimation(early: Bool) {
+	public func runAnimation(early: Bool) {
 		if ClockPreferencesStorage.sharedInstance.showSeconds {
 			self.animateHandsWithSeconds(early: early)
 		} else {

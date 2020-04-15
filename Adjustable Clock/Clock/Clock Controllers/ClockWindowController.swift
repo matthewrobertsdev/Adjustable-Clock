@@ -52,7 +52,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 			}
 		}
         let newRect=NSRect(origin: newOrigin, size: newSize)
-		window?.setFrame(newRect, display: true, animate: !ClockPreferencesStorage.sharedInstance.useAnalog)
+		window?.setFrame(newRect, display: true, animate: true)
     }
     func windowDidBecomeKey(_ notification: Notification) {
 		if !fullscreen {
@@ -81,14 +81,32 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 	func resizeContents() {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
 		guard let windowSize=window?.frame.size else { return }
-		if digitalClockVC.view.frame.size.width/digitalClockVC.view.frame.size.height <
-		digitalClockVC.model.width/digitalClockVC.model.height {
+		if ClockPreferencesStorage.sharedInstance.fullscreen || digitalClockVC.wasAnalog {
+			if digitalClockVC.view.frame.size.width/digitalClockVC.view.frame.size.height <
+				digitalClockVC.model.width/digitalClockVC.model.height {
+					digitalClockVC.activateWidthConstraints()
+					digitalClockVC.resizeContents(maxWidth: windowSize.width)
+				} else {
+					digitalClockVC.activateHeightConstraints()
+					digitalClockVC.resizeContents(maxHeight: windowSize.height)
+				}
+		} else {
 			digitalClockVC.activateWidthConstraints()
 			digitalClockVC.resizeContents(maxWidth: windowSize.width)
-		} else {
-			digitalClockVC.activateHeightConstraints()
-			digitalClockVC.resizeContents(maxHeight: windowSize.height)
 		}
+		/*if digitalClockVC.view.frame.size.width/digitalClockVC.view.frame.size.height <
+		digitalClockVC.model.width/digitalClockVC.model.height {
+			
+		} else {*/
+			//digitalClockVC.activateHeightConstraints()
+			//digitalClockVC.resizeContents(maxHeight: windowSize.height)
+		//digitalClockVC.analogClock.clearHands()
+		//digitalClockVC.analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
+		//performWithoutAnimation {
+			//digitalClockVC.runAnimation(early: false)
+		//}
+		//digitalClockVC.analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
+		//}
 		if ClockPreferencesStorage.sharedInstance.useAnalog && ClockPreferencesStorage.sharedInstance.fullscreen {
 			digitalClockVC.animateAnalog()
 		}
