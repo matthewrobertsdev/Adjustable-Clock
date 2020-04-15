@@ -19,6 +19,7 @@ class ClockViewController: ColorfulViewController {
 	@IBOutlet weak var clockWidthConstraint: NSLayoutConstraint!
 	@IBOutlet weak var clockHeightConstraint: NSLayoutConstraint!
 	let model=ClockModel()
+	var wasAnalog=false
 	var tellingTime: NSObjectProtocol?
 	var updateTimer: DispatchSourceTimer!
 	let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
@@ -87,8 +88,10 @@ class ClockViewController: ColorfulViewController {
 		updateSizeConstraints()
 		guard let clockWindowController=view.window?.windowController as? ClockWindowController else { return }
 			clockWindowController.resizeContents()
-		analogClock.isHidden=true
-		animatedDay.isHidden=true
+		if !wasAnalog {
+			analogClock.isHidden=true
+			animatedDay.isHidden=true
+		}
 		guard let width=self.view.window?.frame.width else { return }
 			if ClockPreferencesStorage.sharedInstance.fullscreen==false {
 				clockWindowController.sizeWindowToFitClock(newWidth: width)
@@ -96,8 +99,10 @@ class ClockViewController: ColorfulViewController {
 		analogClock.isHidden=false
 		showHideDate()
 		analogClock.setNeedsDisplay(analogClock.bounds)
+		wasAnalog=true
 	}
 	func showDigitalClock() {
+		wasAnalog=false
 		showHideDate()
 		setConstraints()
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: analogClock)
