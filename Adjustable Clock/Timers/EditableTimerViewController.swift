@@ -36,10 +36,11 @@ class EditableTimerViewController: NSViewController {
 		closeAction()
 	}
 	@IBAction func setTimer(_ sender: Any) {
+		view.window?.makeFirstResponder(view.window)
 		if timerDatePicker.dateValue==startingDate {
 			let warningAlert=NSAlert()
 			warningAlert.messageText="Invalid Duration"
-			warningAlert.informativeText="Please give the duration picker a second to get your duration."
+			warningAlert.informativeText="Duration must not be 0."
 			warningAlert.runModal()
 			return
 		}

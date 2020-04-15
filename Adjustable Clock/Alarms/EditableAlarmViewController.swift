@@ -63,6 +63,7 @@ class EditableAlarmViewController: NSViewController {
 		}
 	}
 	@IBAction func setAlarm(_ sender: Any) {
+		view.window?.makeFirstResponder(view.window)
 		var repeating=false
 		if repeatsButton.state==NSControl.StateValue.on {
 			repeating=true
