@@ -52,7 +52,8 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 			}
 		}
         let newRect=NSRect(origin: newOrigin, size: newSize)
-		window?.setFrame(newRect, display: true, animate: !digitalClockVC.wasAnalog)
+		//window?.setFrame(newRect, display: true, animate: !digitalClockVC.wasAnalog)
+		window?.setFrame(newRect, display: true, animate: true)
     }
     func windowDidBecomeKey(_ notification: Notification) {
 		if !fullscreen {

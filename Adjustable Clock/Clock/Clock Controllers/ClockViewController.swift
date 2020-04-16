@@ -81,7 +81,9 @@ class ClockViewController: ColorfulViewController {
 	}
 	func showAnalogClock() {
 		model.updateClockModelForPreferences()
-		analogClock.clearHands()
+		if !wasAnalog {
+			analogClock.clearHands()
+		}
 		analogClock.setNeedsDisplay(analogClock.bounds)
 		setConstraints()
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: digitalClock)
@@ -161,6 +163,7 @@ class ClockViewController: ColorfulViewController {
 		analogClock.setNeedsDisplay(analogClock.frame)
 	}
 	func showHideDate() {
+		//*
 		if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
 			clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: animatedDay!)
 			animatedDay.isHidden=false
@@ -168,6 +171,27 @@ class ClockViewController: ColorfulViewController {
 			clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: animatedDay!)
 			animatedDay.isHidden=true
 		}
+//*/
+		/*if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
+		NSAnimationContext.runAnimationGroup({context in
+                context.duration = 0.25
+                context.allowsImplicitAnimation = true
+
+                self.clockStackView.arrangedSubviews.last!.isHidden = false
+                self.view.layoutSubtreeIfNeeded()
+            }, completionHandler: nil)
+
+        } else {
+
+            NSAnimationContext.runAnimationGroup({context in
+                context.duration = 0.25
+                context.allowsImplicitAnimation = true
+
+                self.clockStackView.arrangedSubviews.last!.isHidden = true
+                self.view.layoutSubtreeIfNeeded()
+            }, completionHandler: nil)
+
+        }*/
 	}
 	func animateClock() {
 	if ClockPreferencesStorage.sharedInstance.useAnalog==false {
