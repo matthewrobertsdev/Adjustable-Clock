@@ -94,7 +94,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 			digitalClockVC.activateWidthConstraints()
 			digitalClockVC.resizeContents(maxWidth: windowSize.width)
 			//digitalClockVC.analogClock.startHands(withSeconds: ClockPreferencesStorage.sharedInstance.showSeconds)
-			if !digitalClockVC.wasAnalog && ClockPreferencesStorage.sharedInstance.useAnalog {
+			if ClockPreferencesStorage.sharedInstance.useAnalog {
 				//digitalClockVC.animateAnalog()
 			}
 		}
