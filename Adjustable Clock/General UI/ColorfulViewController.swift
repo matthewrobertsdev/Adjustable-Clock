@@ -84,6 +84,7 @@ class ColorfulViewController: NSViewController {
 			}
 		} else {
 			visualEffectView.isHidden=false
+			//backgroundView.backgroundColor=NSColor(named: "BackgroundDrakGray") ?? NSColor.systemGray
 			if contrastColor==NSColor.textBackgroundColor {
 				contrastColor=NSColor.labelColor
 				if !isDarkMode() {
