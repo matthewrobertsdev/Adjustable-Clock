@@ -87,7 +87,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		timerCollectionViewItem.titleTextField.textColor=textColor
 		timerCollectionViewItem.countdownTextField.textColor=textColor
 		let title=TimersCenter.sharedInstance.timers[indexPath.item].title
-		timerCollectionViewItem.titleTextField.stringValue=title=="" ? "Timer \(indexPath.item+1)" : title
+		timerCollectionViewItem.titleTextField.stringValue=title=="" ? "Timer" : title
 		timerCollectionViewItem.stopTimeTextField.textColor=textColor
 		timerCollectionViewItem.countdownTextField.stringValue =
 			dockDisplay ? "--" : TimersCenter.sharedInstance.getCountDownString(index: indexPath.item)
@@ -208,7 +208,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			}
 		}
 		let timerAlert=NSAlert()
-		timerAlert.messageText="Timer has gone off at \(self.timeFormatter.string(from: Date()))."
+		timerAlert.messageText="\(timer.title=="" ? "Timer" : timer.title) has gone off at \(self.timeFormatter.string(from: Date()))."
 		timerAlert.addButton(withTitle: "Dismiss")
 		timerAlert.icon=imageFromView(view: DockClockController.dockClockObject.getFreezeView(time: Date()))
 		TimersWindowController.timersObject.showTimers()
