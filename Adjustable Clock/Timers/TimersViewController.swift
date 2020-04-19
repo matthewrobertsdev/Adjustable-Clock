@@ -7,16 +7,17 @@
 //
 import Cocoa
 import AVFoundation
-class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
+class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, NSCollectionViewDelegate, NSSoundDelegate {
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var collectionView: NSCollectionView!
 	@IBOutlet weak var timerActiveLabel: NSTextField!
 	@IBOutlet weak var clickRecognizer: NSClickGestureRecognizer!
 	private let timeFormatter=DateFormatter()
 	private let stopTimeFormatter=DateFormatter()
-	let popover = NSPopover()
-	var dockDisplay=false
-	var player: AVAudioPlayer?
+	private let popover = NSPopover()
+	private var dockDisplay=false
+	private var player: AVAudioPlayer?
+	private var soundCount=0
 	override func viewDidLoad() {
         super.viewDidLoad()
 		collectionView.dataSource=self
@@ -183,8 +184,10 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		let timer=TimersCenter.sharedInstance.timers[index]
 		timer.going=false
 		let alertSound=NSSound(named: NSSound.Name(timer.alertString))
+		alertSound?.delegate=self
 		if timer.alertStyle==AlertStyle.sound {
-			alertSound?.loops=true
+			soundCount=0
+			//alertSound?.loops=true
 			alertSound?.play()
 		} else if timer.alertStyle==AlertStyle.song {
 			do {
@@ -199,7 +202,8 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 				player?.volume = 1.0
 				player?.play()
 			} catch {
-				alertSound?.loops=true
+				soundCount=0
+				//alertSound?.loops=true
 				alertSound?.play()
 			}
 		}
@@ -274,6 +278,13 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			editableTimerViewController.index=index
 			popover.show(relativeTo: settingsButton.bounds, of: settingsButton, preferredEdge: NSRectEdge.minY)
 			print("abcd \(debugTimeFormatter.string(from: Date())) popover should show 4")
+		}
+	}
+	func sound(_ sound: NSSound,
+			   didFinishPlaying flag: Bool) {
+		if flag && soundCount<300 {
+			sound.play()
+			soundCount+=1
 		}
 	}
 }
