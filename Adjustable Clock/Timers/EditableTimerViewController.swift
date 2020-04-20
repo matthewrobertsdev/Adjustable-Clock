@@ -13,7 +13,7 @@ enum AlertStyle: String, Codable {
 import Cocoa
 class EditableTimerViewController: NSViewController {
 	var index=0
-	let calendar=Calendar.current
+	let calendar=Calendar.autoupdatingCurrent
 	@IBOutlet weak var timerDatePicker: NSDatePicker!
 	@IBOutlet weak var beepButton: NSButton!
 	@IBOutlet weak var songButton: NSButton!
@@ -39,6 +39,7 @@ class EditableTimerViewController: NSViewController {
 		view.window?.makeFirstResponder(view.window)
 		if timerDatePicker.dateValue==startingDate {
 			let warningAlert=NSAlert()
+			warningAlert.alertStyle = .warning
 			warningAlert.messageText="Invalid Duration"
 			warningAlert.informativeText="Duration must not be 0."
 			warningAlert.runModal()

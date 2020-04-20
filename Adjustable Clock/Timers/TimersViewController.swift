@@ -54,10 +54,12 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			return
 		}
 		if TimersCenter.sharedInstance.timers[index].reset {
+			timerCollectionViewItem.startPauseButton.isHidden=true
 			TimersCenter.sharedInstance.timers[index]=CountDownTimer()
 			collectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
 			timerCollectionViewItem.countdownTextField.stringValue=TimersCenter.sharedInstance.getCountDownString(index: index)
 		} else {
+			timerCollectionViewItem.startPauseButton.isHidden=false
 			TimersCenter.sharedInstance.timers[index].reset=true
 			TimersCenter.sharedInstance.resetTimer(index: index)
 			timerCollectionViewItem.countdownTextField.stringValue=TimersCenter.sharedInstance.getCountDownString(index: index)
@@ -87,6 +89,11 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		timerCollectionViewItem.titleTextField.textColor=textColor
 		timerCollectionViewItem.countdownTextField.textColor=textColor
 		let title=TimersCenter.sharedInstance.timers[indexPath.item].title
+		if TimersCenter.sharedInstance.timers[indexPath.item].secondsRemaining<=0 {
+			timerCollectionViewItem.startPauseButton.isHidden=true
+		} else {
+			timerCollectionViewItem.startPauseButton.isHidden=false
+		}
 		timerCollectionViewItem.titleTextField.stringValue=title=="" ? "Timer" : title
 		timerCollectionViewItem.stopTimeTextField.textColor=textColor
 		timerCollectionViewItem.countdownTextField.stringValue =
@@ -172,6 +179,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	}
 	func timerStopped(index: Int) {
 		let timerCollectionViewItem=collectionView.item(at: IndexPath(item: index, section: 0)) as? TimerCollectionViewItem
+		timerCollectionViewItem?.startPauseButton.isHidden=true
 		timerCollectionViewItem?.startPauseButton.title="Start"
 		if TimersCenter.sharedInstance.timers[index]==CountDownTimer() {
 			TimersCenter.sharedInstance.timers[index].reset=true
