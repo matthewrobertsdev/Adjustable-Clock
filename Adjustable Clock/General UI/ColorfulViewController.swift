@@ -101,6 +101,9 @@ class ColorfulViewController: NSViewController {
 			} else {
 				visualEffectView.material = .dark
 			}
+			if ClockPreferencesStorage.sharedInstance.colorForForeground && ClockPreferencesStorage.sharedInstance.colorChoice == ColorChoice.systemColor {
+				contrastColor=NSColor.labelColor
+			}
 			textColor=contrastColor
 				for label in labels {
 					label.textColor=contrastColor
