@@ -32,7 +32,6 @@ class EditableAlarmViewController: NSViewController {
 	}
 	@IBAction func chooseAlert(_ sender: Any) {
 		let alertTitle=alertSoundPopUpButton.selectedItem?.title
-		print("abcd sound")
 		self.alertName=alertTitle ?? "Ping"
 		let sound=NSSound(named: alertTitle ?? "Ping")
 		sound?.play()
@@ -139,7 +138,6 @@ class EditableAlarmViewController: NSViewController {
 		oldDate=alarm.time
 		datePicker.dateValue=alarm.time
 		alertName=alarm.alertString
-		//alertTextField.stringValue="Alert: "+alarm.alertString
 		playlistName=alarm.song=="" ? "none chosen": alarm.song
 		playlistTextField.stringValue="Song: "+(alarm.song=="" ? "none chosen": alarm.song)
 		alarm.usesSong ? useSong() : useBeep()

@@ -20,18 +20,29 @@ class EditableTimerViewController: NSViewController {
 	@IBOutlet weak var noSoundButton: NSButton!
 	@IBOutlet weak var playlistTextField: NSTextField!
 	@IBOutlet weak var titleTextField: NSTextField!
+	@IBOutlet weak var alertSoundPopUpButton: NSPopUpButton!
 	var alertStyle=AlertStyle.sound
 	var oldDate: Date?
 	var alertName="Ping"
 	var playlistName=""
 	var closeAction = { () -> Void in }
 	var startingDate: Date?
-	@IBOutlet weak var alertTextField: NSTextField!
 	override func viewDidLoad() {
         super.viewDidLoad()
+		alertSoundPopUpButton.addItems(withTitles: AlertSoundModel.soundsNames)
 		timerDatePicker.locale=Locale(identifier: "de_AT")
 		startingDate=timerDatePicker.dateValue
+		alertSoundPopUpButton.selectItem(withTitle: "Ping")
     }
+	override func viewDidAppear() {
+		view.window?.makeFirstResponder(view.window)
+	}
+	@IBAction func chooseAlert(_ sender: Any) {
+		let alertTitle=alertSoundPopUpButton.selectedItem?.title
+		self.alertName=alertTitle ?? "Ping"
+		let sound=NSSound(named: alertTitle ?? "Ping")
+		sound?.play()
+	}
 	@IBAction func cancel(_ sender: Any) {
 		closeAction()
 	}
@@ -65,6 +76,7 @@ class EditableTimerViewController: NSViewController {
 		timerCollectionViewItem?.resetButton.title="Reset"
 		closeAction()
 	}
+	/*
 	@IBAction func chooseAlert(_ sender: Any) {
 		   let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 			   guard let chooseAlertViewController =
@@ -77,6 +89,7 @@ class EditableTimerViewController: NSViewController {
 			   }
 		self.presentAsModalWindow(chooseAlertViewController)
 	}
+*/
 	@IBAction func chooseSong(_ sender: Any) {
 		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 				guard let chooseSongViewController = mainStoryBoard.instantiateController(withIdentifier:
