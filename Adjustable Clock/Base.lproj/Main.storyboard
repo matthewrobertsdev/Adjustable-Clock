@@ -860,14 +860,14 @@
             <objects>
                 <viewController id="Fch-iR-SvQ" customClass="TimersViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="gv6-gj-aTH">
-                        <rect key="frame" x="0.0" y="0.0" width="351" height="394"/>
+                        <rect key="frame" x="0.0" y="0.0" width="351" height="414"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="3" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="li0-1M-reH">
-                                <rect key="frame" x="0.0" y="0.0" width="351" height="374"/>
+                                <rect key="frame" x="0.0" y="0.0" width="351" height="394"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sxf-Lb-5wq">
-                                        <rect key="frame" x="116" y="328" width="119" height="46"/>
+                                        <rect key="frame" x="116" y="348" width="119" height="46"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Timers" id="jTc-VM-bBw">
                                             <font key="font" metaFont="system" size="39"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -875,12 +875,12 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WYv-C8-oRU">
-                                        <rect key="frame" x="72" y="265" width="207" height="60"/>
+                                        <rect key="frame" x="72" y="265" width="207" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="203" id="ByD-aY-zzB"/>
-                                            <constraint firstAttribute="height" constant="60" id="XIA-Ah-BEE"/>
+                                            <constraint firstAttribute="height" constant="80" id="XIA-Ah-BEE"/>
                                         </constraints>
-                                        <textFieldCell key="cell" title="Timer(s) Active: Please do not shut computer, logout, put it to sleep, or quit the program." id="mac-37-9QW">
+                                        <textFieldCell key="cell" title="1 Timer Active: Please do not not shut down your computer, logout, put it to sleep, close your laptop, or quit the program.&quot;" id="mac-37-9QW">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -908,7 +908,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="V6w-nk-33H">
-                                            <rect key="frame" x="335" y="0.0" width="16" height="222"/>
+                                            <rect key="frame" x="335" y="0.0" width="16" height="262"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -1169,7 +1169,7 @@
                                             <tableColumns>
                                                 <tableColumn width="141.5" minWidth="40" maxWidth="1000" id="72b-sf-9fX">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1202,7 +1202,7 @@
                                                 </tableColumn>
                                                 <tableColumn width="143.5" minWidth="40" maxWidth="1000" id="Kc6-Qb-l2w">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1214,7 +1214,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="RLi-zz-p4w">
-                                                            <rect key="frame" x="146" y="1" width="143" height="17"/>
+                                                            <rect key="frame" x="145.5" y="1" width="143" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bQ7-JE-ioD">
@@ -1905,7 +1905,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="233" minWidth="40" maxWidth="1000" id="7af-du-yPg">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2055,7 +2055,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="280" minWidth="40" maxWidth="1000" id="nxT-P1-PJ8">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2169,7 +2169,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="304" minWidth="40" maxWidth="1000" id="h46-K1-f75">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>

@@ -22,7 +22,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
         super.viewDidLoad()
 		collectionView.dataSource=self
 		collectionView.delegate=self
-		popover.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)
+		//popover.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)
 		collectionView.register(TimerCollectionViewItem.self,
 								forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "TimerCollectionViewItem"))
 		update()
@@ -38,11 +38,20 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		clickRecognizer.isEnabled=false
 	}
 	@objc func showHideTimerActiveLabel() {
-		print("123"+TimersCenter.sharedInstance.activeTimers.description)
-		if (TimersCenter.sharedInstance.activeTimers)>0 {
-			self.timerActiveLabel.isHidden=false
+		if TimersCenter.sharedInstance.activeTimers==0 {
+			timerActiveLabel.isHidden=true
 		} else {
-			self.timerActiveLabel.isHidden=true
+			timerActiveLabel.isHidden=false
+			var activeTimerString=String(TimersCenter.sharedInstance.activeTimers)
+			if TimersCenter.sharedInstance.activeTimers<2 {
+				activeTimerString+=" Timer Active: "
+				activeTimerString+=DONTSTRING
+				timerActiveLabel.stringValue=activeTimerString
+			} else {
+				activeTimerString+=" Timers Active: "
+				activeTimerString+=DONTSTRING
+				timerActiveLabel.stringValue=activeTimerString
+			}
 		}
 	}
 	@objc func resetTimer(sender: Any?) {
