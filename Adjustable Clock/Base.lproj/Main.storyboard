@@ -1653,10 +1653,10 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="flv-ip-qrW">
-                                <rect key="frame" x="68" y="19" width="168" height="302"/>
+                                <rect key="frame" x="68" y="32" width="168" height="276"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nQf-7w-BpU">
-                                        <rect key="frame" x="25" y="274" width="118" height="32"/>
+                                        <rect key="frame" x="25" y="248" width="118" height="32"/>
                                         <buttonCell key="cell" type="push" title="Delete Alarm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tcq-pT-hWA">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1666,7 +1666,7 @@ DQ
                                         </connections>
                                     </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CAo-ws-YFD">
-                                        <rect key="frame" x="61" y="255" width="47" height="16"/>
+                                        <rect key="frame" x="61" y="229" width="47" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Sound:" id="mDJ-hu-g4n">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1674,7 +1674,7 @@ DQ
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Pd-K7-1xp">
-                                        <rect key="frame" x="59" y="228" width="52" height="18"/>
+                                        <rect key="frame" x="59" y="202" width="52" height="18"/>
                                         <buttonCell key="cell" type="radio" title="Alert" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="hyr-eO-u4C">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1684,7 +1684,7 @@ DQ
                                         </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2wM-kb-fM2">
-                                        <rect key="frame" x="58" y="202" width="54" height="18"/>
+                                        <rect key="frame" x="58" y="176" width="54" height="18"/>
                                         <buttonCell key="cell" type="radio" title="Song" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="8A0-aY-plZ">
                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1693,24 +1693,17 @@ DQ
                                             <action selector="useSongChosen:" target="9uc-jD-1ug" id="v03-jY-9VU"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XnX-lk-Kwl">
-                                        <rect key="frame" x="50" y="177" width="68" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Alert: Ping" id="bls-7Q-dTY">
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nPN-Aq-1nN">
+                                        <rect key="frame" x="66" y="143" width="38" height="25"/>
+                                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="FZG-Vb-1Xx">
+                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UVM-Rd-4Nu">
-                                        <rect key="frame" x="25" y="139" width="119" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Choose Alert" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ow5-Es-BIm">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="chooseAlert:" target="9uc-jD-1ug" id="5Tx-6o-byE"/>
-                                        </connections>
-                                    </button>
+                                            <menu key="menu" id="Y7F-8i-AeL"/>
+                                            <connections>
+                                                <action selector="chooseAlert:" target="9uc-jD-1ug" id="hX1-Rh-B3g"/>
+                                            </connections>
+                                        </popUpButtonCell>
+                                    </popUpButton>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bvu-xi-gW8">
                                         <rect key="frame" x="24" y="120" width="121" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Song: none chosen" id="zKT-5G-8cb">
@@ -1824,10 +1817,8 @@ DQ
                                     <integer value="1000"/>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
-                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
@@ -1847,7 +1838,7 @@ DQ
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="alertTextField" destination="XnX-lk-Kwl" id="enu-zs-Vpo"/>
+                        <outlet property="alertSoundPopUpButton" destination="nPN-Aq-1nN" id="U0e-c0-bgV"/>
                         <outlet property="beepButton" destination="5Pd-K7-1xp" id="vK7-JO-ipS"/>
                         <outlet property="datePicker" destination="fId-H7-Vhr" id="1Z1-1D-Gxp"/>
                         <outlet property="deleteButton" destination="nQf-7w-BpU" id="4rB-3q-YnY"/>

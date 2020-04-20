@@ -8,6 +8,6 @@
 
 import Foundation
 struct AlertSoundModel {
-	let soundsNames=["Basso", "Blow", "Bottle", "Frog", "Funk", "Glass", "Hero", "Morse", "Ping", "Pop", "Purr",
+	static let soundsNames=["Basso", "Blow", "Bottle", "Frog", "Funk", "Glass", "Hero", "Morse", "Ping", "Pop", "Purr",
 	"Sosumi", "Submarine", "Tink"]
 }

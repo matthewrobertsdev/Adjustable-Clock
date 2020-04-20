@@ -12,8 +12,8 @@ class EditableAlarmViewController: NSViewController {
 	let timeFormatter=DateFormatter()
 	@IBOutlet weak var verticalStackView: NSStackView!
 	@IBOutlet weak var deleteButton: NSButton!
-	@IBOutlet weak var alertTextField: NSTextField!
 	@IBOutlet weak var datePicker: NSDatePicker!
+	@IBOutlet weak var alertSoundPopUpButton: NSPopUpButton!
 	@IBOutlet weak var playlistTextField: NSTextField!
 	@IBOutlet weak var repeatsButton: NSButton!
 	@IBOutlet weak var beepButton: NSButton!
@@ -31,6 +31,13 @@ class EditableAlarmViewController: NSViewController {
 		delete()
 	}
 	@IBAction func chooseAlert(_ sender: Any) {
+		let alertTitle=alertSoundPopUpButton.selectedItem?.title
+		print("abcd sound")
+		self.alertName=alertTitle ?? "Ping"
+		let sound=NSSound(named: alertTitle ?? "Ping")
+		sound?.play()
+	}
+	/*@IBAction func chooseAlert(_ sender: Any) {
 	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 		guard let chooseAlertViewController =
  mainStoryBoard.instantiateController(withIdentifier:
@@ -40,7 +47,7 @@ class EditableAlarmViewController: NSViewController {
 			self.alertTextField.stringValue="Alert: "+alert
 		}
 		self.presentAsModalWindow(chooseAlertViewController)
-	}
+	}*/
 	@IBAction func chooseSong(_ sender: Any) {
 	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 				guard let chooseSongViewController = mainStoryBoard.instantiateController(withIdentifier:
@@ -56,8 +63,9 @@ class EditableAlarmViewController: NSViewController {
 		presentAsModalWindow(chooseSongViewController)
 	}
 	@IBAction func cancel(_ sender: Any) {
-		self.view.window?.close()
-		if new {	self.view.window?.close()
+		view.window?.close()
+		if new {
+			view.window?.close()
 		} else {
 			cancel()
 		}
@@ -121,15 +129,17 @@ class EditableAlarmViewController: NSViewController {
 	}
 	override func viewDidLoad() {
         super.viewDidLoad()
+		alertSoundPopUpButton.addItems(withTitles: AlertSoundModel.soundsNames)
 		if new {
 			verticalStackView.removeView(deleteButton)
+			alertSoundPopUpButton.selectItem(withTitle: "Ping")
 		}
     }
 	func assignAlarm(alarm: Alarm) {
 		oldDate=alarm.time
 		datePicker.dateValue=alarm.time
 		alertName=alarm.alertString
-		alertTextField.stringValue="Alert: "+alarm.alertString
+		//alertTextField.stringValue="Alert: "+alarm.alertString
 		playlistName=alarm.song=="" ? "none chosen": alarm.song
 		playlistTextField.stringValue="Song: "+(alarm.song=="" ? "none chosen": alarm.song)
 		alarm.usesSong ? useSong() : useBeep()
@@ -138,5 +148,6 @@ class EditableAlarmViewController: NSViewController {
 		} else {
 			repeatsButton.state=NSControl.StateValue.off
 		}
+		alertSoundPopUpButton.selectItem(withTitle: alertName)
 	}
 }
