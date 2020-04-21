@@ -88,9 +88,16 @@ class AnalogDockClockView: BaseAnalogClockView {
 			color=NSColor.white
 			backgroundColor.setFill()
 		}
-		if hasDarkAppearance(view: self) && color == NSColor.textBackgroundColor {
+		if hasDarkAppearance(view: self) &&  ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor ||
+			ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.black {
 			color=NSColor.systemGray
-		} else if !hasDarkAppearance(view: self) && backgroundColor==NSColor.textBackgroundColor {
+		} else if hasDarkAppearance(view: self) &&
+		ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.white {
+			color=NSColor(named: "DarkGray")  ?? NSColor.darkGray
+		} else if hasDarkAppearance(view: self) &&
+		ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.gray {
+			color=NSColor.systemGray
+		} else if !hasDarkAppearance(view: self) && backgroundColor==NSColor.black {
 			color=NSColor.systemGray
 		}
 		path.fill()

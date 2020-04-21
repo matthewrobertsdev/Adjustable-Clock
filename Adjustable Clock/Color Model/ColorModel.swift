@@ -67,7 +67,7 @@ class ColorModel {
 			ColorChoice.brown: NSColor(named: "Brown") ?? NSColor.systemBrown]
     }
 	func makeLightColorDictionary() {
-		lightColorsDictionary=[ColorChoice.systemColor: NSColor(named: "LightTextBackgroundColor") ?? NSColor.white,
+		lightColorsDictionary=[ColorChoice.systemColor: NSColor(named: "LightBackground") ?? NSColor.white,
 			ColorChoice.black: NSColor.black,
 			ColorChoice.gray: NSColor.systemGray,
 			ColorChoice.white: NSColor.white,
@@ -81,7 +81,7 @@ class ColorModel {
 			ColorChoice.brown: NSColor.systemBrown]
     }
 	func makeDarkColorDictionary() {
-		darkColorsDictionary=[ColorChoice.systemColor: NSColor(named: "DarkTextBackgroundColor") ?? NSColor.black,
+		darkColorsDictionary=[ColorChoice.systemColor: NSColor(named: "DarkBackground") ?? NSColor.black,
 			ColorChoice.black: NSColor.black,
 			ColorChoice.gray: NSColor(named: "DarkGray") ?? NSColor.systemGray,
 			ColorChoice.white: NSColor.white,
