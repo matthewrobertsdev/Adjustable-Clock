@@ -30,7 +30,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			clockMenuController=ClockMenuController(menu: mainMenu.clockMenu)
 			alarmsMenuController=AlarmsMenuController(menu: mainMenu.alarmsMenu)
 			timersMenuController=TimersMenuController(menu: mainMenu.timersMenu)
-			generalMenuController=GeneralMenuController(menu: mainMenu.generalMenu)
 			//worldClockMenuController=WorldClockMenuController(menu: mainMenu.worldClockMenu)
 		}
 		//*
