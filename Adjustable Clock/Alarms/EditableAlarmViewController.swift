@@ -54,9 +54,9 @@ class EditableAlarmViewController: NSViewController {
 		chooseSongViewController.choosePlaylistAction = { (playlist: String) -> Void in
 			self.playlistName=playlist
 			if playlist=="" {
-				self.playlistTextField.stringValue="Playlist: None chosen"
+				self.playlistTextField.stringValue="Song: None chosen"
 			} else {
-				self.playlistTextField.stringValue="Playlist: "+playlist
+				self.playlistTextField.stringValue="Song: "+playlist
 			}
 		}
 		presentAsModalWindow(chooseSongViewController)
@@ -138,8 +138,7 @@ class EditableAlarmViewController: NSViewController {
 		oldDate=alarm.time
 		datePicker.dateValue=alarm.time
 		alertName=alarm.alertString
-		playlistName=alarm.song=="" ? "none chosen": alarm.song
-		playlistTextField.stringValue="Song: "+(alarm.song=="" ? "none chosen": alarm.song)
+		playlistTextField.stringValue="Song: "+(alarm.song=="" ? "None chosen": alarm.song)
 		alarm.usesSong ? useSong() : useBeep()
 		if alarm.repeats {
 			repeatsButton.state=NSControl.StateValue.on

@@ -12,5 +12,4 @@ protocol GeneralMenuDelegate: AnyObject {
 	func analogClockWithSecondsClicked()
 	func digitalClockNoSecondsClicked()
 	func digitalClockWithSecondsClicked()
-	func justColorsClicked()
 }

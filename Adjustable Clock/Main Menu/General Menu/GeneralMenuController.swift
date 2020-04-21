@@ -39,7 +39,6 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 		menu.analogWithSecondsMenuItem.state=NSControl.StateValue.off
 		menu.digitalNoSecondsMenuItem.state=NSControl.StateValue.off
 		menu.digitalWithSecondsMenuItem.state=NSControl.StateValue.off
-		menu.justColorsMenuItem.state=NSControl.StateValue.off
 		switch preferences.dockClock {
 		case preferences.useAnalogNoSeconds:
 			menu.analogNoSecondsMenuItem.state=NSControl.StateValue.on
@@ -49,8 +48,6 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 			menu.digitalNoSecondsMenuItem.state=NSControl.StateValue.on
 		case preferences.useDigitalWithSeconds:
 			menu.digitalWithSecondsMenuItem.state=NSControl.StateValue.on
-		case preferences.useJustColors:
-			menu.justColorsMenuItem.state=NSControl.StateValue.on
 		default:
 			break
 		}
@@ -76,10 +73,6 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 	}
 	func digitalClockWithSecondsClicked() {
 		preferences.updateDockClockPreferences(mode: preferences.useDigitalWithSeconds)
-		updateDockClockChoice()
-	}
-	func justColorsClicked() {
-		preferences.updateDockClockPreferences(mode: preferences.useJustColors)
 		updateDockClockChoice()
 	}
 	func updateDockClockChoice() {

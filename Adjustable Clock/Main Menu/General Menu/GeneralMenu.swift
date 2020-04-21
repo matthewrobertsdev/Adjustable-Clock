@@ -16,7 +16,6 @@ class GeneralMenu: NSMenu {
 	@IBOutlet weak var analogWithSecondsMenuItem: NSMenuItem!
 	@IBOutlet weak var digitalNoSecondsMenuItem: NSMenuItem!
 	@IBOutlet weak var digitalWithSecondsMenuItem: NSMenuItem!
-	@IBOutlet weak var justColorsMenuItem: NSMenuItem!
 	@IBAction func use24Hour(nsMenuItem: NSMenuItem) {
 		generalMenuDelegate.use24HoursClicked()
 	}
@@ -31,8 +30,5 @@ class GeneralMenu: NSMenu {
 	}
 	@IBAction func useDigitalWithSeconds(nsMenuItem: NSMenuItem) {
 		generalMenuDelegate.digitalClockWithSecondsClicked()
-	}
-	@IBAction func useJustColors(nsMenuItem: NSMenuItem) {
-		generalMenuDelegate.justColorsClicked()
 	}
 }

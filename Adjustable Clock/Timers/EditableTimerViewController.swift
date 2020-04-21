@@ -48,14 +48,14 @@ class EditableTimerViewController: NSViewController {
 	}
 	@IBAction func setTimer(_ sender: Any) {
 		view.window?.makeFirstResponder(view.window)
-		if timerDatePicker.dateValue==startingDate {
+		/*if timerDatePicker.dateValue==startingDate {
 			let warningAlert=NSAlert()
 			warningAlert.alertStyle = .warning
 			warningAlert.messageText="Invalid Duration"
 			warningAlert.informativeText="Duration must not be 0."
 			warningAlert.runModal()
 			return
-		}
+		}*/
 		TimersCenter.sharedInstance.stopTimer(index: index)
 		let timerDate=timerDatePicker.dateValue
 		guard let timerViewController=TimersWindowController.timersObject.contentViewController

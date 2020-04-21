@@ -33,7 +33,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		alarmCollectionViewItem.alarmRepeatTextField.textColor=textColor
 		alarmCollectionViewItem.alarmTimeTextField.stringValue=alarm.getTimeString()
 		alarmCollectionViewItem.alarmRepeatTextField.stringValue =
-			!alarm.active ? "" : (alarm.repeats ? "Everyday" : "Just once")
+			!alarm.active ? "" : (alarm.repeats ? "Every day" : "Just once")
 		alarmCollectionViewItem.alarmStatusSegmentedControl.setTag(0, forSegment: 0)
 		alarmCollectionViewItem.alarmStatusSegmentedControl.setTag(1, forSegment: 1)
 		if alarm.active {

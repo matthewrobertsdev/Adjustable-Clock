@@ -150,13 +150,6 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
     func saveState() {
         ClockWindowRestorer().windowSaveCGRect(window: window)
     }
-    func reloadPreferencesWindowIfOpen() {
-        let appObject = NSApp as NSApplication
-		guard let mainMenu=appObject.mainMenu as? MainMenu else { return }
-		if isThereAPreferencesWindow() {
-			mainMenu.reloadSimplePreferencesWindow()
-		}
-    }
 	func windowWillMiniaturize(_ notification: Notification) {
 		if let digitalClockVC=window?.contentViewController as? ClockViewController {
 			digitalClockVC.displayForDock()

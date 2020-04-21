@@ -71,6 +71,7 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
         updateClockMenuUI()
 		fullscreen=true
         showButtons(show: true)
+		reloadPreferencesWindowIfOpen()
     }
 	func windowDidExitFullScreen(_ notification: Notification) {
 		fullscreen=false
