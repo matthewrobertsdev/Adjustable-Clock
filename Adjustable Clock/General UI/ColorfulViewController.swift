@@ -10,8 +10,8 @@ class ColorfulViewController: NSViewController {
 	let visualEffectView=NSVisualEffectView()
 	let backgroundView=DarkAndLightBackgroundView()
 	var textColor=NSColor.labelColor
-	override func viewDidLoad() {
-		super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
 		view.addSubview(backgroundView, positioned: .below, relativeTo: view)
 		backgroundView.translatesAutoresizingMaskIntoConstraints=false
 		let backgroundLeading=NSLayoutConstraint(item: backgroundView, attribute: .leading, relatedBy: .equal,
@@ -41,12 +41,12 @@ class ColorfulViewController: NSViewController {
 	func applyColorScheme(views: [ColorView], labels: [NSTextField]) {
 		visualEffectView.material = .dark
 		var contrastColor: NSColor
-		backgroundView.wantsLayer=true
+			backgroundView.wantsLayer=true
 		if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom {
 			contrastColor=ClockPreferencesStorage.sharedInstance.customColor
 		} else if ClockPreferencesStorage.sharedInstance.colorForForeground {
 			contrastColor =
-				ColorModel.sharedInstance.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
+			ColorModel.sharedInstance.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
 				?? ColorModel.sharedInstance.lightColorsDictionary[ColorChoice.systemColor] ?? NSColor.systemGray
 		} else {
 			contrastColor =
@@ -64,60 +64,60 @@ class ColorfulViewController: NSViewController {
 				if #available(OSX 10.13, *) {
 					contrastColor=NSColor(named: "BlackBackground") ?? NSColor.systemGray
 				}
-				backgroundView.backgroundColor=contrastColor
-				backgroundView.setNeedsDisplay(backgroundView.bounds)
+					backgroundView.backgroundColor=contrastColor
+					backgroundView.setNeedsDisplay(backgroundView.bounds)
 			} else if isDarkMode() {
 				if contrastColor==NSColor.white {
 					if #available(OSX 10.13, *) {
 						contrastColor=NSColor(named: "WhiteBackground") ?? NSColor.systemGray
 					}
 				}
-				backgroundView.backgroundColor=contrastColor
-				backgroundView.setNeedsDisplay(backgroundView.bounds)
+					backgroundView.backgroundColor=contrastColor
+					backgroundView.setNeedsDisplay(backgroundView.bounds)
 			} else {
-				backgroundView.backgroundColor=contrastColor
-				backgroundView.setNeedsDisplay(backgroundView.bounds)
+					backgroundView.backgroundColor=contrastColor
+					backgroundView.setNeedsDisplay(backgroundView.bounds)
 			}
 			for aView in views {
 				aView.color=NSColor.labelColor
 				aView.setNeedsDisplay(aView.bounds)
 			}
-		}
-		//backgroundView.backgroundColor=NSColor(named: "BackgroundDrakGray") ?? NSColor.systemGray
-		if contrastColor==NSColor.textBackgroundColor {
-			contrastColor=NSColor.labelColor
-			if !isDarkMode() {
-				visualEffectView.material = .light
-			} else {
-				visualEffectView.material = .dark
-			}
-		} else if contrastColor==NSColor.labelColor || contrastColor==NSColor.black {
-			if !isDarkMode() {
-				visualEffectView.material = .light
-			} else {
-				visualEffectView.material = .dark
-			}
 		} else {
-			visualEffectView.material = .dark
-		}
-		if ClockPreferencesStorage.sharedInstance.colorForForeground && ClockPreferencesStorage.sharedInstance.colorChoice == ColorChoice.systemColor {
-			contrastColor=NSColor.labelColor
-		}
-		if ClockPreferencesStorage.sharedInstance.colorForForeground {
 			if GeneralPreferencesStorage.sharedInstance.usesGrayBackground {
 				visualEffectView.isHidden=true
-				contrastColor=NSColor(named: "DarkBackground") ?? NSColor.darkGray
+				backgroundView.backgroundColor=NSColor(named: "DarkBackground") ?? NSColor.darkGray
+				backgroundView.setNeedsDisplay(backgroundView.bounds)
 			} else {
-				visualEffectView.isHidden=false
+			visualEffectView.isHidden=false
 			}
-		}
-		textColor=contrastColor
-		for label in labels {
-			label.textColor=contrastColor
-		}
-		for aView in views {
-			aView.color=contrastColor
-			aView.setNeedsDisplay(aView.bounds)
+			//backgroundView.backgroundColor=NSColor(named: "BackgroundDrakGray") ?? NSColor.systemGray
+			if contrastColor==NSColor.textBackgroundColor {
+				contrastColor=NSColor.labelColor
+				if !isDarkMode() {
+					visualEffectView.material = .light
+				} else {
+					visualEffectView.material = .dark
+				}
+			} else if contrastColor==NSColor.labelColor || contrastColor==NSColor.black {
+				if !isDarkMode() {
+					visualEffectView.material = .light
+				} else {
+					visualEffectView.material = .dark
+				}
+			} else {
+				visualEffectView.material = .dark
+			}
+			if ClockPreferencesStorage.sharedInstance.colorForForeground && ClockPreferencesStorage.sharedInstance.colorChoice == ColorChoice.systemColor {
+				contrastColor=NSColor.labelColor
+			}
+			textColor=contrastColor
+				for label in labels {
+					label.textColor=contrastColor
+				}
+				for aView in views {
+					aView.color=contrastColor
+					aView.setNeedsDisplay(aView.bounds)
+				}
 		}
 		self.view.setNeedsDisplay(view.bounds)
 	}

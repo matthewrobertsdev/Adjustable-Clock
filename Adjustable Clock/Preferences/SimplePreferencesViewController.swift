@@ -17,7 +17,7 @@ class SimplePreferencesViewController: NSViewController {
 	let preferences=GeneralPreferencesStorage.sharedInstance
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        updateUI()
     }
 	@IBAction func toggle24Hours(_ sender: Any) {
 		self.use24HoursClicked()
