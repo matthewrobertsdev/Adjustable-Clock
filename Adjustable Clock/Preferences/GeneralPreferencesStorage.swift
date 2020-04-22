@@ -14,6 +14,7 @@ class GeneralPreferencesStorage {
 	var digital=false
 	var seconds=false
 	var justColors=false
+	var usesGrayBackground=false
 	let userDefaults=UserDefaults()
 	private let use24HoursKey="use24Hours"
 	private let dockClockKey="dockClock"
@@ -22,13 +23,23 @@ class GeneralPreferencesStorage {
 	let useDigitalNoSeconds="useDigitalNoSeconds"
 	let useDigitalWithSeconds="useDigitalWithSeconds"
 	let useJustColors="useJustColors"
+	let useGrayBackgroundKey="useGrayBackground"
 	private init() {
 	}
 	func loadUserPreferences() {
 		use24Hours=userDefaults.bool(forKey: use24HoursKey)
 		dockClock=userDefaults.string(forKey: dockClockKey) ?? useAnalogNoSeconds
 		updateModelToPreferences()
+		usesGrayBackground=userDefaults.bool(forKey: useGrayBackgroundKey)
 	}
+	func useGrayBackground() {
+		usesGrayBackground=true
+        userDefaults.set(true, forKey: useGrayBackgroundKey)
+    }
+	func useTranslucentBackground() {
+		usesGrayBackground=false
+        userDefaults.set(false, forKey: useGrayBackgroundKey)
+    }
 	func changeAndSaveUseAmPM() {
         use24Hours=(!use24Hours)
         userDefaults.set(use24Hours, forKey: use24HoursKey)

@@ -359,6 +359,7 @@
 		9F7DF9432066097C00CC0DF6 /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
+				9FA6A7A223D8E2BC005564E7 /* GeneralPreferencesStorage.swift */,
 				9F538C4C2116AC1500A72242 /* SimplePreferenceWindowController.swift */,
 				9F538C4E2116B06300A72242 /* SimplePreferencesViewController.swift */,
 			);
@@ -459,7 +460,6 @@
 			children = (
 				9F0F972823DB5EC9005456E6 /* General UI */,
 				9FB47E5D1F480A43009D82FF /* AppDelegate.swift */,
-				9FA6A7A223D8E2BC005564E7 /* GeneralPreferencesStorage.swift */,
 				9FEA8C8B1FECCF3A002D3960 /* Loading And Saving Windows */,
 				9F260CA823F64CC700D021BB /* World Clock */,
 				9FB1D95423EA7F1800E8A35F /* Timers */,

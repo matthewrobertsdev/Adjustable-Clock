@@ -23,8 +23,14 @@ class SimplePreferencesViewController: NSViewController {
 		self.use24HoursClicked()
 	}
 	@IBAction func useTranslucent(_ sender: Any) {
+		GeneralPreferencesStorage.sharedInstance.useTranslucentBackground()
+		updateForPreferencesChange()
+		updateUI()
 	}
 	@IBAction func useDarkGray(_ sender: Any) {
+		GeneralPreferencesStorage.sharedInstance.useGrayBackground()
+		updateForPreferencesChange()
+		updateUI()
 	}
 	@IBAction func useAnalogWithoutSeconds(_ sender: Any) {
 		self.analogClockNoSecondsClicked()
@@ -60,6 +66,13 @@ class SimplePreferencesViewController: NSViewController {
 				use24HourButton.state=NSControl.StateValue.on
 			} else {
 				use24HourButton.state=NSControl.StateValue.off
+			}
+			if preferences.usesGrayBackground {
+			useDarkGrayButton.state=NSControl.StateValue.on
+				useTranslucentButton.state=NSControl.StateValue.off
+			} else {
+				useDarkGrayButton.state=NSControl.StateValue.off
+				useTranslucentButton.state=NSControl.StateValue.on
 			}
 			useAnalogNoSecondsButton.state=NSControl.StateValue.off
 			useAnlogWithSecondsButton.state=NSControl.StateValue.off
