@@ -123,7 +123,7 @@ class AnalogDockClockView: BaseAnalogClockView {
 		let minute=calendar.dateComponents([.minute], from: time).minute ?? 0
 		let second=calendar.dateComponents([.second], from: time).second ?? 0
 		let totalSeconds=(Double(hour)*3600.0+Double(minute)*60.0+Double(second))
-		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2, endProportion: 0.35, relativeWidth: 1.2, color: handsColor)
+		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2, endProportion: 0.3, relativeWidth: 1.2, color: handsColor)
 		displayHand(radians: -CGFloat.pi*CGFloat(minute)/30+CGFloat.pi/2, endProportion: 0.4, relativeWidth: 1.2, color: handsColor)
 		displayHand(radians: -CGFloat.pi*CGFloat(second)/30+CGFloat.pi/2, endProportion: 0.4, relativeWidth: 1, color: color)
 	}
@@ -133,7 +133,7 @@ class AnalogDockClockView: BaseAnalogClockView {
 		let minute=calendar.dateComponents([.minute], from: time).minute ?? 0
 		let second=calendar.dateComponents([.second], from: time).second ?? 0
 		let totalSeconds=(Double(hour)*3600.0+Double(minute)*60.0+Double(second))
-		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2, endProportion: 0.35, relativeWidth: 1.2, color: handsColor)
+		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2, endProportion: 0.3, relativeWidth: 1.2, color: handsColor)
 		displayHand(radians: -CGFloat.pi*CGFloat(minute)/30+CGFloat.pi/2, endProportion: 0.4, relativeWidth: 1.2, color: handsColor)
 	}
 	private func displayHand(radians: CGFloat, endProportion: CGFloat, relativeWidth: CGFloat, color: NSColor) {
