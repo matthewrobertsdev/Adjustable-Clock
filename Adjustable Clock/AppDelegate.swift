@@ -8,6 +8,7 @@
 import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+	var clockSuiteMenuController: ClockSuiteMenuController?
 	var generalMenuController: GeneralMenuController?
     var colorsMenuController: ColorsMenuController?
 	var clockMenuController: ClockMenuController?
@@ -24,16 +25,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		WorldClockPreferencesStorage.sharedInstance.loadPreferences()
 
 		//*
+		AlarmCenter.sharedInstance.setUp()
         let appObject = NSApp as NSApplication
 		if let mainMenu=appObject.mainMenu as? MainMenu {
 			colorsMenuController=ColorsMenuController(colorsMenu: mainMenu.colorsMenu)
 			clockMenuController=ClockMenuController(menu: mainMenu.clockMenu)
 			alarmsMenuController=AlarmsMenuController(menu: mainMenu.alarmsMenu)
 			timersMenuController=TimersMenuController(menu: mainMenu.timersMenu)
+			clockSuiteMenuController=ClockSuiteMenuController(menu: mainMenu.clockSuiteMenu)
 			//worldClockMenuController=WorldClockMenuController(menu: mainMenu.worldClockMenu)
 		}
 		//*
-		AlarmCenter.sharedInstance.setUp()
 		DockClockController.dockClockObject.updateDockTile()
 		if AlarmsPreferencesStorage.sharedInstance.windowIsOpen {
 			AlarmsWindowController.alarmsObject.showAlarms()
@@ -57,7 +59,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			ClockWindowController.clockObject.showClock()
 			//clockMenuController?.enableMenu(enabled: true)
 		}
-
+		//NSApplication.shared.isAutomaticCustomizeTouchBarMenuItemEnabled = true
 	}
 
     //if the dock icon is clicked

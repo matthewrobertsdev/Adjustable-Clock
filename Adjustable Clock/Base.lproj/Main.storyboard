@@ -418,7 +418,7 @@
                         <items>
                             <menuItem title="Clock Suite" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Clock Suite" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="Clock Suite" systemMenu="apple" id="uQy-DD-JDr" customClass="ClockSuiteMenu" customModule="Clock_Suite" customModuleProvider="target">
                                     <items>
                                         <menuItem title="About Clock Suite" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -433,6 +433,10 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
+                                        <menuItem title="Can Sleep" enabled="NO" id="F16-43-NJ1">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="rj5-Pn-cRE"/>
                                         <menuItem title="Hide Clock Suite" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
@@ -457,6 +461,9 @@
                                             </connections>
                                         </menuItem>
                                     </items>
+                                    <connections>
+                                        <outlet property="canSleepMenuItem" destination="F16-43-NJ1" id="3hf-jt-Uh0"/>
+                                    </connections>
                                 </menu>
                             </menuItem>
                             <menuItem title="File" id="lYl-mh-hXa">
@@ -488,7 +495,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Clock" id="esu-23-zsK" customClass="ClockMenu" customModule="Clock_Suite" customModuleProvider="target">
                                     <items>
-                                        <menuItem title="Floats on Top" id="uEN-Ne-S2x">
+                                        <menuItem title="Float on Top" id="uEN-Ne-S2x">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="clickClockFloatsWithNsMenuItem:" target="esu-23-zsK" id="eCq-aj-MTC"/>
@@ -506,25 +513,25 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="zej-sS-UJY"/>
-                                        <menuItem title="Shows Seconds" keyEquivalent="e" id="pAg-6i-qXY">
+                                        <menuItem title="Show Seconds" keyEquivalent="e" id="pAg-6i-qXY">
                                             <connections>
                                                 <action selector="clickShowSecondsWithNsMenuItem:" target="esu-23-zsK" id="ibW-fe-Fx8"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="X8E-FV-F2l"/>
-                                        <menuItem title="Shows Date" id="hPB-2N-q4c">
+                                        <menuItem title="ShowsDate" id="hPB-2N-q4c">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="clickShowDateWithNsMenuItem:" target="esu-23-zsK" id="YvB-dG-BCV"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Uses Numerical Date" id="WbK-Tg-DFs">
+                                        <menuItem title="Use Numerical Date" id="WbK-Tg-DFs">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="useNumericalDateWithNsMenuItem:" target="esu-23-zsK" id="RLY-GP-06p"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Shows Day of Week" id="phz-ro-t2T">
+                                        <menuItem title="Show Day of Week" id="phz-ro-t2T">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showDayOfWeekWithNsMenuItem:" target="esu-23-zsK" id="xjB-WM-uTr"/>
@@ -571,7 +578,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Timers" id="fWd-IJ-eGk" customClass="TimersMenu" customModule="Clock_Suite" customModuleProvider="target">
                                     <items>
-                                        <menuItem title="Floats on Top" id="gka-sQ-iLp">
+                                        <menuItem title="Float on Top" id="gka-sQ-iLp">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleTimersFloatsWithNsMenuItem:" target="fWd-IJ-eGk" id="hLr-Ee-XeW"/>
@@ -711,6 +718,7 @@
                         <connections>
                             <outlet property="alarmsMenu" destination="Dah-wr-0hi" id="Dfl-Ep-z1x"/>
                             <outlet property="clockMenu" destination="esu-23-zsK" id="wtB-Fu-hY0"/>
+                            <outlet property="clockSuiteMenu" destination="uQy-DD-JDr" id="P7R-LV-oEa"/>
                             <outlet property="colorsMenu" destination="65N-u4-pRd" id="QxW-PF-dZo"/>
                             <outlet property="preferenceMenuItem" destination="1Xt-HY-uBw" id="SPi-0S-rRf"/>
                             <outlet property="timersMenu" destination="fWd-IJ-eGk" id="WSc-ZL-Ew9"/>
@@ -1253,7 +1261,7 @@
                                             <tableColumns>
                                                 <tableColumn width="141.5" minWidth="40" maxWidth="1000" id="72b-sf-9fX">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1286,7 +1294,7 @@
                                                 </tableColumn>
                                                 <tableColumn width="143.5" minWidth="40" maxWidth="1000" id="Kc6-Qb-l2w">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1982,7 +1990,7 @@ Gw
                                             <tableColumns>
                                                 <tableColumn width="233" minWidth="40" maxWidth="1000" id="7af-du-yPg">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2132,7 +2140,7 @@ Gw
                                             <tableColumns>
                                                 <tableColumn width="280" minWidth="40" maxWidth="1000" id="nxT-P1-PJ8">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2246,7 +2254,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="304" minWidth="40" maxWidth="1000" id="h46-K1-f75">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>

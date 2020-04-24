@@ -89,6 +89,8 @@
 		9FC97F591F480BB500035D30 /* PreferencesWC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC97F541F480BB500035D30 /* PreferencesWC.swift */; };
 		9FD2825C23F26BEA00C204A2 /* TimerCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FD2825B23F26BEA00C204A2 /* TimerCollectionViewItem.xib */; };
 		9FD390CA244E0A7F00FB3155 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD390C9244E0A7F00FB3155 /* StringConstants.swift */; };
+		9FD433DA245321E20096532C /* ClockSuiteMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD433D9245321E20096532C /* ClockSuiteMenu.swift */; };
+		9FD433DC2453222F0096532C /* ClockSuiteMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD433DB2453222F0096532C /* ClockSuiteMenuController.swift */; };
 		9FD6B30523CC170100EFEF3C /* BaseAnalogClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6B30423CC170100EFEF3C /* BaseAnalogClockView.swift */; };
 		9FE390851FECBCE300AF5442 /* ClockWindowRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE390841FECBCE300AF5442 /* ClockWindowRestorer.swift */; };
 		9FE390871FECBCF400AF5442 /* PreferencesWindowRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE390861FECBCF400AF5442 /* PreferencesWindowRestorer.swift */; };
@@ -213,6 +215,8 @@
 		9FC97F541F480BB500035D30 /* PreferencesWC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWC.swift; sourceTree = "<group>"; };
 		9FD2825B23F26BEA00C204A2 /* TimerCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimerCollectionViewItem.xib; sourceTree = "<group>"; };
 		9FD390C9244E0A7F00FB3155 /* StringConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
+		9FD433D9245321E20096532C /* ClockSuiteMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockSuiteMenu.swift; sourceTree = "<group>"; };
+		9FD433DB2453222F0096532C /* ClockSuiteMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockSuiteMenuController.swift; sourceTree = "<group>"; };
 		9FD6B30423CC170100EFEF3C /* BaseAnalogClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAnalogClockView.swift; sourceTree = "<group>"; };
 		9FE390841FECBCE300AF5442 /* ClockWindowRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockWindowRestorer.swift; sourceTree = "<group>"; };
 		9FE390861FECBCF400AF5442 /* PreferencesWindowRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowRestorer.swift; sourceTree = "<group>"; };
@@ -390,6 +394,7 @@
 		9F9DC04E20689F43000BD988 /* Main Menu */ = {
 			isa = PBXGroup;
 			children = (
+				9FD433D8245321820096532C /* Clock Suite Menu */,
 				9F260CAD23F64FA300D021BB /* World Clock Menu */,
 				9F3C6BB723F1DA5B00EA9E73 /* Timers Menu */,
 				9F1C725123E1D975008B6B79 /* General Menu */,
@@ -522,6 +527,15 @@
 				9F04FDF020EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift */,
 			);
 			path = "UI Identifiers";
+			sourceTree = "<group>";
+		};
+		9FD433D8245321820096532C /* Clock Suite Menu */ = {
+			isa = PBXGroup;
+			children = (
+				9FD433D9245321E20096532C /* ClockSuiteMenu.swift */,
+				9FD433DB2453222F0096532C /* ClockSuiteMenuController.swift */,
+			);
+			path = "Clock Suite Menu";
 			sourceTree = "<group>";
 		};
 		9FEA8C8B1FECCF3A002D3960 /* Loading And Saving Windows */ = {
@@ -745,6 +759,7 @@
 				9FA6A7A523D8E687005564E7 /* EditableAlarmWindowController.swift in Sources */,
 				9F9ABDC8243BBECC00F47510 /* InterfaceChangedView.swift in Sources */,
 				9F538C4F2116B06300A72242 /* SimplePreferencesViewController.swift in Sources */,
+				9FD433DC2453222F0096532C /* ClockSuiteMenuController.swift in Sources */,
 				9FF3F89924188E14006751A0 /* AlarmCollectionViewItem.swift in Sources */,
 				9F260CB323F64FF000D021BB /* WorldClockMenuProtocol.swift in Sources */,
 				9F1C725523E1D9B0008B6B79 /* GeneralMenuProtocol.swift in Sources */,
@@ -785,6 +800,7 @@
 				9FF6912D23D76CE80057C4F6 /* AlarmMenuProtocol.swift in Sources */,
 				9F1C725723E1D9C1008B6B79 /* GeneralMenuController.swift in Sources */,
 				9F71B69723C939140079A79A /* AnalogClockAnimator.swift in Sources */,
+				9FD433DA245321E20096532C /* ClockSuiteMenu.swift in Sources */,
 				9FFEB30723CBD28600C1A6D3 /* AnalogDockClockView.swift in Sources */,
 				9F3C6BBF23F1DAC800EA9E73 /* TimersMenuProtocol.swift in Sources */,
 				9F407E1923F1D4F000557EA4 /* TimersPrefrenceStorage.swift in Sources */,
