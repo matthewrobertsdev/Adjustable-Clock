@@ -86,16 +86,14 @@ class ClockViewController: ColorfulViewController {
 		updateSizeConstraints()
 		guard let clockWindowController=view.window?.windowController as? ClockWindowController else { return }
 			clockWindowController.resizeContents()
-		analogClock.isHidden=true
-		animatedDay.isHidden=true
 		guard let width=self.view.window?.frame.width else { return }
 			if ClockPreferencesStorage.sharedInstance.fullscreen==false {
 				clockWindowController.sizeWindowToFitClock(newWidth: width)
 			}
-		analogClock.isHidden=false
 		showHideDate()
 		animateAnalog()
 		analogClock.setNeedsDisplay(analogClock.bounds)
+		analogClock.layoutSubtreeIfNeeded()
 	}
 	func showDigitalClock() {
 		showHideDate()
