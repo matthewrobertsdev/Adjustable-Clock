@@ -18,6 +18,7 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	private var dockDisplay=false
 	private var player: AVAudioPlayer?
 	private var soundCount=0
+	let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
 	override func viewDidLoad() {
         super.viewDidLoad()
 		collectionView.dataSource=self
@@ -32,7 +33,11 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 											   selector: #selector(showHideTimerActiveLabel), name: NSNotification.Name.activeCountChanged, object: nil)
 		showHideTimerActiveLabel()
 		clickRecognizer.isEnabled=false
+		let screenWakeObserver = workspaceNotifcationCenter.addObserver(self, selector: #selector(updateForWake), name: NSWorkspace.screensDidWakeNotification, object: nil)
     }
+	@objc func updateForWake() {
+		collectionView.reloadData()
+	}
 	@IBAction func click(_ sender: Any) {
 		popover.close()
 		clickRecognizer.isEnabled=false

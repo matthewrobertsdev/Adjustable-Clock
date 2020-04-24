@@ -15,7 +15,6 @@ class ClockSuiteMenuController {
 		showStatus()
 	}
 	@objc func showStatus() {
-		showPreventsSleep()
 		showActiveAlarms()
 		showActiveTimers()
 	}
@@ -37,6 +36,7 @@ class ClockSuiteMenuController {
 			menu.activeTimersMenuItem.title="\(TimersCenter.sharedInstance.activeTimers) Timers Active"
 		}
 	}
+	/*
 	@objc func showPreventsSleep() {
 		if AlarmCenter.sharedInstance.activeAlarms>0||TimersCenter.sharedInstance.activeTimers>0 {
 			menu.canSleepMenuItem.title="Preventing Sleep"
@@ -44,4 +44,5 @@ class ClockSuiteMenuController {
 			menu.canSleepMenuItem.title="Can Sleep"
 		}
 	}
+*/
 }

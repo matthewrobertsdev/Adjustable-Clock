@@ -433,9 +433,6 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Can Sleep" enabled="NO" id="F16-43-NJ1">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
                                         <menuItem title="0 Alarms Active" enabled="NO" id="ZeY-ul-nOm">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
@@ -470,7 +467,6 @@
                                     <connections>
                                         <outlet property="activeAlarmsMenuItem" destination="ZeY-ul-nOm" id="63s-CB-dAo"/>
                                         <outlet property="activeTimersMenuItem" destination="W7e-ry-hGs" id="UpQ-uK-AAG"/>
-                                        <outlet property="canSleepMenuItem" destination="F16-43-NJ1" id="3hf-jt-Uh0"/>
                                     </connections>
                                 </menu>
                             </menuItem>
