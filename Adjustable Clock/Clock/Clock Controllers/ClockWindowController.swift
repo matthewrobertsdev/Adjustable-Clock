@@ -197,6 +197,12 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 		}
 		enableClockMenu(enabled: true)
 	}
+	func windowDidChangeScreen(_ notification: Notification) {
+		guard let width=window?.frame.width else {
+			return
+		}
+		sizeWindowToFitClock(newWidth: width)
+	}
 	func updateClockToPreferencesChange() {
         let appObject = NSApp as NSApplication
 		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow {
@@ -246,5 +252,4 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 		}
 		appDelagte.clockMenuController?.enableMenu(enabled: enabled)
 	}
-
 }
