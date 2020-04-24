@@ -436,6 +436,12 @@
                                         <menuItem title="Can Sleep" enabled="NO" id="F16-43-NJ1">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
+                                        <menuItem title="0 Alarms Active" enabled="NO" id="ZeY-ul-nOm">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="0 Timers Active" enabled="NO" id="W7e-ry-hGs">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="rj5-Pn-cRE"/>
                                         <menuItem title="Hide Clock Suite" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
@@ -462,6 +468,8 @@
                                         </menuItem>
                                     </items>
                                     <connections>
+                                        <outlet property="activeAlarmsMenuItem" destination="ZeY-ul-nOm" id="63s-CB-dAo"/>
+                                        <outlet property="activeTimersMenuItem" destination="W7e-ry-hGs" id="UpQ-uK-AAG"/>
                                         <outlet property="canSleepMenuItem" destination="F16-43-NJ1" id="3hf-jt-Uh0"/>
                                     </connections>
                                 </menu>
@@ -559,6 +567,10 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Alarms" id="Dah-wr-0hi" customClass="AlarmsMenu" customModule="Clock_Suite" customModuleProvider="target">
                                     <items>
+                                        <menuItem title="0 Active Alarms" enabled="NO" id="axe-Dq-gUe">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Lle-qp-lxu"/>
                                         <menuItem title="Add Alarm" id="gqt-pv-27g">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -572,12 +584,19 @@
                                             </connections>
                                         </menuItem>
                                     </items>
+                                    <connections>
+                                        <outlet property="activeAlarmsMenuItem" destination="axe-Dq-gUe" id="xXX-Ze-DqR"/>
+                                    </connections>
                                 </menu>
                             </menuItem>
                             <menuItem title="Timers" id="jed-9l-giX">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Timers" id="fWd-IJ-eGk" customClass="TimersMenu" customModule="Clock_Suite" customModuleProvider="target">
                                     <items>
+                                        <menuItem title="0 Active Timers" enabled="NO" id="lo2-7n-hx0">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="BPm-SF-bfT"/>
                                         <menuItem title="Float on Top" id="gka-sQ-iLp">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -592,25 +611,6 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="Gxp-Rs-QJ9"/>
-                                        <menuItem title="Show Timer #1" id="UbI-Mw-Zn3">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showTimerNumber1WithNsMenuItem:" target="fWd-IJ-eGk" id="2GL-7u-GM5"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Show Timer #2" id="kJm-AM-Nwj">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showTimerNumber2WithNsMenuItem:" target="fWd-IJ-eGk" id="Qnv-w6-sdi"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Show Timer #3" id="cHh-to-7dU">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showTimerNumber3WithNsMenuItem:" target="fWd-IJ-eGk" id="I8g-j0-Jmf"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="qb2-Vh-kVg"/>
                                         <menuItem title="Show Timers" keyEquivalent="3" id="NWt-qo-N82">
                                             <connections>
                                                 <action selector="showTimersWithNsMenuItem:" target="fWd-IJ-eGk" id="rey-Y6-J0m"/>
@@ -618,6 +618,7 @@
                                         </menuItem>
                                     </items>
                                     <connections>
+                                        <outlet property="activeTimersMenuItem" destination="lo2-7n-hx0" id="c7g-ia-xcl"/>
                                         <outlet property="asSecondsMenuItem" destination="S8Z-Ct-J3h" id="XRK-Du-5U7"/>
                                         <outlet property="timerFloatsMenuItem" destination="gka-sQ-iLp" id="cS3-ur-Ldg"/>
                                     </connections>
@@ -736,7 +737,8 @@
                         <touchBarItem id="Db5-do-WAY">
                             <viewController key="viewController" id="eh1-go-sqq">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="orl-rY-Tmm">
-                                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                    <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Clock" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cEr-O1-O7k">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" usesAppearanceFont="YES"/>
@@ -747,7 +749,8 @@
                         <touchBarItem id="kpc-RP-A6e">
                             <viewController key="viewController" id="7pK-wa-1q2">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jib-Hh-pC6">
-                                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                    <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Alarms" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4fx-Cz-Inv">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" usesAppearanceFont="YES"/>
@@ -758,7 +761,8 @@
                         <touchBarItem id="uj7-u2-mPZ">
                             <viewController key="viewController" id="etD-Nd-RmZ">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eqr-Yl-mRv">
-                                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                    <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Timers" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="R1c-y9-sa4">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" usesAppearanceFont="YES"/>

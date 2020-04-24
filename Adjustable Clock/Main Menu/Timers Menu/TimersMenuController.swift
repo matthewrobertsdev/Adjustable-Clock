@@ -12,9 +12,21 @@ class TimersMenuController: TimerMenuDelegate {
 		self.menu=menu
 		menu.timersMenuDelegate=self
 		menu.autoenablesItems=false
+		NotificationCenter.default.addObserver(self, selector: #selector(showActiveTimers),
+		name: NSNotification.Name.activeCountChanged, object: nil)
 		updateUI()
 	}
+	@objc func showActiveTimers() {
+		if TimersCenter.sharedInstance.activeTimers==0 {
+			menu.activeTimersMenuItem.title="0 Timers Active"
+		} else if TimersCenter.sharedInstance.activeTimers==1 {
+			menu.activeTimersMenuItem.title="1 Timer Active"
+		} else if TimersCenter.sharedInstance.activeTimers>1 {
+			menu.activeTimersMenuItem.title="\(TimersCenter.sharedInstance.activeTimers) Timers Active"
+		}
+	}
 	func updateUI() {
+		showActiveTimers()
 		if TimersPreferenceStorage.sharedInstance.asSeconds {
 			menu.asSecondsMenuItem.state=NSControl.StateValue.on
 		} else {

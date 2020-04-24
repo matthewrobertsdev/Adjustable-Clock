@@ -11,6 +11,18 @@ class AlarmsMenuController: AlarmMenuDelegate {
 	init(menu: AlarmsMenu) {
 		self.menu=menu
 		menu.alarmMenuDelegate=self
+		showActiveAlarms()
+		NotificationCenter.default.addObserver(self, selector: #selector(showActiveAlarms),
+		name: NSNotification.Name.activeCountChanged, object: nil)
+	}
+	@objc func showActiveAlarms() {
+		if AlarmCenter.sharedInstance.activeAlarms==0 {
+			menu.activeAlarmsMenuItem.title="0 Alarms Active"
+		} else if AlarmCenter.sharedInstance.activeAlarms==1 {
+			menu.activeAlarmsMenuItem.title="1 Alarm Active"
+		} else if AlarmCenter.sharedInstance.activeAlarms>1 {
+			menu.activeAlarmsMenuItem.title="\(AlarmCenter.sharedInstance.activeAlarms) Alarms Active"
+		}
 	}
 	func addAlarmClicked() {
 		if AlarmCenter.sharedInstance.count>=24 {
