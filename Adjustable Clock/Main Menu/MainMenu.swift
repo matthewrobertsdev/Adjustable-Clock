@@ -9,7 +9,6 @@ import  Cocoa
 class MainMenu: NSMenu {
 	let clockPreferences=ClockPreferencesStorage.sharedInstance
 	 @IBOutlet weak var clockSuiteMenu: ClockSuiteMenu!
-    @IBOutlet weak var generalMenu: GeneralMenu!
     @IBOutlet weak var colorsMenu: NSMenu!
     @IBOutlet weak var clockMenu: ClockMenu!
     @IBOutlet weak var alarmsMenu: AlarmsMenu!

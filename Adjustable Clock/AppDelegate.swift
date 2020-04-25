@@ -9,7 +9,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 	var clockSuiteMenuController: ClockSuiteMenuController?
-	var generalMenuController: GeneralMenuController?
+	var dockClockMenuController: DockClockMenuController?
     var colorsMenuController: ColorsMenuController?
 	var clockMenuController: ClockMenuController?
 	var alarmsMenuController: AlarmsMenuController?
@@ -59,6 +59,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			ClockWindowController.clockObject.showClock()
 			//clockMenuController?.enableMenu(enabled: true)
 		}
+		
 		//NSApplication.shared.isAutomaticCustomizeTouchBarMenuItemEnabled = true
 	}
 

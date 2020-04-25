@@ -6,35 +6,16 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import AppKit
-class GeneralMenuController: NSObject, GeneralMenuDelegate {
-	var menu: GeneralMenu
+class DockClockMenuController: DockClockMenuDelegate {
+	var menu: DockClockMenu
+	
 	let preferences=GeneralPreferencesStorage.sharedInstance
-	@objc var objectToObserve=AlarmCenter.sharedInstance
-	var observation: NSKeyValueObservation?
-	init(menu: GeneralMenu) {
+	init(menu: DockClockMenu) {
 		self.menu=menu
-		super.init()
-		menu.generalMenuDelegate=self
-		NotificationCenter.default.addObserver(self, selector: #selector(showPreventsSleep),
-											   name: NSNotification.Name.activeCountChanged, object: nil)
-		updateUI()
-	}
-	func use24HoursClicked() {
-		GeneralPreferencesStorage.sharedInstance.changeAndSaveUseAmPM()
-		ClockWindowController.clockObject.updateClockToPreferencesChange()
-		DockClockController.dockClockObject.updateModelToPreferencesChange()
-		AlarmsWindowController.alarmsObject.updateForPreferencesChange()
-		TimersWindowController.timersObject.update()
+		menu.dockClockMenuDelegate=self
 		updateUI()
 	}
 	func updateUI() {
-		if preferences.use24Hours {
-			menu.use24HoursMenuItem.state=NSControl.StateValue.on
-		} else {
-			menu.use24HoursMenuItem.state=NSControl.StateValue.off
-		}
-		menu.preventingSleepMenuItem.isEnabled=false
-		showPreventsSleep()
 		menu.analogNoSecondsMenuItem.state=NSControl.StateValue.off
 		menu.analogWithSecondsMenuItem.state=NSControl.StateValue.off
 		menu.digitalNoSecondsMenuItem.state=NSControl.StateValue.off
@@ -50,13 +31,6 @@ class GeneralMenuController: NSObject, GeneralMenuDelegate {
 			menu.digitalWithSecondsMenuItem.state=NSControl.StateValue.on
 		default:
 			break
-		}
-	}
-	@objc func showPreventsSleep() {
-		if AlarmCenter.sharedInstance.activeAlarms>0||TimersCenter.sharedInstance.activeTimers>0 {
-			menu.preventingSleepMenuItem.title="Preventing Sleep"
-		} else {
-			menu.preventingSleepMenuItem.title="Can Sleep"
 		}
 	}
 	func analogClockNoSecondsClicked() {

@@ -153,8 +153,6 @@ class SimplePreferencesViewController: NSViewController {
 		guard let appDelegate = NSApplication.shared.delegate as? AppDelegate else {
 			return
 		}
-		if let generalMenuController=appDelegate.generalMenuController {
-			generalMenuController.updateUI()
-		}
+		
     }
 }
