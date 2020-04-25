@@ -11,6 +11,7 @@ class MainMenu: NSMenu {
 	 @IBOutlet weak var clockSuiteMenu: ClockSuiteMenu!
     @IBOutlet weak var colorsMenu: NSMenu!
     @IBOutlet weak var clockMenu: ClockMenu!
+	@IBOutlet weak var dockClockPreferencesMenu: DockClockPreferencesMenu!
     @IBOutlet weak var alarmsMenu: AlarmsMenu!
 	@IBOutlet weak var timersMenu: TimersMenu!
 	@IBOutlet weak var worldClockMenu: WorldClockMenu!

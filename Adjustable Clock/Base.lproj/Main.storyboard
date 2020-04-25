@@ -551,7 +551,7 @@
                                         <menuItem isSeparatorItem="YES" id="TD6-5s-lbu"/>
                                         <menuItem title="Dock Clock" id="qRY-3k-vLP">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Dock Clock" id="y2u-kl-KyJ" customClass="DockClockMenu" customModule="Clock_Suite" customModuleProvider="target">
+                                            <menu key="submenu" title="Dock Clock" id="y2u-kl-KyJ" customClass="DockClockPreferencesMenu" customModule="Clock_Suite" customModuleProvider="target">
                                                 <items>
                                                     <menuItem title="Analog without Seconds" id="PYK-3E-EWT">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
@@ -580,8 +580,8 @@
                                                 </items>
                                                 <connections>
                                                     <outlet property="analogNoSecondsMenuItem" destination="PYK-3E-EWT" id="BSY-ed-tRO"/>
-                                                    <outlet property="analogWithSecondsMenuItem" destination="hXD-4q-d7f" id="LZN-SI-s9O"/>
-                                                    <outlet property="digitalNoSecondsMenuItem" destination="Osh-YE-snH" id="hCY-9k-hef"/>
+                                                    <outlet property="analogWithSecondsMenuItem" destination="hXD-4q-d7f" id="Tnk-Yo-bkM"/>
+                                                    <outlet property="digitalNoSecondsMenuItem" destination="Osh-YE-snH" id="oXZ-wp-Ze6"/>
                                                     <outlet property="digitalWithSecondsMenuItem" destination="lAE-1e-3ce" id="dGN-xU-4eJ"/>
                                                 </connections>
                                             </menu>
@@ -754,15 +754,21 @@
                             <outlet property="clockMenu" destination="esu-23-zsK" id="wtB-Fu-hY0"/>
                             <outlet property="clockSuiteMenu" destination="uQy-DD-JDr" id="P7R-LV-oEa"/>
                             <outlet property="colorsMenu" destination="65N-u4-pRd" id="QxW-PF-dZo"/>
+                            <outlet property="dockClockPreferencesMenu" destination="y2u-kl-KyJ" id="FGq-Az-oKh"/>
                             <outlet property="preferenceMenuItem" destination="1Xt-HY-uBw" id="SPi-0S-rRf"/>
                             <outlet property="timersMenu" destination="fWd-IJ-eGk" id="WSc-ZL-Ew9"/>
                         </connections>
                     </menu>
                     <connections>
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
+                        <outlet property="dockMenu" destination="PrK-hy-nBi" id="99T-2C-tgI"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Clock_Suite" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Clock_Suite" customModuleProvider="target">
+                    <connections>
+                        <outlet property="dockClockMenu" destination="PrK-hy-nBi" id="N37-Di-W8s"/>
+                    </connections>
+                </customObject>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="9sj-3t-TAb"/>
                 <touchBar id="yxP-LN-g9S">
@@ -802,6 +808,47 @@
                         </touchBarItem>
                     </touchBarItems>
                 </touchBar>
+                <menu id="PrK-hy-nBi" customClass="DockClockMenu" customModule="Clock_Suite" customModuleProvider="target">
+                    <items>
+                        <menuItem title="Dock Clock" id="tgg-hT-6CI">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <menu key="submenu" id="oyH-Ay-RWV" customClass="DockClockMenu" customModule="Clock_Suite" customModuleProvider="target">
+                                <items>
+                                    <menuItem title="Analog without Seconds" id="VDc-rL-Bp0">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="useAnalogWithoutSeconds:" target="PrK-hy-nBi" id="6bz-nQ-CcO"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Analog with Seconds" id="6ra-bb-V4O">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="useAnalogWithSeconds:" target="PrK-hy-nBi" id="QmP-TC-cEd"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Digital without Seconds" id="xAv-ZR-b5o">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="useDigitalWithoutSeconds:" target="PrK-hy-nBi" id="xiF-oM-fuL"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Digital with Seconds" id="ou7-Yl-TgS">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="useDigitalWithSeconds:" target="PrK-hy-nBi" id="weF-sp-mZW"/>
+                                        </connections>
+                                    </menuItem>
+                                </items>
+                            </menu>
+                        </menuItem>
+                    </items>
+                    <connections>
+                        <outlet property="analogNoSecondsMenuItem" destination="VDc-rL-Bp0" id="SK0-9C-Qr3"/>
+                        <outlet property="analogWithSecondsMenuItem" destination="6ra-bb-V4O" id="wZm-Cn-H4A"/>
+                        <outlet property="digitalNoSecondsMenuItem" destination="xAv-ZR-b5o" id="kbx-Mf-PXH"/>
+                        <outlet property="digitalWithSecondsMenuItem" destination="ou7-Yl-TgS" id="S72-I8-IXf"/>
+                    </connections>
+                </menu>
             </objects>
             <point key="canvasLocation" x="21" y="-90"/>
         </scene>
@@ -1295,7 +1342,7 @@
                                             <tableColumns>
                                                 <tableColumn width="141.5" minWidth="40" maxWidth="1000" id="72b-sf-9fX">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1328,7 +1375,7 @@
                                                 </tableColumn>
                                                 <tableColumn width="143.5" minWidth="40" maxWidth="1000" id="Kc6-Qb-l2w">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2024,7 +2071,7 @@ Gw
                                             <tableColumns>
                                                 <tableColumn width="233" minWidth="40" maxWidth="1000" id="7af-du-yPg">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2174,7 +2221,7 @@ Gw
                                             <tableColumns>
                                                 <tableColumn width="280" minWidth="40" maxWidth="1000" id="nxT-P1-PJ8">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -2288,7 +2335,7 @@ DQ
                                             <tableColumns>
                                                 <tableColumn width="304" minWidth="40" maxWidth="1000" id="h46-K1-f75">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>

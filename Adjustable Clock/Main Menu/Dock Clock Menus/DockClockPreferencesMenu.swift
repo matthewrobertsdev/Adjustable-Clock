@@ -5,10 +5,8 @@
 //  Created by Matt Roberts on 4/24/20.
 //  Copyright © 2020 Matt Roberts. All rights reserved.
 //
-
 import Cocoa
-
-class DockClockMenu: NSMenu {
+class DockClockPreferencesMenu: NSMenu {
 	weak var dockClockMenuDelegate: DockClockMenuDelegate!
 	@IBOutlet weak var analogNoSecondsMenuItem: NSMenuItem!
 	@IBOutlet weak var analogWithSecondsMenuItem: NSMenuItem!

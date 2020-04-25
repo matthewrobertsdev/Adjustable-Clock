@@ -19,7 +19,7 @@
 		9F144BE7245362EA00724409 /* DockMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F144BE6245362EA00724409 /* DockMenu.xib */; };
 		9F14F37723C9828F009BF6CA /* AnimationFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F14F37623C9828F009BF6CA /* AnimationFunctions.swift */; };
 		9F1C725523E1D9B0008B6B79 /* DockClockMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C725423E1D9B0008B6B79 /* DockClockMenuDelegate.swift */; };
-		9F1C725723E1D9C1008B6B79 /* DockClockMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C725623E1D9C1008B6B79 /* DockClockMenuController.swift */; };
+		9F1C725723E1D9C1008B6B79 /* DockClockPreferencesMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C725623E1D9C1008B6B79 /* DockClockPreferencesMenuController.swift */; };
 		9F2245D523B84FED000413F0 /* AnalogClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2245D423B84FED000413F0 /* AnalogClockView.swift */; };
 		9F260CAA23F64D0300D021BB /* WorldClockWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F260CA923F64D0300D021BB /* WorldClockWindowController.swift */; };
 		9F260CAC23F64D2200D021BB /* WorldClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F260CAB23F64D2200D021BB /* WorldClockViewController.swift */; };
@@ -40,6 +40,8 @@
 		9F3C7D6A20CCE40D00C91506 /* ClockPreferencesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3C7D6920CCE40D00C91506 /* ClockPreferencesStorage.swift */; };
 		9F407E1723F1D17A00557EA4 /* TimersWindowRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F407E1623F1D17A00557EA4 /* TimersWindowRestorer.swift */; };
 		9F407E1923F1D4F000557EA4 /* TimersPrefrenceStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F407E1823F1D4F000557EA4 /* TimersPrefrenceStorage.swift */; };
+		9F4A45F324548F9E00C5B856 /* DockClockMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A45F224548F9E00C5B856 /* DockClockMenu.swift */; };
+		9F4A45F524548FB800C5B856 /* DockClockMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A45F424548FB800C5B856 /* DockClockMenuController.swift */; };
 		9F4A9C5E23F7A67D0046A7F2 /* EditableTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A9C5D23F7A67D0046A7F2 /* EditableTimerViewController.swift */; };
 		9F4A9C6023F7A69E0046A7F2 /* EditableTimerWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4A9C5F23F7A69E0046A7F2 /* EditableTimerWindowController.swift */; };
 		9F4D87452055E99400AF63D1 /* ClockWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4D87442055E99400AF63D1 /* ClockWindowController.swift */; };
@@ -50,7 +52,7 @@
 		9F538C4D2116AC1500A72242 /* SimplePreferenceWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C4C2116AC1500A72242 /* SimplePreferenceWindowController.swift */; };
 		9F538C4F2116B06300A72242 /* SimplePreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F538C4E2116B06300A72242 /* SimplePreferencesViewController.swift */; };
 		9F54E6C223F76B9600840BE4 /* WorldClockCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F54E6C123F76B9600840BE4 /* WorldClockCollectionViewItem.xib */; };
-		9F5805D72453E1300079333E /* DockClockMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5805D62453E1300079333E /* DockClockMenu.swift */; };
+		9F5805D72453E1300079333E /* DockClockPreferencesMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5805D62453E1300079333E /* DockClockPreferencesMenu.swift */; };
 		9F6974772065BA19007886DE /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6974762065BA19007886DE /* PreferencesController.swift */; };
 		9F7174A11F5DADE800595C8D /* DigItalClockAppFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7174A01F5DADE800595C8D /* DigItalClockAppFunctions.swift */; };
 		9F71B69723C939140079A79A /* AnalogClockAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F71B69623C939140079A79A /* AnalogClockAnimator.swift */; };
@@ -139,7 +141,7 @@
 		9F144BE6245362EA00724409 /* DockMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DockMenu.xib; sourceTree = "<group>"; };
 		9F14F37623C9828F009BF6CA /* AnimationFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationFunctions.swift; sourceTree = "<group>"; };
 		9F1C725423E1D9B0008B6B79 /* DockClockMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockClockMenuDelegate.swift; sourceTree = "<group>"; };
-		9F1C725623E1D9C1008B6B79 /* DockClockMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockClockMenuController.swift; sourceTree = "<group>"; };
+		9F1C725623E1D9C1008B6B79 /* DockClockPreferencesMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockClockPreferencesMenuController.swift; sourceTree = "<group>"; };
 		9F2245D423B84FED000413F0 /* AnalogClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogClockView.swift; sourceTree = "<group>"; };
 		9F260CA923F64D0300D021BB /* WorldClockWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockWindowController.swift; sourceTree = "<group>"; };
 		9F260CAB23F64D2200D021BB /* WorldClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldClockViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +162,8 @@
 		9F3C7D6920CCE40D00C91506 /* ClockPreferencesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockPreferencesStorage.swift; sourceTree = "<group>"; };
 		9F407E1623F1D17A00557EA4 /* TimersWindowRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersWindowRestorer.swift; sourceTree = "<group>"; };
 		9F407E1823F1D4F000557EA4 /* TimersPrefrenceStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimersPrefrenceStorage.swift; sourceTree = "<group>"; };
+		9F4A45F224548F9E00C5B856 /* DockClockMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockClockMenu.swift; sourceTree = "<group>"; };
+		9F4A45F424548FB800C5B856 /* DockClockMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockClockMenuController.swift; sourceTree = "<group>"; };
 		9F4A9C5D23F7A67D0046A7F2 /* EditableTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTimerViewController.swift; sourceTree = "<group>"; };
 		9F4A9C5F23F7A69E0046A7F2 /* EditableTimerWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTimerWindowController.swift; sourceTree = "<group>"; };
 		9F4D87442055E99400AF63D1 /* ClockWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockWindowController.swift; sourceTree = "<group>"; };
@@ -170,7 +174,7 @@
 		9F538C4C2116AC1500A72242 /* SimplePreferenceWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferenceWindowController.swift; sourceTree = "<group>"; };
 		9F538C4E2116B06300A72242 /* SimplePreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePreferencesViewController.swift; sourceTree = "<group>"; };
 		9F54E6C123F76B9600840BE4 /* WorldClockCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorldClockCollectionViewItem.xib; sourceTree = "<group>"; };
-		9F5805D62453E1300079333E /* DockClockMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockClockMenu.swift; sourceTree = "<group>"; };
+		9F5805D62453E1300079333E /* DockClockPreferencesMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockClockPreferencesMenu.swift; sourceTree = "<group>"; };
 		9F6974762065BA19007886DE /* PreferencesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesController.swift; sourceTree = "<group>"; };
 		9F7174A01F5DADE800595C8D /* DigItalClockAppFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DigItalClockAppFunctions.swift; sourceTree = "<group>"; };
 		9F71B69623C939140079A79A /* AnalogClockAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogClockAnimator.swift; sourceTree = "<group>"; };
@@ -321,14 +325,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9F5805D52453E1130079333E /* Dock Clock Menu */ = {
+		9F5805D52453E1130079333E /* Dock Clock Menus */ = {
 			isa = PBXGroup;
 			children = (
 				9F1C725423E1D9B0008B6B79 /* DockClockMenuDelegate.swift */,
-				9F5805D62453E1300079333E /* DockClockMenu.swift */,
-				9F1C725623E1D9C1008B6B79 /* DockClockMenuController.swift */,
+				9F5805D62453E1300079333E /* DockClockPreferencesMenu.swift */,
+				9F4A45F224548F9E00C5B856 /* DockClockMenu.swift */,
+				9F4A45F424548FB800C5B856 /* DockClockMenuController.swift */,
+				9F1C725623E1D9C1008B6B79 /* DockClockPreferencesMenuController.swift */,
 			);
-			path = "Dock Clock Menu";
+			path = "Dock Clock Menus";
 			sourceTree = "<group>";
 		};
 		9F7D055523D661BD00E6CBA2 /* Alarms */ = {
@@ -396,7 +402,7 @@
 		9F9DC04E20689F43000BD988 /* Main Menu */ = {
 			isa = PBXGroup;
 			children = (
-				9F5805D52453E1130079333E /* Dock Clock Menu */,
+				9F5805D52453E1130079333E /* Dock Clock Menus */,
 				9FD433D8245321820096532C /* Clock Suite Menu */,
 				9F260CAD23F64FA300D021BB /* World Clock Menu */,
 				9F3C6BB723F1DA5B00EA9E73 /* Timers Menu */,
@@ -778,9 +784,11 @@
 				9F2E8AFD23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift in Sources */,
 				9F407E1723F1D17A00557EA4 /* TimersWindowRestorer.swift in Sources */,
 				9FD390CA244E0A7F00FB3155 /* StringConstants.swift in Sources */,
-				9F5805D72453E1300079333E /* DockClockMenu.swift in Sources */,
+				9F4A45F324548F9E00C5B856 /* DockClockMenu.swift in Sources */,
+				9F5805D72453E1300079333E /* DockClockPreferencesMenu.swift in Sources */,
 				9F073FB423FDEE5B00B404C5 /* WorldClockFrameRestorer.swift in Sources */,
 				9F29083F23FDFE0A00AE995B /* ChooseCityViewController.swift in Sources */,
+				9F4A45F524548FB800C5B856 /* DockClockMenuController.swift in Sources */,
 				9F4D87452055E99400AF63D1 /* ClockWindowController.swift in Sources */,
 				9F7D055F23D6716600E6CBA2 /* ClockMenu.swift in Sources */,
 				9F3AD84823C7D22C005FCC0A /* MagnifierScrollView.swift in Sources */,
@@ -802,7 +810,7 @@
 				9FB47E5E1F480A43009D82FF /* AppDelegate.swift in Sources */,
 				9F7D055B23D6700900E6CBA2 /* AlarmsMenu.swift in Sources */,
 				9FF6912D23D76CE80057C4F6 /* AlarmMenuProtocol.swift in Sources */,
-				9F1C725723E1D9C1008B6B79 /* DockClockMenuController.swift in Sources */,
+				9F1C725723E1D9C1008B6B79 /* DockClockPreferencesMenuController.swift in Sources */,
 				9F71B69723C939140079A79A /* AnalogClockAnimator.swift in Sources */,
 				9FD433DA245321E20096532C /* ClockSuiteMenu.swift in Sources */,
 				9FFEB30723CBD28600C1A6D3 /* AnalogDockClockView.swift in Sources */,

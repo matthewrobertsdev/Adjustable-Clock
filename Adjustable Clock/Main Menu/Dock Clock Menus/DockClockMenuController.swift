@@ -1,14 +1,13 @@
 //
-//  GeneralMenuController.swift
-//  Adjustable Clock
+//  DockClockMenuController.swift
+//  Clock Suite
 //
-//  Created by Matt Roberts on 1/29/20.
-//  Copyright © 2020 Celeritas Apps. All rights reserved.
+//  Created by Matt Roberts on 4/25/20.
+//  Copyright © 2020 Matt Roberts. All rights reserved.
 //
 import AppKit
 class DockClockMenuController: DockClockMenuDelegate {
 	var menu: DockClockMenu
-	
 	let preferences=GeneralPreferencesStorage.sharedInstance
 	init(menu: DockClockMenu) {
 		self.menu=menu
@@ -51,8 +50,15 @@ class DockClockMenuController: DockClockMenuDelegate {
 	}
 	func updateDockClockChoice() {
 		updateUI()
+		updateDockClockPreferencesMenu()
 		preferences.updateModelToPreferences()
 		DockClockController.dockClockObject.updateModelToPreferencesChange()
 		DockClockController.dockClockObject.updateClockForPreferencesChange()
+	}
+	func updateDockClockPreferencesMenu() {
+		guard let appObject=NSApp.delegate as? AppDelegate else {
+			return
+		}
+		appObject.dockClockPreferencesController?.updateUI()
 	}
 }

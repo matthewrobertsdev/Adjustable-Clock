@@ -8,8 +8,10 @@
 import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-	var clockSuiteMenuController: ClockSuiteMenuController?
+	@IBOutlet weak var dockClockMenu: DockClockMenu!
 	var dockClockMenuController: DockClockMenuController?
+	var clockSuiteMenuController: ClockSuiteMenuController?
+	var dockClockPreferencesController: DockClockPreferencesMenuController?
     var colorsMenuController: ColorsMenuController?
 	var clockMenuController: ClockMenuController?
 	var alarmsMenuController: AlarmsMenuController?
@@ -33,6 +35,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			alarmsMenuController=AlarmsMenuController(menu: mainMenu.alarmsMenu)
 			timersMenuController=TimersMenuController(menu: mainMenu.timersMenu)
 			clockSuiteMenuController=ClockSuiteMenuController(menu: mainMenu.clockSuiteMenu)
+			dockClockPreferencesController=DockClockPreferencesMenuController(menu:  mainMenu.dockClockPreferencesMenu)
+			dockClockMenuController=DockClockMenuController(menu: dockClockMenu)
 			//worldClockMenuController=WorldClockMenuController(menu: mainMenu.worldClockMenu)
 		}
 		//*
