@@ -47,9 +47,9 @@ class AnalogClockView: BaseAnalogClockView {
 	func startHands(withSeconds: Bool) {
 		clearHands()
 		addHand(handLayer: hourLayer, lengthProportion: 0.75, widthProportion: 1.2)
-		addHand(handLayer: minuteLayer, lengthProportion: 0.8, widthProportion: 1.2)
+		addHand(handLayer: minuteLayer, lengthProportion: 0.9, widthProportion: 1.2)
 		if withSeconds {
-			addHand(handLayer: secondLayer, lengthProportion: 0.7, widthProportion: 0.8)
+			addHand(handLayer: secondLayer, lengthProportion: 0.9, widthProportion: 0.6)
 		}
 	}
 	func clearHands() {
