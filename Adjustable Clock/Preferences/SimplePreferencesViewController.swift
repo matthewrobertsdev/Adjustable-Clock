@@ -32,6 +32,7 @@ class SimplePreferencesViewController: NSViewController {
 		updateForPreferencesChange()
 		updateUI()
 	}
+	/*
 	@IBAction func useAnalogWithoutSeconds(_ sender: Any) {
 		self.analogClockNoSecondsClicked()
 	}
@@ -44,6 +45,7 @@ class SimplePreferencesViewController: NSViewController {
 	@IBAction func useDigitalWithSeconds(_ sender: Any) {
 		self.digitalClockWithSecondsClicked()
 	}
+*/
     @IBAction func restoreDefaults(_ sender: Any) {
 		ClockPreferencesStorage.sharedInstance.setDefaultUserDefaults()
         ClockPreferencesStorage.sharedInstance.loadUserPreferences()
@@ -74,7 +76,7 @@ class SimplePreferencesViewController: NSViewController {
 				useDarkGrayButton.state=NSControl.StateValue.off
 				useTranslucentButton.state=NSControl.StateValue.on
 			}
-			useAnalogNoSecondsButton.state=NSControl.StateValue.off
+		/*	useAnalogNoSecondsButton.state=NSControl.StateValue.off
 			useAnlogWithSecondsButton.state=NSControl.StateValue.off
 			useDigitalNoSecondsButton.state=NSControl.StateValue.off
 			useDigitalWithSecondsButton.state=NSControl.StateValue.off
@@ -90,6 +92,7 @@ class SimplePreferencesViewController: NSViewController {
 			default:
 				break
 			}
+*/
 		}
 	/*
 		@objc func showPreventsSleep() {
