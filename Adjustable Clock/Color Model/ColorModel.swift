@@ -78,7 +78,7 @@ class ColorModel {
 			ColorChoice.blue: NSColor.systemBlue,
 			ColorChoice.purple: NSColor.systemPurple,
 			ColorChoice.pink: NSColor.systemPink,
-			ColorChoice.brown: NSColor.systemBrown]
+			ColorChoice.brown: NSColor(named: "Brown") ?? NSColor.systemBrown]
     }
 	func makeDarkColorDictionary() {
 		darkColorsDictionary=[ColorChoice.systemColor: NSColor(named: "SystemDarkBackground") ?? NSColor.black,
