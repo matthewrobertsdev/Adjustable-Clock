@@ -113,7 +113,23 @@ class AnalogClockView: BaseAnalogClockView {
 		amPmLabel.textColor=color
 		minuteLayer.strokeColor=color.cgColor
 		hourLayer.strokeColor=color.cgColor
-		secondLayer.strokeColor=color.cgColor
+		var secondsColor=NSColor.white
+		if ClockPreferencesStorage.sharedInstance.colorForForeground || !hasDarkAppearance(view: self) {
+			if ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.white &&
+				ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.systemColor {
+			secondsColor=NSColor.white
+		} else {
+			secondsColor=NSColor.systemGray
+			}
+		} else {
+			secondsColor=NSColor.textColor
+			if ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.systemColor && ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.black {
+				secondsColor=NSColor.black
+			} else {
+				secondsColor=NSColor.systemGray
+				}
+		}
+		secondLayer.strokeColor=secondsColor.cgColor
 		let origin=CGPoint(x: bounds.width*0.05, y: bounds.height*0.05)
 		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.width*0.9, height: frame.height*0.9)))
 		color.setStroke()

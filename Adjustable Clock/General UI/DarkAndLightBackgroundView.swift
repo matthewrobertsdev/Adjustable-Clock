@@ -19,7 +19,7 @@ class DarkAndLightBackgroundView: NSView, BackgroundColorView {
 					backgroundColor=NSColor(named: "WhiteBackground") ?? NSColor.systemGray
 				}
 			}
-			if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom {
+			if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom && !ClockPreferencesStorage.sharedInstance.colorForForeground{
 				print("should be dark")
 				backgroundColor=ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black) ?? NSColor.systemGray
 			}
