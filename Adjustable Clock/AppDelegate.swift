@@ -80,5 +80,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
 		NSColorPanel.shared.close()
 		GeneralPreferencesStorage.sharedInstance.closing=true
+		ClockPreferencesStorage.sharedInstance.saveCustomColor()
 	}
 }

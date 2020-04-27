@@ -61,7 +61,8 @@ class ColorsMenuController: NSObject {
     }
     @objc func useCustomColor() {
 		let custumColor=nsColorPanel.color
-		ClockPreferencesStorage.sharedInstance.changeAndSaveCustomColor(customColor: custumColor)
+		ClockPreferencesStorage.sharedInstance.changeToUsesCustumColor()
+		ClockPreferencesStorage.sharedInstance.changeCustomColor(customColor: custumColor)
 		updateColorMenuUI()
 		updateClocksForPreferenceChanges()
     }

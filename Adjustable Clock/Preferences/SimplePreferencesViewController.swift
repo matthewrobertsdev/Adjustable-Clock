@@ -54,6 +54,7 @@ class SimplePreferencesViewController: NSViewController {
 		GeneralPreferencesStorage.sharedInstance.setDefaultUserDefaults()
 		GeneralPreferencesStorage.sharedInstance.loadUserPreferences()
         updateForPreferencesChange()
+		updateUI()
     }
 	func use24HoursClicked() {
 			GeneralPreferencesStorage.sharedInstance.changeAndSaveUseAmPM()
@@ -61,7 +62,6 @@ class SimplePreferencesViewController: NSViewController {
 			DockClockController.dockClockObject.updateModelToPreferencesChange()
 			AlarmsWindowController.alarmsObject.updateForPreferencesChange()
 			TimersWindowController.timersObject.update()
-			updateUI()
 		}
 		func updateUI() {
 			if preferences.use24Hours {

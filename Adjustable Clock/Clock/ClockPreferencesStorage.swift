@@ -57,6 +57,10 @@ class ClockPreferencesStorage {
 		userDefaults.set(true, forKey: applicationHasLaunched)
 	}
     func loadUserPreferences() {
+		if !hasLaunchedBefore() {
+			changeCustomColor(customColor: NSColor(named: "DefaultCustomColor") ?? NSColor.systemBlue)
+			saveCustomColor()
+		}
 		windowIsOpen=userDefaults.bool(forKey: windowIsOpenKey)
         clockFloats=userDefaults.bool(forKey: clockWindowFloatsKey)
 		useAnalog=userDefaults.bool(forKey: useAnalogKey)
@@ -121,10 +125,20 @@ class ClockPreferencesStorage {
         clockFloats=(!clockFloats)
         userDefaults.set(clockFloats, forKey: clockWindowFloatsKey)
     }
-    func changeAndSaveCustomColor(customColor: NSColor) {
+	func changeToUsesCustumColor(){
+		colorChoice=ColorChoice.custom
+	}
+	func changeCustomColor(customColor: NSColor) {
 		self.customColor=customColor.usingColorSpace(NSColorSpace.deviceRGB) ?? NSColor.systemGray
         self.colorChoice=ColorChoice.custom
-        userDefaults.set("custom", forKey: colorChoiceKey)
+        redComponent=self.customColor.redComponent
+        userDefaults.set(redComponent, forKey: customRedComponentKey)
+        greenComponent=self.customColor.greenComponent
+        userDefaults.set(greenComponent, forKey: customGreenComponentKey)
+        blueComponent=self.customColor.blueComponent
+        userDefaults.set(blueComponent, forKey: customBlueComponentKey)
+    }
+    func saveCustomColor() {
         redComponent=self.customColor.redComponent
         userDefaults.set(redComponent, forKey: customRedComponentKey)
         greenComponent=self.customColor.greenComponent
@@ -133,7 +147,8 @@ class ClockPreferencesStorage {
         userDefaults.set(blueComponent, forKey: customBlueComponentKey)
     }
 	func setDefaultUserDefaults() {
-		changeAndSaveCustomColor(customColor: NSColor.black)
+		changeCustomColor(customColor: NSColor.systemGray)
+		saveCustomColor()
         userDefaults.set(false, forKey: clockWindowFloatsKey)
         userDefaults.set(false, forKey: showSeocndsKey)
         userDefaults.set(false, forKey: use24hourClockKey)
