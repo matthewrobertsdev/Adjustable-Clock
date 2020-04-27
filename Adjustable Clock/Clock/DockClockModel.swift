@@ -29,6 +29,8 @@ class DockClockModel {
 			var amPmString=timeFormatter.string(from: date)
 			let rangeToRemove = amPmString.index(amPmString.endIndex, offsetBy: -3)..<amPmString.endIndex
 			 amPmString.removeSubrange(rangeToRemove)
+			assert(!amPmString.lowercased().contains("AM"), "Dock Clock contained AM")
+			assert(!amPmString.lowercased().contains("PM"), "Dock Clock contained PM")
 			return amPmString
 		}
 	}

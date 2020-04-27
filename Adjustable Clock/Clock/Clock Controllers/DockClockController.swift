@@ -33,11 +33,6 @@ class DockClockController {
 			}
 			updateDigitalClock()
 		} else if !preferences.digital {
-			if preferences.justColors {
-				analogClockView.justColors=true
-			} else {
-				analogClockView.justColors=false
-			}
 			analogClockView.setFrameSize(appObject.dockTile.size)
 			appObject.dockTile.contentView=analogClockView
 				analogClockView.displaySeconds=preferences.seconds
@@ -49,11 +44,7 @@ class DockClockController {
 	}
 	func updateClockForPreferencesChange() {
 		updateDockTile()
-		if preferences.justColors {
-			updateTimer?.cancel()
-		} else {
-			animateTime()
-		}
+		animateTime()
 	}
 	private func animateTime() {
 		self.updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)

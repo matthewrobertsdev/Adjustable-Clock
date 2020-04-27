@@ -119,8 +119,8 @@ class AnalogDockClockView: BaseAnalogClockView {
 		}
 		path.fill()
 		handsColor.setFill()
-		secondsColor.setFill()
 		circle.fill()
+		secondsColor.setFill()
 		guard let cgContext=NSGraphicsContext.current?.cgContext else {
 				return
 		}
