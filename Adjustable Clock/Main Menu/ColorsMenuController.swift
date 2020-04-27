@@ -57,6 +57,7 @@ class ColorsMenuController: NSObject {
         nsColorPanel.makeKeyAndOrderFront(self)
         //set action as using the picked color as the color and upating accordingly
 		ClockPreferencesStorage.sharedInstance.changeToUsesCustumColor()
+		nsColorPanel.color=ClockPreferencesStorage.sharedInstance.customColor
         nsColorPanel.setTarget(self)
         nsColorPanel.setAction(#selector(useCustomColor))
 		updateColorMenuUI()
