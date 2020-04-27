@@ -50,9 +50,7 @@ class ClockViewController: ColorfulViewController {
 				}
 				strongSelf.resizeContents(maxWidth: windowWidth)} */
 		let screenSleepObserver = workspaceNotifcationCenter.addObserver(self, selector: #selector(endForSleep), name: NSWorkspace.screensDidSleepNotification, object: nil)
-				
 		let screenWakeObserver = workspaceNotifcationCenter.addObserver(self, selector: #selector(startForWake), name: NSWorkspace.screensDidWakeNotification, object: nil)
-		
 		let processOptions: ProcessInfo.ActivityOptions=[ProcessInfo.ActivityOptions.userInitiatedAllowingIdleSystemSleep]
 		tellingTime = ProcessInfo().beginActivity(options: processOptions, reason: "Need accurate time all the time")
 		showClock()
@@ -61,13 +59,13 @@ class ClockViewController: ColorfulViewController {
 		applyColors()
 		backgroundView.draw(backgroundView.bounds)
 	}
-	@objc func endForSleep(){
+	@objc func endForSleep() {
 		updateTimer?.cancel()
 		digitalClock.stringValue="Relaunch To Resume"
 		animatedDay.stringValue=""
 		resizeContents(maxWidth: view.window?.frame.width ?? CGFloat(200))
 	}
-	@objc func startForWake(){
+	@objc func startForWake() {
 		animateClock()
 		guard let windowWidth=view.window?.frame.width else {
 			return
@@ -92,10 +90,13 @@ class ClockViewController: ColorfulViewController {
 			if ClockPreferencesStorage.sharedInstance.fullscreen==false {
 				clockWindowController.sizeWindowToFitClock(newWidth: width)
 			}
-		analogClock.setNeedsDisplay(analogClock.bounds)
+		showHideDate()
 		animateAnalog()
+		analogClock.setNeedsDisplay(analogClock.bounds)
+		analogClock.layoutSubtreeIfNeeded()
 	}
 	func showDigitalClock() {
+		showHideDate()
 		setConstraints()
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: analogClock)
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: digitalClock)
@@ -104,12 +105,12 @@ class ClockViewController: ColorfulViewController {
 		}
 		model.updateClockModelForPreferences()
 		updateSizeConstraints()
+		animateDigital()
 		clockWindowController.resizeContents()
 		guard let width=self.view.window?.frame.width else { return }
 		if ClockPreferencesStorage.sharedInstance.fullscreen==false {
 			clockWindowController.sizeWindowToFitClock(newWidth: width)
 		}
-		animateDigital()
 	}
 	func setConstraints() {
 			if self.view.frame.size.width/self.view.frame.size.height<model.width/model.height {
@@ -144,23 +145,25 @@ class ClockViewController: ColorfulViewController {
 	}
 	func updateClock() {
 		model.updateClockModelForPreferences()
+		animateClock()
 		updateSizeConstraints()
 		applyColors()
 		if let windowController=self.view.window?.windowController as? ClockWindowController {
 			windowController.applyFloatState()
 		}
-		animateClock()
 		resizeClock()
 		analogClock.setNeedsDisplay(analogClock.frame)
 	}
+	func showHideDate() {
+		if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
+			clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: animatedDay!)
+			animatedDay.isHidden=false
+		} else {
+			clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: animatedDay!)
+			animatedDay.isHidden=true
+		}
+	}
 	func animateClock() {
-			if ClockPreferencesStorage.sharedInstance.showDate||ClockPreferencesStorage.sharedInstance.showDayOfWeek {
-				clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: animatedDay!)
-				animatedDay.isHidden=false
-			} else {
-				clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: animatedDay!)
-				animatedDay.isHidden=true
-			}
 	if ClockPreferencesStorage.sharedInstance.useAnalog==false {
 		showDigitalClock()
 	} else {
@@ -168,13 +171,13 @@ class ClockViewController: ColorfulViewController {
 	}
 	}
 	func resizeClock() {
-		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
-			if let windowWidth=view.window?.frame.size.width {
-				resizeContents(maxWidth: windowWidth)
-			}
-			guard let digitalClockWC=view.window?.windowController as? ClockWindowController else {
-				return
-			}
+		guard let digitalClockWC=view.window?.windowController as? ClockWindowController else {
+			return
+		}
+		if !ClockPreferencesStorage.sharedInstance.useAnalog || !digitalClockWC.fullscreen {
+		if let windowWidth=view.window?.frame.size.width {
+			self.resizeContents(maxWidth: windowWidth)
+		}
 			if ClockPreferencesStorage.sharedInstance.fullscreen==false && self.view.window?.isZoomed==false {
 				if let newWidth=self.view.window?.frame.width {
 					digitalClockWC.sizeWindowToFitClock(newWidth: newWidth)

@@ -9,6 +9,7 @@ import Cocoa
 class AnalogDockClockView: BaseAnalogClockView {
 	var backgroundColor=NSColor.labelColor
 	var handsColor=NSColor.labelColor
+	var secondsColor=NSColor.labelColor
 	var displaySeconds=false
 	var calendar=Calendar.autoupdatingCurrent
 	var current=true
@@ -37,6 +38,7 @@ class AnalogDockClockView: BaseAnalogClockView {
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 		lineWidth=CGFloat(frame.size.width/25)
+		let circle=NSBezierPath(ovalIn: NSRect(origin: CGPoint(x: frame.width/2-lineWidth/2, y: frame.width/2-lineWidth/2), size: CGSize(width: lineWidth, height: lineWidth)))
         let origin=CGPoint(x: bounds.width*0.05, y: bounds.height*0.05)
 		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.size.width*0.9,
 																		  height: frame.size.height*0.9)))
@@ -47,16 +49,13 @@ class AnalogDockClockView: BaseAnalogClockView {
 			dark=false
 		}
 		if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom {
-			if !hasDarkAppearance(view: self) ||  ClockPreferencesStorage.sharedInstance.colorForForeground{ backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
+			if !hasDarkAppearance(view: self) ||  ClockPreferencesStorage.sharedInstance.colorForForeground { backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
 			} else {
 				backgroundColor=ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black) ?? NSColor.systemGray
 			}
 		} else if hasDarkAppearance(view: self) && !ClockPreferencesStorage.sharedInstance.colorForForeground {
 		 backgroundColor=ColorModel.sharedInstance.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
 			?? NSColor.systemGray
-			if backgroundColor==NSColor.white {
-				backgroundColor=NSColor.systemGray
-			}
 		} else {
 			backgroundColor=ColorModel.sharedInstance.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
 				?? NSColor.systemGray
@@ -64,29 +63,64 @@ class AnalogDockClockView: BaseAnalogClockView {
 				backgroundColor=NSColor.systemGray
 			}
 		}
-		if hasDarkAppearance(view: self) && backgroundColor != NSColor.labelColor {
+		if hasDarkAppearance(view: self) {
 			backgroundColor.setFill()
 			handsColor=NSColor.white
 			if ClockPreferencesStorage.sharedInstance.colorForForeground {
-					color=NSColor.black
+				color=NSColor.black
+				secondsColor=NSColor.white
 			} else {
-					color=ColorModel.sharedInstance.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ?? NSColor.black
+				color=ColorModel.sharedInstance.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice] ??
+					ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.2, of: NSColor.white)  ?? NSColor.black
+				secondsColor=NSColor.black
 			}
-		} else if !hasDarkAppearance(view: self) && backgroundColor != NSColor.labelColor {
+		} else if !hasDarkAppearance(view: self) {
 			handsColor=NSColor.black
 			color=NSColor.white
+			secondsColor=NSColor.white
 			backgroundColor.setFill()
 		} else {
 			handsColor=NSColor.white
 			backgroundColor=NSColor.black
 			backgroundColor.setFill()
 		}
-		if hasDarkAppearance(view: self) && color == NSColor.textBackgroundColor {
+		if ClockPreferencesStorage.sharedInstance.colorForForeground {
+			handsColor=NSColor.black
+			color=NSColor.white
+			secondsColor=NSColor.black
+			backgroundColor.setFill()
+		}
+		if hasDarkAppearance(view: self) &&  (ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor ||
+			ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.black) {
 			color=NSColor.systemGray
-		} else if !hasDarkAppearance(view: self) && backgroundColor==NSColor.textBackgroundColor {
+			secondsColor=NSColor.systemGray
+		} else if hasDarkAppearance(view: self) &&
+		ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.white {
+			handsColor=NSColor.black
+			color=NSColor.systemGray
+			secondsColor=NSColor.systemGray
+		} else if hasDarkAppearance(view: self) &&
+		ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.gray {
+			handsColor=NSColor.white
+			secondsColor=NSColor.black
+			color=NSColor.systemGray
+		} else if !hasDarkAppearance(view: self) && backgroundColor==NSColor.black {
+			secondsColor=NSColor.systemGray
 			color=NSColor.systemGray
 		}
+		if !hasDarkAppearance(view: self) &&  (ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor ||
+			ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.white) {
+			color=NSColor.systemGray
+			secondsColor=NSColor.systemGray
+		} else if !hasDarkAppearance(view: self) &&
+			ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.gray {
+			color=NSColor.white
+			secondsColor=NSColor.white
+		}
 		path.fill()
+		handsColor.setFill()
+		secondsColor.setFill()
+		circle.fill()
 		guard let cgContext=NSGraphicsContext.current?.cgContext else {
 				return
 		}
@@ -94,8 +128,7 @@ class AnalogDockClockView: BaseAnalogClockView {
 			drawDash(cgContext: cgContext, angle: CGFloat(2*Double.pi*Double(hour)/Double(12)),
 					 start: 0.3, startProportion: 0, end: 0.4)
 		}
-		if justColors {
-		} else if displaySeconds {
+		if displaySeconds {
 			displayHandsWithSeconds()
 		} else {
 			displayeHandsNoSeconds()
@@ -107,9 +140,9 @@ class AnalogDockClockView: BaseAnalogClockView {
 		let minute=calendar.dateComponents([.minute], from: time).minute ?? 0
 		let second=calendar.dateComponents([.second], from: time).second ?? 0
 		let totalSeconds=(Double(hour)*3600.0+Double(minute)*60.0+Double(second))
-		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2, endProportion: 0.35)
-		displayHand(radians: -CGFloat.pi*CGFloat(minute)/30+CGFloat.pi/2, endProportion: 0.4)
-		displayHand(radians: -CGFloat.pi*CGFloat(second)/30+CGFloat.pi/2, endProportion: 0.3)
+		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2, endProportion: 0.3, relativeWidth: 1.2, color: handsColor)
+		displayHand(radians: -CGFloat.pi*CGFloat(minute)/30+CGFloat.pi/2, endProportion: 0.4, relativeWidth: 1.2, color: handsColor)
+		displayHand(radians: -CGFloat.pi*CGFloat(second)/30+CGFloat.pi/2, endProportion: 0.4, relativeWidth: 1, color: secondsColor)
 	}
 	private func displayeHandsNoSeconds() {
 		let time=current ? Date() : freezeDate
@@ -117,10 +150,10 @@ class AnalogDockClockView: BaseAnalogClockView {
 		let minute=calendar.dateComponents([.minute], from: time).minute ?? 0
 		let second=calendar.dateComponents([.second], from: time).second ?? 0
 		let totalSeconds=(Double(hour)*3600.0+Double(minute)*60.0+Double(second))
-		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2, endProportion: 0.35)
-		displayHand(radians: -CGFloat.pi*CGFloat(minute)/30+CGFloat.pi/2, endProportion: 0.4)
+		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2, endProportion: 0.3, relativeWidth: 1.2, color: handsColor)
+		displayHand(radians: -CGFloat.pi*CGFloat(minute)/30+CGFloat.pi/2, endProportion: 0.4, relativeWidth: 1.2, color: handsColor)
 	}
-	private func displayHand(radians: CGFloat, endProportion: CGFloat) {
+	private func displayHand(radians: CGFloat, endProportion: CGFloat, relativeWidth: CGFloat, color: NSColor) {
 		guard let cgContext=NSGraphicsContext.current?.cgContext else {
 				return
 		}
@@ -133,8 +166,9 @@ class AnalogDockClockView: BaseAnalogClockView {
 		line.addLine(to: CGPoint(x: xEnd, y: yEnd))
 		line.closeSubpath()
 		cgContext.addPath(line)
-		cgContext.setStrokeColor(handsColor.cgColor)
-		cgContext.setLineWidth(lineWidth)
+		cgContext.setStrokeColor(color.cgColor)
+		cgContext.setLineWidth(lineWidth*relativeWidth)
+		cgContext.setLineCap(.round)
 		cgContext.strokePath()
 	}
 }

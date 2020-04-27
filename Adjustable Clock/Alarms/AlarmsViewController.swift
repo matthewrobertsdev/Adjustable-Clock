@@ -33,7 +33,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		alarmCollectionViewItem.alarmRepeatTextField.textColor=textColor
 		alarmCollectionViewItem.alarmTimeTextField.stringValue=alarm.getTimeString()
 		alarmCollectionViewItem.alarmRepeatTextField.stringValue =
-			!alarm.active ? "Off" : (alarm.repeats ? "Everyday" : "Just once")
+			!alarm.active ? "" : (alarm.repeats ? "Every day" : "Just once")
 		alarmCollectionViewItem.alarmStatusSegmentedControl.setTag(0, forSegment: 0)
 		alarmCollectionViewItem.alarmStatusSegmentedControl.setTag(1, forSegment: 1)
 		if alarm.active {
@@ -89,10 +89,20 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		update()
     }
 	func shorOrHideNotifier(numberOfAlarms: Int) {
-		if (numberOfAlarms)>0 {
-			self.alarmNotifierTextField.isHidden=false
+		if numberOfAlarms<=0 {
+			alarmNotifierTextField.isHidden=true
 		} else {
-			self.alarmNotifierTextField.isHidden=true
+			alarmNotifierTextField.isHidden=false
+			var activeAlarmString=String(numberOfAlarms)
+			if numberOfAlarms<2 {
+				activeAlarmString+=" Alarm Active: "
+				activeAlarmString+=DONTSTRING
+				alarmNotifierTextField.stringValue=activeAlarmString
+			} else {
+				activeAlarmString+=" Alarms Active: "
+				activeAlarmString+=DONTSTRING
+				alarmNotifierTextField.stringValue=activeAlarmString
+			}
 		}
 	}
 	func update() {

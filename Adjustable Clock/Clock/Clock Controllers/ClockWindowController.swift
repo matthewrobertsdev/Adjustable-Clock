@@ -31,20 +31,20 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
         }
         enableClockMenu(enabled: true)
         updateClockMenuUI()
-    }
-	
+    }	
 	func closeDigitalClock() {
 		let appObject = NSApp as NSApplication
 		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow { window.close() }
 	}
-    func sizeWindowToFitClock(newWidth: CGFloat) {
-		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
+	func getWindowRect(newWidth: CGFloat) -> NSRect{
+		let safetyRect=NSRect(x: 0, y: 0, width: newWidth, height: newWidth)
+		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return safetyRect}
 		var newHeight: CGFloat=100
 		newHeight=newWidth/digitalClockVC.model.width*digitalClockVC.model.height
 		var newSize=NSSize(width: newWidth, height: newHeight)
         let changeInHeight=newHeight-(window?.frame.height ?? 0)
         let changeInWidth=newWidth-(window?.frame.width ?? 0)
-		guard let windowOrigin=window?.frame.origin else { return }
+		guard let windowOrigin=window?.frame.origin else { return safetyRect}
 		var newOrigin=CGPoint(x: windowOrigin.x-changeInWidth, y: windowOrigin.y-changeInHeight)
 		if ClockPreferencesStorage.sharedInstance.fullscreen {
 			if let size=window?.frame.size {
@@ -52,8 +52,37 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 				newOrigin=CGPoint(x: 0, y: 0)
 			}
 		}
-        let newRect=NSRect(origin: newOrigin, size: newSize)
-        window?.setFrame(newRect, display: true)
+        return NSRect(origin: newOrigin, size: newSize)
+	}
+	func getWindowRect(newHeight: CGFloat) -> NSRect {
+		let safetyRect=NSRect(x: 0, y: 0, width: newHeight, height: newHeight)
+		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return safetyRect}
+		let newWidth=newHeight*digitalClockVC.model.height*digitalClockVC.model.width
+		var newSize=NSSize(width: newWidth, height: newHeight)
+        let changeInHeight=newHeight-(window?.frame.height ?? 0)
+        let changeInWidth=newWidth-(window?.frame.width ?? 0)
+		guard let windowOrigin=window?.frame.origin else { return safetyRect}
+		var newOrigin=CGPoint(x: windowOrigin.x, y: windowOrigin.y-changeInHeight)
+		if ClockPreferencesStorage.sharedInstance.fullscreen {
+			if let size=window?.frame.size {
+				newSize=size
+				newOrigin=CGPoint(x: 0, y: 0)
+			}
+		}
+        return NSRect(origin: newOrigin, size: newSize)
+	}
+    func sizeWindowToFitClock(newWidth: CGFloat) {
+		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
+        var newRect=getWindowRect(newWidth: newWidth)
+		if let screen=window?.screen {
+			if newWidth>screen.frame.width {
+				newRect=getWindowRect(newWidth: screen.frame.width)
+			}
+			if newRect.height>screen.frame.height {
+				newRect=getWindowRect(newHeight: screen.frame.height)
+			}
+		}
+        window?.setFrame(newRect, display: true, animate: false)
     }
     func windowDidBecomeKey(_ notification: Notification) {
 		if !fullscreen {
@@ -151,13 +180,6 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
     func saveState() {
         ClockWindowRestorer().windowSaveCGRect(window: window)
     }
-    func reloadPreferencesWindowIfOpen() {
-        let appObject = NSApp as NSApplication
-		guard let mainMenu=appObject.mainMenu as? MainMenu else { return }
-		if isThereAPreferencesWindow() {
-			mainMenu.reloadSimplePreferencesWindow()
-		}
-    }
 	func windowWillMiniaturize(_ notification: Notification) {
 		if let digitalClockVC=window?.contentViewController as? ClockViewController {
 			digitalClockVC.displayForDock()
@@ -174,6 +196,12 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 			return dockWindow==window
 		}
 		enableClockMenu(enabled: true)
+	}
+	func windowDidChangeScreen(_ notification: Notification) {
+		guard let width=window?.frame.width else {
+			return
+		}
+		sizeWindowToFitClock(newWidth: width)
 	}
 	func updateClockToPreferencesChange() {
         let appObject = NSApp as NSApplication
@@ -224,5 +252,4 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 		}
 		appDelagte.clockMenuController?.enableMenu(enabled: enabled)
 	}
-
 }

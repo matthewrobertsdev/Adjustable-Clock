@@ -6,11 +6,9 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import Foundation
-protocol GeneralMenuDelegate: AnyObject {
-	func use24HoursClicked()
+protocol DockClockMenuDelegate: AnyObject {
 	func analogClockNoSecondsClicked()
 	func analogClockWithSecondsClicked()
 	func digitalClockNoSecondsClicked()
 	func digitalClockWithSecondsClicked()
-	func justColorsClicked()
 }

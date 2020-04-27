@@ -7,7 +7,7 @@
 //
 import AppKit
 import AVFoundation
-class AlarmCenter: NSObject {
+class AlarmCenter: NSObject, NSSoundDelegate {
 	static let sharedInstance=AlarmCenter()
 	let userDefaults=UserDefaults()
 	let alarmsKey="savedAlarms"
@@ -22,6 +22,7 @@ class AlarmCenter: NSObject {
 	private let appObject = NSApp as NSApplication
 	private let notifcationCenter=NotificationCenter.default
 	private var player: AVAudioPlayer?
+	private var soundCount=0
 	override private init() {
 		super.init()
 		setUp()
@@ -122,8 +123,10 @@ class AlarmCenter: NSObject {
 						tableView?.reloadData()
 					}
 				let alarmSound=NSSound(named: NSSound.Name(alarm.alertString))
+				alarmSound?.delegate=self
 				if !alarm.usesSong {
-					alarmSound?.loops=true
+					self.soundCount=0
+					//alarmSound?.loops=true
 					alarmSound?.play()
 				} else {
 					do {
@@ -138,7 +141,8 @@ class AlarmCenter: NSObject {
 						self.player?.volume = 1.0
 						self.player?.play()
 					} catch {
-						alarmSound?.loops=true
+						//alarmSound?.loops=true
+						self.soundCount=0
 						alarmSound?.play()
 					}
 				}
@@ -213,6 +217,13 @@ class AlarmCenter: NSObject {
 			alarmProtocol = ProcessInfo().beginActivity(options: .idleSystemSleepDisabled, reason: "So alarms can go off")
 		} else {
 			alarmProtocol=nil
+		}
+	}
+	func sound(_ sound: NSSound,
+			   didFinishPlaying flag: Bool) {
+		if flag && soundCount<300 {
+			sound.play()
+			soundCount+=1
 		}
 	}
 }

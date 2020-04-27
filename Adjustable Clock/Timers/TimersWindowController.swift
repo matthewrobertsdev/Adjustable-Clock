@@ -76,6 +76,7 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
         removeTrackingArea()
 		hideButtonsTimer?.cancel()
         showButtons(show: true)
+		reloadPreferencesWindowIfOpen()
     }
 	func windowDidExitFullScreen(_ notification: Notification) {
 		fullscreen=true

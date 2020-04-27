@@ -46,10 +46,10 @@ class AnalogClockView: BaseAnalogClockView {
     }
 	func startHands(withSeconds: Bool) {
 		clearHands()
-		addHand(handLayer: hourLayer, lengthProportion: 0.75)
-		addHand(handLayer: minuteLayer, lengthProportion: 0.8)
+		addHand(handLayer: hourLayer, lengthProportion: 0.75, widthProportion: 1.2)
+		addHand(handLayer: minuteLayer, lengthProportion: 0.9, widthProportion: 1.2)
 		if withSeconds {
-			addHand(handLayer: secondLayer, lengthProportion: 0.7)
+			addHand(handLayer: secondLayer, lengthProportion: 0.9, widthProportion: 0.6)
 		}
 	}
 	func clearHands() {
@@ -96,10 +96,10 @@ class AnalogClockView: BaseAnalogClockView {
 		label.sizeToFit()
 		hourLabels.append(label)
 	}
-	private func addHand(handLayer: CAShapeLayer, lengthProportion: CGFloat) {
+	private func addHand(handLayer: CAShapeLayer, lengthProportion: CGFloat, widthProportion: CGFloat) {
 		handLayer.frame = bounds
 		let hand = CGMutablePath()
-		let lineWidth=frame.width/100
+		let lineWidth=frame.width/100*widthProportion
 		hand.move(to: CGPoint(x: bounds.midX, y: bounds.midY))
 		hand.addLine(to: CGPoint(x: bounds.midX, y: bounds.height*lengthProportion))
 		handLayer.path = hand
@@ -113,7 +113,23 @@ class AnalogClockView: BaseAnalogClockView {
 		amPmLabel.textColor=color
 		minuteLayer.strokeColor=color.cgColor
 		hourLayer.strokeColor=color.cgColor
-		secondLayer.strokeColor=color.cgColor
+		var secondsColor=NSColor.white
+		if ClockPreferencesStorage.sharedInstance.colorForForeground || !hasDarkAppearance(view: self) {
+			if ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.white &&
+				ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.systemColor {
+			secondsColor=NSColor.white
+		} else {
+			secondsColor=NSColor.systemGray
+			}
+		} else {
+			secondsColor=NSColor.textColor
+			if ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.systemColor && ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.black {
+				secondsColor=NSColor.black
+			} else {
+				secondsColor=NSColor.systemGray
+				}
+		}
+		secondLayer.strokeColor=secondsColor.cgColor
 		let origin=CGPoint(x: bounds.width*0.05, y: bounds.height*0.05)
 		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.width*0.9, height: frame.height*0.9)))
 		color.setStroke()

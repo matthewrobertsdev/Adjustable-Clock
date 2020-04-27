@@ -56,12 +56,16 @@ class ColorsMenuController: NSObject {
 		NSColorPanel.setPickerMask(colorMasks)
         nsColorPanel.makeKeyAndOrderFront(self)
         //set action as using the picked color as the color and upating accordingly
+		ClockPreferencesStorage.sharedInstance.changeToUsesCustumColor()
+		nsColorPanel.color=ClockPreferencesStorage.sharedInstance.customColor
         nsColorPanel.setTarget(self)
         nsColorPanel.setAction(#selector(useCustomColor))
+		updateColorMenuUI()
+		ClockWindowController.clockObject.updateClockToPreferencesChange()
     }
     @objc func useCustomColor() {
 		let custumColor=nsColorPanel.color
-		ClockPreferencesStorage.sharedInstance.changeAndSaveCustomColor(customColor: custumColor)
+		ClockPreferencesStorage.sharedInstance.changeCustomColor(customColor: custumColor)
 		updateColorMenuUI()
 		updateClocksForPreferenceChanges()
     }
@@ -98,7 +102,7 @@ class ColorsMenuController: NSObject {
 				}
 			} else {
 			templateImage=NSImage(named: "black_rectangle") ?? NSImage()
-				tintColor=ColorModel.sharedInstance.colorsDictionary[ColorModel.sharedInstance.colorArray[index]] ?? NSColor.clear
+				tintColor=ColorModel.sharedInstance.lightColorsDictionary[ColorModel.sharedInstance.colorArray[index]] ?? NSColor.clear
 				if index==0 && ClockPreferencesStorage.sharedInstance.colorForForeground {
 					tintColor=NSColor.black
 				}

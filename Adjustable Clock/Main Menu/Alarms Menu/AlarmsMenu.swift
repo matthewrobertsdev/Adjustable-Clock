@@ -8,6 +8,7 @@
 import Cocoa
 class AlarmsMenu: NSMenu {
 	weak var alarmMenuDelegate: AlarmMenuDelegate!
+	@IBOutlet weak var activeAlarmsMenuItem: NSMenuItem!
 	@IBAction func addAlarm(nsMenuItem: NSMenuItem) {
 		alarmMenuDelegate.addAlarmClicked()
 	}

@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Adjustable Clock.xcodeproj">
+      location = "self:/Users/mattroberts/Documents/macOS/ClockSuite/Clock Suite.xcodeproj">
    </FileRef>
 </Workspace>

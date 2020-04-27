@@ -8,7 +8,10 @@
 import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-	var generalMenuController: GeneralMenuController?
+	@IBOutlet weak var dockClockMenu: DockClockMenu!
+	var dockClockMenuController: DockClockMenuController?
+	var clockSuiteMenuController: ClockSuiteMenuController?
+	var dockClockPreferencesController: DockClockPreferencesMenuController?
     var colorsMenuController: ColorsMenuController?
 	var clockMenuController: ClockMenuController?
 	var alarmsMenuController: AlarmsMenuController?
@@ -24,17 +27,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		WorldClockPreferencesStorage.sharedInstance.loadPreferences()
 
 		//*
+		AlarmCenter.sharedInstance.setUp()
         let appObject = NSApp as NSApplication
 		if let mainMenu=appObject.mainMenu as? MainMenu {
 			colorsMenuController=ColorsMenuController(colorsMenu: mainMenu.colorsMenu)
 			clockMenuController=ClockMenuController(menu: mainMenu.clockMenu)
 			alarmsMenuController=AlarmsMenuController(menu: mainMenu.alarmsMenu)
 			timersMenuController=TimersMenuController(menu: mainMenu.timersMenu)
-			generalMenuController=GeneralMenuController(menu: mainMenu.generalMenu)
+			clockSuiteMenuController=ClockSuiteMenuController(menu: mainMenu.clockSuiteMenu)
+			dockClockPreferencesController=DockClockPreferencesMenuController(menu:  mainMenu.dockClockPreferencesMenu)
+			dockClockMenuController=DockClockMenuController(menu: dockClockMenu)
 			//worldClockMenuController=WorldClockMenuController(menu: mainMenu.worldClockMenu)
 		}
 		//*
-		//AlarmCenter.sharedInstance.setUp()
 		DockClockController.dockClockObject.updateDockTile()
 		if AlarmsPreferencesStorage.sharedInstance.windowIsOpen {
 			AlarmsWindowController.alarmsObject.showAlarms()
@@ -55,10 +60,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			clockMenuController?.enableMenu(enabled: false)
 		}
 		if NSApp.orderedWindows.count==0 {
-			//ClockWindowController.clockObject.showClock()
+			ClockWindowController.clockObject.showClock()
 			//clockMenuController?.enableMenu(enabled: true)
 		}
-
+		
+		//NSApplication.shared.isAutomaticCustomizeTouchBarMenuItemEnabled = true
 	}
 
     //if the dock icon is clicked
@@ -74,5 +80,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ aNotification: Notification) {
 		NSColorPanel.shared.close()
 		GeneralPreferencesStorage.sharedInstance.closing=true
+		ClockPreferencesStorage.sharedInstance.saveCustomColor()
+		NSColorPanel.shared.close()
 	}
 }

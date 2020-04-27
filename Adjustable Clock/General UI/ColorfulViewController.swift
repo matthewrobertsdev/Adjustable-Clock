@@ -83,22 +83,34 @@ class ColorfulViewController: NSViewController {
 				aView.setNeedsDisplay(aView.bounds)
 			}
 		} else {
+			if GeneralPreferencesStorage.sharedInstance.usesGrayBackground {
+				visualEffectView.isHidden=true
+				//view.layer?.backgroundColor = .clear
+				print("abcd dark gray")
+				backgroundView.backgroundColor=NSColor(named: "DarkBackground") ?? NSColor.darkGray
+				backgroundView.setNeedsDisplay(backgroundView.bounds)
+			} else {
 			visualEffectView.isHidden=false
+			}
+			//backgroundView.backgroundColor=NSColor(named: "BackgroundDrakGray") ?? NSColor.systemGray
 			if contrastColor==NSColor.textBackgroundColor {
 				contrastColor=NSColor.labelColor
 				if !isDarkMode() {
-					visualEffectView.material = .light
+					//visualEffectView.material = .light
 				} else {
-					visualEffectView.material = .dark
+					//visualEffectView.material = .dark
 				}
 			} else if contrastColor==NSColor.labelColor || contrastColor==NSColor.black {
 				if !isDarkMode() {
-					visualEffectView.material = .light
+					//visualEffectView.material = .light
 				} else {
-					visualEffectView.material = .dark
+					//visualEffectView.material = .dark
 				}
 			} else {
-				visualEffectView.material = .dark
+				//visualEffectView.material = .dark
+			}
+			if ClockPreferencesStorage.sharedInstance.colorForForeground && ClockPreferencesStorage.sharedInstance.colorChoice == ColorChoice.systemColor {
+				contrastColor=NSColor.labelColor
 			}
 			textColor=contrastColor
 				for label in labels {

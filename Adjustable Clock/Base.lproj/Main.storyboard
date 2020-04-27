@@ -2,14 +2,16 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14550"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
         <scene sceneID="qLc-eI-AOP">
             <objects>
-                <windowController storyboardIdentifier="PreferencesWC" id="UZL-fB-8bP" customClass="PreferencesWC" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="PreferencesWC" id="UZL-fB-8bP" customClass="PreferencesWC" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="PreferencesWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="RUY-yz-txr">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -30,7 +32,7 @@
         <!--Window Controller-->
         <scene sceneID="CYt-gL-g6F">
             <objects>
-                <windowController storyboardIdentifier="SimplePreferencesWC" id="Vwz-lD-iVt" customClass="SimplePreferenceWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="SimplePreferencesWC" id="Vwz-lD-iVt" customClass="SimplePreferenceWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="SimplePreferencesWindow" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="gvf-d8-yDj" userLabel="Preferences">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" moveToActiveSpace="YES" managed="YES" fullScreenAuxiliary="YES" fullScreenDisallowsTiling="YES"/>
@@ -52,13 +54,67 @@
         <!--Simple Preferences View Controller-->
         <scene sceneID="qhq-Ea-gL3">
             <objects>
-                <viewController id="xaW-Ua-yCx" customClass="SimplePreferencesViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xaW-Ua-yCx" customClass="SimplePreferencesViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ycP-gP-i8G">
-                        <rect key="frame" x="0.0" y="0.0" width="297" height="202"/>
+                        <rect key="frame" x="0.0" y="0.0" width="297" height="201"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="njL-cz-7FA">
-                                <rect key="frame" x="69" y="84" width="159" height="32"/>
+                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DYS-Ss-kJS">
+                                <rect key="frame" x="74" y="24" width="169" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Analog without Seconds" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="K2M-CD-J2p">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="useAnalogWithoutSeconds:" target="xaW-Ua-yCx" id="Bwc-hS-Kqb"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kZX-AW-PLl">
+                                <rect key="frame" x="74" y="3" width="150" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Analog with Seconds" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="y7H-y0-jhB">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="useAnalogWithSeconds:" target="xaW-Ua-yCx" id="HwL-jm-gHa"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OtI-aV-HZ6">
+                                <rect key="frame" x="74" y="-19" width="166" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Digital without Seconds" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="PZS-Vf-tmY">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="useDigitalWithoutSeconds:" target="xaW-Ua-yCx" id="xM1-SW-K6Z"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rJw-Bq-kBk">
+                                <rect key="frame" x="74" y="-41" width="146" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Digital with Seconds" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="5Qb-xO-k2j">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="useDigitalWithSeconds:" target="xaW-Ua-yCx" id="n7U-yI-IU7"/>
+                                </connections>
+                            </button>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WKC-Ld-1Wa">
+                                <rect key="frame" x="43" y="49" width="77" height="16"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Dock Clock:" id="FWU-yU-hnA">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="njL-cz-7FA">
+                                <rect key="frame" x="62" y="25" width="159" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Restore All Defaults" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zBP-kz-bxM">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -67,21 +123,77 @@
                                     <action selector="restoreDefaults:" target="xaW-Ua-yCx" id="PnB-xA-QwH"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GKw-wb-cKR">
+                                <rect key="frame" x="41" y="107" width="211" height="16"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Color for Foreground Background:" id="cb8-GC-BIL">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xlh-k6-6Mk">
+                                <rect key="frame" x="74" y="82" width="93" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Translucent" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="ajk-XV-2gQ">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="useTranslucent:" target="xaW-Ua-yCx" id="bXO-Bi-XfO"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RNk-26-jVD">
+                                <rect key="frame" x="74" y="60" width="83" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="radio" title="Dark Gray" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="5fM-V9-fZw">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="useDarkGray:" target="xaW-Ua-yCx" id="pXz-6A-ac8"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LoZ-2r-CR6">
+                                <rect key="frame" x="73" y="129" width="137" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Use 24 Hour Clock" bezelStyle="regularSquare" imagePosition="left" inset="2" id="q8d-nf-KUe">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggle24Hours:" target="xaW-Ua-yCx" id="3wa-wg-Igp"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ChJ-ZS-KUI">
+                                <rect key="frame" x="43" y="153" width="38" height="16"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Time:" id="iAN-gx-lg8">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="njL-cz-7FA" firstAttribute="centerY" secondItem="ycP-gP-i8G" secondAttribute="centerY" id="UmY-P9-JEh"/>
-                            <constraint firstItem="njL-cz-7FA" firstAttribute="centerX" secondItem="ycP-gP-i8G" secondAttribute="centerX" id="wSj-lT-7SM"/>
-                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="use24HourButton" destination="LoZ-2r-CR6" id="bUf-Om-zoK"/>
+                        <outlet property="useAnalogNoSecondsButton" destination="DYS-Ss-kJS" id="Gz4-oc-D2D"/>
+                        <outlet property="useAnlogWithSecondsButton" destination="kZX-AW-PLl" id="HJG-YA-qGy"/>
+                        <outlet property="useDarkGrayButton" destination="RNk-26-jVD" id="mL9-vw-uKP"/>
+                        <outlet property="useDigitalNoSecondsButton" destination="OtI-aV-HZ6" id="LKK-xM-Ijh"/>
+                        <outlet property="useDigitalWithSecondsButton" destination="rJw-Bq-kBk" id="SbY-7Q-4tm"/>
+                        <outlet property="useTranslucentButton" destination="Xlh-k6-6Mk" id="9hE-3W-zd2"/>
+                    </connections>
                 </viewController>
                 <customObject id="kya-ot-sx3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-756.5" y="544"/>
+            <point key="canvasLocation" x="-756.5" y="543.5"/>
         </scene>
         <!--PreferencesVC-->
         <scene sceneID="y7S-Mt-4lX">
             <objects>
-                <viewController id="2LC-Yg-FMM" customClass="PreferencesVC" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2LC-Yg-FMM" customClass="PreferencesVC" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="fb1-YN-QwB">
                         <rect key="frame" x="0.0" y="0.0" width="341" height="356"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -302,13 +414,13 @@
         <scene sceneID="JPo-4y-FX3">
             <objects>
                 <application id="hnw-xV-0zn" sceneMemberID="viewController">
-                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6" customClass="MainMenu" customModule="Adjustable_Clock" customModuleProvider="target">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6" customClass="MainMenu" customModule="Clock_Suite" customModuleProvider="target">
                         <items>
-                            <menuItem title="Adjustable Clock" id="1Xt-HY-uBw">
+                            <menuItem title="Clock Suite" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Adjustable Clock" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="Clock Suite" systemMenu="apple" id="uQy-DD-JDr" customClass="ClockSuiteMenu" customModule="Clock_Suite" customModuleProvider="target">
                                     <items>
-                                        <menuItem title="About Adjustable Clock" id="5kV-Vb-QxS">
+                                        <menuItem title="About Clock Suite" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
@@ -321,7 +433,14 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
-                                        <menuItem title="Hide Adjustable Clock" keyEquivalent="h" id="Olw-nP-bQN">
+                                        <menuItem title="0 Alarms Active" enabled="NO" id="ZeY-ul-nOm">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="0 Timers Active" enabled="NO" id="W7e-ry-hGs">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="rj5-Pn-cRE"/>
+                                        <menuItem title="Hide Clock Suite" keyEquivalent="h" id="Olw-nP-bQN">
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
@@ -339,12 +458,16 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
-                                        <menuItem title="Quit Adjustable Clock" keyEquivalent="q" id="4sb-4s-VLi">
+                                        <menuItem title="Quit Clock Suite" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
                                         </menuItem>
                                     </items>
+                                    <connections>
+                                        <outlet property="activeAlarmsMenuItem" destination="ZeY-ul-nOm" id="63s-CB-dAo"/>
+                                        <outlet property="activeTimersMenuItem" destination="W7e-ry-hGs" id="UpQ-uK-AAG"/>
+                                    </connections>
                                 </menu>
                             </menuItem>
                             <menuItem title="File" id="lYl-mh-hXa">
@@ -372,116 +495,96 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="General" id="MRG-Hz-Gmh">
+                            <menuItem title="Clocks" id="3p9-he-isl">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="General" id="Eej-0A-sXa" customClass="GeneralMenu" customModule="Adjustable_Clock" customModuleProvider="target">
+                                <menu key="submenu" title="Clocks" id="esu-23-zsK" customClass="ClockMenu" customModule="Clock_Suite" customModuleProvider="target">
                                     <items>
-                                        <menuItem title="Preventing Sleep" id="eH4-3h-cz8">
+                                        <menuItem title="Clock" id="cUY-RT-ONo">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="Use 24 Hours" id="gzb-V8-DrA">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="use24HourWithNsMenuItem:" target="Eej-0A-sXa" id="v3o-x4-J82"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Dock Clock" id="xDY-Ah-cid">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Dock Clock" id="4fu-25-hve">
+                                            <menu key="submenu" title="Clock" id="u3U-JL-QGU">
                                                 <items>
-                                                    <menuItem title="Analog Clock No Seconds" id="Ubo-xN-gRX">
+                                                    <menuItem title="Float on Top" id="uEN-Ne-S2x">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
-                                                            <action selector="useAnalogNoSecondsWithNsMenuItem:" target="Eej-0A-sXa" id="SVh-9b-5Hh"/>
+                                                            <action selector="clickClockFloatsWithNsMenuItem:" target="esu-23-zsK" id="eCq-aj-MTC"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Analog Clock with Seconds" id="SK1-Mc-0iN">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menuItem isSeparatorItem="YES" id="9Gh-GB-j4b"/>
+                                                    <menuItem title="Digital" keyEquivalent="d" id="XzE-6n-W23">
                                                         <connections>
-                                                            <action selector="useAnalogWithSecondsWithNsMenuItem:" target="Eej-0A-sXa" id="T0Z-KY-Ona"/>
+                                                            <action selector="clickDigitalWithNsMenuItem:" target="esu-23-zsK" id="Fcx-P3-Bdr"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Digital Clock No Seconds" id="qnl-IC-gbZ">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menuItem title="Analog" keyEquivalent="a" id="ZDp-k8-QHp">
                                                         <connections>
-                                                            <action selector="useDigitalNoSecondsWithNsMenuItem:" target="Eej-0A-sXa" id="LhX-kr-Vre"/>
+                                                            <action selector="clickAnalogWithNsMenuItem:" target="esu-23-zsK" id="7Bh-Kd-DZZ"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Digital Clock With Seconds" id="SA5-xh-5lE">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    <menuItem isSeparatorItem="YES" id="zej-sS-UJY"/>
+                                                    <menuItem title="Show Seconds" keyEquivalent="e" id="pAg-6i-qXY">
                                                         <connections>
-                                                            <action selector="useDigitalWithSecondsWithNsMenuItem:" target="Eej-0A-sXa" id="GJC-cF-D3X"/>
+                                                            <action selector="clickShowSecondsWithNsMenuItem:" target="esu-23-zsK" id="ibW-fe-Fx8"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Just Colors" id="VfR-LN-WWf">
+                                                    <menuItem isSeparatorItem="YES" id="X8E-FV-F2l"/>
+                                                    <menuItem title="Show Date" id="hPB-2N-q4c">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
-                                                            <action selector="useJustColorsWithNsMenuItem:" target="Eej-0A-sXa" id="ShA-3V-N4K"/>
+                                                            <action selector="clickShowDateWithNsMenuItem:" target="esu-23-zsK" id="YvB-dG-BCV"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Use Numerical Date" id="WbK-Tg-DFs">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="useNumericalDateWithNsMenuItem:" target="esu-23-zsK" id="RLY-GP-06p"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Show Day of Week" id="phz-ro-t2T">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="showDayOfWeekWithNsMenuItem:" target="esu-23-zsK" id="xjB-WM-uTr"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
                                             </menu>
                                         </menuItem>
-                                    </items>
-                                    <connections>
-                                        <outlet property="analogNoSecondsMenuItem" destination="Ubo-xN-gRX" id="P8K-ns-M08"/>
-                                        <outlet property="analogWithSecondsMenuItem" destination="SK1-Mc-0iN" id="6l5-ng-63e"/>
-                                        <outlet property="digitalNoSecondsMenuItem" destination="qnl-IC-gbZ" id="r3q-gI-ra7"/>
-                                        <outlet property="digitalWithSecondsMenuItem" destination="SA5-xh-5lE" id="gnU-8F-HPm"/>
-                                        <outlet property="justColorsMenuItem" destination="VfR-LN-WWf" id="Xyw-eb-OQi"/>
-                                        <outlet property="preventingSleepMenuItem" destination="eH4-3h-cz8" id="IiJ-HI-w7x"/>
-                                        <outlet property="use24HoursMenuItem" destination="gzb-V8-DrA" id="eRm-VZ-Wnt"/>
-                                    </connections>
-                                </menu>
-                            </menuItem>
-                            <menuItem title="Clock" id="3p9-he-isl">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Clock" id="esu-23-zsK" customClass="ClockMenu" customModule="Adjustable_Clock" customModuleProvider="target">
-                                    <items>
-                                        <menuItem title="Floats on Top" id="uEN-Ne-S2x">
+                                        <menuItem isSeparatorItem="YES" id="TD6-5s-lbu"/>
+                                        <menuItem title="Dock Clock" id="qRY-3k-vLP">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="clickClockFloatsWithNsMenuItem:" target="esu-23-zsK" id="eCq-aj-MTC"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="9Gh-GB-j4b"/>
-                                        <menuItem title="Digital" id="XzE-6n-W23">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="clickDigitalWithNsMenuItem:" target="esu-23-zsK" id="Fcx-P3-Bdr"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Analog" id="ZDp-k8-QHp">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="clickAnalogWithNsMenuItem:" target="esu-23-zsK" id="7Bh-Kd-DZZ"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="zej-sS-UJY"/>
-                                        <menuItem title="Shows Seconds" id="pAg-6i-qXY">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="clickShowSecondsWithNsMenuItem:" target="esu-23-zsK" id="ibW-fe-Fx8"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="X8E-FV-F2l"/>
-                                        <menuItem title="Shows Date" id="hPB-2N-q4c">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="clickShowDateWithNsMenuItem:" target="esu-23-zsK" id="YvB-dG-BCV"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Uses Numerical Date" id="WbK-Tg-DFs">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="useNumericalDateWithNsMenuItem:" target="esu-23-zsK" id="RLY-GP-06p"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Shows Day of Week" id="phz-ro-t2T">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showDayOfWeekWithNsMenuItem:" target="esu-23-zsK" id="xjB-WM-uTr"/>
-                                            </connections>
+                                            <menu key="submenu" title="Dock Clock" id="y2u-kl-KyJ" customClass="DockClockPreferencesMenu" customModule="Clock_Suite" customModuleProvider="target">
+                                                <items>
+                                                    <menuItem title="Analog without Seconds" id="PYK-3E-EWT">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="useAnalogNoSecondsWithNsMenuItem:" target="y2u-kl-KyJ" id="WEm-qB-VOr"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Analog with Seconds" id="hXD-4q-d7f">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="useAnalogWithSecondsWithNsMenuItem:" target="y2u-kl-KyJ" id="4lQ-jV-GiV"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Digital without Seconds" id="Osh-YE-snH">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="useDigitalNoSecondsWithNsMenuItem:" target="y2u-kl-KyJ" id="Qij-67-P1f"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Digital with Seconds" id="lAE-1e-3ce">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="useDigitalWithSecondsWithNsMenuItem:" target="y2u-kl-KyJ" id="b6Q-Gc-W75"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                                <connections>
+                                                    <outlet property="analogNoSecondsMenuItem" destination="PYK-3E-EWT" id="BSY-ed-tRO"/>
+                                                    <outlet property="analogWithSecondsMenuItem" destination="hXD-4q-d7f" id="Tnk-Yo-bkM"/>
+                                                    <outlet property="digitalNoSecondsMenuItem" destination="Osh-YE-snH" id="oXZ-wp-Ze6"/>
+                                                    <outlet property="digitalWithSecondsMenuItem" destination="lAE-1e-3ce" id="dGN-xU-4eJ"/>
+                                                </connections>
+                                            </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="bUe-XQ-4Ad"/>
                                         <menuItem title="Show Clock" keyEquivalent="1" id="Vhi-ah-dEJ">
@@ -503,27 +606,39 @@
                             </menuItem>
                             <menuItem title="Alarms" id="G6m-ZG-7cp">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Alarms" id="Dah-wr-0hi" customClass="AlarmsMenu" customModule="Adjustable_Clock" customModuleProvider="target">
+                                <menu key="submenu" title="Alarms" id="Dah-wr-0hi" customClass="AlarmsMenu" customModule="Clock_Suite" customModuleProvider="target">
                                     <items>
+                                        <menuItem title="0 Active Alarms" enabled="NO" id="axe-Dq-gUe">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Lle-qp-lxu"/>
                                         <menuItem title="Add Alarm" id="gqt-pv-27g">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="addAlarmWithNsMenuItem:" target="Dah-wr-0hi" id="Wrb-KW-SKy"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Xbj-ap-Lqj"/>
                                         <menuItem title="Show Alarms" keyEquivalent="2" id="oB7-Ye-eci">
                                             <connections>
                                                 <action selector="showAlarmsWithNsMenuItem:" target="Dah-wr-0hi" id="Xvz-fH-GLQ"/>
                                             </connections>
                                         </menuItem>
                                     </items>
+                                    <connections>
+                                        <outlet property="activeAlarmsMenuItem" destination="axe-Dq-gUe" id="xXX-Ze-DqR"/>
+                                    </connections>
                                 </menu>
                             </menuItem>
                             <menuItem title="Timers" id="jed-9l-giX">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Timers" id="fWd-IJ-eGk" customClass="TimersMenu" customModule="Adjustable_Clock" customModuleProvider="target">
+                                <menu key="submenu" title="Timers" id="fWd-IJ-eGk" customClass="TimersMenu" customModule="Clock_Suite" customModuleProvider="target">
                                     <items>
-                                        <menuItem title="Floats on Top" id="gka-sQ-iLp">
+                                        <menuItem title="0 Active Timers" enabled="NO" id="lo2-7n-hx0">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="BPm-SF-bfT"/>
+                                        <menuItem title="Float on Top" id="gka-sQ-iLp">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleTimersFloatsWithNsMenuItem:" target="fWd-IJ-eGk" id="hLr-Ee-XeW"/>
@@ -537,25 +652,6 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="Gxp-Rs-QJ9"/>
-                                        <menuItem title="Show Timer #1" id="UbI-Mw-Zn3">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showTimerNumber1WithNsMenuItem:" target="fWd-IJ-eGk" id="2GL-7u-GM5"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Show Timer #2" id="kJm-AM-Nwj">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showTimerNumber2WithNsMenuItem:" target="fWd-IJ-eGk" id="Qnv-w6-sdi"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Show Timer #3" id="cHh-to-7dU">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showTimerNumber3WithNsMenuItem:" target="fWd-IJ-eGk" id="I8g-j0-Jmf"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="qb2-Vh-kVg"/>
                                         <menuItem title="Show Timers" keyEquivalent="3" id="NWt-qo-N82">
                                             <connections>
                                                 <action selector="showTimersWithNsMenuItem:" target="fWd-IJ-eGk" id="rey-Y6-J0m"/>
@@ -563,6 +659,7 @@
                                         </menuItem>
                                     </items>
                                     <connections>
+                                        <outlet property="activeTimersMenuItem" destination="lo2-7n-hx0" id="c7g-ia-xcl"/>
                                         <outlet property="asSecondsMenuItem" destination="S8Z-Ct-J3h" id="XRK-Du-5U7"/>
                                         <outlet property="timerFloatsMenuItem" destination="gka-sQ-iLp" id="cS3-ur-Ldg"/>
                                     </connections>
@@ -575,13 +672,13 @@
                                         <menuItem title="System Color" id="M7M-RB-oPM">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Black or Gray" tag="1" id="LZV-KO-2AF">
+                                        <menuItem title="Black in Dark Mode" tag="1" id="LZV-KO-2AF">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem title="Gray" tag="2" id="vNP-0q-WID">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="White or Gray" tag="3" id="KML-5u-Wit">
+                                        <menuItem title="White in Light Mode" tag="3" id="KML-5u-Wit">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem title="Red" tag="4" id="UQR-HH-VX8">
@@ -649,41 +746,120 @@
                             </menuItem>
                             <menuItem title="Help" id="wpr-3q-Mcd">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
-                                    <items>
-                                        <menuItem title="Adjustable Clock Help" keyEquivalent="?" id="FKE-Sm-Kum">
-                                            <connections>
-                                                <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
+                                <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ"/>
                             </menuItem>
                         </items>
                         <connections>
                             <outlet property="alarmsMenu" destination="Dah-wr-0hi" id="Dfl-Ep-z1x"/>
                             <outlet property="clockMenu" destination="esu-23-zsK" id="wtB-Fu-hY0"/>
+                            <outlet property="clockSuiteMenu" destination="uQy-DD-JDr" id="P7R-LV-oEa"/>
                             <outlet property="colorsMenu" destination="65N-u4-pRd" id="QxW-PF-dZo"/>
-                            <outlet property="generalMenu" destination="Eej-0A-sXa" id="PHo-8d-jV9"/>
+                            <outlet property="dockClockPreferencesMenu" destination="y2u-kl-KyJ" id="FGq-Az-oKh"/>
                             <outlet property="preferenceMenuItem" destination="1Xt-HY-uBw" id="SPi-0S-rRf"/>
                             <outlet property="timersMenu" destination="fWd-IJ-eGk" id="WSc-ZL-Ew9"/>
                         </connections>
                     </menu>
                     <connections>
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
+                        <outlet property="dockMenu" destination="PrK-hy-nBi" id="99T-2C-tgI"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Adjustable_Clock" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Clock_Suite" customModuleProvider="target">
+                    <connections>
+                        <outlet property="dockClockMenu" destination="PrK-hy-nBi" id="N37-Di-W8s"/>
+                    </connections>
+                </customObject>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="9sj-3t-TAb"/>
+                <touchBar id="yxP-LN-g9S">
+                    <touchBarItems>
+                        <touchBarItem id="Db5-do-WAY">
+                            <viewController key="viewController" id="eh1-go-sqq">
+                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="orl-rY-Tmm">
+                                    <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="Clock" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cEr-O1-O7k">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                    </buttonCell>
+                                </button>
+                            </viewController>
+                        </touchBarItem>
+                        <touchBarItem id="kpc-RP-A6e">
+                            <viewController key="viewController" id="7pK-wa-1q2">
+                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jib-Hh-pC6">
+                                    <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="Alarms" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4fx-Cz-Inv">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                    </buttonCell>
+                                </button>
+                            </viewController>
+                        </touchBarItem>
+                        <touchBarItem id="uj7-u2-mPZ">
+                            <viewController key="viewController" id="etD-Nd-RmZ">
+                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eqr-Yl-mRv">
+                                    <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="Timers" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="R1c-y9-sa4">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                    </buttonCell>
+                                </button>
+                            </viewController>
+                        </touchBarItem>
+                    </touchBarItems>
+                </touchBar>
+                <menu id="PrK-hy-nBi" customClass="DockClockMenu" customModule="Clock_Suite" customModuleProvider="target">
+                    <items>
+                        <menuItem title="Dock Clock" id="tgg-hT-6CI">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <menu key="submenu" id="oyH-Ay-RWV" customClass="DockClockMenu" customModule="Clock_Suite" customModuleProvider="target">
+                                <items>
+                                    <menuItem title="Analog without Seconds" id="VDc-rL-Bp0">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="useAnalogWithoutSeconds:" target="PrK-hy-nBi" id="6bz-nQ-CcO"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Analog with Seconds" id="6ra-bb-V4O">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="useAnalogWithSeconds:" target="PrK-hy-nBi" id="QmP-TC-cEd"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Digital without Seconds" id="xAv-ZR-b5o">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="useDigitalWithoutSeconds:" target="PrK-hy-nBi" id="xiF-oM-fuL"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Digital with Seconds" id="ou7-Yl-TgS">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="useDigitalWithSeconds:" target="PrK-hy-nBi" id="weF-sp-mZW"/>
+                                        </connections>
+                                    </menuItem>
+                                </items>
+                            </menu>
+                        </menuItem>
+                    </items>
+                    <connections>
+                        <outlet property="analogNoSecondsMenuItem" destination="VDc-rL-Bp0" id="SK0-9C-Qr3"/>
+                        <outlet property="analogWithSecondsMenuItem" destination="6ra-bb-V4O" id="wZm-Cn-H4A"/>
+                        <outlet property="digitalNoSecondsMenuItem" destination="xAv-ZR-b5o" id="kbx-Mf-PXH"/>
+                        <outlet property="digitalWithSecondsMenuItem" destination="ou7-Yl-TgS" id="S72-I8-IXf"/>
+                    </connections>
+                </menu>
             </objects>
             <point key="canvasLocation" x="21" y="-90"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController storyboardIdentifier="ClockWindowController" showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="ClockWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="ClockWindow" title="Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA" customClass="DefaultNSWindow" customModule="Adjustable_Clock" customModuleProvider="target">
+                <windowController storyboardIdentifier="ClockWindowController" showSeguePresentationStyle="single" id="B8D-0N-5wS" customClass="ClockWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" identifier="ClockWindow" title="Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA" customClass="DefaultNSWindow" customModule="Clock_Suite" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" managed="YES" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="709" y="402" width="300" height="175"/>
@@ -703,12 +879,12 @@
         <!--Clock View Controller-->
         <scene sceneID="YXm-rq-ncp">
             <objects>
-                <viewController id="ik9-Ty-6xp" customClass="ClockViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ik9-Ty-6xp" customClass="ClockViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hTG-P0-Z21">
                         <rect key="frame" x="0.0" y="0.0" width="332" height="151"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="go5-1Y-2aB" customClass="MagnifierScrollView" customModule="Adjustable_Clock" customModuleProvider="target">
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="go5-1Y-2aB" customClass="MagnifierScrollView" customModule="Clock_Suite" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="332" height="151"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="V38-FW-xgq">
                                     <rect key="frame" x="0.0" y="0.0" width="332" height="151"/>
@@ -724,7 +900,7 @@
                                                         <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnO-xZ-G0J">
                                                             <rect key="frame" x="3" y="-155" width="327" height="461"/>
                                                             <subviews>
-                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="AyC-ZK-hRt" customClass="AnalogClockView" customModule="Adjustable_Clock" customModuleProvider="target">
+                                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="AyC-ZK-hRt" customClass="AnalogClockView" customModule="Clock_Suite" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="134" width="327" height="327"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="AyC-ZK-hRt" secondAttribute="height" multiplier="1:1" id="ExY-6Q-V6v"/>
@@ -816,7 +992,7 @@
         <!--Window Controller-->
         <scene sceneID="TeY-CA-Flb">
             <objects>
-                <windowController storyboardIdentifier="AlarmsWindowController" id="Ymg-Mv-RWx" customClass="AlarmsWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="AlarmsWindowController" id="Ymg-Mv-RWx" customClass="AlarmsWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="AlarmsWindow" title="Alarms" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="SKW-hm-43b">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenDisallowsTiling="YES"/>
@@ -837,7 +1013,7 @@
         <!--Window Controller-->
         <scene sceneID="v9s-Dr-xNz">
             <objects>
-                <windowController storyboardIdentifier="TimersWindowController" id="7qg-yV-28o" customClass="TimersWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="TimersWindowController" id="7qg-yV-28o" customClass="TimersWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="TimersWindow" title="Timers" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="7mb-fx-SVb">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
@@ -858,16 +1034,16 @@
         <!--Timers View Controller-->
         <scene sceneID="IkZ-kU-Aih">
             <objects>
-                <viewController id="Fch-iR-SvQ" customClass="TimersViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Fch-iR-SvQ" customClass="TimersViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="gv6-gj-aTH">
-                        <rect key="frame" x="0.0" y="0.0" width="351" height="394"/>
+                        <rect key="frame" x="0.0" y="0.0" width="351" height="414"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="3" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="li0-1M-reH">
-                                <rect key="frame" x="0.0" y="0.0" width="351" height="374"/>
+                                <rect key="frame" x="0.0" y="0.0" width="351" height="394"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sxf-Lb-5wq">
-                                        <rect key="frame" x="116" y="328" width="119" height="46"/>
+                                        <rect key="frame" x="116" y="348" width="119" height="46"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Timers" id="jTc-VM-bBw">
                                             <font key="font" metaFont="system" size="39"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -875,12 +1051,12 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WYv-C8-oRU">
-                                        <rect key="frame" x="72" y="265" width="207" height="60"/>
+                                        <rect key="frame" x="72" y="265" width="207" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="203" id="ByD-aY-zzB"/>
-                                            <constraint firstAttribute="height" constant="60" id="XIA-Ah-BEE"/>
+                                            <constraint firstAttribute="height" constant="80" id="XIA-Ah-BEE"/>
                                         </constraints>
-                                        <textFieldCell key="cell" title="Timer(s) Active: Please do not shut computer, logout, put it to sleep, or quit the program." id="mac-37-9QW">
+                                        <textFieldCell key="cell" title="1 Timer Active: Please do not shut down your computer, log out, put it to sleep, close your laptop's lid, or quit the program." id="mac-37-9QW">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -908,7 +1084,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="V6w-nk-33H">
-                                            <rect key="frame" x="335" y="0.0" width="16" height="222"/>
+                                            <rect key="frame" x="335" y="0.0" width="16" height="262"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -954,7 +1130,7 @@
         <!--Window Controller-->
         <scene sceneID="iis-X9-kH4">
             <objects>
-                <windowController storyboardIdentifier="WorldClockWindowController" id="EZz-Pg-MDR" customClass="WorldClockWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="WorldClockWindowController" id="EZz-Pg-MDR" customClass="WorldClockWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="WorldClockWindow" title="World Clock" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="f25-pX-8nA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -975,7 +1151,7 @@
         <!--World Clock View Controller-->
         <scene sceneID="dpb-Ya-aOP">
             <objects>
-                <viewController id="msZ-4Z-U3O" customClass="WorldClockViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="msZ-4Z-U3O" customClass="WorldClockViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="zw0-yw-oQG">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1076,7 +1252,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="291" height="250"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Yc-JI-f3x" customClass="MagnifierScrollView" customModule="Adjustable_Clock" customModuleProvider="target">
+                            <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Yc-JI-f3x" customClass="MagnifierScrollView" customModule="Clock_Suite" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="121" width="291" height="129"/>
                                 <clipView key="contentView" id="EkU-iB-7K8">
                                     <rect key="frame" x="0.0" y="0.0" width="291" height="129"/>
@@ -1214,7 +1390,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="RLi-zz-p4w">
-                                                            <rect key="frame" x="145.5" y="1" width="143" height="17"/>
+                                                            <rect key="frame" x="146" y="1" width="143" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bQ7-JE-ioD">
@@ -1266,16 +1442,16 @@
         <!--Alarms View Controller-->
         <scene sceneID="wPV-y4-U0G">
             <objects>
-                <viewController id="jsi-dr-Kid" customClass="AlarmsViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jsi-dr-Kid" customClass="AlarmsViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="P05-f5-a90">
-                        <rect key="frame" x="0.0" y="0.0" width="322" height="482"/>
+                        <rect key="frame" x="0.0" y="0.0" width="322" height="625"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xt3-TQ-yqa">
-                                <rect key="frame" x="0.0" y="0.0" width="322" height="462"/>
+                                <rect key="frame" x="0.0" y="0.0" width="322" height="605"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CoE-q1-tay">
-                                        <rect key="frame" x="101" y="416" width="120" height="46"/>
+                                        <rect key="frame" x="101" y="559" width="120" height="46"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Alarms" id="zrM-Kp-7vW">
                                             <font key="font" metaFont="system" size="39"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1283,19 +1459,19 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="203" translatesAutoresizingMaskIntoConstraints="NO" id="zQZ-To-CvJ">
-                                        <rect key="frame" x="58" y="336" width="207" height="60"/>
+                                        <rect key="frame" x="58" y="459" width="207" height="80"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="EmH-hn-f4e"/>
+                                            <constraint firstAttribute="height" constant="80" id="EmH-hn-f4e"/>
                                             <constraint firstAttribute="width" constant="203" id="uLX-A7-Gis"/>
                                         </constraints>
-                                        <textFieldCell key="cell" allowsUndo="NO" title="Alarm(s) Active: Please do not shut computer, logout, put it to sleep, or quit the program." id="4z5-XM-3fW">
+                                        <textFieldCell key="cell" allowsUndo="NO" title="1 Alarm Active: Please do not shut down your computer, log out, put it to sleep, close your laptop's lid, or quit the program." id="4z5-XM-3fW">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wmo-KR-zVe">
-                                        <rect key="frame" x="110" y="288" width="103" height="32"/>
+                                        <rect key="frame" x="110" y="411" width="103" height="32"/>
                                         <buttonCell key="cell" type="push" title="Add Alarm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yDO-fw-oRb">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1305,13 +1481,13 @@
                                         </connections>
                                     </button>
                                     <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCo-eu-8mz">
-                                        <rect key="frame" x="3" y="0.0" width="317" height="275"/>
+                                        <rect key="frame" x="3" y="0.0" width="317" height="398"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="CnO-ce-RMu">
-                                            <rect key="frame" x="0.0" y="0.0" width="317" height="275"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="317" height="398"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <collectionView id="BV1-fO-kYE">
-                                                    <rect key="frame" x="0.0" y="0.0" width="317" height="275"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="317" height="398"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="Wpc-ju-jwg">
                                                         <size key="itemSize" width="302" height="70"/>
@@ -1326,7 +1502,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                         <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="a7r-Gk-d2Y">
-                                            <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                            <rect key="frame" x="301" y="0.0" width="16" height="398"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
@@ -1378,7 +1554,7 @@
         <!--Window Controller-->
         <scene sceneID="hms-QU-P9Z">
             <objects>
-                <windowController id="JWA-H8-NkN" customClass="EditableTimerWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController id="JWA-H8-NkN" customClass="EditableTimerWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Change Timer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="qRy-Tt-rUs">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -1399,117 +1575,181 @@
         <!--Editable Timer View Controller-->
         <scene sceneID="pSq-el-Yiz">
             <objects>
-                <viewController storyboardIdentifier="EditableTimerViewController" id="uPZ-Mw-0vQ" customClass="EditableTimerViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditableTimerViewController" id="uPZ-Mw-0vQ" customClass="EditableTimerViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="4zw-uu-jp5">
-                        <rect key="frame" x="0.0" y="0.0" width="324" height="370"/>
+                        <rect key="frame" x="0.0" y="0.0" width="324" height="231"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bre-QP-Dok">
-                                <rect key="frame" x="21" y="20" width="284" height="330"/>
+                            <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bre-QP-Dok">
+                                <rect key="frame" x="0.0" y="-1" width="324" height="232"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RKV-N7-jah">
-                                        <rect key="frame" x="119" y="314" width="47" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Sound:" id="lXB-vD-sLM">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VA9-rf-Dv1">
-                                        <rect key="frame" x="117" y="287" width="52" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Alert" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Hf5-aK-1RO">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="useBeepChosen:" target="uPZ-Mw-0vQ" id="NTg-cg-a70"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="D1a-7x-Xl8">
-                                        <rect key="frame" x="116" y="261" width="54" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Song" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="SNw-Qw-4dm">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="useSongChosen:" target="uPZ-Mw-0vQ" id="OuY-Wj-vSR"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7R6-4X-fBa">
-                                        <rect key="frame" x="102" y="235" width="82" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="No Sound" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="6m2-Om-kt3">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="useNoSoundChosen:" target="uPZ-Mw-0vQ" id="cSP-cI-uGs"/>
-                                        </connections>
-                                    </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qhw-8c-8Kq">
-                                        <rect key="frame" x="108" y="210" width="68" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Alert: Ping" id="rZm-LI-98W">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="92G-Nk-W31">
-                                        <rect key="frame" x="83" y="172" width="119" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Choose Alert" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DPT-k1-GMb">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="chooseAlert:" target="uPZ-Mw-0vQ" id="bHy-qz-KMx"/>
-                                        </connections>
-                                    </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="irB-Zz-ang">
-                                        <rect key="frame" x="82" y="153" width="121" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Song: none chosen" id="nDp-lH-3JG">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="019-4P-Lfd">
-                                        <rect key="frame" x="82" y="115" width="121" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Choose Song" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bay-0J-iIT">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="chooseSong:" target="uPZ-Mw-0vQ" id="8dZ-LO-ggG"/>
-                                        </connections>
-                                    </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TMe-Se-v0C">
-                                        <rect key="frame" x="125" y="96" width="35" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Title:" id="W00-eO-EvY">
-                                            <font key="font" usesAppearanceFont="YES"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nCV-Iz-hel">
-                                        <rect key="frame" x="0.0" y="65" width="284" height="21"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" drawsBackground="YES" id="lVu-2m-aoE">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gd6-Mg-GGN">
-                                        <rect key="frame" x="25" y="31" width="234" height="24"/>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="qoo-lc-mEV">
+                                        <rect key="frame" x="0.0" y="0.0" width="324" height="232"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3oD-Jn-M7N">
-                                                <rect key="frame" x="-2" y="0.0" width="88" height="24"/>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TMe-Se-v0C">
+                                                <rect key="frame" x="31" y="83" width="73" height="16"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Timer Title:" id="W00-eO-EvY">
+                                                    <font key="font" usesAppearanceFont="YES"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nCV-Iz-hel">
+                                                <rect key="frame" x="108" y="80" width="184" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="left" placeholderString="Optional" drawsBackground="YES" id="lVu-2m-aoE">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="019-4P-Lfd">
+                                                <rect key="frame" x="102" y="107" width="121" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <buttonCell key="cell" type="push" title="Choose Song" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bay-0J-iIT">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="chooseSong:" target="uPZ-Mw-0vQ" id="8dZ-LO-ggG"/>
+                                                </connections>
+                                            </button>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="irB-Zz-ang">
+                                                <rect key="frame" x="102" y="143" width="121" height="16"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Song: none chosen" id="nDp-lH-3JG">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YIK-7g-oIi">
+                                                <rect key="frame" x="125" y="164" width="117" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="epG-GM-csQ">
+                                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                    <menu key="menu" id="8Yl-qD-46J"/>
+                                                </popUpButtonCell>
+                                                <connections>
+                                                    <action selector="chooseAlert:" target="uPZ-Mw-0vQ" id="u72-kw-bJP"/>
+                                                </connections>
+                                            </popUpButton>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RKV-N7-jah">
+                                                <rect key="frame" x="39" y="196" width="47" height="16"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Sound:" id="lXB-vD-sLM">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WIJ-QC-asP">
+                                                <rect key="frame" x="72" y="14" width="165" height="21"/>
+                                                <subviews>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BWr-UR-xqZ">
+                                                        <rect key="frame" x="-6" y="-7" width="82" height="32"/>
+                                                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NXv-cY-yVo">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="cancel:" target="uPZ-Mw-0vQ" id="XsE-VW-QGa"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0bl-Mg-606">
+                                                        <rect key="frame" x="72" y="-7" width="99" height="32"/>
+                                                        <buttonCell key="cell" type="push" title="Set Timer" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YRb-kp-qCm">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="setTimer:" target="uPZ-Mw-0vQ" id="CE8-4M-gTV"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <visibilityPriorities>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                </visibilityPriorities>
+                                                <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                </customSpacing>
+                                            </stackView>
+                                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="18H-J0-Tav">
+                                                <rect key="frame" x="97" y="196" width="195" height="16"/>
+                                                <subviews>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VA9-rf-Dv1">
+                                                        <rect key="frame" x="-1" y="-1" width="52" height="18"/>
+                                                        <buttonCell key="cell" type="radio" title="Alert" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Hf5-aK-1RO">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="useBeepChosen:" target="uPZ-Mw-0vQ" id="NTg-cg-a70"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="D1a-7x-Xl8">
+                                                        <rect key="frame" x="56" y="-1" width="54" height="18"/>
+                                                        <buttonCell key="cell" type="radio" title="Song" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="SNw-Qw-4dm">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="useSongChosen:" target="uPZ-Mw-0vQ" id="OuY-Wj-vSR"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7R6-4X-fBa">
+                                                        <rect key="frame" x="115" y="-1" width="82" height="18"/>
+                                                        <buttonCell key="cell" type="radio" title="No Sound" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="6m2-Om-kt3">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="useNoSoundChosen:" target="uPZ-Mw-0vQ" id="cSP-cI-uGs"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <visibilityPriorities>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                </visibilityPriorities>
+                                                <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                </customSpacing>
+                                            </stackView>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="swZ-Jk-3rW">
+                                                <rect key="frame" x="83" y="170" width="37" height="16"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Alert:" id="I51-UQ-y3q">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3oD-Jn-M7N">
+                                                <rect key="frame" x="63" y="48" width="88" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Duration:" id="ULu-aX-iCE">
                                                     <font key="font" metaFont="system" size="21"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yGd-LK-w7c">
-                                                <rect key="frame" x="92" y="0.0" width="145" height="28"/>
+                                            <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yGd-LK-w7c">
+                                                <rect key="frame" x="157" y="43" width="115" height="28"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="rL9-yf-Drg">
                                                     <font key="font" metaFont="system" size="20"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="-598647600">
@@ -1522,95 +1762,26 @@
                                             </datePicker>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="yGd-LK-w7c" firstAttribute="centerY" secondItem="gd6-Mg-GGN" secondAttribute="centerY" id="DuR-Sv-lFi"/>
-                                            <constraint firstItem="3oD-Jn-M7N" firstAttribute="centerY" secondItem="gd6-Mg-GGN" secondAttribute="centerY" id="a3h-UY-cGy"/>
+                                            <constraint firstAttribute="height" constant="232" id="6rP-O8-X6R"/>
+                                            <constraint firstAttribute="width" constant="324" id="zeo-qs-fFK"/>
                                         </constraints>
-                                        <visibilityPriorities>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                        </visibilityPriorities>
-                                        <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                        </customSpacing>
-                                    </stackView>
-                                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WIJ-QC-asP">
-                                        <rect key="frame" x="60" y="0.0" width="165" height="21"/>
-                                        <subviews>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BWr-UR-xqZ">
-                                                <rect key="frame" x="-6" y="-7" width="82" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NXv-cY-yVo">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                    <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="cancel:" target="uPZ-Mw-0vQ" id="XsE-VW-QGa"/>
-                                                </connections>
-                                            </button>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0bl-Mg-606">
-                                                <rect key="frame" x="72" y="-7" width="99" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Set Timer" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YRb-kp-qCm">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                    <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="setTimer:" target="uPZ-Mw-0vQ" id="CE8-4M-gTV"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <visibilityPriorities>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                        </visibilityPriorities>
-                                        <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                        </customSpacing>
-                                    </stackView>
+                                    </customView>
                                 </subviews>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="nCV-Iz-hel" secondAttribute="trailing" constant="19" id="0FB-HR-AcE"/>
-                            <constraint firstItem="nCV-Iz-hel" firstAttribute="leading" secondItem="4zw-uu-jp5" secondAttribute="leading" constant="21" id="voN-0x-fkT"/>
+                            <constraint firstItem="bre-QP-Dok" firstAttribute="top" secondItem="4zw-uu-jp5" secondAttribute="top" id="0z0-va-ZbF"/>
+                            <constraint firstItem="bre-QP-Dok" firstAttribute="centerX" secondItem="4zw-uu-jp5" secondAttribute="centerX" id="Ufn-IK-u2D"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="alertTextField" destination="Qhw-8c-8Kq" id="GCd-xI-zYt"/>
+                        <outlet property="alertSoundPopUpButton" destination="YIK-7g-oIi" id="4yT-aH-704"/>
                         <outlet property="beepButton" destination="VA9-rf-Dv1" id="8ph-ns-1nB"/>
                         <outlet property="noSoundButton" destination="7R6-4X-fBa" id="ei3-l2-LOS"/>
                         <outlet property="playlistTextField" destination="irB-Zz-ang" id="koJ-ga-If5"/>
@@ -1621,12 +1792,12 @@ DQ
                 </viewController>
                 <customObject id="tRf-vt-bax" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1746" y="195"/>
+            <point key="canvasLocation" x="1746" y="125.5"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="rEh-6m-9kw">
             <objects>
-                <windowController storyboardIdentifier="NewAlarmWindowController" id="ZgF-XD-PaL" customClass="EditableAlarmWindowController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="NewAlarmWindowController" id="ZgF-XD-PaL" customClass="EditableAlarmWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="NewAlarmWindow" title="Create Alarm" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="PbG-Vp-cuU">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES" fullScreenDisallowsTiling="YES"/>
@@ -1647,16 +1818,16 @@ DQ
         <!--Editable Alarm View Controller-->
         <scene sceneID="BRn-vx-vUe">
             <objects>
-                <viewController storyboardIdentifier="NewAlarmViewController" id="9uc-jD-1ug" customClass="EditableAlarmViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewAlarmViewController" id="9uc-jD-1ug" customClass="EditableAlarmViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hmW-cO-luP">
-                        <rect key="frame" x="0.0" y="0.0" width="304" height="340"/>
+                        <rect key="frame" x="0.0" y="0.0" width="304" height="289"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="flv-ip-qrW">
-                                <rect key="frame" x="68" y="19" width="168" height="302"/>
+                            <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="flv-ip-qrW">
+                                <rect key="frame" x="0.0" y="20" width="304" height="249"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nQf-7w-BpU">
-                                        <rect key="frame" x="25" y="274" width="118" height="32"/>
+                                        <rect key="frame" x="93" y="221" width="118" height="32"/>
                                         <buttonCell key="cell" type="push" title="Delete Alarm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tcq-pT-hWA">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1665,90 +1836,151 @@ DQ
                                             <action selector="delete:" target="9uc-jD-1ug" id="2YB-Wr-U53"/>
                                         </connections>
                                     </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CAo-ws-YFD">
-                                        <rect key="frame" x="61" y="255" width="47" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Sound:" id="mDJ-hu-g4n">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Pd-K7-1xp">
-                                        <rect key="frame" x="59" y="228" width="52" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Alert" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="hyr-eO-u4C">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="useBeepChosen:" target="9uc-jD-1ug" id="VLd-8s-b0N"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2wM-kb-fM2">
-                                        <rect key="frame" x="58" y="202" width="54" height="18"/>
-                                        <buttonCell key="cell" type="radio" title="Song" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="8A0-aY-plZ">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="useSongChosen:" target="9uc-jD-1ug" id="v03-jY-9VU"/>
-                                        </connections>
-                                    </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XnX-lk-Kwl">
-                                        <rect key="frame" x="50" y="177" width="68" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Alert: Ping" id="bls-7Q-dTY">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UVM-Rd-4Nu">
-                                        <rect key="frame" x="25" y="139" width="119" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Choose Alert" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ow5-Es-BIm">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="chooseAlert:" target="9uc-jD-1ug" id="5Tx-6o-byE"/>
-                                        </connections>
-                                    </button>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bvu-xi-gW8">
-                                        <rect key="frame" x="24" y="120" width="121" height="16"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Song: none chosen" id="zKT-5G-8cb">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rSu-94-0yx">
-                                        <rect key="frame" x="24" y="82" width="121" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Choose Song" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vkx-n3-RrX">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="chooseSong:" target="9uc-jD-1ug" id="Hv9-ta-yTf"/>
-                                        </connections>
-                                    </button>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GOp-An-FYm">
-                                        <rect key="frame" x="45" y="63" width="78" height="18"/>
-                                        <buttonCell key="cell" type="check" title="Everyday" bezelStyle="regularSquare" imagePosition="left" inset="2" id="XDr-6M-bfO">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
-                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8aq-7r-1ob">
-                                        <rect key="frame" x="0.0" y="31" width="168" height="24"/>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="AIA-1c-Ocm">
+                                        <rect key="frame" x="0.0" y="0.0" width="304" height="228"/>
                                         <subviews>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7Lf-a3-wQo">
-                                                <rect key="frame" x="-2" y="1" width="53" height="23"/>
+                                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WLu-rB-an7">
+                                                <rect key="frame" x="70" y="9" width="166" height="21"/>
+                                                <subviews>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cyJ-t4-giu">
+                                                        <rect key="frame" x="-6" y="-7" width="100" height="32"/>
+                                                        <buttonCell key="cell" type="push" title="Set Alarm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fcC-xF-rmW">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="setAlarm:" target="9uc-jD-1ug" id="mFB-em-LBQ"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ULf-Hj-4eM">
+                                                        <rect key="frame" x="90" y="-7" width="82" height="32"/>
+                                                        <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XeG-Ad-Mac">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                            <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="cancel:" target="9uc-jD-1ug" id="1Fy-l5-qvU"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <visibilityPriorities>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                </visibilityPriorities>
+                                                <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                </customSpacing>
+                                            </stackView>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CAo-ws-YFD">
+                                                <rect key="frame" x="74" y="192" width="47" height="16"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Sound:" id="mDJ-hu-g4n">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" fixedFrame="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q9v-g4-DK3">
+                                                <rect key="frame" x="128" y="192" width="108" height="16"/>
+                                                <subviews>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Pd-K7-1xp">
+                                                        <rect key="frame" x="-1" y="-1" width="52" height="18"/>
+                                                        <buttonCell key="cell" type="radio" title="Alert" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="hyr-eO-u4C">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="useBeepChosen:" target="9uc-jD-1ug" id="VLd-8s-b0N"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2wM-kb-fM2">
+                                                        <rect key="frame" x="56" y="-1" width="54" height="18"/>
+                                                        <buttonCell key="cell" type="radio" title="Song" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="8A0-aY-plZ">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="system"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="useSongChosen:" target="9uc-jD-1ug" id="v03-jY-9VU"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <visibilityPriorities>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                </visibilityPriorities>
+                                                <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                </customSpacing>
+                                            </stackView>
+                                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nPN-Aq-1nN">
+                                                <rect key="frame" x="115" y="152" width="117" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="FZG-Vb-1Xx">
+                                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                    <menu key="menu" id="Y7F-8i-AeL"/>
+                                                    <connections>
+                                                        <action selector="chooseAlert:" target="9uc-jD-1ug" id="hX1-Rh-B3g"/>
+                                                    </connections>
+                                                </popUpButtonCell>
+                                            </popUpButton>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0bx-pb-E56">
+                                                <rect key="frame" x="75" y="158" width="37" height="16"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Alert:" id="FLI-RP-y42">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rSu-94-0yx">
+                                                <rect key="frame" x="96" y="113" width="121" height="32"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <buttonCell key="cell" type="push" title="Choose Song" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Vkx-n3-RrX">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="chooseSong:" target="9uc-jD-1ug" id="Hv9-ta-yTf"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GOp-An-FYm">
+                                                <rect key="frame" x="111" y="72" width="83" height="18"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <buttonCell key="cell" type="check" title="Every Day" bezelStyle="regularSquare" imagePosition="left" inset="2" id="XDr-6M-bfO">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                            </button>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bvu-xi-gW8">
+                                                <rect key="frame" x="92" y="96" width="121" height="16"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Song: none chosen" id="zKT-5G-8cb">
+                                                    <font key="font" metaFont="system"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Lf-a3-wQo">
+                                                <rect key="frame" x="71" y="43" width="53" height="23"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Time:" id="r3v-5s-2vZ">
                                                     <font key="font" metaFont="system" size="20"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
-                                            <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fId-H7-Vhr">
-                                                <rect key="frame" x="57" y="0.0" width="114" height="28"/>
+                                            <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fId-H7-Vhr">
+                                                <rect key="frame" x="129" y="38" width="114" height="28"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="mjY-bc-eEV">
                                                     <font key="font" metaFont="system" size="20"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="-595926000">
@@ -1761,81 +1993,15 @@ DQ
                                             </datePicker>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="fId-H7-Vhr" firstAttribute="centerY" secondItem="8aq-7r-1ob" secondAttribute="centerY" id="BHP-th-gnF"/>
-                                            <constraint firstItem="7Lf-a3-wQo" firstAttribute="centerY" secondItem="8aq-7r-1ob" secondAttribute="centerY" id="lAf-jP-31A"/>
+                                            <constraint firstAttribute="height" constant="228" id="6En-NK-sZX"/>
                                         </constraints>
-                                        <visibilityPriorities>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                        </visibilityPriorities>
-                                        <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                        </customSpacing>
-                                    </stackView>
-                                    <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WLu-rB-an7">
-                                        <rect key="frame" x="1" y="0.0" width="166" height="21"/>
-                                        <subviews>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ULf-Hj-4eM">
-                                                <rect key="frame" x="-6" y="-7" width="82" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XeG-Ad-Mac">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                    <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="cancel:" target="9uc-jD-1ug" id="1Fy-l5-qvU"/>
-                                                </connections>
-                                            </button>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cyJ-t4-giu">
-                                                <rect key="frame" x="72" y="-7" width="100" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Set Alarm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fcC-xF-rmW">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                    <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="setAlarm:" target="9uc-jD-1ug" id="mFB-em-LBQ"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <visibilityPriorities>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                        </visibilityPriorities>
-                                        <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                        </customSpacing>
-                                    </stackView>
+                                    </customView>
                                 </subviews>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
@@ -1843,11 +2009,14 @@ DQ
                         </subviews>
                         <constraints>
                             <constraint firstItem="flv-ip-qrW" firstAttribute="centerX" secondItem="hmW-cO-luP" secondAttribute="centerX" id="2Ya-RK-wqu"/>
+                            <constraint firstAttribute="trailing" secondItem="AIA-1c-Ocm" secondAttribute="trailing" id="LsZ-g1-FUT"/>
+                            <constraint firstItem="AIA-1c-Ocm" firstAttribute="leading" secondItem="hmW-cO-luP" secondAttribute="leading" id="Qu5-Ld-cBZ"/>
                             <constraint firstItem="flv-ip-qrW" firstAttribute="centerY" secondItem="hmW-cO-luP" secondAttribute="centerY" id="Z6n-1R-oOn"/>
+                            <constraint firstItem="flv-ip-qrW" firstAttribute="top" secondItem="hmW-cO-luP" secondAttribute="top" constant="20" id="bEA-b3-70o"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="alertTextField" destination="XnX-lk-Kwl" id="enu-zs-Vpo"/>
+                        <outlet property="alertSoundPopUpButton" destination="nPN-Aq-1nN" id="U0e-c0-bgV"/>
                         <outlet property="beepButton" destination="5Pd-K7-1xp" id="vK7-JO-ipS"/>
                         <outlet property="datePicker" destination="fId-H7-Vhr" id="1Z1-1D-Gxp"/>
                         <outlet property="deleteButton" destination="nQf-7w-BpU" id="4rB-3q-YnY"/>
@@ -1859,7 +2028,7 @@ DQ
                 </viewController>
                 <customObject id="f34-sV-Jsk" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1841" y="537"/>
+            <point key="canvasLocation" x="1839" y="557.5"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="eiJ-5x-zzy">
@@ -1885,7 +2054,7 @@ DQ
         <!--Alert View Controller-->
         <scene sceneID="G34-5b-Zds">
             <objects>
-                <viewController storyboardIdentifier="ChooseAlertViewController" id="WeC-3E-QE7" customClass="AlertViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChooseAlertViewController" id="WeC-3E-QE7" customClass="AlertViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Vem-cr-fJe">
                         <rect key="frame" x="0.0" y="0.0" width="281" height="273"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1916,7 +2085,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="GenericTableCellView" id="UUM-N6-q0D" customClass="GenericTableCellView" customModule="Adjustable_Clock" customModuleProvider="target">
+                                                        <tableCellView identifier="GenericTableCellView" id="UUM-N6-q0D" customClass="GenericTableCellView" customModule="Clock_Suite" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="233" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -2025,7 +2194,7 @@ DQ
         <!--Choose City View Controller-->
         <scene sceneID="vYC-sg-Pdh">
             <objects>
-                <viewController storyboardIdentifier="ChooseCityViewController" id="FRh-Vw-bnb" customClass="ChooseCityViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChooseCityViewController" id="FRh-Vw-bnb" customClass="ChooseCityViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="IeS-3F-NLb">
                         <rect key="frame" x="0.0" y="0.0" width="323" height="453"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2066,7 +2235,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="GenericTableCellView" id="YAK-iE-gL7" customClass="GenericTableCellView" customModule="Adjustable_Clock" customModuleProvider="target">
+                                                        <tableCellView identifier="GenericTableCellView" id="YAK-iE-gL7" customClass="GenericTableCellView" customModule="Clock_Suite" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="280" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -2149,7 +2318,7 @@ DQ
         <!--Playlist View Controller-->
         <scene sceneID="NMy-5T-vtc">
             <objects>
-                <viewController storyboardIdentifier="PlaylistViewController" id="Udh-xA-6tS" customClass="PlaylistViewController" customModule="Adjustable_Clock" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlaylistViewController" id="Udh-xA-6tS" customClass="PlaylistViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="inG-ay-1vv">
                         <rect key="frame" x="0.0" y="0.0" width="349" height="326"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2180,7 +2349,7 @@ DQ
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="GenericTableCellView" id="eTv-80-Owk" customClass="GenericTableCellView" customModule="Adjustable_Clock" customModuleProvider="target">
+                                                        <tableCellView identifier="GenericTableCellView" id="eTv-80-Owk" customClass="GenericTableCellView" customModule="Clock_Suite" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="304" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>

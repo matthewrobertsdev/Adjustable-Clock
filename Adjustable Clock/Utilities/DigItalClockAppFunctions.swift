@@ -41,3 +41,8 @@ func updateClockMenuUI() {
 	}
 	appDelagte.clockMenuController?.updateUserInterface()
 }
+func reloadPreferencesWindowIfOpen() {
+	if SimplePreferenceWindowController.prefrencesObject.open {
+		SimplePreferenceWindowController.prefrencesObject.showPreferences()
+	}
+}
