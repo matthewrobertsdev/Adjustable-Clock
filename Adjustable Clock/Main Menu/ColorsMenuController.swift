@@ -56,12 +56,14 @@ class ColorsMenuController: NSObject {
 		NSColorPanel.setPickerMask(colorMasks)
         nsColorPanel.makeKeyAndOrderFront(self)
         //set action as using the picked color as the color and upating accordingly
+		ClockPreferencesStorage.sharedInstance.changeToUsesCustumColor()
         nsColorPanel.setTarget(self)
         nsColorPanel.setAction(#selector(useCustomColor))
+		updateColorMenuUI()
+		ClockWindowController.clockObject.updateClockToPreferencesChange()
     }
     @objc func useCustomColor() {
 		let custumColor=nsColorPanel.color
-		ClockPreferencesStorage.sharedInstance.changeToUsesCustumColor()
 		ClockPreferencesStorage.sharedInstance.changeCustomColor(customColor: custumColor)
 		updateColorMenuUI()
 		updateClocksForPreferenceChanges()

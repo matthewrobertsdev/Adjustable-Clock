@@ -13,7 +13,6 @@ class DarkAndLightBackgroundView: NSView, BackgroundColorView {
 		self.wantsLayer=true
 		if hasDarkAppearance(view: self) &&
 		backgroundColor != NSColor.labelColor {
-			
 			if backgroundColor==NSColor.white {
 				if #available(OSX 10.13, *) {
 					backgroundColor=NSColor(named: "WhiteBackground") ?? NSColor.systemGray
@@ -30,7 +29,7 @@ class DarkAndLightBackgroundView: NSView, BackgroundColorView {
 					backgroundColor=NSColor(named: "BlackBackground") ?? NSColor.systemGray
 				}
 			}
-			if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom {
+			if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom && !ClockPreferencesStorage.sharedInstance.colorForForeground{
 				print("should be light")
 				backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
 			}

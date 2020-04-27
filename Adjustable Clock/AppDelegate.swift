@@ -81,5 +81,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		NSColorPanel.shared.close()
 		GeneralPreferencesStorage.sharedInstance.closing=true
 		ClockPreferencesStorage.sharedInstance.saveCustomColor()
+		NSColorPanel.shared.close()
 	}
 }

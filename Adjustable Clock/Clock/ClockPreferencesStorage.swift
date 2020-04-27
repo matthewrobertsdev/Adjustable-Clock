@@ -125,8 +125,8 @@ class ClockPreferencesStorage {
         clockFloats=(!clockFloats)
         userDefaults.set(clockFloats, forKey: clockWindowFloatsKey)
     }
-	func changeToUsesCustumColor(){
-		colorChoice=ColorChoice.custom
+	func changeToUsesCustumColor() {
+		changeAndSaveColorSceme(colorChoice: ColorChoice.custom)
 	}
 	func changeCustomColor(customColor: NSColor) {
 		self.customColor=customColor.usingColorSpace(NSColorSpace.deviceRGB) ?? NSColor.systemGray
@@ -147,7 +147,7 @@ class ClockPreferencesStorage {
         userDefaults.set(blueComponent, forKey: customBlueComponentKey)
     }
 	func setDefaultUserDefaults() {
-		changeCustomColor(customColor: NSColor.systemGray)
+		changeCustomColor(customColor: NSColor(named: "DefaultCustomColor") ?? NSColor.systemBlue)
 		saveCustomColor()
         userDefaults.set(false, forKey: clockWindowFloatsKey)
         userDefaults.set(false, forKey: showSeocndsKey)

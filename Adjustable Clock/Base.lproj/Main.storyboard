@@ -1056,7 +1056,7 @@
                                             <constraint firstAttribute="width" constant="203" id="ByD-aY-zzB"/>
                                             <constraint firstAttribute="height" constant="80" id="XIA-Ah-BEE"/>
                                         </constraints>
-                                        <textFieldCell key="cell" title="1 Timer Active: Please do not not shut down your computer, logout, put it to sleep, close your laptop, or quit the program.&quot;" id="mac-37-9QW">
+                                        <textFieldCell key="cell" title="1 Timer Active: Please do not shut down your computer, log out, put it to sleep, close your laptop's lid, or quit the program." id="mac-37-9QW">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1390,7 +1390,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="RLi-zz-p4w">
-                                                            <rect key="frame" x="145.5" y="1" width="143" height="17"/>
+                                                            <rect key="frame" x="146" y="1" width="143" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bQ7-JE-ioD">
@@ -1444,14 +1444,14 @@
             <objects>
                 <viewController id="jsi-dr-Kid" customClass="AlarmsViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="P05-f5-a90">
-                        <rect key="frame" x="0.0" y="0.0" width="322" height="605"/>
+                        <rect key="frame" x="0.0" y="0.0" width="322" height="625"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xt3-TQ-yqa">
-                                <rect key="frame" x="0.0" y="0.0" width="322" height="585"/>
+                                <rect key="frame" x="0.0" y="0.0" width="322" height="605"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CoE-q1-tay">
-                                        <rect key="frame" x="101" y="539" width="120" height="46"/>
+                                        <rect key="frame" x="101" y="559" width="120" height="46"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Alarms" id="zrM-Kp-7vW">
                                             <font key="font" metaFont="system" size="39"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1459,12 +1459,12 @@
                                         </textFieldCell>
                                     </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="203" translatesAutoresizingMaskIntoConstraints="NO" id="zQZ-To-CvJ">
-                                        <rect key="frame" x="58" y="459" width="207" height="60"/>
+                                        <rect key="frame" x="58" y="459" width="207" height="80"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="EmH-hn-f4e"/>
+                                            <constraint firstAttribute="height" constant="80" id="EmH-hn-f4e"/>
                                             <constraint firstAttribute="width" constant="203" id="uLX-A7-Gis"/>
                                         </constraints>
-                                        <textFieldCell key="cell" allowsUndo="NO" title="Alarm(s) Active: Please do not shut computer, logout, put it to sleep, or quit the program." id="4z5-XM-3fW">
+                                        <textFieldCell key="cell" allowsUndo="NO" title="1 Alarm Active: Please do not shut down your computer, log out, put it to sleep, close your laptop's lid, or quit the program." id="4z5-XM-3fW">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
