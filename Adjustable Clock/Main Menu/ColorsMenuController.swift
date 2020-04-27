@@ -52,7 +52,7 @@ class ColorsMenuController: NSObject {
     @objc func showColorPanel(sender: NSMenuItem) {
 		let colorMasks: NSColorPanel.Options =
 			[NSColorPanel.Options.wheelModeMask, NSColorPanel.Options.colorListModeMask,
-			 NSColorPanel.Options.customPaletteModeMask, NSColorPanel.Options.crayonModeMask]
+			 NSColorPanel.Options.customPaletteModeMask]
 		NSColorPanel.setPickerMask(colorMasks)
         nsColorPanel.makeKeyAndOrderFront(self)
         //set action as using the picked color as the color and upating accordingly
