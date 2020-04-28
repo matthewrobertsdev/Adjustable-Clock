@@ -76,7 +76,7 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
         removeTrackingArea()
 		hideButtonsTimer?.cancel()
         showButtons(show: true)
-		reloadPreferencesWindowIfOpen()
+		//reloadPreferencesWindowIfOpen()
     }
 	func windowWillExitFullScreen(_ notification: Notification) {
 		applyFloatState()

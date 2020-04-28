@@ -995,7 +995,7 @@
                 <windowController storyboardIdentifier="AlarmsWindowController" id="Ymg-Mv-RWx" customClass="AlarmsWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="AlarmsWindow" title="Alarms" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="SKW-hm-43b">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
-                        <windowCollectionBehavior key="collectionBehavior" fullScreenDisallowsTiling="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" managed="YES" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="921" y="551" width="302" height="164"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                         <connections>
@@ -1016,7 +1016,7 @@
                 <windowController storyboardIdentifier="TimersWindowController" id="7qg-yV-28o" customClass="TimersWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" identifier="TimersWindow" title="Timers" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="7mb-fx-SVb">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
-                        <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" managed="YES" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="196" y="240" width="395" height="204"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                         <connections>

@@ -151,7 +151,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
         removeTrackingArea()
 		hideButtonsTimer?.cancel()
         updateClockMenuUI()
-        reloadPreferencesWindowIfOpen()
+        //reloadPreferencesWindowIfOpen()
         showButtons(show: true)
     }
     func windowWillExitFullScreen(_ notification: Notification) {
@@ -168,7 +168,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
         window?.makeKey()
 		prepareWindowButtons()
         updateClockMenuUI()
-        reloadPreferencesWindowIfOpen()
+        //reloadPreferencesWindowIfOpen()
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
 		window?.aspectRatio=NSSize(width: digitalClockVC.model.width, height: digitalClockVC.model.height)
 		//applyFloatState()
