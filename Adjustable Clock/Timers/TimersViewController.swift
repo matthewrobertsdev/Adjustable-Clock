@@ -84,6 +84,11 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	}
 	func update() {
 		applyColorScheme(views: [ColorView](), labels: [titleTextField, timerActiveLabel])
+		if let timerWindowController=view.window?.windowController as? TimersWindowController {
+			if !timerWindowController.fullscreen {
+				timerWindowController.applyFloatState()
+			}
+		}
 		if GeneralPreferencesStorage.sharedInstance.use24Hours {
 			stopTimeFormatter.setLocalizedDateFormatFromTemplate("HHmmss")
 		} else {

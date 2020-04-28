@@ -82,9 +82,10 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 		applyFloatState()
     }
 	func windowDidExitFullScreen(_ notification: Notification) {
-		fullscreen=true
+		fullscreen=false
         window?.makeKey()
 		prepareWindowButtons()
+		//reloadPreferencesWindowIfOpen()
     }
 	func windowWillMiniaturize(_ notification: Notification) {
 		guard let timerViewController=window?.contentViewController as? TimersViewController else {

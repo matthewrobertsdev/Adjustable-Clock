@@ -149,7 +149,9 @@ class ClockViewController: ColorfulViewController {
 		updateSizeConstraints()
 		applyColors()
 		if let windowController=self.view.window?.windowController as? ClockWindowController {
-			windowController.applyFloatState()
+			if !windowController.fullscreen {
+				windowController.applyFloatState()
+			}
 		}
 		resizeClock()
 		analogClock.setNeedsDisplay(analogClock.frame)
