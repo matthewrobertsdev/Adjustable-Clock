@@ -52,7 +52,7 @@ extension ClockViewController {
 		performAnimationWithDuration(seconds: getSecondAdjustment()) {
 			runAnimation(early: true)
 		}
-		updateTimer.schedule(deadline: .now()+0.8, repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
+		updateTimer.schedule(deadline: .now()+getSecondAdjustment()+0.8, repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
 		updateTimer.setEventHandler {
 			performAnimationWithDuration(seconds: 0.2) {
 				self.runAnimation(early: true)
@@ -72,7 +72,7 @@ extension ClockViewController {
 		performAnimationWithDuration(seconds: getSecondAdjustment()) {
 			runAnimation(early: true)
 		}
-		updateTimer.schedule(deadline: .now()+0.8, repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
+		updateTimer.schedule(deadline: .now()+getSecondAdjustment()+0.8, repeating: .milliseconds(model.updateTime), leeway: .milliseconds(0))
 		updateTimer.setEventHandler {
 			performAnimationWithDuration(seconds: 0.2) {
 				self.runAnimation(early: true)
