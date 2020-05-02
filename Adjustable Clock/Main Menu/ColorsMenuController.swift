@@ -61,7 +61,7 @@ class ColorsMenuController: NSObject {
         nsColorPanel.setTarget(self)
         nsColorPanel.setAction(#selector(useCustomColor))
 		updateColorMenuUI()
-		ClockWindowController.clockObject.updateClockToPreferencesChange()
+		updateClocksForPreferenceChanges()
     }
     @objc func useCustomColor() {
 		let custumColor=nsColorPanel.color
@@ -87,11 +87,13 @@ class ColorsMenuController: NSObject {
 			if dark {
 				templateImage=NSImage(named: "white_rectangle") ?? NSImage()
 				if ClockPreferencesStorage.sharedInstance.colorForForeground {
+					templateImage=NSImage(named: "dark_gray_rectangle") ?? NSImage()
 					tintColor=ColorModel.sharedInstance.lightColorsDictionary[ColorModel.sharedInstance.colorArray[index]]  ?? NSColor.clear
 				} else {
 					tintColor=ColorModel.sharedInstance.darkColorsDictionary[ColorModel.sharedInstance.colorArray[index]]  ?? NSColor.clear
 				}
 				if index==0 { if ClockPreferencesStorage.sharedInstance.colorForForeground {
+					templateImage=NSImage(named: "dark_gray_rectangle") ?? NSImage()
 						tintColor=NSColor.white
 				} else {
 					tintColor=NSColor(named: "DarkBackgroundColor") ?? NSColor.black
@@ -104,6 +106,7 @@ class ColorsMenuController: NSObject {
 			templateImage=NSImage(named: "black_rectangle") ?? NSImage()
 				tintColor=ColorModel.sharedInstance.lightColorsDictionary[ColorModel.sharedInstance.colorArray[index]] ?? NSColor.clear
 				if index==0 && ClockPreferencesStorage.sharedInstance.colorForForeground {
+					templateImage=NSImage(named: "dark_gray_rectangle") ?? NSImage()
 					tintColor=NSColor.black
 				}
 				if index==1 && !ClockPreferencesStorage.sharedInstance.colorForForeground {
@@ -143,7 +146,9 @@ class ColorsMenuController: NSObject {
 		if dark && !ClockPreferencesStorage.sharedInstance.colorForForeground {
 			tintColor=ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black) ?? NSColor.systemGray
 		}
-		if dark {
+		if ClockPreferencesStorage.sharedInstance.colorForForeground {
+			templateImage=NSImage(named: "dark_gray_rectangle") ?? NSImage()
+		} else if dark {
 			templateImage=NSImage(named: "white_rectangle") ?? NSImage()
 		} else {
 			templateImage=NSImage(named: "black_rectangle") ?? NSImage()
