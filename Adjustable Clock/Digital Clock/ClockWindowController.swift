@@ -155,8 +155,8 @@ class ClockWindowController: NSWindowController, NSWindowDelegate {
 			} else {
 				multiplier=digitalHeightMultiplier
 			}
-			let newWidth=digitalClockVC.clockStackView.fittingSize.width
-			let newHeight=digitalClockVC.clockStackView.fittingSize.height
+			let newWidth=287//digitalClockVC.clockStackView.fittingSize.width
+			let newHeight=131//digitalClockVC.clockStackView.fittingSize.height/0.98
             let newAspectRatio=NSSize(width: newWidth, height: newHeight)
             window?.aspectRatio=newAspectRatio
             showButtons(show: false)

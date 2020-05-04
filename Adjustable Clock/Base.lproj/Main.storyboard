@@ -581,23 +581,23 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view id="1rG-JS-1O3">
-                                            <rect key="frame" x="0.0" y="-195" width="284" height="137"/>
+                                            <rect key="frame" x="0.0" y="-195" width="287" height="131"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="IPD-h2-pag">
-                                                    <rect key="frame" x="-58" y="-31" width="400" height="200"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="287" height="131"/>
                                                     <subviews>
-                                                        <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnO-xZ-G0J">
-                                                            <rect key="frame" x="70" y="42" width="261" height="115"/>
+                                                        <stackView distribution="equalSpacing" orientation="vertical" alignment="centerX" spacing="1" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OnO-xZ-G0J">
+                                                            <rect key="frame" x="13" y="8" width="261" height="116"/>
                                                             <subviews>
                                                                 <customView hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AyC-ZK-hRt" customClass="AnalogClockView" customModule="Adjustable_Clock" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="-78" width="193" height="193"/>
+                                                                    <rect key="frame" x="0.0" y="-77" width="193" height="193"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="AyC-ZK-hRt" secondAttribute="height" multiplier="1:1" id="ExY-6Q-V6v"/>
                                                                     </constraints>
                                                                 </customView>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ayc-mj-Qox">
-                                                                    <rect key="frame" x="4" y="46" width="252" height="69"/>
+                                                                    <rect key="frame" x="5" y="47" width="252" height="69"/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="12:00 PM" id="93p-ZP-sNf">
                                                                         <font key="font" metaFont="system" size="59"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -626,10 +626,10 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="400" id="9Eg-4v-co0"/>
+                                                        <constraint firstAttribute="width" constant="287" id="0im-mI-fgH"/>
                                                         <constraint firstItem="OnO-xZ-G0J" firstAttribute="centerY" secondItem="IPD-h2-pag" secondAttribute="centerY" id="VMo-6I-kAu"/>
                                                         <constraint firstItem="OnO-xZ-G0J" firstAttribute="centerX" secondItem="IPD-h2-pag" secondAttribute="centerX" id="cgW-4g-jMX"/>
-                                                        <constraint firstAttribute="height" constant="200" id="uun-z7-GBQ"/>
+                                                        <constraint firstAttribute="height" constant="131" id="h2c-WF-Jvh"/>
                                                     </constraints>
                                                 </customView>
                                             </subviews>
