@@ -17,8 +17,10 @@ class ColorsMenuController: NSObject {
         makeColorMenuUI()
         //reflect saved (or default) choice
         updateColorMenuUI()
-		notificationCenter.addObserver(self, selector: #selector(handleChangeToDarkMode), name: NSNotification.Name.didChangToDarkMode, object: nil)
-		notificationCenter.addObserver(self, selector: #selector(handleChangeToLightMode), name: NSNotification.Name.didChangToLightMode, object: nil)
+		notificationCenter.addObserver(self, selector:
+			#selector(handleChangeToDarkMode), name: NSNotification.Name.didChangToDarkMode, object: nil)
+		notificationCenter.addObserver(self, selector:
+			#selector(handleChangeToLightMode), name: NSNotification.Name.didChangToLightMode, object: nil)
     }
 	@objc func handleChangeToDarkMode(sender: Any) {
 		dark=true
@@ -88,9 +90,11 @@ class ColorsMenuController: NSObject {
 				templateImage=NSImage(named: "white_rectangle") ?? NSImage()
 				if ClockPreferencesStorage.sharedInstance.colorForForeground {
 					templateImage=NSImage(named: "dark_gray_rectangle") ?? NSImage()
-					tintColor=ColorModel.sharedInstance.lightColorsDictionary[ColorModel.sharedInstance.colorArray[index]]  ?? NSColor.clear
+					tintColor=ColorModel.sharedInstance.lightColorsDictionary[ColorModel.sharedInstance.colorArray[index]]
+						?? NSColor.clear
 				} else {
-					tintColor=ColorModel.sharedInstance.darkColorsDictionary[ColorModel.sharedInstance.colorArray[index]]  ?? NSColor.clear
+					tintColor=ColorModel.sharedInstance.darkColorsDictionary[ColorModel.sharedInstance.colorArray[index]]
+						?? NSColor.clear
 				}
 				if index==0 { if ClockPreferencesStorage.sharedInstance.colorForForeground {
 					templateImage=NSImage(named: "dark_gray_rectangle") ?? NSImage()
@@ -104,7 +108,8 @@ class ColorsMenuController: NSObject {
 				}
 			} else {
 			templateImage=NSImage(named: "black_rectangle") ?? NSImage()
-				tintColor=ColorModel.sharedInstance.lightColorsDictionary[ColorModel.sharedInstance.colorArray[index]] ?? NSColor.clear
+				tintColor=ColorModel.sharedInstance.lightColorsDictionary[ColorModel.sharedInstance.colorArray[index]]
+					?? NSColor.clear
 				if index==0 && ClockPreferencesStorage.sharedInstance.colorForForeground {
 					templateImage=NSImage(named: "dark_gray_rectangle") ?? NSImage()
 					tintColor=NSColor.black
@@ -144,7 +149,8 @@ class ColorsMenuController: NSObject {
         var templateImage=NSImage()
 		var tintColor=ClockPreferencesStorage.sharedInstance.customColor
 		if dark && !ClockPreferencesStorage.sharedInstance.colorForForeground {
-			tintColor=ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black) ?? NSColor.systemGray
+			tintColor=ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black)
+				?? NSColor.systemGray
 		}
 		if ClockPreferencesStorage.sharedInstance.colorForForeground {
 			templateImage=NSImage(named: "dark_gray_rectangle") ?? NSImage()

@@ -7,7 +7,8 @@
 //
 import Foundation
 import Cocoa
-class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource, NSCollectionViewDelegate, AlarmCollectionItemProtocol {
+class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
+	NSCollectionViewDelegate, AlarmCollectionItemProtocol {
 	@IBOutlet weak var collectionView: NSCollectionView!
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var alarmNotifierTextField: NSTextField!

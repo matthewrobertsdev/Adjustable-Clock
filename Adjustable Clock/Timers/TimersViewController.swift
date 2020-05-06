@@ -7,7 +7,8 @@
 //
 import Cocoa
 import AVFoundation
-class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, NSCollectionViewDelegate, NSSoundDelegate {
+class TimersViewController: ColorfulViewController,
+	NSCollectionViewDataSource, NSCollectionViewDelegate, NSSoundDelegate {
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var collectionView: NSCollectionView!
 	@IBOutlet weak var timerActiveLabel: NSTextField!
@@ -33,7 +34,8 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 											   selector: #selector(showHideTimerActiveLabel), name: NSNotification.Name.activeCountChanged, object: nil)
 		showHideTimerActiveLabel()
 		clickRecognizer.isEnabled=false
-		let screenWakeObserver = workspaceNotifcationCenter.addObserver(self, selector: #selector(updateForWake), name: NSWorkspace.screensDidWakeNotification, object: nil)
+		let screenWakeObserver = workspaceNotifcationCenter.addObserver(self, selector: #selector(updateForWake),
+			name: NSWorkspace.screensDidWakeNotification, object: nil)
     }
 	@objc func updateForWake() {
 		collectionView.reloadData()
@@ -102,7 +104,8 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt
 		indexPath: IndexPath) -> NSCollectionViewItem {
 		guard let timerCollectionViewItem=collectionView.makeItem(withIdentifier:
-			NSUserInterfaceItemIdentifier(rawValue: "TimerCollectionViewItem"), for: indexPath) as? TimerCollectionViewItem else {
+			NSUserInterfaceItemIdentifier(rawValue: "TimerCollectionViewItem"),
+																  for: indexPath) as? TimerCollectionViewItem else {
 			return NSCollectionViewItem()
 		}
 		timerCollectionViewItem.titleTextField.textColor=textColor
@@ -170,7 +173,8 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		TimersCenter.sharedInstance.activeTimers+=1
 		TimersCenter.sharedInstance.timers[index].going=true
 		displayTimer(index: index)
-		if TimersCenter.sharedInstance.timers[index].secondsRemaining<=0 &&  TimersCenter.sharedInstance.timers[index].active {
+		if TimersCenter.sharedInstance.timers[index].secondsRemaining<=0
+			&&  TimersCenter.sharedInstance.timers[index].active {
 			TimersCenter.sharedInstance.activeTimers-=1
 			self.timerStopped(index: index)
 			timerCollectionViewItem?.startPauseButton.title="Start"
@@ -235,7 +239,8 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 			}
 		}
 		let timerAlert=NSAlert()
-		timerAlert.messageText="\(timer.title=="" ? "Timer" : timer.title) has gone off at \(self.timeFormatter.string(from: Date()))."
+		timerAlert.messageText = "\(timer.title=="" ? "Timer" : timer.title) " +
+		"has gone off at \(self.timeFormatter.string(from: Date()))."
 		timerAlert.addButton(withTitle: "Dismiss")
 		timerAlert.icon=imageFromView(view: DockClockController.dockClockObject.getFreezeView(time: Date()))
 		TimersWindowController.timersObject.showTimers()

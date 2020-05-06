@@ -35,7 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			alarmsMenuController=AlarmsMenuController(menu: mainMenu.alarmsMenu)
 			timersMenuController=TimersMenuController(menu: mainMenu.timersMenu)
 			clockSuiteMenuController=ClockSuiteMenuController(menu: mainMenu.clockSuiteMenu)
-			dockClockPreferencesController=DockClockPreferencesMenuController(menu:  mainMenu.dockClockPreferencesMenu)
+			dockClockPreferencesController=DockClockPreferencesMenuController(menu: mainMenu.dockClockPreferencesMenu)
 			dockClockMenuController=DockClockMenuController(menu: dockClockMenu)
 			//worldClockMenuController=WorldClockMenuController(menu: mainMenu.worldClockMenu)
 		}
@@ -61,9 +61,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 		if NSApp.orderedWindows.count==0 {
 			ClockWindowController.clockObject.showClock()
-			//clockMenuController?.enableMenu(enabled: true)
 		}
-		
 		//NSApplication.shared.isAutomaticCustomizeTouchBarMenuItemEnabled = true
 	}
 

@@ -31,12 +31,12 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
         }
         enableClockMenu(enabled: true)
         updateClockMenuUI()
-    }	
+    }
 	func closeDigitalClock() {
 		let appObject = NSApp as NSApplication
 		for window in appObject.windows where window.identifier==UserInterfaceIdentifier.digitalClockWindow { window.close() }
 	}
-	func getWindowRect(newWidth: CGFloat) -> NSRect{
+	func getWindowRect(newWidth: CGFloat) -> NSRect {
 		let safetyRect=NSRect(x: 0, y: 0, width: newWidth, height: newWidth)
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return safetyRect}
 		var newHeight: CGFloat=100

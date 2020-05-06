@@ -18,9 +18,11 @@ class DarkAndLightBackgroundView: NSView, BackgroundColorView {
 					backgroundColor=NSColor(named: "WhiteBackground") ?? NSColor.systemGray
 				}
 			}
-			if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom && !ClockPreferencesStorage.sharedInstance.colorForForeground{
+			if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom &&
+				!ClockPreferencesStorage.sharedInstance.colorForForeground {
 				print("should be dark")
-				backgroundColor=ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black) ?? NSColor.systemGray
+				backgroundColor=ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black)
+					?? NSColor.systemGray
 			}
 			layer?.backgroundColor=backgroundColor.cgColor
 		} else if !hasDarkAppearance(view: self) && backgroundColor != NSColor.labelColor {
@@ -29,7 +31,8 @@ class DarkAndLightBackgroundView: NSView, BackgroundColorView {
 					backgroundColor=NSColor(named: "BlackBackground") ?? NSColor.systemGray
 				}
 			}
-			if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom && !ClockPreferencesStorage.sharedInstance.colorForForeground{
+			if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom &&
+				!ClockPreferencesStorage.sharedInstance.colorForForeground {
 				print("should be light")
 				backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
 			}
