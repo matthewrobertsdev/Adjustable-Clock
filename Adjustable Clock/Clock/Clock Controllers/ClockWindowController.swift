@@ -60,7 +60,6 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 		let newWidth=newHeight*digitalClockVC.model.height*digitalClockVC.model.width
 		var newSize=NSSize(width: newWidth, height: newHeight)
         let changeInHeight=newHeight-(window?.frame.height ?? 0)
-        let changeInWidth=newWidth-(window?.frame.width ?? 0)
 		guard let windowOrigin=window?.frame.origin else { return safetyRect}
 		var newOrigin=CGPoint(x: windowOrigin.x, y: windowOrigin.y-changeInHeight)
 		if ClockPreferencesStorage.sharedInstance.fullscreen {
@@ -72,7 +71,6 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
         return NSRect(origin: newOrigin, size: newSize)
 	}
     func sizeWindowToFitClock(newWidth: CGFloat) {
-		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
         var newRect=getWindowRect(newWidth: newWidth)
 		if let screen=window?.screen {
 			if newWidth>screen.frame.width {

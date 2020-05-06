@@ -49,9 +49,9 @@ class ClockViewController: ColorfulViewController {
 					return
 				}
 				strongSelf.resizeContents(maxWidth: windowWidth)} */
-		let screenSleepObserver = workspaceNotifcationCenter.addObserver(self, selector: #selector(endForSleep),
+		workspaceNotifcationCenter.addObserver(self, selector: #selector(endForSleep),
 																		 name: NSWorkspace.screensDidSleepNotification, object: nil)
-		let screenWakeObserver = workspaceNotifcationCenter.addObserver(self, selector: #selector(startForWake),
+		workspaceNotifcationCenter.addObserver(self, selector: #selector(startForWake),
 																		name: NSWorkspace.screensDidWakeNotification, object: nil)
 		let processOptions: ProcessInfo.ActivityOptions=[ProcessInfo.ActivityOptions.userInitiatedAllowingIdleSystemSleep]
 		tellingTime = ProcessInfo().beginActivity(options: processOptions, reason: "Need accurate time all the time")

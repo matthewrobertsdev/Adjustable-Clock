@@ -34,7 +34,7 @@ class TimersViewController: ColorfulViewController,
 											   selector: #selector(showHideTimerActiveLabel), name: NSNotification.Name.activeCountChanged, object: nil)
 		showHideTimerActiveLabel()
 		clickRecognizer.isEnabled=false
-		let screenWakeObserver = workspaceNotifcationCenter.addObserver(self, selector: #selector(updateForWake),
+		workspaceNotifcationCenter.addObserver(self, selector: #selector(updateForWake),
 			name: NSWorkspace.screensDidWakeNotification, object: nil)
     }
 	@objc func updateForWake() {

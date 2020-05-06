@@ -91,9 +91,6 @@ class AlarmCenter: NSObject, NSSoundDelegate {
 		for alarm in alarms where alarm.active {
 			scheduleAlarm(alarm: alarm)
 		}
-		if let alarmsViewController=AlarmsWindowController.alarmsObject.contentViewController as? AlarmsViewController {
-			//alarmsViewController.collectionView.reloadData()
-		}
 	}
 	private func scheduleAlarm(alarm: Alarm) {
 		if alarm.active {
