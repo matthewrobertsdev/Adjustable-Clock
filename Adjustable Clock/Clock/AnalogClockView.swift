@@ -123,7 +123,8 @@ class AnalogClockView: BaseAnalogClockView {
 			}
 		} else {
 			secondsColor=NSColor.textColor
-			if ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.systemColor && ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.black {
+			if ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.systemColor
+				&& ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.black {
 				secondsColor=NSColor.black
 			} else {
 				secondsColor=NSColor.systemGray

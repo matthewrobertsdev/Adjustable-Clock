@@ -133,6 +133,7 @@ class SimplePreferencesViewController: NSViewController {
 		updateTimerMenuUI()
 		DockClockController.dockClockObject.updateClockForPreferencesChange()
 		updateDockClockMenuUI()
+		updateDockClockPrefrencesMenuUI()
 		AlarmsWindowController.alarmsObject.updateForPreferencesChange()
 		updateColorMenuUI()
     }
@@ -150,6 +151,14 @@ class SimplePreferencesViewController: NSViewController {
 		}
 		if let timersMenuController=appDelegate.timersMenuController {
 			timersMenuController.updateUI()
+		}
+    }
+	func updateDockClockPrefrencesMenuUI() {
+		guard let appDelegate = NSApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		if let dockClockPreferencesController=appDelegate.dockClockPreferencesController {
+			dockClockPreferencesController.updateUI()
 		}
     }
 	func updateDockClockMenuUI() {

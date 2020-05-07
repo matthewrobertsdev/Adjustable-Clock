@@ -29,7 +29,7 @@ class DockClockPreferencesMenuController: DockClockMenuDelegate {
 		case preferences.useDigitalWithSeconds:
 			menu.digitalWithSecondsMenuItem.state=NSControl.StateValue.on
 		default:
-			break
+			menu.analogNoSecondsMenuItem.state=NSControl.StateValue.on
 		}
 	}
 	func analogClockNoSecondsClicked() {

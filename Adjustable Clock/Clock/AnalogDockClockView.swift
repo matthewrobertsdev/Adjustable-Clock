@@ -38,7 +38,9 @@ class AnalogDockClockView: BaseAnalogClockView {
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 		lineWidth=CGFloat(frame.size.width/25)
-		let circle=NSBezierPath(ovalIn: NSRect(origin: CGPoint(x: frame.width/2-lineWidth/2, y: frame.width/2-lineWidth/2), size: CGSize(width: lineWidth, height: lineWidth)))
+		let circle=NSBezierPath(ovalIn: NSRect(origin:
+			CGPoint(x: frame.width/2-lineWidth/2, y: frame.width/2-lineWidth/2),
+											   size: CGSize(width: lineWidth, height: lineWidth)))
         let origin=CGPoint(x: bounds.width*0.05, y: bounds.height*0.05)
 		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.size.width*0.9,
 																		  height: frame.size.height*0.9)))
@@ -49,9 +51,12 @@ class AnalogDockClockView: BaseAnalogClockView {
 			dark=false
 		}
 		if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom {
-			if !hasDarkAppearance(view: self) ||  ClockPreferencesStorage.sharedInstance.colorForForeground { backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
+			if !hasDarkAppearance(view: self) ||  ClockPreferencesStorage.sharedInstance.colorForForeground {
+				backgroundColor = ClockPreferencesStorage.sharedInstance.customColor
 			} else {
-				backgroundColor=ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black) ?? NSColor.systemGray
+				backgroundColor =
+					ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black)
+					?? NSColor.systemGray
 			}
 		} else if hasDarkAppearance(view: self) && !ClockPreferencesStorage.sharedInstance.colorForForeground {
 		 backgroundColor=ColorModel.sharedInstance.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
@@ -119,8 +124,8 @@ class AnalogDockClockView: BaseAnalogClockView {
 		}
 		path.fill()
 		handsColor.setFill()
-		secondsColor.setFill()
 		circle.fill()
+		secondsColor.setFill()
 		guard let cgContext=NSGraphicsContext.current?.cgContext else {
 				return
 		}
@@ -140,9 +145,12 @@ class AnalogDockClockView: BaseAnalogClockView {
 		let minute=calendar.dateComponents([.minute], from: time).minute ?? 0
 		let second=calendar.dateComponents([.second], from: time).second ?? 0
 		let totalSeconds=(Double(hour)*3600.0+Double(minute)*60.0+Double(second))
-		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2, endProportion: 0.3, relativeWidth: 1.2, color: handsColor)
-		displayHand(radians: -CGFloat.pi*CGFloat(minute)/30+CGFloat.pi/2, endProportion: 0.4, relativeWidth: 1.2, color: handsColor)
-		displayHand(radians: -CGFloat.pi*CGFloat(second)/30+CGFloat.pi/2, endProportion: 0.4, relativeWidth: 1, color: secondsColor)
+		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2,
+					endProportion: 0.3, relativeWidth: 1.2, color: handsColor)
+		displayHand(radians: -CGFloat.pi*CGFloat(minute)/30+CGFloat.pi/2,
+					endProportion: 0.4, relativeWidth: 1.2, color: handsColor)
+		displayHand(radians: -CGFloat.pi*CGFloat(second)/30+CGFloat.pi/2,
+					endProportion: 0.4, relativeWidth: 1, color: secondsColor)
 	}
 	private func displayeHandsNoSeconds() {
 		let time=current ? Date() : freezeDate
@@ -150,8 +158,10 @@ class AnalogDockClockView: BaseAnalogClockView {
 		let minute=calendar.dateComponents([.minute], from: time).minute ?? 0
 		let second=calendar.dateComponents([.second], from: time).second ?? 0
 		let totalSeconds=(Double(hour)*3600.0+Double(minute)*60.0+Double(second))
-		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2, endProportion: 0.3, relativeWidth: 1.2, color: handsColor)
-		displayHand(radians: -CGFloat.pi*CGFloat(minute)/30+CGFloat.pi/2, endProportion: 0.4, relativeWidth: 1.2, color: handsColor)
+		displayHand(radians: -2*CGFloat.pi*CGFloat(totalSeconds/43200.0)+CGFloat.pi/2,
+					endProportion: 0.3, relativeWidth: 1.2, color: handsColor)
+		displayHand(radians: -CGFloat.pi*CGFloat(minute)/30+CGFloat.pi/2,
+					endProportion: 0.4, relativeWidth: 1.2, color: handsColor)
 	}
 	private func displayHand(radians: CGFloat, endProportion: CGFloat, relativeWidth: CGFloat, color: NSColor) {
 		guard let cgContext=NSGraphicsContext.current?.cgContext else {

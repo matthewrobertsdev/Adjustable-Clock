@@ -49,8 +49,10 @@ class ClockViewController: ColorfulViewController {
 					return
 				}
 				strongSelf.resizeContents(maxWidth: windowWidth)} */
-		let screenSleepObserver = workspaceNotifcationCenter.addObserver(self, selector: #selector(endForSleep), name: NSWorkspace.screensDidSleepNotification, object: nil)
-		let screenWakeObserver = workspaceNotifcationCenter.addObserver(self, selector: #selector(startForWake), name: NSWorkspace.screensDidWakeNotification, object: nil)
+		workspaceNotifcationCenter.addObserver(self, selector: #selector(endForSleep),
+																		 name: NSWorkspace.screensDidSleepNotification, object: nil)
+		workspaceNotifcationCenter.addObserver(self, selector: #selector(startForWake),
+																		name: NSWorkspace.screensDidWakeNotification, object: nil)
 		let processOptions: ProcessInfo.ActivityOptions=[ProcessInfo.ActivityOptions.userInitiatedAllowingIdleSystemSleep]
 		tellingTime = ProcessInfo().beginActivity(options: processOptions, reason: "Need accurate time all the time")
 		showClock()
@@ -136,7 +138,8 @@ class ClockViewController: ColorfulViewController {
 		}
 	}
 	func updateSizeConstraints() {
-		maginfierAspectRatioConstraint=setMultiplier(layoutConstraint: maginfierAspectRatioConstraint, multiplier: model.width/model.height)
+		maginfierAspectRatioConstraint =
+			setMultiplier(layoutConstraint: maginfierAspectRatioConstraint, multiplier: model.width/model.height)
 		clockWidthConstraint.constant=model.width
 		clockHeightConstraint.constant=model.height
 		analogClock.widthConstraint.constant=model.width
@@ -149,7 +152,9 @@ class ClockViewController: ColorfulViewController {
 		updateSizeConstraints()
 		applyColors()
 		if let windowController=self.view.window?.windowController as? ClockWindowController {
-			windowController.applyFloatState()
+			if !windowController.fullscreen {
+				windowController.applyFloatState()
+			}
 		}
 		resizeClock()
 		analogClock.setNeedsDisplay(analogClock.frame)

@@ -69,7 +69,8 @@ class ClockPreferencesStorage {
 		showDate=userDefaults.bool(forKey: showDateKey)
 		showDayOfWeek=userDefaults.bool(forKey: showDayOfWeekKey)
 		useNumericalDate=userDefaults.bool(forKey: useNumericalDateKey)
-		if let colorChoice = ColorChoice(rawValue: userDefaults.string(forKey: colorChoiceKey) ?? ColorChoice.systemColor.rawValue) {
+		if let colorChoice = ColorChoice(rawValue: userDefaults.string(forKey: colorChoiceKey)
+			?? ColorChoice.systemColor.rawValue) {
 			self.colorChoice=colorChoice
         } else {
 			self.colorChoice=ColorChoice.systemColor

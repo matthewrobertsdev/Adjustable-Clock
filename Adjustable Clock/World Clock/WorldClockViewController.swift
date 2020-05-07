@@ -6,7 +6,8 @@
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
 import Cocoa
-class WorldClockViewController: ColorfulViewController, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
+class WorldClockViewController: ColorfulViewController, NSCollectionViewDataSource,
+	NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
 	@IBOutlet weak var collectionViewFlowLayout: NSCollectionViewFlowLayout!
 	var model=[WorldClockModel]()
 	func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -14,7 +15,8 @@ class WorldClockViewController: ColorfulViewController, NSCollectionViewDataSour
 	}
 	func collectionView(_ collectionView: NSCollectionView,
 						itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-		guard let worldClockCollectionViewItem=collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier("WorldClockCollectionViewItem"),
+		guard let worldClockCollectionViewItem =
+			collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier("WorldClockCollectionViewItem"),
 																	   for: indexPath) as? WorldClockCollectionViewItem else {
 			return NSCollectionViewItem()
 		}
@@ -53,8 +55,8 @@ class WorldClockViewController: ColorfulViewController, NSCollectionViewDataSour
 		updateColors()
     }
 	func collectionView(_ collectionView: NSCollectionView,
-		   layout collectionViewLayout: NSCollectionViewLayout,
-		   sizeForItemAt indexPath: IndexPath) -> NSSize {
+						layout collectionViewLayout: NSCollectionViewLayout,
+						sizeForItemAt indexPath: IndexPath) -> NSSize {
 		return NSSize(width: 332, height: 563)
 	}
 	func update() {
