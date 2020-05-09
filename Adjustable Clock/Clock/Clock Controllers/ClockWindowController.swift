@@ -103,6 +103,9 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
             window?.aspectRatio=newAspectRatio
             showButtons(show: false)
         } else {
+			if ClockPreferencesStorage.sharedInstance.useAnalog {
+				digitalClockVC.showAnalogClock()
+			}
             showButtons(show: true)
         }
     }
