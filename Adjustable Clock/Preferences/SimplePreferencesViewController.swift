@@ -142,6 +142,7 @@ class SimplePreferencesViewController: NSViewController {
 			return
 		}
 		if let colorsMenuController=appDelegate.colorsMenuController {
+			colorsMenuController.makeColorMenuUI()
 			colorsMenuController.updateColorMenuUI()
 		}
     }
