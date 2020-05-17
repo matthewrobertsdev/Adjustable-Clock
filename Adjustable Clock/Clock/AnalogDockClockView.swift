@@ -92,7 +92,7 @@ class AnalogDockClockView: BaseAnalogClockView {
 		if ClockPreferencesStorage.sharedInstance.colorForForeground {
 			handsColor=NSColor.black
 			color=NSColor.white
-			secondsColor=NSColor.black
+			secondsColor=NSColor.white
 			backgroundColor.setFill()
 		}
 		if hasDarkAppearance(view: self) &&  (ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor ||
