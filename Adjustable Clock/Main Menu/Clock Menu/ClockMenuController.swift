@@ -94,7 +94,6 @@ class ClockMenuController: ClockMenuDelegate {
         }
     }
 	func enableMenu(enabled: Bool) {
-        menu.autoenablesItems=false
         menu.clockFloatsMenuItem.isEnabled=enabled
 		menu.digitalMenuItem.isEnabled=enabled
 		menu.analogMenuItem.isEnabled=enabled

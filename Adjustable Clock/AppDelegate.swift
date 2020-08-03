@@ -17,6 +17,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	var alarmsMenuController: AlarmsMenuController?
 	var timersMenuController: TimersMenuController?
 	var worldClockMenuController: WorldClockMenuController?
+	var helpMenuController: HelpMenuController?
+
 	//on launch
     func applicationDidFinishLaunching(_ aNotification: Notification) {
 		//*
@@ -38,6 +40,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			dockClockPreferencesController=DockClockPreferencesMenuController(menu: mainMenu.dockClockPreferencesMenu)
 			dockClockMenuController=DockClockMenuController(menu: dockClockMenu)
 			//worldClockMenuController=WorldClockMenuController(menu: mainMenu.worldClockMenu)
+			helpMenuController=HelpMenuController(menu: mainMenu.helpMenu)
 		}
 		//*
 		DockClockController.dockClockObject.updateDockTile()
