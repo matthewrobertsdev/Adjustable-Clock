@@ -13,10 +13,10 @@ class HelpMenuController: HelpMenuDelegate {
 		self.menu=menu
 		menu.helpMenuDelegate=self
 	}
-	func openContactTheDeveloperPage(){
-		NSWorkspace.shared.open(URL(string: "https://matthewrobertsdev.github.io/clocksuite/contact")!)
+	func openContactTheDeveloperPage() {
+		NSWorkspace.shared.open(URL(string: "https://matthewrobertsdev.github.io/Clock-Suite/#/contact")!)
 	}
-	func openPrivacyPolicyPage(){
-		NSWorkspace.shared.open(URL(string: "https://matthewrobertsdev.github.io/clocksuite/privacy")!)
+	func openPrivacyPolicyPage() {
+		NSWorkspace.shared.open(URL(string: "https://matthewrobertsdev.github.io/Clock-Suite/#/privacy")!)
 	}
 }
