@@ -244,7 +244,7 @@ class TimersViewController: ColorfulViewController,
 		timerAlert.addButton(withTitle: "Dismiss")
 		timerAlert.icon=imageFromView(view: DockClockController.dockClockObject.getFreezeView(time: Date()))
 		TimersWindowController.timersObject.showTimers()
-		timerAlert.beginSheetModal(for: TimersWindowController.timersObject.window ?? NSWindow()) { (_) in
+		timerAlert.beginSheetModal(for: TimersWindowController.timersObject.window ?? NSWindow()) { [unowned self] (_) in
 			if timer.alertStyle==AlertStyle.sound {
 				alertSound?.stop()
 			} else if timer.alertStyle==AlertStyle.song {
@@ -301,7 +301,7 @@ class TimersViewController: ColorfulViewController,
 				mainStoryBoard.instantiateController(withIdentifier:
 				   "EditableTimerViewController") as? EditableTimerViewController else { return }
 		let index=settingsButton.tag
-			editableTimerViewController.closeAction = { () -> Void in
+			editableTimerViewController.closeAction = { [unowned self] () -> Void in
 				self.collectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
 				self.popover.close()
 				self.clickRecognizer.isEnabled=false

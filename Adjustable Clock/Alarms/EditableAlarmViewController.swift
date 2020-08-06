@@ -52,7 +52,7 @@ class EditableAlarmViewController: NSViewController {
 	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 				guard let chooseSongViewController = mainStoryBoard.instantiateController(withIdentifier:
 				   "PlaylistViewController") as? PlaylistViewController else { return }
-		chooseSongViewController.choosePlaylistAction = { (playlist: String) -> Void in
+		chooseSongViewController.choosePlaylistAction = { [unowned self] (playlist: String) -> Void in
 			self.playlistName=playlist
 			if playlist=="" {
 				self.playlistTextField.stringValue="Song: None chosen"

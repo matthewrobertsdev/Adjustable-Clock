@@ -84,8 +84,11 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 		kvoObservation = observe(
 			\.objectToObserve.activeAlarms,
             options: [.old, .new]
-        ) { _, change in
-			self.shorOrHideNotifier(numberOfAlarms: change.newValue ?? 0)
+        ) {[weak self] _, change in
+			guard let strongSelf=self else {
+				return
+			}
+			strongSelf.shorOrHideNotifier(numberOfAlarms: change.newValue ?? 0)
         }
 		update()
     }
@@ -148,7 +151,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 			   guard let editableAlarmViewController =
 				mainStoryBoard.instantiateController(withIdentifier:
 				   "NewAlarmViewController") as? EditableAlarmViewController else { return }
-			editableAlarmViewController.delete = { () -> Void in
+			editableAlarmViewController.delete = { [unowned self] () -> Void in
 				AlarmCenter.sharedInstance.removeAlarm(index: index.item)
 				self.popover.close()
 				self.clickRecognizer.isEnabled=false
@@ -156,7 +159,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 				}
 			editableAlarmViewController.new=false
 			let alarm=AlarmCenter.sharedInstance.getAlarm(index: index.item)
-			editableAlarmViewController.cancel = { () -> Void in self.popover.close()
+			editableAlarmViewController.cancel = {[unowned self] () -> Void in self.popover.close()
 				self.clickRecognizer.isEnabled=false
 			}
 			popover.contentViewController = editableAlarmViewController

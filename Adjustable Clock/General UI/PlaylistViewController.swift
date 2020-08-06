@@ -50,7 +50,7 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 		openPanel.title="Choose Song or Sound"
 		openPanel.message="Choose song or sound file."
 		openPanel.prompt="Choose"
-		openPanel.beginSheetModal(for: self.view.window ?? NSWindow(), completionHandler: { (result) -> Void in
+		openPanel.beginSheetModal(for: self.view.window ?? NSWindow(), completionHandler: { [unowned self ](result) -> Void in
 			if result == NSApplication.ModalResponse.OK {
 			var saveURL=FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
 			saveURL=saveURL?.appendingPathComponent("Clock Suite")

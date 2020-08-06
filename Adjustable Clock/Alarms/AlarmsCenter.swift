@@ -149,7 +149,7 @@ class AlarmCenter: NSObject, NSSoundDelegate {
 				alarmAlert.icon=imageFromView(view: DockClockController.dockClockObject.getFreezeView(time: alarm.time))
 				AlarmsWindowController.alarmsObject.showAlarms()
 
-				alarmAlert.beginSheetModal(for: AlarmsWindowController.alarmsObject.window ?? NSWindow()) { (_) in
+				alarmAlert.beginSheetModal(for: AlarmsWindowController.alarmsObject.window ?? NSWindow()) { [unowned self] (_) in
 					alarmTimer.cancel()
 					self.player?.stop()
 					alarmSound?.stop()
