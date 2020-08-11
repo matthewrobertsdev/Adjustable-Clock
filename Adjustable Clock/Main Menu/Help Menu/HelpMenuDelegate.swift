@@ -8,6 +8,7 @@
 
 import Foundation
 protocol HelpMenuDelegate: AnyObject {
+	func openHomePage()
 	func openContactTheDeveloperPage()
 	func openPrivacyPolicyPage()
 }

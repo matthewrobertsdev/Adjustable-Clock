@@ -55,7 +55,8 @@ class AlarmCenter: NSObject, NSSoundDelegate {
 				count+=alarms.count
 			}
 		} catch {
-			print("Error encoding data")
+			print("Error decoding data")
+			alarms=[Alarm]()
 		}
 	}
 	private var alarms=[Alarm]()

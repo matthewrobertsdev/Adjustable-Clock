@@ -123,7 +123,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 			}
 			let index=segmentedControl.tag
 				let alarm=AlarmCenter.sharedInstance.getAlarm(index: index)
-			switch segmentedControl.selectedTag() {
+			switch segmentedControl.selectedSegment {
 			case 0: alarm.active=false
 			case 1: alarm.active=true
 			alarm.setExpirationDate(currentDate: Date())

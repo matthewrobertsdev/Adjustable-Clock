@@ -10,11 +10,13 @@ import Cocoa
 
 class HelpMenu: NSMenu {
 	weak var helpMenuDelegate: HelpMenuDelegate!
+	@IBAction func openHomepage(_ sender: Any) {
+		helpMenuDelegate.openHomePage()
+	}
 	@IBAction func openContactTheDeveloperPage(_ sender: Any) {
 		helpMenuDelegate.openContactTheDeveloperPage()
 	}
 	@IBAction func openPrivacyPolicyPage(_ sender: Any) {
 		helpMenuDelegate.openPrivacyPolicyPage()
 	}
-	
 }

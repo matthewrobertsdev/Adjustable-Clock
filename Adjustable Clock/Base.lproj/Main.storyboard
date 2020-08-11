@@ -735,6 +735,12 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ" customClass="HelpMenu" customModule="Clock_Suite" customModuleProvider="target">
                                     <items>
+                                        <menuItem title="Homepage" id="gwT-kf-3Gx">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="openHomepage:" target="F2S-fz-NVQ" id="kKy-8q-T4A"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Contact the Developer" id="kGN-0b-Zay">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
