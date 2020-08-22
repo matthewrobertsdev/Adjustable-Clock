@@ -44,9 +44,11 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 		}
 		alarmCollectionViewItem.alarmStatusSegmentedControl.action=#selector(onOffSelected(sender:))
 		alarmCollectionViewItem.alarmDelegate=self
+		alarmCollectionViewItem.alarmSettingsButton.title="Edit"
 		return alarmCollectionViewItem
 	}
 	@IBAction func click(_ sender: Any) {
+		collectionView.reloadData()
 		popover.close()
 		clickRecognizer.isEnabled=false
 	}
@@ -139,6 +141,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 		guard let settingsButton=sender as? NSButton else {
 			return
 		}
+		settingsButton.title="Close"
 		guard let index=self.collectionView?.indexPath(for: collectionViewItem) else {
 			return
 		}
@@ -159,7 +162,9 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 				}
 			editableAlarmViewController.new=false
 			let alarm=AlarmCenter.sharedInstance.getAlarm(index: index.item)
-			editableAlarmViewController.cancel = {[unowned self] () -> Void in self.popover.close()
+			editableAlarmViewController.cancel = {[unowned self] () -> Void in
+				settingsButton.title="Edit"
+				self.popover.close()
 				self.clickRecognizer.isEnabled=false
 			}
 			popover.contentViewController = editableAlarmViewController

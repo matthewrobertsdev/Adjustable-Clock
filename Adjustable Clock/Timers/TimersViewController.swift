@@ -42,6 +42,7 @@ class TimersViewController: ColorfulViewController,
 	}
 	@IBAction func click(_ sender: Any) {
 		popover.close()
+		collectionView.reloadData()
 		clickRecognizer.isEnabled=false
 	}
 	@objc func showHideTimerActiveLabel() {
@@ -146,6 +147,7 @@ class TimersViewController: ColorfulViewController,
 			timerCollectionViewItem.stopTimeTextField.isHidden=true
 			timerCollectionViewItem.startPauseButton.title="Start"
 		}
+		timerCollectionViewItem.setButton.title="Set"
 		return timerCollectionViewItem
 	}
 	func getStopTimeString(timerIndex: Int) -> String {
@@ -303,6 +305,7 @@ class TimersViewController: ColorfulViewController,
 		let index=settingsButton.tag
 			editableTimerViewController.closeAction = { [unowned self] () -> Void in
 				self.collectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
+				settingsButton.title="Set"
 				self.popover.close()
 				self.clickRecognizer.isEnabled=false
 			}
@@ -310,6 +313,7 @@ class TimersViewController: ColorfulViewController,
 			editableTimerViewController.index=index
 			popover.show(relativeTo: settingsButton.bounds, of: settingsButton, preferredEdge: NSRectEdge.minY)
 			print("abcd \(debugTimeFormatter.string(from: Date())) popover should show 4")
+			settingsButton.title="Close"
 		}
 	}
 	func sound(_ sound: NSSound,
