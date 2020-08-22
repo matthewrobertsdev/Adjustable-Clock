@@ -27,14 +27,11 @@ class AnalogDockClockView: BaseAnalogClockView {
 	}
 	override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        setUp()
     }
     required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
-        setUp()
     }
-	private func setUp() {
-	}
+	// swiftlint:disable:next cyclomatic_complexity
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
 		lineWidth=CGFloat(frame.size.width/25)
@@ -94,8 +91,16 @@ class AnalogDockClockView: BaseAnalogClockView {
 			color=NSColor.white
 			secondsColor=NSColor.white
 			backgroundColor.setFill()
-		}
-		if hasDarkAppearance(view: self) &&  (ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor ||
+			if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.white {
+				color=NSColor.systemGray
+				secondsColor=NSColor.systemGray
+			} else if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor {
+				color=NSColor.white
+				secondsColor=NSColor.white
+				backgroundColor=NSColor.systemGray
+				backgroundColor.setFill()
+			}
+		} else if hasDarkAppearance(view: self) &&  (ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor ||
 			ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.black) {
 			color=NSColor.systemGray
 			secondsColor=NSColor.systemGray
@@ -113,7 +118,7 @@ class AnalogDockClockView: BaseAnalogClockView {
 			secondsColor=NSColor.systemGray
 			color=NSColor.systemGray
 		}
-		if !hasDarkAppearance(view: self) &&  (ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor ||
+		else if !hasDarkAppearance(view: self) &&  (ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor ||
 			ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.white) {
 			color=NSColor.systemGray
 			secondsColor=NSColor.systemGray
