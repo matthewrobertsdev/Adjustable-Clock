@@ -129,6 +129,9 @@ class DigitalDockClockView: NSView {
 		} else {
 			digitalClock.textColor=NSColor.black
 			digitalSeconds.textColor=NSColor.black
+			if ClockPreferencesStorage.sharedInstance.colorForForeground && ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.black {
+				backgroundColor=NSColor.systemGray
+			}
 		}
 		backgroundColor.setFill()
 		path.fill()
