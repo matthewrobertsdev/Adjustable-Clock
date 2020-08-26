@@ -63,11 +63,11 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 	}
 	override func viewDidLoad() {
         super.viewDidLoad()
+		shorOrHideNotifier(numberOfAlarms: AlarmCenter.sharedInstance.getActiveAlarms())
 		clickRecognizer.isEnabled=false
 		collectionView.register(AlarmCollectionViewItem.self,
 								forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmCollectionViewItem"))
        view.addSubview(backgroundView, positioned: .below, relativeTo: view)
-		self.shorOrHideNotifier(numberOfAlarms: AlarmCenter.sharedInstance.count)
 		popover.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)
 		timeFormatter.locale=Locale(identifier: "en_US")
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")

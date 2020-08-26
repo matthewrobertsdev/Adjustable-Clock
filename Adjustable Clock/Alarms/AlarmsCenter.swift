@@ -7,7 +7,7 @@
 //
 import AppKit
 import AVFoundation
-class AlarmCenter: NSObject, NSSoundDelegate {
+class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate{
 	static let sharedInstance=AlarmCenter()
 	let userDefaults=UserDefaults()
 	let alarmsKey="savedAlarms"
@@ -134,6 +134,7 @@ class AlarmCenter: NSObject, NSSoundDelegate {
 						}
 						validSaveURL=validSaveURL.appendingPathComponent(alarm.song)
 						self.player=try AVAudioPlayer(contentsOf: URL(fileURLWithPath: validSaveURL.path))
+						self.player?.delegate=self
 						self.player?.prepareToPlay()
 						self.player?.volume = 1.0
 						self.player?.play()
@@ -218,14 +219,18 @@ class AlarmCenter: NSObject, NSSoundDelegate {
 		}
 	}
 	func sound(_ sound: NSSound,
-			   didFinishPlaying flag: Bool) {
+			didFinishPlaying flag: Bool) {
 		if flag && soundCount<300 {
 			sound.play()
 			soundCount+=1
 		}
-		if soundCount==300{
+		if soundCount==300 {
 			getActiveAlarms()
 		}
+	}
+	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer,
+								successfully flag: Bool) {
+		AlarmCenter.sharedInstance.getActiveAlarms()
 	}
 }
 extension Notification.Name {

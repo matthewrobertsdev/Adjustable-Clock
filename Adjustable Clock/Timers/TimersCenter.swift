@@ -112,7 +112,6 @@ class TimersCenter {
 		for timer in timers where timer.active {
 			count+=1
 		}
-		print("Oh"+count.description)
 		activeTimers=count
 	}
 }

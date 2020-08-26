@@ -8,7 +8,7 @@
 import Cocoa
 import AVFoundation
 class TimersViewController: ColorfulViewController,
-	NSCollectionViewDataSource, NSCollectionViewDelegate, NSSoundDelegate {
+	NSCollectionViewDataSource, NSCollectionViewDelegate, NSSoundDelegate, AVAudioPlayerDelegate {
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var collectionView: NSCollectionView!
 	@IBOutlet weak var timerActiveLabel: NSTextField!
@@ -231,6 +231,7 @@ class TimersViewController: ColorfulViewController,
 				}
 				validSaveURL=validSaveURL.appendingPathComponent(timer.song)
 				player=try AVAudioPlayer(contentsOf: URL(fileURLWithPath: validSaveURL.path))
+				player?.delegate=self
 				player?.prepareToPlay()
 				player?.volume = 1.0
 				player?.play()
@@ -239,6 +240,8 @@ class TimersViewController: ColorfulViewController,
 				//alertSound?.loops=true
 				alertSound?.play()
 			}
+		} else {
+			TimersCenter.sharedInstance.getActiveTimers()
 		}
 		let timerAlert=NSAlert()
 		timerAlert.messageText = "\(timer.title=="" ? "Timer" : timer.title) " +
@@ -283,6 +286,7 @@ class TimersViewController: ColorfulViewController,
 				timerCollectionViewItem.startPauseButton.title="Start"
 			}
 		}
+		TimersCenter.sharedInstance.getActiveTimers()
 	}
 	@objc func showPopover(sender: Any?) {
 		let debugTimeFormatter=DateFormatter()
@@ -326,5 +330,10 @@ class TimersViewController: ColorfulViewController,
 		}
 		if soundCount==300{
 		}
+	}
+	
+	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer,
+								successfully flag: Bool) {
+		TimersCenter.sharedInstance.getActiveTimers()
 	}
 }
