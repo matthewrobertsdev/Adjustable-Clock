@@ -73,7 +73,6 @@ class AlarmCenter: NSObject, NSSoundDelegate {
 		getActiveAlarms()
 	}
 	func getAlarm(index: Int) -> Alarm {
-		getActiveAlarms()
 		return alarms[index]
 	}
 	func getActiveAlarms() -> Int {
@@ -154,6 +153,7 @@ class AlarmCenter: NSObject, NSSoundDelegate {
 					alarmTimer.cancel()
 					self.player?.stop()
 					alarmSound?.stop()
+					self.getActiveAlarms()
 					self.scheduleAlarms()
 				}
 			}
@@ -222,6 +222,9 @@ class AlarmCenter: NSObject, NSSoundDelegate {
 		if flag && soundCount<300 {
 			sound.play()
 			soundCount+=1
+		}
+		if soundCount==300{
+			getActiveAlarms()
 		}
 	}
 }

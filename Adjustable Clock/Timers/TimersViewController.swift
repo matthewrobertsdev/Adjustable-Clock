@@ -172,12 +172,12 @@ class TimersViewController: ColorfulViewController,
 		timerCollectionViewItem?.resetButton.title="Reset"
 		timerCollectionViewItem?.stopTimeTextField.isHidden=false
 		timerCollectionViewItem?.stopTimeTextField.stringValue=getStopTimeString(timerIndex: index)
-		TimersCenter.sharedInstance.activeTimers+=1
+		//TimersCenter.sharedInstance.activeTimers+=1
 		TimersCenter.sharedInstance.timers[index].going=true
+		TimersCenter.sharedInstance.getActiveTimers()
 		displayTimer(index: index)
 		if TimersCenter.sharedInstance.timers[index].secondsRemaining<=0
 			&&  TimersCenter.sharedInstance.timers[index].active {
-			TimersCenter.sharedInstance.activeTimers-=1
 			self.timerStopped(index: index)
 			timerCollectionViewItem?.startPauseButton.title="Start"
 			return
@@ -247,6 +247,8 @@ class TimersViewController: ColorfulViewController,
 		timerAlert.icon=imageFromView(view: DockClockController.dockClockObject.getFreezeView(time: Date()))
 		TimersWindowController.timersObject.showTimers()
 		timerAlert.beginSheetModal(for: TimersWindowController.timersObject.window ?? NSWindow()) { [unowned self] (_) in
+			timer.active=false
+			TimersCenter.sharedInstance.getActiveTimers()
 			if timer.alertStyle==AlertStyle.sound {
 				alertSound?.stop()
 			} else if timer.alertStyle==AlertStyle.song {
@@ -321,6 +323,8 @@ class TimersViewController: ColorfulViewController,
 		if flag && soundCount<300 {
 			sound.play()
 			soundCount+=1
+		}
+		if soundCount==300{
 		}
 	}
 }
