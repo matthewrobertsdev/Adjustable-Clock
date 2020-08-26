@@ -328,7 +328,8 @@ class TimersViewController: ColorfulViewController,
 			sound.play()
 			soundCount+=1
 		}
-		if soundCount==300{
+		if soundCount==300 {
+			TimersCenter.sharedInstance.getActiveTimers()
 		}
 	}
 	
