@@ -20,7 +20,7 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 		if AlarmsPreferencesStorage.sharedInstance.hasLaunchedBefore() {
 			AlarmsWindowRestorer().loadSavedWindowCGRect(window: window)
 		}
-		prepareWindowButtons()
+		//prepareWindowButtons()
     }
 	func windowWillClose(_ notification: Notification) {
 		WindowManager.sharedInstance.count-=1
@@ -70,13 +70,13 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 		hideButtonsTimer?.cancel()
         updateClockMenuUI()
 		fullscreen=true
-        showButtons(show: true)
+        //showButtons(show: true)
 		//reloadPreferencesWindowIfOpen()
     }
 	func windowDidExitFullScreen(_ notification: Notification) {
 		fullscreen=false
         window?.makeKey()
-		prepareWindowButtons()
+		//prepareWindowButtons()
         updateClockMenuUI()
 		//reloadPreferencesWindowIfOpen()
     }
@@ -89,8 +89,10 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 		}
 	}
 	func windowDidBecomeKey(_ notification: Notification) {
+		/*
 		if !fullscreen {
 			flashButtons()
 		}
+*/
     }
 }
