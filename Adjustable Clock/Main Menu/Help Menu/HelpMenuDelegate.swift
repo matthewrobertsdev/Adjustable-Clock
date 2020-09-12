@@ -11,4 +11,5 @@ protocol HelpMenuDelegate: AnyObject {
 	func openHomePage()
 	func openContactTheDeveloperPage()
 	func openPrivacyPolicyPage()
+	func openFAQ_Page()
 }

@@ -19,4 +19,7 @@ class HelpMenu: NSMenu {
 	@IBAction func openPrivacyPolicyPage(_ sender: Any) {
 		helpMenuDelegate.openPrivacyPolicyPage()
 	}
+	@IBAction func openFAQ_Page(_ sender: Any) {
+		helpMenuDelegate.openFAQ_Page()
+	}
 }

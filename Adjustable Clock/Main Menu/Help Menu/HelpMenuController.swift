@@ -22,4 +22,7 @@ class HelpMenuController: HelpMenuDelegate {
 	func openPrivacyPolicyPage() {
 		NSWorkspace.shared.open(URL(string: "https://matthewrobertsdev.github.io/Clock-Suite/#/privacy")!)
 	}
+	func openFAQ_Page() {
+		NSWorkspace.shared.open(URL(string: "https://matthewrobertsdev.github.io/Clock-Suite/#/faq")!)
+	}
 }
