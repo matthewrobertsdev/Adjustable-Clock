@@ -25,7 +25,6 @@ class ClockViewController: ColorfulViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		//updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
-		maginiferScrollView.maxMagnification=200
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
 		/*
 		let screenSleepObserver =

@@ -170,6 +170,7 @@
 		9F4A9C5F23F7A69E0046A7F2 /* EditableTimerWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTimerWindowController.swift; sourceTree = "<group>"; };
 		9F4D87442055E99400AF63D1 /* ClockWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockWindowController.swift; sourceTree = "<group>"; };
 		9F4EF1E220C273CB00E08C57 /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
+		9F4F6250250E496B0026ECBE /* Clock SuiteRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Clock SuiteRelease.entitlements"; sourceTree = "<group>"; };
 		9F51283F23DB42E300B87C29 /* ViewToImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewToImage.swift; sourceTree = "<group>"; };
 		9F53421323D90A1100FDD0F3 /* Alarm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alarm.swift; sourceTree = "<group>"; };
 		9F53421523D90C1500FDD0F3 /* EditableAlarmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableAlarmViewController.swift; sourceTree = "<group>"; };
@@ -188,7 +189,7 @@
 		9F7D055623D6629F00E6CBA2 /* AlarmsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsViewController.swift; sourceTree = "<group>"; };
 		9F7D055A23D6700900E6CBA2 /* AlarmsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsMenu.swift; sourceTree = "<group>"; };
 		9F7D055E23D6716600E6CBA2 /* ClockMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockMenu.swift; sourceTree = "<group>"; };
-		9F7E63A323DEAF6B00A52ECE /* Adjustable Clock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Adjustable Clock.entitlements"; sourceTree = "<group>"; };
+		9F7E63A323DEAF6B00A52ECE /* Clock Suite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Clock Suite.entitlements"; sourceTree = "<group>"; };
 		9F7FF69723D2A56A009E5DA8 /* ViewDetectDarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDetectDarkMode.swift; sourceTree = "<group>"; };
 		9F84B5B623D8BD0500221BF4 /* AlarmsPreferenceStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmsPreferenceStorage.swift; sourceTree = "<group>"; };
 		9F87CCC223D4156B005D402B /* IsDarkMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsDarkMode.swift; sourceTree = "<group>"; };
@@ -464,6 +465,7 @@
 		9FB47E511F480A43009D82FF = {
 			isa = PBXGroup;
 			children = (
+				9F4F6250250E496B0026ECBE /* Clock SuiteRelease.entitlements */,
 				9FB47E5C1F480A43009D82FF /* Adjustable Clock */,
 				9FB47E6E1F480A43009D82FF /* Adjustable ClockTests */,
 				9FB47E791F480A43009D82FF /* Adjustable ClockUITests */,
@@ -506,7 +508,7 @@
 				9FB47E631F480A43009D82FF /* Main.storyboard */,
 				9FABAA29216595BF00161D83 /* Code to Discard? */,
 				9FB47E661F480A43009D82FF /* Info.plist */,
-				9F7E63A323DEAF6B00A52ECE /* Adjustable Clock.entitlements */,
+				9F7E63A323DEAF6B00A52ECE /* Clock Suite.entitlements */,
 			);
 			path = "Adjustable Clock";
 			sourceTree = "<group>";
@@ -1029,6 +1031,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Clock SuiteRelease.entitlements";
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8ZAMGA7E3H;
