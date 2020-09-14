@@ -879,6 +879,7 @@
                         <windowCollectionBehavior key="collectionBehavior" managed="YES" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="709" y="402" width="300" height="175"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+                        <value key="minSize" type="size" width="220" height="150"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="g3J-L8-4cM"/>
                         </connections>

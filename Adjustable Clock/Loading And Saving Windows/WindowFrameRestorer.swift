@@ -68,7 +68,6 @@ class WindowFrameRestorer {
 			if savedWindowSize.height>height {
 				savedWindowSize.height=height
 			}
-			
 		}
         //if it's off screen left, move to edge
         if savedClockOrigin.x<0 {
@@ -97,6 +96,7 @@ class WindowFrameRestorer {
         //make the rect
         let savedWindow=CGRect(origin: savedClockOrigin, size: savedWindowSize)
         //set the frame
+		print(savedWindow.debugDescription)
         window?.setFrame(savedWindow, display: true)
     }
 }

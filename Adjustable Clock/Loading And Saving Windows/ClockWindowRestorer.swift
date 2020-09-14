@@ -18,6 +18,8 @@ class ClockWindowRestorer: WindowFrameRestorer {
 				   minWidth: minWidth, minHeight: minHeight, maxWidth: nil, maxHeight: nil)
     }
 	func getClockWidth() -> Int {
-		return UserDefaults().integer(forKey: widthKey)
+		let savedWidth=UserDefaults().integer(forKey: widthKey)
+		print("orange \(savedWidth)")
+		return savedWidth<220 ? 220 : savedWidth
 	}
 }

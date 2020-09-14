@@ -79,7 +79,14 @@ class ClockViewController: ColorfulViewController {
 		} else {
 			showDigitalClock() }
 	}
+	func assignMinSize() {
+		let aspectWidth=(self.view.window?.frame.width ?? 220)
+		let aspectHeight=(self.view.window?.frame.height ?? 220)
+		let minHeight=aspectHeight/220*aspectWidth
+		self.view.window?.minSize=NSSize(width: 220, height: minHeight)
+	}
 	func showAnalogClock() {
+		assignMinSize()
 		setConstraints()
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: digitalClock)
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.mustHold, for: analogClock)
@@ -87,8 +94,9 @@ class ClockViewController: ColorfulViewController {
 		updateSizeConstraints()
 		guard let clockWindowController=view.window?.windowController as? ClockWindowController else { return }
 			clockWindowController.resizeContents()
-		guard let width=self.view.window?.frame.width else { return }
+		guard var width=self.view.window?.frame.width else { return }
 			if ClockPreferencesStorage.sharedInstance.fullscreen==false {
+				width=width<220 ? 220 : width
 				clockWindowController.sizeWindowToFitClock(newWidth: width)
 			}
 		showHideDate()
@@ -97,6 +105,7 @@ class ClockViewController: ColorfulViewController {
 		analogClock.layoutSubtreeIfNeeded()
 	}
 	func showDigitalClock() {
+		assignMinSize()
 		showHideDate()
 		setConstraints()
 		clockStackView.setVisibilityPriority(NSStackView.VisibilityPriority.notVisible, for: analogClock)

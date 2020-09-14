@@ -166,6 +166,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 		ClockPreferencesStorage.sharedInstance.fullscreen=false
 		let maxWidth=CGFloat(ClockWindowRestorer().getClockWidth())
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
+		digitalClockVC.assignMinSize()
 		digitalClockVC.resizeContents(maxWidth: maxWidth)
 		digitalClockVC.clockHeightConstraint.constant=digitalClockVC.model.height
 		sizeWindowToFitClock(newWidth: maxWidth)
@@ -180,6 +181,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
 		window?.aspectRatio=NSSize(width: digitalClockVC.model.width, height: digitalClockVC.model.height)
 		//applyFloatState()
+		
     }
     func windowWillUseStandardFrame(_ window: NSWindow,
                                     defaultFrame newFrame: NSRect) -> NSRect {
