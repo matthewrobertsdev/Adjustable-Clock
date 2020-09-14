@@ -225,7 +225,7 @@ class TimersViewController: ColorfulViewController,
 		} else if timer.alertStyle==AlertStyle.song {
 			do {
 				var saveURL=FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
-				saveURL=saveURL?.appendingPathComponent("Clock Suite")
+				saveURL=saveURL?.appendingPathComponent("Tracks")
 				guard var validSaveURL=saveURL else {
 					return
 				}

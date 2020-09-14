@@ -60,6 +60,7 @@ class EditableAlarmViewController: NSViewController {
 				self.playlistTextField.stringValue="Song: "+playlist
 				self.useSong()
 			}
+			self.playlistTextField.sizeToFit()
 		}
 		presentAsModalWindow(chooseSongViewController)
 	}

@@ -96,7 +96,6 @@ class EditableTimerViewController: NSViewController {
 				guard let chooseSongViewController = mainStoryBoard.instantiateController(withIdentifier:
 				   "PlaylistViewController") as? PlaylistViewController else { return }
 		chooseSongViewController.choosePlaylistAction = { (playlistURL: String) -> Void in
-			print("abcd"+playlistURL)
 			self.playlistName=playlistURL
 			if playlistURL=="" {
 				self.playlistTextField.stringValue="Song: None chosen"
@@ -104,6 +103,7 @@ class EditableTimerViewController: NSViewController {
 				self.playlistTextField.stringValue="Song: "+playlistURL
 				self.useSong()
 			}
+			self.playlistTextField.sizeToFit()
 		}
 		self.presentAsModalWindow(chooseSongViewController)
 	}

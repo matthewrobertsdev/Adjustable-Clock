@@ -792,6 +792,7 @@
                             <viewController key="viewController" id="eh1-go-sqq">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="orl-rY-Tmm">
                                     <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Clock" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cEr-O1-O7k">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" usesAppearanceFont="YES"/>
@@ -803,6 +804,7 @@
                             <viewController key="viewController" id="7pK-wa-1q2">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jib-Hh-pC6">
                                     <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Alarms" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4fx-Cz-Inv">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" usesAppearanceFont="YES"/>
@@ -814,6 +816,7 @@
                             <viewController key="viewController" id="etD-Nd-RmZ">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eqr-Yl-mRv">
                                     <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Timers" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="R1c-y9-sa4">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" usesAppearanceFont="YES"/>
@@ -1625,9 +1628,8 @@
                                                     <action selector="chooseSong:" target="uPZ-Mw-0vQ" id="8dZ-LO-ggG"/>
                                                 </connections>
                                             </button>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="irB-Zz-ang">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="irB-Zz-ang">
                                                 <rect key="frame" x="102" y="143" width="121" height="16"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Song: none chosen" id="nDp-lH-3JG">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1773,6 +1775,8 @@ DQ
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="232" id="6rP-O8-X6R"/>
+                                            <constraint firstItem="irB-Zz-ang" firstAttribute="centerX" secondItem="qoo-lc-mEV" secondAttribute="centerX" id="Go3-kO-eR4"/>
+                                            <constraint firstItem="irB-Zz-ang" firstAttribute="top" secondItem="qoo-lc-mEV" secondAttribute="top" constant="73" id="sfO-uE-d28"/>
                                             <constraint firstAttribute="width" constant="324" id="zeo-qs-fFK"/>
                                         </constraints>
                                     </customView>
@@ -1970,9 +1974,8 @@ DQ
                                                     <font key="font" metaFont="system"/>
                                                 </buttonCell>
                                             </button>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bvu-xi-gW8">
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bvu-xi-gW8">
                                                 <rect key="frame" x="92" y="96" width="121" height="16"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Song: none chosen" id="zKT-5G-8cb">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -2004,6 +2007,8 @@ DQ
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="228" id="6En-NK-sZX"/>
+                                            <constraint firstItem="bvu-xi-gW8" firstAttribute="top" secondItem="AIA-1c-Ocm" secondAttribute="top" constant="116" id="Vfy-w4-g6d"/>
+                                            <constraint firstItem="bvu-xi-gW8" firstAttribute="centerX" secondItem="AIA-1c-Ocm" secondAttribute="centerX" id="u8m-z8-ejg"/>
                                         </constraints>
                                     </customView>
                                 </subviews>

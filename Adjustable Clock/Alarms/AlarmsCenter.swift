@@ -7,7 +7,7 @@
 //
 import AppKit
 import AVFoundation
-class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate{
+class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate {
 	static let sharedInstance=AlarmCenter()
 	let userDefaults=UserDefaults()
 	let alarmsKey="savedAlarms"
@@ -128,7 +128,7 @@ class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate{
 				} else {
 					do {
 						var saveURL=FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
-						saveURL=saveURL?.appendingPathComponent("Clock Suite")
+						saveURL=saveURL?.appendingPathComponent("Tracks")
 						guard var validSaveURL=saveURL else {
 							return
 						}
