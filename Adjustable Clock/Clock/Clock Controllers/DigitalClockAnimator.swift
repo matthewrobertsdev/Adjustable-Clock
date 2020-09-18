@@ -24,8 +24,10 @@ extension ClockViewController {
 		let timeString=model.getTime()
 		if digitalClock.stringValue != timeString {
 			digitalClock.stringValue=timeString
-			let dayInfo=model.getDayInfo()
-			animatedDay.stringValue=dayInfo
+		}
+		let dateString=model.getDayInfo()
+		if animatedDay.stringValue != dateString {
+			animatedDay.stringValue=dateString
 		}
 	}
 	private func animateTimeAndDayInfo() {
