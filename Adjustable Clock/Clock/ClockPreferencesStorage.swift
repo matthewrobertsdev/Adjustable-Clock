@@ -158,6 +158,7 @@ class ClockPreferencesStorage {
 		userDefaults.set(false, forKey: useNumericalDateKey)
 		userDefaults.set(false, forKey: useAnalogKey)
         userDefaults.set(nil, forKey: colorChoiceKey)
+		userDefaults.set(false, forKey: lightOnDarkKey)
     }
 	func setWindowIsOpen() {
 		userDefaults.set(true, forKey: windowIsOpenKey)

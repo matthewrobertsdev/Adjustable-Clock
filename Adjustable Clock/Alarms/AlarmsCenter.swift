@@ -7,7 +7,7 @@
 //
 import AppKit
 import AVFoundation
-class AlarmCenter: NSObject, NSSoundDelegate {
+class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate {
 	static let sharedInstance=AlarmCenter()
 	let userDefaults=UserDefaults()
 	let alarmsKey="savedAlarms"
@@ -55,7 +55,8 @@ class AlarmCenter: NSObject, NSSoundDelegate {
 				count+=alarms.count
 			}
 		} catch {
-			print("Error encoding data")
+			print("Error decoding data")
+			alarms=[Alarm]()
 		}
 	}
 	private var alarms=[Alarm]()
@@ -72,7 +73,6 @@ class AlarmCenter: NSObject, NSSoundDelegate {
 		getActiveAlarms()
 	}
 	func getAlarm(index: Int) -> Alarm {
-		getActiveAlarms()
 		return alarms[index]
 	}
 	func getActiveAlarms() -> Int {
@@ -128,12 +128,13 @@ class AlarmCenter: NSObject, NSSoundDelegate {
 				} else {
 					do {
 						var saveURL=FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
-						saveURL=saveURL?.appendingPathComponent("Clock Suite")
+						saveURL=saveURL?.appendingPathComponent("Tracks")
 						guard var validSaveURL=saveURL else {
 							return
 						}
 						validSaveURL=validSaveURL.appendingPathComponent(alarm.song)
 						self.player=try AVAudioPlayer(contentsOf: URL(fileURLWithPath: validSaveURL.path))
+						self.player?.delegate=self
 						self.player?.prepareToPlay()
 						self.player?.volume = 1.0
 						self.player?.play()
@@ -149,10 +150,11 @@ class AlarmCenter: NSObject, NSSoundDelegate {
 				alarmAlert.icon=imageFromView(view: DockClockController.dockClockObject.getFreezeView(time: alarm.time))
 				AlarmsWindowController.alarmsObject.showAlarms()
 
-				alarmAlert.beginSheetModal(for: AlarmsWindowController.alarmsObject.window ?? NSWindow()) { (_) in
+				alarmAlert.beginSheetModal(for: AlarmsWindowController.alarmsObject.window ?? NSWindow()) { [unowned self] (_) in
 					alarmTimer.cancel()
 					self.player?.stop()
 					alarmSound?.stop()
+					self.getActiveAlarms()
 					self.scheduleAlarms()
 				}
 			}
@@ -217,11 +219,18 @@ class AlarmCenter: NSObject, NSSoundDelegate {
 		}
 	}
 	func sound(_ sound: NSSound,
-			   didFinishPlaying flag: Bool) {
+			didFinishPlaying flag: Bool) {
 		if flag && soundCount<300 {
 			sound.play()
 			soundCount+=1
 		}
+		if soundCount==300 {
+			getActiveAlarms()
+		}
+	}
+	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer,
+								successfully flag: Bool) {
+		AlarmCenter.sharedInstance.getActiveAlarms()
 	}
 }
 extension Notification.Name {

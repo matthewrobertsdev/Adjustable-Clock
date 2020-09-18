@@ -69,12 +69,12 @@ class SimplePreferencesViewController: NSViewController {
 			} else {
 				use24HourButton.state=NSControl.StateValue.off
 			}
-			if preferences.usesGrayBackground {
-			useDarkGrayButton.state=NSControl.StateValue.on
-				useTranslucentButton.state=NSControl.StateValue.off
-			} else {
-				useDarkGrayButton.state=NSControl.StateValue.off
+			if preferences.usesTranslucentBackground {
+			useDarkGrayButton.state=NSControl.StateValue.off
 				useTranslucentButton.state=NSControl.StateValue.on
+			} else {
+				useDarkGrayButton.state=NSControl.StateValue.on
+				useTranslucentButton.state=NSControl.StateValue.off
 			}
 		/*	useAnalogNoSecondsButton.state=NSControl.StateValue.off
 			useAnlogWithSecondsButton.state=NSControl.StateValue.off
@@ -142,6 +142,7 @@ class SimplePreferencesViewController: NSViewController {
 			return
 		}
 		if let colorsMenuController=appDelegate.colorsMenuController {
+			colorsMenuController.makeColorMenuUI()
 			colorsMenuController.updateColorMenuUI()
 		}
     }

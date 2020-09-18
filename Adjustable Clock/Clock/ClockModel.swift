@@ -80,7 +80,12 @@ class ClockModel {
 		if ClockPreferencesStorage.sharedInstance.useAnalog==false {
 			if GeneralPreferencesStorage.sharedInstance.use24Hours==false {
 				if ClockPreferencesStorage.sharedInstance.showSeconds==false {
-					useShowMinutesAMPM(); width=CGFloat(332); height=CGFloat(151)
+					useShowMinutesAMPM()
+					if ClockPreferencesStorage.sharedInstance.showDate && !ClockPreferencesStorage.sharedInstance.showDayOfWeek {
+						width=CGFloat(400); height=CGFloat(151)
+					} else {
+						width=CGFloat(332); height=CGFloat(151)
+					}
 				} else {
 					useShowSecondsAMPM(); width=CGFloat(460); height=CGFloat(180)
 				}

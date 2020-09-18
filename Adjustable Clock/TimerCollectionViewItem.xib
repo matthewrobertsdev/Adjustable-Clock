@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="TimerCollectionViewItem" customModule="Adjustable_Clock" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="TimerCollectionViewItem" customModule="Clock_Suite" customModuleProvider="target">
             <connections>
                 <outlet property="countdownTextField" destination="xEI-KT-zbD" id="ch0-fl-Hhj"/>
                 <outlet property="resetButton" destination="5TG-GM-daY" id="rBa-uk-A49"/>

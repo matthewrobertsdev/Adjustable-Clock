@@ -83,7 +83,7 @@ class ColorfulViewController: NSViewController {
 				aView.setNeedsDisplay(aView.bounds)
 			}
 		} else {
-			if GeneralPreferencesStorage.sharedInstance.usesGrayBackground {
+			if !GeneralPreferencesStorage.sharedInstance.usesTranslucentBackground {
 				visualEffectView.isHidden=true
 				//view.layer?.backgroundColor = .clear
 				print("abcd dark gray")

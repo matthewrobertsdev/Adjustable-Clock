@@ -35,6 +35,7 @@ class EditableAlarmViewController: NSViewController {
 		self.alertName=alertTitle ?? "Ping"
 		let sound=NSSound(named: alertTitle ?? "Ping")
 		sound?.play()
+		useBeep()
 	}
 	/*@IBAction func chooseAlert(_ sender: Any) {
 	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
@@ -51,13 +52,15 @@ class EditableAlarmViewController: NSViewController {
 	let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)
 				guard let chooseSongViewController = mainStoryBoard.instantiateController(withIdentifier:
 				   "PlaylistViewController") as? PlaylistViewController else { return }
-		chooseSongViewController.choosePlaylistAction = { (playlist: String) -> Void in
+		chooseSongViewController.choosePlaylistAction = { [unowned self] (playlist: String) -> Void in
 			self.playlistName=playlist
 			if playlist=="" {
 				self.playlistTextField.stringValue="Song: None chosen"
 			} else {
 				self.playlistTextField.stringValue="Song: "+playlist
+				self.useSong()
 			}
+			self.playlistTextField.sizeToFit()
 		}
 		presentAsModalWindow(chooseSongViewController)
 	}

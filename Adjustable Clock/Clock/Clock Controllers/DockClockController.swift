@@ -19,6 +19,8 @@ class DockClockController {
 	var observation: NSKeyValueObservation?
 	private init() {
 		GeneralPreferencesStorage.sharedInstance.loadUserPreferences()
+		let processOptions: ProcessInfo.ActivityOptions=[ProcessInfo.ActivityOptions.userInitiatedAllowingIdleSystemSleep]
+		tellingTime = ProcessInfo().beginActivity(options: processOptions, reason: "Need accurate time all the time")
 		animateTime()
 	}
 	func updateDockTile() {

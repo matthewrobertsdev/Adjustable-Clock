@@ -72,6 +72,7 @@ class EditableTimerViewController: NSViewController {
 		TimersCenter.sharedInstance.timers[index].active=true
 		timerViewController.animateTimer(index: index)
 		let timerCollectionViewItem=timerViewController.collectionView.item(at: index) as? TimerCollectionViewItem
+		timerCollectionViewItem?.setButton.title="Set"
 		timerCollectionViewItem?.startPauseButton.title="Pause"
 		timerCollectionViewItem?.resetButton.title="Reset"
 		closeAction()
@@ -95,7 +96,6 @@ class EditableTimerViewController: NSViewController {
 				guard let chooseSongViewController = mainStoryBoard.instantiateController(withIdentifier:
 				   "PlaylistViewController") as? PlaylistViewController else { return }
 		chooseSongViewController.choosePlaylistAction = { (playlistURL: String) -> Void in
-			print("abcd"+playlistURL)
 			self.playlistName=playlistURL
 			if playlistURL=="" {
 				self.playlistTextField.stringValue="Song: None chosen"
@@ -103,6 +103,7 @@ class EditableTimerViewController: NSViewController {
 				self.playlistTextField.stringValue="Song: "+playlistURL
 				self.useSong()
 			}
+			self.playlistTextField.sizeToFit()
 		}
 		self.presentAsModalWindow(chooseSongViewController)
 	}

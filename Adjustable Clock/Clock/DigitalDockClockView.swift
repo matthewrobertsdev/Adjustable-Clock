@@ -24,13 +24,13 @@ class DigitalDockClockView: NSView {
 		}
 	}
 	override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        setUp()
-    }
-    required init?(coder decoder: NSCoder) {
-        super.init(coder: decoder)
-        setUp()
-    }
+		super.init(frame: frameRect)
+		setUp()
+	}
+	required init?(coder decoder: NSCoder) {
+		super.init(coder: decoder)
+		setUp()
+	}
 	private func setUp() {
 		addSubview(contentStackView)
 		contentStackView.wantsLayer=true
@@ -88,13 +88,13 @@ class DigitalDockClockView: NSView {
 				||  ClockPreferencesStorage.sharedInstance.colorForForeground { backgroundColor =
 				ClockPreferencesStorage.sharedInstance.customColor
 			} else {
-			backgroundColor =
-				ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black)
-				?? NSColor.systemGray
+				backgroundColor =
+					ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black)
+					?? NSColor.systemGray
 			}
 		} else if hasDarkAppearance(view: self) && !ClockPreferencesStorage.sharedInstance.colorForForeground {
 			backgroundColor=ColorModel.sharedInstance.darkColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
-			?? NSColor.systemGray
+				?? NSColor.systemGray
 		} else {
 			backgroundColor=ColorModel.sharedInstance.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
 				?? NSColor.systemGray
@@ -105,27 +105,33 @@ class DigitalDockClockView: NSView {
 			dark=false
 		}
 		/*if hasDarkAppearance(view: self) && backgroundColor != NSColor.labelColor {
-			backgroundColor.setFill()
+		backgroundColor.setFill()
 		} else if !hasDarkAppearance(view: self) && backgroundColor != NSColor.labelColor {
-			backgroundColor.setFill()
+		backgroundColor.setFill()
 		} if {
-			backgroundColor=NSColor.black
-			backgroundColor.setFill()
+		backgroundColor=NSColor.black
+		backgroundColor.setFill()
 		}*/
 		if !ClockPreferencesStorage.sharedInstance.colorForForeground {
-		if hasDarkAppearance(view: self) {
-			digitalClock.textColor=NSColor.white
-			digitalSeconds.textColor=NSColor.white
-			if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.white {
-				backgroundColor=NSColor.systemGray
+			if hasDarkAppearance(view: self) {
+				digitalClock.textColor=NSColor.white
+				digitalSeconds.textColor=NSColor.white
+				if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.white {
+					backgroundColor=NSColor.systemGray
+				}
+			} else {
+				digitalClock.textColor=NSColor.black
+				digitalSeconds.textColor=NSColor.black
+				if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.black {
+					backgroundColor=NSColor.systemGray
+				}
 			}
 		} else {
 			digitalClock.textColor=NSColor.black
 			digitalSeconds.textColor=NSColor.black
-			if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.black {
+			if ClockPreferencesStorage.sharedInstance.colorForForeground && ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.black {
 				backgroundColor=NSColor.systemGray
 			}
-		}
 		}
 		backgroundColor.setFill()
 		path.fill()

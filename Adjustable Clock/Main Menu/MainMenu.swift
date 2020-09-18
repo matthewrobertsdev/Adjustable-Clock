@@ -15,7 +15,9 @@ class MainMenu: NSMenu {
     @IBOutlet weak var alarmsMenu: AlarmsMenu!
 	@IBOutlet weak var timersMenu: TimersMenu!
 	@IBOutlet weak var worldClockMenu: WorldClockMenu!
-    @IBAction func pressSimplePreferencesMenuItem(preferenceMenuItem: NSMenuItem) {
+	
+	@IBOutlet weak var helpMenu: HelpMenu!
+	@IBAction func pressSimplePreferencesMenuItem(preferenceMenuItem: NSMenuItem) {
 
 		if isThereASimplePreferencesWindow() {
 			SimplePreferenceWindowController.prefrencesObject.window?.makeKeyAndOrderFront(nil)

@@ -25,7 +25,7 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 	}
 	func getSongs() {
 		var saveURL=FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
-		saveURL=saveURL?.appendingPathComponent("Clock Suite")
+		saveURL=saveURL?.appendingPathComponent("Tracks")
 		guard let validSaveURL=saveURL else {
 			return
 		}
@@ -50,10 +50,10 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 		openPanel.title="Choose Song or Sound"
 		openPanel.message="Choose song or sound file."
 		openPanel.prompt="Choose"
-		openPanel.beginSheetModal(for: self.view.window ?? NSWindow(), completionHandler: { (result) -> Void in
+		openPanel.beginSheetModal(for: self.view.window ?? NSWindow(), completionHandler: { [unowned self ](result) -> Void in
 			if result == NSApplication.ModalResponse.OK {
 			var saveURL=FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
-			saveURL=saveURL?.appendingPathComponent("Clock Suite")
+			saveURL=saveURL?.appendingPathComponent("Tracks")
 			guard var validSaveURL=saveURL else {
 				return
 			}
@@ -71,10 +71,10 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 					self.getSongs()
 					self.tableView.reloadData()
 				} catch {
-					print("error copying file to applicatiohn support Clock Suite folder")
+					print("error copying file to applicatiohn support Tracks folder")
 				}
 			} catch {
-				print("error creating applicatiohn support Clock Suite folder")
+				print("error creating applicatiohn support Tracks folder")
 			}
 			}
 		})
@@ -87,7 +87,7 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 		} else {
 			let filename=songs[tableView.selectedRow]
 			var fileURL=FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
-			fileURL=fileURL?.appendingPathComponent("Clock Suite")
+			fileURL=fileURL?.appendingPathComponent("Tracks")
 			guard var validFileURL=fileURL else {
 				return
 			}

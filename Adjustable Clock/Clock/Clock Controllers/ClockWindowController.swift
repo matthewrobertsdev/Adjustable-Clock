@@ -13,7 +13,7 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
         super.windowDidLoad()
 		WindowManager.sharedInstance.count+=1
 		guard let clockViewController=window?.contentViewController as? ClockViewController else { return }
-		window?.minSize=CGSize(width: 150, height: 150)
+		window?.minSize=CGSize(width: 220, height: 150)
 		if ClockPreferencesStorage.sharedInstance.hasLaunchedBefore() {
 			ClockWindowRestorer().loadSavedWindowCGRect(window: window)
         }
@@ -24,11 +24,13 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 			window?.aspectRatio=windowSize
 		}
         window?.delegate=self
+		/*
 		if ClockPreferencesStorage.sharedInstance.fullscreen==false {
 			prepareWindowButtons()
 		} else {
             showButtons(show: true)
         }
+*/
         enableClockMenu(enabled: true)
         updateClockMenuUI()
     }
@@ -83,15 +85,19 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
         window?.setFrame(newRect, display: true, animate: false)
     }
     func windowDidBecomeKey(_ notification: Notification) {
+		/*
 		if !fullscreen {
 			flashButtons()
 		}
+*/
 		enableClockMenu(enabled: true)
     }
     func windowDidResignKey(_ notification: Notification) {
+		/*
         if ClockPreferencesStorage.sharedInstance.fullscreen==false {
             showButtons(show: false)
         }
+*/
     }
     func windowDidResize(_ notification: Notification) {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
@@ -101,10 +107,14 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
         if windowIsZoomed==false && ClockPreferencesStorage.sharedInstance.fullscreen==false {
 			let newAspectRatio=NSSize(width: digitalClockVC.model.width, height: digitalClockVC.model.height)
             window?.aspectRatio=newAspectRatio
-            showButtons(show: false)
+            //showButtons(show: false)
         } else {
-            showButtons(show: true)
+			if ClockPreferencesStorage.sharedInstance.useAnalog {
+				digitalClockVC.showAnalogClock()
+			}
+            //showButtons(show: true)
         }
+		print("window width is \(window?.frame.width)")
     }
 	func resizeContents() {
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
@@ -150,12 +160,13 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
 		hideButtonsTimer?.cancel()
         updateClockMenuUI()
         //reloadPreferencesWindowIfOpen()
-        showButtons(show: true)
+        //showButtons(show: true)
     }
     func windowWillExitFullScreen(_ notification: Notification) {
 		ClockPreferencesStorage.sharedInstance.fullscreen=false
 		let maxWidth=CGFloat(ClockWindowRestorer().getClockWidth())
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
+		digitalClockVC.assignMinSize()
 		digitalClockVC.resizeContents(maxWidth: maxWidth)
 		digitalClockVC.clockHeightConstraint.constant=digitalClockVC.model.height
 		sizeWindowToFitClock(newWidth: maxWidth)
@@ -164,12 +175,13 @@ class ClockWindowController: FullViewWindowController, NSWindowDelegate {
     func windowDidExitFullScreen(_ notification: Notification) {
 		fullscreen=false
         window?.makeKey()
-		prepareWindowButtons()
+		//prepareWindowButtons()
         updateClockMenuUI()
         //reloadPreferencesWindowIfOpen()
 		guard let digitalClockVC=window?.contentViewController as? ClockViewController else { return }
 		window?.aspectRatio=NSSize(width: digitalClockVC.model.width, height: digitalClockVC.model.height)
 		//applyFloatState()
+		
     }
     func windowWillUseStandardFrame(_ window: NSWindow,
                                     defaultFrame newFrame: NSRect) -> NSRect {

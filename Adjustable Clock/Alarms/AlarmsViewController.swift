@@ -44,9 +44,11 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 		}
 		alarmCollectionViewItem.alarmStatusSegmentedControl.action=#selector(onOffSelected(sender:))
 		alarmCollectionViewItem.alarmDelegate=self
+		alarmCollectionViewItem.alarmSettingsButton.title="Edit"
 		return alarmCollectionViewItem
 	}
 	@IBAction func click(_ sender: Any) {
+		collectionView.reloadData()
 		popover.close()
 		clickRecognizer.isEnabled=false
 	}
@@ -61,11 +63,11 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 	}
 	override func viewDidLoad() {
         super.viewDidLoad()
+		shorOrHideNotifier(numberOfAlarms: AlarmCenter.sharedInstance.getActiveAlarms())
 		clickRecognizer.isEnabled=false
 		collectionView.register(AlarmCollectionViewItem.self,
 								forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmCollectionViewItem"))
        view.addSubview(backgroundView, positioned: .below, relativeTo: view)
-		self.shorOrHideNotifier(numberOfAlarms: AlarmCenter.sharedInstance.count)
 		popover.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)
 		timeFormatter.locale=Locale(identifier: "en_US")
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
@@ -84,8 +86,11 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 		kvoObservation = observe(
 			\.objectToObserve.activeAlarms,
             options: [.old, .new]
-        ) { _, change in
-			self.shorOrHideNotifier(numberOfAlarms: change.newValue ?? 0)
+        ) {[weak self] _, change in
+			guard let strongSelf=self else {
+				return
+			}
+			strongSelf.shorOrHideNotifier(numberOfAlarms: change.newValue ?? 0)
         }
 		update()
     }
@@ -120,7 +125,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 			}
 			let index=segmentedControl.tag
 				let alarm=AlarmCenter.sharedInstance.getAlarm(index: index)
-			switch segmentedControl.selectedTag() {
+			switch segmentedControl.selectedSegment {
 			case 0: alarm.active=false
 			case 1: alarm.active=true
 			alarm.setExpirationDate(currentDate: Date())
@@ -136,6 +141,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 		guard let settingsButton=sender as? NSButton else {
 			return
 		}
+		settingsButton.title="Close"
 		guard let index=self.collectionView?.indexPath(for: collectionViewItem) else {
 			return
 		}
@@ -148,7 +154,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 			   guard let editableAlarmViewController =
 				mainStoryBoard.instantiateController(withIdentifier:
 				   "NewAlarmViewController") as? EditableAlarmViewController else { return }
-			editableAlarmViewController.delete = { () -> Void in
+			editableAlarmViewController.delete = { [unowned self] () -> Void in
 				AlarmCenter.sharedInstance.removeAlarm(index: index.item)
 				self.popover.close()
 				self.clickRecognizer.isEnabled=false
@@ -156,7 +162,9 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 				}
 			editableAlarmViewController.new=false
 			let alarm=AlarmCenter.sharedInstance.getAlarm(index: index.item)
-			editableAlarmViewController.cancel = { () -> Void in self.popover.close()
+			editableAlarmViewController.cancel = {[unowned self] () -> Void in
+				settingsButton.title="Edit"
+				self.popover.close()
 				self.clickRecognizer.isEnabled=false
 			}
 			popover.contentViewController = editableAlarmViewController

@@ -8,7 +8,7 @@
 import Cocoa
 import AVFoundation
 class TimersViewController: ColorfulViewController,
-	NSCollectionViewDataSource, NSCollectionViewDelegate, NSSoundDelegate {
+	NSCollectionViewDataSource, NSCollectionViewDelegate, NSSoundDelegate, AVAudioPlayerDelegate {
 	@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var collectionView: NSCollectionView!
 	@IBOutlet weak var timerActiveLabel: NSTextField!
@@ -42,6 +42,7 @@ class TimersViewController: ColorfulViewController,
 	}
 	@IBAction func click(_ sender: Any) {
 		popover.close()
+		collectionView.reloadData()
 		clickRecognizer.isEnabled=false
 	}
 	@objc func showHideTimerActiveLabel() {
@@ -146,6 +147,7 @@ class TimersViewController: ColorfulViewController,
 			timerCollectionViewItem.stopTimeTextField.isHidden=true
 			timerCollectionViewItem.startPauseButton.title="Start"
 		}
+		timerCollectionViewItem.setButton.title="Set"
 		return timerCollectionViewItem
 	}
 	func getStopTimeString(timerIndex: Int) -> String {
@@ -170,12 +172,12 @@ class TimersViewController: ColorfulViewController,
 		timerCollectionViewItem?.resetButton.title="Reset"
 		timerCollectionViewItem?.stopTimeTextField.isHidden=false
 		timerCollectionViewItem?.stopTimeTextField.stringValue=getStopTimeString(timerIndex: index)
-		TimersCenter.sharedInstance.activeTimers+=1
+		//TimersCenter.sharedInstance.activeTimers+=1
 		TimersCenter.sharedInstance.timers[index].going=true
+		TimersCenter.sharedInstance.getActiveTimers()
 		displayTimer(index: index)
 		if TimersCenter.sharedInstance.timers[index].secondsRemaining<=0
 			&&  TimersCenter.sharedInstance.timers[index].active {
-			TimersCenter.sharedInstance.activeTimers-=1
 			self.timerStopped(index: index)
 			timerCollectionViewItem?.startPauseButton.title="Start"
 			return
@@ -223,12 +225,13 @@ class TimersViewController: ColorfulViewController,
 		} else if timer.alertStyle==AlertStyle.song {
 			do {
 				var saveURL=FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
-				saveURL=saveURL?.appendingPathComponent("Clock Suite")
+				saveURL=saveURL?.appendingPathComponent("Tracks")
 				guard var validSaveURL=saveURL else {
 					return
 				}
 				validSaveURL=validSaveURL.appendingPathComponent(timer.song)
 				player=try AVAudioPlayer(contentsOf: URL(fileURLWithPath: validSaveURL.path))
+				player?.delegate=self
 				player?.prepareToPlay()
 				player?.volume = 1.0
 				player?.play()
@@ -237,6 +240,8 @@ class TimersViewController: ColorfulViewController,
 				//alertSound?.loops=true
 				alertSound?.play()
 			}
+		} else {
+			TimersCenter.sharedInstance.getActiveTimers()
 		}
 		let timerAlert=NSAlert()
 		timerAlert.messageText = "\(timer.title=="" ? "Timer" : timer.title) " +
@@ -244,7 +249,9 @@ class TimersViewController: ColorfulViewController,
 		timerAlert.addButton(withTitle: "Dismiss")
 		timerAlert.icon=imageFromView(view: DockClockController.dockClockObject.getFreezeView(time: Date()))
 		TimersWindowController.timersObject.showTimers()
-		timerAlert.beginSheetModal(for: TimersWindowController.timersObject.window ?? NSWindow()) { (_) in
+		timerAlert.beginSheetModal(for: TimersWindowController.timersObject.window ?? NSWindow()) { [unowned self] (_) in
+			timer.active=false
+			TimersCenter.sharedInstance.getActiveTimers()
 			if timer.alertStyle==AlertStyle.sound {
 				alertSound?.stop()
 			} else if timer.alertStyle==AlertStyle.song {
@@ -279,6 +286,7 @@ class TimersViewController: ColorfulViewController,
 				timerCollectionViewItem.startPauseButton.title="Start"
 			}
 		}
+		TimersCenter.sharedInstance.getActiveTimers()
 	}
 	@objc func showPopover(sender: Any?) {
 		let debugTimeFormatter=DateFormatter()
@@ -301,8 +309,9 @@ class TimersViewController: ColorfulViewController,
 				mainStoryBoard.instantiateController(withIdentifier:
 				   "EditableTimerViewController") as? EditableTimerViewController else { return }
 		let index=settingsButton.tag
-			editableTimerViewController.closeAction = { () -> Void in
+			editableTimerViewController.closeAction = { [unowned self] () -> Void in
 				self.collectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
+				settingsButton.title="Set"
 				self.popover.close()
 				self.clickRecognizer.isEnabled=false
 			}
@@ -310,6 +319,7 @@ class TimersViewController: ColorfulViewController,
 			editableTimerViewController.index=index
 			popover.show(relativeTo: settingsButton.bounds, of: settingsButton, preferredEdge: NSRectEdge.minY)
 			print("abcd \(debugTimeFormatter.string(from: Date())) popover should show 4")
+			settingsButton.title="Close"
 		}
 	}
 	func sound(_ sound: NSSound,
@@ -318,5 +328,13 @@ class TimersViewController: ColorfulViewController,
 			sound.play()
 			soundCount+=1
 		}
+		if soundCount==300 {
+			TimersCenter.sharedInstance.getActiveTimers()
+		}
+	}
+	
+	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer,
+								successfully flag: Bool) {
+		TimersCenter.sharedInstance.getActiveTimers()
 	}
 }

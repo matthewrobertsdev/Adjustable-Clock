@@ -87,7 +87,6 @@ class TimersCenter {
 			timers[index].secondsRemaining-=1
 			gcdTimers[index].suspend()
 			timers[index].active=false
-			activeTimers-=1
 		} else {
 			timers[index].secondsRemaining-=1
 		}
@@ -103,10 +102,16 @@ class TimersCenter {
 	}
 	func stopTimer(index: Int) {
 		if timers[index].active {
-			activeTimers-=1
 			timers[index].active=false
 			gcdTimers[index].cancel()
 			gcdTimers[index]=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		}
+	}
+	func getActiveTimers() {
+		var count=0
+		for timer in timers where timer.active {
+			count+=1
+		}
+		activeTimers=count
 	}
 }
