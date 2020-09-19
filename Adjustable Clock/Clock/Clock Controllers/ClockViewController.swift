@@ -24,6 +24,7 @@ class ClockViewController: ColorfulViewController {
 	let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		maginiferScrollView.maxMagnification=1000
 		//updateTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
 		/*
