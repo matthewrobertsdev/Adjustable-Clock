@@ -892,6 +892,19 @@
             </objects>
             <point key="canvasLocation" x="-20" y="275"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="aEb-ep-NDm">
+            <objects>
+                <viewController id="uQu-Ne-W7D" sceneMemberID="viewController">
+                    <view key="view" id="o7H-6W-P5T">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="Dey-77-I86" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="938" y="39"/>
+        </scene>
         <!--Clock View Controller-->
         <scene sceneID="YXm-rq-ncp">
             <objects>
