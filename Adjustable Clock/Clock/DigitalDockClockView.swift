@@ -13,6 +13,7 @@ class DigitalDockClockView: NSView {
 	var contentHeight: NSLayoutConstraint!
 	var displaySeconds=false
 	var backgroundColor=NSColor.systemGray
+	var strokeColor=NSColor.black
 	let notifcationCenter=NotificationCenter.default
 	var dark=false {
 		didSet {
@@ -74,15 +75,9 @@ class DigitalDockClockView: NSView {
 	}
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
-		var path: NSBezierPath
 		let radius: CGFloat=15.0
-		if displaySeconds {
-			path=NSBezierPath(roundedRect: NSRect(x: 0, y: 0.035*frame.height, width: frame.size.width,
-												  height: 0.93*frame.height), xRadius: radius, yRadius: radius)
-		} else {
-			path=NSBezierPath(roundedRect: NSRect(x: 0, y: 0.25*frame.height, width: frame.size.width,
-												  height: 0.5*frame.height), xRadius: radius, yRadius: radius)
-		}
+		let path=NSBezierPath(roundedRect: NSRect(x: 0, y: 0.035*frame.height, width: frame.size.width,
+											  height: 0.93*frame.height), xRadius: radius, yRadius: radius)
 		if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom {
 			if !hasDarkAppearance(view: self)
 				||  ClockPreferencesStorage.sharedInstance.colorForForeground { backgroundColor =
@@ -135,6 +130,20 @@ class DigitalDockClockView: NSView {
 		}
 		backgroundColor.setFill()
 		path.fill()
+		/*
+		if !displaySeconds {
+			let borderPath=NSBezierPath(roundedRect: NSRect(x: 0, y: 0.25*frame.height, width: frame.size.width,
+												  height: 0.5*frame.height), xRadius: radius, yRadius: radius)
+			borderPath.lineWidth=5
+			if !hasDarkAppearance(view: self) || ClockPreferencesStorage.sharedInstance.colorForForeground {
+				strokeColor=NSColor.black
+			} else {
+				strokeColor=NSColor.white
+			}
+			strokeColor.setStroke()
+			borderPath.stroke()
+		}
+*/
 	}
 }
 

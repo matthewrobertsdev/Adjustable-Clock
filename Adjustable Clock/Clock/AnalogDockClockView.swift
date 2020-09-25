@@ -34,7 +34,10 @@ class AnalogDockClockView: BaseAnalogClockView {
 	// swiftlint:disable:next cyclomatic_complexity
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
+		let radius: CGFloat=15.0
 		lineWidth=CGFloat(frame.size.width/25)
+		let background=NSBezierPath(roundedRect: NSRect(x: 0, y: 0.035*frame.height, width: frame.size.width,
+														height: 0.93*frame.height), xRadius: radius, yRadius: radius)
 		let circle=NSBezierPath(ovalIn: NSRect(origin:
 			CGPoint(x: frame.width/2-lineWidth/2, y: frame.width/2-lineWidth/2),
 											   size: CGSize(width: lineWidth, height: lineWidth)))
@@ -66,7 +69,6 @@ class AnalogDockClockView: BaseAnalogClockView {
 			}
 		}
 		if hasDarkAppearance(view: self) {
-			backgroundColor.setFill()
 			handsColor=NSColor.white
 			if ClockPreferencesStorage.sharedInstance.colorForForeground {
 				color=NSColor.black
@@ -80,11 +82,9 @@ class AnalogDockClockView: BaseAnalogClockView {
 			handsColor=NSColor.black
 			color=NSColor.white
 			secondsColor=NSColor.white
-			backgroundColor.setFill()
 		} else {
 			handsColor=NSColor.white
 			backgroundColor=NSColor.black
-			backgroundColor.setFill()
 		}
 		if ClockPreferencesStorage.sharedInstance.colorForForeground {
 			handsColor=NSColor.black
@@ -100,8 +100,8 @@ class AnalogDockClockView: BaseAnalogClockView {
 				backgroundColor=NSColor.systemGray
 				backgroundColor.setFill()
 			}
-		} else if hasDarkAppearance(view: self) &&  (ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor ||
-			ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.black) {
+		} else if hasDarkAppearance(view: self) &&  ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor ||
+			ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.black {
 			color=NSColor.systemGray
 			secondsColor=NSColor.systemGray
 		} else if hasDarkAppearance(view: self) &&
@@ -117,8 +117,7 @@ class AnalogDockClockView: BaseAnalogClockView {
 		} else if !hasDarkAppearance(view: self) && backgroundColor==NSColor.black {
 			secondsColor=NSColor.systemGray
 			color=NSColor.systemGray
-		}
-		else if !hasDarkAppearance(view: self) &&  (ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor ||
+		} else if !hasDarkAppearance(view: self) &&  (ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor ||
 			ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.white) {
 			color=NSColor.systemGray
 			secondsColor=NSColor.systemGray
@@ -127,10 +126,8 @@ class AnalogDockClockView: BaseAnalogClockView {
 			color=NSColor.white
 			secondsColor=NSColor.white
 		}
-		path.fill()
-		handsColor.setFill()
-		circle.fill()
-		secondsColor.setFill()
+		secondsColor.setFill(); background.fill()
+		backgroundColor.setFill(); path.fill(); handsColor.setFill(); circle.fill()
 		guard let cgContext=NSGraphicsContext.current?.cgContext else {
 				return
 		}
