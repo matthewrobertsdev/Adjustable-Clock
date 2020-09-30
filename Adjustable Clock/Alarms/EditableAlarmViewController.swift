@@ -135,6 +135,10 @@ class EditableAlarmViewController: NSViewController {
 		if new {
 			verticalStackView.removeView(deleteButton)
 			alertSoundPopUpButton.selectItem(withTitle: "Ping")
+            let now = Date()
+            let calendar = Calendar(identifier: .gregorian)
+            let noon = calendar.nextDate(after: now, matching: DateComponents(calendar: calendar, timeZone: TimeZone.current, era: nil, year: nil, month: nil, day: nil, hour: 12, minute: 0, second: 0, nanosecond: 0, weekday: nil, weekdayOrdinal: nil, quarter: nil, weekOfMonth: nil, weekOfYear: nil, yearForWeekOfYear: nil), matchingPolicy: Calendar.MatchingPolicy.nextTime)
+            datePicker.dateValue=noon ?? now
 		}
     }
 	func assignAlarm(alarm: Alarm) {

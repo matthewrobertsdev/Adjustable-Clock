@@ -31,6 +31,10 @@ class EditableTimerViewController: NSViewController {
         super.viewDidLoad()
 		alertSoundPopUpButton.addItems(withTitles: AlertSoundModel.soundsNames)
 		timerDatePicker.locale=Locale(identifier: "de_AT")
+        let now = Date()
+        let calendar = Calendar(identifier: .gregorian)
+        let midnight = calendar.startOfDay(for: now)
+        timerDatePicker.dateValue=midnight
 		startingDate=timerDatePicker.dateValue
 		alertSoundPopUpButton.selectItem(withTitle: "Ping")
     }

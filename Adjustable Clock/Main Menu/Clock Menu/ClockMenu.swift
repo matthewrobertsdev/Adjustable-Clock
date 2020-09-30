@@ -37,7 +37,4 @@ class ClockMenu: NSMenu {
     @IBAction func useNumericalDate(nsMenuItem: NSMenuItem) {
 		clockMenuDelegate.useNumericalClicked()
     }
-	@IBAction func showClock(nsMenuItem: NSMenuItem) {
-		clockMenuDelegate.showClockClicked()
-	}
 }

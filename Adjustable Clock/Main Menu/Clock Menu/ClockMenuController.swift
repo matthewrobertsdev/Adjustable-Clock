@@ -45,9 +45,6 @@ class ClockMenuController: ClockMenuDelegate {
 		clockPreferences.changeAndSaveUseNumericalDate()
         updateForPreferencesChange()
 	}
-	func showClockClicked() {
-		ClockWindowController.clockObject.showClock()
-	}
 	func updateForPreferencesChange() {
         updateUserInterface()
 		ClockWindowController.clockObject.updateClockToPreferencesChange()
