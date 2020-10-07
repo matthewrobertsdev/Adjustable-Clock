@@ -81,6 +81,8 @@ class TimersViewController: ColorfulViewController,
 			TimersCenter.sharedInstance.resetTimer(index: index)
 			timerCollectionViewItem.countdownTextField.stringValue=TimersCenter.sharedInstance.getCountDownString(index: index)
 			timerCollectionViewItem.stopTimeTextField.isHidden=true
+			TimersCenter.sharedInstance.timers[index].active=false
+			TimersCenter.sharedInstance.getActiveTimers()
 		}
 		timerCollectionViewItem.startPauseButton.title="Start"
 		timerCollectionViewItem.resetButton.title="Clear"
