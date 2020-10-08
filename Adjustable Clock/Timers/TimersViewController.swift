@@ -119,7 +119,7 @@ class TimersViewController: ColorfulViewController,
 		} else {
 			timerCollectionViewItem.startPauseButton.isHidden=false
 		}
-		timerCollectionViewItem.titleTextField.stringValue=title=="" ? "Timer" : title
+		timerCollectionViewItem.titleTextField.stringValue=title=="" ? "Timer \(indexPath.item+1)" : title
 		timerCollectionViewItem.stopTimeTextField.textColor=textColor
 		timerCollectionViewItem.countdownTextField.stringValue =
 			dockDisplay ? "--" : TimersCenter.sharedInstance.getCountDownString(index: indexPath.item)
