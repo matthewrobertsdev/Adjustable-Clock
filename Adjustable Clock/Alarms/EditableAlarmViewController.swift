@@ -135,6 +135,10 @@ class EditableAlarmViewController: NSViewController {
 		if new {
 			verticalStackView.removeView(deleteButton)
 			alertSoundPopUpButton.selectItem(withTitle: "Ping")
+			if ProcessInfo.processInfo.operatingSystemVersion.minorVersion != 14 && ProcessInfo.processInfo.operatingSystemVersion.minorVersion != 15 {
+				alertSoundPopUpButton.selectItem(withTitle: "Glass")
+				alertName="Glass"
+			}
             let now = Date()
             let calendar = Calendar(identifier: .gregorian)
             let noon = calendar.nextDate(after: now, matching: DateComponents(calendar: calendar, timeZone: TimeZone.current, era: nil, year: nil, month: nil, day: nil, hour: 12, minute: 0, second:

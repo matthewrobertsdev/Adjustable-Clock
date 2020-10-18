@@ -68,7 +68,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 		collectionView.register(AlarmCollectionViewItem.self,
 								forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "AlarmCollectionViewItem"))
        view.addSubview(backgroundView, positioned: .below, relativeTo: view)
-		popover.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)
+		//popover.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)
 		timeFormatter.locale=Locale(identifier: "en_US")
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
 		collectionView.delegate=self

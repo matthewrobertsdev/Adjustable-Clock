@@ -37,6 +37,10 @@ class EditableTimerViewController: NSViewController {
         timerDatePicker.dateValue=midnight
 		startingDate=timerDatePicker.dateValue
 		alertSoundPopUpButton.selectItem(withTitle: "Ping")
+		if ProcessInfo.processInfo.operatingSystemVersion.minorVersion != 14 && ProcessInfo.processInfo.operatingSystemVersion.minorVersion != 15 {
+			alertSoundPopUpButton.selectItem(withTitle: "Glass")
+			alertName="Glass"
+		}
     }
 	override func viewDidAppear() {
 		view.window?.makeFirstResponder(view.window)
