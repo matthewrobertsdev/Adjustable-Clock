@@ -10,7 +10,7 @@ import Cocoa
 class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 	NSCollectionViewDelegate, AlarmCollectionItemProtocol {
 	@IBOutlet weak var collectionView: NSCollectionView!
-	@IBOutlet weak var titleTextField: NSTextField!
+	//@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var alarmNotifierTextField: NSTextField!
 	@IBOutlet weak var clickRecognizer: NSClickGestureRecognizer!
 	@objc var objectToObserve=AlarmCenter.sharedInstance
@@ -51,15 +51,6 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 		collectionView.reloadData()
 		popover.close()
 		clickRecognizer.isEnabled=false
-	}
-	@IBAction func addAlarm(_ sender: Any) {
-		if AlarmCenter.sharedInstance.count>=24 {
-			let alert=NSAlert()
-			alert.messageText="Sorry, but Clock Suite does not allow more than 24 alarms."
-			alert.runModal()
-		} else {
-		EditableAlarmWindowController.newAlarmConfigurer.showNewAlarmConfigurer()
-		}
 	}
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -112,7 +103,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 		}
 	}
 	func update() {
-		applyColorScheme(views: [ColorView](), labels: [titleTextField, alarmNotifierTextField])
+		applyColorScheme(views: [ColorView](), labels: [ alarmNotifierTextField])
 		collectionView.reloadData()
 	}
 	func numberOfRows(in tableView: NSTableView) -> Int {

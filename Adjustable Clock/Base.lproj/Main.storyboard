@@ -1028,16 +1028,33 @@
         <scene sceneID="TeY-CA-Flb">
             <objects>
                 <windowController storyboardIdentifier="AlarmsWindowController" id="Ymg-Mv-RWx" customClass="AlarmsWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="AlarmsWindow" title="Alarms" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="SKW-hm-43b">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
+                    <window key="window" identifier="AlarmsWindow" title="Alarms" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="SKW-hm-43b">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" managed="YES" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="921" y="551" width="302" height="164"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                        <toolbar key="toolbar" implicitIdentifier="898D1C9B-D9D5-49E1-A461-2023973EA98E" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="SFO-9K-g2K">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="VTY-0Z-XUE"/>
+                                <toolbarItem implicitItemIdentifier="79BE95C2-ED6F-4F51-A816-246B0063D9D2" label="Add Alarm" paletteLabel="Add Alarm" tag="-1" image="NSAddTemplate" id="tc8-eP-zTu">
+                                    <size key="minSize" width="11" height="11"/>
+                                    <size key="maxSize" width="11" height="11"/>
+                                    <connections>
+                                        <action selector="addAlarm:" target="Ymg-Mv-RWx" id="o3x-UT-PE7"/>
+                                    </connections>
+                                </toolbarItem>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="VTY-0Z-XUE"/>
+                                <toolbarItem reference="tc8-eP-zTu"/>
+                            </defaultToolbarItems>
+                        </toolbar>
                         <connections>
                             <outlet property="delegate" destination="Ymg-Mv-RWx" id="fqX-vh-Wvl"/>
                         </connections>
                     </window>
                     <connections>
+                        <outlet property="toolbar" destination="SFO-9K-g2K" id="RMb-OY-8MH"/>
                         <segue destination="jsi-dr-Kid" kind="relationship" relationship="window.shadowedContentViewController" id="qxi-ND-qyQ"/>
                     </connections>
                 </windowController>
@@ -1049,8 +1066,8 @@
         <scene sceneID="v9s-Dr-xNz">
             <objects>
                 <windowController storyboardIdentifier="TimersWindowController" id="7qg-yV-28o" customClass="TimersWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="TimersWindow" title="Timers" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="7mb-fx-SVb">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
+                    <window key="window" identifier="TimersWindow" title="Timers" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="7mb-fx-SVb">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" managed="YES" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="196" y="240" width="395" height="204"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
@@ -1071,22 +1088,14 @@
             <objects>
                 <viewController id="Fch-iR-SvQ" customClass="TimersViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="gv6-gj-aTH">
-                        <rect key="frame" x="0.0" y="0.0" width="351" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="351" height="434"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="3" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="li0-1M-reH">
-                                <rect key="frame" x="0.0" y="0.0" width="351" height="394"/>
+                                <rect key="frame" x="0.0" y="0.0" width="351" height="414"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sxf-Lb-5wq">
-                                        <rect key="frame" x="116" y="348" width="119" height="46"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Timers" id="jTc-VM-bBw">
-                                            <font key="font" metaFont="system" size="39"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WYv-C8-oRU">
-                                        <rect key="frame" x="72" y="265" width="207" height="80"/>
+                                        <rect key="frame" x="72" y="334" width="207" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="203" id="ByD-aY-zzB"/>
                                             <constraint firstAttribute="height" constant="80" id="XIA-Ah-BEE"/>
@@ -1098,13 +1107,13 @@
                                         </textFieldCell>
                                     </textField>
                                     <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7Q-Wo-kc1">
-                                        <rect key="frame" x="0.0" y="0.0" width="351" height="262"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="351" height="331"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="bXY-wo-YzA">
-                                            <rect key="frame" x="0.0" y="0.0" width="351" height="262"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="351" height="331"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <collectionView id="zzm-Pa-2aK">
-                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="262"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="331"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="Lab-3U-20t">
                                                         <size key="itemSize" width="351" height="204"/>
@@ -1127,10 +1136,8 @@
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
-                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
@@ -1155,7 +1162,6 @@
                         <outlet property="clickRecognizer" destination="asf-TM-Bp2" id="pMB-8N-YM1"/>
                         <outlet property="collectionView" destination="zzm-Pa-2aK" id="QsZ-zY-zCW"/>
                         <outlet property="timerActiveLabel" destination="WYv-C8-oRU" id="iHL-bW-vUY"/>
-                        <outlet property="titleTextField" destination="sxf-Lb-5wq" id="0sa-pw-5D7"/>
                     </connections>
                 </viewController>
                 <customObject id="dUP-Sx-2Yi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1477,22 +1483,14 @@
             <objects>
                 <viewController id="jsi-dr-Kid" customClass="AlarmsViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="P05-f5-a90">
-                        <rect key="frame" x="0.0" y="0.0" width="322" height="626"/>
+                        <rect key="frame" x="0.0" y="0.0" width="322" height="646"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xt3-TQ-yqa">
-                                <rect key="frame" x="0.0" y="0.0" width="322" height="606"/>
+                                <rect key="frame" x="0.0" y="0.0" width="322" height="626"/>
                                 <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CoE-q1-tay">
-                                        <rect key="frame" x="101" y="560" width="120" height="46"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Alarms" id="zrM-Kp-7vW">
-                                            <font key="font" metaFont="system" size="39"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="203" translatesAutoresizingMaskIntoConstraints="NO" id="zQZ-To-CvJ">
-                                        <rect key="frame" x="58" y="460" width="207" height="80"/>
+                                        <rect key="frame" x="58" y="546" width="207" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="EmH-hn-f4e"/>
                                             <constraint firstAttribute="width" constant="203" id="uLX-A7-Gis"/>
@@ -1503,24 +1501,14 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wmo-KR-zVe">
-                                        <rect key="frame" x="110" y="412" width="103" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Add Alarm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yDO-fw-oRb">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="addAlarm:" target="jsi-dr-Kid" id="0kt-j4-UYS"/>
-                                        </connections>
-                                    </button>
                                     <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCo-eu-8mz">
-                                        <rect key="frame" x="3" y="0.0" width="317" height="399"/>
+                                        <rect key="frame" x="3" y="0.0" width="317" height="526"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="CnO-ce-RMu">
-                                            <rect key="frame" x="0.0" y="0.0" width="317" height="399"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="317" height="526"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <collectionView id="BV1-fO-kYE">
-                                                    <rect key="frame" x="0.0" y="0.0" width="317" height="399"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="317" height="526"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="Wpc-ju-jwg">
                                                         <size key="itemSize" width="302" height="70"/>
@@ -1547,12 +1535,8 @@
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
@@ -1577,7 +1561,6 @@
                         <outlet property="alarmNotifierTextField" destination="zQZ-To-CvJ" id="8JM-Vl-GLI"/>
                         <outlet property="clickRecognizer" destination="SyP-17-SH0" id="KTf-jA-otz"/>
                         <outlet property="collectionView" destination="BV1-fO-kYE" id="pPf-As-VfK"/>
-                        <outlet property="titleTextField" destination="CoE-q1-tay" id="o3X-bw-EdL"/>
                     </connections>
                 </viewController>
                 <customObject id="ldb-hh-cAO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -2512,4 +2495,7 @@ DQ
             <point key="canvasLocation" x="2762.5" y="1148"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
+    </resources>
 </document>
