@@ -17,6 +17,15 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 	var kvoObservation: NSKeyValueObservation?
 	let timeFormatter=DateFormatter()
 	let popover = NSPopover()
+	@IBAction func addAlarm(_ sender: Any) {
+		if AlarmCenter.sharedInstance.count>=24 {
+			let alert=NSAlert()
+			alert.messageText="Sorry, but Clock Suite does not allow more than 24 alarms."
+			alert.runModal()
+		} else {
+		EditableAlarmWindowController.newAlarmConfigurer.showNewAlarmConfigurer()
+		}
+	}
 	func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
 		return AlarmCenter.sharedInstance.count
 	}

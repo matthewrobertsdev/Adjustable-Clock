@@ -7,14 +7,11 @@
 //
 
 import Cocoa
-class AlarmsWindowController: FullViewWindowController, NSWindowDelegate, NSToolbarDelegate {
-	@IBOutlet weak var toolbar: NSToolbar!
+class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 	static var alarmsObject=AlarmsWindowController()
 	var fullscreen=false
     override func windowDidLoad() {
-		toolbar.items.first?.isEnabled=true
         super.windowDidLoad()
-		toolbar.delegate=self
 		WindowManager.sharedInstance.count+=1
 		AlarmsWindowController.alarmsObject=AlarmsWindowController()
 		window?.delegate=self
@@ -25,15 +22,6 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate, NSTool
 		}
 		//prepareWindowButtons()
     }
-	@IBAction func addAlarm(_ sender: Any) {
-		if AlarmCenter.sharedInstance.count>=24 {
-			let alert=NSAlert()
-			alert.messageText="Sorry, but Clock Suite does not allow more than 24 alarms."
-			alert.runModal()
-		} else {
-		EditableAlarmWindowController.newAlarmConfigurer.showNewAlarmConfigurer()
-		}
-	}
 	
 	func windowWillClose(_ notification: Notification) {
 		WindowManager.sharedInstance.count-=1
@@ -108,14 +96,4 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate, NSTool
 		}
 */
     }
-	func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-		return [ .addAlarm ]
-	}
-	func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
-		return [.addAlarm]
-	}
-}
-
-private extension NSToolbarItem.Identifier {
-	static let addAlarm: NSToolbarItem.Identifier = NSToolbarItem.Identifier(rawValue: "AddAlarm")
 }

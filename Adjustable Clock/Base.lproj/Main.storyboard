@@ -1030,28 +1030,11 @@
                         <windowCollectionBehavior key="collectionBehavior" managed="YES" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="921" y="551" width="302" height="164"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-                        <toolbar key="toolbar" implicitIdentifier="898D1C9B-D9D5-49E1-A461-2023973EA98E" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="small" id="SFO-9K-g2K">
-                            <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="VTY-0Z-XUE"/>
-                                <toolbarItem implicitItemIdentifier="79BE95C2-ED6F-4F51-A816-246B0063D9D2" label="Add Alarm" paletteLabel="Add Alarm" tag="-1" image="NSAddTemplate" id="tc8-eP-zTu">
-                                    <size key="minSize" width="11" height="11"/>
-                                    <size key="maxSize" width="11" height="11"/>
-                                    <connections>
-                                        <action selector="addAlarm:" target="Ymg-Mv-RWx" id="o3x-UT-PE7"/>
-                                    </connections>
-                                </toolbarItem>
-                            </allowedToolbarItems>
-                            <defaultToolbarItems>
-                                <toolbarItem reference="VTY-0Z-XUE"/>
-                                <toolbarItem reference="tc8-eP-zTu"/>
-                            </defaultToolbarItems>
-                        </toolbar>
                         <connections>
                             <outlet property="delegate" destination="Ymg-Mv-RWx" id="fqX-vh-Wvl"/>
                         </connections>
                     </window>
                     <connections>
-                        <outlet property="toolbar" destination="SFO-9K-g2K" id="RMb-OY-8MH"/>
                         <segue destination="jsi-dr-Kid" kind="relationship" relationship="window.shadowedContentViewController" id="qxi-ND-qyQ"/>
                     </connections>
                 </windowController>
@@ -1480,14 +1463,14 @@
             <objects>
                 <viewController id="jsi-dr-Kid" customClass="AlarmsViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="P05-f5-a90">
-                        <rect key="frame" x="0.0" y="0.0" width="322" height="646"/>
+                        <rect key="frame" x="0.0" y="0.0" width="322" height="687"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xt3-TQ-yqa">
-                                <rect key="frame" x="0.0" y="0.0" width="322" height="626"/>
+                                <rect key="frame" x="0.0" y="0.0" width="322" height="667"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="203" translatesAutoresizingMaskIntoConstraints="NO" id="zQZ-To-CvJ">
-                                        <rect key="frame" x="58" y="546" width="207" height="80"/>
+                                        <rect key="frame" x="58" y="587" width="207" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="EmH-hn-f4e"/>
                                             <constraint firstAttribute="width" constant="203" id="uLX-A7-Gis"/>
@@ -1498,6 +1481,16 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ayn-uw-g9M">
+                                        <rect key="frame" x="110" y="539" width="103" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Add Alarm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1oF-uc-I6b">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="addAlarm:" target="jsi-dr-Kid" id="AYb-CF-b75"/>
+                                        </connections>
+                                    </button>
                                     <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCo-eu-8mz">
                                         <rect key="frame" x="3" y="0.0" width="317" height="526"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="CnO-ce-RMu">
@@ -1532,8 +1525,10 @@
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
@@ -2492,7 +2487,4 @@ DQ
             <point key="canvasLocation" x="2762.5" y="1148"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="NSAddTemplate" width="11" height="11"/>
-    </resources>
 </document>
