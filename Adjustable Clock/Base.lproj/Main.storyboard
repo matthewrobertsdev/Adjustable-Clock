@@ -796,7 +796,6 @@
                             <viewController key="viewController" id="eh1-go-sqq">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="orl-rY-Tmm">
                                     <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Clock" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cEr-O1-O7k">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" usesAppearanceFont="YES"/>
@@ -808,7 +807,6 @@
                             <viewController key="viewController" id="7pK-wa-1q2">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jib-Hh-pC6">
                                     <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Alarms" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4fx-Cz-Inv">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" usesAppearanceFont="YES"/>
@@ -820,7 +818,6 @@
                             <viewController key="viewController" id="etD-Nd-RmZ">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eqr-Yl-mRv">
                                     <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Timers" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="R1c-y9-sa4">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" usesAppearanceFont="YES"/>
@@ -1033,7 +1030,7 @@
                         <windowCollectionBehavior key="collectionBehavior" managed="YES" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="921" y="551" width="302" height="164"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
-                        <toolbar key="toolbar" implicitIdentifier="898D1C9B-D9D5-49E1-A461-2023973EA98E" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="SFO-9K-g2K">
+                        <toolbar key="toolbar" implicitIdentifier="898D1C9B-D9D5-49E1-A461-2023973EA98E" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="small" id="SFO-9K-g2K">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="VTY-0Z-XUE"/>
                                 <toolbarItem implicitItemIdentifier="79BE95C2-ED6F-4F51-A816-246B0063D9D2" label="Add Alarm" paletteLabel="Add Alarm" tag="-1" image="NSAddTemplate" id="tc8-eP-zTu">
