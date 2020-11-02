@@ -334,7 +334,6 @@ class TimersViewController: ColorfulViewController,
 			TimersCenter.sharedInstance.getActiveTimers()
 		}
 	}
-	
 	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer,
 								successfully flag: Bool) {
 		TimersCenter.sharedInstance.getActiveTimers()
