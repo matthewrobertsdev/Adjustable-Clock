@@ -75,13 +75,12 @@ class DigitalDockClockView: NSView {
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
 		var path: NSBezierPath
-		let radius: CGFloat=15.0
 		if displaySeconds {
-			path=NSBezierPath(roundedRect: NSRect(x: 0, y: 0.035*frame.height, width: frame.size.width,
-												  height: 0.93*frame.height), xRadius: radius, yRadius: radius)
+			path=NSBezierPath(roundedRect: NSRect(x: 0, y: 0, width: frame.size.width,
+												  height: frame.height), xRadius: 30, yRadius: 30)
 		} else {
-			path=NSBezierPath(roundedRect: NSRect(x: 0, y: 0.25*frame.height, width: frame.size.width,
-												  height: 0.5*frame.height), xRadius: radius, yRadius: radius)
+			path=NSBezierPath(roundedRect: NSRect(x: 0, y: 0.096*frame.height, width: frame.size.width,
+												  height: 0.808*frame.height), xRadius: 25, yRadius: 25)
 		}
 		if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom {
 			if !hasDarkAppearance(view: self)

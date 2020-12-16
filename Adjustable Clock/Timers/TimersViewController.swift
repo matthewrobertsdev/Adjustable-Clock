@@ -9,7 +9,7 @@ import Cocoa
 import AVFoundation
 class TimersViewController: ColorfulViewController,
 	NSCollectionViewDataSource, NSCollectionViewDelegate, NSSoundDelegate, AVAudioPlayerDelegate {
-	@IBOutlet weak var titleTextField: NSTextField!
+	//@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var collectionView: NSCollectionView!
 	@IBOutlet weak var timerActiveLabel: NSTextField!
 	@IBOutlet weak var clickRecognizer: NSClickGestureRecognizer!
@@ -88,7 +88,7 @@ class TimersViewController: ColorfulViewController,
 		timerCollectionViewItem.resetButton.title="Clear"
 	}
 	func update() {
-		applyColorScheme(views: [ColorView](), labels: [titleTextField, timerActiveLabel])
+		applyColorScheme(views: [ColorView](), labels: [timerActiveLabel])
 		if let timerWindowController=view.window?.windowController as? TimersWindowController {
 			if !timerWindowController.fullscreen {
 				timerWindowController.applyFloatState()
@@ -334,7 +334,6 @@ class TimersViewController: ColorfulViewController,
 			TimersCenter.sharedInstance.getActiveTimers()
 		}
 	}
-	
 	func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer,
 								successfully flag: Bool) {
 		TimersCenter.sharedInstance.getActiveTimers()

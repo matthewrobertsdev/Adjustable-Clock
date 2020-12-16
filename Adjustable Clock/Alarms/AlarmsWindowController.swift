@@ -22,6 +22,7 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 		}
 		//prepareWindowButtons()
     }
+	
 	func windowWillClose(_ notification: Notification) {
 		WindowManager.sharedInstance.count-=1
 		saveState()
