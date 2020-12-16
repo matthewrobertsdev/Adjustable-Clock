@@ -18,7 +18,6 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 	@IBOutlet weak var timerActiveLabel: NSTextField!
 	override func viewDidLoad() {
         super.viewDidLoad()
-		//collectionView.indexPathForItem(at: NSPoint)
 		collectionView.dataSource=self
 		collectionView.delegate=self
 		popover.appearance=NSAppearance(named: NSAppearance.Name.vibrantDark)
@@ -35,6 +34,19 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		} else {
 			self.timerActiveLabel.isHidden=true
 		}
+	}
+	@objc func resetTimer(sender: Any?) {
+		guard let resetButton=sender as? NSButton else {
+			return
+		}
+		let index=resetButton.tag
+		guard let timerCollectionViewItem=collectionView.item(at: index) as? TimerCollectionViewItem else {
+			return
+		}
+		TimersCenter.sharedInstance.resetTimer(index: index)
+		timerCollectionViewItem.countdownTextField.stringValue=TimersCenter.sharedInstance.getCountDownString(index: index)
+		timerCollectionViewItem.startPauseButton.title="Start"
+		timerCollectionViewItem.stopTimeTextField.isHidden=true
 	}
 	func update() {
 		applyColorScheme(views: [ColorView](), labels: [titleTextField, timerActiveLabel])
@@ -60,8 +72,9 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		timerCollectionViewItem.countdownTextField.stringValue=dockDisplay ? "--" : TimersCenter.sharedInstance.getCountDownString(index: indexPath.item)
 		timerCollectionViewItem.startPauseButton.action=#selector(startPauseAction(sender:))
 		timerCollectionViewItem.startPauseButton.tag=indexPath.item
-		timerCollectionViewItem.settingsButton.tag=indexPath.item
-		timerCollectionViewItem.settingsButton.action=#selector(showPopover(sender:))
+		timerCollectionViewItem.setButton.tag=indexPath.item
+		timerCollectionViewItem.setButton.action=#selector(showPopover(sender:))
+		timerCollectionViewItem.resetButton.action=#selector(resetTimer(sender:))
 		let timers=TimersCenter.sharedInstance.timers
 		if timers[indexPath.item].active && timers[indexPath.item].going {
 			if dockDisplay {
@@ -209,3 +222,4 @@ class TimersViewController: ColorfulViewController, NSCollectionViewDataSource, 
 		}
 	}
 }
+

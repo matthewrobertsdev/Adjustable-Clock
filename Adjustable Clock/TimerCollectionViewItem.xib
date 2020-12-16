@@ -9,7 +9,8 @@
         <customObject id="-2" userLabel="File's Owner" customClass="TimerCollectionViewItem" customModule="Adjustable_Clock" customModuleProvider="target">
             <connections>
                 <outlet property="countdownTextField" destination="xEI-KT-zbD" id="ch0-fl-Hhj"/>
-                <outlet property="settingsButton" destination="KKu-uE-XUv" id="uYr-Ca-Iif"/>
+                <outlet property="resetButton" destination="5TG-GM-daY" id="rBa-uk-A49"/>
+                <outlet property="setButton" destination="KKu-uE-XUv" id="uYr-Ca-Iif"/>
                 <outlet property="startPauseButton" destination="zCm-pV-pco" id="6DF-Ty-E7R"/>
                 <outlet property="stopTimeTextField" destination="rGD-4H-Rts" id="uzp-FK-mK0"/>
                 <outlet property="titleTextField" destination="PIs-qO-OS2" id="WWG-zd-FsU"/>
@@ -41,7 +42,7 @@
                             </textFieldCell>
                         </textField>
                         <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7am-kp-jp5">
-                            <rect key="frame" x="112" y="10" width="127" height="21"/>
+                            <rect key="frame" x="71" y="10" width="210" height="21"/>
                             <subviews>
                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zCm-pV-pco">
                                     <rect key="frame" x="-6" y="-7" width="70" height="32"/>
@@ -57,12 +58,21 @@
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                 </button>
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5TG-GM-daY">
+                                    <rect key="frame" x="141" y="-7" width="75" height="32"/>
+                                    <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="d97-GU-xLg">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
                             </subviews>
                             <visibilityPriorities>
                                 <integer value="1000"/>
                                 <integer value="1000"/>
+                                <integer value="1000"/>
                             </visibilityPriorities>
                             <customSpacing>
+                                <real value="3.4028234663852886e+38"/>
                                 <real value="3.4028234663852886e+38"/>
                                 <real value="3.4028234663852886e+38"/>
                             </customSpacing>
