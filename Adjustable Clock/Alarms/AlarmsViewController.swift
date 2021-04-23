@@ -102,11 +102,11 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 			var activeAlarmString=String(numberOfAlarms)
 			if numberOfAlarms<2 {
 				activeAlarmString+=" Alarm Active: "
-				activeAlarmString+=DONTSTRING
+				activeAlarmString+=DONTSTRING+"until the alarm goes off."
 				alarmNotifierTextField.stringValue=activeAlarmString
 			} else {
 				activeAlarmString+=" Alarms Active: "
-				activeAlarmString+=DONTSTRING
+				activeAlarmString+=DONTSTRING+"until the alarms go off."
 				alarmNotifierTextField.stringValue=activeAlarmString
 			}
 		}

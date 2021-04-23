@@ -9,4 +9,6 @@ import Foundation
 let DONTSTRING =
 "Please do not shut down your computer, " +
 "log out, put it to sleep, close your " +
-"laptop's lid, or quit the program."
+"laptop's lid, or quit the program.  " +
+"Please ensure adequate electicity for " +
+"not sleeping "
