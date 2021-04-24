@@ -1078,14 +1078,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="351" height="414"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WYv-C8-oRU">
-                                        <rect key="frame" x="39" y="334" width="274" height="80"/>
+                                        <rect key="frame" x="34" y="334" width="284" height="80"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="270" id="ByD-aY-zzB"/>
+                                            <constraint firstAttribute="width" constant="280" id="ByD-aY-zzB"/>
                                             <constraint firstAttribute="height" constant="80" id="XIA-Ah-BEE"/>
                                         </constraints>
                                         <textFieldCell key="cell" alignment="left" id="mac-37-9QW">
                                             <font key="font" metaFont="system"/>
-                                            <string key="title">1 Timer Active: Please do not shut down your computer, log out, put it to sleep, close your laptop's lid, or quit the program.  Please ensure adequate electicity for not sleeping for the duration of the timer.</string>
+                                            <string key="title">1 Timer Active: Please do not shut down your computer, log out, put it to sleep, close your laptop's lid, or quit the program.  Please ensure computer has adequate electicity for staying awake for the duration of the timer.</string>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -1413,7 +1413,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="RLi-zz-p4w">
-                                                            <rect key="frame" x="160.5" y="1" width="118" height="17"/>
+                                                            <rect key="frame" x="161" y="1" width="118" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bQ7-JE-ioD">
@@ -1474,14 +1474,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="322" height="667"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="203" translatesAutoresizingMaskIntoConstraints="NO" id="zQZ-To-CvJ">
-                                        <rect key="frame" x="24" y="587" width="274" height="80"/>
+                                        <rect key="frame" x="19" y="587" width="284" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="EmH-hn-f4e"/>
-                                            <constraint firstAttribute="width" constant="270" id="uLX-A7-Gis"/>
+                                            <constraint firstAttribute="width" constant="280" id="uLX-A7-Gis"/>
                                         </constraints>
                                         <textFieldCell key="cell" allowsUndo="NO" id="4z5-XM-3fW">
                                             <font key="font" usesAppearanceFont="YES"/>
-                                            <string key="title">1 Alarm Active: Please do not shut down your computer, log out, put it to sleep, close your laptop's lid, or quit the program.  Please ensure adequate electicity for not sleeping for the duration of the alarm.</string>
+                                            <string key="title">1 Alarm Active: Please do not shut down your computer, log out, put it to sleep, close your laptop's lid, or quit the program.  Please ensure computer has adequate electicity for staying awake until the alarm goes off.</string>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -2075,9 +2075,9 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqo-KE-Hgo">
-                                <rect key="frame" x="20" y="60" width="165" height="192"/>
+                                <rect key="frame" x="20" y="60" width="127" height="192"/>
                                 <clipView key="contentView" id="NYR-eA-1Op">
-                                    <rect key="frame" x="1" y="1" width="163" height="190"/>
+                                    <rect key="frame" x="1" y="1" width="125" height="190"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" viewBased="YES" id="8WR-Ux-P7L">
@@ -2128,7 +2128,7 @@ DQ
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="fea-IN-4fV">
-                                    <rect key="frame" x="1" y="175" width="163" height="16"/>
+                                    <rect key="frame" x="1" y="175" width="125" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="EQl-rh-La8">
@@ -2338,9 +2338,9 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView ambiguous="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9c-Ep-EZV">
-                                <rect key="frame" x="20" y="75" width="193" height="192"/>
+                                <rect key="frame" x="20" y="75" width="135" height="192"/>
                                 <clipView key="contentView" id="Ibf-8S-T6V">
-                                    <rect key="frame" x="1" y="1" width="191" height="190"/>
+                                    <rect key="frame" x="1" y="1" width="133" height="190"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" viewBased="YES" id="UHa-5h-UHW">
@@ -2391,7 +2391,7 @@ DQ
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Vb8-Yc-HZY">
-                                    <rect key="frame" x="1" y="175" width="191" height="16"/>
+                                    <rect key="frame" x="1" y="175" width="133" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="poz-Ih-d5S">
@@ -2400,7 +2400,7 @@ DQ
                                 </scroller>
                             </scrollView>
                             <stackView distribution="equalSpacing" orientation="horizontal" alignment="top" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z5C-6f-XMB">
-                                <rect key="frame" x="11" y="29" width="183" height="22"/>
+                                <rect key="frame" x="-18" y="29" width="183" height="22"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Boa-ja-PTg">
                                         <rect key="frame" x="-7" y="-5" width="76" height="32"/>
@@ -2439,7 +2439,7 @@ DQ
                                 </customSpacing>
                             </stackView>
                             <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ngl-mH-VsA">
-                                <rect key="frame" x="12" y="286" width="181" height="20"/>
+                                <rect key="frame" x="-17" y="286" width="181" height="20"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eeu-tN-BES">
                                         <rect key="frame" x="-7" y="-7" width="93" height="32"/>
