@@ -12,3 +12,5 @@ let DONTSTRING =
 "laptop's lid, or quit the program.  " +
 "Please ensure computer has adequate " +
 "electicity for staying awake "
+let FINESTRING =
+"It's fine if it puts its display to sleep."

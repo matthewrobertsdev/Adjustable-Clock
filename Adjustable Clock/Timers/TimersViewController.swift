@@ -53,11 +53,11 @@ class TimersViewController: ColorfulViewController,
 			var activeTimerString=String(TimersCenter.sharedInstance.activeTimers)
 			if TimersCenter.sharedInstance.activeTimers<2 {
 				activeTimerString+=" Timer Active: "
-				activeTimerString+=DONTSTRING+"for the duration of the timer."
+				activeTimerString+=DONTSTRING+"for the duration of the timer.  "+FINESTRING
 				timerActiveLabel.stringValue=activeTimerString
 			} else {
 				activeTimerString+=" Timers Active: "
-				activeTimerString+=DONTSTRING+"for the duration of the timers."
+				activeTimerString+=DONTSTRING+"for the duration of the timers.  "+FINESTRING
 				timerActiveLabel.stringValue=activeTimerString
 			}
 		}

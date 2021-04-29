@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="17008"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="18009"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
     </dependencies>
@@ -1071,33 +1071,33 @@
             <objects>
                 <viewController id="Fch-iR-SvQ" customClass="TimersViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="gv6-gj-aTH">
-                        <rect key="frame" x="0.0" y="0.0" width="351" height="434"/>
+                        <rect key="frame" x="0.0" y="0.0" width="351" height="474"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="3" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="li0-1M-reH">
-                                <rect key="frame" x="0.0" y="0.0" width="351" height="414"/>
+                                <rect key="frame" x="0.0" y="0.0" width="351" height="454"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WYv-C8-oRU">
-                                        <rect key="frame" x="34" y="334" width="284" height="80"/>
+                                        <rect key="frame" x="9" y="374" width="334" height="80"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="280" id="ByD-aY-zzB"/>
+                                            <constraint firstAttribute="width" constant="330" id="ByD-aY-zzB"/>
                                             <constraint firstAttribute="height" constant="80" id="XIA-Ah-BEE"/>
                                         </constraints>
                                         <textFieldCell key="cell" alignment="left" id="mac-37-9QW">
                                             <font key="font" metaFont="system"/>
-                                            <string key="title">1 Timer Active: Please do not shut down your computer, log out, put it to sleep, close your laptop's lid, or quit the program.  Please ensure computer has adequate electicity for staying awake for the duration of the timer.</string>
+                                            <string key="title">1 Timer Active: Please do not shut down your computer, log out, put it to sleep, close your laptop's lid, or quit the program.  Please ensure computer has adequate electicity for staying awake for the duration of the timer.  It's fine if it puts its display to sleep.</string>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7Q-Wo-kc1">
-                                        <rect key="frame" x="0.0" y="0.0" width="351" height="331"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="351" height="371"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="bXY-wo-YzA">
-                                            <rect key="frame" x="0.0" y="0.0" width="351" height="331"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="351" height="371"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <collectionView id="zzm-Pa-2aK">
-                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="331"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="351" height="371"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="Lab-3U-20t">
                                                         <size key="itemSize" width="351" height="204"/>
@@ -1413,7 +1413,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="RLi-zz-p4w">
-                                                            <rect key="frame" x="161" y="1" width="118" height="17"/>
+                                                            <rect key="frame" x="160.5" y="1" width="118" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bQ7-JE-ioD">
@@ -1467,27 +1467,27 @@
             <objects>
                 <viewController id="jsi-dr-Kid" customClass="AlarmsViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="P05-f5-a90">
-                        <rect key="frame" x="0.0" y="0.0" width="322" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="322" height="712"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xt3-TQ-yqa">
-                                <rect key="frame" x="0.0" y="0.0" width="322" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="322" height="692"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" preferredMaxLayoutWidth="203" translatesAutoresizingMaskIntoConstraints="NO" id="zQZ-To-CvJ">
-                                        <rect key="frame" x="19" y="587" width="284" height="80"/>
+                                        <rect key="frame" x="19" y="592" width="284" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="EmH-hn-f4e"/>
+                                            <constraint firstAttribute="height" constant="100" id="EmH-hn-f4e"/>
                                             <constraint firstAttribute="width" constant="280" id="uLX-A7-Gis"/>
                                         </constraints>
                                         <textFieldCell key="cell" allowsUndo="NO" id="4z5-XM-3fW">
                                             <font key="font" usesAppearanceFont="YES"/>
-                                            <string key="title">1 Alarm Active: Please do not shut down your computer, log out, put it to sleep, close your laptop's lid, or quit the program.  Please ensure computer has adequate electicity for staying awake until the alarm goes off.</string>
+                                            <string key="title">1 Alarm Active: Please do not shut down your computer, log out, put it to sleep, close your laptop's lid, or quit the program.  Please ensure computer has adequate electicity for staying awake until the alarm goes off.  It's fine if it puts its display to sleep.</string>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ayn-uw-g9M">
-                                        <rect key="frame" x="113" y="540" width="97" height="32"/>
+                                        <rect key="frame" x="113" y="545" width="97" height="32"/>
                                         <buttonCell key="cell" type="push" title="Add Alarm" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1oF-uc-I6b">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -1497,13 +1497,13 @@
                                         </connections>
                                     </button>
                                     <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCo-eu-8mz">
-                                        <rect key="frame" x="3" y="0.0" width="317" height="527"/>
+                                        <rect key="frame" x="3" y="0.0" width="317" height="532"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="CnO-ce-RMu">
-                                            <rect key="frame" x="0.0" y="0.0" width="317" height="527"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="317" height="532"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <collectionView id="BV1-fO-kYE">
-                                                    <rect key="frame" x="0.0" y="0.0" width="317" height="527"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="317" height="532"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="Wpc-ju-jwg">
                                                         <size key="itemSize" width="302" height="70"/>
@@ -2071,13 +2071,13 @@ DQ
             <objects>
                 <viewController storyboardIdentifier="ChooseAlertViewController" id="WeC-3E-QE7" customClass="AlertViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="Vem-cr-fJe">
-                        <rect key="frame" x="0.0" y="0.0" width="263" height="272"/>
+                        <rect key="frame" x="0.0" y="0.0" width="205" height="272"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqo-KE-Hgo">
-                                <rect key="frame" x="20" y="60" width="127" height="192"/>
+                                <rect key="frame" x="20" y="60" width="98" height="192"/>
                                 <clipView key="contentView" id="NYR-eA-1Op">
-                                    <rect key="frame" x="1" y="1" width="125" height="190"/>
+                                    <rect key="frame" x="1" y="1" width="96" height="190"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" viewBased="YES" id="8WR-Ux-P7L">
@@ -2128,7 +2128,7 @@ DQ
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="fea-IN-4fV">
-                                    <rect key="frame" x="1" y="175" width="125" height="16"/>
+                                    <rect key="frame" x="1" y="175" width="96" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="EQl-rh-La8">
@@ -2334,13 +2334,13 @@ DQ
             <objects>
                 <viewController storyboardIdentifier="PlaylistViewController" id="Udh-xA-6tS" customClass="PlaylistViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="inG-ay-1vv">
-                        <rect key="frame" x="0.0" y="0.0" width="233" height="326"/>
+                        <rect key="frame" x="0.0" y="0.0" width="175" height="326"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView ambiguous="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9c-Ep-EZV">
-                                <rect key="frame" x="20" y="75" width="135" height="192"/>
+                                <rect key="frame" x="20" y="75" width="19" height="192"/>
                                 <clipView key="contentView" id="Ibf-8S-T6V">
-                                    <rect key="frame" x="1" y="1" width="133" height="190"/>
+                                    <rect key="frame" x="1" y="1" width="17" height="190"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" viewBased="YES" id="UHa-5h-UHW">
@@ -2391,7 +2391,7 @@ DQ
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Vb8-Yc-HZY">
-                                    <rect key="frame" x="1" y="175" width="133" height="16"/>
+                                    <rect key="frame" x="1" y="175" width="17" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="poz-Ih-d5S">
@@ -2400,7 +2400,7 @@ DQ
                                 </scroller>
                             </scrollView>
                             <stackView distribution="equalSpacing" orientation="horizontal" alignment="top" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z5C-6f-XMB">
-                                <rect key="frame" x="-18" y="29" width="183" height="22"/>
+                                <rect key="frame" x="-62" y="29" width="183" height="22"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Boa-ja-PTg">
                                         <rect key="frame" x="-7" y="-5" width="76" height="32"/>
@@ -2439,7 +2439,7 @@ DQ
                                 </customSpacing>
                             </stackView>
                             <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" ambiguous="YES" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ngl-mH-VsA">
-                                <rect key="frame" x="-17" y="286" width="181" height="20"/>
+                                <rect key="frame" x="-61" y="286" width="181" height="20"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eeu-tN-BES">
                                         <rect key="frame" x="-7" y="-7" width="93" height="32"/>
