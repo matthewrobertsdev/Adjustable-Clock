@@ -97,7 +97,6 @@ class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate {
 			alarm.updateExpirationDate()
 			let dateFormatter=DateFormatter()
 			dateFormatter.setLocalizedDateFormatFromTemplate("MMdyyyyhhmm")
-			print("abcd"+dateFormatter.string(from: alarm.expiresDate))
 			if !alarm.repeats && alarm.expiresDate<Date() {
 				alarm.active=false
 				if let alarmViewController: AlarmsViewController=AlarmsWindowController.alarmsObject.contentViewController
@@ -108,7 +107,6 @@ class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate {
 				return
 			}
 			let alarmTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
-			print("abcd"+String(getTimeInterval(alarm: alarm)))
 			alarmTimer.schedule(deadline: .now()+getTimeInterval(alarm: alarm), repeating: .never, leeway: .milliseconds(0))
 			alarmTimer.setEventHandler {
 				if alarm.repeats != true {
@@ -123,7 +121,6 @@ class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate {
 				alarmSound?.delegate=self
 				if !alarm.usesSong {
 					self.soundCount=0
-					//alarmSound?.loops=true
 					alarmSound?.play()
 				} else {
 					do {
@@ -139,7 +136,6 @@ class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate {
 						self.player?.volume = 1.0
 						self.player?.play()
 					} catch {
-						//alarmSound?.loops=true
 						self.soundCount=0
 						alarmSound?.play()
 					}
