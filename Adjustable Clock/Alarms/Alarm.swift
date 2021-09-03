@@ -33,6 +33,15 @@ class Alarm: Codable {
 			return timeString
 		}
 	}
+	func getValidity() -> Bool {
+		let dateReader=DateFormatter()
+		dateReader.locale=Locale(identifier: "en_US")
+		dateReader.setLocalizedDateFormatFromTemplate("hmm")
+		if let _=dateReader.date(from: timeString) {
+			return true
+		}
+		return false
+	}
 	func get24HourTime() -> String {
 		let dateReader=DateFormatter()
 		dateReader.locale=Locale(identifier: "en_US")
