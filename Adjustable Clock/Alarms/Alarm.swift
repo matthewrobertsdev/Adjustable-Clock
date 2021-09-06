@@ -33,7 +33,27 @@ class Alarm: Codable {
 			return timeString
 		}
 	}
+	func getValidity() -> Bool {
+		let dateReader=DateFormatter()
+		dateReader.locale=Locale(identifier: "en_US")
+		dateReader.setLocalizedDateFormatFromTemplate("hmm")
+		if let _=dateReader.date(from: timeString) {
+			return true
+		}
+		return false
+	}
 	func get24HourTime() -> String {
+		let dateReader=DateFormatter()
+		dateReader.locale=Locale(identifier: "en_US")
+		dateReader.setLocalizedDateFormatFromTemplate("hmm")
+		if let date=dateReader.date(from: timeString) {
+			let dateFormatter=DateFormatter()
+			dateFormatter.locale=Locale(identifier: "en_US")
+			dateFormatter.setLocalizedDateFormatFromTemplate("Hmm")
+			return dateFormatter.string(from: date)
+		}
+		return timeString
+		/*
 		var twentyFourHourString=""
 		if timeString.hasPrefix("12") && timeString.hasSuffix("AM") {
 			twentyFourHourString+="00:"
@@ -62,6 +82,7 @@ class Alarm: Codable {
 			twentyFourHourString+=String((Int(components[0]) ?? 0)+12)+":"+components[1]
 			return twentyFourHourString
 		}
+*/
 	}
 	func setExpirationDate(currentDate: Date) {
 		let calendar=Calendar.autoupdatingCurrent

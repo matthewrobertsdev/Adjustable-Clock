@@ -87,6 +87,7 @@ class EditableAlarmViewController: NSViewController {
 			}
 		}
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
+		timeFormatter.locale=Locale(identifier: "en_US")
 		let timeString=timeFormatter.string(from: datePicker.dateValue)
 		let alarm=Alarm(time: datePicker.dateValue,
 						timeString: timeString, usesSong: usesSong, repeats: repeating,

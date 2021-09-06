@@ -16,7 +16,7 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 		AlarmsWindowController.alarmsObject=AlarmsWindowController()
 		window?.delegate=self
 		AlarmsPreferencesStorage.sharedInstance.setWindowIsClosed()
-		window?.minSize=CGSize(width: 317, height: 300)
+		window?.minSize=CGSize(width: 317, height: 360)
 		if AlarmsPreferencesStorage.sharedInstance.hasLaunchedBefore() {
 			AlarmsWindowRestorer().loadSavedWindowCGRect(window: window)
 		}

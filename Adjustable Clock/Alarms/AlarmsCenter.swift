@@ -25,7 +25,6 @@ class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate {
 	private var soundCount=0
 	override private init() {
 		super.init()
-		setUp()
 	}
 	func setUp() {
 		notifcationCenter.addObserver(self, selector: #selector(scheduleAlarms),
@@ -36,7 +35,25 @@ class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate {
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
 		jsonEncoder.outputFormatting = .prettyPrinted
 		loadAlarms()
+		validateAlarms()
 		setAlarms()
+	}
+	func validateAlarms() {
+		for alarm in alarms {
+			if !alarm.getValidity() {
+				let alarmAlert=NSAlert()
+				alarmAlert.messageText="Sorry, but your saved alarms were incompatible with the latest version of Clock Suite.  Please reset them."
+				alarmAlert.addButton(withTitle: "Got it.")
+				alarmAlert.runModal()
+				while alarms.count>0 {
+					alarms.removeLast()
+				}
+				count=0
+				activeAlarms=0
+				saveAlarms()
+				break
+			}
+		}
 	}
 	func saveAlarms() {
 		do {
@@ -97,7 +114,6 @@ class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate {
 			alarm.updateExpirationDate()
 			let dateFormatter=DateFormatter()
 			dateFormatter.setLocalizedDateFormatFromTemplate("MMdyyyyhhmm")
-			print("abcd"+dateFormatter.string(from: alarm.expiresDate))
 			if !alarm.repeats && alarm.expiresDate<Date() {
 				alarm.active=false
 				if let alarmViewController: AlarmsViewController=AlarmsWindowController.alarmsObject.contentViewController
@@ -108,7 +124,6 @@ class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate {
 				return
 			}
 			let alarmTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
-			print("abcd"+String(getTimeInterval(alarm: alarm)))
 			alarmTimer.schedule(deadline: .now()+getTimeInterval(alarm: alarm), repeating: .never, leeway: .milliseconds(0))
 			alarmTimer.setEventHandler {
 				if alarm.repeats != true {
@@ -123,7 +138,6 @@ class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate {
 				alarmSound?.delegate=self
 				if !alarm.usesSong {
 					self.soundCount=0
-					//alarmSound?.loops=true
 					alarmSound?.play()
 				} else {
 					do {
@@ -139,7 +153,6 @@ class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate {
 						self.player?.volume = 1.0
 						self.player?.play()
 					} catch {
-						//alarmSound?.loops=true
 						self.soundCount=0
 						alarmSound?.play()
 					}
@@ -181,6 +194,7 @@ class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate {
 		let now=Date()
 		let timeFormatter=DateFormatter()
 		timeFormatter.setLocalizedDateFormatFromTemplate("hmm")
+		timeFormatter.locale=Locale(identifier: "en_US")
 		let alarmTime=timeFormatter.date(from: alarm.timeString) ?? Date()
 		let month=calendar.dateComponents([.month], from: now).month
 		let day=calendar.dateComponents([.day], from: now).day
