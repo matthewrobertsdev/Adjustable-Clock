@@ -14,15 +14,15 @@ class HelpMenuController: HelpMenuDelegate {
 		menu.helpMenuDelegate=self
 	}
 	func openHomePage() {
-		NSWorkspace.shared.open(URL(string: "https://matthewrobertsdev.github.io/Clock-Suite/#/")!)
+		NSWorkspace.shared.open(URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/")!)
 	}
 	func openContactTheDeveloperPage() {
-		NSWorkspace.shared.open(URL(string: "https://matthewrobertsdev.github.io/Clock-Suite/#/contact")!)
+		NSWorkspace.shared.open(URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/contact")!)
 	}
 	func openPrivacyPolicyPage() {
-		NSWorkspace.shared.open(URL(string: "https://matthewrobertsdev.github.io/Clock-Suite/#/privacy")!)
+		NSWorkspace.shared.open(URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/privacy/clocksuite")!)
 	}
 	func openFAQ_Page() {
-		NSWorkspace.shared.open(URL(string: "https://matthewrobertsdev.github.io/Clock-Suite/#/faq")!)
+		NSWorkspace.shared.open(URL(string: "https://matthewrobertsdev.github.io/celeritasapps/#/faq/clocksuite")!)
 	}
 }
