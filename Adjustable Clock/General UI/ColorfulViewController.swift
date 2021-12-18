@@ -84,6 +84,9 @@ class ColorfulViewController: NSViewController {
 				&& ClockPreferencesStorage.sharedInstance.colorChoice == ColorChoice.systemColor && ClockPreferencesStorage.sharedInstance.useNightMode {
 				contrastColor=NSColor(named: "MatchingColor") ?? NSColor.labelColor
 			}
+			if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom && ClockPreferencesStorage.sharedInstance.useNightMode && ColorsMenuController.dark {
+				contrastColor=contrastColor.blended(withFraction: 0.4, of: NSColor.black) ?? NSColor.systemGray
+			}
 			textColor=contrastColor
 				for label in labels {
 					label.textColor=contrastColor

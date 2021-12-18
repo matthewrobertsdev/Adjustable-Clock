@@ -10,7 +10,7 @@ class ColorsMenuController: NSObject {
     var colorsMenu: NSMenu?
 	let nsColorPanel=NSColorPanel.shared
 	let notificationCenter=NotificationCenter.default
-	var dark=false
+	static var dark=false
     init(colorsMenu: NSMenu) {
 		super.init()
         self.colorsMenu=colorsMenu
@@ -23,14 +23,16 @@ class ColorsMenuController: NSObject {
 			#selector(handleChangeToLightMode), name: NSNotification.Name.didChangToLightMode, object: nil)
     }
 	@objc func handleChangeToDarkMode(sender: Any) {
-		dark=true
+		ColorsMenuController.dark=true
 		makeColorMenuUI()
 		updateColorMenuUI()
+		updateClocksForPreferenceChanges()
 	}
 	@objc func handleChangeToLightMode(sender: Any) {
-		dark=false
+		ColorsMenuController.dark=false
 		makeColorMenuUI()
 		updateColorMenuUI()
+		updateClocksForPreferenceChanges()
 	}
     @objc func changeColor(sender: NSMenuItem) {
         let newColorChoice=ColorModel.sharedInstance.colorArray[sender.tag]
@@ -92,7 +94,7 @@ class ColorsMenuController: NSObject {
 			colorsMenu.items[index].action=#selector(changeColor(sender:))
 			var templateImage=NSImage()
 			var tintColor=NSColor.clear
-			if dark {
+			if ColorsMenuController.dark {
 				templateImage=NSImage(named: "white_rectangle") ?? NSImage()
 				if ClockPreferencesStorage.sharedInstance.colorForForeground && !ClockPreferencesStorage.sharedInstance.useNightMode {
 					templateImage=NSImage(named: "black_rectangle") ?? NSImage()
@@ -140,11 +142,11 @@ class ColorsMenuController: NSObject {
         //update color image for custom color based on current custum color
         var templateImage=NSImage()
 		var tintColor=ClockPreferencesStorage.sharedInstance.customColor
-		if dark && (!ClockPreferencesStorage.sharedInstance.colorForForeground || ClockPreferencesStorage.sharedInstance.useNightMode) {
+		if ColorsMenuController.dark && (!ClockPreferencesStorage.sharedInstance.colorForForeground || ClockPreferencesStorage.sharedInstance.useNightMode) {
 			tintColor=ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black)
 				?? NSColor.systemGray
 		}
-		if !dark || (ClockPreferencesStorage.sharedInstance.colorForForeground && !ClockPreferencesStorage.sharedInstance.useNightMode) {
+		if !ColorsMenuController.dark || (ClockPreferencesStorage.sharedInstance.colorForForeground && !ClockPreferencesStorage.sharedInstance.useNightMode) {
 			templateImage=NSImage(named: "black_rectangle") ?? NSImage()
 		} else {
 			templateImage=NSImage(named: "white_rectangle") ?? NSImage()
