@@ -52,7 +52,7 @@ class ColorsMenuController: NSObject {
         updateClocksForPreferenceChanges()
     }
 	@objc func useNightmode(sender: NSMenuItem) {
-		ClockPreferencesStorage.sharedInstance.changeToUseNightMode()
+		ClockPreferencesStorage.sharedInstance.toggleNightMode()
 		makeColorMenuUI()
 		updateColorMenuUI()
 		updateClocksForPreferenceChanges()
@@ -94,35 +94,18 @@ class ColorsMenuController: NSObject {
 			var tintColor=NSColor.clear
 			if dark {
 				templateImage=NSImage(named: "white_rectangle") ?? NSImage()
-				if ClockPreferencesStorage.sharedInstance.colorForForeground {
-					templateImage=NSImage(named: "dark_gray_rectangle") ?? NSImage()
+				if ClockPreferencesStorage.sharedInstance.colorForForeground && !ClockPreferencesStorage.sharedInstance.useNightMode {
+					templateImage=NSImage(named: "black_rectangle") ?? NSImage()
 					tintColor=ColorModel.sharedInstance.lightColorsDictionary[ColorModel.sharedInstance.colorArray[index]]
 						?? NSColor.clear
 				} else {
 					tintColor=ColorModel.sharedInstance.darkColorsDictionary[ColorModel.sharedInstance.colorArray[index]]
 						?? NSColor.clear
 				}
-				if index==0 { if ClockPreferencesStorage.sharedInstance.colorForForeground {
-					templateImage=NSImage(named: "dark_gray_rectangle") ?? NSImage()
-						tintColor=NSColor.white
-				} else {
-					tintColor=NSColor(named: "DarkBackgroundColor") ?? NSColor.black
-					}
-				}
-				if index==3 && !ClockPreferencesStorage.sharedInstance.colorForForeground {
-					tintColor=NSColor.systemGray
-				}
 			} else {
 			templateImage=NSImage(named: "black_rectangle") ?? NSImage()
 				tintColor=ColorModel.sharedInstance.lightColorsDictionary[ColorModel.sharedInstance.colorArray[index]]
 					?? NSColor.clear
-				if index==0 && ClockPreferencesStorage.sharedInstance.colorForForeground {
-					templateImage=NSImage(named: "dark_gray_rectangle") ?? NSImage()
-					tintColor=NSColor.black
-				}
-				if index==1 && !ClockPreferencesStorage.sharedInstance.colorForForeground {
-					tintColor=NSColor.systemGray
-				}
 			}
 			templateImage.isTemplate=true
 			let colorImage=tintExceptBorder(image: templateImage, tintColor: tintColor, borderPixels: CGFloat(0.25))
@@ -135,13 +118,13 @@ class ColorsMenuController: NSObject {
 		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+2].isEnabled=true
 		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+2].target=self
 		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+2].action=#selector(colorOnBackground(sender:))
-		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+3].isEnabled=true
-		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+3].target=self
-		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+3].action=#selector(useNightmode(sender:))
+		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+4].isEnabled=true
+		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+4].target=self
+		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+4].action=#selector(useNightmode(sender:))
 		//set-up show color panel menuItem
-		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+5].isEnabled=true
-        colorsMenu.items[ColorModel.sharedInstance.colorArray.count+5].target=self
-        colorsMenu.items[ColorModel.sharedInstance.colorArray.count+5].action=#selector(showColorPanel(sender:))
+		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+6].isEnabled=true
+        colorsMenu.items[ColorModel.sharedInstance.colorArray.count+6].target=self
+        colorsMenu.items[ColorModel.sharedInstance.colorArray.count+6].action=#selector(showColorPanel(sender:))
 	}
 	func updateColorMenuUI() {
         for index in 0...ColorModel.sharedInstance.colorArray.count-1 {
@@ -157,16 +140,14 @@ class ColorsMenuController: NSObject {
         //update color image for custom color based on current custum color
         var templateImage=NSImage()
 		var tintColor=ClockPreferencesStorage.sharedInstance.customColor
-		if dark && !ClockPreferencesStorage.sharedInstance.colorForForeground {
+		if dark && (!ClockPreferencesStorage.sharedInstance.colorForForeground || ClockPreferencesStorage.sharedInstance.useNightMode) {
 			tintColor=ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black)
 				?? NSColor.systemGray
 		}
-		if ClockPreferencesStorage.sharedInstance.colorForForeground {
-			templateImage=NSImage(named: "dark_gray_rectangle") ?? NSImage()
-		} else if dark {
-			templateImage=NSImage(named: "white_rectangle") ?? NSImage()
-		} else {
+		if !dark || (ClockPreferencesStorage.sharedInstance.colorForForeground && !ClockPreferencesStorage.sharedInstance.useNightMode) {
 			templateImage=NSImage(named: "black_rectangle") ?? NSImage()
+		} else {
+			templateImage=NSImage(named: "white_rectangle") ?? NSImage()
 		}
         templateImage.isTemplate=true
 		let colorImage=tintExceptBorder(image: templateImage, tintColor: tintColor, borderPixels: CGFloat(0.25))
@@ -174,15 +155,14 @@ class ColorsMenuController: NSObject {
 		if ClockPreferencesStorage.sharedInstance.colorForForeground {
 			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+1].state=NSControl.StateValue.on
 			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+2].state=NSControl.StateValue.off
-			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+3].state=NSControl.StateValue.off
-		} else if ClockPreferencesStorage.sharedInstance.useNightMode {
-			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+1].state=NSControl.StateValue.off
-			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+2].state=NSControl.StateValue.off
-			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+3].state=NSControl.StateValue.on
 		} else {
 			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+1].state=NSControl.StateValue.off
 			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+2].state=NSControl.StateValue.on
-			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+3].state=NSControl.StateValue.off
+		}
+		if ClockPreferencesStorage.sharedInstance.useNightMode {
+			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+4].state=NSControl.StateValue.on
+		} else {
+				colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+4].state=NSControl.StateValue.off
 		}
     }
 	func updateClocksForPreferenceChanges() {

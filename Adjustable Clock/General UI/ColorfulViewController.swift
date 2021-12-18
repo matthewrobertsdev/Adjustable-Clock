@@ -44,7 +44,7 @@ class ColorfulViewController: NSViewController {
 			backgroundView.wantsLayer=true
 		if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom {
 			contrastColor=ClockPreferencesStorage.sharedInstance.customColor
-		} else if ClockPreferencesStorage.sharedInstance.colorForForeground {
+		} else if ClockPreferencesStorage.sharedInstance.colorForForeground && !ClockPreferencesStorage.sharedInstance.useNightMode {
 			contrastColor =
 			ColorModel.sharedInstance.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
 				?? ColorModel.sharedInstance.lightColorsDictionary[ColorChoice.systemColor] ?? NSColor.systemGray
@@ -58,7 +58,7 @@ class ColorfulViewController: NSViewController {
 				visualEffectView.isHidden=true
 				//view.layer?.backgroundColor = .clear
 				print("abcd dark gray")
-				backgroundView.backgroundColor=NSColor(named: "DarkBackground") ?? NSColor.darkGray
+				backgroundView.backgroundColor=NSColor(named: "SystemDarkBackground") ?? NSColor.darkGray
 				backgroundView.setNeedsDisplay(backgroundView.bounds)
 			} else {
 			visualEffectView.isHidden=false
@@ -81,8 +81,8 @@ class ColorfulViewController: NSViewController {
 				//visualEffectView.material = .dark
 			}
 			if ClockPreferencesStorage.sharedInstance.colorForForeground
-				&& ClockPreferencesStorage.sharedInstance.colorChoice == ColorChoice.systemColor {
-				contrastColor=NSColor.labelColor
+				&& ClockPreferencesStorage.sharedInstance.colorChoice == ColorChoice.systemColor && ClockPreferencesStorage.sharedInstance.useNightMode {
+				contrastColor=NSColor(named: "MatchingColor") ?? NSColor.labelColor
 			}
 			textColor=contrastColor
 				for label in labels {
