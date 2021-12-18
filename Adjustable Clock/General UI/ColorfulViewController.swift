@@ -53,36 +53,7 @@ class ColorfulViewController: NSViewController {
 				ColorModel.sharedInstance.colorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
 				?? ColorModel.sharedInstance.colorsDictionary[ColorChoice.systemColor] ?? NSColor.systemGray
 		}
-		if ClockPreferencesStorage.sharedInstance.colorForForeground==false {
-			visualEffectView.isHidden=true
-			for label in labels {
-				label.textColor=NSColor.labelColor
-			}
-			textColor=NSColor.labelColor
-			if !isDarkMode() &&
-				contrastColor==NSColor.black {
-				if #available(OSX 10.13, *) {
-					contrastColor=NSColor(named: "BlackBackground") ?? NSColor.systemGray
-				}
-					backgroundView.backgroundColor=contrastColor
-					backgroundView.setNeedsDisplay(backgroundView.bounds)
-			} else if isDarkMode() {
-				if contrastColor==NSColor.white {
-					if #available(OSX 10.13, *) {
-						contrastColor=NSColor(named: "WhiteBackground") ?? NSColor.systemGray
-					}
-				}
-					backgroundView.backgroundColor=contrastColor
-					backgroundView.setNeedsDisplay(backgroundView.bounds)
-			} else {
-					backgroundView.backgroundColor=contrastColor
-					backgroundView.setNeedsDisplay(backgroundView.bounds)
-			}
-			for aView in views {
-				aView.color=NSColor.labelColor
-				aView.setNeedsDisplay(aView.bounds)
-			}
-		} else {
+		if ClockPreferencesStorage.sharedInstance.colorForForeground {
 			if !GeneralPreferencesStorage.sharedInstance.usesTranslucentBackground {
 				visualEffectView.isHidden=true
 				//view.layer?.backgroundColor = .clear
@@ -121,6 +92,38 @@ class ColorfulViewController: NSViewController {
 					aView.color=contrastColor
 					aView.setNeedsDisplay(aView.bounds)
 				}
+		} else {
+			var labelColor=NSColor.labelColor
+			if ClockPreferencesStorage.sharedInstance.useNightMode {
+				labelColor=NSColor.black
+				if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.black {
+					labelColor=NSColor(named: "DarkLabel") ?? NSColor.labelColor
+				}
+			}
+			visualEffectView.isHidden=true
+			for label in labels {
+				label.textColor=labelColor
+			}
+			textColor=labelColor
+			if !isDarkMode() &&
+				contrastColor==NSColor.black {
+				contrastColor=NSColor(named: "BlackBackground") ?? NSColor.systemGray
+					backgroundView.backgroundColor=contrastColor
+					backgroundView.setNeedsDisplay(backgroundView.bounds)
+			} else if isDarkMode() {
+				if contrastColor==NSColor.white {
+					contrastColor=NSColor(named: "WhiteBackground") ?? NSColor.systemGray
+				}
+					backgroundView.backgroundColor=contrastColor
+					backgroundView.setNeedsDisplay(backgroundView.bounds)
+			} else {
+					backgroundView.backgroundColor=contrastColor
+					backgroundView.setNeedsDisplay(backgroundView.bounds)
+			}
+			for aView in views {
+				aView.color=labelColor
+				aView.setNeedsDisplay(aView.bounds)
+			}
 		}
 		self.view.setNeedsDisplay(view.bounds)
 	}

@@ -51,6 +51,12 @@ class ColorsMenuController: NSObject {
 		updateColorMenuUI()
         updateClocksForPreferenceChanges()
     }
+	@objc func useNightmode(sender: NSMenuItem) {
+		ClockPreferencesStorage.sharedInstance.changeToUseNightMode()
+		makeColorMenuUI()
+		updateColorMenuUI()
+		updateClocksForPreferenceChanges()
+	}
     @objc func showColorPanel(sender: NSMenuItem) {
 		let colorMasks: NSColorPanel.Options =
 			[NSColorPanel.Options.wheelModeMask, NSColorPanel.Options.colorListModeMask,
@@ -129,10 +135,13 @@ class ColorsMenuController: NSObject {
 		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+2].isEnabled=true
 		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+2].target=self
 		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+2].action=#selector(colorOnBackground(sender:))
+		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+3].isEnabled=true
+		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+3].target=self
+		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+3].action=#selector(useNightmode(sender:))
 		//set-up show color panel menuItem
-		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+4].isEnabled=true
-        colorsMenu.items[ColorModel.sharedInstance.colorArray.count+4].target=self
-        colorsMenu.items[ColorModel.sharedInstance.colorArray.count+4].action=#selector(showColorPanel(sender:))
+		colorsMenu.items[ColorModel.sharedInstance.colorArray.count+5].isEnabled=true
+        colorsMenu.items[ColorModel.sharedInstance.colorArray.count+5].target=self
+        colorsMenu.items[ColorModel.sharedInstance.colorArray.count+5].action=#selector(showColorPanel(sender:))
 	}
 	func updateColorMenuUI() {
         for index in 0...ColorModel.sharedInstance.colorArray.count-1 {
@@ -165,9 +174,15 @@ class ColorsMenuController: NSObject {
 		if ClockPreferencesStorage.sharedInstance.colorForForeground {
 			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+1].state=NSControl.StateValue.on
 			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+2].state=NSControl.StateValue.off
+			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+3].state=NSControl.StateValue.off
+		} else if ClockPreferencesStorage.sharedInstance.useNightMode {
+			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+1].state=NSControl.StateValue.off
+			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+2].state=NSControl.StateValue.off
+			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+3].state=NSControl.StateValue.on
 		} else {
 			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+1].state=NSControl.StateValue.off
 			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+2].state=NSControl.StateValue.on
+			colorsMenu?.items[ColorModel.sharedInstance.colorArray.count+3].state=NSControl.StateValue.off
 		}
     }
 	func updateClocksForPreferenceChanges() {

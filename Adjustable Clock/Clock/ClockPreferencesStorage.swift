@@ -31,6 +31,7 @@ class ClockPreferencesStorage {
     var useNumericalDate = false
     //color
     var colorForForeground = false
+	var useNightMode = false
 	var customColor=NSColor.systemGray
     var redComponent: CGFloat?
     var greenComponent: CGFloat?
@@ -44,6 +45,7 @@ class ClockPreferencesStorage {
     private let showDayOfWeekKey="showDayOfWeek"
     private let useNumericalDateKey="useNumericalDateKey"
     private let colorSchemeKey="colorScheme"
+	private let useNightModeKey="useNightModeKey"
     private let colorChoiceKey="colorChoice"
     private let lightOnDarkKey="lightOnDark"
 	private let customRedComponentKey="customRedComponentKey"
@@ -76,6 +78,7 @@ class ClockPreferencesStorage {
 			self.colorChoice=ColorChoice.systemColor
         }
         colorForForeground=userDefaults.bool(forKey: lightOnDarkKey)
+		useNightMode=userDefaults.bool(forKey: useNightModeKey)
         redComponent=CGFloat(userDefaults.float(forKey: customRedComponentKey))
         greenComponent=CGFloat(userDefaults.float(forKey: customGreenComponentKey))
         blueComponent=CGFloat(userDefaults.float(forKey: customBlueComponentKey))
@@ -111,13 +114,23 @@ class ClockPreferencesStorage {
         userDefaults.set(useNumericalDate, forKey: useNumericalDateKey)
     }
     func colorOnForeground() {
+		useNightMode=false
 		colorForForeground=true
+		userDefaults.set(false, forKey: useNightModeKey)
         userDefaults.set(true, forKey: lightOnDarkKey)
     }
 	func colorOnBackground() {
+		useNightMode=false
 		colorForForeground=false
+		userDefaults.set(false, forKey: useNightModeKey)
 		userDefaults.set(false, forKey: lightOnDarkKey)
     }
+	func changeToUseNightMode() {
+		useNightMode=true
+		colorForForeground=false
+		userDefaults.set(false, forKey: lightOnDarkKey)
+		userDefaults.set(true, forKey: useNightModeKey)
+	}
     func changeAndSaveColorSceme(colorChoice: ColorChoice) {
         self.colorChoice=colorChoice
 		userDefaults.set(self.colorChoice.rawValue, forKey: colorChoiceKey)
@@ -159,6 +172,7 @@ class ClockPreferencesStorage {
 		userDefaults.set(false, forKey: useAnalogKey)
         userDefaults.set(nil, forKey: colorChoiceKey)
 		userDefaults.set(false, forKey: lightOnDarkKey)
+		userDefaults.set(false, forKey: useNightModeKey)
     }
 	func setWindowIsOpen() {
 		userDefaults.set(true, forKey: windowIsOpenKey)

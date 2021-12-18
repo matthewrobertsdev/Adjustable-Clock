@@ -701,6 +701,7 @@
                                         <menuItem isSeparatorItem="YES" id="PpC-zj-EBg"/>
                                         <menuItem title="Choice as Foreground" tag="8" keyEquivalent="f" id="x6R-qH-Eos"/>
                                         <menuItem title="Choice as Background" keyEquivalent="b" id="5BG-bt-wNy"/>
+                                        <menuItem title="Choice with Night Mode" keyEquivalent="n" id="JDe-aJ-5GR"/>
                                         <menuItem isSeparatorItem="YES" id="hb7-11-9Kz"/>
                                         <menuItem title="Choose Custom Color..." keyEquivalent="c" id="3zO-s4-7Me"/>
                                     </items>
@@ -1413,7 +1414,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="RLi-zz-p4w">
-                                                            <rect key="frame" x="160" y="1" width="119" height="17"/>
+                                                            <rect key="frame" x="160.5" y="1" width="119" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bQ7-JE-ioD">
@@ -2070,17 +2071,17 @@ DQ
         <scene sceneID="G34-5b-Zds">
             <objects>
                 <viewController storyboardIdentifier="ChooseAlertViewController" id="WeC-3E-QE7" customClass="AlertViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="Vem-cr-fJe">
-                        <rect key="frame" x="0.0" y="0.0" width="205" height="272"/>
+                    <view key="view" id="Vem-cr-fJe">
+                        <rect key="frame" x="0.0" y="0.0" width="60" height="272"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqo-KE-Hgo">
-                                <rect key="frame" x="20" y="60" width="22" height="192"/>
+                                <rect key="frame" x="20" y="60" width="20" height="192"/>
                                 <clipView key="contentView" id="NYR-eA-1Op">
-                                    <rect key="frame" x="1" y="1" width="20" height="190"/>
+                                    <rect key="frame" x="1" y="1" width="18" height="190"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" viewBased="YES" id="8WR-Ux-P7L">
+                                        <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowSizeStyle="automatic" viewBased="YES" id="8WR-Ux-P7L">
                                             <rect key="frame" x="0.0" y="0.0" width="245" height="190"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -2128,7 +2129,7 @@ DQ
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="fea-IN-4fV">
-                                    <rect key="frame" x="1" y="175" width="20" height="16"/>
+                                    <rect key="frame" x="1" y="175" width="18" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="EQl-rh-La8">
