@@ -102,6 +102,7 @@
 		9FD6B30523CC170100EFEF3C /* BaseAnalogClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FD6B30423CC170100EFEF3C /* BaseAnalogClockView.swift */; };
 		9FE390851FECBCE300AF5442 /* ClockWindowRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE390841FECBCE300AF5442 /* ClockWindowRestorer.swift */; };
 		9FE390871FECBCF400AF5442 /* PreferencesWindowRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE390861FECBCF400AF5442 /* PreferencesWindowRestorer.swift */; };
+		9FE5259E276FF4C100DC1B22 /* StopwatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FE5259D276FF4BE00DC1B22 /* StopwatchViewController.swift */; };
 		9FEA48AA23E94AAF001001D8 /* TimerCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEA48A923E94AAF001001D8 /* TimerCollectionViewItem.swift */; };
 		9FEAE9DD1F4F7249004EB641 /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEAE9DC1F4F7249004EB641 /* MainMenu.swift */; };
 		9FF3F89724188BA1006751A0 /* AlarmCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9FF3F89624188BA1006751A0 /* AlarmCollectionViewItem.xib */; };
@@ -237,6 +238,7 @@
 		9FD6B30423CC170100EFEF3C /* BaseAnalogClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAnalogClockView.swift; sourceTree = "<group>"; };
 		9FE390841FECBCE300AF5442 /* ClockWindowRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockWindowRestorer.swift; sourceTree = "<group>"; };
 		9FE390861FECBCF400AF5442 /* PreferencesWindowRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowRestorer.swift; sourceTree = "<group>"; };
+		9FE5259D276FF4BE00DC1B22 /* StopwatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewController.swift; sourceTree = "<group>"; };
 		9FEA48A923E94AAF001001D8 /* TimerCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCollectionViewItem.swift; sourceTree = "<group>"; };
 		9FEAE9DC1F4F7249004EB641 /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		9FF3F89624188BA1006751A0 /* AlarmCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlarmCollectionViewItem.xib; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 				9FB1D95423EA7F1800E8A35F /* Timers */,
 				9F7DF9422066094400CC0DF6 /* Clock */,
 				9F7D055523D661BD00E6CBA2 /* Alarms */,
+				9FE5259C276FF48C00DC1B22 /* Stopwatch */,
 				9F9DC04E20689F43000BD988 /* Main Menu */,
 				9F7DF9432066097C00CC0DF6 /* Preferences */,
 				9F9DC04F2068A095000BD988 /* Color Model */,
@@ -578,6 +581,14 @@
 				9FD433DB2453222F0096532C /* ClockSuiteMenuController.swift */,
 			);
 			path = "Clock Suite Menu";
+			sourceTree = "<group>";
+		};
+		9FE5259C276FF48C00DC1B22 /* Stopwatch */ = {
+			isa = PBXGroup;
+			children = (
+				9FE5259D276FF4BE00DC1B22 /* StopwatchViewController.swift */,
+			);
+			path = Stopwatch;
 			sourceTree = "<group>";
 		};
 		9FEA8C8B1FECCF3A002D3960 /* Loading And Saving Windows */ = {
@@ -809,6 +820,7 @@
 				9F260CB323F64FF000D021BB /* WorldClockMenuProtocol.swift in Sources */,
 				9F1C725523E1D9B0008B6B79 /* DockClockMenuDelegate.swift in Sources */,
 				9F04FDF120EDF9D5002B0FAD /* UserInterfaceItemIdentifiers.swift in Sources */,
+				9FE5259E276FF4C100DC1B22 /* StopwatchViewController.swift in Sources */,
 				9F2245D523B84FED000413F0 /* AnalogClockView.swift in Sources */,
 				9F793AAD2063849C00AF703E /* ClockModel.swift in Sources */,
 				9F3C6BBC23F1DAAE00EA9E73 /* TimersMenu.swift in Sources */,
