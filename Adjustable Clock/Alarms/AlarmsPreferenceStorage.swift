@@ -8,7 +8,7 @@
 import Foundation
 class AlarmsPreferencesStorage {
 	static let sharedInstance=AlarmsPreferencesStorage()
-	private let windowIsOpenKey="windowIsOpen"
+	private let windowIsOpenKey="alarmIsOpen"
 	private let alarmsHasLaunchedKey="alarmsHasLaunched"
 	let userDefaults=UserDefaults.standard
 	var windowIsOpen=false

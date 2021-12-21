@@ -135,6 +135,7 @@ class SimplePreferencesViewController: NSViewController {
 		updateDockClockMenuUI()
 		updateDockClockPrefrencesMenuUI()
 		AlarmsWindowController.alarmsObject.updateForPreferencesChange()
+		StopwatchWindowController.stopwatchObject.updateForPreferencesChange()
 		updateColorMenuUI()
     }
 	func updateColorMenuUI() {

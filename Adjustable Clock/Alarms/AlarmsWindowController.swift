@@ -65,19 +65,13 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
         }
     }
 	func windowDidEnterFullScreen(_ notification: Notification) {
-        removeTrackingArea()
-		hideButtonsTimer?.cancel()
         updateClockMenuUI()
 		fullscreen=true
-        //showButtons(show: true)
-		//reloadPreferencesWindowIfOpen()
     }
 	func windowDidExitFullScreen(_ notification: Notification) {
 		fullscreen=false
         window?.makeKey()
-		//prepareWindowButtons()
         updateClockMenuUI()
-		//reloadPreferencesWindowIfOpen()
     }
 	func windowWillMiniaturize(_ notification: Notification) {
 		WindowManager.sharedInstance.dockWindowArray.append(window ?? NSWindow())
@@ -87,11 +81,4 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 			return dockWindow==window
 		}
 	}
-	func windowDidBecomeKey(_ notification: Notification) {
-		/*
-		if !fullscreen {
-			flashButtons()
-		}
-*/
-    }
 }

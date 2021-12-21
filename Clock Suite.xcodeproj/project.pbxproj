@@ -92,6 +92,8 @@
 		9FB47E701F480A43009D82FF /* Adjustable_ClockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB47E6F1F480A43009D82FF /* Adjustable_ClockTests.swift */; };
 		9FB47E7B1F480A43009D82FF /* Adjustable_ClockUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB47E7A1F480A43009D82FF /* Adjustable_ClockUITests.swift */; };
 		9FB78CFD23E4994A00B123B5 /* DockClockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB78CFC23E4994A00B123B5 /* DockClockModel.swift */; };
+		9FBA9B03277232AA00C66EDA /* StopwatchWindowFrameRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA9B02277232AA00C66EDA /* StopwatchWindowFrameRestorer.swift */; };
+		9FBA9B052772341700C66EDA /* StopwatchPreferencesStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBA9B042772341700C66EDA /* StopwatchPreferencesStorage.swift */; };
 		9FBBCCA520DDDD9F00F44160 /* ImageTemplateSetTint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FBBCCA420DDDD9F00F44160 /* ImageTemplateSetTint.swift */; };
 		9FC97F581F480BB500035D30 /* PreferencesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC97F531F480BB500035D30 /* PreferencesVC.swift */; };
 		9FC97F591F480BB500035D30 /* PreferencesWC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FC97F541F480BB500035D30 /* PreferencesWC.swift */; };
@@ -232,6 +234,8 @@
 		9FB47E7A1F480A43009D82FF /* Adjustable_ClockUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adjustable_ClockUITests.swift; sourceTree = "<group>"; };
 		9FB47E7C1F480A43009D82FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9FB78CFC23E4994A00B123B5 /* DockClockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockClockModel.swift; sourceTree = "<group>"; };
+		9FBA9B02277232AA00C66EDA /* StopwatchWindowFrameRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchWindowFrameRestorer.swift; sourceTree = "<group>"; };
+		9FBA9B042772341700C66EDA /* StopwatchPreferencesStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchPreferencesStorage.swift; sourceTree = "<group>"; };
 		9FBBCCA420DDDD9F00F44160 /* ImageTemplateSetTint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTemplateSetTint.swift; sourceTree = "<group>"; };
 		9FC97F531F480BB500035D30 /* PreferencesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesVC.swift; sourceTree = "<group>"; };
 		9FC97F541F480BB500035D30 /* PreferencesWC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWC.swift; sourceTree = "<group>"; };
@@ -607,6 +611,7 @@
 			children = (
 				9FE5259D276FF4BE00DC1B22 /* StopwatchViewController.swift */,
 				9FDA170727718AC800C591E8 /* StopwatchWindowController.swift */,
+				9FBA9B042772341700C66EDA /* StopwatchPreferencesStorage.swift */,
 			);
 			path = Stopwatch;
 			sourceTree = "<group>";
@@ -620,6 +625,7 @@
 				9FE390861FECBCF400AF5442 /* PreferencesWindowRestorer.swift */,
 				9F407E1623F1D17A00557EA4 /* TimersWindowRestorer.swift */,
 				9F073FB323FDEE5B00B404C5 /* WorldClockFrameRestorer.swift */,
+				9FBA9B02277232AA00C66EDA /* StopwatchWindowFrameRestorer.swift */,
 			);
 			path = "Loading And Saving Windows";
 			sourceTree = "<group>";
@@ -829,9 +835,11 @@
 				9F97C85E23EB7B1E005381A0 /* ColorfulViewController.swift in Sources */,
 				9FB78CFD23E4994A00B123B5 /* DockClockModel.swift in Sources */,
 				9FEA48AA23E94AAF001001D8 /* TimerCollectionViewItem.swift in Sources */,
+				9FBA9B052772341700C66EDA /* StopwatchPreferencesStorage.swift in Sources */,
 				9F8BF21720EEBEFE00ADF294 /* ColorsMenuController.swift in Sources */,
 				9F260CB123F64FDE00D021BB /* WorldClockMenu.swift in Sources */,
 				9F35462B23F20E40009FA191 /* TimersCenter.swift in Sources */,
+				9FBA9B03277232AA00C66EDA /* StopwatchWindowFrameRestorer.swift in Sources */,
 				9F078A9D23CA7A79007072BB /* FullViewWindowController.swift in Sources */,
 				9FA6A7A523D8E687005564E7 /* EditableAlarmWindowController.swift in Sources */,
 				9F9ABDC8243BBECC00F47510 /* InterfaceChangedView.swift in Sources */,

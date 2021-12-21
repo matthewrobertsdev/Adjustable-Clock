@@ -16,13 +16,24 @@ class StopwatchWindowController: FullViewWindowController, NSWindowDelegate {
 		WindowManager.sharedInstance.count+=1
 		StopwatchWindowController.stopwatchObject=StopwatchWindowController()
 		window?.delegate=self
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+		window?.minSize=CGSize(width: 363, height: 290)
+		if StopwatchPreferencesStorage.sharedInstance.hasLaunchedBefore() {
+			StopwatchWindowFrameRestorer().loadSavedWindowCGRect(window: window)
+		}
     }
 	func windowWillClose(_ notification: Notification) {
 		WindowManager.sharedInstance.count-=1
-		//saveState()
+		saveState()
+		StopwatchPreferencesStorage.sharedInstance.setStopwatchAsHasLaunched()
+		if GeneralPreferencesStorage.sharedInstance.closing {
+			StopwatchPreferencesStorage.sharedInstance.setWindowIsOpen()
+		} else {
+			StopwatchPreferencesStorage.sharedInstance.setWindowIsClosed()
+		}
 	}
-	
+	func saveState() {
+		StopwatchWindowFrameRestorer().windowSaveCGRect(window: window)
+	}
 	func showStopwatch() {
 		if stopwatchWindowPresent()==false {
 		let mainStoryBoard = NSStoryboard(name: "Main", bundle: nil)

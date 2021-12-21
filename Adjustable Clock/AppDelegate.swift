@@ -28,6 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
 		AlarmsPreferencesStorage.sharedInstance.loadPreferences()
 		TimersPreferenceStorage.sharedInstance.loadPreferences()
+		StopwatchPreferencesStorage.sharedInstance.loadPreferences()
 		WorldClockPreferencesStorage.sharedInstance.loadPreferences()
 
 		//*
@@ -65,6 +66,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			clockMenuController?.enableMenu(enabled: true)
 		} else {
 			clockMenuController?.enableMenu(enabled: false)
+		}
+		if StopwatchPreferencesStorage.sharedInstance.windowIsOpen {
+			StopwatchWindowController.stopwatchObject.showStopwatch()
+			//clockMenuController?.enableMenu(enabled: true)
+		} else {
+			//clockMenuController?.enableMenu(enabled: false)
 		}
 		if NSApp.orderedWindows.count==0 {
 			ClockWindowController.clockObject.showClock()
