@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="xlg-Fe-Vdg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="19016"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
-        <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
     </dependencies>
@@ -414,8 +413,8 @@
         <!--Window Controller-->
         <scene sceneID="yYk-u5-L8r">
             <objects>
-                <windowController id="xlg-Fe-Vdg" sceneMemberID="viewController">
-                    <window key="window" title="Stopwatch" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="zT4-8d-kqF">
+                <windowController storyboardIdentifier="StopwatchWindowController" id="xlg-Fe-Vdg" customClass="StopwatchWindowController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" identifier="StopwatchWindow" title="Stopwatch" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="zT4-8d-kqF">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="239" width="480" height="270"/>
@@ -484,7 +483,7 @@
                             </stackView>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="733-J8-NOy">
                                 <rect key="frame" x="33" y="20" width="297" height="108"/>
-                                <clipView key="contentView" id="HfL-f4-uaJ">
+                                <clipView key="contentView" drawsBackground="NO" id="HfL-f4-uaJ">
                                     <rect key="frame" x="1" y="1" width="295" height="106"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -562,7 +561,7 @@
                                             </tableColumns>
                                         </tableView>
                                     </subviews>
-                                    <color key="backgroundColor" name="alternatingContentBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <nil key="backgroundColor"/>
                                 </clipView>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="297" id="A8Z-VG-1Mf"/>
@@ -591,6 +590,9 @@
                             <constraint firstItem="733-J8-NOy" firstAttribute="centerX" secondItem="Qwj-bE-h7F" secondAttribute="centerX" id="oKI-JG-ymu"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="stopwatchLabel" destination="gBw-yL-viY" id="dTC-1a-psp"/>
+                    </connections>
                 </viewController>
                 <customObject id="Zti-LF-8aw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -843,7 +845,7 @@
                             </menuItem>
                             <menuItem title="Stopwatch" id="Qav-mm-UC0">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Stopwatch" id="QZM-PW-WGy">
+                                <menu key="submenu" title="Stopwatch" id="QZM-PW-WGy" customClass="StopwatchMenu" customModule="Clock_Suite" customModuleProvider="target">
                                     <items>
                                         <menuItem title="Stopwatch Inactive" enabled="NO" id="bx7-gK-nax">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -851,7 +853,11 @@
                                         <menuItem title="Floats on Top" id="S2g-hr-DH1">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
-                                        <menuItem title="Show Stopwatch" keyEquivalent="4" id="meE-uI-Pe1"/>
+                                        <menuItem title="Show Stopwatch" keyEquivalent="4" id="meE-uI-Pe1">
+                                            <connections>
+                                                <action selector="showStopwatchWithNsMenuItem:" target="QZM-PW-WGy" id="sPX-9J-vkg"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -977,6 +983,7 @@
                             <outlet property="dockClockPreferencesMenu" destination="y2u-kl-KyJ" id="FGq-Az-oKh"/>
                             <outlet property="helpMenu" destination="F2S-fz-NVQ" id="JmH-Aj-jHB"/>
                             <outlet property="preferenceMenuItem" destination="1Xt-HY-uBw" id="SPi-0S-rRf"/>
+                            <outlet property="stopwatchMenu" destination="QZM-PW-WGy" id="K6k-JZ-3Ct"/>
                             <outlet property="timersMenu" destination="fWd-IJ-eGk" id="WSc-ZL-Ew9"/>
                         </connections>
                     </menu>
@@ -1031,6 +1038,9 @@
                             </viewController>
                         </touchBarItem>
                     </touchBarItems>
+                    <connections>
+                        <outlet property="stopwatchMenu" destination="QZM-PW-WGy" id="jDd-kf-IEs"/>
+                    </connections>
                 </touchBar>
                 <menu id="PrK-hy-nBi" customClass="DockClockMenu" customModule="Clock_Suite" customModuleProvider="target">
                     <items>
@@ -1602,7 +1612,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="RLi-zz-p4w">
-                                                            <rect key="frame" x="160" y="1" width="119" height="17"/>
+                                                            <rect key="frame" x="160.5" y="1" width="119" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bQ7-JE-ioD">

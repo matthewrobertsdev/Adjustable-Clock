@@ -172,6 +172,7 @@ class ColorsMenuController: NSObject {
 		DockClockController.dockClockObject.updateClockForPreferencesChange()
 		AlarmsWindowController.alarmsObject.updateForPreferencesChange()
 		TimersWindowController.timersObject.update()
+		StopwatchWindowController.stopwatchObject.updateForPreferencesChange()
 		WorldClockWindowController.worldClockObject.update()
 	}
 }

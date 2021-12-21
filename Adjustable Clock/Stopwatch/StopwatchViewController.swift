@@ -9,16 +9,13 @@
 import Cocoa
 
 class StopwatchViewController: ColorfulViewController {
-
-    override func viewDidLoad() {
+	@IBOutlet weak var stopwatchLabel: NSTextField!
+	override func viewDidLoad() {
         super.viewDidLoad()
-		ClockPreferencesStorage.sharedInstance.loadUserPreferences()
-		applyColors()
+		update()
         // Do view setup here.
     }
-    
-	func applyColors() {
-		let labels=[NSTextField]()
-		applyColorScheme(views: [ColorView](), labels: labels)
+	func update() {
+		applyColorScheme(views: [ColorView](), labels: [stopwatchLabel])
 	}
 }

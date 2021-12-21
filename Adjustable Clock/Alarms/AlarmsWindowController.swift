@@ -20,9 +20,7 @@ class AlarmsWindowController: FullViewWindowController, NSWindowDelegate {
 		if AlarmsPreferencesStorage.sharedInstance.hasLaunchedBefore() {
 			AlarmsWindowRestorer().loadSavedWindowCGRect(window: window)
 		}
-		//prepareWindowButtons()
     }
-	
 	func windowWillClose(_ notification: Notification) {
 		WindowManager.sharedInstance.count-=1
 		saveState()
