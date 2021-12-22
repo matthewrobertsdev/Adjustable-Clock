@@ -444,11 +444,11 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gBw-yL-viY">
-                                <rect key="frame" x="31" y="164" width="301" height="86"/>
+                                <rect key="frame" x="53" y="164" width="257" height="86"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="297" id="lVA-j6-fAO"/>
+                                    <constraint firstAttribute="width" constant="253" id="EXp-sC-gWI"/>
                                 </constraints>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="00:00.00" id="7Pt-8m-ncS">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="00:00.0" id="7Pt-8m-ncS">
                                     <font key="font" metaFont="system" size="73"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -463,6 +463,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="startStopStopwatch:" target="Sqb-bv-4dI" id="IEP-SN-JXN"/>
+                                        </connections>
                                     </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Li9-XJ-oEq">
                                         <rect key="frame" x="51" y="-7" width="69" height="32"/>
@@ -539,7 +542,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="lVJ-pw-zvr">
-                                                            <rect key="frame" x="80" y="0.0" width="206" height="24"/>
+                                                            <rect key="frame" x="80.5" y="0.0" width="206" height="24"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y1q-2t-OJp">
@@ -591,6 +594,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="startStopButton" destination="GYT-Ry-i2T" id="VGN-u4-DZb"/>
                         <outlet property="stopwatchLabel" destination="gBw-yL-viY" id="dTC-1a-psp"/>
                     </connections>
                 </viewController>
@@ -1612,7 +1616,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="RLi-zz-p4w">
-                                                            <rect key="frame" x="160" y="1" width="119" height="17"/>
+                                                            <rect key="frame" x="160.5" y="1" width="119" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bQ7-JE-ioD">

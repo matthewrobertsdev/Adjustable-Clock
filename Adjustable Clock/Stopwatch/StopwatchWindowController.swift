@@ -5,9 +5,7 @@
 //  Created by Matt Roberts on 12/20/21.
 //  Copyright © 2021 Matt Roberts. All rights reserved.
 //
-
 import Cocoa
-
 class StopwatchWindowController: FullViewWindowController, NSWindowDelegate {
 	static var stopwatchObject=StopwatchWindowController()
 	var fullscreen=false
@@ -62,6 +60,14 @@ class StopwatchWindowController: FullViewWindowController, NSWindowDelegate {
 			if let stopwatchViewController=window.contentViewController as? StopwatchViewController {
 					stopwatchViewController.update()
 			}
+		}
+	}
+	func windowWillMiniaturize(_ notification: Notification) {
+		WindowManager.sharedInstance.dockWindowArray.append(window ?? NSWindow())
+	}
+	func windowDidDeminiaturize(_ notification: Notification) {
+		WindowManager.sharedInstance.dockWindowArray.removeAll { (dockWindow) -> Bool in
+			return dockWindow==window
 		}
 	}
 }

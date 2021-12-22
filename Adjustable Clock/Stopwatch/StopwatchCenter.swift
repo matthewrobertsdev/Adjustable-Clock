@@ -7,13 +7,16 @@
 //
 import Foundation
 class StopwatchCenter {
+	static let sharedInstance=StopwatchCenter()
 	var leastIndex = -1
 	var greatestIndex = -1
-	var sharedInstance = StopwatchCenter()
-	private var gcdTimer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
+	var gcdTimer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
+	var active=false
+	var started=false
 	private let stopwatchFormatter=DateFormatter()
 	private var startTime: TimeInterval=0
-	private var elapsedTime: TimeInterval=0
+	private var lapTime: TimeInterval=0
+	private var previousTime: TimeInterval=0
 	private init() {
 		setUp()
 	}
@@ -24,29 +27,36 @@ class StopwatchCenter {
 		findLeastAndGreatest()
 	}
 	private func loadTime() {
-		
 	}
 	private func loadLaps() {
-		
 	}
-	
 	private func findLeastAndGreatest() {
-		
 	}
 	private func setStartTime() {
 		startTime=ProcessInfo.processInfo.systemUptime
 	}
-	private func updateElapsedTime() {
+	private func updateLapTime() {
 		let currentUpTime=ProcessInfo.processInfo.systemUptime
-		elapsedTime=currentUpTime-startTime
+		lapTime=currentUpTime-startTime
 	}
 	func startStopwatch() {
 		setStartTime()
+		active=true
 	}
 	func updateStopwatch() {
-		updateElapsedTime()
+		updateLapTime()
 	}
 	func getStopwatchDisplayString() -> String {
-		return stopwatchFormatter.string(from: Date(timeIntervalSince1970: elapsedTime))+String(format: "%.2f", elapsedTime-1)
+		let currentTime=previousTime+lapTime
+		let hundrethsString=String(format: "%.1f", (currentTime.truncatingRemainder(dividingBy: TimeInterval(10))))
+		return stopwatchFormatter.string(from: Date(timeIntervalSince1970: currentTime))+hundrethsString.substring(from: hundrethsString.index(hundrethsString.startIndex, offsetBy: 1))
+	}
+	func stopStopwatch() {
+		if active {
+			active=false
+			gcdTimer.cancel()
+			gcdTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
+			previousTime+=lapTime
+		}
 	}
 }
