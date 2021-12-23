@@ -49,11 +49,19 @@ class StopwatchCenter {
 	}
 	func lapStopwatch() {
 		previousTime+=lapTime
+		laps.append(Lap(lapNumber: laps.count+1, timeInterval: lapTime))
 		setStartTime()
 	}
 	func resetStopwatch() {
-		resetData()
 		stopStopwatch()
+		resetData()
+	}
+	func stopStopwatch() {
+		if active {
+			active=false
+			gcdTimer.cancel()
+			gcdTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
+		}
 	}
 	func getStopwatchDisplayString() -> String {
 		let currentTime=previousTime+lapTime
@@ -64,13 +72,5 @@ class StopwatchCenter {
 		previousTime=0
 		lapTime=0
 		laps=[Lap]()
-	}
-	func stopStopwatch() {
-		if active {
-			active=false
-			gcdTimer.cancel()
-			gcdTimer=DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
-			previousTime+=lapTime
-		}
 	}
 }

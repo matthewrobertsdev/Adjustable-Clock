@@ -8,13 +8,16 @@
 
 import Cocoa
 
-class StopwatchViewController: ColorfulViewController, NSTableViewDataSource {
+class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NSTableViewDelegate {
 	@IBOutlet weak var stopwatchLabel: NSTextField!
 	@IBOutlet weak var startStopButton: NSButton!
 	@IBOutlet weak var resetLapButton: NSButton!
 	@IBOutlet weak var lapTableView: NSTableView!
 	override func viewDidLoad() {
         super.viewDidLoad()
+		lapTableView.usesAlternatingRowBackgroundColors=true
+		lapTableView.dataSource=self
+		lapTableView.delegate=self
 		update()
     }
 	func update() {
@@ -22,7 +25,9 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource {
 	}
 	@IBAction func startStopStopwatch(_ sender: Any) {
 		if StopwatchCenter.sharedInstance.active {
+			StopwatchCenter.sharedInstance.lapStopwatch()
 			StopwatchCenter.sharedInstance.stopStopwatch()
+			lapTableView.reloadData()
 			startStopButton.title="Start"
 			resetLapButton.title="Reset"
 		} else {
@@ -39,6 +44,7 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource {
 			StopwatchCenter.sharedInstance.resetStopwatch()
 			stopwatchLabel.stringValue=StopwatchCenter.sharedInstance.getStopwatchDisplayString()
 		}
+		lapTableView.reloadData()
 	}
 	private func animateStopwatch() {
 		StopwatchCenter.sharedInstance.gcdTimer.schedule(deadline: .now()+0.1, repeating: .milliseconds(100),
@@ -55,5 +61,35 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource {
 	}
 	func numberOfRows(in tableView: NSTableView) -> Int {
 		return StopwatchCenter.sharedInstance.laps.count
+	}
+	/*
+	func tableView(_ tableView: NSTableView,
+			 objectValueFor tableColumn: NSTableColumn?,
+				   row: Int) -> Any? {
+		let lap=StopwatchCenter.sharedInstance.laps[row]
+		guard let tableCellView = tableView.makeView(withIdentifier: tableColumn!.identifier,
+																   owner: self) as? NSTableCellView else {
+			return NSTableCellView()
+		}
+		if tableColumn?.identifier==NSUserInterfaceItemIdentifier("LapNumberColumn") {
+			tableCellView.textField?.stringValue=lap.lapNumber.description
+		} else if tableColumn?.identifier==NSUserInterfaceItemIdentifier("TimeColumn") {
+			tableCellView.textField?.stringValue=lap.timeInterval.description
+		}
+		return tableCellView
+	}
+	 */
+	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+		let lap=StopwatchCenter.sharedInstance.laps[row]
+		guard let tableCellView = tableView.makeView(withIdentifier: tableColumn!.identifier,
+																   owner: self) as? NSTableCellView else {
+			return NSTableCellView()
+		}
+		if tableColumn?.identifier==NSUserInterfaceItemIdentifier("LapNumberColumn") {
+			tableCellView.textField?.stringValue=lap.lapNumber.description
+		} else if tableColumn?.identifier==NSUserInterfaceItemIdentifier("TimeColumn") {
+			tableCellView.textField?.stringValue=lap.timeInterval.description
+		}
+		return tableCellView
 	}
 }

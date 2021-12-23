@@ -6,7 +6,11 @@
 //  Copyright © 2021 Matt Roberts. All rights reserved.
 //
 import Foundation
-class Lap: Codable{
+class Lap: Codable {
 	var lapNumber=0
 	var timeInterval: TimeInterval=0
+	init(lapNumber: Int, timeInterval: TimeInterval) {
+		self.lapNumber=lapNumber
+		self.timeInterval=timeInterval
+	}
 }

@@ -500,7 +500,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="57.5" minWidth="40" maxWidth="1000" id="L73-jO-h8t">
+                                                <tableColumn identifier="LapNumberColumn" width="57.5" minWidth="40" maxWidth="1000" id="L73-jO-h8t">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Lap">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -512,7 +512,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="9RU-hB-7M7">
+                                                        <tableCellView id="9RU-hB-7M7" customClass="LapTableCellView">
                                                             <rect key="frame" x="8" y="0.0" width="55" height="24"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -527,12 +527,13 @@
                                                                 </textField>
                                                             </subviews>
                                                             <connections>
+                                                                <outlet property="lapTextField" destination="uHW-e1-CCQ" id="awo-Kg-fwo"/>
                                                                 <outlet property="textField" destination="uHW-e1-CCQ" id="Uek-ax-8RR"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn width="208.5" minWidth="40" maxWidth="1000" id="k2p-0b-nZZ">
+                                                <tableColumn identifier="TimeColumn" width="208.5" minWidth="40" maxWidth="1000" id="k2p-0b-nZZ">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Time">
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
