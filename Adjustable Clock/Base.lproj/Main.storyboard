@@ -473,6 +473,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="resetLapStopwatch:" target="Sqb-bv-4dI" id="Bbx-Zn-PPB"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <visibilityPriorities>
@@ -516,7 +519,7 @@
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uHW-e1-CCQ">
                                                                     <rect key="frame" x="0.0" y="4" width="55" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="7MN-VW-ttS">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Lap 1" id="7MN-VW-ttS">
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -548,7 +551,7 @@
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y1q-2t-OJp">
                                                                     <rect key="frame" x="0.0" y="4" width="206" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="y3a-TT-iZ9">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="00:30:.0" id="y3a-TT-iZ9">
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -594,6 +597,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lapTableView" destination="Ipj-4c-ovy" id="QGl-Mo-FPf"/>
+                        <outlet property="resetLapButton" destination="Li9-XJ-oEq" id="LTa-Rs-9Yz"/>
                         <outlet property="startStopButton" destination="GYT-Ry-i2T" id="VGN-u4-DZb"/>
                         <outlet property="stopwatchLabel" destination="gBw-yL-viY" id="dTC-1a-psp"/>
                     </connections>
@@ -854,9 +859,28 @@
                                         <menuItem title="Stopwatch Inactive" enabled="NO" id="bx7-gK-nax">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Nr6-Dd-t62"/>
                                         <menuItem title="Floats on Top" id="S2g-hr-DH1">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Eb1-jV-ljf"/>
+                                        <menuItem title="Precision" id="hc1-Aj-HMl">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Precision" id="fuC-LY-WeR">
+                                                <items>
+                                                    <menuItem title="Seconds" id="dvf-aw-SlZ">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem title="Tenths of Seconds" id="U0I-Wp-bi8">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem title="Hundreths of Seconds" id="I7n-IT-pwC">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Bvc-sA-mcP"/>
                                         <menuItem title="Show Stopwatch" keyEquivalent="4" id="meE-uI-Pe1">
                                             <connections>
                                                 <action selector="showStopwatchWithNsMenuItem:" target="QZM-PW-WGy" id="sPX-9J-vkg"/>
@@ -1112,10 +1136,10 @@
             </objects>
             <point key="canvasLocation" x="-20" y="275"/>
         </scene>
-        <!--Clock View Controller-->
+        <!--Clock-->
         <scene sceneID="YXm-rq-ncp">
             <objects>
-                <viewController id="ik9-Ty-6xp" customClass="ClockViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Clock" id="ik9-Ty-6xp" customClass="ClockViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="hTG-P0-Z21">
                         <rect key="frame" x="0.0" y="0.0" width="332" height="151"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1269,10 +1293,10 @@
             </objects>
             <point key="canvasLocation" x="649.5" y="644"/>
         </scene>
-        <!--Timers View Controller-->
+        <!--Timers-->
         <scene sceneID="IkZ-kU-Aih">
             <objects>
-                <viewController id="Fch-iR-SvQ" customClass="TimersViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Timers" id="Fch-iR-SvQ" customClass="TimersViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="gv6-gj-aTH">
                         <rect key="frame" x="0.0" y="0.0" width="351" height="474"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1665,10 +1689,10 @@
             </objects>
             <point key="canvasLocation" x="414.5" y="1802"/>
         </scene>
-        <!--Alarms View Controller-->
+        <!--Alarms-->
         <scene sceneID="wPV-y4-U0G">
             <objects>
-                <viewController id="jsi-dr-Kid" customClass="AlarmsViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Alarms" id="jsi-dr-Kid" customClass="AlarmsViewController" customModule="Clock_Suite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="P05-f5-a90">
                         <rect key="frame" x="0.0" y="0.0" width="322" height="712"/>
                         <autoresizingMask key="autoresizingMask"/>

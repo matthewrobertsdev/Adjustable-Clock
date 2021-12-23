@@ -13,6 +13,7 @@ class StopwatchCenter {
 	var gcdTimer = DispatchSource.makeTimerSource(flags: [], queue: DispatchQueue.main)
 	var active=false
 	var started=false
+	var laps=[Lap]()
 	private let stopwatchFormatter=DateFormatter()
 	private var startTime: TimeInterval=0
 	private var lapTime: TimeInterval=0
@@ -46,10 +47,23 @@ class StopwatchCenter {
 	func updateStopwatch() {
 		updateLapTime()
 	}
+	func lapStopwatch() {
+		previousTime+=lapTime
+		setStartTime()
+	}
+	func resetStopwatch() {
+		resetData()
+		stopStopwatch()
+	}
 	func getStopwatchDisplayString() -> String {
 		let currentTime=previousTime+lapTime
 		let hundrethsString=String(format: "%.1f", (currentTime.truncatingRemainder(dividingBy: TimeInterval(10))))
 		return stopwatchFormatter.string(from: Date(timeIntervalSince1970: currentTime))+hundrethsString.substring(from: hundrethsString.index(hundrethsString.startIndex, offsetBy: 1))
+	}
+	private func resetData() {
+		previousTime=0
+		lapTime=0
+		laps=[Lap]()
 	}
 	func stopStopwatch() {
 		if active {
