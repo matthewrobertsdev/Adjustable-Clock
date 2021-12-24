@@ -90,6 +90,13 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 		} else if tableColumn?.identifier==NSUserInterfaceItemIdentifier("TimeColumn") {
 			tableCellView.textField?.stringValue=lap.timeInterval.description
 		}
+		if row==StopwatchCenter.sharedInstance.leastIndex {
+			tableCellView.textField?.textColor=NSColor.systemGreen
+		} else if row==StopwatchCenter.sharedInstance.greatestIndex {
+			tableCellView.textField?.textColor=NSColor.systemRed
+		} else {
+			tableCellView.textField?.textColor=NSColor.labelColor
+		}
 		return tableCellView
 	}
 }

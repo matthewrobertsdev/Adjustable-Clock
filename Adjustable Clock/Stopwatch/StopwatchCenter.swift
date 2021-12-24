@@ -25,13 +25,11 @@ class StopwatchCenter {
 		stopwatchFormatter.dateFormat="mm:ss"
 		loadTime()
 		loadLaps()
-		findLeastAndGreatest()
+		assignShortestAndLongestIndices()
 	}
 	private func loadTime() {
 	}
 	private func loadLaps() {
-	}
-	private func findLeastAndGreatest() {
 	}
 	private func setStartTime() {
 		startTime=ProcessInfo.processInfo.systemUptime
@@ -51,6 +49,7 @@ class StopwatchCenter {
 		previousTime+=lapTime
 		laps.append(Lap(lapNumber: laps.count+1, timeInterval: lapTime))
 		setStartTime()
+		assignShortestAndLongestIndices()
 	}
 	func resetStopwatch() {
 		stopStopwatch()
@@ -72,5 +71,25 @@ class StopwatchCenter {
 		previousTime=0
 		lapTime=0
 		laps=[Lap]()
+	}
+	private func assignShortestAndLongestIndices() {
+		if laps.count<2 {
+			leastIndex = -1
+			greatestIndex = -1
+		} else {
+			leastIndex=laps.startIndex
+			greatestIndex=laps.startIndex
+			var leastLap=laps[0]
+			var greatestLap=laps[0]
+			for index in 0...laps.count-1 {
+				if laps[index].timeInterval<leastLap.timeInterval {
+					leastLap=laps[index]
+					leastIndex=index
+				} else if laps[index].timeInterval>greatestLap.timeInterval {
+					greatestLap=laps[index]
+					greatestIndex=index
+				}
+			}
+		}
 	}
 }
