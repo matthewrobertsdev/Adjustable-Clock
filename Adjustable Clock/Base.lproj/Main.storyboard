@@ -487,7 +487,7 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="733-J8-NOy">
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="733-J8-NOy">
                                 <rect key="frame" x="33" y="20" width="297" height="108"/>
                                 <clipView key="contentView" drawsBackground="NO" id="HfL-f4-uaJ">
                                     <rect key="frame" x="1" y="1" width="295" height="106"/>
@@ -550,7 +550,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Y1q-2t-OJp">
-                                                                    <rect key="frame" x="0.0" y="4" width="206" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="4" width="179" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="00:30:.0" id="y3a-TT-iZ9">
                                                                         <font key="font" usesAppearanceFont="YES"/>
@@ -677,6 +677,8 @@
                                                 <action selector="performClose:" target="Ady-hI-5gd" id="Sz0-U4-kMX"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="o7p-jY-hdY"/>
+                                        <menuItem title="Export Laps to CSV File..." keyEquivalent="s" id="7dw-gC-VZd"/>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -882,6 +884,8 @@
                                             </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="Bvc-sA-mcP"/>
+                                        <menuItem title="Export Laps to CSV File..." keyEquivalent="s" id="ndN-ig-4z8"/>
+                                        <menuItem isSeparatorItem="YES" id="94v-QY-awo"/>
                                         <menuItem title="Show Stopwatch" keyEquivalent="4" id="meE-uI-Pe1">
                                             <connections>
                                                 <action selector="showStopwatchWithNsMenuItem:" target="QZM-PW-WGy" id="sPX-9J-vkg"/>

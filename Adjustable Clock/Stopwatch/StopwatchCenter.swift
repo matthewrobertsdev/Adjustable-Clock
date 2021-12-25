@@ -18,18 +18,41 @@ class StopwatchCenter {
 	private var startTime: TimeInterval=0
 	private var lapTime: TimeInterval=0
 	private var previousTime: TimeInterval=0
+	private let userDefaults=UserDefaults.standard
+	private let jsonEncoder=JSONEncoder()
+	private let jsonDecoder=JSONDecoder()
 	private init() {
-		setUp()
 	}
-	private func setUp() {
+	func setUp() {
+		jsonEncoder.outputFormatting = .prettyPrinted
 		stopwatchFormatter.dateFormat="mm:ss"
 		loadTime()
 		loadLaps()
 		assignShortestAndLongestIndices()
 	}
 	private func loadTime() {
+		startTime=ProcessInfo.processInfo.systemUptime
+		previousTime=userDefaults.double(forKey: "previousTimeKey")
 	}
 	private func loadLaps() {
+		if let lapData=userDefaults.data(forKey: "lapDataKey") {
+			do {
+				laps=try jsonDecoder.decode([Lap].self, from: lapData)
+			} catch {
+				print("Couldn't load lap data.")
+			}
+		}
+	}
+	private func saveTime() {
+		userDefaults.set(previousTime, forKey: "previousTimeKey")
+	}
+	private func saveLaps() {
+		do {
+			let lapData = try jsonEncoder.encode(laps)
+			userDefaults.set(lapData, forKey: "lapDataKey")
+		} catch {
+			print("Couldn't save lap data")
+		}
 	}
 	private func setStartTime() {
 		startTime=ProcessInfo.processInfo.systemUptime
@@ -48,12 +71,16 @@ class StopwatchCenter {
 	func lapStopwatch() {
 		previousTime+=lapTime
 		laps.append(Lap(lapNumber: laps.count+1, timeInterval: lapTime))
+		saveTime()
+		saveLaps()
 		setStartTime()
 		assignShortestAndLongestIndices()
 	}
 	func resetStopwatch() {
 		stopStopwatch()
 		resetData()
+		saveTime()
+		saveLaps()
 	}
 	func stopStopwatch() {
 		if active {

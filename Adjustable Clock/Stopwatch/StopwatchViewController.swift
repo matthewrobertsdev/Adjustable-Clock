@@ -13,11 +13,16 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 	@IBOutlet weak var startStopButton: NSButton!
 	@IBOutlet weak var resetLapButton: NSButton!
 	@IBOutlet weak var lapTableView: NSTableView!
+	let lapFormatter=DateFormatter()
 	override func viewDidLoad() {
         super.viewDidLoad()
+		lapFormatter.setLocalizedDateFormatFromTemplate("mm:ss")
+		lapFormatter.locale=Locale(identifier: "en_US")
 		lapTableView.usesAlternatingRowBackgroundColors=true
 		lapTableView.dataSource=self
 		lapTableView.delegate=self
+		stopwatchLabel.stringValue=StopwatchCenter.sharedInstance.getStopwatchDisplayString()
+		lapTableView.reloadData()
 		update()
     }
 	func update() {
@@ -88,7 +93,9 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 		if tableColumn?.identifier==NSUserInterfaceItemIdentifier("LapNumberColumn") {
 			tableCellView.textField?.stringValue=lap.lapNumber.description
 		} else if tableColumn?.identifier==NSUserInterfaceItemIdentifier("TimeColumn") {
-			tableCellView.textField?.stringValue=lap.timeInterval.description
+			let hundrethsString=String(format: "%.1f", (lap.timeInterval.truncatingRemainder(dividingBy: TimeInterval(10))))
+			let timeString=lapFormatter.string(from: Date(timeIntervalSince1970: lap.timeInterval))+hundrethsString.substring(from: hundrethsString.index(hundrethsString.startIndex, offsetBy: 1))
+			tableCellView.textField?.stringValue=timeString
 		}
 		if row==StopwatchCenter.sharedInstance.leastIndex {
 			tableCellView.textField?.textColor=NSColor.systemGreen

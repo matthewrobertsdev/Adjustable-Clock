@@ -33,6 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 		//*
 		AlarmCenter.sharedInstance.setUp()
+		StopwatchCenter.sharedInstance.setUp()
         let appObject = NSApp as NSApplication
 		if let mainMenu=appObject.mainMenu as? MainMenu {
 			colorsMenuController=ColorsMenuController(colorsMenu: mainMenu.colorsMenu)

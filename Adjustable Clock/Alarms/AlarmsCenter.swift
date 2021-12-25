@@ -112,8 +112,8 @@ class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate {
 	private func scheduleAlarm(alarm: Alarm) {
 		if alarm.active {
 			alarm.updateExpirationDate()
-			let dateFormatter=DateFormatter()
-			dateFormatter.setLocalizedDateFormatFromTemplate("MMdyyyyhhmm")
+			//let dateFormatter=DateFormatter()
+			//dateFormatter.setLocalizedDateFormatFromTemplate("MMdyyyyhhmm")
 			if !alarm.repeats && alarm.expiresDate<Date() {
 				alarm.active=false
 				if let alarmViewController: AlarmsViewController=AlarmsWindowController.alarmsObject.contentViewController
