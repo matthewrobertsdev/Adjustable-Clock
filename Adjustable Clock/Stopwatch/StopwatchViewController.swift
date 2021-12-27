@@ -13,6 +13,7 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 	@IBOutlet weak var startStopButton: NSButton!
 	@IBOutlet weak var resetLapButton: NSButton!
 	@IBOutlet weak var lapTableView: NSTableView!
+	@IBOutlet weak var stopwatchLabelWidthConstraint: NSLayoutConstraint!
 	private let lapFormatter=DateFormatter()
 	private let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
 	override func viewDidLoad() {
@@ -92,7 +93,9 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 			tableCellView.textField?.stringValue=lap.lapNumber.description
 		} else if tableColumn?.identifier==NSUserInterfaceItemIdentifier("TimeColumn") {
 			let hundrethsString=String(format: "%.1f", (lap.timeInterval.truncatingRemainder(dividingBy: TimeInterval(10))))
-			let timeString=lapFormatter.string(from: Date(timeIntervalSince1970: lap.timeInterval))+hundrethsString.substring(from: hundrethsString.index(hundrethsString.startIndex, offsetBy: 1))
+			var timeString=lapFormatter.string(from: Date(timeIntervalSince1970: lap.timeInterval))
+			if lap.useSecondsPrecision==false { timeString+=hundrethsString.substring(from: hundrethsString.index(hundrethsString.startIndex, offsetBy: 1))
+			}
 			tableCellView.textField?.stringValue=timeString
 		}
 		if row==StopwatchCenter.sharedInstance.leastIndex {
@@ -117,19 +120,27 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 		}
 	}
 	private func useSeconds() {
+		stopwatchLabelWidthConstraint.constant=200
 		StopwatchCenter.sharedInstance.useSeconds()
-		stopwatchLabel.stringValue=StopwatchCenter.sharedInstance.getStopwatchDisplayString()
 		if StopwatchCenter.sharedInstance.active {
-			StopwatchCenter.sharedInstance.gcdTimer.cancel()
+			stopwatchLabel.stringValue=StopwatchCenter.sharedInstance.getStopwatchDisplayString()
+			StopwatchCenter.sharedInstance.stopStopwatch()
+			StopwatchCenter.sharedInstance.active=true
 			animateStopwatch()
+		} else {
+			stopwatchLabel.stringValue=StopwatchCenter.sharedInstance.getStopwatchFreezeString()
 		}
 	}
 	private func useTenthsOfSeconds() {
-		stopwatchLabel.stringValue=StopwatchCenter.sharedInstance.getStopwatchDisplayString()
+		stopwatchLabelWidthConstraint.constant=253
 		StopwatchCenter.sharedInstance.useTenthsOfSeconds()
 		if StopwatchCenter.sharedInstance.active {
-			StopwatchCenter.sharedInstance.gcdTimer.cancel()
+			stopwatchLabel.stringValue=StopwatchCenter.sharedInstance.getStopwatchDisplayString()
+			StopwatchCenter.sharedInstance.stopStopwatch()
+			StopwatchCenter.sharedInstance.active=true
 			animateStopwatch()
+		} else {
+			stopwatchLabel.stringValue=StopwatchCenter.sharedInstance.getStopwatchFreezeString()
 		}
 	}
 }

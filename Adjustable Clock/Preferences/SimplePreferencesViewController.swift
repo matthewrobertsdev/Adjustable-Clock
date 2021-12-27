@@ -178,4 +178,10 @@ class SimplePreferencesViewController: NSViewController {
 		}
 		appDelegate.stopwatchMenuController?.updateUI()
 	}
+	func updatePrecisionhMenuUI() {
+		guard let appDelegate = NSApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		appDelegate.precisionMenuController?.updateUI()
+	}
 }

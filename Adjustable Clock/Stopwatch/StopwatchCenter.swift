@@ -66,13 +66,14 @@ class StopwatchCenter {
 	func startStopwatch() {
 		setStartTime()
 		active=true
+		updateLapTime()
 	}
 	func updateStopwatch() {
 		updateLapTime()
 	}
 	func lapStopwatch() {
 		previousTime+=lapTime
-		laps.append(Lap(lapNumber: laps.count+1, timeInterval: lapTime))
+		laps.append(Lap(lapNumber: laps.count+1, timeInterval: lapTime, useSecondsPrecision: StopwatchPreferencesStorage.sharedInstance.useSecondsPrecision))
 		saveTime()
 		saveLaps()
 		setStartTime()
@@ -93,6 +94,16 @@ class StopwatchCenter {
 	}
 	func getStopwatchDisplayString() -> String {
 		let currentTime=previousTime+lapTime
+		let minutesAndSecondsString=stopwatchFormatter.string(from: Date(timeIntervalSince1970: currentTime))
+		if StopwatchPreferencesStorage.sharedInstance.useSecondsPrecision {
+			return minutesAndSecondsString
+		} else {
+		let hundrethsString=String(format: "%.1f", (currentTime.truncatingRemainder(dividingBy: TimeInterval(10))))
+		return minutesAndSecondsString+hundrethsString.substring(from: hundrethsString.index(hundrethsString.startIndex, offsetBy: 1))
+		}
+	}
+	func getStopwatchFreezeString() -> String {
+		let currentTime=previousTime
 		let minutesAndSecondsString=stopwatchFormatter.string(from: Date(timeIntervalSince1970: currentTime))
 		if StopwatchPreferencesStorage.sharedInstance.useSecondsPrecision {
 			return minutesAndSecondsString

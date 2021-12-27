@@ -35,6 +35,7 @@ class StopwatchPreferencesStorage {
 	func loadPreferences() {
 		windowIsOpen=userDefaults.bool(forKey: windowIsOpenKey)
 		stopwatchFloats=userDefaults.bool(forKey: stopwatchFloatsKey)
+		useSecondsPrecision=userDefaults.bool(forKey: stopwatchSecondsPrecisionKey)
 	}
 	func toggleStopwatchFloats() {
 		stopwatchFloats = !stopwatchFloats
@@ -42,6 +43,7 @@ class StopwatchPreferencesStorage {
 	}
 	func setDefaultUserDefaults() {
 		userDefaults.set(false, forKey: stopwatchFloatsKey)
+		userDefaults.set(false, forKey: stopwatchSecondsPrecisionKey)
 		userDefaults.set(false, forKey: stopwatchSecondsPrecisionKey)
 	}
 	func setUseSecondsPrecision() {

@@ -600,6 +600,7 @@
                         <outlet property="resetLapButton" destination="Li9-XJ-oEq" id="LTa-Rs-9Yz"/>
                         <outlet property="startStopButton" destination="GYT-Ry-i2T" id="VGN-u4-DZb"/>
                         <outlet property="stopwatchLabel" destination="gBw-yL-viY" id="dTC-1a-psp"/>
+                        <outlet property="stopwatchLabelWidthConstraint" destination="EXp-sC-gWI" id="zRj-zX-hQW"/>
                     </connections>
                 </viewController>
                 <customObject id="Zti-LF-8aw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

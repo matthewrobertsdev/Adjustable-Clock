@@ -9,8 +9,10 @@ import Foundation
 class Lap: Codable {
 	var lapNumber=0
 	var timeInterval: TimeInterval=0
-	init(lapNumber: Int, timeInterval: TimeInterval) {
+	var useSecondsPrecision=false
+	init(lapNumber: Int, timeInterval: TimeInterval, useSecondsPrecision: Bool) {
 		self.lapNumber=lapNumber
 		self.timeInterval=timeInterval
+		self.useSecondsPrecision=useSecondsPrecision
 	}
 }

@@ -13,7 +13,7 @@ class PrecsionMenuController: PrecisionMenuDelegate {
 		precisionMenu=menu
 		precisionMenu.autoenablesItems=false
 		precisionMenu.precisionMenuDelegate=self
-		//updateUI()
+		updateUI()
 	}
 	func useSecondsClicked() {
 		StopwatchPreferencesStorage.sharedInstance.setUseSecondsPrecision()
@@ -24,7 +24,16 @@ class PrecsionMenuController: PrecisionMenuDelegate {
 		updateForPreferencesChange()
 	}
 	func updateForPreferencesChange() {
-		//updateUI()
+		updateUI()
 		StopwatchWindowController.stopwatchObject.updateForPreferencesChange()
+	}
+	func updateUI() {
+		if StopwatchPreferencesStorage.sharedInstance.useSecondsPrecision {
+			precisionMenu.secondsPrecisionMenuItem.state = .on
+			precisionMenu.tenthsOfSecondsPrecisionMenuItem.state = .off
+		} else {
+			precisionMenu.secondsPrecisionMenuItem.state = .off
+			precisionMenu.tenthsOfSecondsPrecisionMenuItem.state = .on
+		}
 	}
 }
