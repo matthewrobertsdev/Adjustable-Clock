@@ -8,18 +8,21 @@
 
 import Cocoa
 
-class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NSTableViewDelegate {
+class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NSTableViewDelegate, NSOpenSavePanelDelegate {
 	@IBOutlet weak var stopwatchLabel: NSTextField!
 	@IBOutlet weak var startStopButton: NSButton!
 	@IBOutlet weak var resetLapButton: NSButton!
 	@IBOutlet weak var lapTableView: NSTableView!
 	@IBOutlet weak var stopwatchLabelWidthConstraint: NSLayoutConstraint!
 	private let lapFormatter=DateFormatter()
+	private let dateFormatter=DateFormatter()
 	private let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
 	override func viewDidLoad() {
         super.viewDidLoad()
 		lapFormatter.setLocalizedDateFormatFromTemplate("mm:ss")
 		lapFormatter.locale=Locale(identifier: "en_US")
+		dateFormatter.setLocalizedDateFormatFromTemplate("MM/dd/yyyy")
+		dateFormatter.locale=Locale(identifier: "en_US")
 		lapTableView.usesAlternatingRowBackgroundColors=true
 		lapTableView.dataSource=self
 		lapTableView.delegate=self
@@ -97,6 +100,8 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 			if lap.useSecondsPrecision==false { timeString+=hundrethsString.substring(from: hundrethsString.index(hundrethsString.startIndex, offsetBy: 1))
 			}
 			tableCellView.textField?.stringValue=timeString
+		} else if tableColumn?.identifier==NSUserInterfaceItemIdentifier("NotesColumn") {
+			tableCellView.textField?.stringValue=lap.notes
 		}
 		if row==StopwatchCenter.sharedInstance.leastIndex {
 			tableCellView.textField?.textColor=NSColor.systemGreen
@@ -143,4 +148,42 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 			stopwatchLabel.stringValue=StopwatchCenter.sharedInstance.getStopwatchFreezeString()
 		}
 	}
+	func exportLapsToCsvFile() {
+		var csvString="Lap Number, Lap Time, Notes\n"
+		for lap in StopwatchCenter.sharedInstance.laps.reversed() {
+			csvString+=lap.lapNumber.description+","
+			let hundrethsString=String(format: "%.1f", (lap.timeInterval.truncatingRemainder(dividingBy: TimeInterval(10))))
+			var timeString=lapFormatter.string(from: Date(timeIntervalSince1970: lap.timeInterval))
+			if lap.useSecondsPrecision==false { timeString+=hundrethsString.substring(from: hundrethsString.index(hundrethsString.startIndex, offsetBy: 1))
+			}
+			csvString+=timeString+","
+			csvString+=lap.notes+"\n"
+		}
+		let savePanel=NSSavePanel()
+		savePanel.directoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+		savePanel.delegate=self
+		savePanel.nameFieldStringValue="Lap Data "+dateFormatter.string(from: Date())+".csv"
+		if let window=self.view.window {
+			savePanel.beginSheetModal(for: window) { response in
+				if response == NSApplication.ModalResponse.OK {
+					let fileUrl=savePanel.url
+					do {
+						if let fileUrl=fileUrl {
+							try csvString.write(to: fileUrl, atomically: true, encoding: String.Encoding.utf8)
+						}
+					} catch {
+						print("Couldn't save laps csv file.")
+					}
+				}
+			}
+		}
+	}
+	@IBAction func editNote(_ sender: NSTextField) {
+		let selectedRowNumber = lapTableView.selectedRow
+
+		if selectedRowNumber != -1 {
+			StopwatchCenter.sharedInstance.laps[selectedRowNumber].notes = sender.stringValue
+		}
+	}
+	
 }

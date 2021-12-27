@@ -15,4 +15,7 @@ class StopwatchMenu: NSMenu {
 	@IBAction func showStopwatch(nsMenuItem: NSMenuItem) {
 		stopwatchMenuDelegate.showStopwatchClicked()
 	}
+	@IBAction func exportLapsToCsvFile(nsMenuItem: NSMenuItem) {
+		stopwatchMenuDelegate.exportLapsToCsvClicked()
+	}
 }

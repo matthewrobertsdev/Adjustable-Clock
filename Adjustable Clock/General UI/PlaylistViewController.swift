@@ -71,10 +71,10 @@ class PlaylistViewController: NSViewController, NSTableViewDataSource, NSTableVi
 					self.getSongs()
 					self.tableView.reloadData()
 				} catch {
-					print("error copying file to applicatiohn support Tracks folder")
+					print("error copying file to application support Tracks folder")
 				}
 			} catch {
-				print("error creating applicatiohn support Tracks folder")
+				print("error creating application support Tracks folder")
 			}
 			}
 		})

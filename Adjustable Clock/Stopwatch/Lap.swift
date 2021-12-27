@@ -10,6 +10,7 @@ class Lap: Codable {
 	var lapNumber=0
 	var timeInterval: TimeInterval=0
 	var useSecondsPrecision=false
+	var notes=""
 	init(lapNumber: Int, timeInterval: TimeInterval, useSecondsPrecision: Bool) {
 		self.lapNumber=lapNumber
 		self.timeInterval=timeInterval

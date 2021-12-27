@@ -29,4 +29,10 @@ class StopwatchMenuController: StopwatchMenuDelegate {
 		updateUI()
 		StopwatchWindowController.stopwatchObject.applyFloatState()
 	}
+	func exportLapsToCsvClicked() {
+		StopwatchWindowController.stopwatchObject.showStopwatch()
+		if let stopwatchViewController=StopwatchWindowController.stopwatchObject.contentViewController as? StopwatchViewController {
+			stopwatchViewController.exportLapsToCsvFile()
+		}
+	}
 }

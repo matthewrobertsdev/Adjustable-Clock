@@ -73,7 +73,8 @@ class StopwatchCenter {
 	}
 	func lapStopwatch() {
 		previousTime+=lapTime
-		laps.append(Lap(lapNumber: laps.count+1, timeInterval: lapTime, useSecondsPrecision: StopwatchPreferencesStorage.sharedInstance.useSecondsPrecision))
+		let lap=Lap(lapNumber: laps.count+1, timeInterval: lapTime, useSecondsPrecision: StopwatchPreferencesStorage.sharedInstance.useSecondsPrecision)
+		laps.insert(lap, at: 0)
 		saveTime()
 		saveLaps()
 		setStartTime()
