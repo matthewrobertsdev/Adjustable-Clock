@@ -18,6 +18,7 @@ class StopwatchWindowController: FullViewWindowController, NSWindowDelegate {
 		if StopwatchPreferencesStorage.sharedInstance.hasLaunchedBefore() {
 			StopwatchWindowFrameRestorer().loadSavedWindowCGRect(window: window)
 		}
+		applyFloatState()
     }
 	func windowWillClose(_ notification: Notification) {
 		WindowManager.sharedInstance.count-=1
@@ -64,10 +65,23 @@ class StopwatchWindowController: FullViewWindowController, NSWindowDelegate {
 	}
 	func windowWillMiniaturize(_ notification: Notification) {
 		WindowManager.sharedInstance.dockWindowArray.append(window ?? NSWindow())
+		if let stopwatchViewController=window?.contentViewController as? StopwatchViewController {
+			stopwatchViewController.displayForDock()
+		}
 	}
 	func windowDidDeminiaturize(_ notification: Notification) {
 		WindowManager.sharedInstance.dockWindowArray.removeAll { (dockWindow) -> Bool in
 			return dockWindow==window
+		}
+		if let stopwatchViewController=window?.contentViewController as? StopwatchViewController {
+			stopwatchViewController.stopwatchLabel.stringValue=StopwatchCenter.sharedInstance.getStopwatchDisplayString()
+		}
+	}
+	func applyFloatState() {
+		if StopwatchPreferencesStorage.sharedInstance.stopwatchFloats {
+			self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.mainMenuWindow))-1)
+		} else {
+			self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
 		}
 	}
 }

@@ -19,7 +19,7 @@ class TimersViewController: ColorfulViewController,
 	private var dockDisplay=false
 	private var player: AVAudioPlayer?
 	private var soundCount=0
-	let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
+	private let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
 	override func viewDidLoad() {
         super.viewDidLoad()
 		collectionView.dataSource=self

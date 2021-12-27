@@ -72,9 +72,6 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 		self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
 	}
 	func windowDidEnterFullScreen(_ notification: Notification) {
-        //removeTrackingArea()
-		//hideButtonsTimer?.cancel()
-        //showButtons(show: true)
 		//reloadPreferencesWindowIfOpen()
     }
 	func windowWillExitFullScreen(_ notification: Notification) {
@@ -83,7 +80,6 @@ class TimersWindowController: FullViewWindowController, NSWindowDelegate {
 	func windowDidExitFullScreen(_ notification: Notification) {
 		fullscreen=false
         window?.makeKey()
-		//prepareWindowButtons()
 		//reloadPreferencesWindowIfOpen()
     }
 	func windowWillMiniaturize(_ notification: Notification) {

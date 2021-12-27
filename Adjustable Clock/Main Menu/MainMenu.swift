@@ -16,6 +16,7 @@ class MainMenu: NSMenu {
     @IBOutlet weak var alarmsMenu: AlarmsMenu!
 	@IBOutlet weak var timersMenu: TimersMenu!
 	@IBOutlet weak var stopwatchMenu: StopwatchMenu!
+	@IBOutlet weak var precisionMenu: PrecisionMenu!
 	@IBOutlet weak var worldClockMenu: WorldClockMenu!
 	@IBOutlet weak var helpMenu: HelpMenu!
 	@IBAction func pressSimplePreferencesMenuItem(preferenceMenuItem: NSMenuItem) {

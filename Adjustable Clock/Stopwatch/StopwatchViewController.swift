@@ -13,7 +13,8 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 	@IBOutlet weak var startStopButton: NSButton!
 	@IBOutlet weak var resetLapButton: NSButton!
 	@IBOutlet weak var lapTableView: NSTableView!
-	let lapFormatter=DateFormatter()
+	private let lapFormatter=DateFormatter()
+	private let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
 	override func viewDidLoad() {
         super.viewDidLoad()
 		lapFormatter.setLocalizedDateFormatFromTemplate("mm:ss")
@@ -24,23 +25,32 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 		stopwatchLabel.stringValue=StopwatchCenter.sharedInstance.getStopwatchDisplayString()
 		lapTableView.reloadData()
 		update()
+		workspaceNotifcationCenter.addObserver(self, selector: #selector(stop),
+											   name: NSWorkspace.screensDidSleepNotification, object: nil)
     }
 	func update() {
 		applyColorScheme(views: [ColorView](), labels: [stopwatchLabel])
+		if let stopwatchWindowwController=view.window?.windowController as? StopwatchWindowController {
+			stopwatchWindowwController.applyFloatState()
+		}
+		updatePrecision()
 	}
 	@IBAction func startStopStopwatch(_ sender: Any) {
 		if StopwatchCenter.sharedInstance.active {
-			StopwatchCenter.sharedInstance.lapStopwatch()
-			StopwatchCenter.sharedInstance.stopStopwatch()
-			lapTableView.reloadData()
-			startStopButton.title="Start"
-			resetLapButton.title="Reset"
+			stopStopwatch()
 		} else {
 			StopwatchCenter.sharedInstance.startStopwatch()
 			animateStopwatch()
 			startStopButton.title="Stop"
 			resetLapButton.title="Lap"
 		}
+	}
+	private func stopStopwatch() {
+		StopwatchCenter.sharedInstance.lapStopwatch()
+		StopwatchCenter.sharedInstance.stopStopwatch()
+		lapTableView.reloadData()
+		startStopButton.title="Start"
+		resetLapButton.title="Reset"
 	}
 	@IBAction func resetLapStopwatch(_ sender: Any) {
 		if StopwatchCenter.sharedInstance.active {
@@ -52,7 +62,9 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 		lapTableView.reloadData()
 	}
 	private func animateStopwatch() {
-		StopwatchCenter.sharedInstance.gcdTimer.schedule(deadline: .now()+0.1, repeating: .milliseconds(100),
+		StopwatchCenter.sharedInstance.gcdTimer.schedule(deadline: .now()
+														 +
+														 1/StopwatchCenter.sharedInstance.precisionDivisor, repeating: .milliseconds(1000/Int(StopwatchCenter.sharedInstance.precisionDivisor)),
 															  leeway: .milliseconds(0))
 		StopwatchCenter.sharedInstance.gcdTimer.setEventHandler { [weak self] in
 			guard let strongSelf=self else {
@@ -67,23 +79,9 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 	func numberOfRows(in tableView: NSTableView) -> Int {
 		return StopwatchCenter.sharedInstance.laps.count
 	}
-	/*
-	func tableView(_ tableView: NSTableView,
-			 objectValueFor tableColumn: NSTableColumn?,
-				   row: Int) -> Any? {
-		let lap=StopwatchCenter.sharedInstance.laps[row]
-		guard let tableCellView = tableView.makeView(withIdentifier: tableColumn!.identifier,
-																   owner: self) as? NSTableCellView else {
-			return NSTableCellView()
-		}
-		if tableColumn?.identifier==NSUserInterfaceItemIdentifier("LapNumberColumn") {
-			tableCellView.textField?.stringValue=lap.lapNumber.description
-		} else if tableColumn?.identifier==NSUserInterfaceItemIdentifier("TimeColumn") {
-			tableCellView.textField?.stringValue=lap.timeInterval.description
-		}
-		return tableCellView
+	func displayForDock() {
+		stopwatchLabel.stringValue=""
 	}
-	 */
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		let lap=StopwatchCenter.sharedInstance.laps[row]
 		guard let tableCellView = tableView.makeView(withIdentifier: tableColumn!.identifier,
@@ -105,5 +103,33 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 			tableCellView.textField?.textColor=NSColor.labelColor
 		}
 		return tableCellView
+	}
+	@objc func stop() {
+		if StopwatchCenter.sharedInstance.active {
+			stopStopwatch()
+		}
+	}
+	func updatePrecision() {
+		if StopwatchPreferencesStorage.sharedInstance.useSecondsPrecision {
+			useSeconds()
+		} else {
+			useTenthsOfSeconds()
+		}
+	}
+	private func useSeconds() {
+		StopwatchCenter.sharedInstance.useSeconds()
+		stopwatchLabel.stringValue=StopwatchCenter.sharedInstance.getStopwatchDisplayString()
+		if StopwatchCenter.sharedInstance.active {
+			StopwatchCenter.sharedInstance.gcdTimer.cancel()
+			animateStopwatch()
+		}
+	}
+	private func useTenthsOfSeconds() {
+		stopwatchLabel.stringValue=StopwatchCenter.sharedInstance.getStopwatchDisplayString()
+		StopwatchCenter.sharedInstance.useTenthsOfSeconds()
+		if StopwatchCenter.sharedInstance.active {
+			StopwatchCenter.sharedInstance.gcdTimer.cancel()
+			animateStopwatch()
+		}
 	}
 }

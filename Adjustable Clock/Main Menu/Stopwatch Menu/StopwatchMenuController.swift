@@ -10,9 +10,23 @@ class StopwatchMenuController: StopwatchMenuDelegate {
 	var stopwatchMenu: StopwatchMenu
 	init(menu: StopwatchMenu) {
 		stopwatchMenu=menu
+		stopwatchMenu.autoenablesItems=false
 		stopwatchMenu.stopwatchMenuDelegate=self
+		updateUI()
+	}
+	func updateUI() {
+		if StopwatchPreferencesStorage.sharedInstance.stopwatchFloats {
+			stopwatchMenu.stopwatchFloatsMenuItem.state = .on
+		} else {
+			stopwatchMenu.stopwatchFloatsMenuItem.state = .off
+		}
 	}
 	func showStopwatchClicked() {
 		StopwatchWindowController.stopwatchObject.showStopwatch()
+	}
+	func toggleStopwatchFloatsClicked() {
+		StopwatchPreferencesStorage.sharedInstance.toggleStopwatchFloats()
+		updateUI()
+		StopwatchWindowController.stopwatchObject.applyFloatState()
 	}
 }

@@ -18,9 +18,11 @@ class StopwatchCenter {
 	private var startTime: TimeInterval=0
 	private var lapTime: TimeInterval=0
 	private var previousTime: TimeInterval=0
+	var precisionDivisor=10.0
 	private let userDefaults=UserDefaults.standard
 	private let jsonEncoder=JSONEncoder()
 	private let jsonDecoder=JSONDecoder()
+	private var useSecondsPrecision=false
 	private init() {
 	}
 	func setUp() {
@@ -91,8 +93,13 @@ class StopwatchCenter {
 	}
 	func getStopwatchDisplayString() -> String {
 		let currentTime=previousTime+lapTime
+		let minutesAndSecondsString=stopwatchFormatter.string(from: Date(timeIntervalSince1970: currentTime))
+		if StopwatchPreferencesStorage.sharedInstance.useSecondsPrecision {
+			return minutesAndSecondsString
+		} else {
 		let hundrethsString=String(format: "%.1f", (currentTime.truncatingRemainder(dividingBy: TimeInterval(10))))
-		return stopwatchFormatter.string(from: Date(timeIntervalSince1970: currentTime))+hundrethsString.substring(from: hundrethsString.index(hundrethsString.startIndex, offsetBy: 1))
+		return minutesAndSecondsString+hundrethsString.substring(from: hundrethsString.index(hundrethsString.startIndex, offsetBy: 1))
+		}
 	}
 	private func resetData() {
 		previousTime=0
@@ -118,5 +125,13 @@ class StopwatchCenter {
 				}
 			}
 		}
+	}
+	func useSeconds() {
+		useSecondsPrecision=true
+		precisionDivisor=1
+	}
+	func useTenthsOfSeconds() {
+		useSecondsPrecision=false
+		precisionDivisor=10
 	}
 }

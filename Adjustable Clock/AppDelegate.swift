@@ -20,6 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	var helpMenuController: HelpMenuController?
     var clocksMenuController: ClocksMenuController?
 	var stopwatchMenuController: StopwatchMenuController?
+	var precisionMenuController: PrecsionMenuController?
 
 	//on launch
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -45,6 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			dockClockMenuController=DockClockMenuController(menu: dockClockMenu)
             clocksMenuController=ClocksMenuController(menu: mainMenu.clocksMenu)
 			stopwatchMenuController=StopwatchMenuController(menu: mainMenu.stopwatchMenu)
+			precisionMenuController=PrecsionMenuController(menu: mainMenu.precisionMenu)
 			//worldClockMenuController=WorldClockMenuController(menu: mainMenu.worldClockMenu)
 			helpMenuController=HelpMenuController(menu: mainMenu.helpMenu)
 		}
@@ -95,6 +97,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		GeneralPreferencesStorage.sharedInstance.closing=true
 		ClockPreferencesStorage.sharedInstance.saveCustomColor()
 		TimersCenter.sharedInstance.saveTimers()
+		StopwatchCenter.sharedInstance.stopStopwatch()
 		NSColorPanel.shared.close()
 	}
 }

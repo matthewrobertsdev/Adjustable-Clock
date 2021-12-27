@@ -53,6 +53,8 @@ class SimplePreferencesViewController: NSViewController {
 		TimersPreferenceStorage.sharedInstance.loadPreferences()
 		GeneralPreferencesStorage.sharedInstance.setDefaultUserDefaults()
 		GeneralPreferencesStorage.sharedInstance.loadUserPreferences()
+		StopwatchPreferencesStorage.sharedInstance.setDefaultUserDefaults()
+		StopwatchPreferencesStorage.sharedInstance.loadPreferences()
         updateForPreferencesChange()
 		updateUI()
     }
@@ -136,6 +138,7 @@ class SimplePreferencesViewController: NSViewController {
 		updateDockClockPrefrencesMenuUI()
 		AlarmsWindowController.alarmsObject.updateForPreferencesChange()
 		StopwatchWindowController.stopwatchObject.updateForPreferencesChange()
+		updateStopwatchMenuUI()
 		updateColorMenuUI()
     }
 	func updateColorMenuUI() {
@@ -169,4 +172,10 @@ class SimplePreferencesViewController: NSViewController {
 		}
 		appDelegate.dockClockMenuController?.updateUI()
     }
+	func updateStopwatchMenuUI() {
+		guard let appDelegate = NSApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		appDelegate.stopwatchMenuController?.updateUI()
+	}
 }

@@ -8,4 +8,5 @@
 import Foundation
 protocol StopwatchMenuDelegate: AnyObject {
 	func showStopwatchClicked()
+	func toggleStopwatchFloatsClicked()
 }
