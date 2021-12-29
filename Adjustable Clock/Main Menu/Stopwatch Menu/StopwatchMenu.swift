@@ -8,6 +8,7 @@
 import Cocoa
 class StopwatchMenu: NSMenu {
 	weak var stopwatchMenuDelegate: StopwatchMenuDelegate!
+	@IBOutlet weak var activeStopwatchMenuItem: NSMenuItem!
 	@IBOutlet weak var stopwatchFloatsMenuItem: NSMenuItem!
 	@IBOutlet weak var exportLapsMenuItem: NSMenuItem!
 	@IBAction func toggleFloatsOnTop(nsMenuItem: NSMenuItem) {

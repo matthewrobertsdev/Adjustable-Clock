@@ -17,6 +17,7 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 	private let lapFormatter=DateFormatter()
 	private let dateFormatter=DateFormatter()
 	private let workspaceNotifcationCenter=NSWorkspace.shared.notificationCenter
+	private let notificationCenter=NotificationCenter.default
 	override func viewDidLoad() {
         super.viewDidLoad()
 		lapFormatter.setLocalizedDateFormatFromTemplate("mm:ss")
@@ -48,6 +49,7 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 			startStopButton.title="Stop"
 			resetLapButton.title="Lap"
 		}
+		notificationCenter.post(name: .activeCountChanged, object: nil)
 	}
 	private func stopStopwatch() {
 		StopwatchCenter.sharedInstance.lapStopwatch()
@@ -115,6 +117,7 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 	@objc func stop() {
 		if StopwatchCenter.sharedInstance.active {
 			stopStopwatch()
+			notificationCenter.post(name: .activeCountChanged, object: nil)
 		}
 	}
 	func updatePrecision() {

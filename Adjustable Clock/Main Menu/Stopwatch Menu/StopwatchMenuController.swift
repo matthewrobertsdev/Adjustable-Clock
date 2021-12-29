@@ -13,6 +13,9 @@ class StopwatchMenuController: StopwatchMenuDelegate {
 		stopwatchMenu.autoenablesItems=false
 		stopwatchMenu.stopwatchMenuDelegate=self
 		updateUI()
+		NotificationCenter.default.addObserver(self, selector: #selector(showStopwatchStatus),
+											   name: NSNotification.Name.activeCountChanged, object: nil)
+		showStopwatchStatus()
 	}
 	func updateUI() {
 		if StopwatchPreferencesStorage.sharedInstance.stopwatchFloats {
@@ -38,5 +41,12 @@ class StopwatchMenuController: StopwatchMenuDelegate {
 	func enableMenu(enabled: Bool) {
 		stopwatchMenu.stopwatchFloatsMenuItem.isEnabled=enabled
 		stopwatchMenu.exportLapsMenuItem.isEnabled=enabled
+	}
+	@objc func showStopwatchStatus() {
+		if StopwatchCenter.sharedInstance.active {
+			stopwatchMenu.activeStopwatchMenuItem.title="Stopwatch Active"
+		} else {
+			stopwatchMenu.activeStopwatchMenuItem.title="Stopwatch Inactive"
+		}
 	}
 }

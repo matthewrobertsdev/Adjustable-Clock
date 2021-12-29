@@ -31,6 +31,9 @@ class StopwatchWindowController: FullViewWindowController, NSWindowDelegate {
 			StopwatchPreferencesStorage.sharedInstance.setWindowIsClosed()
 		}
 		enableStopwatchMenus(enabled: false)
+		if let stopwatchViewController=self.contentViewController as? StopwatchViewController {
+			stopwatchViewController.stop()
+		}
 	}
 	func saveState() {
 		StopwatchWindowFrameRestorer().windowSaveCGRect(window: window)

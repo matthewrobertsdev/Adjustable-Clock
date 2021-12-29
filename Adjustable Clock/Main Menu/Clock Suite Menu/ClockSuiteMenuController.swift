@@ -17,6 +17,7 @@ class ClockSuiteMenuController {
 	@objc func showStatus() {
 		showActiveAlarms()
 		showActiveTimers()
+		showStopwatchStatus()
 	}
 	@objc func showActiveAlarms() {
 		if AlarmCenter.sharedInstance.activeAlarms==0 {
@@ -25,6 +26,13 @@ class ClockSuiteMenuController {
 			menu.activeAlarmsMenuItem.title="1 Alarm Active"
 		} else if AlarmCenter.sharedInstance.activeAlarms>1 {
 			menu.activeAlarmsMenuItem.title="\(AlarmCenter.sharedInstance.activeAlarms) Alarms Active"
+		}
+	}
+	@objc func showStopwatchStatus() {
+		if StopwatchCenter.sharedInstance.active {
+			menu.activeStopwatchMenuItem.title="Stopwatch Active"
+		} else {
+			menu.activeStopwatchMenuItem.title="Stopwatch Inactive"
 		}
 	}
 	@objc func showActiveTimers() {
