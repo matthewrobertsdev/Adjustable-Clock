@@ -180,10 +180,8 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 	}
 	@IBAction func editNote(_ sender: NSTextField) {
 		let selectedRowNumber = lapTableView.selectedRow
-
 		if selectedRowNumber != -1 {
 			StopwatchCenter.sharedInstance.laps[selectedRowNumber].notes = sender.stringValue
 		}
 	}
-	
 }

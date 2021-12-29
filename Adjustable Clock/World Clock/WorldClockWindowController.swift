@@ -15,7 +15,6 @@ class WorldClockWindowController: FullViewWindowController, NSWindowDelegate {
 		if WorldClockPreferencesStorage.sharedInstance.haslaunchedBefore() {
 			WorldClockWindowRestorer().loadSavedWindowCGRect(window: window)
 		}
-		prepareWindowButtons()
     }
 	func showWorldClock() {
 		if worldClockWindowPresent()==false {

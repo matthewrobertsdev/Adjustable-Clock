@@ -97,7 +97,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		GeneralPreferencesStorage.sharedInstance.closing=true
 		ClockPreferencesStorage.sharedInstance.saveCustomColor()
 		TimersCenter.sharedInstance.saveTimers()
-		StopwatchCenter.sharedInstance.stopStopwatch()
+		if let stopwatchViewController=StopwatchWindowController.stopwatchObject.contentViewController as? StopwatchViewController {
+			stopwatchViewController.stop()
+		}
 		NSColorPanel.shared.close()
 	}
 }
