@@ -19,6 +19,7 @@ class StopwatchWindowController: FullViewWindowController, NSWindowDelegate {
 			StopwatchWindowFrameRestorer().loadSavedWindowCGRect(window: window)
 		}
 		applyFloatState()
+		enableStopwatchMenus(enabled: true)
     }
 	func windowWillClose(_ notification: Notification) {
 		WindowManager.sharedInstance.count-=1
@@ -29,6 +30,7 @@ class StopwatchWindowController: FullViewWindowController, NSWindowDelegate {
 		} else {
 			StopwatchPreferencesStorage.sharedInstance.setWindowIsClosed()
 		}
+		enableStopwatchMenus(enabled: false)
 	}
 	func saveState() {
 		StopwatchWindowFrameRestorer().windowSaveCGRect(window: window)
@@ -51,6 +53,7 @@ class StopwatchWindowController: FullViewWindowController, NSWindowDelegate {
 					}
 				}
 			}
+		enableStopwatchMenus(enabled: true)
 	}
 	func stopwatchWindowPresent() -> Bool {
 		return isWindowPresent(identifier: UserInterfaceIdentifier.stopwatchWindow)
@@ -68,6 +71,7 @@ class StopwatchWindowController: FullViewWindowController, NSWindowDelegate {
 		if let stopwatchViewController=window?.contentViewController as? StopwatchViewController {
 			stopwatchViewController.displayForDock()
 		}
+		enableStopwatchMenus(enabled: false)
 	}
 	func windowDidDeminiaturize(_ notification: Notification) {
 		WindowManager.sharedInstance.dockWindowArray.removeAll { (dockWindow) -> Bool in
@@ -76,6 +80,7 @@ class StopwatchWindowController: FullViewWindowController, NSWindowDelegate {
 		if let stopwatchViewController=window?.contentViewController as? StopwatchViewController {
 			stopwatchViewController.stopwatchLabel.stringValue=StopwatchCenter.sharedInstance.getStopwatchDisplayString()
 		}
+		enableStopwatchMenus(enabled: true)
 	}
 	func applyFloatState() {
 		if StopwatchPreferencesStorage.sharedInstance.stopwatchFloats {
@@ -83,5 +88,12 @@ class StopwatchWindowController: FullViewWindowController, NSWindowDelegate {
 		} else {
 			self.window?.level = NSWindow.Level(rawValue: Int(CGWindowLevelForKey(.normalWindow)))
 		}
+	}
+	func enableStopwatchMenus(enabled: Bool) {
+		guard let appDelagte = NSApplication.shared.delegate as? AppDelegate else {
+			return
+		}
+		appDelagte.stopwatchMenuController?.enableMenu(enabled: enabled)
+		appDelagte.precisionMenuController?.enableMenu(enabled: enabled)
 	}
 }

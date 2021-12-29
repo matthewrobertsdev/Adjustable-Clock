@@ -36,4 +36,8 @@ class PrecsionMenuController: PrecisionMenuDelegate {
 			precisionMenu.tenthsOfSecondsPrecisionMenuItem.state = .on
 		}
 	}
+	func enableMenu(enabled: Bool) {
+		precisionMenu.secondsPrecisionMenuItem.isEnabled=enabled
+		precisionMenu.tenthsOfSecondsPrecisionMenuItem.isEnabled=enabled
+	}
 }

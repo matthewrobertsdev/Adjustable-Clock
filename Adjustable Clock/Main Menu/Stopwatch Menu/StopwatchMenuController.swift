@@ -35,4 +35,8 @@ class StopwatchMenuController: StopwatchMenuDelegate {
 			stopwatchViewController.exportLapsToCsvFile()
 		}
 	}
+	func enableMenu(enabled: Bool) {
+		stopwatchMenu.stopwatchFloatsMenuItem.isEnabled=enabled
+		stopwatchMenu.exportLapsMenuItem.isEnabled=enabled
+	}
 }
