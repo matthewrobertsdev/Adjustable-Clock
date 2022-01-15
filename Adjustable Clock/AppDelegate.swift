@@ -72,9 +72,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 		if StopwatchPreferencesStorage.sharedInstance.windowIsOpen {
 			StopwatchWindowController.stopwatchObject.showStopwatch()
-			//clockMenuController?.enableMenu(enabled: true)
+			stopwatchMenuController?.enableMenu(enabled: true)
+			precisionMenuController?.enableMenu(enabled: true)
 		} else {
-			//clockMenuController?.enableMenu(enabled: false)
+			stopwatchMenuController?.enableMenu(enabled: false)
+			precisionMenuController?.enableMenu(enabled: false)
 		}
 		if NSApp.orderedWindows.count==0 {
 			ClockWindowController.clockObject.showClock()
@@ -100,6 +102,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		if let stopwatchViewController=StopwatchWindowController.stopwatchObject.contentViewController as? StopwatchViewController {
 			stopwatchViewController.stop()
 		}
+		StopwatchCenter.sharedInstance.saveLaps()
 		NSColorPanel.shared.close()
 	}
 }

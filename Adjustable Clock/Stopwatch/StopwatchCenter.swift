@@ -48,7 +48,7 @@ class StopwatchCenter {
 	private func saveTime() {
 		userDefaults.set(previousTime, forKey: "previousTimeKey")
 	}
-	private func saveLaps() {
+	func saveLaps() {
 		do {
 			let lapData = try jsonEncoder.encode(laps)
 			userDefaults.set(lapData, forKey: "lapDataKey")
