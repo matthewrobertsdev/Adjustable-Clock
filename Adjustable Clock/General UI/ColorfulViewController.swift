@@ -103,6 +103,7 @@ class ColorfulViewController: NSViewController {
 					labelColor=NSColor(named: "DarkLabel") ?? NSColor.labelColor
 				}
 			}
+			//labelColor=NSColor.white
 			visualEffectView.isHidden=true
 			for label in labels {
 				label.textColor=labelColor

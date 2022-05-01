@@ -46,7 +46,7 @@ class ColorModel {
 	var darkColorsDictionary=[ColorChoice: NSColor]()
     //init should make the dictionary
     init() {
-		 makeColorArray()
+		makeColorArray()
         makeColorDictionary()
 		makeLightColorDictionary()
 		makeDarkColorDictionary()
@@ -62,6 +62,7 @@ class ColorModel {
 			ColorChoice.yellow: NSColor(named: "Yellow") ?? NSColor.systemYellow,
 			ColorChoice.green: NSColor(named: "Green") ?? NSColor.systemGreen,
 			ColorChoice.blue: NSColor(named: "Blue") ?? NSColor.systemBlue,
+			ColorChoice.indigo: NSColor(named: "Indigo") ?? NSColor.systemBlue,
 			ColorChoice.purple: NSColor(named: "Purple") ?? NSColor.systemPurple,
 			ColorChoice.pink: NSColor(named: "Pink") ?? NSColor.systemPink,
 			ColorChoice.brown: NSColor(named: "Brown") ?? NSColor.systemBrown]
@@ -76,6 +77,7 @@ class ColorModel {
 			ColorChoice.yellow: NSColor.systemYellow,
 			ColorChoice.green: NSColor.systemGreen,
 			ColorChoice.blue: NSColor.systemBlue,
+			ColorChoice.indigo: NSColor(named: "LightIndigo") ?? NSColor.systemBlue,
 			ColorChoice.purple: NSColor.systemPurple,
 			ColorChoice.pink: NSColor.systemPink,
 			ColorChoice.brown: NSColor(named: "LightBrown") ?? NSColor.systemBrown]
@@ -90,6 +92,7 @@ class ColorModel {
 			ColorChoice.yellow: NSColor(named: "DarkYellow") ?? NSColor.systemYellow,
 			ColorChoice.green: NSColor(named: "DarkGreen") ?? NSColor.systemGreen,
 			ColorChoice.blue: NSColor(named: "DarkBlue") ?? NSColor.systemBlue,
+			ColorChoice.indigo: NSColor(named: "DarkIndigo") ?? NSColor.systemBlue,
 			ColorChoice.purple: NSColor(named: "DarkPurple") ?? NSColor.systemPurple,
 			ColorChoice.pink: NSColor(named: "DarkPink") ?? NSColor.systemPink,
 			ColorChoice.brown: NSColor(named: "DarkBrown") ?? NSColor.systemBrown]
@@ -109,6 +112,7 @@ class ColorModel {
         colorArray.append(ColorChoice.yellow)
         colorArray.append(ColorChoice.green)
         colorArray.append(ColorChoice.blue)
+		colorArray.append(ColorChoice.indigo)
         colorArray.append(ColorChoice.purple)
 		colorArray.append(ColorChoice.pink)
 		colorArray.append(ColorChoice.brown)
