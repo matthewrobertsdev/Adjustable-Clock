@@ -143,6 +143,13 @@ class AnalogDockClockView: BaseAnalogClockView {
 			color=NSColor.white
 			secondsColor=NSColor.white
 		}
+		if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor {
+			if hasDarkAppearance(view: self) {
+				backgroundColor=NSColor(named: "DarkSystemColor") ?? NSColor.textBackgroundColor
+			} else {
+				backgroundColor=NSColor(named: "LightSystemColor") ?? NSColor.textBackgroundColor
+			}
+		}
 		secondsColor.setFill(); background.fill()
 		backgroundColor.setFill(); path.fill(); handsColor.setFill(); circle.fill()
 		guard let cgContext=NSGraphicsContext.current?.cgContext else {

@@ -53,7 +53,7 @@ class ColorModel {
     }
     //actually pair the keys with the colors
     func makeColorDictionary() {
-		colorsDictionary=[ColorChoice.systemColor: NSColor.textBackgroundColor,
+		colorsDictionary=[ColorChoice.systemColor: NSColor(named: "SystemColor") ?? NSColor.windowBackgroundColor,
 			ColorChoice.black: NSColor.black,
 			ColorChoice.gray: NSColor(named: "Gray")  ?? NSColor.systemGray,
 			ColorChoice.white: NSColor.white,

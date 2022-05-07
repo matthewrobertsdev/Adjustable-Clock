@@ -127,6 +127,13 @@ class DigitalDockClockView: NSView {
 					digitalSeconds.textColor=NSColor.white
 				}
 			}
+			if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor {
+				if hasDarkAppearance(view: self) {
+					backgroundColor=NSColor(named: "DarkSystemColor") ?? NSColor.textBackgroundColor
+				} else {
+					backgroundColor=NSColor(named: "LightSystemColor") ?? NSColor.textBackgroundColor
+				}
+			}
 		} else {
 			digitalClock.textColor=NSColor.black
 			digitalSeconds.textColor=NSColor.black
