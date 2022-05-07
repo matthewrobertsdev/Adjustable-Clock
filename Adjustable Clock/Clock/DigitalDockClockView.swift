@@ -116,13 +116,15 @@ class DigitalDockClockView: NSView {
 				digitalClock.textColor=NSColor.white
 				digitalSeconds.textColor=NSColor.white
 				if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.white {
-					backgroundColor=NSColor.systemGray
+					digitalClock.textColor=NSColor.black
+					digitalSeconds.textColor=NSColor.black
 				}
 			} else {
 				digitalClock.textColor=NSColor.black
 				digitalSeconds.textColor=NSColor.black
 				if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.black {
-					backgroundColor=NSColor.systemGray
+					digitalClock.textColor=NSColor.white
+					digitalSeconds.textColor=NSColor.white
 				}
 			}
 		} else {

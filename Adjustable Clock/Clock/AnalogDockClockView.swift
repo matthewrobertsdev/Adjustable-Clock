@@ -5,6 +5,9 @@
 //  Created by Matt Roberts on 1/12/20.
 //  Copyright © 2020 Celeritas Apps. All rights reserved.
 //
+
+// swiftlint:disable function_body_length
+
 import Cocoa
 class AnalogDockClockView: BaseAnalogClockView {
 	var backgroundColor=NSColor.labelColor
@@ -43,7 +46,6 @@ class AnalogDockClockView: BaseAnalogClockView {
         let origin=CGPoint(x: bounds.width*0.05, y: bounds.height*0.05)
 		let path=NSBezierPath(ovalIn: NSRect(origin: origin, size: CGSize(width: frame.size.width*0.9,
 																		  height: frame.size.height*0.9)))
-		//var backgroundColorCopy=NSColor.labelColor
 		if hasDarkAppearance(view: self) && dark==false {
 			dark=true
 		} else if !hasDarkAppearance(view: self) && dark==true {
@@ -63,9 +65,6 @@ class AnalogDockClockView: BaseAnalogClockView {
 		} else {
 			backgroundColor=ColorModel.sharedInstance.lightColorsDictionary[ClockPreferencesStorage.sharedInstance.colorChoice]
 				?? NSColor.systemGray
-			if backgroundColor==NSColor.black {
-				backgroundColor=NSColor.systemGray
-			}
 		}
 		if hasDarkAppearance(view: self) {
 			backgroundColor.setFill()
@@ -83,10 +82,6 @@ class AnalogDockClockView: BaseAnalogClockView {
 			color=NSColor.white
 			secondsColor=NSColor.white
 			backgroundColor.setFill()
-		} else {
-			handsColor=NSColor.white
-			backgroundColor=NSColor.black
-			backgroundColor.setFill()
 		}
 		if ClockPreferencesStorage.sharedInstance.colorForForeground {
 			handsColor=NSColor.black
@@ -97,15 +92,35 @@ class AnalogDockClockView: BaseAnalogClockView {
 				color=NSColor.systemGray
 				secondsColor=NSColor.systemGray
 			} else if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor {
-				color=NSColor.white
-				secondsColor=NSColor.white
-				backgroundColor=NSColor.systemGray
+					if hasDarkAppearance(view: self) && ClockPreferencesStorage.sharedInstance.useNightMode {
+						color=NSColor.white
+						secondsColor=NSColor.systemGray
+						handsColor=NSColor.white
+						backgroundColor=NSColor.black
+					} else {
+						color=NSColor.black
+						secondsColor=NSColor.systemGray
+						handsColor=NSColor.black
+						backgroundColor=NSColor.white
+					}
 				backgroundColor.setFill()
-			}
-		} else if hasDarkAppearance(view: self) &&  (ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor ||
-			ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.black) {
+
+			} else if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.black {
+				backgroundColor=NSColor.black
+			 handsColor=NSColor.white
+			 color=NSColor.white
+			 secondsColor=NSColor.systemGray
+			 backgroundColor.setFill()
+		 }
+		} else if hasDarkAppearance(view: self) &&  ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.systemColor {
 			color=NSColor.systemGray
 			secondsColor=NSColor.systemGray
+		} else if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.black {
+			backgroundColor=NSColor.black
+			handsColor=NSColor.white
+			color=NSColor.white
+			secondsColor=NSColor.systemGray
+			backgroundColor.setFill()
 		} else if hasDarkAppearance(view: self) &&
 		ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.white {
 			handsColor=NSColor.black
