@@ -956,7 +956,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Colors" id="65N-u4-pRd">
                                     <items>
-                                        <menuItem title="System Color" id="M7M-RB-oPM">
+                                        <menuItem title="System" id="M7M-RB-oPM">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                         <menuItem title="Black" tag="1" id="LZV-KO-2AF">

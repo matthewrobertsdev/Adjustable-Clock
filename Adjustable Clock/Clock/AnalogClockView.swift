@@ -117,21 +117,17 @@ class AnalogClockView: BaseAnalogClockView {
 		minuteLayer.strokeColor=color.cgColor
 		hourLayer.strokeColor=color.cgColor
 		var secondsColor=NSColor.white
-		if ClockPreferencesStorage.sharedInstance.colorForForeground || !hasDarkAppearance(view: self) {
-			if ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.white &&
-				ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.systemColor {
-			secondsColor=NSColor.white
-		} else {
-			secondsColor=NSColor.systemGray
-			}
-		} else {
-			secondsColor=NSColor.textColor
-			if ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.systemColor
-				&& ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.black {
+		if ClockPreferencesStorage.sharedInstance.colorChoice == .gray && hasDarkAppearance(view: self) {
+			secondsColor=NSColor.black
+		} else if ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.white &&
+				ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.systemColor && ClockPreferencesStorage.sharedInstance.colorChoice != ColorChoice.black {
+			if hasDarkAppearance(view: self) && !ClockPreferencesStorage.sharedInstance.colorForForeground && !ClockPreferencesStorage.sharedInstance.useNightMode {
 				secondsColor=NSColor.black
 			} else {
-				secondsColor=NSColor.systemGray
-				}
+				secondsColor=NSColor.white
+			}
+		} else {
+			secondsColor=NSColor.systemGray
 		}
 		secondLayer.strokeColor=secondsColor.cgColor
 		let origin=CGPoint(x: bounds.width*0.05, y: bounds.height*0.05)
