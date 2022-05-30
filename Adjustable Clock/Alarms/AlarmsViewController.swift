@@ -12,6 +12,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 	@IBOutlet weak var collectionView: NSCollectionView!
 	//@IBOutlet weak var titleTextField: NSTextField!
 	@IBOutlet weak var alarmNotifierTextField: NSTextField!
+	@IBOutlet weak var addAlarmButton: NSButton!
 	@IBOutlet weak var clickRecognizer: NSClickGestureRecognizer!
 	@objc var objectToObserve=AlarmCenter.sharedInstance
 	var kvoObservation: NSKeyValueObservation?
@@ -54,6 +55,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 		alarmCollectionViewItem.alarmStatusSegmentedControl.action=#selector(onOffSelected(sender:))
 		alarmCollectionViewItem.alarmDelegate=self
 		alarmCollectionViewItem.alarmSettingsButton.title="Edit"
+		setButtonTitle(button: alarmCollectionViewItem.alarmSettingsButton, title: "Edit")
 		return alarmCollectionViewItem
 	}
 	@IBAction func click(_ sender: Any) {
@@ -112,6 +114,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 		}
 	}
 	func update() {
+		setButtonTitle(button: addAlarmButton, title: "Add Alarm")
 		applyColorScheme(views: [ColorView](), labels: [ alarmNotifierTextField])
 		collectionView.reloadData()
 	}
@@ -142,6 +145,7 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 			return
 		}
 		settingsButton.title="Close"
+		setButtonTitle(button: settingsButton, title: "Close")
 		guard let index=self.collectionView?.indexPath(for: collectionViewItem) else {
 			return
 		}

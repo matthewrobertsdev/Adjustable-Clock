@@ -85,7 +85,9 @@ class TimersViewController: ColorfulViewController,
 			TimersCenter.sharedInstance.getActiveTimers()
 		}
 		timerCollectionViewItem.startPauseButton.title="Start"
+		setButtonTitle(button: timerCollectionViewItem.startPauseButton, title: "Start")
 		timerCollectionViewItem.resetButton.title="Clear"
+		setButtonTitle(button: timerCollectionViewItem.resetButton, title: "Clear")
 	}
 	func update() {
 		applyColorScheme(views: [ColorView](), labels: [timerActiveLabel])
@@ -129,8 +131,10 @@ class TimersViewController: ColorfulViewController,
 		timerCollectionViewItem.setButton.action=#selector(showPopover(sender:))
 		timerCollectionViewItem.resetButton.tag=indexPath.item
 		if TimersCenter.sharedInstance.timers[indexPath.item].reset { timerCollectionViewItem.resetButton.title="Clear"
+			setButtonTitle(button: timerCollectionViewItem.resetButton, title: "Clear")
 		} else {
 			timerCollectionViewItem.resetButton.title="Reset"
+			setButtonTitle(button: timerCollectionViewItem.resetButton, title: "Reset")
 		}
 		timerCollectionViewItem.resetButton.action=#selector(resetTimer(sender:))
 		let timers=TimersCenter.sharedInstance.timers
@@ -142,14 +146,18 @@ class TimersViewController: ColorfulViewController,
 			}
 			timerCollectionViewItem.stopTimeTextField.stringValue=getStopTimeString(timerIndex: indexPath.item)
 			timerCollectionViewItem.startPauseButton.title="Pause"
+			setButtonTitle(button: timerCollectionViewItem.startPauseButton, title: "Pause")
 		} else if timers[indexPath.item].active && !timers[indexPath.item].going {
 			timerCollectionViewItem.stopTimeTextField.isHidden=true
 			timerCollectionViewItem.startPauseButton.title="Resume"
+			setButtonTitle(button: timerCollectionViewItem.startPauseButton, title: "Resume")
 		} else {
 			timerCollectionViewItem.stopTimeTextField.isHidden=true
 			timerCollectionViewItem.startPauseButton.title="Start"
+			setButtonTitle(button: timerCollectionViewItem.startPauseButton, title: "Start")
 		}
 		timerCollectionViewItem.setButton.title="Set"
+		setButtonTitle(button: timerCollectionViewItem.setButton, title: "Set")
 		return timerCollectionViewItem
 	}
 	func getStopTimeString(timerIndex: Int) -> String {
@@ -172,6 +180,9 @@ class TimersViewController: ColorfulViewController,
 		TimersCenter.sharedInstance.timers[index].reset=false
 		let timerCollectionViewItem=collectionView.item(at: IndexPath(item: index, section: 0)) as? TimerCollectionViewItem
 		timerCollectionViewItem?.resetButton.title="Reset"
+		if let resetButton=timerCollectionViewItem?.resetButton {
+			setButtonTitle(button: resetButton, title: "Reset")
+		}
 		timerCollectionViewItem?.stopTimeTextField.isHidden=false
 		timerCollectionViewItem?.stopTimeTextField.stringValue=getStopTimeString(timerIndex: index)
 		//TimersCenter.sharedInstance.activeTimers+=1
@@ -182,6 +193,9 @@ class TimersViewController: ColorfulViewController,
 			&&  TimersCenter.sharedInstance.timers[index].active {
 			self.timerStopped(index: index)
 			timerCollectionViewItem?.startPauseButton.title="Start"
+			if let startPauseButton=timerCollectionViewItem?.startPauseButton {
+			setButtonTitle(button: startPauseButton, title: "Start")
+			}
 			return
 		}
 		TimersCenter.sharedInstance.gcdTimers[index].schedule(deadline: .now()+1, repeating: .milliseconds(1000),
@@ -192,12 +206,15 @@ class TimersViewController: ColorfulViewController,
 			if TimersCenter.sharedInstance.timers[index].secondsRemaining<=0&&TimersCenter.sharedInstance.timers[index].going {
 				if let timerCollectionViewItem=self.collectionView.item(at: index) as? TimerCollectionViewItem {
 					timerCollectionViewItem.startPauseButton.title="Start"
+					setButtonTitle(button: timerCollectionViewItem.startPauseButton, title: "Start")
 				}
 				if TimersCenter.sharedInstance.timers[index].active {
 					if let 	timerCollectionViewItem=self.collectionView.item(at: index) as? TimerCollectionViewItem {
 						timerCollectionViewItem.startPauseButton.title="Pause"
+						setButtonTitle(button: timerCollectionViewItem.startPauseButton, title: "Pause")
 						timerCollectionViewItem.resetButton.title="Reset"
 						self.timerStopped(index: index)
+						setButtonTitle(button: timerCollectionViewItem.resetButton, title: "Reset")
 					}
 				}
 			}
@@ -208,11 +225,20 @@ class TimersViewController: ColorfulViewController,
 		let timerCollectionViewItem=collectionView.item(at: IndexPath(item: index, section: 0)) as? TimerCollectionViewItem
 		timerCollectionViewItem?.startPauseButton.isHidden=true
 		timerCollectionViewItem?.startPauseButton.title="Start"
+		if let startPauseButton=timerCollectionViewItem?.startPauseButton {
+		setButtonTitle(button: startPauseButton, title: "Start")
+		}
 		if TimersCenter.sharedInstance.timers[index]==CountDownTimer() {
 			TimersCenter.sharedInstance.timers[index].reset=true
 			timerCollectionViewItem?.resetButton.title="Clear"
+			if let resetButton=timerCollectionViewItem?.resetButton {
+				setButtonTitle(button: resetButton, title: "Clear")
+			}
 		} else {
 			timerCollectionViewItem?.resetButton.title="Reset"
+			if let resetButton=timerCollectionViewItem?.resetButton {
+				setButtonTitle(button: resetButton, title: "Reset")
+			}
 		}
 		timerCollectionViewItem?.stopTimeTextField.isHidden=true
 		TimersCenter.sharedInstance.timers[index].active=false
@@ -280,12 +306,16 @@ class TimersViewController: ColorfulViewController,
 			timerCollectionViewItem.stopTimeTextField.isHidden=true
 			TimersCenter.sharedInstance.stopTimer(index: index)
 			timerCollectionViewItem.startPauseButton.title="Resume"
+			setButtonTitle(button: timerCollectionViewItem.startPauseButton, title: "Resume")
+
 		} else {
 		TimersCenter.sharedInstance.timers[index].active=true
 			animateTimer(index: index)
 			timerCollectionViewItem.startPauseButton.title="Pause"
+			setButtonTitle(button: timerCollectionViewItem.startPauseButton, title: "Pause")
 			if TimersCenter.sharedInstance.timers[index].secondsRemaining<=0 {
 				timerCollectionViewItem.startPauseButton.title="Start"
+				setButtonTitle(button: timerCollectionViewItem.startPauseButton, title: "Start")
 			}
 		}
 		TimersCenter.sharedInstance.getActiveTimers()
@@ -314,6 +344,7 @@ class TimersViewController: ColorfulViewController,
 			editableTimerViewController.closeAction = { [unowned self] () -> Void in
 				self.collectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
 				settingsButton.title="Set"
+				setButtonTitle(button: settingsButton, title: "Set")
 				self.popover.close()
 				self.clickRecognizer.isEnabled=false
 			}
@@ -322,6 +353,7 @@ class TimersViewController: ColorfulViewController,
 			popover.show(relativeTo: settingsButton.bounds, of: settingsButton, preferredEdge: NSRectEdge.minY)
 			print("abcd \(debugTimeFormatter.string(from: Date())) popover should show 4")
 			settingsButton.title="Close"
+			setButtonTitle(button: settingsButton, title: "Close")
 		}
 	}
 	func sound(_ sound: NSSound,

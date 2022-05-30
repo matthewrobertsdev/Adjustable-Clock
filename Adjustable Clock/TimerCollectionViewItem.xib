@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -26,7 +26,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="351" height="204"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xEI-KT-zbD">
-                            <rect key="frame" x="22" y="74" width="308" height="86"/>
+                            <rect key="frame" x="25" y="74" width="302" height="86"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="00:00:00" id="YWd-Rd-Pol">
                                 <font key="font" metaFont="system" size="73"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -34,7 +34,7 @@
                             </textFieldCell>
                         </textField>
                         <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rGD-4H-Rts">
-                            <rect key="frame" x="107" y="39" width="138" height="38"/>
+                            <rect key="frame" x="107" y="39" width="137" height="38"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="12:00 PM" id="JMq-Vc-38y">
                                 <font key="font" metaFont="system" size="32"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -42,24 +42,24 @@
                             </textFieldCell>
                         </textField>
                         <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7am-kp-jp5">
-                            <rect key="frame" x="71" y="10" width="210" height="21"/>
+                            <rect key="frame" x="83" y="11" width="186" height="20"/>
                             <subviews>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zCm-pV-pco">
-                                    <rect key="frame" x="-6" y="-7" width="70" height="32"/>
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zCm-pV-pco" customClass="CustomButton" customModule="Clock_Suite" customModuleProvider="target">
+                                    <rect key="frame" x="-7" y="-7" width="64" height="32"/>
                                     <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="A3L-lq-Bmu">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                 </button>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KKu-uE-XUv">
-                                    <rect key="frame" x="72" y="-7" width="61" height="32"/>
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KKu-uE-XUv" customClass="CustomButton" customModule="Clock_Suite" customModuleProvider="target">
+                                    <rect key="frame" x="63" y="-7" width="55" height="32"/>
                                     <buttonCell key="cell" type="push" title="Set" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FyJ-hT-SK0">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                 </button>
-                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5TG-GM-daY">
-                                    <rect key="frame" x="141" y="-7" width="75" height="32"/>
+                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5TG-GM-daY" customClass="CustomButton" customModule="Clock_Suite" customModuleProvider="target">
+                                    <rect key="frame" x="124" y="-7" width="69" height="32"/>
                                     <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="d97-GU-xLg">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>

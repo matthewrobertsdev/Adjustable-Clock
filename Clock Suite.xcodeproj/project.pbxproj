@@ -76,6 +76,9 @@
 		9F8BF21720EEBEFE00ADF294 /* ColorsMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8BF21620EEBEFE00ADF294 /* ColorsMenuController.swift */; };
 		9F8EBE482050C4C7005BA4F2 /* ClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8EBE472050C4C7005BA4F2 /* ClockViewController.swift */; };
 		9F8ED1711FEC73C100C0553C /* WindowFrameRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F8ED1701FEC73C100C0553C /* WindowFrameRestorer.swift */; };
+		9F93808428452F3900189A4D /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F93808328452F3900189A4D /* CustomSegmentedControl.swift */; };
+		9F9380862845316100189A4D /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9380852845316100189A4D /* CustomButton.swift */; };
+		9F93808828453B2000189A4D /* SetButtonAttributedTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F93808728453B2000189A4D /* SetButtonAttributedTitle.swift */; };
 		9F93B36E23C81E620086B3CC /* DigitalClockAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F93B36D23C81E620086B3CC /* DigitalClockAnimator.swift */; };
 		9F97C85E23EB7B1E005381A0 /* ColorfulViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F97C85D23EB7B1E005381A0 /* ColorfulViewController.swift */; };
 		9F97C86223EB7C40005381A0 /* ForegroundColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F97C86123EB7C40005381A0 /* ForegroundColorView.swift */; };
@@ -217,6 +220,9 @@
 		9F8BF21620EEBEFE00ADF294 /* ColorsMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsMenuController.swift; sourceTree = "<group>"; };
 		9F8EBE472050C4C7005BA4F2 /* ClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClockViewController.swift; sourceTree = "<group>"; };
 		9F8ED1701FEC73C100C0553C /* WindowFrameRestorer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowFrameRestorer.swift; sourceTree = "<group>"; };
+		9F93808328452F3900189A4D /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
+		9F9380852845316100189A4D /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		9F93808728453B2000189A4D /* SetButtonAttributedTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetButtonAttributedTitle.swift; sourceTree = "<group>"; };
 		9F93B36D23C81E620086B3CC /* DigitalClockAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalClockAnimator.swift; sourceTree = "<group>"; };
 		9F97C85D23EB7B1E005381A0 /* ColorfulViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorfulViewController.swift; sourceTree = "<group>"; };
 		9F97C86123EB7C40005381A0 /* ForegroundColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForegroundColorView.swift; sourceTree = "<group>"; };
@@ -311,6 +317,8 @@
 				9FA60EA523DB7286004F787F /* GenericTableCellView.swift */,
 				9F078A9C23CA7A79007072BB /* FullViewWindowController.swift */,
 				9F2E8AFC23D3B0BB00EE464E /* DarkAndLightBackgroundView.swift */,
+				9F93808328452F3900189A4D /* CustomSegmentedControl.swift */,
+				9F9380852845316100189A4D /* CustomButton.swift */,
 				9F0C2D8A2421469A007A031C /* PlaylistViewController.swift */,
 				9F3AD84723C7D22C005FCC0A /* MagnifierScrollView.swift */,
 				9F97C85D23EB7B1E005381A0 /* ColorfulViewController.swift */,
@@ -585,6 +593,7 @@
 				9F14F37623C9828F009BF6CA /* AnimationFunctions.swift */,
 				9F51283F23DB42E300B87C29 /* ViewToImage.swift */,
 				9FD390C9244E0A7F00FB3155 /* StringConstants.swift */,
+				9F93808728453B2000189A4D /* SetButtonAttributedTitle.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -834,6 +843,7 @@
 				9F87CCC323D4156B005D402B /* IsDarkMode.swift in Sources */,
 				9F073FB623FDEEFE00B404C5 /* WorldClockPreferencesStorage.swift in Sources */,
 				9FF6913723D784110057C4F6 /* AlarmsWindowRestorer.swift in Sources */,
+				9F9380862845316100189A4D /* CustomButton.swift in Sources */,
 				9F7D055723D6629F00E6CBA2 /* AlarmsViewController.swift in Sources */,
 				9FAD49CF23E3DDEC00767C1D /* DigitalDockClockView.swift in Sources */,
 				9FDA170D27718E7700C591E8 /* StopwatchMenu.swift in Sources */,
@@ -889,9 +899,11 @@
 				9F8EBE482050C4C7005BA4F2 /* ClockViewController.swift in Sources */,
 				9FEAE9DD1F4F7249004EB641 /* MainMenu.swift in Sources */,
 				9F4A9C5E23F7A67D0046A7F2 /* EditableTimerViewController.swift in Sources */,
+				9F93808828453B2000189A4D /* SetButtonAttributedTitle.swift in Sources */,
 				9FE390871FECBCF400AF5442 /* PreferencesWindowRestorer.swift in Sources */,
 				9F97C86623EB8586005381A0 /* ColorView.swift in Sources */,
 				9FC97F581F480BB500035D30 /* PreferencesVC.swift in Sources */,
+				9F93808428452F3900189A4D /* CustomSegmentedControl.swift in Sources */,
 				9F51284023DB42E300B87C29 /* ViewToImage.swift in Sources */,
 				9F3C7D6A20CCE40D00C91506 /* ClockPreferencesStorage.swift in Sources */,
 				9F1137DF23FB6F5900C6C92B /* WorldClockCollectionViewItem.swift in Sources */,

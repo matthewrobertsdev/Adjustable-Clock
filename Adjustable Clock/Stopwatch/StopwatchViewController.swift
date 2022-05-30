@@ -39,6 +39,13 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 			stopwatchWindowwController.applyFloatState()
 		}
 		updatePrecision()
+		if StopwatchCenter.sharedInstance.active {
+			setButtonTitle(button: startStopButton, title: "Stop")
+			setButtonTitle(button: resetLapButton, title: "Lap")
+		} else {
+			setButtonTitle(button: startStopButton, title: "Start")
+			setButtonTitle(button: resetLapButton, title: "Reset")
+		}
 	}
 	@IBAction func startStopStopwatch(_ sender: Any) {
 		if StopwatchCenter.sharedInstance.active {
@@ -47,7 +54,9 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 			StopwatchCenter.sharedInstance.startStopwatch()
 			animateStopwatch()
 			startStopButton.title="Stop"
+			setButtonTitle(button: startStopButton, title: "Stop")
 			resetLapButton.title="Lap"
+			setButtonTitle(button: resetLapButton, title: "Lap")
 		}
 		notificationCenter.post(name: .activeCountChanged, object: nil)
 	}
@@ -56,7 +65,9 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 		StopwatchCenter.sharedInstance.stopStopwatch()
 		lapTableView.reloadData()
 		startStopButton.title="Start"
+		setButtonTitle(button: startStopButton, title: "Start")
 		resetLapButton.title="Reset"
+		setButtonTitle(button: resetLapButton, title: "Reset")
 	}
 	@IBAction func resetLapStopwatch(_ sender: Any) {
 		if StopwatchCenter.sharedInstance.active {
