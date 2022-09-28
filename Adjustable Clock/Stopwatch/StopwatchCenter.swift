@@ -100,7 +100,8 @@ class StopwatchCenter {
 			return minutesAndSecondsString
 		} else {
 		let hundrethsString=String(format: "%.1f", (currentTime.truncatingRemainder(dividingBy: TimeInterval(10))))
-		return minutesAndSecondsString+hundrethsString.substring(from: hundrethsString.index(hundrethsString.startIndex, offsetBy: 1))
+			let firstIndex = hundrethsString.index(hundrethsString.startIndex, offsetBy: 1)
+		return minutesAndSecondsString+String(hundrethsString.suffix(from: firstIndex))
 		}
 	}
 	func getStopwatchFreezeString() -> String {
@@ -110,7 +111,8 @@ class StopwatchCenter {
 			return minutesAndSecondsString
 		} else {
 		let hundrethsString=String(format: "%.1f", (currentTime.truncatingRemainder(dividingBy: TimeInterval(10))))
-		return minutesAndSecondsString+hundrethsString.substring(from: hundrethsString.index(hundrethsString.startIndex, offsetBy: 1))
+			let firstIndex = hundrethsString.index(hundrethsString.startIndex, offsetBy: 1)
+		return minutesAndSecondsString+String(hundrethsString.suffix(from: firstIndex))
 		}
 	}
 	private func resetData() {

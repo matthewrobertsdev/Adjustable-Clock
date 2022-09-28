@@ -110,7 +110,9 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 		} else if tableColumn?.identifier==NSUserInterfaceItemIdentifier("TimeColumn") {
 			let hundrethsString=String(format: "%.1f", (lap.timeInterval.truncatingRemainder(dividingBy: TimeInterval(10))))
 			var timeString=lapFormatter.string(from: Date(timeIntervalSince1970: lap.timeInterval))
-			if lap.useSecondsPrecision==false { timeString+=hundrethsString.substring(from: hundrethsString.index(hundrethsString.startIndex, offsetBy: 1))
+			if lap.useSecondsPrecision==false {
+				let firstIndex = hundrethsString.index(hundrethsString.startIndex, offsetBy: 1)
+				timeString+=String(hundrethsString.suffix(from: firstIndex))
 			}
 			tableCellView.textField?.stringValue=timeString
 		} else if tableColumn?.identifier==NSUserInterfaceItemIdentifier("NotesColumn") {
@@ -168,7 +170,9 @@ class StopwatchViewController: ColorfulViewController, NSTableViewDataSource, NS
 			csvString+=lap.lapNumber.description+","
 			let hundrethsString=String(format: "%.1f", (lap.timeInterval.truncatingRemainder(dividingBy: TimeInterval(10))))
 			var timeString=lapFormatter.string(from: Date(timeIntervalSince1970: lap.timeInterval))
-			if lap.useSecondsPrecision==false { timeString+=hundrethsString.substring(from: hundrethsString.index(hundrethsString.startIndex, offsetBy: 1))
+			if lap.useSecondsPrecision==false {
+				let firstIndex = hundrethsString.index(hundrethsString.startIndex, offsetBy: 1)
+				timeString+=String(hundrethsString.suffix(from: firstIndex))
 			}
 			csvString+=timeString+","
 			csvString+=lap.notes+"\n"
