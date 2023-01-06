@@ -31,6 +31,7 @@ class ClockPreferencesStorage {
     var useNumericalDate = false
     //color
     var colorForForeground = false
+	var useGradients = false
 	var useNightMode = false
 	var customColor=NSColor.systemGray
     var redComponent: CGFloat?
@@ -45,6 +46,7 @@ class ClockPreferencesStorage {
     private let showDayOfWeekKey="showDayOfWeek"
     private let useNumericalDateKey="useNumericalDateKey"
     private let colorSchemeKey="colorScheme"
+	private let useGradientsKey="useGradientsKey"
 	private let useNightModeKey="useNightModeKey"
     private let colorChoiceKey="colorChoice"
     private let lightOnDarkKey="lightOnDark"
@@ -78,6 +80,7 @@ class ClockPreferencesStorage {
 			self.colorChoice=ColorChoice.systemColor
         }
         colorForForeground=userDefaults.bool(forKey: lightOnDarkKey)
+		useGradients=userDefaults.bool(forKey: useGradientsKey)
 		useNightMode=userDefaults.bool(forKey: useNightModeKey)
         redComponent=CGFloat(userDefaults.float(forKey: customRedComponentKey))
         greenComponent=CGFloat(userDefaults.float(forKey: customGreenComponentKey))
@@ -121,6 +124,10 @@ class ClockPreferencesStorage {
 		colorForForeground=false
 		userDefaults.set(false, forKey: lightOnDarkKey)
     }
+	func toggleGradients() {
+		useGradients = !useGradients
+		userDefaults.set(useGradients, forKey: useGradientsKey)
+	}
 	func toggleNightMode() {
 		useNightMode = !useNightMode
 		userDefaults.set(useNightMode, forKey: useNightModeKey)
@@ -166,6 +173,7 @@ class ClockPreferencesStorage {
 		userDefaults.set(false, forKey: useAnalogKey)
         userDefaults.set(nil, forKey: colorChoiceKey)
 		userDefaults.set(false, forKey: lightOnDarkKey)
+		userDefaults.set(false, forKey: useGradientsKey)
 		userDefaults.set(false, forKey: useNightModeKey)
     }
 	func setWindowIsOpen() {

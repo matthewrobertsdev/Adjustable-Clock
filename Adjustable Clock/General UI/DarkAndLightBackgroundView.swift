@@ -20,11 +20,13 @@ class DarkAndLightBackgroundView: NSView, BackgroundColorView {
 			}
 			if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom &&
 				!ClockPreferencesStorage.sharedInstance.colorForForeground {
-				print("should be dark")
 				backgroundColor=ClockPreferencesStorage.sharedInstance.customColor.blended(withFraction: 0.4, of: NSColor.black)
 					?? NSColor.systemGray
 			}
 			layer?.backgroundColor=backgroundColor.cgColor
+			if ClockPreferencesStorage.sharedInstance.useGradients {
+				applyGradient()
+			}
 		} else if !hasDarkAppearance(view: self) && backgroundColor != NSColor.labelColor {
 			if backgroundColor==NSColor.black {
 				if #available(OSX 10.13, *) {
@@ -33,13 +35,26 @@ class DarkAndLightBackgroundView: NSView, BackgroundColorView {
 			}
 			if ClockPreferencesStorage.sharedInstance.colorChoice==ColorChoice.custom &&
 				!ClockPreferencesStorage.sharedInstance.colorForForeground {
-				print("should be light")
 				backgroundColor=ClockPreferencesStorage.sharedInstance.customColor
 			}
 			layer?.backgroundColor=backgroundColor.cgColor
+			if ClockPreferencesStorage.sharedInstance.useGradients {
+				applyGradient()
+			}
 		} else {
 			backgroundColor=NSColor.black
 			backgroundColor.setFill()
+			if ClockPreferencesStorage.sharedInstance.useGradients {
+				applyGradient()
+			}
 		}
+	}
+	func applyGradient() {
+		let darkerConstant = hasDarkAppearance(view: self) ? 0.5 : 0.2
+		let lighterConstant = hasDarkAppearance(view: self) ? 0.2 : 0.5
+		let darkerColor = backgroundColor.blended(withFraction: darkerConstant, of: NSColor.black) ?? backgroundColor
+		let lighterColor = backgroundColor.blended(withFraction: lighterConstant, of: NSColor.white) ?? backgroundColor
+		let gradient = NSGradient(colors: [darkerColor, backgroundColor, lighterColor])
+		gradient?.draw(from: NSPoint(x: self.frame.width/2, y: 0), to: NSPoint(x: self.frame.width/2, y: self.frame.height))
 	}
 }
