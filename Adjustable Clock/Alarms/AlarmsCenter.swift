@@ -108,6 +108,10 @@ class AlarmCenter: NSObject, NSSoundDelegate, AVAudioPlayerDelegate {
 		for alarm in alarms where alarm.active {
 			scheduleAlarm(alarm: alarm)
 		}
+		if let alarmViewController: AlarmsViewController=AlarmsWindowController.alarmsObject.contentViewController
+			as? AlarmsViewController {
+			alarmViewController.shorOrHideNotifier(numberOfAlarms: getActiveAlarms())
+		}
 	}
 	private func scheduleAlarm(alarm: Alarm) {
 		if alarm.active {
