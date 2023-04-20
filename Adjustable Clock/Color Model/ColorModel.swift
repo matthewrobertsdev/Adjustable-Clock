@@ -28,6 +28,9 @@ enum ColorChoice: String {
     case orange
     case yellow
     case green
+	case mint
+	case teal
+	case cyan
     case blue
 	case indigo
     case purple
@@ -61,6 +64,9 @@ class ColorModel {
 			ColorChoice.orange: NSColor(named: "Orange") ?? NSColor.systemOrange,
 			ColorChoice.yellow: NSColor(named: "Yellow") ?? NSColor.systemYellow,
 			ColorChoice.green: NSColor(named: "Green") ?? NSColor.systemGreen,
+						  ColorChoice.mint: NSColor(named: "Mint") ?? NSColor.systemGreen,
+						  ColorChoice.teal: NSColor(named: "Teal") ?? NSColor.systemBlue,
+						  ColorChoice.cyan: NSColor(named: "Cyan") ?? NSColor.systemBlue,
 			ColorChoice.blue: NSColor(named: "Blue") ?? NSColor.systemBlue,
 			ColorChoice.indigo: NSColor(named: "Indigo") ?? NSColor.systemBlue,
 			ColorChoice.purple: NSColor(named: "Purple") ?? NSColor.systemPurple,
@@ -76,6 +82,9 @@ class ColorModel {
 			ColorChoice.orange: NSColor.systemOrange,
 			ColorChoice.yellow: NSColor.systemYellow,
 			ColorChoice.green: NSColor.systemGreen,
+							   ColorChoice.mint: NSColor(named: "LightMint") ?? NSColor.systemGreen,
+							   ColorChoice.teal: NSColor(named: "LightTeal") ?? NSColor.systemBlue,
+							   ColorChoice.cyan: NSColor(named: "LightCyan") ?? NSColor.systemBlue,
 			ColorChoice.blue: NSColor.systemBlue,
 			ColorChoice.indigo: NSColor(named: "LightIndigo") ?? NSColor.systemBlue,
 			ColorChoice.purple: NSColor.systemPurple,
@@ -91,6 +100,9 @@ class ColorModel {
 			ColorChoice.orange: NSColor(named: "DarkOrange") ?? NSColor.systemOrange,
 			ColorChoice.yellow: NSColor(named: "DarkYellow") ?? NSColor.systemYellow,
 			ColorChoice.green: NSColor(named: "DarkGreen") ?? NSColor.systemGreen,
+							  ColorChoice.mint: NSColor(named: "DarkMint") ?? NSColor.systemGreen,
+							  ColorChoice.teal: NSColor(named: "DarkTeal") ?? NSColor.systemBlue,
+							  ColorChoice.cyan: NSColor(named: "DarkCyan") ?? NSColor.systemBlue,
 			ColorChoice.blue: NSColor(named: "DarkBlue") ?? NSColor.systemBlue,
 			ColorChoice.indigo: NSColor(named: "DarkIndigo") ?? NSColor.systemBlue,
 			ColorChoice.purple: NSColor(named: "DarkPurple") ?? NSColor.systemPurple,
@@ -111,6 +123,9 @@ class ColorModel {
         colorArray.append(ColorChoice.orange)
         colorArray.append(ColorChoice.yellow)
         colorArray.append(ColorChoice.green)
+		colorArray.append(ColorChoice.mint)
+		colorArray.append(ColorChoice.teal)
+		colorArray.append(ColorChoice.cyan)
         colorArray.append(ColorChoice.blue)
 		colorArray.append(ColorChoice.indigo)
         colorArray.append(ColorChoice.purple)
