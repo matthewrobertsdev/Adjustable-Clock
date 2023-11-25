@@ -56,6 +56,21 @@ class AlarmsViewController: ColorfulViewController, NSCollectionViewDataSource,
 		alarmCollectionViewItem.alarmDelegate=self
 		alarmCollectionViewItem.alarmSettingsButton.title="Edit"
 		setButtonTitle(button: alarmCollectionViewItem.alarmSettingsButton, title: "Edit")
+		/*
+		alarmCollectionViewItem.view.wantsLayer = true
+		alarmCollectionViewItem.view.layer?.borderWidth = 2.0
+		switch ClockPreferencesStorage.sharedInstance.colorChoice {
+		case .white:
+			alarmCollectionViewItem.view.layer?.borderColor = NSColor.black.cgColor
+		case .black:
+			alarmCollectionViewItem.view.layer?.borderColor = NSColor.white.cgColor
+		case .systemColor:
+			alarmCollectionViewItem.view.layer?.borderColor = NSColor.textColor.cgColor
+		default:
+			alarmCollectionViewItem.view.layer?.borderColor = (NSColor(named: "SystemColor") ?? NSColor.clear).cgColor
+		}
+		alarmCollectionViewItem.view.layer?.cornerRadius = 10.0
+		 */
 		return alarmCollectionViewItem
 	}
 	@IBAction func click(_ sender: Any) {
